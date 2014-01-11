@@ -22,6 +22,7 @@
 		9F98D37A1880F8EE00469323 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D35E1880F8ED00469323 /* CoreData.framework */; };
 		9F98D3821880F8EE00469323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F98D3801880F8EE00469323 /* InfoPlist.strings */; };
 		9F98D3841880F8EE00469323 /* OpenBrewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98D3831880F8EE00469323 /* OpenBrewTests.m */; };
+		9F98D3921880FB7600469323 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F98D3911880FB7600469323 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		9F98D37F1880F8EE00469323 /* OpenBrewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenBrewTests-Info.plist"; sourceTree = "<group>"; };
 		9F98D3811880F8EE00469323 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F98D3831880F8EE00469323 /* OpenBrewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenBrewTests.m; sourceTree = "<group>"; };
+		9F98D3911880FB7600469323 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = OpenBrew/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		9F98D34C1880F8ED00469323 = {
 			isa = PBXGroup;
 			children = (
+				9F98D3911880FB7600469323 /* Main.storyboard */,
 				9F98D3601880F8ED00469323 /* OpenBrew */,
 				9F98D37D1880F8EE00469323 /* OpenBrewTests */,
 				9F98D3571880F8ED00469323 /* Frameworks */,
@@ -231,6 +234,7 @@
 			files = (
 				9F98D3651880F8ED00469323 /* InfoPlist.strings in Resources */,
 				9F98D3701880F8ED00469323 /* Images.xcassets in Resources */,
+				9F98D3921880FB7600469323 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +458,7 @@
 				9F98D3891880F8EE00469323 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9F98D38A1880F8EE00469323 /* Build configuration list for PBXNativeTarget "OpenBrewTests" */ = {
 			isa = XCConfigurationList;
@@ -462,6 +467,7 @@
 				9F98D38C1880F8EE00469323 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
