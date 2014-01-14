@@ -10,4 +10,11 @@
 
 @interface OBYeast : NSObject
 
+@property (retain, readonly, nonatomic) NSString *name;
+@property (retain, readonly, nonatomic) NSString *company;
+@property (retain, readonly, nonatomic) NSString *description;
+@property (retain, readonly, nonatomic) NSURL *referenceLink;
+
+@property (assign, readonly, nonatomic) NSRange *attenuationRange;
+
 @end
