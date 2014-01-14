@@ -10,4 +10,9 @@
 
 @implementation OBHops
 
+- (float)ibuContributionWithBoilSize:(float)gallons andGravity:(float)gravity {
+  // FIXME
+  return 0;
+}
+
 @end

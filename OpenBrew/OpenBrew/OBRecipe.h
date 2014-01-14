@@ -7,7 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OBStyle.h"
+#import "OBYeast.h"
 
 @interface OBRecipe : NSObject
+
+@property (retain, nonatomic) NSString *name;
+@property (retain, nonatomic) OBStyle *style;
+@property (retain, nonatomic) OBYeast *yeast;
+
+- (float)originalGravity;
+- (float)IBUs;
+- (float)alcoholByVolume;
+
+- (void)save;
 
 @end

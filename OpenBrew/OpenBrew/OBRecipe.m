@@ -7,7 +7,34 @@
 //
 
 #import "OBRecipe.h"
+#import "OBYeast.h"
+
+@interface OBRecipe()
+
+@property (retain, nonatomic) NSMutableArray *malts;
+@property (retain, nonatomic) NSMutableArray *hops;
+
+@end
 
 @implementation OBRecipe
+
+- (float)originalGravity {
+  // FIXME
+  return 0;
+}
+
+- (float)IBUs {
+  // FIXME
+  return 0;
+}
+
+- (float)alcoholByVolume {
+  // FIXME
+  return 0;
+}
+
+- (void)save {
+  // FIXME
+}
 
 @end

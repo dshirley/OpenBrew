@@ -10,4 +10,10 @@
 
 @implementation OBMalt
 
+- (int)contributedGravityUnitsWithEfficiency:(float)efficiency {
+  // FIXME
+  return 0;
+}
+
+
 @end

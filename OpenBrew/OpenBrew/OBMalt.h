@@ -10,4 +10,13 @@
 
 @interface OBMalt : NSObject
 
+@property (retain, nonatomic) NSString *name;
+@property (retain, nonatomic) NSString *description;
+
+@property (assign, nonatomic) int quantity;
+@property (assign, nonatomic) int maxGravityUnits;
+@property (assign, nonatomic) int lovibond;
+
+- (int)contributedGravityUnitsWithEfficiency:(float)efficiency;
+
 @end

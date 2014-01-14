@@ -10,4 +10,13 @@
 
 @interface OBHops : NSObject
 
+@property (retain, nonatomic) NSString *name;
+@property (retain, nonatomic) NSString *description;
+
+@property (assign, nonatomic) float alphaAcidPercent;
+@property (assign, nonatomic) int boilTimeInMinutes;
+@property (assign, nonatomic) int quantityInOunces;
+
+- (float)ibuContributionWithBoilSize:(float)gallons andGravity:(float)gravity;
+
 @end
