@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface OBBrewHouseSettings : NSObject
+@property (assign, nonatomic) float mashExtractionEfficiency;
 
++ (OBBrewHouseSettings *)instance;
 @end

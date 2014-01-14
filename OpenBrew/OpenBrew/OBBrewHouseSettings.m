@@ -10,4 +10,9 @@
 
 @implementation OBBrewHouseSettings
 
++ (OBBrewHouseSettings *)instance {
+  // FIXME
+  return nil;
+}
+
 @end

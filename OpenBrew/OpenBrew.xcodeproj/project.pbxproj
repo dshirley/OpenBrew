@@ -28,6 +28,7 @@
 		9F98D39C1884FB0200469323 /* OBHops.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98D39B1884FB0200469323 /* OBHops.m */; };
 		9F98D39F1884FB1200469323 /* OBYeast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98D39E1884FB1200469323 /* OBYeast.m */; };
 		9F98D3A21884FB1F00469323 /* OBStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98D3A11884FB1F00469323 /* OBStyle.m */; };
+		9F98D3A51885A53900469323 /* OBBrewHouseSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98D3A41885A53900469323 /* OBBrewHouseSettings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		9F98D39E1884FB1200469323 /* OBYeast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBYeast.m; sourceTree = "<group>"; };
 		9F98D3A01884FB1F00469323 /* OBStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBStyle.h; sourceTree = "<group>"; };
 		9F98D3A11884FB1F00469323 /* OBStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBStyle.m; sourceTree = "<group>"; };
+		9F98D3A31885A53900469323 /* OBBrewHouseSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBrewHouseSettings.h; sourceTree = "<group>"; };
+		9F98D3A41885A53900469323 /* OBBrewHouseSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBrewHouseSettings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +188,8 @@
 				9F98D39E1884FB1200469323 /* OBYeast.m */,
 				9F98D3A01884FB1F00469323 /* OBStyle.h */,
 				9F98D3A11884FB1F00469323 /* OBStyle.m */,
+				9F98D3A31885A53900469323 /* OBBrewHouseSettings.h */,
+				9F98D3A41885A53900469323 /* OBBrewHouseSettings.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				9F98D3961884FAD800469323 /* OBRecipe.m in Sources */,
 				9F98D39F1884FB1200469323 /* OBYeast.m in Sources */,
 				9F98D3A21884FB1F00469323 /* OBStyle.m in Sources */,
+				9F98D3A51885A53900469323 /* OBBrewHouseSettings.m in Sources */,
 				9F98D36B1880F8ED00469323 /* OBAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
