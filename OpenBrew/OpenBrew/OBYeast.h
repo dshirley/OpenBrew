@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OBRange.h"
 
 @interface OBYeast : NSObject
 
@@ -15,6 +16,8 @@
 @property (retain, readonly, nonatomic) NSString *description;
 @property (retain, readonly, nonatomic) NSURL *referenceLink;
 
-@property (assign, readonly, nonatomic) NSRange *attenuationRange;
+@property (assign, readonly, nonatomic) OBRange *attenuationRange;
+
+- (float)estimatedAttenuationAsDecimal;
 
 @end

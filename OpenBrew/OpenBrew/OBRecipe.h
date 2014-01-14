@@ -26,9 +26,11 @@
 - (void)addHops:(OBHops *)hops;
 
 - (float)boilSizeInGallons;
+- (float)postBoilSizeInGallons;
 - (float)boilGravity;
 - (float)gravityUnits;
 - (float)originalGravity;
+- (float)finalGravity;
 - (float)IBUs;
 - (float)alcoholByVolume;
 

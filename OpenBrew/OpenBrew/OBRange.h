@@ -14,5 +14,6 @@
 @property (assign, nonatomic) float highEnd;
 
 - (id)initWithLowEnd:(float)lowEnd andHighEnd:(float)highEnd;
+- (float)average;
 
 @end

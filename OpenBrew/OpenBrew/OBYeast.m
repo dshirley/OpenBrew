@@ -10,4 +10,8 @@
 
 @implementation OBYeast
 
+- (float)estimatedAttenuationAsDecimal {
+  return [_attenuationRange average];
+}
+
 @end

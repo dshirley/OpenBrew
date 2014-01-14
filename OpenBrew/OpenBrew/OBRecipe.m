@@ -40,6 +40,11 @@
   return _batchSizeInGallons + 2;
 }
 
+- (float)postBoilSizeInGallons {
+    // FIXME: this should be tunable rather than just adding 1 gallons
+  return _batchSizeInGallons + 1;
+}
+
 - (float)gravityUnits {
   float gravityUnits = 0.0;
   float efficiency = [[OBBrewHouseSettings instance] mashExtractionEfficiency];
@@ -53,6 +58,11 @@
 
 - (float)originalGravity {
   return [self gravityUnits] / _batchSizeInGallons;
+}
+
+- (float)finalGravity {
+  float finalGravityUnits = [self gravityUnits] * (1 - [_yeast estimatedAttenuationAsDecimal]);
+  return finalGravityUnits / [self postBoilSizeInGallons];
 }
 
 - (float)boilGravity {

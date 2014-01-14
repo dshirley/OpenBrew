@@ -21,4 +21,8 @@
   return self;
 }
 
+- (float)average {
+  return (_lowEnd + _highEnd) / 2;
+}
+
 @end
