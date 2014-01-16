@@ -15,8 +15,16 @@
 
 @property (assign, nonatomic) float alphaAcidPercent;
 @property (assign, nonatomic) int boilTimeInMinutes;
-@property (assign, nonatomic) int quantityInOunces;
+@property (assign, nonatomic) float quantityInOunces;
+
+- (id)initWithName:(NSString *)name
+    andDescription:(NSString *)description
+      andAAPercent:(float)alphaAcidPercent
+       andBoilTime:(float)boilTimeInMinutes
+       andQuantity:(float)quantityInOunces;
 
 - (float)ibuContributionWithBoilSize:(float)gallons andGravity:(float)gravity;
+- (float)utilizationForGravity:(float)gravity;
+- (float)alphaAcidUnits;
 
 @end
