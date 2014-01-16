@@ -13,10 +13,16 @@
 @property (retain, nonatomic) NSString *name;
 @property (retain, nonatomic) NSString *description;
 
-@property (assign, nonatomic) int quantity;
-@property (assign, nonatomic) int maxGravityUnits;
+@property (assign, nonatomic) float quantityInPounds;
+@property (assign, nonatomic) float maxGravityUnitsPerPound;
 @property (assign, nonatomic) int lovibond;
 
-- (int)contributedGravityUnitsWithEfficiency:(float)efficiency;
+- (id)initWithName:(NSString *)name
+    andDescription:(NSString *)description
+       andQuantity:(float)quantityInPounds
+   andGravityUnits:(float)maxGravityUnitPerPound
+       andLovibond:(int)lovibond;
+
+- (float)contributedGravityUnitsWithEfficiency:(float)efficiency;
 
 @end

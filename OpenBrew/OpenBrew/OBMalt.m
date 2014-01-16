@@ -10,9 +10,25 @@
 
 @implementation OBMalt
 
-- (int)contributedGravityUnitsWithEfficiency:(float)efficiency {
-  // FIXME
-  return 0;
+- (id)initWithName:(NSString *)name
+    andDescription:(NSString *)description
+       andQuantity:(float)quantityInPounds
+   andGravityUnits:(float)maxGravityUnitPerPound
+       andLovibond:(int)lovibond {
+
+  if (self) {
+    _name = name;
+    _description = description;
+    _quantityInPounds = quantityInPounds;
+    _maxGravityUnitsPerPound = maxGravityUnitPerPound;
+    _lovibond = lovibond;
+  }
+
+  return self;
+}
+
+- (float)contributedGravityUnitsWithEfficiency:(float)efficiency {
+  return _maxGravityUnitsPerPound * _quantityInPounds * efficiency;
 }
 
 
