@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="HopAdditions" syncable="YES">
+        <attribute name="alphaAcidPercent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="boilTimeInMinutes" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="quantityInOunces" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="hops" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Hops" inverseName="hopAdditions" inverseEntity="Hops" syncable="YES"/>
+        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="hopAdditions" inverseEntity="Recipe" syncable="YES"/>
+    </entity>
+    <entity name="Hops" representedClassName="" syncable="YES">
+        <attribute name="alphaAcidPercent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quantityInOunces" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="catalog" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IngredientCatalog" inverseName="hops" inverseEntity="IngredientCatalog" syncable="YES"/>
+        <relationship name="hopAdditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HopAdditions" inverseName="hops" inverseEntity="HopAdditions" syncable="YES"/>
+    </entity>
+    <entity name="IngredientCatalog" syncable="YES">
+        <relationship name="hops" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Hops" inverseName="catalog" inverseEntity="Hops" syncable="YES"/>
+        <relationship name="malts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Malt" inverseName="catalog" inverseEntity="Malt" syncable="YES"/>
+        <relationship name="yeast" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Yeast" inverseName="catalog" inverseEntity="Yeast" syncable="YES"/>
+    </entity>
+    <entity name="Malt" representedClassName="MaltEntity" syncable="YES">
+        <attribute name="defaultLovibond" optional="YES" attributeType="Integer 32" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="defaultMaxYield" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="catalog" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IngredientCatalog" inverseName="malts" inverseEntity="IngredientCatalog" syncable="YES"/>
+        <relationship name="maltAdditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MaltAddition" inverseName="malt" inverseEntity="MaltAddition" syncable="YES"/>
+    </entity>
+    <entity name="MaltAddition" syncable="YES">
+        <attribute name="lovibond" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="maxYield" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="quantityInPounds" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="malt" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Malt" inverseName="maltAdditions" inverseEntity="Malt" syncable="YES"/>
+        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="maltAdditions" inverseEntity="Recipe" syncable="YES"/>
+    </entity>
+    <entity name="Recipe" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="hopAdditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HopAdditions" inverseName="recipe" inverseEntity="HopAdditions" syncable="YES"/>
+        <relationship name="maltAdditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MaltAddition" inverseName="recipe" inverseEntity="MaltAddition" syncable="YES"/>
+        <relationship name="yeast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="YeastAddition" inverseName="recipe" inverseEntity="YeastAddition" syncable="YES"/>
+    </entity>
+    <entity name="Yeast" syncable="YES">
+        <attribute name="attenuationMaxPercent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="attenuationMinPercent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referenceLink" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="catalog" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IngredientCatalog" inverseName="yeast" inverseEntity="IngredientCatalog" syncable="YES"/>
+        <relationship name="yeastAddidions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="YeastAddition" inverseName="yeast" inverseEntity="YeastAddition" syncable="YES"/>
+    </entity>
+    <entity name="YeastAddition" syncable="YES">
+        <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="yeast" inverseEntity="Recipe" syncable="YES"/>
+        <relationship name="yeast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Yeast" inverseName="yeastAddidions" inverseEntity="Yeast" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="HopAdditions" positionX="-54" positionY="-18" width="128" height="118"/>
+        <element name="Hops" positionX="241" positionY="-81" width="128" height="118"/>
+        <element name="IngredientCatalog" positionX="628" positionY="36" width="128" height="90"/>
+        <element name="Malt" positionX="43" positionY="561" width="128" height="118"/>
+        <element name="MaltAddition" positionX="-189" positionY="234" width="128" height="118"/>
+        <element name="Recipe" positionX="144" positionY="174" width="128" height="103"/>
+        <element name="Yeast" positionX="439" positionY="198" width="128" height="148"/>
+        <element name="YeastAddition" positionX="180" positionY="396" width="128" height="88"/>
+    </elements>
+</model>

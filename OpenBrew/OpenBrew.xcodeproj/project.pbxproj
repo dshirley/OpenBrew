@@ -31,6 +31,7 @@
 		9FCECC5B18879B430045FADD /* OBHopsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCECC5A18879B430045FADD /* OBHopsTest.m */; };
 		9FCECC60188831320045FADD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3761880F8EE00469323 /* XCTest.framework */; };
 		9FE9745818883C8500FFAA56 /* OBMaltTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745718883C8500FFAA56 /* OBMaltTest.m */; };
+		9FE9745C188975C700FFAA56 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745A188975C700FFAA56 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		9FCECC5A18879B430045FADD /* OBHopsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopsTest.m; sourceTree = "<group>"; };
 		9FCECC5C1887A1150045FADD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9FE9745718883C8500FFAA56 /* OBMaltTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltTest.m; sourceTree = "<group>"; };
+		9FE9745B188975C700FFAA56 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 		9F98D3601880F8ED00469323 /* OpenBrew */ = {
 			isa = PBXGroup;
 			children = (
+				9FE97459188975AD00FFAA56 /* Entities */,
 				9F98D3931884FAB100469323 /* Model */,
 				9F98D3691880F8ED00469323 /* OBAppDelegate.h */,
 				9F98D36A1880F8ED00469323 /* OBAppDelegate.m */,
@@ -202,6 +205,14 @@
 				9F98D3A71885A9C900469323 /* OBRange.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		9FE97459188975AD00FFAA56 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				9FE9745A188975C700FFAA56 /* Model.xcdatamodeld */,
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +321,7 @@
 				9F98D39F1884FB1200469323 /* OBYeast.m in Sources */,
 				9F98D3A21884FB1F00469323 /* OBStyle.m in Sources */,
 				9F98D3A51885A53900469323 /* OBBrewHouseSettings.m in Sources */,
+				9FE9745C188975C700FFAA56 /* Model.xcdatamodeld in Sources */,
 				9F98D36B1880F8ED00469323 /* OBAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,6 +547,16 @@
 			);
 			currentVersion = 9F98D36D1880F8ED00469323 /* OpenBrew.xcdatamodel */;
 			path = OpenBrew.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		9FE9745A188975C700FFAA56 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9FE9745B188975C700FFAA56 /* Model.xcdatamodel */,
+			);
+			currentVersion = 9FE9745B188975C700FFAA56 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
