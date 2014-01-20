@@ -8,21 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
-@interface OBMalt : NSObject
+@interface OBMalt : NSManagedObject
 
-@property (retain, nonatomic) NSString *name;
-@property (retain, nonatomic) NSString *description;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) float defaultMaxYield;
+@property (nonatomic, assign) float defaultLovibond;
 
-@property (assign, nonatomic) float quantityInPounds;
-@property (assign, nonatomic) float maxGravityUnitsPerPound;
-@property (assign, nonatomic) int lovibond;
+@end
 
-- (id)initWithName:(NSString *)name
-    andDescription:(NSString *)description
-       andQuantity:(float)quantityInPounds
-   andGravityUnits:(float)maxGravityUnitPerPound
-       andLovibond:(int)lovibond;
 
-- (float)contributedGravityUnitsWithEfficiency:(float)efficiency;
+@interface OBMaltAddition : NSManagedObject
+
+@property (nonatomic, strong) OBMalt *malt;
+@property (nonatomic, assign) float quantityInPounds;
+@property (nonatomic, assign) float maxYield;
+@property (nonatomic, assign) int lovibond;
+
+
+- (float)gravityUnitsWithEfficiency:(float)efficiency;
 
 @end

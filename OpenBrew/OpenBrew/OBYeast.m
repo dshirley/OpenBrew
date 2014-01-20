@@ -9,9 +9,19 @@
 #import "OBYeast.h"
 
 @implementation OBYeast
+@dynamic company;
+@dynamic name;
+@dynamic referenceLink;
+@dynamic attanuationMaxPercent;
+@dynamic attanuationMinPercent;
 
 - (float)estimatedAttenuationAsDecimal {
-  return [_attenuationRange average];
+  return ([self attanuationMinPercent] + [self attanuationMaxPercent]) / 2;
 }
 
+@end
+
+@implementation OBYeastAddition
+@dynamic yeast;
+@dynamic quantity;
 @end

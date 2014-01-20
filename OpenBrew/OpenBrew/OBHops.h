@@ -8,20 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@interface OBHops : NSObject
+@interface OBHops : NSManagedObject
 
-@property (retain, nonatomic) NSString *name;
-@property (retain, nonatomic) NSString *description;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) float defaultAlphaAcidPercent;
 
-@property (assign, nonatomic) float alphaAcidPercent;
-@property (assign, nonatomic) int boilTimeInMinutes;
+@end
+
+
+@interface OBHopAddition : NSManagedObject
+
+@property (nonatomic, assign) float alphaAcidPercent;
+@property (nonatomic, assign) int boilTimeInMinutes;
 @property (assign, nonatomic) float quantityInOunces;
-
-- (id)initWithName:(NSString *)name
-    andDescription:(NSString *)description
-      andAAPercent:(float)alphaAcidPercent
-       andBoilTime:(float)boilTimeInMinutes
-       andQuantity:(float)quantityInOunces;
 
 - (float)ibuContributionWithBoilSize:(float)gallons andGravity:(float)gravity;
 - (float)utilizationForGravity:(float)gravity;

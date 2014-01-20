@@ -28,20 +28,21 @@
 }
 
 - (void)testContributedGravityUnitsWithEfficiency {
-  OBMalt *malt = [[OBMalt alloc]
-                  initWithName:@"TestMalt"
-                  andDescription:@""
-                  andQuantity:5.25
-                  andGravityUnits:37
-                  andLovibond:0];
+  OBMalt *malt = [[OBMalt alloc] init];
 
-  XCTAssertEqualWithAccuracy(139.86, [malt contributedGravityUnitsWithEfficiency:.72], .01, @"");
-  XCTAssertEqualWithAccuracy(194.25, [malt contributedGravityUnitsWithEfficiency:1], .01, @"");
-  XCTAssertEqualWithAccuracy(0.0, [malt contributedGravityUnitsWithEfficiency:0], .01, @"");
+  OBMaltAddition *maltAddition = [[OBMaltAddition alloc] init];
+                  
+  [maltAddition setMalt:malt];
+  [maltAddition setQuantityInPounds:5.25];
+  [maltAddition setMaxYield:37];
 
-  [malt setQuantityInPounds:1];
-  XCTAssertEqualWithAccuracy(37.00, [malt contributedGravityUnitsWithEfficiency:1], .01, @"");
-  XCTAssertEqualWithAccuracy(24.42, [malt contributedGravityUnitsWithEfficiency:.66], .01, @"");
+  XCTAssertEqualWithAccuracy(139.86, [maltAddition gravityUnitsWithEfficiency:.72], .01, @"");
+  XCTAssertEqualWithAccuracy(194.25, [maltAddition gravityUnitsWithEfficiency:1], .01, @"");
+  XCTAssertEqualWithAccuracy(0.0, [maltAddition gravityUnitsWithEfficiency:0], .01, @"");
+
+  [maltAddition setQuantityInPounds:1];
+  XCTAssertEqualWithAccuracy(37.00, [maltAddition gravityUnitsWithEfficiency:1], .01, @"");
+  XCTAssertEqualWithAccuracy(24.42, [maltAddition gravityUnitsWithEfficiency:.66], .01, @"");
 }
 
 @end

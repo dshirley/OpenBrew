@@ -25,9 +25,7 @@
 		9F98D3991884FAE800469323 /* OBMalt.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98D3981884FAE800469323 /* OBMalt.m */; };
 		9F98D39C1884FB0200469323 /* OBHops.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98D39B1884FB0200469323 /* OBHops.m */; };
 		9F98D39F1884FB1200469323 /* OBYeast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98D39E1884FB1200469323 /* OBYeast.m */; };
-		9F98D3A21884FB1F00469323 /* OBStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98D3A11884FB1F00469323 /* OBStyle.m */; };
 		9F98D3A51885A53900469323 /* OBBrewHouseSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98D3A41885A53900469323 /* OBBrewHouseSettings.m */; };
-		9F98D3A81885A9C900469323 /* OBRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F98D3A71885A9C900469323 /* OBRange.m */; };
 		9FCECC5B18879B430045FADD /* OBHopsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCECC5A18879B430045FADD /* OBHopsTest.m */; };
 		9FCECC60188831320045FADD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3761880F8EE00469323 /* XCTest.framework */; };
 		9FE9745818883C8500FFAA56 /* OBMaltTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745718883C8500FFAA56 /* OBMaltTest.m */; };
@@ -71,12 +69,8 @@
 		9F98D39B1884FB0200469323 /* OBHops.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHops.m; sourceTree = "<group>"; };
 		9F98D39D1884FB1200469323 /* OBYeast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBYeast.h; sourceTree = "<group>"; };
 		9F98D39E1884FB1200469323 /* OBYeast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBYeast.m; sourceTree = "<group>"; };
-		9F98D3A01884FB1F00469323 /* OBStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBStyle.h; sourceTree = "<group>"; };
-		9F98D3A11884FB1F00469323 /* OBStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBStyle.m; sourceTree = "<group>"; };
 		9F98D3A31885A53900469323 /* OBBrewHouseSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBrewHouseSettings.h; sourceTree = "<group>"; };
 		9F98D3A41885A53900469323 /* OBBrewHouseSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBrewHouseSettings.m; sourceTree = "<group>"; };
-		9F98D3A61885A9C900469323 /* OBRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBRange.h; sourceTree = "<group>"; };
-		9F98D3A71885A9C900469323 /* OBRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRange.m; sourceTree = "<group>"; };
 		9FCECC5A18879B430045FADD /* OBHopsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopsTest.m; sourceTree = "<group>"; };
 		9FCECC5C1887A1150045FADD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9FE9745718883C8500FFAA56 /* OBMaltTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltTest.m; sourceTree = "<group>"; };
@@ -197,12 +191,8 @@
 				9F98D39B1884FB0200469323 /* OBHops.m */,
 				9F98D39D1884FB1200469323 /* OBYeast.h */,
 				9F98D39E1884FB1200469323 /* OBYeast.m */,
-				9F98D3A01884FB1F00469323 /* OBStyle.h */,
-				9F98D3A11884FB1F00469323 /* OBStyle.m */,
 				9F98D3A31885A53900469323 /* OBBrewHouseSettings.h */,
 				9F98D3A41885A53900469323 /* OBBrewHouseSettings.m */,
-				9F98D3A61885A9C900469323 /* OBRange.h */,
-				9F98D3A71885A9C900469323 /* OBRange.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -312,14 +302,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F98D3A81885A9C900469323 /* OBRange.m in Sources */,
 				9F98D3671880F8ED00469323 /* main.m in Sources */,
 				9F98D36E1880F8ED00469323 /* OpenBrew.xcdatamodeld in Sources */,
 				9F98D39C1884FB0200469323 /* OBHops.m in Sources */,
 				9F98D3991884FAE800469323 /* OBMalt.m in Sources */,
 				9F98D3961884FAD800469323 /* OBRecipe.m in Sources */,
 				9F98D39F1884FB1200469323 /* OBYeast.m in Sources */,
-				9F98D3A21884FB1F00469323 /* OBStyle.m in Sources */,
 				9F98D3A51885A53900469323 /* OBBrewHouseSettings.m in Sources */,
 				9FE9745C188975C700FFAA56 /* Model.xcdatamodeld in Sources */,
 				9F98D36B1880F8ED00469323 /* OBAppDelegate.m in Sources */,

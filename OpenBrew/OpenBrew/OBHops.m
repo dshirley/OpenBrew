@@ -11,22 +11,17 @@
 
 @implementation OBHops
 
-- (id)initWithName:(NSString *)name
-    andDescription:(NSString *)description
-      andAAPercent:(float)alphaAcidPercent
-       andBoilTime:(float)boilTimeInMinutes
-       andQuantity:(float)quantityInOunces {
+@dynamic name;
+@dynamic defaultAlphaAcidPercent;
 
-  if (self) {
-    _name = name;
-    _description = description;
-    _alphaAcidPercent = alphaAcidPercent;
-    _boilTimeInMinutes = boilTimeInMinutes;
-    _quantityInOunces = quantityInOunces;
-  }
+@end
 
-  return self;
-}
+
+@implementation OBHopAddition
+
+@dynamic alphaAcidPercent;
+@dynamic boilTimeInMinutes;
+@dynamic quantityInOunces;
 
 // Used to convert oz/gallon to gram/liter
 #define IMPERIAL_TO_METRIC_CONST 74.891
@@ -42,7 +37,7 @@
 }
 
 - (float)alphaAcidUnits {
-  return _alphaAcidPercent * _quantityInOunces;
+  return [self alphaAcidPercent] * [self quantityInOunces];
 }
 
 - (float)utilizationForGravity:(float)gravity {
@@ -50,7 +45,7 @@
   // (1.65 * 0.000125^(wort gravity - 1)) * (1 - e^(-0.04 * time in mins) )
 
   float gravityFactor = 1.65 * powf(0.000125, gravity - 1);
-  float timeFactor = (1 - powf(M_E, -.04 * _boilTimeInMinutes)) / 4.15;
+  float timeFactor = (1 - powf(M_E, -.04 * [self boilTimeInMinutes])) / 4.15;
 
   return gravityFactor * timeFactor;
 }

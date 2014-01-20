@@ -9,27 +9,21 @@
 #import "OBMalt.h"
 
 @implementation OBMalt
+@dynamic name;
+@dynamic defaultLovibond;
+@dynamic defaultMaxYield;
+@end
 
-- (id)initWithName:(NSString *)name
-    andDescription:(NSString *)description
-       andQuantity:(float)quantityInPounds
-   andGravityUnits:(float)maxGravityUnitPerPound
-       andLovibond:(int)lovibond {
 
-  if (self) {
-    _name = name;
-    _description = description;
-    _quantityInPounds = quantityInPounds;
-    _maxGravityUnitsPerPound = maxGravityUnitPerPound;
-    _lovibond = lovibond;
-  }
+@implementation OBMaltAddition
 
-  return self;
+@dynamic malt;
+@dynamic quantityInPounds;
+@dynamic maxYield;
+@dynamic lovibond;
+
+- (float)gravityUnitsWithEfficiency:(float)efficiency {
+  return [self maxYield] * [self quantityInPounds] * efficiency;
 }
-
-- (float)contributedGravityUnitsWithEfficiency:(float)efficiency {
-  return _maxGravityUnitsPerPound * _quantityInPounds * efficiency;
-}
-
 
 @end

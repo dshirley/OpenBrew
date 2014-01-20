@@ -7,23 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OBStyle.h"
 #import "OBYeast.h"
 #import "OBMalt.h"
 #import "OBHops.h"
 
-@interface OBRecipe : NSObject
+@interface OBRecipe : NSManagedObject
 
-@property (retain, nonatomic) NSString *name;
-@property (retain, nonatomic) OBStyle *style;
-@property (retain, nonatomic) OBYeast *yeast;
-@property (assign, nonatomic) int batchSizeInGallons;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) OBYeastAddition *yeast;
+@property (nonatomic) float batchSizeInGallons;
 
-- (NSArray *)malts;
-- (NSArray *)hops;
+@property (nonatomic, strong) NSSet *malts;
+@property (nonatomic, strong) NSSet *hops;
 
-- (void)addMalt:(OBMalt *)malt;
-- (void)addHops:(OBHops *)hops;
+- (void)addMaltsObject:(OBMaltAddition *)maltAddition;
+- (void)addHopsObject:(OBHopAddition *)hopAddition;
 
 - (float)boilSizeInGallons;
 - (float)postBoilSizeInGallons;

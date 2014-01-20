@@ -10,58 +10,42 @@
 #import "OBYeast.h"
 #import "OBBrewHouseSettings.h"
 
-@interface OBRecipe()
-
-@property (retain, readwrite, nonatomic) NSMutableArray *malts;
-@property (retain, readwrite, nonatomic) NSMutableArray *hops;
-
-@end
-
 @implementation OBRecipe
 
-- (NSArray *)malts {
-  return [NSArray arrayWithArray:_malts];
-}
-
-- (NSArray *)hops {
-  return [NSArray arrayWithArray:_hops];
-}
-
-- (void)addMalt:(OBMalt *)malt {
-  [_malts addObject:malt];
-}
-
-- (void)addHops:(OBHops *)hops {
-  [_hops addObject:hops];
-}
+@dynamic name;
+@dynamic batchSizeInGallons;
+@dynamic hops;
+@dynamic malts;
+@dynamic yeast;
 
 - (float)boilSizeInGallons {
   // FIXME: this should be tunable rather than just adding 2 gallons
-  return _batchSizeInGallons + 2;
+  return [self batchSizeInGallons] + 2;
 }
 
 - (float)postBoilSizeInGallons {
     // FIXME: this should be tunable rather than just adding 1 gallons
-  return _batchSizeInGallons + 1;
+  return [self batchSizeInGallons] + 1;
 }
 
 - (float)gravityUnits {
   float gravityUnits = 0.0;
   float efficiency = [[OBBrewHouseSettings instance] mashExtractionEfficiency];
 
-  for (OBMalt *malt in _malts) {
-    gravityUnits += [malt contributedGravityUnitsWithEfficiency:efficiency];
+  for (OBMaltAddition *malt in [self malts]) {
+    gravityUnits += [malt gravityUnitsWithEfficiency:efficiency];
   }
 
   return gravityUnits;
 }
 
 - (float)originalGravity {
-  return [self gravityUnits] / _batchSizeInGallons;
+  return [self gravityUnits] / [self batchSizeInGallons];
 }
 
 - (float)finalGravity {
-  float finalGravityUnits = [self gravityUnits] * (1 - [_yeast estimatedAttenuationAsDecimal]);
+  float attenuationLevel = [[[self yeast] yeast] estimatedAttenuationAsDecimal];
+  float finalGravityUnits = [self gravityUnits] * (1 - attenuationLevel);
   return finalGravityUnits / [self postBoilSizeInGallons];
 }
 
@@ -74,7 +58,7 @@
   float boilSizeInGallons = [self boilSizeInGallons];
   float boilGravity = [self boilGravity];
 
-  for (OBHops *hops in _hops) {
+  for (OBHopAddition *hops in [self hops]) {
     ibus += [hops ibuContributionWithBoilSize:boilSizeInGallons andGravity:boilGravity];
   }
 

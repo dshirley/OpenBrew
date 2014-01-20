@@ -7,17 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OBRange.h"
 
-@interface OBYeast : NSObject
+@interface OBYeast : NSManagedObject
 
-@property (retain, readonly, nonatomic) NSString *name;
-@property (retain, readonly, nonatomic) NSString *company;
-@property (retain, readonly, nonatomic) NSString *description;
-@property (retain, readonly, nonatomic) NSURL *referenceLink;
-
-@property (assign, readonly, nonatomic) OBRange *attenuationRange;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *company;
+@property (nonatomic, strong) NSString *referenceLink;
+@property (nonatomic, assign) float attanuationMinPercent;
+@property (nonatomic, assign) float attanuationMaxPercent;
 
 - (float)estimatedAttenuationAsDecimal;
 
+@end
+
+@interface OBYeastAddition : NSManagedObject
+@property (nonatomic, strong) OBYeast *yeast;
+@property (nonatomic, assign) int quantity;
 @end
