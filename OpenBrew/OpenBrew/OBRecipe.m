@@ -8,7 +8,7 @@
 
 #import "OBRecipe.h"
 #import "OBYeast.h"
-#import "OBBrewHouseSettings.h"
+#import "OBBrewery.h"
 
 @implementation OBRecipe
 
@@ -30,7 +30,7 @@
 
 - (float)gravityUnits {
   float gravityUnits = 0.0;
-  float efficiency = [[OBBrewHouseSettings instance] mashExtractionEfficiency];
+  float efficiency = [[OBBrewery instance] mashEfficiency];
 
   for (OBMaltAddition *malt in [self malts]) {
     gravityUnits += [malt gravityUnitsWithEfficiency:efficiency];
