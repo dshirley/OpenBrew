@@ -30,6 +30,7 @@
 		9FCECC60188831320045FADD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3761880F8EE00469323 /* XCTest.framework */; };
 		9FE9745818883C8500FFAA56 /* OBMaltTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745718883C8500FFAA56 /* OBMaltTest.m */; };
 		9FE9745C188975C700FFAA56 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745A188975C700FFAA56 /* Model.xcdatamodeld */; };
+		9FF68676189327B000B36486 /* OBMaltViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF68675189327B000B36486 /* OBMaltViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		9FCECC5C1887A1150045FADD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9FE9745718883C8500FFAA56 /* OBMaltTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltTest.m; sourceTree = "<group>"; };
 		9FE9745B188975C700FFAA56 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		9FF68674189327B000B36486 /* OBMaltViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltViewController.h; sourceTree = "<group>"; };
+		9FF68675189327B000B36486 /* OBMaltViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,7 @@
 		9F98D3601880F8ED00469323 /* OpenBrew */ = {
 			isa = PBXGroup;
 			children = (
+				9FF686731893209600B36486 /* Controller */,
 				9FE97459188975AD00FFAA56 /* Entities */,
 				9F98D3931884FAB100469323 /* Model */,
 				9F98D3691880F8ED00469323 /* OBAppDelegate.h */,
@@ -203,6 +207,15 @@
 				9FE9745A188975C700FFAA56 /* Model.xcdatamodeld */,
 			);
 			name = Entities;
+			sourceTree = "<group>";
+		};
+		9FF686731893209600B36486 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9FF68674189327B000B36486 /* OBMaltViewController.h */,
+				9FF68675189327B000B36486 /* OBMaltViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F98D3671880F8ED00469323 /* main.m in Sources */,
+				9FF68676189327B000B36486 /* OBMaltViewController.m in Sources */,
 				9F98D36E1880F8ED00469323 /* OpenBrew.xcdatamodeld in Sources */,
 				9F98D39C1884FB0200469323 /* OBHops.m in Sources */,
 				9F98D3991884FAE800469323 /* OBMalt.m in Sources */,
