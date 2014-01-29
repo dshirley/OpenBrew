@@ -150,8 +150,6 @@
 				9FF686C31893E47700B36486 /* View */,
 				9FF686731893209600B36486 /* Controller */,
 				9F98D3931884FAB100469323 /* Model */,
-				9F98D3691880F8ED00469323 /* OBAppDelegate.h */,
-				9F98D36A1880F8ED00469323 /* OBAppDelegate.m */,
 				9F98D36F1880F8ED00469323 /* Images.xcassets */,
 				9F98D3611880F8ED00469323 /* Supporting Files */,
 				9FF686BE1893E2BB00B36486 /* Media.xcassets */,
@@ -210,6 +208,8 @@
 		9FF686731893209600B36486 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9F98D3691880F8ED00469323 /* OBAppDelegate.h */,
+				9F98D36A1880F8ED00469323 /* OBAppDelegate.m */,
 				9FF68674189327B000B36486 /* OBMaltViewController.h */,
 				9FF68675189327B000B36486 /* OBMaltViewController.m */,
 				9FF686C01893E45F00B36486 /* OBRecipeViewController.h */,
