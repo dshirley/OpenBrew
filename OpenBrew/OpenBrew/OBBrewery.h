@@ -20,6 +20,8 @@
 
 @interface OBBrewery (CoreDataGeneratedAccessors)
 
++ (OBBrewery *)instance;
+
 - (void)addRecipesObject:(OBRecipe *)value;
 - (void)removeRecipesObject:(OBRecipe *)value;
 - (void)addRecipes:(NSSet *)values;

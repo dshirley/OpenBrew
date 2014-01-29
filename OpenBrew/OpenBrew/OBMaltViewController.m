@@ -18,7 +18,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  NSLog(@"shite");
+
     if (self) {
       
         // Custom initialization
@@ -30,9 +30,7 @@
   [super loadView];
   
   UITableView *table = [self maltAdditions];
-  [table setDelegate:self];
   [table reloadData];
-  NSLog(@"fuuke");
 }
 
 - (void)viewDidLoad

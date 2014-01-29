@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OBBrewery.h"
 
-@interface OBRecipeViewController : UIViewController
+@interface OBRecipeViewController : UIViewController <UITableViewDataSource>
+
+@property (nonatomic, strong) OBBrewery *brewery;
+@property (weak, nonatomic) IBOutlet UITableView *recipesTableView;
+
+#pragma mark - UITableViewDataSource methods
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+
 
 @end

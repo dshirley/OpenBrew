@@ -16,4 +16,8 @@
 @dynamic defaultBatchSize;
 @dynamic recipes;
 
++ (OBBrewery *)instance {
+  return nil;
+}
+
 @end
