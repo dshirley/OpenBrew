@@ -268,10 +268,10 @@
             </objects>
             <point key="canvasLocation" x="1736" y="-45"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Ingredient Finder View Controller-->
         <scene sceneID="TFe-qp-8PP">
             <objects>
-                <tableViewController id="Iyn-Nb-g7Q" sceneMemberID="viewController">
+                <tableViewController id="Iyn-Nb-g7Q" customClass="OBIngredientFinderViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="kJ3-M1-1gi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -315,7 +315,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2196" y="-45"/>
+            <point key="canvasLocation" x="2242" y="-45"/>
         </scene>
         <!--Recipe View Controller - Recipes-->
         <scene sceneID="pOQ-kK-BHW">
