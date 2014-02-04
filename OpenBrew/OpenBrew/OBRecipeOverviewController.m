@@ -8,6 +8,8 @@
 
 #import "OBRecipeOverviewController.h"
 #import "OBIngredientDashboardController.h"
+#import "OBYeastAddition.h"
+#import "OBYeast.h"
 
 @interface OBRecipeOverviewController ()
 
@@ -62,7 +64,7 @@
   [[self abvLabel] setText:abv];
 
   NSString *batchSize = [NSString stringWithFormat:@"%.1f gallons",
-                         [[self recipe] batchSizeInGallons]];
+                         [[[self recipe] batchSizeInGallons] floatValue]];
   
   [[self batchSizeLabel] setText:batchSize];
   
