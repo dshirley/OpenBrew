@@ -7,6 +7,7 @@
 //
 
 #import "OBRecipeOverviewController.h"
+#import "OBIngredientDashboardController.h"
 
 @interface OBRecipeOverviewController ()
 
@@ -39,6 +40,20 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  NSString *identifier = [segue identifier];
+  OBIngredientDashboardController *ingredientDash = [segue destinationViewController];
+  id <OBDashboardDelegate> delegate = nil;
+  
+  if ([identifier isEqualToString:@"maltSegue"]) {
+    delegate = [[OBMaltDashboardDelegate alloc] initWithRecipe:[self recipe]];
+  } else if ([identifier isEqualToString:@"hopsSegue"]) {
+    delegate = [[OBHopsDashboardDelegate alloc] initWithRecipe:[self recipe]];
+  }
+  
+  [ingredientDash setDelegate:delegate];
 }
 
 - (void)reloadData {

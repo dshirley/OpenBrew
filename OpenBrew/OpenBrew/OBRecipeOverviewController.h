@@ -24,4 +24,6 @@
 
 - (void)reloadData;
 
+- (void)performSegueWithIdentifier:(NSString *)identifier sender:(id)sender;
+
 @end

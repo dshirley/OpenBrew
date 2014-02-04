@@ -28,7 +28,7 @@
 		9FCECC60188831320045FADD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3761880F8EE00469323 /* XCTest.framework */; };
 		9FE9745818883C8500FFAA56 /* OBMaltTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745718883C8500FFAA56 /* OBMaltTest.m */; };
 		9FE9745C188975C700FFAA56 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745A188975C700FFAA56 /* Model.xcdatamodeld */; };
-		9FF68676189327B000B36486 /* OBMaltViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF68675189327B000B36486 /* OBMaltViewController.m */; };
+		9FF68676189327B000B36486 /* OBIngredientDashboardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF68675189327B000B36486 /* OBIngredientDashboardController.m */; };
 		9FF686BF1893E2BB00B36486 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FF686BE1893E2BB00B36486 /* Media.xcassets */; };
 		9FF686C21893E45F00B36486 /* OBRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF686C11893E45F00B36486 /* OBRecipeViewController.m */; };
 		9FF686C61893F00B00B36486 /* OBBrewery.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF686C51893F00B00B36486 /* OBBrewery.m */; };
@@ -75,8 +75,8 @@
 		9FCECC5C1887A1150045FADD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9FE9745718883C8500FFAA56 /* OBMaltTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltTest.m; sourceTree = "<group>"; };
 		9FE9745B188975C700FFAA56 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		9FF68674189327B000B36486 /* OBMaltViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltViewController.h; sourceTree = "<group>"; };
-		9FF68675189327B000B36486 /* OBMaltViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltViewController.m; sourceTree = "<group>"; };
+		9FF68674189327B000B36486 /* OBIngredientDashboardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientDashboardController.h; sourceTree = "<group>"; };
+		9FF68675189327B000B36486 /* OBIngredientDashboardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIngredientDashboardController.m; sourceTree = "<group>"; };
 		9FF686BE1893E2BB00B36486 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		9FF686C01893E45F00B36486 /* OBRecipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBRecipeViewController.h; sourceTree = "<group>"; };
 		9FF686C11893E45F00B36486 /* OBRecipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeViewController.m; sourceTree = "<group>"; };
@@ -210,8 +210,8 @@
 			children = (
 				9F98D3691880F8ED00469323 /* OBAppDelegate.h */,
 				9F98D36A1880F8ED00469323 /* OBAppDelegate.m */,
-				9FF68674189327B000B36486 /* OBMaltViewController.h */,
-				9FF68675189327B000B36486 /* OBMaltViewController.m */,
+				9FF68674189327B000B36486 /* OBIngredientDashboardController.h */,
+				9FF68675189327B000B36486 /* OBIngredientDashboardController.m */,
 				9FF686C01893E45F00B36486 /* OBRecipeViewController.h */,
 				9FF686C11893E45F00B36486 /* OBRecipeViewController.m */,
 				9FF686C71894099A00B36486 /* OBRecipeOverviewController.h */,
@@ -330,7 +330,7 @@
 				9FF686C61893F00B00B36486 /* OBBrewery.m in Sources */,
 				9FF686C91894099A00B36486 /* OBRecipeOverviewController.m in Sources */,
 				9FF686C21893E45F00B36486 /* OBRecipeViewController.m in Sources */,
-				9FF68676189327B000B36486 /* OBMaltViewController.m in Sources */,
+				9FF68676189327B000B36486 /* OBIngredientDashboardController.m in Sources */,
 				9F98D39C1884FB0200469323 /* OBHops.m in Sources */,
 				9F98D3991884FAE800469323 /* OBMalt.m in Sources */,
 				9F98D3961884FAD800469323 /* OBRecipe.m in Sources */,
