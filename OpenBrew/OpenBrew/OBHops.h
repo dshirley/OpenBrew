@@ -7,23 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+
+@class OBHopAddition, OBIngredientCatalog;
 
 @interface OBHops : NSManagedObject
 
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, assign) float defaultAlphaAcidPercent;
-
-@end
-
-
-@interface OBHopAddition : NSManagedObject
-
-@property (nonatomic, assign) float alphaAcidPercent;
-@property (nonatomic, assign) int boilTimeInMinutes;
-@property (assign, nonatomic) float quantityInOunces;
-
-- (float)ibuContributionWithBoilSize:(float)gallons andGravity:(float)gravity;
-- (float)utilizationForGravity:(float)gravity;
-- (float)alphaAcidUnits;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * defaultAlphaAcidPercent;
 
 @end

@@ -7,21 +7,22 @@
 //
 
 #import "OBYeast.h"
+#import "OBIngredientCatalog.h"
+#import "OBYeastAddition.h"
+
 
 @implementation OBYeast
+
 @dynamic company;
 @dynamic name;
 @dynamic referenceLink;
-@dynamic attanuationMaxPercent;
-@dynamic attanuationMinPercent;
+@dynamic attenuationMaxPercent;
+@dynamic attenuationMinPercent;
 
 - (float)estimatedAttenuationAsDecimal {
-  return ([self attanuationMinPercent] + [self attanuationMaxPercent]) / 2;
+  float min = [[self attenuationMinPercent] floatValue];
+  float max = [[self attenuationMaxPercent] floatValue];
+  return (min + max) / 2;
 }
 
-@end
-
-@implementation OBYeastAddition
-@dynamic yeast;
-@dynamic quantity;
 @end

@@ -7,21 +7,33 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OBYeast.h"
-#import "OBMalt.h"
-#import "OBHops.h"
+#import <CoreData/CoreData.h>
+
+@class OBBrewery, OBHopAddition, OBMaltAddition, OBYeastAddition;
 
 @interface OBRecipe : NSManagedObject
 
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) OBYeastAddition *yeast;
-@property (nonatomic) float batchSizeInGallons;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) OBYeastAddition *yeast;
+@property (nonatomic, retain) NSNumber * batchSizeInGallons;
 
-@property (nonatomic, strong) NSSet *malts;
-@property (nonatomic, strong) NSSet *hops;
+@property (nonatomic, retain) OBBrewery *brewery;
+@property (nonatomic, retain) NSSet *hopAdditions;
+@property (nonatomic, retain) NSSet *maltAdditions;
 
-- (void)addMaltsObject:(OBMaltAddition *)maltAddition;
-- (void)addHopsObject:(OBHopAddition *)hopAddition;
+@end
+
+@interface OBRecipe (CoreDataGeneratedAccessors)
+
+- (void)addHopAdditionsObject:(OBHopAddition *)value;
+- (void)removeHopAdditionsObject:(OBHopAddition *)value;
+- (void)addHopAdditions:(NSSet *)values;
+- (void)removeHopAdditions:(NSSet *)values;
+
+- (void)addMaltAdditionsObject:(OBMaltAddition *)value;
+- (void)removeMaltAdditionsObject:(OBMaltAddition *)value;
+- (void)addMaltAdditions:(NSSet *)values;
+- (void)removeMaltAdditions:(NSSet *)values;
 
 - (float)boilSizeInGallons;
 - (float)postBoilSizeInGallons;
@@ -31,7 +43,5 @@
 - (float)finalGravity;
 - (float)IBUs;
 - (float)alcoholByVolume;
-
-- (void)save;
 
 @end

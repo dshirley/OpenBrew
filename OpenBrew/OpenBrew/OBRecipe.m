@@ -7,34 +7,36 @@
 //
 
 #import "OBRecipe.h"
-#import "OBYeast.h"
 #import "OBBrewery.h"
+#import "OBHopAddition.h"
 #import "OBMaltAddition.h"
-
+#import "OBYeastAddition.h"
+#import "OBYeast.h"
 
 @implementation OBRecipe
 
-@dynamic name;
 @dynamic batchSizeInGallons;
-@dynamic hops;
-@dynamic malts;
+@dynamic name;
+@dynamic brewery;
+@dynamic hopAdditions;
+@dynamic maltAdditions;
 @dynamic yeast;
 
 - (float)boilSizeInGallons {
   // FIXME: this should be tunable rather than just adding 2 gallons
-  return [self batchSizeInGallons] + 2;
+  return [[self batchSizeInGallons] floatValue] + 2;
 }
 
 - (float)postBoilSizeInGallons {
-    // FIXME: this should be tunable rather than just adding 1 gallons
-  return [self batchSizeInGallons] + 1;
+  // FIXME: this should be tunable rather than just adding 1 gallons
+  return [[self batchSizeInGallons] floatValue] + 1;
 }
 
 - (float)gravityUnits {
   float gravityUnits = 0.0;
   float efficiency = [[[OBBrewery instance] mashEfficiency] floatValue];
 
-  for (OBMaltAddition *malt in [self malts]) {
+  for (OBMaltAddition *malt in [self maltAdditions]) {
     gravityUnits += [malt gravityUnitsWithEfficiency:efficiency];
   }
 
@@ -42,7 +44,7 @@
 }
 
 - (float)originalGravity {
-  return [self gravityUnits] / [self batchSizeInGallons];
+  return [self gravityUnits] / [[self batchSizeInGallons] floatValue];
 }
 
 - (float)finalGravity {
@@ -60,7 +62,7 @@
   float boilSizeInGallons = [self boilSizeInGallons];
   float boilGravity = [self boilGravity];
 
-  for (OBHopAddition *hops in [self hops]) {
+  for (OBHopAddition *hops in [self hopAdditions]) {
     ibus += [hops ibuContributionWithBoilSize:boilSizeInGallons andGravity:boilGravity];
   }
 
