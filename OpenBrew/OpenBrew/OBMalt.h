@@ -11,7 +11,7 @@
 @interface OBMalt : NSManagedObject
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, assign) float defaultMaxYield;
+@property (nonatomic, assign) float defaultExtractPotential;
 @property (nonatomic, assign) float defaultLovibond;
 
 @end

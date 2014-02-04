@@ -24,8 +24,8 @@
         <relationship name="yeast" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Yeast" inverseName="catalog" inverseEntity="Yeast" syncable="YES"/>
     </entity>
     <entity name="Malt" representedClassName="OBMalt" syncable="YES">
+        <attribute name="defaultExtractPotential" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="defaultLovibond" optional="YES" attributeType="Integer 32" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="defaultMaxYield" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="catalog" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IngredientCatalog" inverseName="malts" inverseEntity="IngredientCatalog" syncable="YES"/>
         <relationship name="maltAdditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MaltAddition" inverseName="malt" inverseEntity="MaltAddition" syncable="YES"/>
@@ -60,14 +60,14 @@
         <relationship name="yeast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Yeast" inverseName="yeastAddidions" inverseEntity="Yeast" syncable="YES"/>
     </entity>
     <elements>
-        <element name="HopAddition" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="Hops" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="IngredientCatalog" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="Malt" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="MaltAddition" positionX="-2" positionY="267" width="128" height="120"/>
-        <element name="Recipe" positionX="-398" positionY="135" width="128" height="28"/>
-        <element name="Yeast" positionX="142" positionY="147" width="128" height="150"/>
-        <element name="YeastAddition" positionX="403" positionY="0" width="128" height="90"/>
-        <element name="Brewery" positionX="-396" positionY="2" width="128" height="28"/>
+        <element name="Brewery" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="HopAddition" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Hops" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="IngredientCatalog" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Malt" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MaltAddition" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Recipe" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Yeast" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="YeastAddition" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

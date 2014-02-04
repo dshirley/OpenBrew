@@ -11,7 +11,7 @@
 @implementation OBMalt
 @dynamic name;
 @dynamic defaultLovibond;
-@dynamic defaultMaxYield;
+@dynamic defaultExtractPotential;
 @end
 
 
