@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9F92E8A918A0910200118D76 /* OBIngredientFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8A818A0910200118D76 /* OBIngredientFinderViewController.m */; };
+		9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */; };
+		9F92E8AF18A0A93A00118D76 /* MaltCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */; };
+		9F92E8B218A0C2D900118D76 /* OBIngredientCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8B118A0C2D900118D76 /* OBIngredientCatalog.m */; };
 		9F98D3591880F8ED00469323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3581880F8ED00469323 /* Foundation.framework */; };
 		9F98D35B1880F8ED00469323 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D35A1880F8ED00469323 /* CoreGraphics.framework */; };
 		9F98D35D1880F8ED00469323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D35C1880F8ED00469323 /* UIKit.framework */; };
@@ -28,7 +31,7 @@
 		9FCECC5B18879B430045FADD /* OBHopsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCECC5A18879B430045FADD /* OBHopsTest.m */; };
 		9FCECC60188831320045FADD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3761880F8EE00469323 /* XCTest.framework */; };
 		9FE9745818883C8500FFAA56 /* OBMaltTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745718883C8500FFAA56 /* OBMaltTest.m */; };
-		9FE9745C188975C700FFAA56 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745A188975C700FFAA56 /* Model.xcdatamodeld */; };
+		9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745A188975C700FFAA56 /* OpenBrew.xcdatamodeld */; };
 		9FF68676189327B000B36486 /* OBIngredientDashboardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF68675189327B000B36486 /* OBIngredientDashboardController.m */; };
 		9FF686BF1893E2BB00B36486 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FF686BE1893E2BB00B36486 /* Media.xcassets */; };
 		9FF686C21893E45F00B36486 /* OBRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF686C11893E45F00B36486 /* OBRecipeViewController.m */; };
@@ -49,6 +52,9 @@
 /* Begin PBXFileReference section */
 		9F92E8A718A0910200118D76 /* OBIngredientFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientFinderViewController.h; sourceTree = "<group>"; };
 		9F92E8A818A0910200118D76 /* OBIngredientFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIngredientFinderViewController.m; sourceTree = "<group>"; };
+		9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MaltCatalog.csv; path = data/MaltCatalog.csv; sourceTree = "<group>"; };
+		9F92E8B018A0C2D900118D76 /* OBIngredientCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientCatalog.h; sourceTree = "<group>"; };
+		9F92E8B118A0C2D900118D76 /* OBIngredientCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIngredientCatalog.m; sourceTree = "<group>"; };
 		9F98D3551880F8ED00469323 /* OpenBrew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenBrew.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F98D3581880F8ED00469323 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9F98D35A1880F8ED00469323 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -77,7 +83,7 @@
 		9FCECC5A18879B430045FADD /* OBHopsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopsTest.m; sourceTree = "<group>"; };
 		9FCECC5C1887A1150045FADD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9FE9745718883C8500FFAA56 /* OBMaltTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltTest.m; sourceTree = "<group>"; };
-		9FE9745B188975C700FFAA56 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		9FE9745B188975C700FFAA56 /* OpenBrew.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OpenBrew.xcdatamodel; sourceTree = "<group>"; };
 		9FF68674189327B000B36486 /* OBIngredientDashboardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientDashboardController.h; sourceTree = "<group>"; };
 		9FF68675189327B000B36486 /* OBIngredientDashboardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIngredientDashboardController.m; sourceTree = "<group>"; };
 		9FF686BE1893E2BB00B36486 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
@@ -115,6 +121,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F92E8AE18A0A8C200118D76 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		9F98D34C1880F8ED00469323 = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +164,7 @@
 		9F98D3601880F8ED00469323 /* OpenBrew */ = {
 			isa = PBXGroup;
 			children = (
+				9F92E8AE18A0A8C200118D76 /* Data */,
 				9FF686C31893E47700B36486 /* View */,
 				9FF686731893209600B36486 /* Controller */,
 				9F98D3931884FAB100469323 /* Model */,
@@ -193,7 +208,7 @@
 		9F98D3931884FAB100469323 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9FE9745A188975C700FFAA56 /* Model.xcdatamodeld */,
+				9FE9745A188975C700FFAA56 /* OpenBrew.xcdatamodeld */,
 				9F98D3941884FAD800469323 /* OBRecipe.h */,
 				9F98D3951884FAD800469323 /* OBRecipe.m */,
 				9F98D3971884FAE800469323 /* OBMalt.h */,
@@ -204,6 +219,8 @@
 				9F98D39E1884FB1200469323 /* OBYeast.m */,
 				9FF686C41893F00B00B36486 /* OBBrewery.h */,
 				9FF686C51893F00B00B36486 /* OBBrewery.m */,
+				9F92E8B018A0C2D900118D76 /* OBIngredientCatalog.h */,
+				9F92E8B118A0C2D900118D76 /* OBIngredientCatalog.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -312,6 +329,7 @@
 				9F98D3651880F8ED00469323 /* InfoPlist.strings in Resources */,
 				9F98D3701880F8ED00469323 /* Images.xcassets in Resources */,
 				9FF686BF1893E2BB00B36486 /* Media.xcassets in Resources */,
+				9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */,
 				9F98D3921880FB7600469323 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F92E8AF18A0A93A00118D76 /* MaltCatalog.csv in Resources */,
 				9F98D3821880F8EE00469323 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F98D3671880F8ED00469323 /* main.m in Sources */,
+				9F92E8B218A0C2D900118D76 /* OBIngredientCatalog.m in Sources */,
 				9FF686C61893F00B00B36486 /* OBBrewery.m in Sources */,
 				9FF686C91894099A00B36486 /* OBRecipeOverviewController.m in Sources */,
 				9FF686C21893E45F00B36486 /* OBRecipeViewController.m in Sources */,
@@ -340,7 +360,7 @@
 				9F98D3991884FAE800469323 /* OBMalt.m in Sources */,
 				9F98D3961884FAD800469323 /* OBRecipe.m in Sources */,
 				9F98D39F1884FB1200469323 /* OBYeast.m in Sources */,
-				9FE9745C188975C700FFAA56 /* Model.xcdatamodeld in Sources */,
+				9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */,
 				9F92E8A918A0910200118D76 /* OBIngredientFinderViewController.m in Sources */,
 				9F98D36B1880F8ED00469323 /* OBAppDelegate.m in Sources */,
 			);
@@ -560,13 +580,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		9FE9745A188975C700FFAA56 /* Model.xcdatamodeld */ = {
+		9FE9745A188975C700FFAA56 /* OpenBrew.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9FE9745B188975C700FFAA56 /* Model.xcdatamodel */,
+				9FE9745B188975C700FFAA56 /* OpenBrew.xcdatamodel */,
 			);
-			currentVersion = 9FE9745B188975C700FFAA56 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			currentVersion = 9FE9745B188975C700FFAA56 /* OpenBrew.xcdatamodel */;
+			path = OpenBrew.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
