@@ -7,23 +7,16 @@
 //
 
 #import "OBMalt.h"
+#import "OBIngredientCatalog.h"
+#import "OBMaltAddition.h"
+
 
 @implementation OBMalt
-@dynamic name;
-@dynamic defaultLovibond;
+
 @dynamic defaultExtractPotential;
-@end
-
-
-@implementation OBMaltAddition
-
-@dynamic malt;
-@dynamic quantityInPounds;
-@dynamic maxYield;
-@dynamic lovibond;
-
-- (float)gravityUnitsWithEfficiency:(float)efficiency {
-  return [self maxYield] * [self quantityInPounds] * efficiency;
-}
+@dynamic defaultLovibond;
+@dynamic name;
+@dynamic catalog;
+@dynamic maltAdditions;
 
 @end

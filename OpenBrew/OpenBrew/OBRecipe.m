@@ -9,6 +9,8 @@
 #import "OBRecipe.h"
 #import "OBYeast.h"
 #import "OBBrewery.h"
+#import "OBMaltAddition.h"
+
 
 @implementation OBRecipe
 

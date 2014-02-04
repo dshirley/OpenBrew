@@ -7,24 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+
+@class OBIngredientCatalog, OBMaltAddition;
 
 @interface OBMalt : NSManagedObject
 
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, assign) float defaultExtractPotential;
-@property (nonatomic, assign) float defaultLovibond;
-
+@property (nonatomic, retain) NSNumber * defaultExtractPotential;
+@property (nonatomic, retain) NSNumber * defaultLovibond;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) OBIngredientCatalog *catalog;
+@property (nonatomic, retain) NSSet *maltAdditions;
 @end
 
+@interface OBMalt (CoreDataGeneratedAccessors)
 
-@interface OBMaltAddition : NSManagedObject
-
-@property (nonatomic, strong) OBMalt *malt;
-@property (nonatomic, assign) float quantityInPounds;
-@property (nonatomic, assign) float maxYield;
-@property (nonatomic, assign) int lovibond;
-
-
-- (float)gravityUnitsWithEfficiency:(float)efficiency;
+- (void)addMaltAdditionsObject:(OBMaltAddition *)value;
+- (void)removeMaltAdditionsObject:(OBMaltAddition *)value;
+- (void)addMaltAdditions:(NSSet *)values;
+- (void)removeMaltAdditions:(NSSet *)values;
 
 @end

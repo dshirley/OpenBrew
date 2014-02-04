@@ -31,8 +31,8 @@
         <relationship name="maltAdditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MaltAddition" inverseName="malt" inverseEntity="MaltAddition" syncable="YES"/>
     </entity>
     <entity name="MaltAddition" representedClassName="OBMaltAddition" syncable="YES">
+        <attribute name="extractPotential" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="lovibond" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="maxYield" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="quantityInPounds" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="malt" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Malt" inverseName="maltAdditions" inverseEntity="Malt" syncable="YES"/>
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="maltAdditions" inverseEntity="Recipe" syncable="YES"/>
