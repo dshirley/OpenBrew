@@ -55,6 +55,7 @@
     delegate = [[OBHopsDashboardDelegate alloc] initWithRecipe:[self recipe]];
   }
   
+  [ingredientDash setRecipe:self.recipe];
   [ingredientDash setDelegate:delegate];
 }
 

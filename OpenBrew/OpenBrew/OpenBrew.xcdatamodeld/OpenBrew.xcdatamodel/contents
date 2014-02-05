@@ -3,6 +3,7 @@
     <entity name="Brewery" representedClassName="OBBrewery" syncable="YES">
         <attribute name="defaultBatchSize" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="mashEfficiency" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="ingredientCatalog" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IngredientCatalog" inverseName="brewery" inverseEntity="IngredientCatalog" syncable="YES"/>
         <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipe" inverseName="brewery" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <entity name="HopAddition" representedClassName="OBHopAddition" syncable="YES">
@@ -19,6 +20,7 @@
         <relationship name="hopAdditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HopAddition" inverseName="hops" inverseEntity="HopAddition" syncable="YES"/>
     </entity>
     <entity name="IngredientCatalog" representedClassName="OBIngredientCatalog" syncable="YES">
+        <relationship name="brewery" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Brewery" inverseName="ingredientCatalog" inverseEntity="Brewery" syncable="YES"/>
         <relationship name="hops" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Hops" inverseName="catalog" inverseEntity="Hops" syncable="YES"/>
         <relationship name="malts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Malt" inverseName="catalog" inverseEntity="Malt" syncable="YES"/>
         <relationship name="yeast" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Yeast" inverseName="catalog" inverseEntity="Yeast" syncable="YES"/>

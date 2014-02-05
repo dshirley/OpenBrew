@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, OBIngredientDashboardSkin) {
 // This delegate handles all the guts of OBIngredientDashboardController.
 @protocol OBDashboardDelegate
 - (NSString *)addButtonText;
-- (NSString *)gaugeValueText;
+- (NSString *)gaugeValueForRecipe:(OBRecipe *)recipe;
 - (NSString *)gaugeDescriptionText;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
@@ -36,20 +36,18 @@ typedef NS_ENUM(NSInteger, OBIngredientDashboardSkin) {
 @property (weak, nonatomic) IBOutlet UITableView *ingredientTable;
 
 @property (strong, nonatomic) id <OBDashboardDelegate> delegate;
+@property (strong, nonatomic) OBRecipe *recipe;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+
 @end
 
 @interface OBMaltDashboardDelegate : NSObject  <OBDashboardDelegate>
-@property (strong, nonatomic) OBRecipe *recipe;
-
-- (id)initWithRecipe:(OBRecipe *)recipe;
 @end
 
 @interface OBHopsDashboardDelegate : NSObject  <OBDashboardDelegate>
-@property (strong, nonatomic) OBRecipe *recipe;
-
-- (id)initWithRecipe:(OBRecipe *)recipe;
 @end

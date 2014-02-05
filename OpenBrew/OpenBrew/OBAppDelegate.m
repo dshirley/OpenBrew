@@ -9,6 +9,7 @@
 #import "OBAppDelegate.h"
 #import "OBMalt.h"
 #import "OBIngredientCatalog.h"
+#import "OBRecipeNavigationController.h"
 
 @implementation OBAppDelegate
 
@@ -18,11 +19,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [self loadMalts];
+  [self loadBrewery];
+  
+  OBRecipeNavigationController *nav = (OBRecipeNavigationController *) [[self window] rootViewController];
+  [nav setManagedContext:[self managedObjectContext]];
+  
   return YES;
 }
 
-- (void)loadMalts {
+- (id)loadBrewery {
   NSString *catalogPath = [[NSBundle mainBundle]
                            pathForResource:@"MaltCatalog.csv"
                            ofType:nil];
@@ -35,10 +40,14 @@
   
   NSManagedObjectContext *ctx = [self managedObjectContext];
 
+  id brewery = [NSEntityDescription insertNewObjectForEntityForName:@"Brewery"
+                                             inManagedObjectContext:ctx];
   
   OBIngredientCatalog *catalog = [NSEntityDescription
                                   insertNewObjectForEntityForName:@"IngredientCatalog"
                                   inManagedObjectContext:ctx];
+  
+  [brewery setCatalog:catalog];
   
   for (NSString *maltData in malts) {
     NSArray *attributes = [maltData componentsSeparatedByString:@","];
@@ -58,6 +67,7 @@
     [catalog addMaltsObject:malt];
   }
   
+  return brewery;
 
 }
 

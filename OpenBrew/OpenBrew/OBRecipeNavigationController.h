@@ -1,5 +1,5 @@
 //
-//  OBIngredientFinderViewController.h
+//  OBRecipeNavigationController.h
 //  OpenBrew
 //
 //  Created by David Shirley 2 on 2/4/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OBIngredientFinderViewController : UITableViewController <UITableViewDataSource>
+@interface OBRecipeNavigationController : UINavigationController
 @property (nonatomic, retain) NSManagedObjectContext *managedContext;
 @end

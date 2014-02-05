@@ -7,6 +7,8 @@
 //
 
 #import "OBRecipeViewController.h"
+#import "OBRecipeNavigationController.h"
+#import "OBRecipeOverviewController.h"
 
 @interface OBRecipeViewController ()
 
@@ -53,6 +55,19 @@
   [[cell textLabel] setText:[NSString stringWithFormat:@"test%d", [indexPath row]]];
   
   return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  OBRecipeNavigationController *nav = (OBRecipeNavigationController *) [self navigationController];
+  NSManagedObjectContext *ctx = [nav managedContext];
+  
+  if ([[segue identifier] isEqualToString:@"addRecipe"]) {
+    OBRecipe *recipe = [NSEntityDescription insertNewObjectForEntityForName:@"Recipe"
+                                                     inManagedObjectContext:ctx];
+    
+    id nextController = [segue destinationViewController];
+    [nextController setRecipe:recipe];
+  }
 }
 
 @end

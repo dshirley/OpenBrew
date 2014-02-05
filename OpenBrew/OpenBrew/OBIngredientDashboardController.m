@@ -7,6 +7,7 @@
 //
 
 #import "OBIngredientDashboardController.h"
+#import "OBIngredientFinderViewController.h"
 
 @interface OBIngredientDashboardController ()
 - (void)reload;
@@ -37,11 +38,20 @@
 }
 
 - (void)reload {
-  [[self ingredientTable] reloadData];
-  [[self gaugeValue] setText:[[self delegate] gaugeValueText]];
-  [[self gaugeDescription] setText:[[self delegate] gaugeDescriptionText]];
-  [[self addButton] setTitle:[[self delegate] addButtonText]
-                    forState:UIControlStateNormal];
+  _gaugeValue.text = [_delegate gaugeValueForRecipe:_recipe];
+  _gaugeDescription.text = [_delegate gaugeDescriptionText];
+
+  [_addButton setTitle:[_delegate addButtonText] forState:UIControlStateNormal];
+  [_ingredientTable reloadData];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if ([[segue identifier] isEqualToString:@"addIngredient"]) {
+
+    OBIngredientFinderViewController *next = [segue destinationViewController];
+    
+    [next setManagedContext:self.recipe.managedObjectContext];
+  }
 }
 
 #pragma mark - UITableViewDataSource Methods
@@ -68,20 +78,12 @@
 
 @implementation OBMaltDashboardDelegate
 
-- (id)initWithRecipe:(OBRecipe *)recipe {
-  if (self) {
-    [self setRecipe:recipe];
-  }
-  
-  return self;
-}
-
 - (NSString *)addButtonText {
   return @"Add Malt";
 }
 
-- (NSString *)gaugeValueText {
-  float gravity = [[self recipe] originalGravity];
+- (NSString *)gaugeValueForRecipe:(OBRecipe *)recipe {
+  float gravity = [recipe originalGravity];
   return [NSString stringWithFormat:@"%.2f", gravity];
 }
 
@@ -102,20 +104,12 @@
 
 @implementation OBHopsDashboardDelegate
 
-- (id)initWithRecipe:(OBRecipe *)recipe {
-  if (self) {
-    [self setRecipe:recipe];
-  }
-  
-  return self;
-}
-
 - (NSString *)addButtonText {
   return @"Add Hops";
 }
 
-- (NSString *)gaugeValueText {
-  float ibus = [[self recipe] IBUs];
+- (NSString *)gaugeValueForRecipe:(OBRecipe *)recipe {
+  float ibus = [recipe IBUs];
   return [NSString stringWithFormat:@"%.0f", ibus];
 }
 
@@ -131,6 +125,5 @@
   [[cell textLabel] setText:@"Hops"];
   [[cell detailTextLabel] setText:@"12"];
 }
-
 
 @end

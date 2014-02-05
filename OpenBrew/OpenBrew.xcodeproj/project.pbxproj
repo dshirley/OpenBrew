@@ -18,6 +18,7 @@
 		9F92E8CB18A0D53E00118D76 /* OBHops.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8CA18A0D53E00118D76 /* OBHops.m */; };
 		9F92E8CE18A0D63300118D76 /* OBYeastAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8CD18A0D63300118D76 /* OBYeastAddition.m */; };
 		9F92E8D118A0D6CF00118D76 /* OBYeast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8D018A0D6CF00118D76 /* OBYeast.m */; };
+		9F92E8D418A10AAB00118D76 /* OBRecipeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8D318A10AAB00118D76 /* OBRecipeNavigationController.m */; };
 		9F98D3591880F8ED00469323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3581880F8ED00469323 /* Foundation.framework */; };
 		9F98D35B1880F8ED00469323 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D35A1880F8ED00469323 /* CoreGraphics.framework */; };
 		9F98D35D1880F8ED00469323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D35C1880F8ED00469323 /* UIKit.framework */; };
@@ -72,6 +73,8 @@
 		9F92E8CD18A0D63300118D76 /* OBYeastAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBYeastAddition.m; sourceTree = "<group>"; };
 		9F92E8CF18A0D6CF00118D76 /* OBYeast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBYeast.h; sourceTree = "<group>"; };
 		9F92E8D018A0D6CF00118D76 /* OBYeast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBYeast.m; sourceTree = "<group>"; };
+		9F92E8D218A10AAB00118D76 /* OBRecipeNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBRecipeNavigationController.h; sourceTree = "<group>"; };
+		9F92E8D318A10AAB00118D76 /* OBRecipeNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeNavigationController.m; sourceTree = "<group>"; };
 		9F98D3551880F8ED00469323 /* OpenBrew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenBrew.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F98D3581880F8ED00469323 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9F98D35A1880F8ED00469323 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -253,6 +256,8 @@
 				9FF686C81894099A00B36486 /* OBRecipeOverviewController.m */,
 				9F92E8A718A0910200118D76 /* OBIngredientFinderViewController.h */,
 				9F92E8A818A0910200118D76 /* OBIngredientFinderViewController.m */,
+				9F92E8D218A10AAB00118D76 /* OBRecipeNavigationController.h */,
+				9F92E8D318A10AAB00118D76 /* OBRecipeNavigationController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -381,6 +386,7 @@
 				9F92E8BF18A0CED100118D76 /* OBMaltAddition.m in Sources */,
 				9F98D36B1880F8ED00469323 /* OBAppDelegate.m in Sources */,
 				9F92E8CE18A0D63300118D76 /* OBYeastAddition.m in Sources */,
+				9F92E8D418A10AAB00118D76 /* OBRecipeNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
