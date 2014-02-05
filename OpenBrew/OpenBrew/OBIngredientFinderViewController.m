@@ -50,8 +50,12 @@
   
   _ingredientsIndex = newIndex;
 
-  _sections = [_ingredientsIndex
-               keysSortedByValueUsingSelector:@selector(caseInsensitiveCompare:)];
+  NSMutableArray *sections = [NSMutableArray array];
+  for (id section in [_ingredientsIndex keyEnumerator]) {
+    [sections addObject:section];
+  }
+  
+  _sections = [sections sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 }
 
 - (NSString *)sectionNameForIngredientName:(NSString *)ingredientName {
@@ -131,7 +135,7 @@ sectionForSectionIndexTitle:(NSString *)title
   int i;
   
   for (i = 0; i < [_sections count]; i++) {
-    if ([title caseInsensitiveCompare:_sections[i]]) {
+    if ([title caseInsensitiveCompare:_sections[i]] <= 0) {
       return i;
     }
   }
