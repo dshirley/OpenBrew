@@ -50,9 +50,9 @@
   id <OBDashboardDelegate> delegate = nil;
   
   if ([identifier isEqualToString:@"maltSegue"]) {
-    delegate = [[OBMaltDashboardDelegate alloc] initWithRecipe:[self recipe]];
+    delegate = [[OBMaltDashboardDelegate alloc] init];
   } else if ([identifier isEqualToString:@"hopsSegue"]) {
-    delegate = [[OBHopsDashboardDelegate alloc] initWithRecipe:[self recipe]];
+    delegate = [[OBHopsDashboardDelegate alloc] init];
   }
   
   [ingredientDash setRecipe:self.recipe];

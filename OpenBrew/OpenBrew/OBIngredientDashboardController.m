@@ -50,7 +50,24 @@
 
     OBIngredientFinderViewController *next = [segue destinationViewController];
     
-    [next setManagedContext:self.recipe.managedObjectContext];
+    NSManagedObjectContext *moc = self.recipe.managedObjectContext;
+    NSEntityDescription *entityDescription = [NSEntityDescription
+                                              entityForName:@"Malt"
+                                              inManagedObjectContext:moc];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDescription];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
+                                        initWithKey:@"name" ascending:YES];\
+    
+    [request setSortDescriptors:@[sortDescriptor]];
+    
+    NSError *error;
+    NSArray *array = [moc executeFetchRequest:request error:&error];
+    
+    assert(array);
+    
+    [next setIngredients:array];
   }
 }
 

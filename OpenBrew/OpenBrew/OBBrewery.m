@@ -15,6 +15,7 @@
 @dynamic mashEfficiency;
 @dynamic defaultBatchSize;
 @dynamic recipes;
+@dynamic ingredientCatalog;
 
 + (OBBrewery *)instance {
   return nil;

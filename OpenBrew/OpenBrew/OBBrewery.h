@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class OBRecipe;
+@class OBRecipe, OBIngredientCatalog;
 
 @interface OBBrewery : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * mashEfficiency;
 @property (nonatomic, retain) NSNumber * defaultBatchSize;
 @property (nonatomic, retain) NSSet *recipes;
+@property (nonatomic, retain) OBIngredientCatalog *ingredientCatalog;
+
 @end
 
 @interface OBBrewery (CoreDataGeneratedAccessors)

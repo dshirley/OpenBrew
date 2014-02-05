@@ -10,6 +10,7 @@
 #import "OBMalt.h"
 #import "OBIngredientCatalog.h"
 #import "OBRecipeNavigationController.h"
+#import "OBBrewery.h"
 
 @implementation OBAppDelegate
 
@@ -40,14 +41,14 @@
   
   NSManagedObjectContext *ctx = [self managedObjectContext];
 
-  id brewery = [NSEntityDescription insertNewObjectForEntityForName:@"Brewery"
+  OBBrewery *brewery = [NSEntityDescription insertNewObjectForEntityForName:@"Brewery"
                                              inManagedObjectContext:ctx];
   
   OBIngredientCatalog *catalog = [NSEntityDescription
                                   insertNewObjectForEntityForName:@"IngredientCatalog"
                                   inManagedObjectContext:ctx];
   
-  [brewery setCatalog:catalog];
+  [brewery setIngredientCatalog:catalog];
   
   for (NSString *maltData in malts) {
     NSArray *attributes = [maltData componentsSeparatedByString:@","];

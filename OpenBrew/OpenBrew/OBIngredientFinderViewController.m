@@ -9,112 +9,140 @@
 #import "OBIngredientFinderViewController.h"
 
 @interface OBIngredientFinderViewController ()
-
+@property (nonatomic, strong) NSDictionary *ingredientsIndex;
+@property (nonatomic, strong) NSArray *sections;
 @end
 
 @implementation OBIngredientFinderViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+  self = [super initWithStyle:style];
+  if (self) {
+    // Custom initialization
+  }
+  return self;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
+- (void)setIngredients:(NSArray *)ingredientsSorted {
+  NSMutableDictionary *newIndex = [NSMutableDictionary dictionary];
+  
+  for (id ingredient in ingredientsSorted) {
+    NSString *ingredientName = [ingredient name];
+    
+    NSString *sectionName = [self sectionNameForIngredientName:ingredientName];
+    
+    NSMutableArray *ingredientsInSection = [newIndex objectForKey:sectionName];
+    
+    if (ingredientsInSection) {
+      [ingredientsInSection addObject:ingredient];
+    } else {
+      ingredientsInSection = [NSMutableArray arrayWithObject:ingredient];
+      [newIndex setObject:ingredientsInSection forKey:sectionName];
+    }
+  }
+  
+  _ingredientsIndex = newIndex;
+
+  _sections = [_ingredientsIndex
+               keysSortedByValueUsingSelector:@selector(caseInsensitiveCompare:)];
+}
+
+- (NSString *)sectionNameForIngredientName:(NSString *)ingredientName {
+  assert([ingredientName length] > 0);
+  
+  return [ingredientName substringToIndex:1];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  NSString *sectionName = [_sections objectAtIndex:section];
+  NSArray *ingredientsInSection = [_ingredientsIndex objectForKey:sectionName];
+  return [ingredientsInSection count];
 }
 
-#pragma mark - Table view data source
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  UITableViewCell *cell = [tableView
+                           dequeueReusableCellWithIdentifier:@"IngredientListCell"
+                           forIndexPath:indexPath];
+
+  NSString *sectionName = [_sections objectAtIndex:indexPath.section];
+  NSArray *ingredientsInSection = [_ingredientsIndex objectForKey:sectionName];
+  id ingredient = [ingredientsInSection objectAtIndex:indexPath.row];
+  
+  [[cell textLabel] setText:[ingredient name]];
+  
+  return cell;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+  return [self.sections count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView *)tableView
+titleForHeaderInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+  return [self.sections objectAtIndex:section];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tableView:(UITableView *)tableView
+titleForFooterInSection:(NSInteger)section
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+  return nil;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)tableView:(UITableView *)tableView
+canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+  return NO;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+  return NO;
 }
-*/
 
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+  NSMutableArray *indexTitles = [NSMutableArray array];
+  
+  for (char c = 'A'; c <= 'Z'; c++) {
+    NSString *title = [NSString stringWithFormat:@"%c", c];
+    [indexTitles addObject:title];
+  }
+  
+  return indexTitles;
 }
 
- */
+- (NSInteger)tableView:(UITableView *)tableView
+sectionForSectionIndexTitle:(NSString *)title
+               atIndex:(NSInteger)index
+{
+  int i;
+  
+  for (i = 0; i < [_sections count]; i++) {
+    if ([title caseInsensitiveCompare:_sections[i]]) {
+      return i;
+    }
+  }
+  
+  int sectionIndex = 0;
+  if (i > 0) {
+    sectionIndex = i - 1;
+  }
+  
+  return sectionIndex;
+}
 
 @end
+
