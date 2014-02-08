@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OBRecipe.h"
+#import "OBIngredientGauge.h"
 
 typedef NS_ENUM(NSInteger, OBIngredientDashboardSkin) {
   OBMaltSkin,
@@ -31,8 +32,9 @@ typedef NS_ENUM(NSInteger, OBIngredientDashboardSkin) {
 @interface OBIngredientDashboardController : UIViewController <UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
-@property (weak, nonatomic) IBOutlet UILabel *gaugeValue;
-@property (weak, nonatomic) IBOutlet UILabel *gaugeDescription;
+
+@property (weak, nonatomic) IBOutlet OBIngredientGauge *gauge;
+
 @property (weak, nonatomic) IBOutlet UITableView *ingredientTable;
 
 @property (strong, nonatomic) id <OBDashboardDelegate> delegate;
@@ -43,6 +45,8 @@ typedef NS_ENUM(NSInteger, OBIngredientDashboardSkin) {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+
+- (IBAction)unwindToIngredientList:(UIStoryboardSegue *)unwindSegue;
 
 @end
 

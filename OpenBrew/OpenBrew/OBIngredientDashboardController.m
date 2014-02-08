@@ -38,8 +38,8 @@
 }
 
 - (void)reload {
-  _gaugeValue.text = [_delegate gaugeValueForRecipe:_recipe];
-  _gaugeDescription.text = [_delegate gaugeDescriptionText];
+  _gauge.value.text = [_delegate gaugeValueForRecipe:_recipe];
+  _gauge.description.text = [_delegate gaugeDescriptionText];
 
   [_addButton setTitle:[_delegate addButtonText] forState:UIControlStateNormal];
   [_ingredientTable reloadData];
@@ -89,6 +89,11 @@
   [[self delegate] populateCell:cell forIndex:indexPath];
   
   return cell;
+}
+
+- (void)unwindToIngredientList:(UIStoryboardSegue *)unwindSegue
+{
+  // TODO: implement me
 }
 
 @end
