@@ -47,6 +47,8 @@
 
 - (float)gravityUnits {
   float gravityUnits = 0.0;
+
+  // FIXME: don't hardcode the efficiency
   float efficiency = .75; //[[[OBBrewery instance] mashEfficiency] floatValue];
 
   for (OBMaltAddition *malt in [self maltAdditions]) {
