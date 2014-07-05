@@ -21,9 +21,16 @@ typedef NS_ENUM(NSInteger, OBIngredientDashboardSkin) {
 - (NSString *)gaugeValueForRecipe:(OBRecipe *)recipe;
 - (NSString *)gaugeDescriptionText;
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+             forRecipe:(OBRecipe *)recipe;
 
-- (void)populateCell:(UITableViewCell *)cell forIndex:(NSIndexPath *)index;
+- (void)populateCell:(UITableViewCell *)cell
+            forIndex:(NSIndexPath *)index
+           andRecipe:(OBRecipe *) recipe;
+
+// Called when an ingredient is selected in the finder view
+- (void)addIngredient:(id)ingredient toRecipe:(OBRecipe *)recipe;
 
 @end
 
@@ -40,13 +47,15 @@ typedef NS_ENUM(NSInteger, OBIngredientDashboardSkin) {
 @property (strong, nonatomic) id <OBDashboardDelegate> delegate;
 @property (strong, nonatomic) OBRecipe *recipe;
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section;
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 
-- (IBAction)unwindToIngredientList:(UIStoryboardSegue *)unwindSegue;
+- (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue;
 
 @end
 

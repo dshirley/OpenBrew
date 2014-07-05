@@ -13,12 +13,19 @@
 
 @interface OBMaltAddition : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * lovibond;
-@property (nonatomic, retain) NSNumber * extractPotential;
-@property (nonatomic, retain) NSNumber * quantityInPounds;
 @property (nonatomic, retain) OBMalt *malt;
 @property (nonatomic, retain) OBRecipe *recipe;
 
+@property (nonatomic, retain) NSNumber * lovibond;
+@property (nonatomic, retain) NSNumber * extractPotential;
+@property (nonatomic, retain) NSNumber * quantityInPounds;
+
+- (id)initWithMalt:(OBMalt *)malt;
+
 - (float)gravityUnitsWithEfficiency:(float)efficiency;
+
+- (NSString *)name;
+
+- (NSString *)quantityText;
 
 @end

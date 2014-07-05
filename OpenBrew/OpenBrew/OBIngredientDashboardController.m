@@ -9,6 +9,8 @@
 #import "OBIngredientDashboardController.h"
 #import "OBIngredientFinderViewController.h"
 
+#import "OBMaltAddition.h"
+
 @interface OBIngredientDashboardController ()
 - (void)reload;
 @end
@@ -76,7 +78,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
   return [[self delegate] tableView:tableView
-                        numberOfRowsInSection:section];
+                        numberOfRowsInSection:section
+                          forRecipe:self.recipe];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -86,14 +89,21 @@
                            dequeueReusableCellWithIdentifier:@"OBIngredientAddition"
                            forIndexPath:indexPath];
   
-  [[self delegate] populateCell:cell forIndex:indexPath];
+  [[self delegate] populateCell:cell
+                       forIndex:indexPath
+                      andRecipe:self.recipe];
   
   return cell;
 }
 
-- (void)unwindToIngredientList:(UIStoryboardSegue *)unwindSegue
+- (void)ingredientSelected:(UIStoryboardSegue *)unwindSegue
 {
-  // TODO: implement me
+  if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {
+    OBIngredientFinderViewController *finderView = [unwindSegue sourceViewController];
+    id ingredient = [finderView selectedIngredient];
+    [self.delegate addIngredient:ingredient toRecipe:self.recipe];
+    [self reload];
+  }
 }
 
 @end
@@ -113,14 +123,38 @@
   return @"Estimated Starting Gravity";
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return 3;
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+             forRecipe:(OBRecipe *)recipe
+{
+  return [[recipe maltAdditions] count];
 }
 
-- (void)populateCell:(UITableViewCell *)cell forIndex:(NSIndexPath *)index {
-  [[cell textLabel] setText:@"Malt"];
-  [[cell detailTextLabel] setText:@"1.053"];
+- (void)populateCell:(UITableViewCell *)cell
+            forIndex:(NSIndexPath *)index
+           andRecipe:(OBRecipe *) recipe
+{
+  NSSortDescriptor *sortBySize = [[NSSortDescriptor alloc] initWithKey:@"quantityInPounds"
+                                                             ascending:NO];
+
+  NSSortDescriptor *sortByName = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+
+  NSArray *sortSpecification = @[ sortBySize, sortByName ];
+
+  NSArray *malts = [[recipe maltAdditions] sortedArrayUsingDescriptors:sortSpecification];
+
+  OBMaltAddition *maltAddition = malts[index.row];
+  
+  [[cell textLabel] setText:[maltAddition name]];
+  [[cell detailTextLabel] setText:[maltAddition quantityText]];
 }
+
+- (void)addIngredient:(id)ingredient toRecipe:(OBRecipe *)recipe {
+  OBMaltAddition *maltAddition = [[OBMaltAddition alloc] initWithMalt:ingredient];
+  [recipe addMaltAdditionsObject:maltAddition];
+
+}
+
 @end
 
 
@@ -139,13 +173,23 @@
   return @"Estimated IBUs";
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section
+             forRecipe:(OBRecipe *)recipe
+{
   return 3;
 }
 
-- (void)populateCell:(UITableViewCell *)cell forIndex:(NSIndexPath *)index {
+- (void)populateCell:(UITableViewCell *)cell
+            forIndex:(NSIndexPath *)index
+           andRecipe:(OBRecipe *) recipe
+{
   [[cell textLabel] setText:@"Hops"];
   [[cell detailTextLabel] setText:@"12"];
+}
+
+- (void)addIngredient:(id)ingredient toRecipe:(OBRecipe *)recipe {
+  [recipe addHopAdditionsObject:ingredient];
 }
 
 @end

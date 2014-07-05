@@ -13,10 +13,12 @@
 
 @interface OBMalt : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * defaultExtractPotential;
-@property (nonatomic, retain) NSNumber * defaultLovibond;
-@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) OBIngredientCatalog *catalog;
+
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * defaultLovibond;
+@property (nonatomic, retain) NSNumber * defaultExtractPotential;
+
 @property (nonatomic, retain) NSSet *maltAdditions;
 @end
 

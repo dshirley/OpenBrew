@@ -9,8 +9,13 @@
 #import "OBIngredientFinderViewController.h"
 
 @interface OBIngredientFinderViewController ()
+
+// Format:  { "section =_name" : [ ingredient1, ingredient2, ... ]
 @property (nonatomic, strong) NSDictionary *ingredientsIndex;
+
 @property (nonatomic, strong) NSArray *sections;
+
+- (id)ingredientAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @implementation OBIngredientFinderViewController
@@ -27,9 +32,12 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-
 }
 
+/**
+ * Populate the ingredientsIndex dictionary which contains all of the sections
+ * and the ingredients listed in each section.  Sections are alphabetical.
+ */
 - (void)setIngredients:(NSArray *)ingredientsSorted {
   NSMutableDictionary *newIndex = [NSMutableDictionary dictionary];
   
@@ -58,6 +66,10 @@
   _sections = [sections sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 }
 
+/**
+ * Returns the name of a table view section for the given ingredient.  The
+ * section name is based on the first letter of the ingredient.
+ */
 - (NSString *)sectionNameForIngredientName:(NSString *)ingredientName {
   assert([ingredientName length] > 0);
   
@@ -72,16 +84,22 @@
   return [ingredientsInSection count];
 }
 
+- (id)ingredientAtIndexPath:(NSIndexPath *)indexPath
+{
+  NSString *sectionName = [_sections objectAtIndex:indexPath.section];
+  NSArray *ingredientsInSection = [_ingredientsIndex objectForKey:sectionName];
+  return [ingredientsInSection objectAtIndex:indexPath.row];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  UITableViewCell *cell = [tableView
-                           dequeueReusableCellWithIdentifier:@"IngredientListCell"
-                           forIndexPath:indexPath];
+  UITableViewCell *cell = nil;
 
-  NSString *sectionName = [_sections objectAtIndex:indexPath.section];
-  NSArray *ingredientsInSection = [_ingredientsIndex objectForKey:sectionName];
-  id ingredient = [ingredientsInSection objectAtIndex:indexPath.row];
+  cell = [tableView dequeueReusableCellWithIdentifier:@"IngredientListCell"
+                                         forIndexPath:indexPath];
+
+  id ingredient = [self ingredientAtIndexPath:indexPath];
   
   [[cell textLabel] setText:[ingredient name]];
   
@@ -146,6 +164,17 @@ sectionForSectionIndexTitle:(NSString *)title
   }
   
   return sectionIndex;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  if ([[segue identifier] isEqualToString:@"IngredientSelected"] && sender) {
+    // The user chose an ingredient to add to a recipe
+    // Set the selectedIngredient so that we can add it when the segue completes
+
+    NSIndexPath *cellIndex = [self.tableView indexPathForCell:sender];
+    self.selectedIngredient = [self ingredientAtIndexPath:cellIndex];
+  }
 }
 
 @end

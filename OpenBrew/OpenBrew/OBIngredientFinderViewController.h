@@ -10,6 +10,8 @@
 
 @interface OBIngredientFinderViewController : UITableViewController <UITableViewDataSource>
 
+@property (strong, nonatomic) id selectedIngredient;
+
 - (void)setIngredients:(NSArray *)ingredients;
 
 - (NSInteger)tableView:(UITableView *)tableView
