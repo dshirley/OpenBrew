@@ -62,8 +62,7 @@
   NSManagedObjectContext *ctx = [nav managedContext];
   
   if ([[segue identifier] isEqualToString:@"addRecipe"]) {
-    OBRecipe *recipe = [NSEntityDescription insertNewObjectForEntityForName:@"Recipe"
-                                                     inManagedObjectContext:ctx];
+    OBRecipe *recipe = [[OBRecipe alloc] initWithContext:ctx];
     
     id nextController = [segue destinationViewController];
     [nextController setRecipe:recipe];

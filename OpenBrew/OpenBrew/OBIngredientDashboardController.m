@@ -116,7 +116,7 @@
 
 - (NSString *)gaugeValueForRecipe:(OBRecipe *)recipe {
   float gravity = [recipe originalGravity];
-  return [NSString stringWithFormat:@"%.2f", gravity];
+  return [NSString stringWithFormat:@"%.3f", gravity];
 }
 
 - (NSString *)gaugeDescriptionText {

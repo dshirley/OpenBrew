@@ -21,6 +21,8 @@
 @property (nonatomic, retain) NSSet *hopAdditions;
 @property (nonatomic, retain) NSSet *maltAdditions;
 
+- (id)initWithContext:(NSManagedObjectContext *)context;
+
 @end
 
 @interface OBRecipe (CoreDataGeneratedAccessors)

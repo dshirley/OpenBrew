@@ -22,6 +22,19 @@
 @dynamic maltAdditions;
 @dynamic yeast;
 
+- (id)initWithContext:(NSManagedObjectContext *)context
+{
+  NSEntityDescription *desc = [NSEntityDescription entityForName:@"Recipe"
+                                          inManagedObjectContext:context];
+
+  self = [self initWithEntity:desc insertIntoManagedObjectContext:context];
+  if (self) {
+    self.batchSizeInGallons = @5;
+  }
+
+  return self;
+}
+
 - (float)boilSizeInGallons {
   // FIXME: this should be tunable rather than just adding 2 gallons
   return [[self batchSizeInGallons] floatValue] + 2;
@@ -34,7 +47,7 @@
 
 - (float)gravityUnits {
   float gravityUnits = 0.0;
-  float efficiency = [[[OBBrewery instance] mashEfficiency] floatValue];
+  float efficiency = .75; //[[[OBBrewery instance] mashEfficiency] floatValue];
 
   for (OBMaltAddition *malt in [self maltAdditions]) {
     gravityUnits += [malt gravityUnitsWithEfficiency:efficiency];
@@ -44,7 +57,7 @@
 }
 
 - (float)originalGravity {
-  return [self gravityUnits] / [[self batchSizeInGallons] floatValue];
+  return 1 + ([self gravityUnits] / [[self batchSizeInGallons] floatValue] / 1000);
 }
 
 - (float)finalGravity {
