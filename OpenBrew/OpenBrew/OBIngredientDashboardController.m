@@ -96,6 +96,30 @@
   return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (self.selectedRowIndex && self.selectedRowIndex.row == indexPath.row) {
+    // The row is already seleted, the user is intending to collapse the selected row
+    self.selectedRowIndex = nil;
+  } else {
+    // We'll expand the selected row via the heightForRowAtIndexPath method.
+    // For now, mark this row as selected.
+    self.selectedRowIndex = indexPath;
+  }
+
+  [tableView beginUpdates];
+  [tableView endUpdates];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (self.selectedRowIndex && indexPath.row == self.selectedRowIndex.row) {
+    return 100;
+  }
+
+  return 44;
+}
+
 - (void)ingredientSelected:(UIStoryboardSegue *)unwindSegue
 {
   if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {

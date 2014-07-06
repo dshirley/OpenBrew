@@ -238,6 +238,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="G4Y-bP-qbh" id="1I2-Sz-iSt"/>
+                                    <outlet property="delegate" destination="G4Y-bP-qbh" id="0KK-X5-uGt"/>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kOa-7I-0kp" customClass="OBIngredientGauge">
