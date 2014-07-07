@@ -12,6 +12,8 @@
 #import "OBMaltAddition.h"
 
 @interface OBIngredientDashboardController ()
+@property (nonatomic, strong) NSIndexPath *quantityPickerIndexPath;
+
 - (void)reload;
 @end
 
@@ -73,28 +75,127 @@
   }
 }
 
+- (BOOL)hasInlinePicker
+{
+  return (self.quantityPickerIndexPath != nil);
+}
+
+- (BOOL)indexPathHasPicker:(NSIndexPath *)indexPath
+{
+  return ([self hasInlinePicker] && self.quantityPickerIndexPath.row == indexPath.row);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return ([self indexPathHasPicker:indexPath] ? 162 : tableView.rowHeight);
+}
+
+
 #pragma mark - UITableViewDataSource Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return [[self delegate] tableView:tableView
-                        numberOfRowsInSection:section
-                          forRecipe:self.recipe];
+  NSInteger numRows = self.recipe.maltAdditions.count;
+
+  if ([self hasInlinePicker]) {
+    numRows += 1;
+  }
+
+  return numRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  UITableViewCell *cell = [tableView
-                           dequeueReusableCellWithIdentifier:@"OBIngredientAddition"
-                           forIndexPath:indexPath];
-  
-  [[self delegate] populateCell:cell
-                       forIndex:indexPath
-                      andRecipe:self.recipe];
-  
+  // TODO: make this a constant
+  NSString *cellID = @"IngredientAddition";
+
+  if ([self indexPathHasPicker:indexPath]) {
+    cellID = @"MaltQuantityPicker";
+  }
+
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+
+  if (![self indexPathHasPicker:indexPath]) {
+    NSSortDescriptor *sortBySize = [[NSSortDescriptor alloc] initWithKey:@"quantityInPounds"
+                                                               ascending:NO];
+
+    NSSortDescriptor *sortByName = [[NSSortDescriptor alloc] initWithKey:@"name"
+                                                               ascending:YES];
+
+    NSArray *sortSpecification = @[ sortBySize, sortByName ];
+
+    NSArray *malts = [[self.recipe maltAdditions] sortedArrayUsingDescriptors:sortSpecification];
+
+    NSUInteger maltIndex = indexPath.row;
+    if (self.quantityPickerIndexPath.row < indexPath.row) {
+      maltIndex -= 1;
+    }
+
+    OBMaltAddition *maltAddition = malts[maltIndex];
+
+    [[cell textLabel] setText:[maltAddition name]];
+    [[cell detailTextLabel] setText:[maltAddition quantityText]];
+  }
+
   return cell;
 }
+
+- (void)displayInlinePickerForRowAtIndexPath:(NSIndexPath *)indexPath
+                                    forTable:(UITableView *)tableView
+{
+  [tableView beginUpdates];
+
+  // indicates if the date picker is below "indexPath", help us determine which row to reveal
+  BOOL before = NO;
+
+  if ([self hasInlinePicker]) {
+    before = self.quantityPickerIndexPath.row < indexPath.row;
+  }
+
+  BOOL sameCellClicked = (self.quantityPickerIndexPath.row - 1 == indexPath.row);
+
+  // remove any date picker cell if it exists
+  if ([self hasInlinePicker]) {
+    [tableView deleteRowsAtIndexPaths:@[self.quantityPickerIndexPath]
+                     withRowAnimation:UITableViewRowAnimationFade];
+
+    self.quantityPickerIndexPath = nil;
+  }
+
+  if (!sameCellClicked) {
+    // hide the old date picker and display the new one
+    NSInteger rowToAddPicker = (before ? indexPath.row : indexPath.row + 1);
+    NSIndexPath *indexToAddPicker = [NSIndexPath indexPathForRow:rowToAddPicker
+                                                       inSection:0];
+
+    [tableView insertRowsAtIndexPaths:@[indexToAddPicker]
+                     withRowAnimation:UITableViewRowAnimationFade];
+
+    self.quantityPickerIndexPath = indexToAddPicker;
+  }
+
+  // always deselect the row containing the start or end date
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+  [tableView endUpdates];
+
+  // inform our date picker of the current date to match the current cell
+  // TODO: implement me
+  // [self updateDatePicker];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+
+  if ([cell.reuseIdentifier isEqualToString:@"IngredientAddition"]) {
+    [self displayInlinePickerForRowAtIndexPath:indexPath forTable:tableView];
+  } else {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  }
+}
+
 
 - (void)ingredientSelected:(UIStoryboardSegue *)unwindSegue
 {
