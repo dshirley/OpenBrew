@@ -11,10 +11,19 @@
 
 #import "OBMaltAddition.h"
 
+#define LEFT_PICKER_COMPONENT 0
+#define RIGHT_PICKER_COMPONENT 1
+
+#define PICKER_TAG 42
+
 @interface OBIngredientDashboardController ()
+
 @property (nonatomic, strong) NSIndexPath *quantityPickerIndexPath;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (assign) NSInteger pickerCellRowHeight;
 
 - (void)reload;
+
 @end
 
 @implementation OBIngredientDashboardController
@@ -38,6 +47,13 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+
+  // Really dumb way to get the default height of a UIPickerView
+  // Apple doesn't provide a constant, though, and the default shown in
+  // Interface Builder is wrong (it says 162.  For iOS 7 it is 216)
+  UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 77, 320, 0)];
+  self.pickerCellRowHeight = picker.frame.size.height;
+
   [self reload];
 }
 
@@ -87,7 +103,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return ([self indexPathHasPicker:indexPath] ? 162 : tableView.rowHeight);
+  return ([self indexPathHasPicker:indexPath] ? self.pickerCellRowHeight : self.tableView.rowHeight);
 }
 
 
@@ -139,6 +155,18 @@
   }
 
   return cell;
+}
+
+- (void)updatePickerForTableView:(UITableView *)tableView
+{
+  if (self.quantityPickerIndexPath) {
+    UITableViewCell *associatedPickerCell = [tableView cellForRowAtIndexPath:self.quantityPickerIndexPath];
+    UIPickerView *picker = (UIPickerView *)[associatedPickerCell viewWithTag:PICKER_TAG];
+
+    if (picker) {
+      [picker selectRow:(16*5000) inComponent:RIGHT_PICKER_COMPONENT animated:NO];
+    }
+  }
 }
 
 - (void)displayInlinePickerForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -206,6 +234,50 @@
     [self reload];
   }
 }
+
+#pragma UIPickerViewDataSource Methods
+// returns the number of 'columns' to display.
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+  return 2;
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+  NSInteger numRows = 0;
+
+  switch (component) {
+    case LEFT_PICKER_COMPONENT:
+      numRows = 50;
+      break;
+    case RIGHT_PICKER_COMPONENT:
+      numRows = 16 * 10000;
+      break;
+    default:
+      assert(component < 2);
+  }
+
+  return numRows;
+}
+
+#pragma UIPickerViewDelegate Methods
+
+- (NSString *)pickerView:(UIPickerView *)pickerView
+             titleForRow:(NSInteger)row
+            forComponent:(NSInteger)component
+{
+  NSString *text = nil;
+
+  if (component == 0) {
+    text = [NSString stringWithFormat:@"%d lb", row];
+  } else {
+    text = [NSString stringWithFormat:@"%d oz", row % 16];
+  }
+
+  return text;
+}
+
 
 @end
 
