@@ -14,6 +14,9 @@
 #define LEFT_PICKER_COMPONENT 0
 #define RIGHT_PICKER_COMPONENT 1
 
+static NSString *const INGREDIENT_ADDITION_CELL = @"IngredientAddition";
+static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
+
 #define PICKER_TAG 42
 
 @interface OBIngredientDashboardController ()
@@ -65,6 +68,8 @@
   [_ingredientTable reloadData];
 }
 
+#pragma mark - Segues
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([[segue identifier] isEqualToString:@"addIngredient"]) {
 
@@ -91,6 +96,18 @@
   }
 }
 
+- (void)ingredientSelected:(UIStoryboardSegue *)unwindSegue
+{
+  if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {
+    OBIngredientFinderViewController *finderView = [unwindSegue sourceViewController];
+    id ingredient = [finderView selectedIngredient];
+    [self.delegate addIngredient:ingredient toRecipe:self.recipe];
+    [self reload];
+  }
+}
+
+#pragma mark - Utility
+
 - (BOOL)hasInlinePicker
 {
   return (self.quantityPickerIndexPath != nil);
@@ -101,13 +118,29 @@
   return ([self hasInlinePicker] && self.quantityPickerIndexPath.row == indexPath.row);
 }
 
+
+- (UIPickerView *)pickerAtIndexPath:(NSIndexPath *)indexPath
+                           andTable:(UITableView *)tableView
+{
+  UIPickerView *picker = nil;
+
+  if (indexPath) {
+    UITableViewCell *pickerCell = [tableView cellForRowAtIndexPath:indexPath];
+
+    picker = (UIPickerView *)[pickerCell viewWithTag:PICKER_TAG];
+  }
+
+  return picker;
+}
+
+#pragma mark - UITableViewDataSource Methods
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   return ([self indexPathHasPicker:indexPath] ? self.pickerCellRowHeight : self.tableView.rowHeight);
 }
 
-
-#pragma mark - UITableViewDataSource Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -123,11 +156,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  // TODO: make this a constant
-  NSString *cellID = @"IngredientAddition";
+  NSString *cellID = INGREDIENT_ADDITION_CELL;
 
   if ([self indexPathHasPicker:indexPath]) {
-    cellID = @"MaltQuantityPicker";
+    cellID = MALT_PICKER_CELL;
   }
 
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -157,15 +189,13 @@
   return cell;
 }
 
+
 - (void)updatePickerForTableView:(UITableView *)tableView
 {
-  if (self.quantityPickerIndexPath) {
-    UITableViewCell *associatedPickerCell = [tableView cellForRowAtIndexPath:self.quantityPickerIndexPath];
-    UIPickerView *picker = (UIPickerView *)[associatedPickerCell viewWithTag:PICKER_TAG];
+  UIPickerView *picker = [self pickerAtIndexPath:self.quantityPickerIndexPath andTable:tableView];
 
-    if (picker) {
-      [picker selectRow:(16*5000) inComponent:RIGHT_PICKER_COMPONENT animated:NO];
-    }
+  if (picker) {
+    [picker selectRow:(16*5000) inComponent:RIGHT_PICKER_COMPONENT animated:NO];
   }
 }
 
@@ -208,34 +238,23 @@
 
   [tableView endUpdates];
 
-  // inform our date picker of the current date to match the current cell
-  // TODO: implement me
-  // [self updateDatePicker];
+  [self updatePickerForTableView:tableView];
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
-  if ([cell.reuseIdentifier isEqualToString:@"IngredientAddition"]) {
+  if ([cell.reuseIdentifier isEqualToString:INGREDIENT_ADDITION_CELL]) {
     [self displayInlinePickerForRowAtIndexPath:indexPath forTable:tableView];
   } else {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
   }
 }
 
+#pragma mark - UIPickerViewDataSource Methods
 
-- (void)ingredientSelected:(UIStoryboardSegue *)unwindSegue
-{
-  if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {
-    OBIngredientFinderViewController *finderView = [unwindSegue sourceViewController];
-    id ingredient = [finderView selectedIngredient];
-    [self.delegate addIngredient:ingredient toRecipe:self.recipe];
-    [self reload];
-  }
-}
-
-#pragma UIPickerViewDataSource Methods
 // returns the number of 'columns' to display.
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -261,7 +280,7 @@
   return numRows;
 }
 
-#pragma UIPickerViewDelegate Methods
+#pragma mark - UIPickerViewDelegate
 
 - (NSString *)pickerView:(UIPickerView *)pickerView
              titleForRow:(NSInteger)row
@@ -278,6 +297,12 @@
   return text;
 }
 
+- (void)pickerView:(UIPickerView *)pickerView
+      didSelectRow:(NSInteger)row
+       inComponent:(NSInteger)component
+{
+
+}
 
 @end
 
