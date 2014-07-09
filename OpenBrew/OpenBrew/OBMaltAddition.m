@@ -37,7 +37,10 @@
 }
 
 - (float)gravityUnitsWithEfficiency:(float)efficiency {
-  return [[self extractPotential] floatValue] * [[self quantityInPounds] floatValue] * efficiency;
+  float potential = [self.extractPotential floatValue];
+  float pounds = [self.quantityInPounds floatValue];
+
+  return 1000 * (potential - 1) * pounds * efficiency;
 }
 
 - (NSString *)name {

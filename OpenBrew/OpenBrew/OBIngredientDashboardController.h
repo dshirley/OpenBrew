@@ -36,14 +36,11 @@ typedef NS_ENUM(NSInteger, OBIngredientDashboardSkin) {
 
 // Just a wrapper class for the delegate.  This allows changing the implementation
 // at runtime.
-@interface OBIngredientDashboardController : UIViewController <UITableViewDataSource>
+@interface OBIngredientDashboardController : UIViewController <UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
-
 @property (weak, nonatomic) IBOutlet OBIngredientGauge *gauge;
-
 @property (weak, nonatomic) IBOutlet UITableView *ingredientTable;
-
 @property (strong, nonatomic) id <OBDashboardDelegate> delegate;
 @property (strong, nonatomic) OBRecipe *recipe;
 @property (strong, nonatomic) NSIndexPath *selectedRowIndex;
@@ -59,6 +56,20 @@ typedef NS_ENUM(NSInteger, OBIngredientDashboardSkin) {
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 
 - (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue;
+
+#pragma UIPickerViewDataSource Methods
+
+// returns the number of 'columns' to display.
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView;
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
+
+#pragma UIPickerViewDelegate Methods
+
+- (NSString *)pickerView:(UIPickerView *)pickerView
+             titleForRow:(NSInteger)row
+            forComponent:(NSInteger)component;
 
 @end
 
