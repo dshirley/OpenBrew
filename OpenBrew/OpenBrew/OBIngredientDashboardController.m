@@ -176,7 +176,7 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
     NSArray *malts = [[self.recipe maltAdditions] sortedArrayUsingDescriptors:sortSpecification];
 
     NSUInteger maltIndex = indexPath.row;
-    if (self.quantityPickerIndexPath.row < indexPath.row) {
+    if ([self hasInlinePicker] && self.quantityPickerIndexPath.row < indexPath.row) {
       maltIndex -= 1;
     }
 
