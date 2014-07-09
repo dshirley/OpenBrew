@@ -108,6 +108,51 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 
 #pragma mark - Utility
 
+
+/**
+ * Returns the malts in this recipe in an array format that represents the order
+ * of elements in the table view.
+ */
+- (NSArray *)maltData {
+  NSSortDescriptor *sortBySize = [[NSSortDescriptor alloc] initWithKey:@"quantityInPounds"
+                                                             ascending:NO];
+
+  NSSortDescriptor *sortByName = [[NSSortDescriptor alloc] initWithKey:@"name"
+                                                             ascending:YES];
+
+  NSArray *sortSpecification = @[ sortBySize, sortByName ];
+
+  NSArray *malts = [[self.recipe maltAdditions] sortedArrayUsingDescriptors:sortSpecification];
+
+  return malts;
+}
+
+/**
+ * Lookup the malt addition at the given index in the UITableView
+ */
+- (OBMaltAddition *)maltAdditionAtIndexPath:(NSIndexPath *)indexPath
+{
+  // There can't be a malt addition in the same index as the UIPickerView
+  assert(!self.quantityPickerIndexPath || self.quantityPickerIndexPath.row != indexPath.row);
+
+  NSArray *malts = [self maltData];
+
+  NSUInteger maltIndex = indexPath.row;
+  if ([self hasInlinePicker] && self.quantityPickerIndexPath.row < indexPath.row) {
+    maltIndex -= 1;
+  }
+
+  return malts[maltIndex];
+}
+
+- (OBMaltAddition *)maltAdditionForPicker
+{
+  NSInteger cellRow = self.quantityPickerIndexPath.row - 1;
+  NSIndexPath *cellBeforePicker = [NSIndexPath indexPathForRow:cellRow inSection:0];
+
+  return [self maltAdditionAtIndexPath:cellBeforePicker];
+}
+
 - (BOOL)hasInlinePicker
 {
   return (self.quantityPickerIndexPath != nil);
@@ -165,22 +210,7 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
 
   if (![self indexPathHasPicker:indexPath]) {
-    NSSortDescriptor *sortBySize = [[NSSortDescriptor alloc] initWithKey:@"quantityInPounds"
-                                                               ascending:NO];
-
-    NSSortDescriptor *sortByName = [[NSSortDescriptor alloc] initWithKey:@"name"
-                                                               ascending:YES];
-
-    NSArray *sortSpecification = @[ sortBySize, sortByName ];
-
-    NSArray *malts = [[self.recipe maltAdditions] sortedArrayUsingDescriptors:sortSpecification];
-
-    NSUInteger maltIndex = indexPath.row;
-    if ([self hasInlinePicker] && self.quantityPickerIndexPath.row < indexPath.row) {
-      maltIndex -= 1;
-    }
-
-    OBMaltAddition *maltAddition = malts[maltIndex];
+    OBMaltAddition *maltAddition = [self maltAdditionAtIndexPath:indexPath];
 
     [[cell textLabel] setText:[maltAddition name]];
     [[cell detailTextLabel] setText:[maltAddition quantityText]];
@@ -189,13 +219,18 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   return cell;
 }
 
-
 - (void)updatePickerForTableView:(UITableView *)tableView
 {
   UIPickerView *picker = [self pickerAtIndexPath:self.quantityPickerIndexPath andTable:tableView];
 
   if (picker) {
-    [picker selectRow:(16*5000) inComponent:RIGHT_PICKER_COMPONENT animated:NO];
+    OBMaltAddition *maltAddition = [self maltAdditionForPicker];
+    NSInteger baseRow = 16 * 5000;
+    float pounds = [[maltAddition quantityInPounds] floatValue];
+    float ounces = trunc((pounds - trunc(pounds)) * 16);
+
+    [picker selectRow:(baseRow + ounces) inComponent:RIGHT_PICKER_COMPONENT animated:NO];
+    [picker selectRow:(trunc(pounds)) inComponent:LEFT_PICKER_COMPONENT animated:NO];
   }
 }
 
@@ -239,7 +274,6 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   [tableView endUpdates];
 
   [self updatePickerForTableView:tableView];
-
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -282,6 +316,16 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 
 #pragma mark - UIPickerViewDelegate
 
+- (NSInteger)poundsForRow:(NSInteger)row
+{
+  return row;
+}
+
+- (NSInteger)ouncesForRow:(NSInteger)row
+{
+  return row % 16;
+}
+
 - (NSString *)pickerView:(UIPickerView *)pickerView
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component
@@ -289,9 +333,9 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   NSString *text = nil;
 
   if (component == 0) {
-    text = [NSString stringWithFormat:@"%d lb", row];
+    text = [NSString stringWithFormat:@"%d lb", [self poundsForRow:row]];
   } else {
-    text = [NSString stringWithFormat:@"%d oz", row % 16];
+    text = [NSString stringWithFormat:@"%d oz", [self ouncesForRow:row]];
   }
 
   return text;
@@ -301,7 +345,25 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component
 {
+  OBMaltAddition *maltAddition = [self maltAdditionForPicker];
+  float currentQuantity = [maltAddition.quantityInPounds floatValue];
 
+  if (component == LEFT_PICKER_COMPONENT) {
+
+    float newPounds = (float) [self poundsForRow:row];
+    float currentOunces = currentQuantity - trunc(currentQuantity);
+
+    maltAddition.quantityInPounds = [NSNumber numberWithFloat:newPounds + currentOunces];
+
+  } else if (component == RIGHT_PICKER_COMPONENT) {
+
+    float newOunces = ((float) [self ouncesForRow:row]) / 16;
+    float currentPounds = trunc(currentQuantity);
+
+    maltAddition.quantityInPounds = [NSNumber numberWithFloat:currentPounds + newOunces];
+  }
+
+  [self reload];
 }
 
 @end
