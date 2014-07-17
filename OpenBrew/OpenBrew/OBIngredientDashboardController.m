@@ -21,7 +21,7 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 
 @interface OBIngredientDashboardController ()
 
-@property (nonatomic, strong) NSIndexPath *quantityPickerIndexPath;
+@property (nonatomic, strong) NSIndexPath *pickerIndexPath;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (assign) NSInteger pickerCellRowHeight;
 
@@ -133,12 +133,12 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 - (OBMaltAddition *)maltAdditionAtIndexPath:(NSIndexPath *)indexPath
 {
   // There can't be a malt addition in the same index as the UIPickerView
-  assert(!self.quantityPickerIndexPath || self.quantityPickerIndexPath.row != indexPath.row);
+  assert(!self.pickerIndexPath || self.pickerIndexPath.row != indexPath.row);
 
   NSArray *malts = [self maltData];
 
   NSUInteger maltIndex = indexPath.row;
-  if ([self hasInlinePicker] && self.quantityPickerIndexPath.row < indexPath.row) {
+  if ([self hasInlinePicker] && self.pickerIndexPath.row < indexPath.row) {
     maltIndex -= 1;
   }
 
@@ -147,7 +147,7 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 
 - (OBMaltAddition *)maltAdditionForPicker
 {
-  NSInteger cellRow = self.quantityPickerIndexPath.row - 1;
+  NSInteger cellRow = self.pickerIndexPath.row - 1;
   NSIndexPath *cellBeforePicker = [NSIndexPath indexPathForRow:cellRow inSection:0];
 
   return [self maltAdditionAtIndexPath:cellBeforePicker];
@@ -155,12 +155,12 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 
 - (BOOL)hasInlinePicker
 {
-  return (self.quantityPickerIndexPath != nil);
+  return (self.pickerIndexPath != nil);
 }
 
 - (BOOL)indexPathHasPicker:(NSIndexPath *)indexPath
 {
-  return ([self hasInlinePicker] && self.quantityPickerIndexPath.row == indexPath.row);
+  return ([self hasInlinePicker] && self.pickerIndexPath.row == indexPath.row);
 }
 
 
@@ -221,7 +221,7 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 
 - (void)updatePickerForTableView:(UITableView *)tableView
 {
-  UIPickerView *picker = [self pickerAtIndexPath:self.quantityPickerIndexPath andTable:tableView];
+  UIPickerView *picker = [self pickerAtIndexPath:self.pickerIndexPath andTable:tableView];
 
   if (picker) {
     OBMaltAddition *maltAddition = [self maltAdditionForPicker];
@@ -243,17 +243,17 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   BOOL before = NO;
 
   if ([self hasInlinePicker]) {
-    before = self.quantityPickerIndexPath.row < indexPath.row;
+    before = self.pickerIndexPath.row < indexPath.row;
   }
 
-  BOOL sameCellClicked = (self.quantityPickerIndexPath.row - 1 == indexPath.row);
+  BOOL sameCellClicked = (self.pickerIndexPath.row - 1 == indexPath.row);
 
   // remove any date picker cell if it exists
   if ([self hasInlinePicker]) {
-    [tableView deleteRowsAtIndexPaths:@[self.quantityPickerIndexPath]
+    [tableView deleteRowsAtIndexPaths:@[self.pickerIndexPath]
                      withRowAnimation:UITableViewRowAnimationFade];
 
-    self.quantityPickerIndexPath = nil;
+    self.pickerIndexPath = nil;
   }
 
   if (!sameCellClicked) {
@@ -265,7 +265,7 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
     [tableView insertRowsAtIndexPaths:@[indexToAddPicker]
                      withRowAnimation:UITableViewRowAnimationFade];
 
-    self.quantityPickerIndexPath = indexToAddPicker;
+    self.pickerIndexPath = indexToAddPicker;
   }
 
   // always deselect the row containing the start or end date
