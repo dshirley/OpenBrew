@@ -336,9 +336,9 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   NSString *text = nil;
 
   if (component == 0) {
-    text = [NSString stringWithFormat:@"%d lb", [self poundsForRow:row]];
+    text = [NSString stringWithFormat:@"%ld lb", (long)[self poundsForRow:row]];
   } else {
-    text = [NSString stringWithFormat:@"%d oz", [self ouncesForRow:row]];
+    text = [NSString stringWithFormat:@"%ld oz", (long)[self ouncesForRow:row]];
   }
 
   return text;
