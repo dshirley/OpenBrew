@@ -14,6 +14,7 @@
 
 @implementation OBMaltAddition
 
+@dynamic displayOrder;
 @dynamic lovibond;
 @dynamic extractPotential;
 @dynamic quantityInPounds;

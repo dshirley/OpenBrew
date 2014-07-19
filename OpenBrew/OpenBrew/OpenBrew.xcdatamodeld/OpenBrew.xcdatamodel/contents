@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13D65" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Brewery" representedClassName="OBBrewery" syncable="YES">
         <attribute name="defaultBatchSize" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="mashEfficiency" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -33,9 +33,10 @@
         <relationship name="maltAdditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MaltAddition" inverseName="malt" inverseEntity="MaltAddition" syncable="YES"/>
     </entity>
     <entity name="MaltAddition" representedClassName="OBMaltAddition" syncable="YES">
-        <attribute name="extractPotential" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="lovibond" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="quantityInPounds" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="displayOrder" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="extractPotential" optional="YES" attributeType="Float" minValueString="0" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="lovibond" optional="YES" attributeType="Integer 32" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="quantityInPounds" optional="YES" attributeType="Float" minValueString="0" defaultValueString="0.0" syncable="YES"/>
         <relationship name="malt" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Malt" inverseName="maltAdditions" inverseEntity="Malt" syncable="YES"/>
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="maltAdditions" inverseEntity="Recipe" syncable="YES"/>
     </entity>
@@ -62,14 +63,14 @@
         <relationship name="yeast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Yeast" inverseName="yeastAddidions" inverseEntity="Yeast" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Brewery" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="HopAddition" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Hops" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Malt" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="MaltAddition" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="IngredientCatalog" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Recipe" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Yeast" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="YeastAddition" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Brewery" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="HopAddition" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Hops" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="IngredientCatalog" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Malt" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="MaltAddition" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Recipe" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Yeast" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="YeastAddition" positionX="0" positionY="0" width="128" height="90"/>
     </elements>
 </model>
