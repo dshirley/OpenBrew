@@ -12,7 +12,7 @@
 
 // Just a wrapper class for the delegate.  This allows changing the implementation
 // at runtime.
-@interface OBIngredientDashboardController : UIViewController <UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface OBMaltAdditionViewController : UIViewController <UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet OBIngredientGauge *gauge;
 @property (weak, nonatomic) IBOutlet UITableView *ingredientTable;

@@ -183,10 +183,10 @@
             </objects>
             <point key="canvasLocation" x="1215" y="-45"/>
         </scene>
-        <!--Ingredient Dashboard Controller-->
+        <!--Malt Addition View Controller-->
         <scene sceneID="0wT-Ic-1wr">
             <objects>
-                <viewController id="G4Y-bP-qbh" customClass="OBIngredientDashboardController" sceneMemberID="viewController">
+                <viewController id="G4Y-bP-qbh" customClass="OBMaltAdditionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cJt-j3-ago"/>
                         <viewControllerLayoutGuide type="bottom" id="Z8h-QL-572"/>

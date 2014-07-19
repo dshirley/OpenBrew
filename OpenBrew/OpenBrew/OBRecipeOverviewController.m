@@ -7,7 +7,7 @@
 //
 
 #import "OBRecipeOverviewController.h"
-#import "OBIngredientDashboardController.h"
+#import "OBMaltAdditionViewController.h"
 #import "OBYeastAddition.h"
 #import "OBYeast.h"
 
@@ -48,8 +48,8 @@
   NSString *identifier = [segue identifier];
 
   if ([identifier isEqualToString:@"maltSegue"]) {
-    OBIngredientDashboardController *ingredientDash = [segue destinationViewController];
-    [ingredientDash setRecipe:self.recipe];
+    OBMaltAdditionViewController *maltAdditionViewController = [segue destinationViewController];
+    [maltAdditionViewController setRecipe:self.recipe];
   } else if ([identifier isEqualToString:@"hopsSegue"]) {
     // TODO: implement me
   }

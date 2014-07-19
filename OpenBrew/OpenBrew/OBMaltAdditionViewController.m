@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 OpenBrew. All rights reserved.
 //
 
-#import "OBIngredientDashboardController.h"
+#import "OBMaltAdditionViewController.h"
 #import "OBIngredientFinderViewController.h"
 
 #import "OBMaltAddition.h"
@@ -19,7 +19,7 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 
 #define PICKER_TAG 42
 
-@interface OBIngredientDashboardController ()
+@interface OBMaltAdditionViewController ()
 
 @property (nonatomic, strong) NSIndexPath *pickerIndexPath;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
@@ -29,7 +29,7 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 
 @end
 
-@implementation OBIngredientDashboardController
+@implementation OBMaltAdditionViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
