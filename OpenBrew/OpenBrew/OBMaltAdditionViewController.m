@@ -25,6 +25,11 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (assign) NSInteger pickerCellRowHeight;
 
+- (void)updatePickerForTableView:(UITableView *)tableView;
+
+- (void)displayInlinePickerForRowAtIndexPath:(NSIndexPath *)indexPath
+                                    forTable:(UITableView *)tableView;
+
 - (void)reload;
 
 @end
@@ -114,7 +119,6 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 
 #pragma mark - Utility
 
-
 /**
  * Returns the malts in this recipe in an array format that represents the order
  * of elements in the table view.
@@ -181,7 +185,7 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   return picker;
 }
 
-#pragma mark - UITableViewDataSource Methods
+#pragma mark - UITableViewDelegate Methods
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -189,51 +193,14 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   return ([self indexPathHasPicker:indexPath] ? self.pickerCellRowHeight : self.tableView.rowHeight);
 }
 
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  NSInteger numRows = self.recipe.maltAdditions.count;
+  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
-  if ([self hasInlinePicker]) {
-    numRows += 1;
-  }
-
-  return numRows;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  NSString *cellID = INGREDIENT_ADDITION_CELL;
-
-  if ([self indexPathHasPicker:indexPath]) {
-    cellID = MALT_PICKER_CELL;
-  }
-
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-
-  if (![self indexPathHasPicker:indexPath]) {
-    OBMaltAddition *maltAddition = [self maltAdditionAtIndexPath:indexPath];
-
-    [[cell textLabel] setText:[maltAddition name]];
-    [[cell detailTextLabel] setText:[maltAddition quantityText]];
-  }
-
-  return cell;
-}
-
-- (void)updatePickerForTableView:(UITableView *)tableView
-{
-  UIPickerView *picker = [self pickerAtIndexPath:self.pickerIndexPath andTable:tableView];
-
-  if (picker) {
-    OBMaltAddition *maltAddition = [self maltAdditionForPicker];
-    NSInteger baseRow = 16 * 5000;
-    float pounds = [[maltAddition quantityInPounds] floatValue];
-    float ounces = trunc((pounds - trunc(pounds)) * 16);
-
-    [picker selectRow:(baseRow + ounces) inComponent:RIGHT_PICKER_COMPONENT animated:NO];
-    [picker selectRow:(trunc(pounds)) inComponent:LEFT_PICKER_COMPONENT animated:NO];
+  if ([cell.reuseIdentifier isEqualToString:INGREDIENT_ADDITION_CELL]) {
+    [self displayInlinePickerForRowAtIndexPath:indexPath forTable:tableView];
+  } else {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
   }
 }
 
@@ -279,15 +246,53 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   [self updatePickerForTableView:tableView];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)updatePickerForTableView:(UITableView *)tableView
 {
-  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+  UIPickerView *picker = [self pickerAtIndexPath:self.pickerIndexPath andTable:tableView];
 
-  if ([cell.reuseIdentifier isEqualToString:INGREDIENT_ADDITION_CELL]) {
-    [self displayInlinePickerForRowAtIndexPath:indexPath forTable:tableView];
-  } else {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  if (picker) {
+    OBMaltAddition *maltAddition = [self maltAdditionForPicker];
+    NSInteger baseRow = 16 * 5000;
+    float pounds = [[maltAddition quantityInPounds] floatValue];
+    float ounces = trunc((pounds - trunc(pounds)) * 16);
+
+    [picker selectRow:(baseRow + ounces) inComponent:RIGHT_PICKER_COMPONENT animated:NO];
+    [picker selectRow:(trunc(pounds)) inComponent:LEFT_PICKER_COMPONENT animated:NO];
   }
+}
+
+#pragma mark - UITableViewDataSource Methods
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+  NSInteger numRows = self.recipe.maltAdditions.count;
+
+  if ([self hasInlinePicker]) {
+    numRows += 1;
+  }
+
+  return numRows;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  NSString *cellID = INGREDIENT_ADDITION_CELL;
+
+  if ([self indexPathHasPicker:indexPath]) {
+    cellID = MALT_PICKER_CELL;
+  }
+
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+
+  if (![self indexPathHasPicker:indexPath]) {
+    OBMaltAddition *maltAddition = [self maltAdditionAtIndexPath:indexPath];
+
+    [[cell textLabel] setText:[maltAddition name]];
+    [[cell detailTextLabel] setText:[maltAddition quantityText]];
+  }
+
+  return cell;
 }
 
 #pragma mark - UIPickerViewDataSource Methods

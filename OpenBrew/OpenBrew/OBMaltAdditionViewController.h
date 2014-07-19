@@ -12,36 +12,14 @@
 
 // Just a wrapper class for the delegate.  This allows changing the implementation
 // at runtime.
-@interface OBMaltAdditionViewController : UIViewController <UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface OBMaltAdditionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (weak, nonatomic) IBOutlet OBIngredientGauge *gauge;
 @property (weak, nonatomic) IBOutlet UITableView *ingredientTable;
 @property (strong, nonatomic) OBRecipe *recipe;
 
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section;
-
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath;
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 
 - (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue;
-
-#pragma UIPickerViewDataSource Methods
-
-// returns the number of 'columns' to display.
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView;
-
-// returns the # of rows in each component..
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
-
-#pragma UIPickerViewDelegate Methods
-
-- (NSString *)pickerView:(UIPickerView *)pickerView
-             titleForRow:(NSInteger)row
-            forComponent:(NSInteger)component;
 
 @end
