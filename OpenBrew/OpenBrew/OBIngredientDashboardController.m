@@ -61,10 +61,10 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 }
 
 - (void)reload {
-  _gauge.value.text = [_delegate gaugeValueForRecipe:_recipe];
-  _gauge.description.text = [_delegate gaugeDescriptionText];
+  float gravity = [self.recipe originalGravity];
+  _gauge.value.text = [NSString stringWithFormat:@"%.3f", gravity];
+  _gauge.description.text = @"Estimated Starting Gravity";
 
-  [_addButton setTitle:[_delegate addButtonText] forState:UIControlStateNormal];
   [_ingredientTable reloadData];
 }
 
@@ -367,92 +367,6 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   }
 
   [self reload];
-}
-
-@end
-
-@implementation OBMaltDashboardDelegate
-
-- (NSString *)addButtonText {
-  return @"Add Malt";
-}
-
-- (NSString *)gaugeValueForRecipe:(OBRecipe *)recipe {
-  float gravity = [recipe originalGravity];
-  return [NSString stringWithFormat:@"%.3f", gravity];
-}
-
-- (NSString *)gaugeDescriptionText {
-  return @"Estimated Starting Gravity";
-}
-
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section
-             forRecipe:(OBRecipe *)recipe
-{
-  return [[recipe maltAdditions] count];
-}
-
-- (void)populateCell:(UITableViewCell *)cell
-            forIndex:(NSIndexPath *)index
-           andRecipe:(OBRecipe *) recipe
-{
-  NSSortDescriptor *sortBySize = [[NSSortDescriptor alloc] initWithKey:@"quantityInPounds"
-                                                             ascending:NO];
-
-  NSSortDescriptor *sortByName = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-
-  NSArray *sortSpecification = @[ sortBySize, sortByName ];
-
-  NSArray *malts = [[recipe maltAdditions] sortedArrayUsingDescriptors:sortSpecification];
-
-  OBMaltAddition *maltAddition = malts[index.row];
-  
-  [[cell textLabel] setText:[maltAddition name]];
-  [[cell detailTextLabel] setText:[maltAddition quantityText]];
-}
-
-- (void)addIngredient:(id)ingredient toRecipe:(OBRecipe *)recipe {
-  OBMaltAddition *maltAddition = [[OBMaltAddition alloc] initWithMalt:ingredient];
-  [recipe addMaltAdditionsObject:maltAddition];
-
-}
-
-@end
-
-
-@implementation OBHopsDashboardDelegate
-
-- (NSString *)addButtonText {
-  return @"Add Hops";
-}
-
-- (NSString *)gaugeValueForRecipe:(OBRecipe *)recipe {
-  float ibus = [recipe IBUs];
-  return [NSString stringWithFormat:@"%.0f", ibus];
-}
-
-- (NSString *)gaugeDescriptionText {
-  return @"Estimated IBUs";
-}
-
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section
-             forRecipe:(OBRecipe *)recipe
-{
-  return 3;
-}
-
-- (void)populateCell:(UITableViewCell *)cell
-            forIndex:(NSIndexPath *)index
-           andRecipe:(OBRecipe *) recipe
-{
-  [[cell textLabel] setText:@"Hops"];
-  [[cell detailTextLabel] setText:@"12"];
-}
-
-- (void)addIngredient:(id)ingredient toRecipe:(OBRecipe *)recipe {
-  [recipe addHopAdditionsObject:ingredient];
 }
 
 @end

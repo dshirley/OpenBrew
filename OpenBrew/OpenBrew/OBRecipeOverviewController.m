@@ -46,17 +46,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   NSString *identifier = [segue identifier];
-  OBIngredientDashboardController *ingredientDash = [segue destinationViewController];
-  id <OBDashboardDelegate> delegate = nil;
-  
+
   if ([identifier isEqualToString:@"maltSegue"]) {
-    delegate = [[OBMaltDashboardDelegate alloc] init];
+    OBIngredientDashboardController *ingredientDash = [segue destinationViewController];
+    [ingredientDash setRecipe:self.recipe];
   } else if ([identifier isEqualToString:@"hopsSegue"]) {
-    delegate = [[OBHopsDashboardDelegate alloc] init];
+    // TODO: implement me
   }
-  
-  [ingredientDash setRecipe:self.recipe];
-  [ingredientDash setDelegate:delegate];
 }
 
 - (void)reloadData {

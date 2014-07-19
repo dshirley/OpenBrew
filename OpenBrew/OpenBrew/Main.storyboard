@@ -199,7 +199,7 @@
                                 <rect key="frame" x="62" y="519" width="197" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Add Ingredient">
+                                <state key="normal" title="Add Malt">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -268,7 +268,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="KxO-Sm-tW2"/>
                     <connections>
-                        <outlet property="addButton" destination="2PZ-Dm-gYY" id="Oa1-fi-DnE"/>
                         <outlet property="gauge" destination="kOa-7I-0kp" id="toB-W6-q80"/>
                         <outlet property="ingredientTable" destination="UdS-iz-4Sc" id="PM1-O0-Ej9"/>
                         <outlet property="tableView" destination="UdS-iz-4Sc" id="gEw-F7-HPk"/>
