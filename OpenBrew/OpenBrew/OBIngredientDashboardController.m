@@ -100,8 +100,14 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 {
   if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {
     OBIngredientFinderViewController *finderView = [unwindSegue sourceViewController];
-    id ingredient = [finderView selectedIngredient];
-    [self.delegate addIngredient:ingredient toRecipe:self.recipe];
+    OBMalt *malt = [finderView selectedIngredient];
+    OBMaltAddition *maltAddition = [[OBMaltAddition alloc] initWithMalt:malt];
+
+    NSUInteger numberOfMalts = [[self.recipe maltAdditions] count];
+    maltAddition.displayOrder = [NSNumber numberWithUnsignedInteger:numberOfMalts];
+
+    [self.recipe addMaltAdditionsObject:maltAddition];
+
     [self reload];
   }
 }
@@ -114,17 +120,14 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
  * of elements in the table view.
  */
 - (NSArray *)maltData {
-  NSSortDescriptor *sortBySize = [[NSSortDescriptor alloc] initWithKey:@"quantityInPounds"
-                                                             ascending:NO];
+  NSSortDescriptor *sortByDisplayOrder;
 
-  NSSortDescriptor *sortByName = [[NSSortDescriptor alloc] initWithKey:@"name"
-                                                             ascending:YES];
+  sortByDisplayOrder = [[NSSortDescriptor alloc] initWithKey:@"displayOrder"
+                                                   ascending:YES];
 
-  NSArray *sortSpecification = @[ sortBySize, sortByName ];
+  NSArray *sortSpecification = @[ sortByDisplayOrder ];
 
-  NSArray *malts = [[self.recipe maltAdditions] sortedArrayUsingDescriptors:sortSpecification];
-
-  return malts;
+  return [[self.recipe maltAdditions] sortedArrayUsingDescriptors:sortSpecification];
 }
 
 /**
