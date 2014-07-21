@@ -56,6 +56,8 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 {
   [super viewDidLoad];
 
+  self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
   // Really dumb way to get the default height of a UIPickerView
   // Apple doesn't provide a constant, though, and the default shown in
   // Interface Builder is wrong (it says 162.  For iOS 7 it is 216)
@@ -63,6 +65,19 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   self.pickerCellRowHeight = picker.frame.size.height;
 
   [self reload];
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+  [super setEditing:editing animated:animated];
+
+  // Get rid of the picker.  It'll get in the way and we don't want users to
+  // be able to move it anyways.
+  [self.tableView beginUpdates];
+  [self removePicker];
+  [self.tableView endUpdates];
+
+  [self.tableView setEditing:editing animated:animated];
 }
 
 - (void)reload {
@@ -185,6 +200,17 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   return picker;
 }
 
+- (void)removePicker
+{
+  // remove any date picker cell if it exists
+  if ([self hasInlinePicker]) {
+    [self.tableView deleteRowsAtIndexPaths:@[self.pickerIndexPath]
+                          withRowAnimation:UITableViewRowAnimationFade];
+
+    self.pickerIndexPath = nil;
+  }
+}
+
 #pragma mark - UITableViewDelegate Methods
 
 
@@ -218,13 +244,7 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 
   BOOL sameCellClicked = (self.pickerIndexPath.row - 1 == indexPath.row);
 
-  // remove any date picker cell if it exists
-  if ([self hasInlinePicker]) {
-    [tableView deleteRowsAtIndexPaths:@[self.pickerIndexPath]
-                     withRowAnimation:UITableViewRowAnimationFade];
-
-    self.pickerIndexPath = nil;
-  }
+  [self removePicker];
 
   if (!sameCellClicked) {
     // hide the old date picker and display the new one
@@ -293,6 +313,37 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   }
 
   return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+    // FIXME: remove item from the model, too
+    OBMaltAddition *maltToRemove = [self maltAdditionAtIndexPath:indexPath];
+    [self.recipe removeMaltAdditionsObject:maltToRemove];
+
+    int i = 0;
+    for (OBMaltAddition *malt in [self maltData]) {
+      [malt setDisplayOrder:[NSNumber numberWithInt:i]];
+      i++;
+    }
+
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+  }
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+  NSMutableArray *maltData = [NSMutableArray arrayWithArray:[self maltData]];
+  OBMaltAddition *maltToMove = maltData[sourceIndexPath.row];
+  [maltData removeObjectAtIndex:sourceIndexPath.row];
+  [maltData insertObject:maltToMove atIndex:destinationIndexPath.row];
+
+  int i = 0;
+  for (OBMaltAddition *malt in maltData) {
+    [malt setDisplayOrder:[NSNumber numberWithInt:i]];
+    i++;
+  }
 }
 
 #pragma mark - UIPickerViewDataSource Methods
