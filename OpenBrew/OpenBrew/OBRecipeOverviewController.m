@@ -10,6 +10,7 @@
 #import "OBMaltAdditionViewController.h"
 #import "OBYeastAddition.h"
 #import "OBYeast.h"
+#import "OBBatchSizeViewController.h"
 
 @interface OBRecipeOverviewController ()
 
@@ -52,6 +53,9 @@
     [maltAdditionViewController setRecipe:self.recipe];
   } else if ([identifier isEqualToString:@"hopsSegue"]) {
     // TODO: implement me
+  } else if ([identifier isEqualToString:@"selectBatchSize"]) {
+    OBBatchSizeViewController *batchSizeViewController = segue.destinationViewController;
+    batchSizeViewController.recipe = self.recipe;
   }
 }
 
