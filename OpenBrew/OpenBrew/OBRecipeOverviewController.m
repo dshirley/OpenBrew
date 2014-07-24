@@ -13,7 +13,14 @@
 #import "OBBatchSizeViewController.h"
 
 @interface OBRecipeOverviewController ()
-
+@property (nonatomic, weak) IBOutlet UILabel *batchSizeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *styleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *yeastLabel;
+@property (nonatomic, weak) IBOutlet UILabel *originalGravityLabel;
+@property (nonatomic, weak) IBOutlet UILabel *finalGravityLabel;
+@property (nonatomic, weak) IBOutlet UILabel *abvLabel;
+@property (nonatomic, weak) IBOutlet UILabel *colorLabel;
+@property (nonatomic, weak) IBOutlet UILabel *ibuLabel;
 @end
 
 @implementation OBRecipeOverviewController
@@ -38,6 +45,16 @@
 {
   [super viewDidLoad];
   [self reloadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+
+  if (!self.isMovingToParentViewController) {
+    // A sub-view controller is being popped
+    [self reloadData];
+  }
 }
 
 - (void)didReceiveMemoryWarning

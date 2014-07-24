@@ -13,15 +13,6 @@
 
 @property (nonatomic, strong) OBRecipe *recipe;
 
-@property (nonatomic, weak) IBOutlet UILabel *batchSizeLabel;
-@property (nonatomic, weak) IBOutlet UILabel *styleLabel;
-@property (nonatomic, weak) IBOutlet UILabel *yeastLabel;
-@property (nonatomic, weak) IBOutlet UILabel *originalGravityLabel;
-@property (nonatomic, weak) IBOutlet UILabel *finalGravityLabel;
-@property (nonatomic, weak) IBOutlet UILabel *abvLabel;
-@property (nonatomic, weak) IBOutlet UILabel *colorLabel;
-@property (nonatomic, weak) IBOutlet UILabel *ibuLabel;
-
 - (void)reloadData;
 
 @end
