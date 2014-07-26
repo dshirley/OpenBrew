@@ -11,6 +11,7 @@
 #import "OBYeastAddition.h"
 #import "OBYeast.h"
 #import "OBBatchSizeViewController.h"
+#import "OBHopAdditionViewController.h"
 
 @interface OBRecipeOverviewController ()
 @property (nonatomic, weak) IBOutlet UILabel *batchSizeLabel;
@@ -66,13 +67,20 @@
   NSString *identifier = [segue identifier];
 
   if ([identifier isEqualToString:@"maltSegue"]) {
+
     OBMaltAdditionViewController *maltAdditionViewController = [segue destinationViewController];
-    [maltAdditionViewController setRecipe:self.recipe];
+    maltAdditionViewController.recipe = self.recipe;
+    
   } else if ([identifier isEqualToString:@"hopsSegue"]) {
-    // TODO: implement me
+
+    OBHopAdditionViewController *hopsViewController = [segue destinationViewController];
+    hopsViewController.recipe = self.recipe;
+
   } else if ([identifier isEqualToString:@"selectBatchSize"]) {
+
     OBBatchSizeViewController *batchSizeViewController = segue.destinationViewController;
     batchSizeViewController.recipe = self.recipe;
+
   }
 }
 

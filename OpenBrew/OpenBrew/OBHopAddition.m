@@ -17,10 +17,29 @@
 @dynamic quantityInOunces;
 @dynamic hops;
 @dynamic recipe;
-
+@dynamic displayOrder;
 
 // Used to convert oz/gallon to gram/liter
 #define IMPERIAL_TO_METRIC_CONST 74.891
+
+- (id)initWithHopVariety:(OBHops *)hopVariety
+{
+  NSManagedObjectContext *ctx = [hopVariety managedObjectContext];
+  NSEntityDescription *desc = [NSEntityDescription entityForName:@"HopAddition"
+                                          inManagedObjectContext:ctx];
+
+  if (self = [self initWithEntity:desc insertIntoManagedObjectContext:ctx]) {
+    self.hops = hopVariety;
+    self.quantityInOunces = @0;
+    self.boilTimeInMinutes = @0;
+    self.alphaAcidPercent = hopVariety.defaultAlphaAcidPercent;
+
+    // TODO: shouldn't this be set via the initializer?
+    self.recipe = nil;
+  }
+
+  return self;
+}
 
 - (float)ibuContributionWithBoilSize:(float)gallons andGravity:(float)gravity {
   // Using John Palmer's formula from How To Brew

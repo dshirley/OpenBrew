@@ -36,6 +36,8 @@
 		9FCECC5B18879B430045FADD /* OBHopsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCECC5A18879B430045FADD /* OBHopsTest.m */; };
 		9FCECC60188831320045FADD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3761880F8EE00469323 /* XCTest.framework */; };
 		9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */; };
+		9FD66384198212DB0056EEEC /* HopCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9FD66383198212DB0056EEEC /* HopCatalog.csv */; };
+		9FD66387198218220056EEEC /* OBHopAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD66386198218220056EEEC /* OBHopAdditionViewController.m */; };
 		9FE9745818883C8500FFAA56 /* OBMaltTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745718883C8500FFAA56 /* OBMaltTest.m */; };
 		9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745A188975C700FFAA56 /* OpenBrew.xcdatamodeld */; };
 		9FF68676189327B000B36486 /* OBMaltAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF68675189327B000B36486 /* OBMaltAdditionViewController.m */; };
@@ -99,6 +101,9 @@
 		9FCECC5C1887A1150045FADD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9FD14131197CC7CE005220BC /* OBBatchSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBatchSizeViewController.h; sourceTree = "<group>"; };
 		9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBatchSizeViewController.m; sourceTree = "<group>"; };
+		9FD66383198212DB0056EEEC /* HopCatalog.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = HopCatalog.csv; path = data/HopCatalog.csv; sourceTree = "<group>"; };
+		9FD66385198218220056EEEC /* OBHopAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionViewController.h; sourceTree = "<group>"; };
+		9FD66386198218220056EEEC /* OBHopAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionViewController.m; sourceTree = "<group>"; };
 		9FE9745718883C8500FFAA56 /* OBMaltTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltTest.m; sourceTree = "<group>"; };
 		9FE9745B188975C700FFAA56 /* OpenBrew.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OpenBrew.xcdatamodel; sourceTree = "<group>"; };
 		9FF68674189327B000B36486 /* OBMaltAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltAdditionViewController.h; sourceTree = "<group>"; };
@@ -140,6 +145,7 @@
 		9F92E8AE18A0A8C200118D76 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				9FD66383198212DB0056EEEC /* HopCatalog.csv */,
 				9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */,
 			);
 			name = Data;
@@ -263,6 +269,8 @@
 				9F92E8D318A10AAB00118D76 /* OBRecipeNavigationController.m */,
 				9FD14131197CC7CE005220BC /* OBBatchSizeViewController.h */,
 				9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */,
+				9FD66385198218220056EEEC /* OBHopAdditionViewController.h */,
+				9FD66386198218220056EEEC /* OBHopAdditionViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -357,6 +365,7 @@
 				9F98D3701880F8ED00469323 /* Images.xcassets in Resources */,
 				9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */,
 				9F98D3921880FB7600469323 /* Main.storyboard in Resources */,
+				9FD66384198212DB0056EEEC /* HopCatalog.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +388,7 @@
 				9F98D3671880F8ED00469323 /* main.m in Sources */,
 				9F92E8B218A0C2D900118D76 /* OBIngredientCatalog.m in Sources */,
 				9FF686C61893F00B00B36486 /* OBBrewery.m in Sources */,
+				9FD66387198218220056EEEC /* OBHopAdditionViewController.m in Sources */,
 				9FF686C91894099A00B36486 /* OBRecipeOverviewController.m in Sources */,
 				9FF686C21893E45F00B36486 /* OBRecipeViewController.m in Sources */,
 				9FF68676189327B000B36486 /* OBMaltAdditionViewController.m in Sources */,

@@ -9,6 +9,7 @@
     <entity name="HopAddition" representedClassName="OBHopAddition" syncable="YES">
         <attribute name="alphaAcidPercent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="boilTimeInMinutes" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="displayOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="quantityInOunces" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="hops" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Hops" inverseName="hopAdditions" inverseEntity="Hops" syncable="YES"/>
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="hopAdditions" inverseEntity="Recipe" syncable="YES"/>
@@ -64,8 +65,8 @@
     </entity>
     <elements>
         <element name="Brewery" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="HopAddition" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="Hops" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="HopAddition" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Hops" positionX="0" positionY="0" width="128" height="103"/>
         <element name="IngredientCatalog" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Malt" positionX="0" positionY="0" width="128" height="120"/>
         <element name="MaltAddition" positionX="0" positionY="0" width="128" height="135"/>

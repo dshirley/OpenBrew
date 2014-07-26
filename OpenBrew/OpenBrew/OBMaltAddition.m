@@ -31,6 +31,8 @@
     self.quantityInPounds = @0;
     self.extractPotential = [malt defaultExtractPotential];
     self.lovibond = [malt defaultLovibond];
+
+    // TODO: shouldn't this be set via the initializer?
     self.recipe = nil;
   }
 

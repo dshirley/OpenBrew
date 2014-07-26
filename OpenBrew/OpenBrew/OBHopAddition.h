@@ -16,8 +16,11 @@
 @property (nonatomic, retain) NSNumber * alphaAcidPercent;
 @property (nonatomic, retain) NSNumber * boilTimeInMinutes;
 @property (nonatomic, retain) NSNumber * quantityInOunces;
+@property (nonatomic, retain) NSNumber *displayOrder;
 @property (nonatomic, retain) OBHops *hops;
 @property (nonatomic, retain) OBRecipe *recipe;
+
+- (id)initWithHopVariety:(OBHops *)hopVariety;
 
 - (float)ibuContributionWithBoilSize:(float)gallons andGravity:(float)gravity;
 - (float)utilizationForGravity:(float)gravity;
