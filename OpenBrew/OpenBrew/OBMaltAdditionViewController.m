@@ -221,12 +221,10 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-
-  if ([cell.reuseIdentifier isEqualToString:INGREDIENT_ADDITION_CELL]) {
-    [self displayInlinePickerForRowAtIndexPath:indexPath forTable:tableView];
-  } else {
+  if ([self indexPathHasPicker:indexPath]) {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  } else {
+    [self displayInlinePickerForRowAtIndexPath:indexPath forTable:tableView];
   }
 }
 
