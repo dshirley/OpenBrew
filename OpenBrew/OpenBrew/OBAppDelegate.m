@@ -8,6 +8,7 @@
 
 #import "OBAppDelegate.h"
 #import "OBMalt.h"
+#import "OBHops.h"
 #import "OBIngredientCatalog.h"
 #import "OBRecipeNavigationController.h"
 #import "OBBrewery.h"
@@ -29,15 +30,25 @@
 }
 
 - (id)loadBrewery {
-  NSString *catalogPath = [[NSBundle mainBundle]
-                           pathForResource:@"MaltCatalog.csv"
-                           ofType:nil];
-  
-  NSString *maltCatalogCsv = [NSString stringWithContentsOfFile:catalogPath
+  NSString *maltCatalogPath = [[NSBundle mainBundle]
+                               pathForResource:@"MaltCatalog.csv"
+                               ofType:nil];
+
+  NSString *hopCatalogPath = [[NSBundle mainBundle]
+                              pathForResource:@"HopCatalog.csv"
+                              ofType:nil];
+
+  NSString *maltCatalogCsv = [NSString stringWithContentsOfFile:maltCatalogPath
                                                        encoding:NSUTF8StringEncoding
                                                           error:nil];
+
+  NSString *hopCatalogCsv = [NSString stringWithContentsOfFile:hopCatalogPath
+                                                      encoding:NSUTF8StringEncoding
+                                                         error:nil];
   
   NSArray *malts = [maltCatalogCsv componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+
+  NSArray *hops = [hopCatalogCsv componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
   
   NSManagedObjectContext *ctx = [self managedObjectContext];
 
@@ -49,7 +60,10 @@
                                   inManagedObjectContext:ctx];
   
   [brewery setIngredientCatalog:catalog];
-  
+
+  NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
+  [nf setNumberStyle:NSNumberFormatterDecimalStyle];
+
   for (NSString *maltData in malts) {
     NSArray *attributes = [maltData componentsSeparatedByString:@","];
     
@@ -58,18 +72,35 @@
                     inManagedObjectContext:ctx];
     
     // TODO: get rid of magic numbers
-    NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
-    [nf setNumberStyle:NSNumberFormatterDecimalStyle];
-    
     [malt setName:attributes[0]];
     [malt setDefaultExtractPotential:[nf numberFromString:attributes[1]]];
     [malt setDefaultLovibond:[nf numberFromString:attributes[3]]];
     
     [catalog addMaltsObject:malt];
   }
+
+  for (NSString *hopData in hops) {
+    NSLog(@"top >%@<", hopData);
+    if (!hopData || [hopData length] == 0) {
+      // TODO: why do we need to do this for hops but not malts?
+      break;
+    }
+
+    NSArray *attributes = [hopData componentsSeparatedByString:@","];
+
+    OBHops *hops = [NSEntityDescription insertNewObjectForEntityForName:@"Hops"
+                                                 inManagedObjectContext:ctx];
+
+    NSLog(@"name: %@ %@", attributes[0], attributes[1]);
+    [hops setName:attributes[0]];
+    [hops setDefaultAlphaAcidPercent:[nf numberFromString:attributes[1]]];
+
+    NSLog(@"got here");
+    [catalog addHopsObject:hops];
+        NSLog(@"got here2");
+  }
   
   return brewery;
-
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
