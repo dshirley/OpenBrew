@@ -15,20 +15,17 @@
 #define RIGHT_PICKER_COMPONENT 1
 
 static NSString *const INGREDIENT_ADDITION_CELL = @"IngredientAddition";
-static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
+static NSString *const DRAWER_CELL = @"DrawerCell";
 
 #define PICKER_TAG 42
 
 @interface OBMaltAdditionViewController ()
 
-@property (nonatomic, strong) NSIndexPath *pickerIndexPath;
+@property (nonatomic, strong) NSIndexPath *drawerIndexPath;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (assign) NSInteger pickerCellRowHeight;
+@property (assign) NSInteger drawerCellRowHeight;
 
 - (void)updatePickerForTableView:(UITableView *)tableView;
-
-- (void)displayInlinePickerForRowAtIndexPath:(NSIndexPath *)indexPath
-                                    forTable:(UITableView *)tableView;
 
 - (void)reload;
 
@@ -38,13 +35,13 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 
-    if (self) {
-      
-        // Custom initialization
-    }
-    return self;
+  if (self) {
+
+    // Custom initialization
+  }
+  return self;
 }
 
 - (void)loadView {
@@ -62,7 +59,7 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   // Apple doesn't provide a constant, though, and the default shown in
   // Interface Builder is wrong (it says 162.  For iOS 7 it is 216)
   UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 77, 320, 0)];
-  self.pickerCellRowHeight = picker.frame.size.height;
+  self.drawerCellRowHeight = picker.frame.size.height;
 
   [self reload];
 }
@@ -74,7 +71,7 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   // Get rid of the picker.  It'll get in the way and we don't want users to
   // be able to move it anyways.
   [self.tableView beginUpdates];
-  [self removePicker];
+  [self closeDrawerForTableView:self.tableView];
   [self.tableView endUpdates];
 
   [self.tableView setEditing:editing animated:animated];
@@ -94,24 +91,24 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
   if ([[segue identifier] isEqualToString:@"addIngredient"]) {
 
     OBIngredientFinderViewController *next = [segue destinationViewController];
-    
+
     NSManagedObjectContext *moc = self.recipe.managedObjectContext;
     NSEntityDescription *entityDescription = [NSEntityDescription
                                               entityForName:@"Malt"
                                               inManagedObjectContext:moc];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDescription];
-    
+
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
                                         initWithKey:@"name" ascending:YES];\
-    
+
     [request setSortDescriptors:@[sortDescriptor]];
-    
+
     NSError *error;
     NSArray *array = [moc executeFetchRequest:request error:&error];
-    
+
     assert(array);
-    
+
     [next setIngredients:array];
   }
 }
@@ -154,61 +151,56 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
  */
 - (OBMaltAddition *)maltAdditionAtIndexPath:(NSIndexPath *)indexPath
 {
-  // There can't be a malt addition in the same index as the UIPickerView
-  assert(!self.pickerIndexPath || self.pickerIndexPath.row != indexPath.row);
+  // There can't be a malt addition in the same index as the drawer
+  assert(!self.drawerIndexPath || self.drawerIndexPath.row != indexPath.row);
 
   NSArray *malts = [self maltData];
 
   NSUInteger maltIndex = indexPath.row;
-  if ([self hasInlinePicker] && self.pickerIndexPath.row < indexPath.row) {
+  if ([self drawerIsOpen] && self.drawerIndexPath.row < indexPath.row) {
     maltIndex -= 1;
   }
 
   return malts[maltIndex];
 }
 
-- (OBMaltAddition *)maltAdditionForPicker
+- (OBMaltAddition *)maltAdditionForDrawer
 {
-  NSInteger cellRow = self.pickerIndexPath.row - 1;
-  NSIndexPath *cellBeforePicker = [NSIndexPath indexPathForRow:cellRow inSection:0];
+  NSInteger cellRow = self.drawerIndexPath.row - 1;
+  NSIndexPath *cellBeforeDrawer = [NSIndexPath indexPathForRow:cellRow inSection:0];
 
-  return [self maltAdditionAtIndexPath:cellBeforePicker];
+  return [self maltAdditionAtIndexPath:cellBeforeDrawer];
 }
 
-- (BOOL)hasInlinePicker
+- (BOOL)drawerIsOpen
 {
-  return (self.pickerIndexPath != nil);
+  return (self.drawerIndexPath != nil);
 }
 
-- (BOOL)indexPathHasPicker:(NSIndexPath *)indexPath
+- (BOOL)drawerIsAtIndex:(NSIndexPath *)indexPath
 {
-  return ([self hasInlinePicker] && self.pickerIndexPath.row == indexPath.row);
+  return ([self drawerIsOpen] && self.drawerIndexPath.row == indexPath.row);
 }
 
-
-- (UIPickerView *)pickerAtIndexPath:(NSIndexPath *)indexPath
-                           andTable:(UITableView *)tableView
+- (void)closeDrawerForTableView:(UITableView *)tableView
 {
-  UIPickerView *picker = nil;
+  if ([self drawerIsOpen]) {
+    [tableView deleteRowsAtIndexPaths:@[self.drawerIndexPath]
+                     withRowAnimation:UITableViewRowAnimationFade];
 
-  if (indexPath) {
-    UITableViewCell *pickerCell = [tableView cellForRowAtIndexPath:indexPath];
-
-    picker = (UIPickerView *)[pickerCell viewWithTag:PICKER_TAG];
+    self.drawerIndexPath = nil;
   }
-
-  return picker;
 }
 
-- (void)removePicker
+- (void)tableView:(UITableView *)tableView
+  openDrawerAtRow:(NSUInteger)row
+        inSection:(NSUInteger)section
 {
-  // remove any date picker cell if it exists
-  if ([self hasInlinePicker]) {
-    [self.tableView deleteRowsAtIndexPaths:@[self.pickerIndexPath]
-                          withRowAnimation:UITableViewRowAnimationFade];
+  self.drawerIndexPath = [NSIndexPath indexPathForRow:row
+                                            inSection:section];
 
-    self.pickerIndexPath = nil;
-  }
+  [tableView insertRowsAtIndexPaths:@[self.drawerIndexPath]
+                   withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - UITableViewDelegate Methods
@@ -216,48 +208,34 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return ([self indexPathHasPicker:indexPath] ? self.pickerCellRowHeight : self.tableView.rowHeight);
+  return ([self drawerIsAtIndex:indexPath] ? self.drawerCellRowHeight : self.tableView.rowHeight);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  if ([self indexPathHasPicker:indexPath]) {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-  } else {
-    [self displayInlinePickerForRowAtIndexPath:indexPath forTable:tableView];
-  }
-}
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-- (void)displayInlinePickerForRowAtIndexPath:(NSIndexPath *)indexPath
-                                    forTable:(UITableView *)tableView
-{
+  if ([self drawerIsAtIndex:indexPath]) {
+    return;
+  }
+
   [tableView beginUpdates];
 
-  // indicates if the date picker is below "indexPath", help us determine which row to reveal
+  // indicates if the drawer is below "indexPath", help us determine which row to reveal
   BOOL before = NO;
+  BOOL sameCellClicked = (self.drawerIndexPath.row - 1 == indexPath.row);
 
-  if ([self hasInlinePicker]) {
-    before = self.pickerIndexPath.row < indexPath.row;
+  if ([self drawerIsOpen]) {
+    // Close the old drawer if one is open
+    before = self.drawerIndexPath.row < indexPath.row;
+    [self closeDrawerForTableView:tableView];
   }
-
-  BOOL sameCellClicked = (self.pickerIndexPath.row - 1 == indexPath.row);
-
-  [self removePicker];
 
   if (!sameCellClicked) {
-    // hide the old date picker and display the new one
-    NSInteger rowToAddPicker = (before ? indexPath.row : indexPath.row + 1);
-    NSIndexPath *indexToAddPicker = [NSIndexPath indexPathForRow:rowToAddPicker
-                                                       inSection:0];
-
-    [tableView insertRowsAtIndexPaths:@[indexToAddPicker]
-                     withRowAnimation:UITableViewRowAnimationFade];
-
-    self.pickerIndexPath = indexToAddPicker;
+    // Open the new drawer
+    NSInteger row = (before ? indexPath.row : indexPath.row + 1);
+    [self tableView:tableView openDrawerAtRow:row inSection:0];
   }
-
-  // always deselect the row containing the start or end date
-  [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
   [tableView endUpdates];
 
@@ -266,17 +244,21 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 
 - (void)updatePickerForTableView:(UITableView *)tableView
 {
-  UIPickerView *picker = [self pickerAtIndexPath:self.pickerIndexPath andTable:tableView];
-
-  if (picker) {
-    OBMaltAddition *maltAddition = [self maltAdditionForPicker];
-    NSInteger baseRow = 16 * 5000;
-    float pounds = [[maltAddition quantityInPounds] floatValue];
-    float ounces = trunc((pounds - trunc(pounds)) * 16);
-
-    [picker selectRow:(baseRow + ounces) inComponent:RIGHT_PICKER_COMPONENT animated:NO];
-    [picker selectRow:(trunc(pounds)) inComponent:LEFT_PICKER_COMPONENT animated:NO];
+  if (![self drawerIsOpen]) {
+    return;
   }
+
+  UITableViewCell *pickerCell = [tableView cellForRowAtIndexPath:[self drawerIndexPath]];
+  UIPickerView *picker = (UIPickerView *)[pickerCell viewWithTag:PICKER_TAG];
+  assert(picker);
+
+  OBMaltAddition *maltAddition = [self maltAdditionForDrawer];
+  NSInteger baseRow = 16 * 5000;
+  float pounds = [[maltAddition quantityInPounds] floatValue];
+  float ounces = trunc((pounds - trunc(pounds)) * 16);
+
+  [picker selectRow:(baseRow + ounces) inComponent:RIGHT_PICKER_COMPONENT animated:NO];
+  [picker selectRow:(trunc(pounds)) inComponent:LEFT_PICKER_COMPONENT animated:NO];
 }
 
 #pragma mark - UITableViewDataSource Methods
@@ -285,7 +267,7 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 {
   NSInteger numRows = self.recipe.maltAdditions.count;
 
-  if ([self hasInlinePicker]) {
+  if ([self drawerIsOpen]) {
     numRows += 1;
   }
 
@@ -297,13 +279,13 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 {
   NSString *cellID = INGREDIENT_ADDITION_CELL;
 
-  if ([self indexPathHasPicker:indexPath]) {
-    cellID = MALT_PICKER_CELL;
+  if ([self drawerIsAtIndex:indexPath]) {
+    cellID = DRAWER_CELL;
   }
 
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
 
-  if (![self indexPathHasPicker:indexPath]) {
+  if (![self drawerIsAtIndex:indexPath]) {
     OBMaltAddition *maltAddition = [self maltAdditionAtIndexPath:indexPath];
 
     [[cell textLabel] setText:[maltAddition name]];
@@ -402,7 +384,7 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component
 {
-  OBMaltAddition *maltAddition = [self maltAdditionForPicker];
+  OBMaltAddition *maltAddition = [self maltAdditionForDrawer];
   float currentQuantity = [maltAddition.quantityInPounds floatValue];
 
   if (component == LEFT_PICKER_COMPONENT) {
@@ -419,7 +401,7 @@ static NSString *const MALT_PICKER_CELL = @"MaltQuantityPicker";
 
     maltAddition.quantityInPounds = [NSNumber numberWithFloat:currentPounds + newOunces];
   }
-
+  
   [self reload];
 }
 
