@@ -243,18 +243,14 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
     return;
   }
 
+  UITableViewCell *pickerCell = [tableView cellForRowAtIndexPath:[self drawerIndexPath]];
+  UIPickerView *picker = (UIPickerView *)[pickerCell viewWithTag:PICKER_TAG];
+  assert(picker);
 
-//  UITableViewCell *pickerCell = [tableView cellForRowAtIndexPath:[self drawerIndexPath]];
-//  UIPickerView *picker = (UIPickerView *)[pickerCell viewWithTag:PICKER_TAG];
-//  assert(picker);
-//
-//  OBMaltAddition *maltAddition = [self maltAdditionForDrawer];
-//  NSInteger baseRow = 16 * 5000;
-//  float pounds = [[maltAddition quantityInPounds] floatValue];
-//  float ounces = trunc((pounds - trunc(pounds)) * 16);
-//
-//  [picker selectRow:(baseRow + ounces) inComponent:RIGHT_PICKER_COMPONENT animated:NO];
-//  [picker selectRow:(trunc(pounds)) inComponent:LEFT_PICKER_COMPONENT animated:NO];
+  OBHopAddition *hopAddition = [self hopAdditionForDrawer];
+  int row = (int) ([hopAddition.alphaAcidPercent floatValue] * 10);
+
+  [picker selectRow:row inComponent:0 animated:NO];
 }
 
 #pragma mark - UITableViewDataSource Methods
@@ -322,4 +318,40 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
     i++;
   }
 }
+
+#pragma mark - UIPickerViewDataSource Methods
+
+// returns the number of 'columns' to display.
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+  return 1;
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+  // 10 = number of decimal places; 20 = max alpha acid
+  return 10 * 20;
+}
+
+#pragma mark - UIPickerViewDelegate
+
+- (NSString *)pickerView:(UIPickerView *)pickerView
+             titleForRow:(NSInteger)row
+            forComponent:(NSInteger)component
+{
+  return [NSString stringWithFormat:@"%.2f%%", (float)row * 0.1];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView
+      didSelectRow:(NSInteger)row
+       inComponent:(NSInteger)component
+{
+  float alphaAcid = (float) row / 10;
+
+  [[self hopAdditionForDrawer] setAlphaAcidPercent:[NSNumber numberWithFloat:alphaAcid]];
+
+  [self reload];
+}
+
 @end
