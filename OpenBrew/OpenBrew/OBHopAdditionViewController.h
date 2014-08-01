@@ -11,5 +11,7 @@
 @class OBRecipe;
 
 @interface OBHopAdditionViewController : UIViewController
+
 @property (nonatomic, strong) OBRecipe *recipe;
+
 @end
