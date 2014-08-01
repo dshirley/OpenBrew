@@ -317,7 +317,6 @@
                     <navigationItem key="navigationItem" id="KxO-Sm-tW2"/>
                     <connections>
                         <outlet property="gauge" destination="kOa-7I-0kp" id="toB-W6-q80"/>
-                        <outlet property="ingredientTable" destination="UdS-iz-4Sc" id="PM1-O0-Ej9"/>
                         <outlet property="tableView" destination="UdS-iz-4Sc" id="gEw-F7-HPk"/>
                     </connections>
                 </viewController>

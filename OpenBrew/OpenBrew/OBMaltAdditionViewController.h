@@ -7,19 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OBRecipe.h"
-#import "OBIngredientGauge.h"
 
-// Just a wrapper class for the delegate.  This allows changing the implementation
-// at runtime.
+@class OBRecipe;
+
 @interface OBMaltAdditionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property (weak, nonatomic) IBOutlet OBIngredientGauge *gauge;
-@property (weak, nonatomic) IBOutlet UITableView *ingredientTable;
-@property (strong, nonatomic) OBRecipe *recipe;
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
-
-- (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue;
+@property (nonatomic, strong) OBRecipe *recipe;
 
 @end

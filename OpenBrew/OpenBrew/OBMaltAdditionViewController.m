@@ -7,8 +7,9 @@
 //
 
 #import "OBMaltAdditionViewController.h"
+#import "OBIngredientGauge.h"
 #import "OBIngredientFinderViewController.h"
-
+#import "OBRecipe.h"
 #import "OBMaltAddition.h"
 
 #define LEFT_PICKER_COMPONENT 0
@@ -24,10 +25,7 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 @property (nonatomic, strong) NSIndexPath *drawerIndexPath;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (assign) NSInteger drawerCellRowHeight;
-
-- (void)updatePickerForTableView:(UITableView *)tableView;
-
-- (void)reload;
+@property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
 
 @end
 
@@ -35,13 +33,7 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-
-  if (self) {
-
-    // Custom initialization
-  }
-  return self;
+  return [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 }
 
 - (void)loadView {
@@ -82,10 +74,10 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   _gauge.value.text = [NSString stringWithFormat:@"%.3f", gravity];
   _gauge.description.text = @"Estimated Starting Gravity";
 
-  [_ingredientTable reloadData];
+  [self.tableView reloadData];
 }
 
-#pragma mark - Segues
+#pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([[segue identifier] isEqualToString:@"addIngredient"]) {
