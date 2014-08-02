@@ -80,7 +80,6 @@
   }
 
   for (NSString *hopData in hops) {
-    NSLog(@"top >%@<", hopData);
     if (!hopData || [hopData length] == 0) {
       // TODO: why do we need to do this for hops but not malts?
       break;
@@ -91,13 +90,10 @@
     OBHops *hops = [NSEntityDescription insertNewObjectForEntityForName:@"Hops"
                                                  inManagedObjectContext:ctx];
 
-    NSLog(@"name: %@ %@", attributes[0], attributes[1]);
     [hops setName:attributes[0]];
     [hops setDefaultAlphaAcidPercent:[nf numberFromString:attributes[1]]];
 
-    NSLog(@"got here");
     [catalog addHopsObject:hops];
-        NSLog(@"got here2");
   }
   
   return brewery;
