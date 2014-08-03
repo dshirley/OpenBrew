@@ -402,7 +402,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="215"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView tag="42" contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="194" placeholderIntrinsicHeight="216" translatesAutoresizingMaskIntoConstraints="NO" id="onA-dg-dau">
+                                                <pickerView contentMode="scaleToFill" fixedFrame="YES" placeholderIntrinsicWidth="194" placeholderIntrinsicHeight="216" translatesAutoresizingMaskIntoConstraints="NO" id="onA-dg-dau">
                                                     <rect key="frame" x="126" y="0.0" width="194" height="216"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <connections>

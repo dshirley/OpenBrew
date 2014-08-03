@@ -19,8 +19,6 @@
 static NSString *const INGREDIENT_ADDITION_CELL = @"IngredientAddition";
 static NSString *const DRAWER_CELL = @"DrawerCell";
 
-#define PICKER_TAG 42
-
 @interface OBHopAdditionViewController ()
 
 @property (nonatomic, strong) NSIndexPath *drawerIndexPath;
@@ -244,8 +242,10 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
     return;
   }
 
-  UITableViewCell *pickerCell = [tableView cellForRowAtIndexPath:[self drawerIndexPath]];
-  UIPickerView *picker = (UIPickerView *)[pickerCell viewWithTag:PICKER_TAG];
+  UITableViewCell *cell = [tableView cellForRowAtIndexPath:[self drawerIndexPath]];
+  OBMultiPickerTableViewCell *pickerCell = (OBMultiPickerTableViewCell *) cell;
+
+  UIPickerView *picker = pickerCell.picker;
   assert(picker);
 
   OBHopAddition *hopAddition = [self hopAdditionForDrawer];
