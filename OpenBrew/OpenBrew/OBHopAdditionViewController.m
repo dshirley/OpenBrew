@@ -12,6 +12,8 @@
 #import "OBRecipe.h"
 #import "OBHops.h"
 #import "OBHopAddition.h"
+#import "OBHopAdditionTableViewCell.h"
+#import "OBMultiPickerTableViewCell.h"
 #import <math.h>
 
 static NSString *const INGREDIENT_ADDITION_CELL = @"IngredientAddition";
@@ -168,8 +170,7 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
 - (BOOL)drawerIsOpen
 {
-  BOOL answer = (self.drawerIndexPath != nil);
-  return answer;
+  return (self.drawerIndexPath != nil);
 }
 
 - (BOOL)drawerIsAtIndex:(NSIndexPath *)indexPath
@@ -203,7 +204,7 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return ([self drawerIsAtIndex:indexPath] ? self.drawerCellRowHeight : self.tableView.rowHeight);
+  return ([self drawerIsAtIndex:indexPath] ? self.drawerCellRowHeight : self.drawerCellRowHeight / 4);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -276,12 +277,23 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   }
 
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-
   if (![self drawerIsAtIndex:indexPath]) {
+    // This is a regular hop addition cell.
     OBHopAddition *hopAddition = [self hopAdditionAtIndexPath:indexPath];
+    OBHopAdditionTableViewCell *hopCell = (OBHopAdditionTableViewCell *)cell;
 
-    [[cell textLabel] setText:hopAddition.hops.name];
-    [[cell detailTextLabel] setText:@"0"]; // FIXME: should be "quantityText message
+    hopCell.hopVariety.text = hopAddition.hops.name;
+
+    float alphaAcids = [hopAddition.alphaAcidPercent floatValue];
+    hopCell.alphaAcid.text = [NSString stringWithFormat:@"%.2f%%", alphaAcids];
+
+    float quantityInOunces = [hopAddition.quantityInOunces floatValue];
+    hopCell.quantity.text = [NSString stringWithFormat:@"%.2f", quantityInOunces];
+
+    NSInteger boilMinutes = [hopAddition.boilTimeInMinutes integerValue];
+    hopCell.boilTime.text = [NSString stringWithFormat:@"%d", boilMinutes];
+
+    hopCell.boilUnits.text = @"min";
   }
 
   return cell;
