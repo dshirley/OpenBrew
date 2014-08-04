@@ -40,6 +40,7 @@
 		9FD66384198212DB0056EEEC /* HopCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9FD66383198212DB0056EEEC /* HopCatalog.csv */; };
 		9FD66387198218220056EEEC /* OBHopAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD66386198218220056EEEC /* OBHopAdditionViewController.m */; };
 		9FE86433198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE86432198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m */; };
+		9FE86437198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE86436198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.m */; };
 		9FE9745818883C8500FFAA56 /* OBMaltTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745718883C8500FFAA56 /* OBMaltTest.m */; };
 		9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745A188975C700FFAA56 /* OpenBrew.xcdatamodeld */; };
 		9FF68676189327B000B36486 /* OBMaltAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF68675189327B000B36486 /* OBMaltAdditionViewController.m */; };
@@ -110,6 +111,9 @@
 		9FD66386198218220056EEEC /* OBHopAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionViewController.m; sourceTree = "<group>"; };
 		9FE86431198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionTableViewCell.h; sourceTree = "<group>"; };
 		9FE86432198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionTableViewCell.m; sourceTree = "<group>"; };
+		9FE86435198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBAlphaAcidPickerDelegate.h; sourceTree = "<group>"; };
+		9FE86436198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBAlphaAcidPickerDelegate.m; sourceTree = "<group>"; };
+		9FE86438198F4649007AD9E7 /* OBPickerObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPickerObserver.h; sourceTree = "<group>"; };
 		9FE9745718883C8500FFAA56 /* OBMaltTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltTest.m; sourceTree = "<group>"; };
 		9FE9745B188975C700FFAA56 /* OpenBrew.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OpenBrew.xcdatamodel; sourceTree = "<group>"; };
 		9FF68674189327B000B36486 /* OBMaltAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltAdditionViewController.h; sourceTree = "<group>"; };
@@ -269,9 +273,20 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		9FE86434198DBE9F007AD9E7 /* Picker Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				9FE86435198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.h */,
+				9FE86436198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.m */,
+				9FE86438198F4649007AD9E7 /* OBPickerObserver.h */,
+			);
+			name = "Picker Delegates";
+			sourceTree = "<group>";
+		};
 		9FF686731893209600B36486 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9FE86434198DBE9F007AD9E7 /* Picker Delegates */,
 				9F98D3691880F8ED00469323 /* OBAppDelegate.h */,
 				9F98D36A1880F8ED00469323 /* OBAppDelegate.m */,
 				9FF68674189327B000B36486 /* OBMaltAdditionViewController.h */,
@@ -414,6 +429,7 @@
 				9FF68676189327B000B36486 /* OBMaltAdditionViewController.m in Sources */,
 				9F92E8C518A0D0D000118D76 /* OBRecipe.m in Sources */,
 				9F92E8C818A0D45F00118D76 /* OBHopAddition.m in Sources */,
+				9FE86437198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.m in Sources */,
 				9F92E8CB18A0D53E00118D76 /* OBHops.m in Sources */,
 				9F92E8C218A0CFF700118D76 /* OBMalt.m in Sources */,
 				9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */,

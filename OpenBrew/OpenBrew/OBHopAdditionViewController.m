@@ -14,6 +14,7 @@
 #import "OBHopAddition.h"
 #import "OBHopAdditionTableViewCell.h"
 #import "OBMultiPickerTableViewCell.h"
+#import "OBAlphaAcidPickerDelegate.h"
 #import <math.h>
 
 static NSString *const INGREDIENT_ADDITION_CELL = @"IngredientAddition";
@@ -26,6 +27,7 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 @property (assign) NSInteger drawerCellRowHeight;
 @property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
 
+@property (nonatomic, strong) OBAlphaAcidPickerDelegate *alphaAcidPickerDelegate;
 @end
 
 @implementation OBHopAdditionViewController
@@ -249,7 +251,8 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   assert(picker);
 
   OBHopAddition *hopAddition = [self hopAdditionForDrawer];
-  int row = (int) ([hopAddition.alphaAcidPercent floatValue] * 10);
+  float alphaAcidPercent = [hopAddition.alphaAcidPercent floatValue];
+  int row = [OBAlphaAcidPickerDelegate rowForAlphaAcidPercent:alphaAcidPercent];
 
   [picker selectRow:row inComponent:0 animated:NO];
 }
@@ -294,6 +297,18 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
     hopCell.boilTime.text = [NSString stringWithFormat:@"%d", boilMinutes];
 
     hopCell.boilUnits.text = @"min";
+  } else {
+    OBHopAddition *hopAddition = [self hopAdditionForDrawer];
+
+    OBMultiPickerTableViewCell *multiCell = (OBMultiPickerTableViewCell *) cell;
+
+    if (!self.alphaAcidPickerDelegate) {
+      self.alphaAcidPickerDelegate = [[OBAlphaAcidPickerDelegate alloc] initWithHopAddition:hopAddition andObserver:self];
+    }
+
+    self.alphaAcidPickerDelegate.hopAddition = hopAddition;
+    multiCell.picker.delegate = self.alphaAcidPickerDelegate;
+    multiCell.picker.dataSource = self.alphaAcidPickerDelegate;
   }
 
   return cell;
@@ -331,38 +346,8 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   }
 }
 
-#pragma mark - UIPickerViewDataSource Methods
-
-// returns the number of 'columns' to display.
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+- (void)pickerChanged
 {
-  return 1;
-}
-
-// returns the # of rows in each component..
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-  // 10 = number of decimal places; 20 = max alpha acid
-  return 10 * 20;
-}
-
-#pragma mark - UIPickerViewDelegate
-
-- (NSString *)pickerView:(UIPickerView *)pickerView
-             titleForRow:(NSInteger)row
-            forComponent:(NSInteger)component
-{
-  return [NSString stringWithFormat:@"%.2f%%", (float)row * 0.1];
-}
-
-- (void)pickerView:(UIPickerView *)pickerView
-      didSelectRow:(NSInteger)row
-       inComponent:(NSInteger)component
-{
-  float alphaAcid = (float) row / 10;
-
-  [[self hopAdditionForDrawer] setAlphaAcidPercent:[NSNumber numberWithFloat:alphaAcid]];
-
   [self reload];
 }
 
