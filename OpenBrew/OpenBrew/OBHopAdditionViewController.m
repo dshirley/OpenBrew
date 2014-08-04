@@ -15,10 +15,16 @@
 #import "OBHopAdditionTableViewCell.h"
 #import "OBMultiPickerTableViewCell.h"
 #import "OBAlphaAcidPickerDelegate.h"
+#import "OBHopQuantityPickerDelegate.h"
+#import "OBHopBoilTimePickerDelegate.h"
 #import <math.h>
 
 static NSString *const INGREDIENT_ADDITION_CELL = @"IngredientAddition";
 static NSString *const DRAWER_CELL = @"DrawerCell";
+
+#define ALPHA_ACID_SEGMENT_ID 0
+#define QUANTITY_SEGMENT_ID 1
+#define BOIL_TIME_SEGMENT_ID 2
 
 @interface OBHopAdditionViewController ()
 
@@ -28,6 +34,8 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 @property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
 
 @property (nonatomic, strong) OBAlphaAcidPickerDelegate *alphaAcidPickerDelegate;
+@property (nonatomic, strong) OBHopQuantityPickerDelegate *hopQuantityPickerDelegate;
+@property (nonatomic, strong) OBHopBoilTimePickerDelegate *hopBoilTimeDelegate;
 @end
 
 @implementation OBHopAdditionViewController
@@ -39,6 +47,19 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
 - (void)loadView {
   [super loadView];
+
+  if (!self.alphaAcidPickerDelegate) {
+    self.alphaAcidPickerDelegate = [[OBAlphaAcidPickerDelegate alloc] initWithHopAddition:nil andObserver:self];
+  }
+
+  if (!self.hopQuantityPickerDelegate) {
+    self.hopQuantityPickerDelegate = [[OBHopQuantityPickerDelegate alloc] initWithHopAddition:nil andObserver:self];
+  }
+
+  if (!self.hopBoilTimeDelegate) {
+    self.hopBoilTimeDelegate = [[OBHopBoilTimePickerDelegate alloc] initWithHopAddition:nil andObserver:self];
+  }
+  
   [self reload];
 }
 
@@ -199,6 +220,48 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
                    withRowAnimation:UITableViewRowAnimationFade];
 }
 
+#pragma mark - Drawer Management Methods
+
+- (void)segmentSelected:(id)sender
+{
+  id pickerDelegate = [self pickerDelegateForSegmentControl:sender];
+  OBHopAddition *hopAddition = [self hopAdditionForDrawer];
+
+  [pickerDelegate setHopAddition:hopAddition];
+
+  UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[self drawerIndexPath]];
+  OBMultiPickerTableViewCell *multiCell = (OBMultiPickerTableViewCell *) cell;
+
+  multiCell.picker.delegate = pickerDelegate;
+  multiCell.picker.dataSource = pickerDelegate;
+
+  // TODO: perhaps combine these methods
+  [self updatePickerForTableView:self.tableView];
+}
+
+- (id)pickerDelegateForSegmentControl:(UISegmentedControl *)segmentControl
+{
+  NSInteger segmentId = segmentControl.selectedSegmentIndex;
+  id pickerDelegate = nil;
+
+  switch (segmentId) {
+    case ALPHA_ACID_SEGMENT_ID:
+      pickerDelegate = self.alphaAcidPickerDelegate;
+      break;
+    case QUANTITY_SEGMENT_ID:
+      pickerDelegate = self.hopQuantityPickerDelegate;
+      break;
+    case BOIL_TIME_SEGMENT_ID:
+      pickerDelegate = self.hopBoilTimeDelegate;
+      break;
+    default:
+      NSLog(@"ERROR: Bad segment ID: %d", segmentId);
+      assert(NO);
+  }
+
+  return pickerDelegate;
+}
+
 #pragma mark - UITableViewDelegate Methods
 
 
@@ -250,9 +313,25 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   UIPickerView *picker = pickerCell.picker;
   assert(picker);
 
+  // TODO: package this method inside of the delegate
   OBHopAddition *hopAddition = [self hopAdditionForDrawer];
-  float alphaAcidPercent = [hopAddition.alphaAcidPercent floatValue];
-  int row = [OBAlphaAcidPickerDelegate rowForAlphaAcidPercent:alphaAcidPercent];
+
+  int row = 0;
+  switch (pickerCell.selector.selectedSegmentIndex) {
+    case ALPHA_ACID_SEGMENT_ID:
+//      float alphaAcidPercent = 0;// [hopAddition.alphaAcidPercent floatValue];
+      row = [OBAlphaAcidPickerDelegate rowForAlphaAcidPercent:[hopAddition.alphaAcidPercent floatValue]];
+      break;
+    case QUANTITY_SEGMENT_ID:
+      row = [OBHopQuantityPickerDelegate rowForQuantityInOunces:[hopAddition.quantityInOunces floatValue]];
+      break;
+    case BOIL_TIME_SEGMENT_ID:
+      row = [OBHopBoilTimePickerDelegate rowForValue:[hopAddition.boilTimeInMinutes floatValue]];
+      break;
+    default:
+      NSLog(@"ERROR: Bad segment ID");
+      assert(NO);
+  }
 
   [picker selectRow:row inComponent:0 animated:NO];
 }
@@ -288,10 +367,10 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
     hopCell.hopVariety.text = hopAddition.hops.name;
 
     float alphaAcids = [hopAddition.alphaAcidPercent floatValue];
-    hopCell.alphaAcid.text = [NSString stringWithFormat:@"%.2f%%", alphaAcids];
+    hopCell.alphaAcid.text = [NSString stringWithFormat:@"%.1f%%", alphaAcids];
 
     float quantityInOunces = [hopAddition.quantityInOunces floatValue];
-    hopCell.quantity.text = [NSString stringWithFormat:@"%.2f", quantityInOunces];
+    hopCell.quantity.text = [NSString stringWithFormat:@"%.1f oz", quantityInOunces];
 
     NSInteger boilMinutes = [hopAddition.boilTimeInMinutes integerValue];
     hopCell.boilTime.text = [NSString stringWithFormat:@"%d", boilMinutes];
@@ -300,15 +379,18 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   } else {
     OBHopAddition *hopAddition = [self hopAdditionForDrawer];
 
-    OBMultiPickerTableViewCell *multiCell = (OBMultiPickerTableViewCell *) cell;
+    OBMultiPickerTableViewCell *multiCell = (OBMultiPickerTableViewCell *)cell;
 
-    if (!self.alphaAcidPickerDelegate) {
-      self.alphaAcidPickerDelegate = [[OBAlphaAcidPickerDelegate alloc] initWithHopAddition:hopAddition andObserver:self];
-    }
+    [multiCell.selector addTarget:self
+                           action:@selector(segmentSelected:)
+                 forControlEvents:UIControlEventValueChanged];
 
-    self.alphaAcidPickerDelegate.hopAddition = hopAddition;
-    multiCell.picker.delegate = self.alphaAcidPickerDelegate;
-    multiCell.picker.dataSource = self.alphaAcidPickerDelegate;
+    id pickerDelegate = [self pickerDelegateForSegmentControl:multiCell.selector];
+
+    [pickerDelegate setHopAddition:hopAddition];
+
+    multiCell.picker.delegate = pickerDelegate;
+    multiCell.picker.dataSource = pickerDelegate;
   }
 
   return cell;
