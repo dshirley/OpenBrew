@@ -69,7 +69,7 @@
 }
 
 - (float)boilGravity {
-  return [self gravityUnits] / [self boilSizeInGallons];
+  return 1 + ([self gravityUnits] / [self boilSizeInGallons] / 1000);
 }
 
 - (float)IBUs {
