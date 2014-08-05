@@ -17,6 +17,7 @@
 #import "OBAlphaAcidPickerDelegate.h"
 #import "OBHopQuantityPickerDelegate.h"
 #import "OBHopBoilTimePickerDelegate.h"
+#import "OBPickerDelegate.h"
 #import <math.h>
 
 static NSString *const INGREDIENT_ADDITION_CELL = @"IngredientAddition";
@@ -199,6 +200,18 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   return ([self drawerIsOpen] && self.drawerIndexPath.row == indexPath.row);
 }
 
+- (OBMultiPickerTableViewCell *)drawerCell
+{
+  OBMultiPickerTableViewCell *multiCell = nil;
+
+  if ([self drawerIsOpen]) {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[self drawerIndexPath]];
+    multiCell = (OBMultiPickerTableViewCell *) cell;
+  }
+
+  return multiCell;
+}
+
 - (void)closeDrawerForTableView:(UITableView *)tableView
 {
   if ([self drawerIsOpen]) {
@@ -229,9 +242,7 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
   [pickerDelegate setHopAddition:hopAddition];
 
-  UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[self drawerIndexPath]];
-  OBMultiPickerTableViewCell *multiCell = (OBMultiPickerTableViewCell *) cell;
-
+  OBMultiPickerTableViewCell *multiCell = [self drawerCell];
   multiCell.picker.delegate = pickerDelegate;
   multiCell.picker.dataSource = pickerDelegate;
 
@@ -298,6 +309,10 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
   [tableView endUpdates];
 
+  // Annoyingly, it seems that a cell cannot be selected until it is visible on
+  // the screen.  However, we have to set the delegate at cell creation time so
+  // that iOS can determine the list of items in the picker.  Hence the logic
+  // is spread across two functions
   [self updatePickerForTableView:tableView];
 }
 
@@ -307,33 +322,10 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
     return;
   }
 
-  UITableViewCell *cell = [tableView cellForRowAtIndexPath:[self drawerIndexPath]];
-  OBMultiPickerTableViewCell *pickerCell = (OBMultiPickerTableViewCell *) cell;
+  OBMultiPickerTableViewCell *multiCell = [self drawerCell];
+  id<OBPickerDelegate> pickerDelegate = (id<OBPickerDelegate>) multiCell.picker.delegate;
 
-  UIPickerView *picker = pickerCell.picker;
-  assert(picker);
-
-  // TODO: package this method inside of the delegate
-  OBHopAddition *hopAddition = [self hopAdditionForDrawer];
-
-  int row = 0;
-  switch (pickerCell.selector.selectedSegmentIndex) {
-    case ALPHA_ACID_SEGMENT_ID:
-//      float alphaAcidPercent = 0;// [hopAddition.alphaAcidPercent floatValue];
-      row = [OBAlphaAcidPickerDelegate rowForAlphaAcidPercent:[hopAddition.alphaAcidPercent floatValue]];
-      break;
-    case QUANTITY_SEGMENT_ID:
-      row = [OBHopQuantityPickerDelegate rowForQuantityInOunces:[hopAddition.quantityInOunces floatValue]];
-      break;
-    case BOIL_TIME_SEGMENT_ID:
-      row = [OBHopBoilTimePickerDelegate rowForValue:[hopAddition.boilTimeInMinutes floatValue]];
-      break;
-    default:
-      NSLog(@"ERROR: Bad segment ID");
-      assert(NO);
-  }
-
-  [picker selectRow:row inComponent:0 animated:NO];
+  [pickerDelegate updateSelectionForPicker:multiCell.picker];
 }
 
 #pragma mark - UITableViewDataSource Methods

@@ -28,12 +28,15 @@
   return self;
 }
 
-+ (NSInteger)rowForQuantityInOunces:(float)quantityInOunces
+- (void)updateSelectionForPicker:(UIPickerView *)picker
 {
-  return quantityInOunces * NUM_DECIMALS;
+  float quantityInOunces = [self.hopAddition.quantityInOunces floatValue];
+  NSInteger row = quantityInOunces * NUM_DECIMALS;
+
+  [picker selectRow:row inComponent:0 animated:NO];
 }
 
-+ (float)quantityInOuncesForRow:(NSInteger)row
+- (float)quantityInOuncesForRow:(NSInteger)row
 {
   // Example:  row 2 -> 0.2% ounces
   return (float) row * (1.0 / NUM_DECIMALS);
@@ -60,7 +63,7 @@
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component
 {
-  float ounces = [OBHopQuantityPickerDelegate quantityInOuncesForRow:row];
+  float ounces = [self quantityInOuncesForRow:row];
   return [NSString stringWithFormat:@"%.1f oz", ounces];
 }
 
@@ -68,7 +71,7 @@
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component
 {
-  float quantity = [OBHopQuantityPickerDelegate quantityInOuncesForRow:row];
+  float quantity = [self quantityInOuncesForRow:row];
   self.hopAddition.quantityInOunces = [NSNumber numberWithFloat:quantity];
 
   [self.pickerObserver pickerChanged];

@@ -7,18 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OBPickerDelegate.h"
 
 @class OBHopAddition;
 @protocol OBPickerObserver;
 
-@interface OBHopBoilTimePickerDelegate : NSObject <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface OBHopBoilTimePickerDelegate : NSObject <OBPickerDelegate>
 @property (nonatomic, strong) OBHopAddition *hopAddition;
 @property (nonatomic, weak) id<OBPickerObserver> pickerObserver;
 
 - (id)initWithHopAddition:(OBHopAddition *)hopAddition
               andObserver:(id)updateObserver;
 
-+ (NSInteger)rowForValue:(float)boilTimeInMinutes;
-+ (float)valueForRow:(NSInteger)row;
+- (void)updateSelectionForPicker:(UIPickerView *)picker;
 
 @end

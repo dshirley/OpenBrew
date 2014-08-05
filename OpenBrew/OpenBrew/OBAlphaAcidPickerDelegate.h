@@ -7,17 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OBPickerDelegate.h"
 
 @class OBHopAddition;
 @protocol OBPickerObserver;
 
-@interface OBAlphaAcidPickerDelegate : NSObject <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface OBAlphaAcidPickerDelegate : NSObject <OBPickerDelegate>
 @property (nonatomic, strong) OBHopAddition *hopAddition;
 @property (nonatomic, weak) id<OBPickerObserver> pickerObserver;
 
-- (id)initWithHopAddition:(OBHopAddition *)hopAddition andObserver:(id)updateObserver;
+- (id)initWithHopAddition:(OBHopAddition *)hopAddition
+              andObserver:(id)updateObserver;
 
-+ (NSInteger)rowForAlphaAcidPercent:(float)alphaAcidPercent;
-+ (float)alphaAcidPercentForRow:(NSInteger)row;
+- (void)updateSelectionForPicker:(UIPickerView *)picker;
 
 @end

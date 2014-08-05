@@ -30,12 +30,14 @@
   return self;
 }
 
-+ (NSInteger)rowForAlphaAcidPercent:(float)alphaAcidPercent
-{
-  return alphaAcidPercent * NUM_DECIMALS;
+- (void)updateSelectionForPicker:(UIPickerView *)picker {
+  float alphaAcidPercent = [[self.hopAddition alphaAcidPercent] floatValue];
+  NSInteger row = alphaAcidPercent * NUM_DECIMALS;
+
+  [picker selectRow:row inComponent:0 animated:NO];
 }
 
-+ (float)alphaAcidPercentForRow:(NSInteger)row
+- (float)alphaAcidPercentForRow:(NSInteger)row
 {
   // Example:  row 12 -> 1.2% alpha acid
   return (float) row * (1.0 / NUM_DECIMALS);
@@ -62,14 +64,15 @@
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component
 {
-  return [NSString stringWithFormat:@"%.2f%%", (float)row * 0.1];
+  float alphaAcid = [self alphaAcidPercentForRow:row];
+  return [NSString stringWithFormat:@"%.2f%%", alphaAcid];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component
 {
-  float alphaAcid = [OBAlphaAcidPickerDelegate alphaAcidPercentForRow:row];
+  float alphaAcid = [self alphaAcidPercentForRow:row];
   self.hopAddition.alphaAcidPercent = [NSNumber numberWithFloat:alphaAcid];
 
   [self.pickerObserver pickerChanged];

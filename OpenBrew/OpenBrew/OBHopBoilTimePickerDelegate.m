@@ -28,12 +28,15 @@
   return self;
 }
 
-+ (NSInteger)rowForValue:(float)boilTime
+- (void)updateSelectionForPicker:(UIPickerView *)picker
 {
-  return boilTime * NUM_DECIMALS;
+  float boilTime = [self.hopAddition.boilTimeInMinutes floatValue];
+  NSInteger row = boilTime * NUM_DECIMALS;
+
+  [picker selectRow:row inComponent:0 animated:NO];
 }
 
-+ (float)valueForRow:(NSInteger)row
+- (float)valueForRow:(NSInteger)row
 {
   return (float) row * (1.0 / NUM_DECIMALS);
 }
@@ -58,7 +61,7 @@
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component
 {
-  float hours = [OBHopBoilTimePickerDelegate valueForRow:row];
+  float hours = [self valueForRow:row];
   return [NSString stringWithFormat:@"%d", (int) hours];
 }
 
@@ -66,7 +69,7 @@
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component
 {
-  float boilTime = [OBHopBoilTimePickerDelegate valueForRow:row];
+  float boilTime = [self valueForRow:row];
   self.hopAddition.boilTimeInMinutes = [NSNumber numberWithFloat:boilTime];
 
   [self.pickerObserver pickerChanged];

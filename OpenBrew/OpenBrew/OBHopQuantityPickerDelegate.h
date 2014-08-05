@@ -7,17 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OBPickerDelegate.h"
 
 @class OBHopAddition;
 @protocol OBPickerObserver;
 
-@interface OBHopQuantityPickerDelegate : NSObject
+@interface OBHopQuantityPickerDelegate : NSObject <OBPickerDelegate>
 @property (nonatomic, strong) OBHopAddition *hopAddition;
 @property (nonatomic, weak) id<OBPickerObserver> pickerObserver;
 
-- (id)initWithHopAddition:(OBHopAddition *)hopAddition andObserver:(id)pickerObserver;
+- (id)initWithHopAddition:(OBHopAddition *)hopAddition
+              andObserver:(id)pickerObserver;
 
-+ (NSInteger)rowForQuantityInOunces:(float)quantityInOunces;
-+ (float)quantityInOuncesForRow:(NSInteger)row;
+- (void)updateSelectionForPicker:(UIPickerView *)picker;
 
 @end

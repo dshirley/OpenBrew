@@ -62,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F081534199120C100E5E575 /* OBPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPickerDelegate.h; sourceTree = "<group>"; };
 		9F77C612198CAECA0023EB3C /* OBMultiPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMultiPickerTableViewCell.h; sourceTree = "<group>"; };
 		9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerTableViewCell.m; sourceTree = "<group>"; };
 		9F92E8A718A0910200118D76 /* OBIngredientFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientFinderViewController.h; sourceTree = "<group>"; };
@@ -288,6 +289,7 @@
 				9FE8643D198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m */,
 				9FE86439198FBCE0007AD9E7 /* OBHopQuantityPickerDelegate.h */,
 				9FE8643A198FBCE0007AD9E7 /* OBHopQuantityPickerDelegate.m */,
+				9F081534199120C100E5E575 /* OBPickerDelegate.h */,
 				9FE86438198F4649007AD9E7 /* OBPickerObserver.h */,
 			);
 			name = "Picker Delegates";
