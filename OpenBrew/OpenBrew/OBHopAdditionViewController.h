@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OBDrawerTableViewController.h"
 
-@class OBRecipe;
-
-@interface OBHopAdditionViewController : UIViewController
-
-@property (nonatomic, strong) OBRecipe *recipe;
+@interface OBHopAdditionViewController : OBDrawerTableViewController
 
 @end
