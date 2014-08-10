@@ -65,7 +65,7 @@
             forComponent:(NSInteger)component
 {
   float alphaAcid = [self alphaAcidPercentForRow:row];
-  return [NSString stringWithFormat:@"%.2f%%", alphaAcid];
+  return [NSString stringWithFormat:@"%.1f%%", alphaAcid];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView

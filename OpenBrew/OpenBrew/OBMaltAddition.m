@@ -58,7 +58,7 @@
   double ounces = [self.quantityInPounds doubleValue] - pounds;
 
   if (pounds == 0 && (ounces * 1000 < 1)) {
-    return @"0";
+    return @"0lb";
   }
 
   NSString *poundsString = @"";

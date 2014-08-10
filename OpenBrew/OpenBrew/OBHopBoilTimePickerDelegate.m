@@ -62,7 +62,7 @@
             forComponent:(NSInteger)component
 {
   float hours = [self valueForRow:row];
-  return [NSString stringWithFormat:@"%d", (int) hours];
+  return [NSString stringWithFormat:@"%d min", (int) hours];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView
