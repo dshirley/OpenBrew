@@ -56,7 +56,8 @@
  * Returns the hops in this recipe in an array format that represents the order
  * of elements in the table view.
  */
-- (NSArray *)ingredientData {
+- (NSArray *)ingredientData
+{
   NSSortDescriptor *sortByDisplayOrder;
 
   sortByDisplayOrder = [[NSSortDescriptor alloc] initWithKey:@"displayOrder"
@@ -73,10 +74,10 @@
     return;
   }
 
-  OBMultiPickerTableViewCell *multiCell = (OBMultiPickerTableViewCell *)cell;
-  id<OBPickerDelegate> pickerDelegate = (id<OBPickerDelegate>) multiCell.picker.delegate;
+  OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
+  id<OBPickerDelegate> pickerDelegate = (id<OBPickerDelegate>) drawerCell.picker.delegate;
 
-  [pickerDelegate updateSelectionForPicker:multiCell.picker];
+  [pickerDelegate updateSelectionForPicker:drawerCell.picker];
 }
 
 - (void)populateIngredientCell:(UITableViewCell *)cell

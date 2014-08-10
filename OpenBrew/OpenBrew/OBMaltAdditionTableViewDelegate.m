@@ -7,11 +7,13 @@
 //
 
 #import "OBMaltAdditionTableViewDelegate.h"
-#import "OBRecipe.h"
+
 #import "OBMaltAddition.h"
+#import "OBRecipe.h"
 #import "OBMalt.h"
-#import "OBMaltAdditionTableViewCell.h"
 #import "OBMultiPickerTableViewCell.h"
+#import "OBMaltAdditionTableViewCell.h"
+
 #import "OBMaltQuantityPickerDelegate.h"
 
 @interface OBMaltAdditionTableViewDelegate()
@@ -36,6 +38,10 @@
   return self;
 }
 
+/**
+ * Returns the malts in this recipe in an array format that represents the order
+ * of elements in the table view.
+ */
 - (NSArray *)ingredientData
 {
   NSSortDescriptor *sortByDisplayOrder;
@@ -46,6 +52,17 @@
   NSArray *sortSpecification = @[ sortByDisplayOrder ];
 
   return [[self.recipe maltAdditions] sortedArrayUsingDescriptors:sortSpecification];
+}
+
+- (void)finishDisplayingDrawerCell:(UITableViewCell *)cell
+{
+  if (!cell) {
+    return;
+  }
+
+  OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
+
+  [self.maltQuantityPickerDelegate updateSelectionForPicker:drawerCell.picker];
 }
 
 - (void)populateIngredientCell:(UITableViewCell *)cell
@@ -70,15 +87,13 @@
   self.maltQuantityPickerDelegate.maltAddition = [self ingredientForDrawer];
 }
 
-- (void)finishDisplayingDrawerCell:(UITableViewCell *)cell
+
+
+- (void)pickerChanged
 {
-  if (!cell) {
-    return;
-  }
-
-  OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
-
-  [self.maltQuantityPickerDelegate updateSelectionForPicker:drawerCell.picker];
+  OBMultiPickerTableViewCell *cell = (OBMultiPickerTableViewCell *)[self cellBeforeDrawerForTableView:self.tableView];
+  OBMaltAddition *maltAddition = [self ingredientForDrawer];
+  [self populateIngredientCell:cell withIngredientData:maltAddition];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,7 +108,8 @@
       i++;
     }
 
-    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [tableView deleteRowsAtIndexPaths:@[indexPath]
+                     withRowAnimation:UITableViewRowAnimationAutomatic];
   }
 }
 
@@ -110,13 +126,5 @@
     i++;
   }
 }
-
-- (void)pickerChanged
-{
-  OBMultiPickerTableViewCell *cell = (OBMultiPickerTableViewCell *)[self cellBeforeDrawerForTableView:self.tableView];
-  OBMaltAddition *maltAddition = [self ingredientForDrawer];
-  [self populateIngredientCell:cell withIngredientData:maltAddition];
-}
-
 
 @end
