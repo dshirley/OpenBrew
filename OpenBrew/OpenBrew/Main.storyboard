@@ -423,10 +423,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="puw-U2-Nhe" id="gya-Ne-eRR"/>
-                                    <outlet property="delegate" destination="puw-U2-Nhe" id="Gmm-Ug-dKR"/>
-                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7T-c2-002">
                                 <rect key="frame" x="62" y="526" width="197" height="42"/>

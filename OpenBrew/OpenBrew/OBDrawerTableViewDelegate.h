@@ -11,18 +11,15 @@
 @class OBIngredientGauge;
 @class OBRecipe;
 
-@interface OBDrawerTableViewController : UIViewController
+@interface OBDrawerTableViewDelegate : NSObject <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSIndexPath *drawerIndexPath;
-@property (nonatomic, retain) OBRecipe *recipe;
+
+- (id)init;
+
+#pragma mark Template Methods
 
 - (NSArray *)ingredientData;
-
-- (id)ingredientForDrawer;
-
-- (UITableViewCell *)drawerCell;
-
-- (void)reload;
 
 - (void)populateIngredientCell:(UITableViewCell *)cell
             withIngredientData:(id)ingredientData;
@@ -33,6 +30,15 @@
 - (void)removeIngredient:(id)ingredient fromRecipe:(OBRecipe *)recipe;
 
 - (void)finishDisplayingDrawerCell:(UITableViewCell *)cell;
+
+#pragma mark Utility Methods
+
+- (void)closeDrawerForTableView:(UITableView *)tableView;
+
+- (id)ingredientForDrawer;
+
+- (UITableViewCell *)cellBeforeDrawerForTableView:(UITableView *)tableView;
+- (UITableViewCell *)drawerCellForTableView:(UITableView *)tableView;
 
 - (id)ingredientAtIndexPath:(NSIndexPath *)indexPath;
 

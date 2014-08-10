@@ -6,49 +6,30 @@
 //  Copyright (c) 2014 OpenBrew. All rights reserved.
 //
 
-#import "OBDrawerTableViewController.h"
-#import "OBRecipe.h"
+#import "OBDrawerTableViewDelegate.h"
 
 static NSString *const INGREDIENT_ADDITION_CELL = @"IngredientAddition";
 static NSString *const DRAWER_CELL = @"DrawerCell";
 
-@interface OBDrawerTableViewController ()
+@interface OBDrawerTableViewDelegate ()
 @property (assign) NSInteger drawerCellRowHeight;
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @end
 
-@implementation OBDrawerTableViewController
+@implementation OBDrawerTableViewDelegate
 
-- (void)viewDidLoad
+- (id)init
 {
-  [super viewDidLoad];
+  self = [super init];
 
-  self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  if (self) {
+    // Really dumb way to get the default height of a UIPickerView
+    // Apple doesn't provide a constant, though, and the default shown in
+    // Interface Builder is wrong (it says 162.  For iOS 7 it is 216)
+    UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 77, 320, 0)];
+    self.drawerCellRowHeight = picker.frame.size.height;
+  }
 
-  // Really dumb way to get the default height of a UIPickerView
-  // Apple doesn't provide a constant, though, and the default shown in
-  // Interface Builder is wrong (it says 162.  For iOS 7 it is 216)
-  UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 77, 320, 0)];
-  self.drawerCellRowHeight = picker.frame.size.height;
-
-  [self reload];
-}
-
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
-{
-  [super setEditing:editing animated:animated];
-
-  // Get rid of the picker.  It'll get in the way and we don't want users to
-  // be able to move it anyways.
-  [self.tableView beginUpdates];
-  [self closeDrawerForTableView:self.tableView];
-  [self.tableView endUpdates];
-
-  [self.tableView setEditing:editing animated:animated];
-}
-
-- (void)reload {
-  [self.tableView reloadData];
+  return self;
 }
 
 /**
@@ -78,11 +59,16 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   return data[index];
 }
 
-- (id)ingredientForDrawer
+- (NSIndexPath *)indexPathOfCellBeforeDrawer
 {
   NSInteger cellRow = self.drawerIndexPath.row - 1;
-  NSIndexPath *cellBeforeDrawer = [NSIndexPath indexPathForRow:cellRow inSection:0];
+  NSIndexPath *cellBeforeDrawerIndex = [NSIndexPath indexPathForRow:cellRow inSection:0];
+  return cellBeforeDrawerIndex;
+}
 
+- (id)ingredientForDrawer
+{
+  NSIndexPath *cellBeforeDrawer = [self indexPathOfCellBeforeDrawer];
   return [self ingredientAtIndexPath:cellBeforeDrawer];
 }
 
@@ -96,12 +82,24 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   return ([self drawerIsOpen] && self.drawerIndexPath.row == indexPath.row);
 }
 
-- (UITableViewCell *)drawerCell
+- (UITableViewCell *)cellBeforeDrawerForTableView:(UITableView *)tableView;
 {
   UITableViewCell *cell = nil;
 
   if ([self drawerIsOpen]) {
-    cell = [self.tableView cellForRowAtIndexPath:[self drawerIndexPath]];
+    NSIndexPath *index = [self indexPathOfCellBeforeDrawer];
+    cell = [tableView cellForRowAtIndexPath:index];
+  }
+
+  return cell;
+}
+
+- (UITableViewCell *)drawerCellForTableView:(UITableView *)tableView
+{
+  UITableViewCell *cell = nil;
+
+  if ([self drawerIsOpen]) {
+    cell = [tableView cellForRowAtIndexPath:[self drawerIndexPath]];
   }
 
   return cell;
@@ -167,7 +165,7 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   // the screen.  However, we have to set the delegate at cell creation time so
   // that iOS can determine the list of items in the picker.  Hence the logic
   // is spread across two functions
-  [self finishDisplayingDrawerCell:[self drawerCell]];
+  [self finishDisplayingDrawerCell:[self drawerCellForTableView:tableView]];
 }
 
 - (void)finishDisplayingDrawerCell:(UITableViewCell *)cell

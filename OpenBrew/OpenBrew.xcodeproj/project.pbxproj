@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9F0815371992655A00E5E575 /* OBDrawerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815361992655A00E5E575 /* OBDrawerTableViewController.m */; };
+		9F0815371992655A00E5E575 /* OBDrawerTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815361992655A00E5E575 /* OBDrawerTableViewDelegate.m */; };
+		9F08153B1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F08153A1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m */; };
 		9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */; };
 		9F92E8A918A0910200118D76 /* OBIngredientFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8A818A0910200118D76 /* OBIngredientFinderViewController.m */; };
 		9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */; };
@@ -64,8 +65,10 @@
 
 /* Begin PBXFileReference section */
 		9F081534199120C100E5E575 /* OBPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPickerDelegate.h; sourceTree = "<group>"; };
-		9F0815351992655A00E5E575 /* OBDrawerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBDrawerTableViewController.h; sourceTree = "<group>"; };
-		9F0815361992655A00E5E575 /* OBDrawerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBDrawerTableViewController.m; sourceTree = "<group>"; };
+		9F0815351992655A00E5E575 /* OBDrawerTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBDrawerTableViewDelegate.h; sourceTree = "<group>"; };
+		9F0815361992655A00E5E575 /* OBDrawerTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBDrawerTableViewDelegate.m; sourceTree = "<group>"; };
+		9F0815391996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionTableViewDelegate.h; sourceTree = "<group>"; };
+		9F08153A1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionTableViewDelegate.m; sourceTree = "<group>"; };
 		9F77C612198CAECA0023EB3C /* OBMultiPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMultiPickerTableViewCell.h; sourceTree = "<group>"; };
 		9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerTableViewCell.m; sourceTree = "<group>"; };
 		9F92E8A718A0910200118D76 /* OBIngredientFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientFinderViewController.h; sourceTree = "<group>"; };
@@ -162,6 +165,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F0815381996D5E700E5E575 /* DrawerTableView */ = {
+			isa = PBXGroup;
+			children = (
+				9F0815351992655A00E5E575 /* OBDrawerTableViewDelegate.h */,
+				9F0815361992655A00E5E575 /* OBDrawerTableViewDelegate.m */,
+				9F0815391996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.h */,
+				9F08153A1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m */,
+			);
+			name = DrawerTableView;
+			sourceTree = "<group>";
+		};
 		9F5033BF198B55E800C302C1 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +315,7 @@
 		9FF686731893209600B36486 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9F0815381996D5E700E5E575 /* DrawerTableView */,
 				9FE86434198DBE9F007AD9E7 /* Picker Delegates */,
 				9F98D3691880F8ED00469323 /* OBAppDelegate.h */,
 				9F98D36A1880F8ED00469323 /* OBAppDelegate.m */,
@@ -318,8 +333,6 @@
 				9FF686C81894099A00B36486 /* OBRecipeOverviewController.m */,
 				9FF686C01893E45F00B36486 /* OBRecipeViewController.h */,
 				9FF686C11893E45F00B36486 /* OBRecipeViewController.m */,
-				9F0815351992655A00E5E575 /* OBDrawerTableViewController.h */,
-				9F0815361992655A00E5E575 /* OBDrawerTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -450,9 +463,10 @@
 				9F92E8C818A0D45F00118D76 /* OBHopAddition.m in Sources */,
 				9FE86437198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.m in Sources */,
 				9F92E8CB18A0D53E00118D76 /* OBHops.m in Sources */,
-				9F0815371992655A00E5E575 /* OBDrawerTableViewController.m in Sources */,
+				9F0815371992655A00E5E575 /* OBDrawerTableViewDelegate.m in Sources */,
 				9F92E8C218A0CFF700118D76 /* OBMalt.m in Sources */,
 				9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */,
+				9F08153B1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m in Sources */,
 				9F92E8D118A0D6CF00118D76 /* OBYeast.m in Sources */,
 				9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */,
 				9F92E8A918A0910200118D76 /* OBIngredientFinderViewController.m in Sources */,
