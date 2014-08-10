@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OBPickerObserver.h"
 
 @class OBRecipe;
 
-@interface OBMaltAdditionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface OBMaltAdditionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, OBPickerObserver>
 
 @property (nonatomic, strong) OBRecipe *recipe;
 

@@ -10,16 +10,14 @@
 #import "OBIngredientGauge.h"
 #import "OBIngredientFinderViewController.h"
 #import "OBRecipe.h"
+#import "OBMalt.h"
 #import "OBMaltAddition.h"
 #import "OBMaltAdditionTableViewCell.h"
-
-#define LEFT_PICKER_COMPONENT 0
-#define RIGHT_PICKER_COMPONENT 1
+#import "OBMultiPickerTableViewCell.h"
+#import "OBMaltQuantityPickerDelegate.h"
 
 static NSString *const INGREDIENT_ADDITION_CELL = @"IngredientAddition";
 static NSString *const DRAWER_CELL = @"DrawerCell";
-
-#define PICKER_TAG 42
 
 @interface OBMaltAdditionViewController ()
 
@@ -27,6 +25,7 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (assign) NSInteger drawerCellRowHeight;
 @property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
+@property (nonatomic, strong) OBMaltQuantityPickerDelegate *maltQuantityPickerDelegate;
 
 @end
 
@@ -39,6 +38,9 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
 - (void)loadView {
   [super loadView];
+
+  self.maltQuantityPickerDelegate = [[OBMaltQuantityPickerDelegate alloc] initWithMaltAddition:nil andObserver:self];
+
   [self reload];
 }
 
@@ -157,11 +159,15 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   return malts[maltIndex];
 }
 
-- (OBMaltAddition *)maltAdditionForDrawer
+- (NSIndexPath *)cellBeforeDrawer
 {
   NSInteger cellRow = self.drawerIndexPath.row - 1;
-  NSIndexPath *cellBeforeDrawer = [NSIndexPath indexPathForRow:cellRow inSection:0];
+  return [NSIndexPath indexPathForRow:cellRow inSection:0];
+}
 
+- (OBMaltAddition *)maltAdditionForDrawer
+{
+  NSIndexPath *cellBeforeDrawer = [self cellBeforeDrawer];
   return [self maltAdditionAtIndexPath:cellBeforeDrawer];
 }
 
@@ -241,17 +247,10 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
     return;
   }
 
-  UITableViewCell *pickerCell = [tableView cellForRowAtIndexPath:[self drawerIndexPath]];
-  UIPickerView *picker = (UIPickerView *)[pickerCell viewWithTag:PICKER_TAG];
-  assert(picker);
+  OBMultiPickerTableViewCell *cell = (OBMultiPickerTableViewCell *)[tableView cellForRowAtIndexPath:[self drawerIndexPath]];
+  UIPickerView *picker = cell.picker;
 
-  OBMaltAddition *maltAddition = [self maltAdditionForDrawer];
-  NSInteger baseRow = 16 * 5000;
-  float pounds = [[maltAddition quantityInPounds] floatValue];
-  float ounces = trunc((pounds - trunc(pounds)) * 16);
-
-  [picker selectRow:(baseRow + ounces) inComponent:RIGHT_PICKER_COMPONENT animated:NO];
-  [picker selectRow:(trunc(pounds)) inComponent:LEFT_PICKER_COMPONENT animated:NO];
+  [self.maltQuantityPickerDelegate updateSelectionForPicker:picker];
 }
 
 #pragma mark - UITableViewDataSource Methods
@@ -267,6 +266,18 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   return numRows;
 }
 
+- (void)populateIngredientCell:(UITableViewCell *)cell
+            withIngredientData:(id)ingredientData
+{
+  OBMaltAddition *maltAddition = (OBMaltAddition *)ingredientData;
+  OBMaltAdditionTableViewCell *maltCell = (OBMaltAdditionTableViewCell *)cell;
+
+  maltCell.maltVariety.text = maltAddition.malt.name;
+  maltCell.quantity.text = [maltAddition quantityText];
+  maltCell.color.text = [NSString stringWithFormat:@"%@ Lovibond", maltAddition.lovibond];
+
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -280,10 +291,15 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
   if (![self drawerIsAtIndex:indexPath]) {
     OBMaltAddition *maltAddition = [self maltAdditionAtIndexPath:indexPath];
-    OBMaltAdditionTableViewCell *maltCell = (OBMaltAdditionTableViewCell *)cell;
+    [self populateIngredientCell:cell withIngredientData:maltAddition];
+  } else {
 
-    [maltCell.maltVariety setText:maltAddition.name];
-    [maltCell.quantity setText:[maltAddition quantityText]];
+    OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
+
+    // FIXME: hackish casts
+    drawerCell.picker.delegate = (id)self.maltQuantityPickerDelegate;
+    drawerCell.picker.dataSource = (id)self.maltQuantityPickerDelegate;
+    self.maltQuantityPickerDelegate.maltAddition = [self maltAdditionForDrawer];
   }
 
   return cell;
@@ -320,83 +336,12 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   }
 }
 
-#pragma mark - UIPickerViewDataSource Methods
-
-// returns the number of 'columns' to display.
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+- (void)pickerChanged
 {
-  return 2;
-}
-
-// returns the # of rows in each component..
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-  NSInteger numRows = 0;
-
-  switch (component) {
-    case LEFT_PICKER_COMPONENT:
-      numRows = 50;
-      break;
-    case RIGHT_PICKER_COMPONENT:
-      numRows = 16 * 10000;
-      break;
-    default:
-      assert(component < 2);
-  }
-
-  return numRows;
-}
-
-#pragma mark - UIPickerViewDelegate
-
-- (NSInteger)poundsForRow:(NSInteger)row
-{
-  return row;
-}
-
-- (NSInteger)ouncesForRow:(NSInteger)row
-{
-  return row % 16;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView
-             titleForRow:(NSInteger)row
-            forComponent:(NSInteger)component
-{
-  NSString *text = nil;
-
-  if (component == 0) {
-    text = [NSString stringWithFormat:@"%ld lb", (long)[self poundsForRow:row]];
-  } else {
-    text = [NSString stringWithFormat:@"%ld oz", (long)[self ouncesForRow:row]];
-  }
-
-  return text;
-}
-
-- (void)pickerView:(UIPickerView *)pickerView
-      didSelectRow:(NSInteger)row
-       inComponent:(NSInteger)component
-{
+  NSIndexPath *index = [self cellBeforeDrawer];
+  OBMultiPickerTableViewCell *cell = (OBMultiPickerTableViewCell *)[self.tableView cellForRowAtIndexPath:index];
   OBMaltAddition *maltAddition = [self maltAdditionForDrawer];
-  float currentQuantity = [maltAddition.quantityInPounds floatValue];
-
-  if (component == LEFT_PICKER_COMPONENT) {
-
-    float newPounds = (float) [self poundsForRow:row];
-    float currentOunces = currentQuantity - trunc(currentQuantity);
-
-    maltAddition.quantityInPounds = [NSNumber numberWithFloat:newPounds + currentOunces];
-
-  } else if (component == RIGHT_PICKER_COMPONENT) {
-
-    float newOunces = ((float) [self ouncesForRow:row]) / 16;
-    float currentPounds = trunc(currentQuantity);
-
-    maltAddition.quantityInPounds = [NSNumber numberWithFloat:currentPounds + newOunces];
-  }
-  
-  [self reload];
+  [self populateIngredientCell:cell withIngredientData:maltAddition];
 }
 
 @end
