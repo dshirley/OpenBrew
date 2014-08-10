@@ -15,11 +15,18 @@
 #import "OBMaltAdditionTableViewCell.h"
 
 #import "OBMaltQuantityPickerDelegate.h"
+#import "OBMaltColorPickerDelegate.h"
+
+#define QUANTITY_SEGMENT_ID 0
+#define COLOR_SEGMENT_ID 1
 
 @interface OBMaltAdditionTableViewDelegate()
+
 @property (nonatomic, strong) OBRecipe *recipe;
 @property (nonatomic, strong) UITableView *tableView;
+
 @property (nonatomic, strong) OBMaltQuantityPickerDelegate *maltQuantityPickerDelegate;
+@property (nonatomic, strong) OBMaltColorPickerDelegate *maltColorPickerDelegate;
 @end
 
 @implementation OBMaltAdditionTableViewDelegate
@@ -33,6 +40,7 @@
     self.tableView = tableView;
 
     self.maltQuantityPickerDelegate = [[OBMaltQuantityPickerDelegate alloc] initWithMaltAddition:nil andObserver:self];
+    self.maltColorPickerDelegate = [[OBMaltColorPickerDelegate alloc] initWithMaltAddition:nil andObserver:self];
   }
 
   return self;
@@ -61,8 +69,9 @@
   }
 
   OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
+  id<OBPickerDelegate> pickerDelegate = (id<OBPickerDelegate>) drawerCell.picker.delegate;
 
-  [self.maltQuantityPickerDelegate updateSelectionForPicker:drawerCell.picker];
+  [pickerDelegate updateSelectionForPicker:drawerCell.picker];
 }
 
 - (void)populateIngredientCell:(UITableViewCell *)cell
@@ -81,13 +90,54 @@
 {
   OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
 
-  // FIXME: hackish casts
-  drawerCell.picker.delegate = (id)self.maltQuantityPickerDelegate;
-  drawerCell.picker.dataSource = (id)self.maltQuantityPickerDelegate;
-  self.maltQuantityPickerDelegate.maltAddition = [self ingredientForDrawer];
+  [drawerCell.selector addTarget:self
+                         action:@selector(segmentSelected:)
+               forControlEvents:UIControlEventValueChanged];
+
+  id pickerDelegate = [self pickerDelegateForSegmentControl:drawerCell.selector];
+
+  [pickerDelegate setMaltAddition:ingredientData];
+
+  drawerCell.picker.delegate = pickerDelegate;
+  drawerCell.picker.dataSource = pickerDelegate;
 }
 
+#pragma mark - Drawer Management Methods
 
+- (void)segmentSelected:(id)sender
+{
+  id pickerDelegate = [self pickerDelegateForSegmentControl:sender];
+  OBMaltAddition *maltAddition = [self ingredientForDrawer];
+
+  [pickerDelegate setMaltAddition:maltAddition];
+
+  OBMultiPickerTableViewCell *multiCell = (OBMultiPickerTableViewCell *)[self drawerCellForTableView:self.tableView];
+  multiCell.picker.delegate = pickerDelegate;
+  multiCell.picker.dataSource = pickerDelegate;
+
+  // TODO: perhaps combine these methods
+  [self finishDisplayingDrawerCell:multiCell];
+}
+
+- (id)pickerDelegateForSegmentControl:(UISegmentedControl *)segmentControl
+{
+  NSInteger segmentId = segmentControl.selectedSegmentIndex;
+  id pickerDelegate = nil;
+
+  switch (segmentId) {
+    case QUANTITY_SEGMENT_ID:
+      pickerDelegate = self.maltQuantityPickerDelegate;
+      break;
+    case COLOR_SEGMENT_ID:
+      pickerDelegate = self.maltColorPickerDelegate;
+      break;
+    default:
+      NSLog(@"ERROR: Bad segment ID: %ld", (long)segmentId);
+      assert(NO);
+  }
+
+  return pickerDelegate;
+}
 
 - (void)pickerChanged
 {

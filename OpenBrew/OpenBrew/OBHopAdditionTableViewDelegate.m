@@ -25,7 +25,7 @@
 
 @interface OBHopAdditionTableViewDelegate()
 
-@property (nonatomic, retain) OBRecipe *recipe;
+@property (nonatomic, strong) OBRecipe *recipe;
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) OBAlphaAcidPickerDelegate *alphaAcidPickerDelegate;
@@ -103,20 +103,18 @@
 - (void)populateDrawerCell:(UITableViewCell *)cell
         withIngredientData:(id)ingredientData
 {
-  OBHopAddition *hopAddition = (OBHopAddition *)ingredientData;
+  OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
 
-  OBMultiPickerTableViewCell *multiCell = (OBMultiPickerTableViewCell *)cell;
-
-  [multiCell.selector addTarget:self
+  [drawerCell.selector addTarget:self
                          action:@selector(segmentSelected:)
                forControlEvents:UIControlEventValueChanged];
 
-  id pickerDelegate = [self pickerDelegateForSegmentControl:multiCell.selector];
+  id pickerDelegate = [self pickerDelegateForSegmentControl:drawerCell.selector];
 
-  [pickerDelegate setHopAddition:hopAddition];
+  [pickerDelegate setHopAddition:ingredientData];
 
-  multiCell.picker.delegate = pickerDelegate;
-  multiCell.picker.dataSource = pickerDelegate;
+  drawerCell.picker.delegate = pickerDelegate;
+  drawerCell.picker.dataSource = pickerDelegate;
 }
 
 #pragma mark - Drawer Management Methods
