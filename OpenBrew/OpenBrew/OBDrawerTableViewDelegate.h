@@ -27,8 +27,6 @@
 - (void)populateDrawerCell:(UITableViewCell *)cell
         withIngredientData:(id)ingredientData;
 
-- (void)removeIngredient:(id)ingredient fromRecipe:(OBRecipe *)recipe;
-
 - (void)finishDisplayingDrawerCell:(UITableViewCell *)cell;
 
 #pragma mark Utility Methods

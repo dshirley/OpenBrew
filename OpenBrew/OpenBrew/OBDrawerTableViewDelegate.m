@@ -220,10 +220,4 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   return cell;
 }
 
-- (void)removeIngredient:(id)ingredient fromRecipe:(OBRecipe *)recipe
-{
-  assert(YES);
-}
-
-
 @end

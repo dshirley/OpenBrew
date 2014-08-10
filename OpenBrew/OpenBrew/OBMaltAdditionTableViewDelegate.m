@@ -70,12 +70,6 @@
   self.maltQuantityPickerDelegate.maltAddition = [self ingredientForDrawer];
 }
 
-// TODO: no need for this method anymore
-- (void)removeIngredient:(id)ingredient fromRecipe:(OBRecipe *)recipe
-{
-
-}
-
 - (void)finishDisplayingDrawerCell:(UITableViewCell *)cell
 {
   if (!cell) {

@@ -118,12 +118,6 @@
   multiCell.picker.dataSource = pickerDelegate;
 }
 
-- (void)removeIngredient:(id)ingredientToRemove fromRecipe:(OBRecipe *)recipe;
-{
-  [recipe removeHopAdditionsObject:ingredientToRemove];
-}
-
-
 #pragma mark - Drawer Management Methods
 
 - (void)segmentSelected:(id)sender
@@ -176,7 +170,7 @@
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     id ingredientToRemove = [self ingredientAtIndexPath:indexPath];
 
-    [self removeIngredient:ingredientToRemove fromRecipe:self.recipe];
+    [self.recipe removeHopAdditionsObject:ingredientToRemove];
 
     int i = 0;
     for (id ingredient in [self ingredientData]) {
