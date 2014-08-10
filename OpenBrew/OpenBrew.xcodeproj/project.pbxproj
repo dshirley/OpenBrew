@@ -11,6 +11,7 @@
 		9F08153B1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F08153A1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m */; };
 		9F0815411996F69E00E5E575 /* OBMaltAdditionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815401996F69E00E5E575 /* OBMaltAdditionTableViewCell.m */; };
 		9F0815441996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815431996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m */; };
+		9F08154719970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F08154619970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m */; };
 		9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */; };
 		9F92E8A918A0910200118D76 /* OBIngredientFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8A818A0910200118D76 /* OBIngredientFinderViewController.m */; };
 		9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */; };
@@ -75,6 +76,8 @@
 		9F0815401996F69E00E5E575 /* OBMaltAdditionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionTableViewCell.m; sourceTree = "<group>"; };
 		9F0815421996FF0400E5E575 /* OBMaltQuantityPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltQuantityPickerDelegate.h; sourceTree = "<group>"; };
 		9F0815431996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltQuantityPickerDelegate.m; sourceTree = "<group>"; };
+		9F08154519970A0400E5E575 /* OBMaltAdditionTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltAdditionTableViewDelegate.h; sourceTree = "<group>"; };
+		9F08154619970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionTableViewDelegate.m; sourceTree = "<group>"; };
 		9F77C612198CAECA0023EB3C /* OBMultiPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMultiPickerTableViewCell.h; sourceTree = "<group>"; };
 		9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerTableViewCell.m; sourceTree = "<group>"; };
 		9F92E8A718A0910200118D76 /* OBIngredientFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientFinderViewController.h; sourceTree = "<group>"; };
@@ -178,6 +181,8 @@
 				9F0815361992655A00E5E575 /* OBDrawerTableViewDelegate.m */,
 				9F0815391996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.h */,
 				9F08153A1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m */,
+				9F08154519970A0400E5E575 /* OBMaltAdditionTableViewDelegate.h */,
+				9F08154619970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m */,
 			);
 			name = DrawerTableView;
 			sourceTree = "<group>";
@@ -475,6 +480,7 @@
 				9F92E8CB18A0D53E00118D76 /* OBHops.m in Sources */,
 				9F0815371992655A00E5E575 /* OBDrawerTableViewDelegate.m in Sources */,
 				9F92E8C218A0CFF700118D76 /* OBMalt.m in Sources */,
+				9F08154719970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m in Sources */,
 				9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */,
 				9F08153B1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m in Sources */,
 				9F92E8D118A0D6CF00118D76 /* OBYeast.m in Sources */,

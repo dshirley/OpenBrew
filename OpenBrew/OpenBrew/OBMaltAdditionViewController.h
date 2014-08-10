@@ -11,7 +11,7 @@
 
 @class OBRecipe;
 
-@interface OBMaltAdditionViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, OBPickerObserver>
+@interface OBMaltAdditionViewController : UIViewController
 
 @property (nonatomic, strong) OBRecipe *recipe;
 
