@@ -11,6 +11,7 @@
 #import "OBIngredientFinderViewController.h"
 #import "OBRecipe.h"
 #import "OBMaltAddition.h"
+#import "OBMaltAdditionTableViewCell.h"
 
 #define LEFT_PICKER_COMPONENT 0
 #define RIGHT_PICKER_COMPONENT 1
@@ -200,7 +201,7 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return ([self drawerIsAtIndex:indexPath] ? self.drawerCellRowHeight : self.tableView.rowHeight);
+  return ([self drawerIsAtIndex:indexPath] ? self.drawerCellRowHeight : self.drawerCellRowHeight / 4);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -279,9 +280,10 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
   if (![self drawerIsAtIndex:indexPath]) {
     OBMaltAddition *maltAddition = [self maltAdditionAtIndexPath:indexPath];
+    OBMaltAdditionTableViewCell *maltCell = (OBMaltAdditionTableViewCell *)cell;
 
-    [[cell textLabel] setText:[maltAddition name]];
-    [[cell detailTextLabel] setText:[maltAddition quantityText]];
+    [maltCell.maltVariety setText:maltAddition.name];
+    [maltCell.quantity setText:[maltAddition quantityText]];
   }
 
   return cell;
