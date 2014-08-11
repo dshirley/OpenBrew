@@ -74,17 +74,12 @@
     // TODO: get rid of magic numbers
     [malt setName:attributes[0]];
     [malt setDefaultExtractPotential:[nf numberFromString:attributes[1]]];
-    [malt setDefaultLovibond:[nf numberFromString:attributes[3]]];
+    [malt setDefaultLovibond:[nf numberFromString:attributes[2]]];
     
     [catalog addMaltsObject:malt];
   }
 
   for (NSString *hopData in hops) {
-    if (!hopData || [hopData length] == 0) {
-      // TODO: why do we need to do this for hops but not malts?
-      break;
-    }
-
     NSArray *attributes = [hopData componentsSeparatedByString:@","];
 
     OBHops *hops = [NSEntityDescription insertNewObjectForEntityForName:@"Hops"
