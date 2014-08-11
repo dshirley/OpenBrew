@@ -59,7 +59,7 @@
 }
 
 - (float)originalGravity {
-  return 1 + ([self gravityUnits] / [[self batchSizeInGallons] floatValue] / 1000);
+  return 1 + ([self gravityUnits] / [self postBoilSizeInGallons] / 1000);
 }
 
 - (float)finalGravity {
