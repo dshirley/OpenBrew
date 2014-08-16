@@ -12,8 +12,24 @@
 #import "OBMaltAddition.h"
 #import "OBYeastAddition.h"
 #import "OBYeast.h"
+#import "OBKvoUtils.h"
+
+@interface OBRecipe()
+@property (nonatomic, strong) NSSet *observedHopVariables;
+@property (nonatomic, strong) NSSet *observedMaltVariables;
+@end
+
+@interface OBRecipe(PrimitiveAccessors)
+
+- (NSMutableSet *)primitiveHopAdditions;
+- (NSMutableSet *)primitiveMaltAdditions;
+
+@end
 
 @implementation OBRecipe
+
+@synthesize observedHopVariables;
+@synthesize observedMaltVariables;
 
 @dynamic batchSizeInGallons;
 @dynamic name;
@@ -28,8 +44,18 @@
                                           inManagedObjectContext:context];
 
   self = [self initWithEntity:desc insertIntoManagedObjectContext:context];
+
   if (self) {
     self.batchSizeInGallons = @5;
+
+    self.observedHopVariables = [NSSet setWithObjects:
+                                KVO_KEY(alphaAcidPercent),
+                                KVO_KEY(boilTimeInMinutes),
+                                KVO_KEY(quantityInOunces), nil];
+
+    self.observedMaltVariables = [NSSet setWithObjects:
+                                  KVO_KEY(quantityInPounds),
+                                  KVO_KEY(lovibond), nil];
   }
 
   return self;
@@ -91,6 +117,121 @@
 
 - (void)save {
   // FIXME
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+  if ([self.observedMaltVariables containsObject:keyPath] ||
+      [self.observedHopVariables containsObject:keyPath])
+  {
+    [self willChangeValueForKey:KVO_KEY(IBUs)];
+    [self didChangeValueForKey:KVO_KEY(IBUs)];
+    [self willChangeValueForKey:KVO_KEY(originalGravity)];
+    [self didChangeValueForKey:KVO_KEY(originalGravity)];
+    [self willChangeValueForKey:KVO_KEY(boilGravity)];
+    [self didChangeValueForKey:KVO_KEY(boilGravity)];
+  } else {
+    [NSException raise:@"Unrecognized Key" format:@"Key: %@", keyPath];
+  }
+}
+
+- (void)startObservingKeys:(NSSet *)keys ofObject:(id)object
+{
+  for (NSString *key in keys) {
+    [object addObserver:self forKeyPath:key options:0 context:nil];
+  }
+}
+
+- (void)stopObservingKeys:(NSSet *)keys ofObject:(id)object
+{
+  for (NSString *key in keys) {
+    [object removeObserver:self forKeyPath:key];
+  }
+}
+
+#pragma mark - Hop Addition Properties
+
+- (void)addHopAdditionsObject:(OBHopAddition *)value
+{
+  NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
+
+
+  [self willChangeValueForKey:KVO_KEY(hopAdditions)
+              withSetMutation:NSKeyValueUnionSetMutation
+                 usingObjects:changedObjects];
+
+  if (![[self primitiveHopAdditions] containsObject:value]) {
+    [self startObservingKeys:self.observedHopVariables ofObject:value];
+  }
+
+  [[self primitiveHopAdditions] addObject:value];
+
+  [self didChangeValueForKey:KVO_KEY(hopAdditions)
+             withSetMutation:NSKeyValueUnionSetMutation
+                usingObjects:changedObjects];
+}
+
+- (void)removeHopAdditionsObject:(OBHopAddition *)value
+{
+  NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
+
+  if ([[self primitiveHopAdditions] containsObject:value]) {
+    [self stopObservingKeys:self.observedHopVariables ofObject:value];
+  }
+
+  [self willChangeValueForKey:KVO_KEY(hopAdditions)
+              withSetMutation:NSKeyValueMinusSetMutation
+                 usingObjects:changedObjects];
+
+  [[self primitiveHopAdditions] removeObject:value];
+
+  [self didChangeValueForKey:KVO_KEY(hopAdditions)
+             withSetMutation:NSKeyValueMinusSetMutation
+                usingObjects:changedObjects];
+}
+
+#pragma mark - Malt Addition Properties
+
+- (void)addMaltAdditionsObject:(OBMaltAddition *)value
+{
+  NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
+
+
+  [self willChangeValueForKey:KVO_KEY(maltAdditions)
+              withSetMutation:NSKeyValueUnionSetMutation
+                 usingObjects:changedObjects];
+
+  if (![[self primitiveMaltAdditions] containsObject:value]) {
+    [self startObservingKeys:self.observedMaltVariables ofObject:value];
+  }
+
+  [[self primitiveMaltAdditions] addObject:value];
+
+  [self didChangeValueForKey:KVO_KEY(maltAdditions)
+             withSetMutation:NSKeyValueUnionSetMutation
+                usingObjects:changedObjects];
+}
+
+- (void)removeMaltAdditionsObject:(OBMaltAddition *)value
+{
+  NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
+
+  if ([[self primitiveMaltAdditions] containsObject:value]) {
+    [self stopObservingKeys:self.observedMaltVariables ofObject:value];
+  }
+
+  [self willChangeValueForKey:KVO_KEY(maltAdditions)
+              withSetMutation:NSKeyValueMinusSetMutation
+                 usingObjects:changedObjects];
+
+  [[self primitiveMaltAdditions] removeObject:value];
+
+  [self didChangeValueForKey:KVO_KEY(maltAdditions)
+             withSetMutation:NSKeyValueMinusSetMutation
+                usingObjects:changedObjects];
 }
 
 @end

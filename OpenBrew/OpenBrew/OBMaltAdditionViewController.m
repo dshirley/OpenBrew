@@ -13,6 +13,7 @@
 #import "OBMalt.h"
 #import "OBMaltAddition.h"
 #import "OBMaltAdditionTableViewDelegate.h"
+#import "OBKvoUtils.h"
 
 @interface OBMaltAdditionViewController ()
 
@@ -63,11 +64,37 @@
 }
 
 - (void)reload {
+  [self.tableView reloadData];
+  [self refreshGauge];
+}
+
+- (void)refreshGauge
+{
   float gravity = [self.recipe originalGravity];
   _gauge.value.text = [NSString stringWithFormat:@"%.3f", gravity];
   _gauge.description.text = @"Estimated Starting Gravity";
+}
 
-  [self.tableView reloadData];
+- (void)setRecipe:(OBRecipe *)recipe
+{
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(originalGravity)];
+  _recipe = recipe;
+  [_recipe addObserver:self forKeyPath:KVO_KEY(originalGravity) options:0 context:nil];
+}
+
+- (void)dealloc
+{
+  self.recipe = nil;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+  if ([keyPath isEqualToString:KVO_KEY(originalGravity)]) {
+    [self refreshGauge];
+  }
 }
 
 #pragma mark - Navigation

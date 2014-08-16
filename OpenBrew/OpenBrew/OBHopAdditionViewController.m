@@ -15,6 +15,7 @@
 #import "OBHopAdditionTableViewDelegate.h"
 #import "OBPickerDelegate.h"
 #import <math.h>
+#import "OBKvoUtils.h"
 
 @interface OBHopAdditionViewController ()
 
@@ -43,12 +44,15 @@
 
 - (void)reload {
   [self.tableView reloadData];
+  [self refreshGauge];
+}
 
+- (void)refreshGauge
+{
   float ibu = [self.recipe IBUs];
   _gauge.value.text = [NSString stringWithFormat:@"%d", (int) round(ibu)];
   _gauge.description.text = @"IBUs";
 }
-
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
@@ -61,6 +65,30 @@
   [self.tableView endUpdates];
 
   [self.tableView setEditing:editing animated:animated];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+  if ([keyPath isEqualToString:KVO_KEY(IBUs)]) {
+    [self refreshGauge];
+  }
+}
+
+- (void)setRecipe:(OBRecipe *)recipe
+{
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(IBUs)];
+
+  _recipe = recipe;
+
+  [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs) options:0 context:nil];
+}
+
+- (void)dealloc
+{
+  self.recipe = nil;
 }
 
 #pragma mark - Navigation

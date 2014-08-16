@@ -29,13 +29,9 @@
 
 - (void)addHopAdditionsObject:(OBHopAddition *)value;
 - (void)removeHopAdditionsObject:(OBHopAddition *)value;
-- (void)addHopAdditions:(NSSet *)values;
-- (void)removeHopAdditions:(NSSet *)values;
 
 - (void)addMaltAdditionsObject:(OBMaltAddition *)value;
 - (void)removeMaltAdditionsObject:(OBMaltAddition *)value;
-- (void)addMaltAdditions:(NSSet *)values;
-- (void)removeMaltAdditions:(NSSet *)values;
 
 - (float)boilSizeInGallons;
 - (float)postBoilSizeInGallons;
