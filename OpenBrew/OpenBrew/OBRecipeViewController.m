@@ -10,12 +10,14 @@
 #import "OBRecipeNavigationController.h"
 #import "OBRecipeOverviewController.h"
 
-@interface OBRecipeViewController ()
+static NSString *const ADD_RECIPE_SEGUE = @"addRecipe";
+static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
+@interface OBRecipeViewController ()
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @end
 
 @implementation OBRecipeViewController
-@synthesize recipesTableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,30 +31,58 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  
-  UITableView *view = [self recipesTableView];
-  [view reloadData];
+  [self.tableView reloadData];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super viewWillAppear:animated];
+
+  if (!self.isMovingToParentViewController) {
+    // A sub-view controller is being popped
+    [self.tableView reloadData];
+  }
+}
+
+- (NSArray *)recipeData
+{
+  OBRecipeNavigationController *nav = (OBRecipeNavigationController *) [self navigationController];
+  NSManagedObjectContext *moc = [nav managedContext];
+  NSEntityDescription *entityDescription = [NSEntityDescription
+                                            entityForName:@"Recipe"
+                                            inManagedObjectContext:moc];
+  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  [request setEntity:entityDescription];
+
+  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name"
+                                                                 ascending:YES];
+
+  [request setSortDescriptors:@[sortDescriptor]];
+
+  NSError *error;
+  NSArray *array = [moc executeFetchRequest:request error:&error];
+
+  assert(array);
+
+  return array;
 }
 
 #pragma mark - UITableViewDataSource Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return 3;
+  return [[self recipeData] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OBRecipeCell"
                                                           forIndexPath:indexPath];
-  
-  [[cell textLabel] setText:[NSString stringWithFormat:@"test%d", [indexPath row]]];
+
+  NSArray *recipes = [self recipeData];
+  OBRecipe *recipe = recipes[indexPath.row];
+
+  cell.textLabel.text = [NSString stringWithFormat:@"%@", recipe.name];
   
   return cell;
 }
@@ -60,13 +90,22 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   OBRecipeNavigationController *nav = (OBRecipeNavigationController *) [self navigationController];
   NSManagedObjectContext *ctx = [nav managedContext];
-  
-  if ([[segue identifier] isEqualToString:@"addRecipe"]) {
-    OBRecipe *recipe = [[OBRecipe alloc] initWithContext:ctx];
-    
-    id nextController = [segue destinationViewController];
-    [nextController setRecipe:recipe];
+  NSString *segueId = [segue identifier];
+  OBRecipe *recipe = nil;
+
+  if ([segueId isEqualToString:ADD_RECIPE_SEGUE]) {
+    recipe = [[OBRecipe alloc] initWithContext:ctx];
+    recipe.name = @"New Recipe";
+    NSError *err = nil;
+    [ctx save:&err];
+  } else if ([segueId isEqualToString:SELECT_RECIPE_SEGUE]) {
+    NSIndexPath *cellIndex = [self.tableView indexPathForCell:sender];
+    recipe = [self recipeData][cellIndex.row];
   }
+
+  assert(recipe);
+  id nextController = [segue destinationViewController];
+  [nextController setRecipe:recipe];
 }
 
 @end

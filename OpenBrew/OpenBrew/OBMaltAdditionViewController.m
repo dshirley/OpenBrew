@@ -137,6 +137,11 @@
 
     [self.recipe addMaltAdditionsObject:maltAddition];
 
+    NSError *error = nil;
+    [self.recipe.managedObjectContext save:&error];
+    // TODO: many places where we don't check the error value.
+    // maybe it is safe to ignore... maybe we can pass nil
+
     [self reload];
   }
 }

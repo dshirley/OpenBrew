@@ -27,6 +27,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="dco-Bv-e3L" id="cmW-XL-OhF"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -178,6 +181,7 @@
                         <outlet property="batchSizeLabel" destination="BQY-zu-cMg" id="bRR-FZ-ayN"/>
                         <outlet property="ibuLabel" destination="d8y-LK-JVp" id="eZi-lV-rsW"/>
                         <outlet property="originalGravityLabel" destination="b8K-5e-HPJ" id="R6P-xE-J6U"/>
+                        <outlet property="recipeNameTextField" destination="Ir2-Iy-boT" id="YTh-dA-rgH"/>
                         <outlet property="styleLabel" destination="VEb-Ql-WHf" id="Qjy-9E-ZxD"/>
                         <outlet property="yeastLabel" destination="kbW-gy-Ze8" id="ptQ-gy-VoT"/>
                     </connections>
@@ -613,6 +617,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="dco-Bv-e3L" kind="push" identifier="selectRecipe" id="uUa-aS-xuS"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -624,7 +631,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Recipes" id="whR-0c-yd0"/>
                     <connections>
-                        <outlet property="recipesTableView" destination="Q9b-JK-P6B" id="owF-H6-NXz"/>
+                        <outlet property="tableView" destination="Q9b-JK-P6B" id="cnh-Jq-elT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kd2-dr-jsM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -653,4 +660,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="uUa-aS-xuS"/>
+    </inferredMetricsTieBreakers>
 </document>

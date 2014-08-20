@@ -14,6 +14,7 @@
 #import "OBHopAdditionViewController.h"
 
 @interface OBRecipeOverviewController ()
+@property (nonatomic, weak) IBOutlet UITextField *recipeNameTextField;
 @property (nonatomic, weak) IBOutlet UILabel *batchSizeLabel;
 @property (nonatomic, weak) IBOutlet UILabel *styleLabel;
 @property (nonatomic, weak) IBOutlet UILabel *yeastLabel;
@@ -46,6 +47,7 @@
 {
   [super viewDidLoad];
   [self reloadData];
+  self.recipeNameTextField.text = self.recipe.name;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -55,6 +57,7 @@
   if (!self.isMovingToParentViewController) {
     // A sub-view controller is being popped
     [self reloadData];
+    [self.recipe.managedObjectContext save:nil];
   }
 }
 
@@ -109,6 +112,16 @@
 
   NSString *yeast = [[[[self recipe] yeast] yeast] name];
   [[self yeastLabel] setText:yeast];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+  assert(textField == self.recipeNameTextField);
+
+  self.recipe.name = self.recipeNameTextField.text;
+
+  NSError *error = nil;
+  [self.recipe.managedObjectContext save:&error];
 }
 
 @end

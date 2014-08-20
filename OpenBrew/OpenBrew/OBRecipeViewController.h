@@ -12,7 +12,6 @@
 @interface OBRecipeViewController : UIViewController <UITableViewDataSource>
 
 @property (nonatomic, strong) OBBrewery *brewery;
-@property (weak, nonatomic) IBOutlet UITableView *recipesTableView;
 
 #pragma mark - UITableViewDataSource methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;

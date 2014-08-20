@@ -133,6 +133,7 @@
 
     [self.recipe addHopAdditionsObject:hopAddition];
 
+    [self.recipe.managedObjectContext save:nil];
     [self reload];
   }
 }
