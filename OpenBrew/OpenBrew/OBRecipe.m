@@ -46,19 +46,36 @@
   self = [self initWithEntity:desc insertIntoManagedObjectContext:context];
 
   if (self) {
+    // TODO: should this be in awake from insert instead?
     self.batchSizeInGallons = @5;
-
-    self.observedHopVariables = [NSSet setWithObjects:
-                                KVO_KEY(alphaAcidPercent),
-                                KVO_KEY(boilTimeInMinutes),
-                                KVO_KEY(quantityInOunces), nil];
-
-    self.observedMaltVariables = [NSSet setWithObjects:
-                                  KVO_KEY(quantityInPounds),
-                                  KVO_KEY(lovibond), nil];
+    [self initializeVariableLists];
   }
 
   return self;
+}
+
+- (void)initializeVariableLists
+{
+  self.observedHopVariables = [NSSet setWithObjects:
+                               KVO_KEY(alphaAcidPercent),
+                               KVO_KEY(boilTimeInMinutes),
+                               KVO_KEY(quantityInOunces), nil];
+
+  self.observedMaltVariables = [NSSet setWithObjects:
+                                KVO_KEY(quantityInPounds),
+                                KVO_KEY(lovibond), nil];
+}
+
+- (void)awakeFromFetch
+{
+  [self initializeVariableLists];
+  for (OBHopAddition *hopAddition in self.hopAdditions) {
+    [self startObservingKeys:self.observedHopVariables ofObject:hopAddition];
+  }
+
+  for (OBMaltAddition *maltAddition in self.maltAdditions) {
+    [self startObservingKeys:self.observedMaltVariables ofObject:maltAddition];
+  }
 }
 
 - (float)boilSizeInGallons {
