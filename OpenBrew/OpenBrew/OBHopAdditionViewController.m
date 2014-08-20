@@ -106,7 +106,7 @@
     [request setEntity:entityDescription];
 
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
-                                        initWithKey:@"name" ascending:YES];\
+                                        initWithKey:@"name" ascending:YES];
 
     [request setSortDescriptors:@[sortDescriptor]];
 

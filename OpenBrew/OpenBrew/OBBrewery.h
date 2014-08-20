@@ -23,6 +23,7 @@
 @interface OBBrewery (CoreDataGeneratedAccessors)
 
 + (OBBrewery *)instance;
++ (OBBrewery *)breweryFromContext:(NSManagedObjectContext *)ctx;
 
 - (void)addRecipesObject:(OBRecipe *)value;
 - (void)removeRecipesObject:(OBRecipe *)value;

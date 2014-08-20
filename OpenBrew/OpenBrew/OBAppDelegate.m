@@ -21,77 +21,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [self loadBrewery];
-  
+  OBBrewery *brewery = [OBBrewery breweryFromContext:self.managedObjectContext];
+  if (brewery) {
+    [self.managedObjectContext save:nil];
+  } else {
+    // TODO: maybe this should go into the brewery initializer? That could have unwanted
+    // side effects, though. Maybe we pass an error and check if there was an error and then
+    // abort.  Maybe there's a notion of a transaction that can be used to ensure
+    // brewery initialization happens atomically.
+    [self.managedObjectContext reset];
+  }
+
   OBRecipeNavigationController *nav = (OBRecipeNavigationController *) [[self window] rootViewController];
   [nav setManagedContext:[self managedObjectContext]];
   
   return YES;
-}
-
-- (id)loadBrewery {
-  NSString *maltCatalogPath = [[NSBundle mainBundle]
-                               pathForResource:@"MaltCatalog.csv"
-                               ofType:nil];
-
-  NSString *hopCatalogPath = [[NSBundle mainBundle]
-                              pathForResource:@"HopCatalog.csv"
-                              ofType:nil];
-
-  NSString *maltCatalogCsv = [NSString stringWithContentsOfFile:maltCatalogPath
-                                                       encoding:NSUTF8StringEncoding
-                                                          error:nil];
-
-  NSString *hopCatalogCsv = [NSString stringWithContentsOfFile:hopCatalogPath
-                                                      encoding:NSUTF8StringEncoding
-                                                         error:nil];
-  
-  NSArray *malts = [maltCatalogCsv componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-
-  NSArray *hops = [hopCatalogCsv componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-  
-  NSManagedObjectContext *ctx = [self managedObjectContext];
-
-  OBBrewery *brewery = [NSEntityDescription insertNewObjectForEntityForName:@"Brewery"
-                                             inManagedObjectContext:ctx];
-  
-  OBIngredientCatalog *catalog = [NSEntityDescription
-                                  insertNewObjectForEntityForName:@"IngredientCatalog"
-                                  inManagedObjectContext:ctx];
-  
-  [brewery setIngredientCatalog:catalog];
-
-  NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
-  [nf setNumberStyle:NSNumberFormatterDecimalStyle];
-
-  for (NSString *maltData in malts) {
-    NSArray *attributes = [maltData componentsSeparatedByString:@","];
-    
-    OBMalt *malt = [NSEntityDescription
-                    insertNewObjectForEntityForName:@"Malt"
-                    inManagedObjectContext:ctx];
-    
-    // TODO: get rid of magic numbers
-    [malt setName:attributes[0]];
-    [malt setDefaultExtractPotential:[nf numberFromString:attributes[1]]];
-    [malt setDefaultLovibond:[nf numberFromString:attributes[2]]];
-    
-    [catalog addMaltsObject:malt];
-  }
-
-  for (NSString *hopData in hops) {
-    NSArray *attributes = [hopData componentsSeparatedByString:@","];
-
-    OBHops *hops = [NSEntityDescription insertNewObjectForEntityForName:@"Hops"
-                                                 inManagedObjectContext:ctx];
-
-    [hops setName:attributes[0]];
-    [hops setDefaultAlphaAcidPercent:[nf numberFromString:attributes[1]]];
-
-    [catalog addHopsObject:hops];
-  }
-  
-  return brewery;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
