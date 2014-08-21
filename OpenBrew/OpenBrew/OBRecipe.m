@@ -117,11 +117,12 @@
 
 - (float)IBUs {
   float ibus = 0.0;
-  float boilSizeInGallons = [self boilSizeInGallons];
+  float postBoilSizeInGallons = [self postBoilSizeInGallons];
   float boilGravity = [self boilGravity];
 
   for (OBHopAddition *hops in [self hopAdditions]) {
-    ibus += [hops ibuContributionWithBoilSize:boilSizeInGallons andGravity:boilGravity];
+    ibus += [hops ibuContributionWithBoilSize:postBoilSizeInGallons
+                                   andGravity:boilGravity];
   }
 
   return ibus;
