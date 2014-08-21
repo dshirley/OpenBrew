@@ -22,7 +22,7 @@
 // Used to convert oz/gallon to gram/liter
 #define IMPERIAL_TO_METRIC_CONST 74.891
 
-- (id)initWithHopVariety:(OBHops *)hopVariety
+- (id)initWithHopVariety:(OBHops *)hopVariety andRecipe:(OBRecipe *)recipe
 {
   NSManagedObjectContext *ctx = [hopVariety managedObjectContext];
   NSEntityDescription *desc = [NSEntityDescription entityForName:@"HopAddition"
@@ -33,9 +33,7 @@
     self.quantityInOunces = @0;
     self.boilTimeInMinutes = @0;
     self.alphaAcidPercent = hopVariety.defaultAlphaAcidPercent;
-
-    // TODO: shouldn't this be set via the initializer?
-    self.recipe = nil;
+    self.recipe = recipe;
   }
 
   return self;

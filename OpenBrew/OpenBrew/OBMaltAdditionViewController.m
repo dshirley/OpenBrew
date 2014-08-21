@@ -130,7 +130,8 @@
   if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {
     OBIngredientFinderViewController *finderView = [unwindSegue sourceViewController];
     OBMalt *malt = [finderView selectedIngredient];
-    OBMaltAddition *maltAddition = [[OBMaltAddition alloc] initWithMalt:malt];
+    OBMaltAddition *maltAddition = [[OBMaltAddition alloc] initWithMalt:malt
+                                                              andRecipe:self.recipe];
 
     NSUInteger numberOfMalts = [[self.recipe maltAdditions] count];
     maltAddition.displayOrder = [NSNumber numberWithUnsignedInteger:numberOfMalts];
@@ -139,8 +140,7 @@
 
     NSError *error = nil;
     [self.recipe.managedObjectContext save:&error];
-    // TODO: many places where we don't check the error value.
-    // maybe it is safe to ignore... maybe we can pass nil
+    // TODO: log critter error
 
     [self reload];
   }

@@ -125,7 +125,8 @@
   if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {
     OBIngredientFinderViewController *finderView = [unwindSegue sourceViewController];
     OBHops *hopVariety = [finderView selectedIngredient];
-    OBHopAddition *hopAddition = [[OBHopAddition alloc] initWithHopVariety:hopVariety];
+    OBHopAddition *hopAddition = [[OBHopAddition alloc] initWithHopVariety:hopVariety
+                                                                 andRecipe:self.recipe];
 
     NSUInteger numberOfHops = [[self.recipe hopAdditions] count];
 

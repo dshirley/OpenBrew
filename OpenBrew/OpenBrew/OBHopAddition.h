@@ -20,7 +20,7 @@
 @property (nonatomic, retain) OBHops *hops;
 @property (nonatomic, retain) OBRecipe *recipe;
 
-- (id)initWithHopVariety:(OBHops *)hopVariety;
+- (id)initWithHopVariety:(OBHops *)hopVariety andRecipe:(OBRecipe *)recipe;
 
 - (float)ibuContributionWithBoilSize:(float)gallons andGravity:(float)gravity;
 - (float)utilizationForGravity:(float)gravity;

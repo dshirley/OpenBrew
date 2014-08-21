@@ -21,7 +21,7 @@
 @dynamic malt;
 @dynamic recipe;
 
-- (id)initWithMalt:(OBMalt *)malt {
+- (id)initWithMalt:(OBMalt *)malt andRecipe:(OBRecipe *)recipe {
   NSManagedObjectContext *ctx = [malt managedObjectContext];
   NSEntityDescription *desc = [NSEntityDescription entityForName:@"MaltAddition"
                                           inManagedObjectContext:ctx];
@@ -31,9 +31,7 @@
     self.quantityInPounds = @0;
     self.extractPotential = [malt defaultExtractPotential];
     self.lovibond = [malt defaultLovibond];
-
-    // TODO: shouldn't this be set via the initializer?
-    self.recipe = nil;
+    self.recipe = recipe;
   }
 
   return self;

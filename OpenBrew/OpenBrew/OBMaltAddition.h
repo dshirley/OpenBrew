@@ -21,7 +21,7 @@
 @property (nonatomic, retain) NSNumber *extractPotential;
 @property (nonatomic, retain) NSNumber *quantityInPounds;
 
-- (id)initWithMalt:(OBMalt *)malt;
+- (id)initWithMalt:(OBMalt *)malt andRecipe:(OBRecipe *)recipe;
 
 - (float)gravityUnitsWithEfficiency:(float)efficiency;
 
