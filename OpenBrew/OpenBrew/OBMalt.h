@@ -15,11 +15,18 @@
 
 @property (nonatomic, retain) OBIngredientCatalog *catalog;
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSNumber * defaultLovibond;
-@property (nonatomic, retain) NSNumber * defaultExtractPotential;
+@property (nonatomic, retain) NSString *name;
 
+// Malt, sugar, extract
+@property (nonatomic, retain) NSNumber *type;
+@property (nonatomic, retain) NSNumber *defaultLovibond;
+@property (nonatomic, retain) NSNumber *defaultExtractPotential;
 @property (nonatomic, retain) NSSet *maltAdditions;
+
+- (BOOL)isGrain;
+- (BOOL)isSugar;
+- (BOOL)isExtract;
+
 @end
 
 @interface OBMalt (CoreDataGeneratedAccessors)

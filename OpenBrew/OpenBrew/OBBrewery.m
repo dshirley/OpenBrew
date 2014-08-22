@@ -15,6 +15,7 @@
 #define MALT_NAME_IDX 0
 #define MALT_EXTRACT_IDX 1
 #define MALT_COLOR_IDX 2
+#define MALT_TYPE_IDX 3
 
 #define HOP_NAME_IDX 0
 #define HOP_ALPHA_IDX 1
@@ -104,6 +105,7 @@
     malt.name = attributes[MALT_NAME_IDX];
     malt.defaultExtractPotential = [nf numberFromString:attributes[MALT_EXTRACT_IDX]];
     malt.defaultLovibond = [nf numberFromString:attributes[MALT_COLOR_IDX]];
+    malt.type = [nf numberFromString:attributes[MALT_TYPE_IDX]];
 
     [catalog addMaltsObject:malt];
   }

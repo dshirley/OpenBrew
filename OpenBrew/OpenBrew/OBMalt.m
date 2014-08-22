@@ -10,6 +10,9 @@
 #import "OBIngredientCatalog.h"
 #import "OBMaltAddition.h"
 
+#define MALT_TYPE_GRAIN 0
+#define MALT_TYPE_SUGAR 1
+#define MALT_TYPE_EXTRACT 2
 
 @implementation OBMalt
 
@@ -18,5 +21,21 @@
 @dynamic name;
 @dynamic catalog;
 @dynamic maltAdditions;
+@dynamic type;
+
+- (BOOL)isGrain
+{
+  return [self.type intValue] == MALT_TYPE_GRAIN;
+}
+
+- (BOOL)isSugar
+{
+  return [self.type intValue] == MALT_TYPE_SUGAR;
+}
+
+- (BOOL)isExtract
+{
+  return [self.type intValue] == MALT_TYPE_EXTRACT;
+}
 
 @end

@@ -282,8 +282,8 @@
 			isa = PBXGroup;
 			children = (
 				9FCECC5A18879B430045FADD /* OBHopsTest.m */,
-				9F98D37E1880F8EE00469323 /* Supporting Files */,
 				9FE9745718883C8500FFAA56 /* OBMaltTest.m */,
+				9F98D37E1880F8EE00469323 /* Supporting Files */,
 			);
 			path = OpenBrewTests;
 			sourceTree = "<group>";

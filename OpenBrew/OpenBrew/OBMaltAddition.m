@@ -41,6 +41,10 @@
   float potential = [self.extractPotential floatValue];
   float pounds = [self.quantityInPounds floatValue];
 
+  if ([self.malt isExtract] || [self.malt isSugar]) {
+    efficiency = 1.0;
+  }
+
   return 1000 * (potential - 1) * pounds * efficiency;
 }
 

@@ -1,77 +1,77 @@
-Acid Malt,1.027,3,Malt
-Amber DME,1.045,10,Extract
-Aromatic Malt,1.036,26,Malt
-Biscuit,1.036,23,Malt
-Black Barley,1.025,500,Malt
-Black Patent,1.025,500,Malt
-Brown Malt,1.032,65,Malt
-Brown Sugar (Dark),1.046,50,Sugar
-Brown Sugar (Light),1.046,8,Sugar
-Brumalt,1.033,23,Malt
-Candi Sugar (Amber),1.036,75,Sugar
-Candi Sugar (Clear),1.036,0,Sugar
-Candi Sugar (Dark),1.036,275,Sugar
-Cane Sugar,1.046,0,Sugar
-CaraAroma,1.035,130,Malt
-Carafa I,1.032,337,Malt
-Carafa II,1.032,412,Malt
-Carafa III,1.032,525,Malt
-Caramel Wheat,1.035,46,Malt
-CaraMunich,1.033,56,Malt
-CaraPils,1.033,2,Malt
-CaraRed,1.035,17,Malt
-Carastan 15,1.034,15,Malt
-Carastan 35,1.034,35,Malt
-CaraVienna,1.034,22,Malt
-Chocolate,1.034,350,Malt
-Chocolate Rye,1.031,250,Malt
-Chocolate Wheat,1.033,400,Malt
-Corn Sugar,1.042,0,Sugar
-Corn Syrup,1.036,1,Sugar
-Crystal 10,1.034,10,Malt
-Crystal 120,1.034,120,Malt
-Crystal 150,1.035,150,Malt
-Crystal 20,1.034,20,Malt
-Crystal 30,1.034,30,Malt
-Crystal 40,1.034,40,Malt
-Crystal 60,1.034,60,Malt
-Crystal 80,1.034,80,Malt
-Crystal 90,1.034,90,Malt
-Dark DME,1.045,30,Extract
-Dextrin Malt,1.033,2,Malt
-Golden Promise,1.037,2,Malt
-Honey,1.035,1,Sugar
-Honey Malt,1.037,25,Malt
-Light DME,1.045,4,Extract
-Light LME,1.035,3,Extract
-Maple Syrup,1.03,35,Sugar
-Maris Otter,1.038,3,Malt
-Maris Otter LME,1.035,4,Extract
-Melanoidin,1.037,20,Malt
-Mild Malt,1.036,5,Malt
-Molasses,1.036,80,Sugar
-Munich 10,1.035,10,Malt
-Munich 20,1.035,20,Malt
-Munich DME,1.045,10,Extract
-Munich LME,1.035,10,Extract
-Oats,1.037,1,Malt
-Pale LME,1.035,4,Extract
-Pilsner DME,1.045,1,Extract
-Pilsner LME,1.035,2,Extract
-Pilsner Malt,1.036,2,Malt
-Roasted Barley,1.025,300,Malt
-Rye LME,1.035,4,Extract
-Six-Row,1.035,2,Malt
-Smoked Malt,1.037,9,Malt
-Sorghum Extract,1.04,2,Extract
-Special B,1.031,180,Malt
-Special Roast,1.033,50,Malt
-Toasted Malt,1.029,5,Malt
-Treacle,1.036,80,Sugar
-Two-Row,1.036,2,Malt
-Victory,1.034,28,Malt
-Vienna,1.036,4,Malt
-Wheat Dark,1.039,9,Malt
-Wheat DME,1.045,2,Extract
-Wheat Light,1.039,2,Malt
-Wheat LME,1.035,2,Extract
+Acid Malt,1.027,3,0
+Amber DME,1.045,10,2
+Aromatic Malt,1.036,26,0
+Biscuit,1.036,23,0
+Black Barley,1.025,500,0
+Black Patent,1.025,500,0
+Brown Malt,1.032,65,0
+Brown Sugar (Dark),1.046,50,1
+Brown Sugar (Light),1.046,8,1
+Brumalt,1.033,23,0
+Candi Sugar (Amber),1.036,75,1
+Candi Sugar (Clear),1.036,0,1
+Candi Sugar (Dark),1.036,275,1
+Cane Sugar,1.046,0,1
+CaraAroma,1.035,130,0
+Carafa I,1.032,337,0
+Carafa II,1.032,412,0
+Carafa III,1.032,525,0
+Caramel Wheat,1.035,46,0
+CaraMunich,1.033,56,0
+CaraPils,1.033,2,0
+CaraRed,1.035,17,0
+Carastan 15,1.034,15,0
+Carastan 35,1.034,35,0
+CaraVienna,1.034,22,0
+Chocolate,1.034,350,0
+Chocolate Rye,1.031,250,0
+Chocolate Wheat,1.033,400,0
+Corn Sugar,1.042,0,1
+Corn Syrup,1.036,1,1
+Crystal 10,1.034,10,0
+Crystal 120,1.034,120,0
+Crystal 150,1.035,150,0
+Crystal 20,1.034,20,0
+Crystal 30,1.034,30,0
+Crystal 40,1.034,40,0
+Crystal 60,1.034,60,0
+Crystal 80,1.034,80,0
+Crystal 90,1.034,90,0
+Dark DME,1.045,30,2
+Dextrin Malt,1.033,2,0
+Golden Promise,1.037,2,0
+Honey,1.035,1,1
+Honey Malt,1.037,25,0
+Light DME,1.045,4,2
+Light LME,1.035,3,2
+Maple Syrup,1.03,35,1
+Maris Otter,1.038,3,0
+Maris Otter LME,1.035,4,2
+Melanoidin,1.037,20,0
+Mild Malt,1.036,5,0
+Molasses,1.036,80,1
+Munich 10,1.035,10,0
+Munich 20,1.035,20,0
+Munich DME,1.045,10,2
+Munich LME,1.035,10,2
+Oats,1.037,1,0
+Pale LME,1.035,4,2
+Pilsner DME,1.045,1,2
+Pilsner LME,1.035,2,2
+Pilsner Malt,1.036,2,0
+Roasted Barley,1.025,300,0
+Rye LME,1.035,4,2
+Six-Row,1.035,2,0
+Smoked Malt,1.037,9,0
+Sorghum Extract,1.04,2,2
+Special B,1.031,180,0
+Special Roast,1.033,50,0
+Toasted Malt,1.029,5,0
+Treacle,1.036,80,1
+Two-Row,1.036,2,0
+Victory,1.034,28,0
+Vienna,1.036,4,0
+Wheat Dark,1.039,9,0
+Wheat DME,1.045,2,2
+Wheat Light,1.039,2,0
+Wheat LME,1.035,2,2
