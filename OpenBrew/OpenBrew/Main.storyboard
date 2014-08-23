@@ -238,7 +238,7 @@
         <!--Malt Addition View Controller-->
         <scene sceneID="0wT-Ic-1wr">
             <objects>
-                <viewController id="G4Y-bP-qbh" customClass="OBMaltAdditionViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="G4Y-bP-qbh" customClass="OBMaltAdditionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cJt-j3-ago"/>
                         <viewControllerLayoutGuide type="bottom" id="Z8h-QL-572"/>
@@ -247,21 +247,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2PZ-Dm-gYY">
-                                <rect key="frame" x="62" y="519" width="197" height="42"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kOa-7I-0kp" customClass="OBIngredientGauge">
+                                <rect key="frame" x="0.0" y="64" width="320" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Add Malt">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Iyn-Nb-g7Q" kind="push" identifier="addIngredient" id="T58-vF-enP"/>
-                                </connections>
-                            </button>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="UdS-iz-4Sc">
-                                <rect key="frame" x="0.0" y="182" width="320" height="324"/>
+                                <rect key="frame" x="0.0" y="182" width="320" height="386"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="KB6-32-i8g">
+                                    <rect key="frame" x="0.0" y="292" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                    <items/>
+                                </toolbar>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IngredientAddition" rowHeight="54" id="EDW-mH-5Fs" customClass="OBMaltAdditionTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="54"/>
@@ -330,15 +329,25 @@
                                     <outlet property="delegate" destination="G4Y-bP-qbh" id="f9Q-uM-cB7"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kOa-7I-0kp" customClass="OBIngredientGauge">
-                                <rect key="frame" x="0.0" y="64" width="320" height="120"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vyc-2V-TX0">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="rgi-tD-vjb"/>
+                                    <barButtonItem systemItem="add" id="WBw-ry-yje">
+                                        <connections>
+                                            <segue destination="Iyn-Nb-g7Q" kind="push" identifier="addIngredient" id="A9m-Rf-kpk"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ZEW-Zg-Z2B"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="KxO-Sm-tW2"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="gauge" destination="kOa-7I-0kp" id="toB-W6-q80"/>
                         <outlet property="tableView" destination="UdS-iz-4Sc" id="gEw-F7-HPk"/>
