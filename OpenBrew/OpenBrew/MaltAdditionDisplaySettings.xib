@@ -30,9 +30,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <segments>
                         <segment title="Weight"/>
-                        <segment title="%"/>
-                        <segment title="Gravity"/>
-                        <segment title="Color"/>
+                        <segment title="% Gravity"/>
                     </segments>
                     <connections>
                         <action selector="ingredientDisplaySettingsChanged:" destination="-1" eventType="valueChanged" id="bxw-Ks-g2O"/>

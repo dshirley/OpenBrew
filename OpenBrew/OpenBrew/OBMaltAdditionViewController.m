@@ -177,6 +177,9 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
 - (void)setRecipe:(OBRecipe *)recipe
 {
+  // TODO: we could also register for changes to recipe color; however, since
+  // color and gravity depend on similar variables, we'd start getting two callbacks
+  // which would be unnecessary. Perhaps this is something we could refine in the future.
   [_recipe removeObserver:self forKeyPath:KVO_KEY(originalGravity)];
   _recipe = recipe;
   [_recipe addObserver:self forKeyPath:KVO_KEY(originalGravity) options:0 context:nil];
@@ -262,7 +265,9 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 // line item.
 - (IBAction)ingredientDisplaySettingsChanged:(UISegmentedControl *)sender
 {
-
+  // Note that the segment indices must allign with the metric enum
+  OBMaltAdditionMetric newMetric = sender.selectedSegmentIndex;
+  self.tableViewDelegate.maltAdditionMetricToDisplay = newMetric;
 }
 
 @end

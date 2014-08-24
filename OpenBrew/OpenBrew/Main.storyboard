@@ -318,7 +318,7 @@
                                         <connections>
                                             <outlet property="color" destination="vmt-x0-L9Y" id="4vV-27-1JU"/>
                                             <outlet property="maltVariety" destination="th8-2c-w45" id="HNP-7v-IQI"/>
-                                            <outlet property="quantity" destination="yUj-0S-Fgq" id="mgH-UB-Nsf"/>
+                                            <outlet property="primaryMetric" destination="yUj-0S-Fgq" id="B5k-h6-uFp"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DrawerCell" rowHeight="216" id="Aap-AG-mzu" customClass="OBMultiPickerTableViewCell">

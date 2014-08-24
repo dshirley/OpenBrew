@@ -90,17 +90,31 @@
   return [[self batchSizeInGallons] floatValue] + 1;
 }
 
+- (float)efficiency
+{
+  // FIXME: don't hardcode the efficiency
+  return .75; //[[[OBBrewery instance] mashEfficiency] floatValue];
+}
+
 - (float)gravityUnits {
   float gravityUnits = 0.0;
-
-  // FIXME: don't hardcode the efficiency
-  float efficiency = .75; //[[[OBBrewery instance] mashEfficiency] floatValue];
+  float efficiency = [self efficiency];
 
   for (OBMaltAddition *malt in [self maltAdditions]) {
     gravityUnits += [malt gravityUnitsWithEfficiency:efficiency];
   }
 
   return gravityUnits;
+}
+
+- (NSInteger)percentTotalGravityOfMaltAddition:(OBMaltAddition *)maltAddition
+{
+  assert([self.maltAdditions containsObject:maltAddition]);
+
+  float gravityUnits = [self gravityUnits];
+  float maltGravityUnits = [maltAddition gravityUnitsWithEfficiency:[self efficiency]];
+
+  return (NSInteger) roundf(100 * maltGravityUnits / gravityUnits);
 }
 
 - (float)originalGravity {

@@ -32,4 +32,6 @@
 // As described in "Designing Great Beers"
 - (float)maltColorUnitsForBoilSize:(float)boilSize;
 
+- (NSInteger)percentOfGravity;
+
 @end

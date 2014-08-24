@@ -32,6 +32,7 @@
 - (float)IBUs;
 - (float)colorInSRM;
 - (float)alcoholByVolume;
+- (NSInteger)percentTotalGravityOfMaltAddition:(OBMaltAddition *)maltAddition;
 
 @end
 

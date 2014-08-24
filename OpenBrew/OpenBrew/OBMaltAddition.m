@@ -89,4 +89,9 @@
   return (lovibond * quantityInPounds) / boilSize;
 }
 
+- (NSInteger)percentOfGravity
+{
+  return [self.recipe percentTotalGravityOfMaltAddition:self];
+}
+
 @end

@@ -46,6 +46,16 @@
   return self;
 }
 
+- (void)setMaltAdditionMetricToDisplay:(OBMaltAdditionMetric)newSelection
+{
+  _maltAdditionMetricToDisplay = newSelection;
+
+  // TODO: perhaps a reload is more heavy weight than we need? Not sure...
+  // there probably aren't majore performance implications since the data we're
+  // dealing with is so small
+  [self.tableView reloadData];
+}
+
 /**
  * Returns the malts in this recipe in an array format that represents the order
  * of elements in the table view.
@@ -81,7 +91,17 @@
   OBMaltAdditionTableViewCell *maltCell = (OBMaltAdditionTableViewCell *)cell;
 
   maltCell.maltVariety.text = maltAddition.malt.name;
-  maltCell.quantity.text = [maltAddition quantityText];
+
+  switch (self.maltAdditionMetricToDisplay) {
+    case OBMaltAdditionMetricWeight:
+      maltCell.primaryMetric.text = [maltAddition quantityText];
+      break;
+    case OBMaltAdditionMetricPercentOfGravity:
+      maltCell.primaryMetric.text = [NSString stringWithFormat:@"%@%%",
+                                     @([maltAddition percentOfGravity])];
+      break;
+  }
+
   maltCell.color.text = [NSString stringWithFormat:@"%@ Lovibond", maltAddition.lovibond];
 }
 
@@ -141,9 +161,11 @@
 
 - (void)pickerChanged
 {
-  OBMultiPickerTableViewCell *cell = (OBMultiPickerTableViewCell *)[self cellBeforeDrawerForTableView:self.tableView];
-  OBMaltAddition *maltAddition = [self ingredientForDrawer];
-  [self populateIngredientCell:cell withIngredientData:maltAddition];
+//  OBMultiPickerTableViewCell *cell = (OBMultiPickerTableViewCell *)[self cellBeforeDrawerForTableView:self.tableView];
+//  OBMaltAddition *maltAddition = [self ingredientForDrawer];
+//  [self populateIngredientCell:cell withIngredientData:maltAddition];
+
+  [self.tableView reloadData];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

@@ -10,6 +10,6 @@
 
 @interface OBMaltAdditionTableViewCell : UITableViewCell
 @property (nonatomic, weak) IBOutlet UILabel *maltVariety;
-@property (nonatomic, weak) IBOutlet UILabel *quantity;
+@property (nonatomic, weak) IBOutlet UILabel *primaryMetric;
 @property (nonatomic, weak) IBOutlet UILabel *color;
 @end
