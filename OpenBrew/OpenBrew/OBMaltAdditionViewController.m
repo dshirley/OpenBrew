@@ -18,6 +18,16 @@
 // TODO: add comments on how the settings view works
 // Name variables  more consistently too
 
+// What malt related metric should the gauge display.  These values should
+// correspond to the indices of the MaltAdditionDisplaySettings segmentview.
+typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
+  OBMaltGaugeMetricGravity,
+  OBMaltGaugeMetricColor
+};
+
+// TODO: add comments on how the settings view works
+// Name variables  more consistently too
+
 @interface OBMaltAdditionViewController ()
 
 // Elements from MaltAdditionDisplaySettings.xib
@@ -30,6 +40,8 @@
 @property (nonatomic, strong) NSIndexPath *drawerIndexPath;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (assign) NSInteger drawerCellRowHeight;
+
+@property (nonatomic, assign) OBMaltGaugeMetric gaugeMetric;
 @property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
 @property (nonatomic, strong) OBMaltAdditionTableViewDelegate *tableViewDelegate;
 @end
@@ -150,9 +162,17 @@
 
 - (void)refreshGauge
 {
-  float gravity = [self.recipe originalGravity];
-  _gauge.value.text = [NSString stringWithFormat:@"%.3f", gravity];
-  _gauge.description.text = @"Estimated Starting Gravity";
+  if (self.gaugeMetric == OBMaltGaugeMetricGravity) {
+    float gravity = [self.recipe originalGravity];
+    _gauge.value.text = [NSString stringWithFormat:@"%.3f", gravity];
+    _gauge.description.text = @"Starting Gravity";
+  } else if (self.gaugeMetric == OBMaltGaugeMetricColor) {
+    float srm = [self.recipe colorInSRM];
+    _gauge.value.text = [NSString stringWithFormat:@"%.0f", srm];
+    _gauge.description.text = @"SRM";
+  } else {
+    [NSException raise:@"Bad OBMaltGaugeMetric" format:@"Metric: %d", self.gaugeMetric];
+  }
 }
 
 - (void)setRecipe:(OBRecipe *)recipe
@@ -233,7 +253,8 @@
 // the gauge.
 - (IBAction)gaugeDisplaySettingsChanged:(UISegmentedControl *)sender
 {
-
+  self.gaugeMetric = sender.selectedSegmentIndex;
+  [self refreshGauge];
 }
 
 // Linked to MaltAdditionDisplaySettings.xib.  This method gets called when a
@@ -243,8 +264,5 @@
 {
 
 }
-
-
-
 
 @end
