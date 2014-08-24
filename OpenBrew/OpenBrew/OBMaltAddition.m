@@ -81,4 +81,12 @@
   return [poundsString stringByAppendingString:ouncesString];
 }
 
+- (float)maltColorUnitsForBoilSize:(float)boilSize
+{
+  float lovibond = [[self lovibond] floatValue];
+  float quantityInPounds = [[self quantityInPounds] floatValue];
+
+  return (lovibond * quantityInPounds) / boilSize;
+}
+
 @end

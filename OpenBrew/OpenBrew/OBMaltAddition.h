@@ -29,4 +29,7 @@
 
 - (NSString *)quantityText;
 
+// As described in "Designing Great Beers"
+- (float)maltColorUnitsForBoilSize:(float)boilSize;
+
 @end

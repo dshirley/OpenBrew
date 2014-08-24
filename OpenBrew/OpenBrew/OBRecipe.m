@@ -128,6 +128,18 @@
   return ibus;
 }
 
+// Using the Morey equation: http://brewwiki.com/index.php/Estimating_Color
+// SRM_Color = 1.4922 * [MCU ^ 0.6859] -- Good for beer colors < 50 SRM
+- (float)colorInSRM {
+  float maltColorUnits = 0.0;
+
+  for (OBMaltAddition *malt in [self maltAdditions]) {
+    maltColorUnits += [malt maltColorUnitsForBoilSize:[self postBoilSizeInGallons]];
+  }
+
+  return 1.4922 * powf(maltColorUnits, 0.6859);
+}
+
 - (float)alcoholByVolume {
   // FIXME
   return 0;

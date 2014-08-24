@@ -23,6 +23,16 @@
 
 - (id)initWithContext:(NSManagedObjectContext *)context;
 
+- (float)boilSizeInGallons;
+- (float)postBoilSizeInGallons;
+- (float)boilGravity;
+- (float)gravityUnits;
+- (float)originalGravity;
+- (float)finalGravity;
+- (float)IBUs;
+- (float)colorInSRM;
+- (float)alcoholByVolume;
+
 @end
 
 @interface OBRecipe (CoreDataGeneratedAccessors)
@@ -32,14 +42,5 @@
 
 - (void)addMaltAdditionsObject:(OBMaltAddition *)value;
 - (void)removeMaltAdditionsObject:(OBMaltAddition *)value;
-
-- (float)boilSizeInGallons;
-- (float)postBoilSizeInGallons;
-- (float)boilGravity;
-- (float)gravityUnits;
-- (float)originalGravity;
-- (float)finalGravity;
-- (float)IBUs;
-- (float)alcoholByVolume;
 
 @end
