@@ -366,7 +366,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ZEW-Zg-Z2B"/>
                                     <barButtonItem title="Info" id="5Yk-uS-MSm">
                                         <connections>
-                                            <action selector="infoToolSelected:" destination="G4Y-bP-qbh" id="88F-dM-aL6"/>
+                                            <action selector="showSettingsView:" destination="G4Y-bP-qbh" id="yhp-9L-AHJ"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

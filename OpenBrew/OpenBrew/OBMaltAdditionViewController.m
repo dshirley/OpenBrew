@@ -23,6 +23,7 @@
 // Elements from MaltAdditionDisplaySettings.xib
 @property (strong, nonatomic) IBOutlet UIView *displaySettingsView;
 @property (nonatomic, assign) BOOL settingsViewIsShowing;
+@property (nonatomic, strong) UIBarButtonItem *displaySettingsDoneButton;
 
 @property (weak, nonatomic) IBOutlet UIView *blackoutView;
 
@@ -48,6 +49,11 @@
   self.tableView.dataSource = self.tableViewDelegate;
 
   [self addMaltDisplaySettingsView];
+
+  self.displaySettingsDoneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                    style:UIBarButtonItemStyleDone
+                                                                   target:self
+                                                                   action:@selector(dismissSettingsView)];
 
   [self reload];
 }
@@ -85,13 +91,13 @@
                     myFrame.size.width, self.displaySettingsView.frame.size.height);
 }
 
-- (void)showSettingsView
+- (IBAction)showSettingsView:(UIBarButtonItem *)sender
 {
   [self.view bringSubviewToFront:self.blackoutView];
   [self.view bringSubviewToFront:self.displaySettingsView];
 
   [self.navigationItem setHidesBackButton:YES animated:YES];
-  [self.navigationItem setRightBarButtonItem:nil animated:YES];
+  [self.navigationItem setRightBarButtonItem:self.displaySettingsDoneButton animated:YES];
 
   self.settingsViewIsShowing = YES;
 
@@ -113,13 +119,6 @@
                    animations:^{
                      self.displaySettingsView.frame = [self settingsViewHiddenFrame];
                    }];
-}
-
-- (IBAction)infoToolSelected:(id)sender
-{
-  if (!self.settingsViewIsShowing) {
-    [self showSettingsView];
-  }
 }
 
 - (void)viewDidLoad
