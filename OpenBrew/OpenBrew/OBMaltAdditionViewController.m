@@ -15,7 +15,16 @@
 #import "OBMaltAdditionTableViewDelegate.h"
 #import "OBKvoUtils.h"
 
+// TODO: add comments on how the settings view works
+// Name variables  more consistently too
+
 @interface OBMaltAdditionViewController ()
+
+// Elements from MaltAdditionDisplaySettings.xib
+@property (strong, nonatomic) IBOutlet UIView *displaySettingsView;
+@property (nonatomic, assign) BOOL settingsViewIsShowing;
+
+@property (weak, nonatomic) IBOutlet UIView *blackoutView;
 
 @property (nonatomic, strong) NSIndexPath *drawerIndexPath;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
@@ -38,7 +47,79 @@
   self.tableView.delegate = self.tableViewDelegate;
   self.tableView.dataSource = self.tableViewDelegate;
 
+  [self addMaltDisplaySettingsView];
+
   [self reload];
+}
+
+// Create the settings view and place it below the visible screen.  This view
+// will pop up/down to allow users to display different malt metrics
+- (void)addMaltDisplaySettingsView
+{
+  UIView *subview =  [[[NSBundle mainBundle] loadNibNamed:@"MaltAdditionDisplaySettings"
+                                                    owner:self
+                                                  options:nil] objectAtIndex:0];
+
+  assert(subview == self.displaySettingsView);
+
+  subview.frame = [self settingsViewHiddenFrame];
+
+  [self.view addSubview:subview];
+
+  self.settingsViewIsShowing = NO;
+}
+
+- (CGRect)settingsViewVisibleFrame
+{
+  CGRect hiddenFrame = [self settingsViewHiddenFrame];
+
+  return CGRectMake(hiddenFrame.origin.x, hiddenFrame.origin.y - hiddenFrame.size.height,
+                    hiddenFrame.size.width, hiddenFrame.size.height);
+}
+
+- (CGRect)settingsViewHiddenFrame
+{
+  CGRect myFrame = self.view.frame;
+
+  return CGRectMake(myFrame.origin.x, myFrame.origin.y + myFrame.size.height,
+                    myFrame.size.width, self.displaySettingsView.frame.size.height);
+}
+
+- (void)showSettingsView
+{
+  [self.view bringSubviewToFront:self.blackoutView];
+  [self.view bringSubviewToFront:self.displaySettingsView];
+
+  [self.navigationItem setHidesBackButton:YES animated:YES];
+  [self.navigationItem setRightBarButtonItem:nil animated:YES];
+
+  self.settingsViewIsShowing = YES;
+
+  [UIView animateWithDuration:0.5
+                   animations:^{
+                     self.displaySettingsView.frame = [self settingsViewVisibleFrame];
+                   }];
+}
+
+- (IBAction)dismissSettingsView {
+  [self.view sendSubviewToBack:self.blackoutView];
+
+  [self.navigationItem setHidesBackButton:NO animated:YES];
+  self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+  self.settingsViewIsShowing = NO;
+
+  [UIView animateWithDuration:0.5
+                   animations:^{
+                     self.displaySettingsView.frame = [self settingsViewHiddenFrame];
+                   }];
+}
+
+- (IBAction)infoToolSelected:(id)sender
+{
+  if (!self.settingsViewIsShowing) {
+    [self showSettingsView];
+  }
 }
 
 - (void)viewDidLoad
@@ -145,5 +226,26 @@
     [self reload];
   }
 }
+
+#pragma mark - MaltAdditionDisplaySettings
+
+// Linked to MaltAdditionDisplaySettings.xib.  This method gets called when a
+// UISegment is selected. This method changes the value that is displayed for
+// the gauge.
+- (IBAction)gaugeDisplaySettingsChanged:(UISegmentedControl *)sender
+{
+
+}
+
+// Linked to MaltAdditionDisplaySettings.xib.  This method gets called when a
+// UISegment is selected that changes the information displayed for each malt
+// line item.
+- (IBAction)ingredientDisplaySettingsChanged:(UISegmentedControl *)sender
+{
+
+}
+
+
+
 
 @end

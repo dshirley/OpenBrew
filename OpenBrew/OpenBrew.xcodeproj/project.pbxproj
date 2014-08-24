@@ -40,6 +40,7 @@
 		9F98D37A1880F8EE00469323 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D35E1880F8ED00469323 /* CoreData.framework */; };
 		9F98D3821880F8EE00469323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F98D3801880F8EE00469323 /* InfoPlist.strings */; };
 		9F98D3921880FB7600469323 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F98D3911880FB7600469323 /* Main.storyboard */; };
+		9FB13E6319A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB13E6219A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib */; };
 		9FCECC5B18879B430045FADD /* OBHopsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCECC5A18879B430045FADD /* OBHopsTest.m */; };
 		9FCECC60188831320045FADD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3761880F8EE00469323 /* XCTest.framework */; };
 		9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */; };
@@ -124,6 +125,7 @@
 		9F98D37F1880F8EE00469323 /* OpenBrewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenBrewTests-Info.plist"; sourceTree = "<group>"; };
 		9F98D3811880F8EE00469323 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F98D3911880FB7600469323 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9FB13E6219A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaltAdditionDisplaySettings.xib; sourceTree = "<group>"; };
 		9FCECC5A18879B430045FADD /* OBHopsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopsTest.m; sourceTree = "<group>"; };
 		9FCECC5C1887A1150045FADD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9FD14131197CC7CE005220BC /* OBBatchSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBatchSizeViewController.h; sourceTree = "<group>"; };
@@ -370,10 +372,11 @@
 		9FF686C31893E47700B36486 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9F5033BF198B55E800C302C1 /* TableViewCells */,
 				9F98D3911880FB7600469323 /* Main.storyboard */,
+				9FB13E6219A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib */,
 				9F92E8DF18A4536200118D76 /* OBIngredientGauge.h */,
 				9F92E8E018A4536200118D76 /* OBIngredientGauge.m */,
+				9F5033BF198B55E800C302C1 /* TableViewCells */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				9F98D3701880F8ED00469323 /* Images.xcassets in Resources */,
 				9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */,
 				9F98D3921880FB7600469323 /* Main.storyboard in Resources */,
+				9FB13E6319A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib in Resources */,
 				9FD66384198212DB0056EEEC /* HopCatalog.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
