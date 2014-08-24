@@ -76,6 +76,8 @@
   for (OBMaltAddition *maltAddition in self.maltAdditions) {
     [self startObservingKeys:self.observedMaltVariables ofObject:maltAddition];
   }
+
+  [self addObserver:self forKeyPath:KVO_KEY(batchSizeInGallons) options:0 context:nil];
 }
 
 - (float)boilSizeInGallons {
@@ -155,7 +157,8 @@
                        context:(void *)context
 {
   if ([self.observedMaltVariables containsObject:keyPath] ||
-      [self.observedHopVariables containsObject:keyPath])
+      [self.observedHopVariables containsObject:keyPath] ||
+      [KVO_KEY(batchSizeInGallons) isEqualToString:keyPath])
   {
     [self willChangeValueForKey:KVO_KEY(IBUs)];
     [self didChangeValueForKey:KVO_KEY(IBUs)];
@@ -163,6 +166,8 @@
     [self didChangeValueForKey:KVO_KEY(originalGravity)];
     [self willChangeValueForKey:KVO_KEY(boilGravity)];
     [self didChangeValueForKey:KVO_KEY(boilGravity)];
+    [self willChangeValueForKey:KVO_KEY(colorInSRM)];
+    [self didChangeValueForKey:KVO_KEY(colorInSRM)];
   } else {
     [NSException raise:@"Unrecognized Key" format:@"Key: %@", keyPath];
   }
