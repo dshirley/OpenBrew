@@ -220,4 +220,19 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   return cell;
 }
 
+- (BOOL)isDrawerIndexPath:(NSIndexPath *)indexPath
+{
+  return self.drawerIndexPath && ([self.drawerIndexPath compare:indexPath] == NSOrderedSame);
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return ![self isDrawerIndexPath:indexPath];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return ![self isDrawerIndexPath:indexPath];
+}
+
 @end
