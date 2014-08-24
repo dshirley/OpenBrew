@@ -54,30 +54,19 @@
   return self;
 }
 
-- (void)initializeVariableLists
-{
-  self.observedHopVariables = [NSSet setWithObjects:
-                               KVO_KEY(alphaAcidPercent),
-                               KVO_KEY(boilTimeInMinutes),
-                               KVO_KEY(quantityInOunces), nil];
-
-  self.observedMaltVariables = [NSSet setWithObjects:
-                                KVO_KEY(quantityInPounds),
-                                KVO_KEY(lovibond), nil];
-}
-
 - (void)awakeFromFetch
 {
-  [self initializeVariableLists];
-  for (OBHopAddition *hopAddition in self.hopAdditions) {
-    [self startObservingKeys:self.observedHopVariables ofObject:hopAddition];
-  }
+  [self startObserving];
+}
 
-  for (OBMaltAddition *maltAddition in self.maltAdditions) {
-    [self startObservingKeys:self.observedMaltVariables ofObject:maltAddition];
-  }
+- (void)willTurnIntoFault
+{
+  [self stopObserving];
+}
 
-  [self addObserver:self forKeyPath:KVO_KEY(batchSizeInGallons) options:0 context:nil];
+- (void)prepareForDeletion
+{
+  [self stopObserving];
 }
 
 - (float)boilSizeInGallons {
@@ -165,6 +154,20 @@
   // FIXME
 }
 
+#pragma mark - KVO Related Methods
+
+- (void)initializeVariableLists
+{
+  self.observedHopVariables = [NSSet setWithObjects:
+                               KVO_KEY(alphaAcidPercent),
+                               KVO_KEY(boilTimeInMinutes),
+                               KVO_KEY(quantityInOunces), nil];
+
+  self.observedMaltVariables = [NSSet setWithObjects:
+                                KVO_KEY(quantityInPounds),
+                                KVO_KEY(lovibond), nil];
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
@@ -199,6 +202,33 @@
   for (NSString *key in keys) {
     [object removeObserver:self forKeyPath:key];
   }
+}
+
+- (void)startObserving
+{
+  [self initializeVariableLists];
+  for (OBHopAddition *hopAddition in self.hopAdditions) {
+    [self startObservingKeys:self.observedHopVariables ofObject:hopAddition];
+  }
+
+  for (OBMaltAddition *maltAddition in self.maltAdditions) {
+    [self startObservingKeys:self.observedMaltVariables ofObject:maltAddition];
+  }
+
+  [self addObserver:self forKeyPath:KVO_KEY(batchSizeInGallons) options:0 context:nil];
+}
+
+- (void)stopObserving
+{
+  for (OBHopAddition *hopAddition in self.hopAdditions) {
+    [self stopObservingKeys:self.observedHopVariables ofObject:hopAddition];
+  }
+
+  for (OBMaltAddition *maltAddition in self.maltAdditions) {
+    [self stopObservingKeys:self.observedMaltVariables ofObject:maltAddition];
+  }
+
+  [self removeObserver:self forKeyPath:KVO_KEY(batchSizeInGallons)];
 }
 
 #pragma mark - Hop Addition Properties

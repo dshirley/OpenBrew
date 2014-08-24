@@ -46,6 +46,9 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
 - (NSArray *)recipeData
 {
+  // TODO: save some disk accesses, this object should take a brewery. Then it
+  // will have a reference to all recipes without having to do a fetch.
+  // FYI: a fetch will unfault all recipes and hten fault them back, which is silly
   OBRecipeNavigationController *nav = (OBRecipeNavigationController *) [self navigationController];
   NSManagedObjectContext *moc = [nav managedContext];
   NSEntityDescription *entityDescription = [NSEntityDescription
