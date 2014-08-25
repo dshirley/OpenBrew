@@ -48,7 +48,7 @@
   if (self) {
     // TODO: should this be in awake from insert instead?
     self.batchSizeInGallons = @5;
-    [self initializeVariableLists];
+    [self startObserving];
   }
 
   return self;
