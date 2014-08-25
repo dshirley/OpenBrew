@@ -9,6 +9,7 @@
 #import "OBRecipeViewController.h"
 #import "OBRecipeNavigationController.h"
 #import "OBRecipeOverviewController.h"
+#import "OBBrewery.h"
 
 static NSString *const ADD_RECIPE_SEGUE = @"addRecipe";
 static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
@@ -31,6 +32,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  self.navigationItem.rightBarButtonItem = self.editButtonItem;
   [self.tableView reloadData];
 }
 
@@ -44,30 +46,24 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   }
 }
 
+- (OBBrewery *)brewery
+{
+  OBRecipeNavigationController *nav = nil;
+  nav =(OBRecipeNavigationController *) [self navigationController];
+  return nav.brewery;
+}
+
 - (NSArray *)recipeData
 {
-  // TODO: save some disk accesses, this object should take a brewery. Then it
-  // will have a reference to all recipes without having to do a fetch.
-  // FYI: a fetch will unfault all recipes and hten fault them back, which is silly
-  OBRecipeNavigationController *nav = (OBRecipeNavigationController *) [self navigationController];
-  NSManagedObjectContext *moc = [nav managedContext];
-  NSEntityDescription *entityDescription = [NSEntityDescription
-                                            entityForName:@"Recipe"
-                                            inManagedObjectContext:moc];
-  NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  [request setEntity:entityDescription];
+  NSSortDescriptor *sortByDisplayOrder;
 
-  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name"
-                                                                 ascending:YES];
+  sortByDisplayOrder = [[NSSortDescriptor alloc] initWithKey:@"name"
+                                                   ascending:YES];
 
-  [request setSortDescriptors:@[sortDescriptor]];
+  NSArray *sortSpecification = @[ sortByDisplayOrder ];
+  OBBrewery *brewery = [self brewery];
 
-  NSError *error;
-  NSArray *array = [moc executeFetchRequest:request error:&error];
-
-  assert(array);
-
-  return array;
+  return [brewery.recipes sortedArrayUsingDescriptors:sortSpecification];
 }
 
 #pragma mark - UITableViewDataSource Methods
@@ -97,8 +93,14 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   OBRecipe *recipe = nil;
 
   if ([segueId isEqualToString:ADD_RECIPE_SEGUE]) {
+    OBBrewery *brewery = [self brewery];
+
     recipe = [[OBRecipe alloc] initWithContext:ctx];
     recipe.name = @"New Recipe";
+
+    [brewery addRecipesObject:recipe];
+    recipe.brewery = brewery;
+
     NSError *err = nil;
     [ctx save:&err];
   } else if ([segueId isEqualToString:SELECT_RECIPE_SEGUE]) {
@@ -109,6 +111,24 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   assert(recipe);
   id nextController = [segue destinationViewController];
   [nextController setRecipe:recipe];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+    OBRecipe *recipeToRemove = [self recipeData][indexPath.row];
+    [self.brewery removeRecipesObject:recipeToRemove];
+
+    [tableView deleteRowsAtIndexPaths:@[indexPath]
+                     withRowAnimation:UITableViewRowAnimationAutomatic];
+  }
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+  [super setEditing:editing animated:animated];
+
+  [self.tableView setEditing:editing animated:animated];
 }
 
 @end

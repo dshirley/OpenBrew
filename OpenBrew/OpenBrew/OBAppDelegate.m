@@ -33,7 +33,8 @@
   }
 
   OBRecipeNavigationController *nav = (OBRecipeNavigationController *) [[self window] rootViewController];
-  [nav setManagedContext:[self managedObjectContext]];
+  nav.managedContext = self.managedObjectContext;
+  nav.brewery = brewery;
   
   return YES;
 }
