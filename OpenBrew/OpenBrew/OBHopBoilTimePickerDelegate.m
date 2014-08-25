@@ -13,6 +13,10 @@
 #define NUM_DECIMALS 1
 #define MAX_BOIL_TIME 91
 
+@interface OBHopBoilTimePickerDelegate()
+@property (nonatomic, retain) NSArray *referenceBoilTimes;
+@end
+
 @implementation OBHopBoilTimePickerDelegate
 
 - (id)initWithHopAddition:(OBHopAddition *)hopAddition
@@ -21,8 +25,11 @@
   self = [super init];
 
   if (self) {
-    self.hopAddition = hopAddition;
-    self.pickerObserver = updateObserver;
+    _hopAddition = hopAddition;
+    _pickerObserver = updateObserver;
+
+    _referenceBoilTimes = @[ @0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10,
+                             @15, @20, @30, @45, @60, @75, @90 ];
   }
 
   return self;
@@ -30,15 +37,14 @@
 
 - (void)updateSelectionForPicker:(UIPickerView *)picker
 {
-  float boilTime = [self.hopAddition.boilTimeInMinutes floatValue];
-  NSInteger row = boilTime * NUM_DECIMALS;
+  NSInteger row = [self.referenceBoilTimes indexOfObject:self.hopAddition.boilTimeInMinutes];
 
   [picker selectRow:row inComponent:0 animated:NO];
 }
 
 - (float)valueForRow:(NSInteger)row
 {
-  return (float) row * (1.0 / NUM_DECIMALS);
+  return [self.referenceBoilTimes[row] floatValue];
 }
 
 #pragma mark - UIPickerViewDataSource Methods
@@ -52,7 +58,7 @@
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-  return MAX_BOIL_TIME * NUM_DECIMALS;
+  return [self.referenceBoilTimes count];
 }
 
 #pragma mark - UIPickerViewDelegate
@@ -61,16 +67,14 @@
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component
 {
-  float hours = [self valueForRow:row];
-  return [NSString stringWithFormat:@"%d min", (int) hours];
+  return [NSString stringWithFormat:@"%@ min", self.referenceBoilTimes[row]];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component
 {
-  float boilTime = [self valueForRow:row];
-  self.hopAddition.boilTimeInMinutes = [NSNumber numberWithFloat:boilTime];
+  self.hopAddition.boilTimeInMinutes = self.referenceBoilTimes[row];
 
   [self.pickerObserver pickerChanged];
 }
