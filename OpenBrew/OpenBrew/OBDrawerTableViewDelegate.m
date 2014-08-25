@@ -166,6 +166,15 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   // that iOS can determine the list of items in the picker.  Hence the logic
   // is spread across two functions
   [self finishDisplayingDrawerCell:[self drawerCellForTableView:tableView]];
+
+  if (!sameCellClicked) {
+    // After experimenting, it seems this needs to be outside of the beginUpdates/endUpdates
+    // in order for setting focus to completely work. If this were placed in the similar
+    // if block above, the last row's focus would not get set properly.
+    [tableView scrollToRowAtIndexPath:indexPath
+                     atScrollPosition:UITableViewScrollPositionTop
+                             animated:YES];
+  }
 }
 
 - (void)finishDisplayingDrawerCell:(UITableViewCell *)cell
