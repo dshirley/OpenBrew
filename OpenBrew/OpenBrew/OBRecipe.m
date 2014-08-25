@@ -177,17 +177,22 @@
       [self.observedHopVariables containsObject:keyPath] ||
       [KVO_KEY(batchSizeInGallons) isEqualToString:keyPath])
   {
-    [self willChangeValueForKey:KVO_KEY(IBUs)];
-    [self didChangeValueForKey:KVO_KEY(IBUs)];
-    [self willChangeValueForKey:KVO_KEY(originalGravity)];
-    [self didChangeValueForKey:KVO_KEY(originalGravity)];
-    [self willChangeValueForKey:KVO_KEY(boilGravity)];
-    [self didChangeValueForKey:KVO_KEY(boilGravity)];
-    [self willChangeValueForKey:KVO_KEY(colorInSRM)];
-    [self didChangeValueForKey:KVO_KEY(colorInSRM)];
+    [self notifyCalculatedValuesChanged];
   } else {
     [NSException raise:@"Unrecognized Key" format:@"Key: %@", keyPath];
   }
+}
+
+- (void)notifyCalculatedValuesChanged
+{
+  [self willChangeValueForKey:KVO_KEY(IBUs)];
+  [self didChangeValueForKey:KVO_KEY(IBUs)];
+  [self willChangeValueForKey:KVO_KEY(originalGravity)];
+  [self didChangeValueForKey:KVO_KEY(originalGravity)];
+  [self willChangeValueForKey:KVO_KEY(boilGravity)];
+  [self didChangeValueForKey:KVO_KEY(boilGravity)];
+  [self willChangeValueForKey:KVO_KEY(colorInSRM)];
+  [self didChangeValueForKey:KVO_KEY(colorInSRM)];
 }
 
 - (void)startObservingKeys:(NSSet *)keys ofObject:(id)object
@@ -251,6 +256,8 @@
   [self didChangeValueForKey:KVO_KEY(hopAdditions)
              withSetMutation:NSKeyValueUnionSetMutation
                 usingObjects:changedObjects];
+
+  [self notifyCalculatedValuesChanged];
 }
 
 - (void)removeHopAdditionsObject:(OBHopAddition *)value
@@ -270,6 +277,8 @@
   [self didChangeValueForKey:KVO_KEY(hopAdditions)
              withSetMutation:NSKeyValueMinusSetMutation
                 usingObjects:changedObjects];
+
+  [self notifyCalculatedValuesChanged];
 }
 
 #pragma mark - Malt Addition Properties
@@ -292,6 +301,8 @@
   [self didChangeValueForKey:KVO_KEY(maltAdditions)
              withSetMutation:NSKeyValueUnionSetMutation
                 usingObjects:changedObjects];
+
+  [self notifyCalculatedValuesChanged];
 }
 
 - (void)removeMaltAdditionsObject:(OBMaltAddition *)value
@@ -311,6 +322,8 @@
   [self didChangeValueForKey:KVO_KEY(maltAdditions)
              withSetMutation:NSKeyValueMinusSetMutation
                 usingObjects:changedObjects];
+  
+  [self notifyCalculatedValuesChanged];
 }
 
 @end
