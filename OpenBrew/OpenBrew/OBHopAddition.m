@@ -63,5 +63,9 @@
   return gravityFactor * timeFactor;
 }
 
+- (NSInteger)percentOfIBUs
+{
+  return [self.recipe percentIBUOfHopAddition:self];
+}
 
 @end

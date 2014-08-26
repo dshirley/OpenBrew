@@ -26,4 +26,6 @@
 - (float)utilizationForGravity:(float)gravity;
 - (float)alphaAcidUnits;
 
+- (NSInteger)percentOfIBUs;
+
 @end

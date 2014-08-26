@@ -62,6 +62,11 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
   [self addMaltDisplaySettingsView];
 
+  // We can hide the view either here or in storyboard.
+  // If it was done in storyboard, it would grey out the whole view, which is confusing.
+  // This needs to be done because grey boxes pop up in weird places otherwise.
+  [self.blackoutView setHidden:YES];
+
   self.displaySettingsDoneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                     style:UIBarButtonItemStyleDone
                                                                    target:self
@@ -107,6 +112,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 {
   [self.view bringSubviewToFront:self.blackoutView];
   [self.view bringSubviewToFront:self.displaySettingsView];
+  [self.blackoutView setHidden:NO];
 
   [self.navigationItem setHidesBackButton:YES animated:YES];
   [self.navigationItem setRightBarButtonItem:self.displaySettingsDoneButton animated:YES];
@@ -120,6 +126,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 }
 
 - (IBAction)dismissSettingsView {
+  [self.blackoutView setHidden:YES];
   [self.view sendSubviewToBack:self.blackoutView];
 
   [self.navigationItem setHidesBackButton:NO animated:YES];

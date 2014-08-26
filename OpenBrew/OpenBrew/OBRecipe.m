@@ -103,7 +103,27 @@
   float gravityUnits = [self gravityUnits];
   float maltGravityUnits = [maltAddition gravityUnitsWithEfficiency:[self efficiency]];
 
-  return (NSInteger) roundf(100 * maltGravityUnits / gravityUnits);
+  NSInteger percentOfTotal = 0;
+  if (gravityUnits > 0) {
+    percentOfTotal = roundf(100.0 * maltGravityUnits / gravityUnits);
+  }
+
+  return percentOfTotal;
+}
+
+- (NSInteger)percentIBUOfHopAddition:(OBHopAddition *)hopAddition
+{
+  assert([self.hopAdditions containsObject:hopAddition]);
+
+  float ibusTotal = [self IBUs];
+  float ibusOfHopAddition = [hopAddition ibuContributionWithBoilSize:[self boilSizeInGallons] andGravity:[self boilGravity]];
+
+  NSInteger percentOfTotal = 0;
+  if (ibusTotal > 0) {
+    percentOfTotal = roundf(100.0 * ibusOfHopAddition / ibusTotal);
+  }
+
+  return percentOfTotal;
 }
 
 - (float)originalGravity {
@@ -135,7 +155,8 @@
 
 // Using the Morey equation: http://brewwiki.com/index.php/Estimating_Color
 // SRM_Color = 1.4922 * [MCU ^ 0.6859] -- Good for beer colors < 50 SRM
-- (float)colorInSRM {
+- (float)colorInSRM
+{
   float maltColorUnits = 0.0;
 
   for (OBMaltAddition *malt in [self maltAdditions]) {
@@ -145,13 +166,22 @@
   return 1.4922 * powf(maltColorUnits, 0.6859);
 }
 
-- (float)alcoholByVolume {
+- (float)alcoholByVolume
+{
   // FIXME
   return 0;
 }
 
-- (void)save {
-  // FIXME
+- (float)bitternessToGravityRatio
+{
+  float nonDecimalGravity = 1000.0 * ([self originalGravity] - 1);
+  float ibu = [self IBUs];
+
+  if (nonDecimalGravity == 0) {
+    return INFINITY;
+  }
+
+  return ibu / nonDecimalGravity;
 }
 
 #pragma mark - KVO Related Methods
