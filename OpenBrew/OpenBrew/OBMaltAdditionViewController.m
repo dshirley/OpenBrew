@@ -75,6 +75,8 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
   [self reload];
 }
 
+#pragma mark Display Settings View Logic
+
 // Create the settings view and place it below the visible screen.  This view
 // will pop up/down to allow users to display different malt metrics
 - (void)addMaltDisplaySettingsView
