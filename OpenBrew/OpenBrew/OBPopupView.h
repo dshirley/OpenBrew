@@ -9,23 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @class OBPopupView;
-@protocol OBPopupViewDelegate;
-
 
 @interface OBPopupView : UIView
 
-@property (nonatomic, weak) id <OBPopupViewDelegate> delegate;
-
 - (id)initWithFrame:(CGRect)frame
-     andContentView:(UIView *)view;
+     andContentView:(UIView *)view
+  andNavigationItem:(UINavigationItem *)navItem;
 
 - (void)popupContent;
 - (void)dismissContent;
-
-@end
-
-@protocol OBPopupViewDelegate <NSObject>
-
-- (void)popupViewWasDismissed:(OBPopupView *)popupView;
 
 @end

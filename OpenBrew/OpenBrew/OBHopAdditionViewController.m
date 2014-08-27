@@ -30,7 +30,6 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 // Elements from MaltAdditionDisplaySettings.xib
 @property (nonatomic, strong) OBPopupView *popupView;
 @property (strong, nonatomic) IBOutlet UIView *displaySettingsView;
-@property (nonatomic, strong) UIBarButtonItem *displaySettingsDoneButton;
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, assign) OBHopGaugeMetric gaugeMetric;
@@ -55,11 +54,6 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
   [self addHopDisplaySettingsView];
 
-  self.displaySettingsDoneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                    style:UIBarButtonItemStyleDone
-                                                                   target:self
-                                                                   action:@selector(dismissSettingsView)];
-
   [self reload];
 }
 
@@ -77,8 +71,9 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
   assert(subview == self.displaySettingsView);
 
-  _popupView = [[OBPopupView alloc] initWithFrame:self.view.frame andContentView:subview];
-  _popupView.delegate = self;
+  _popupView = [[OBPopupView alloc] initWithFrame:self.view.frame
+                                   andContentView:subview
+                                andNavigationItem:self.navigationItem];
 
   [self.view addSubview:_popupView];
 }
@@ -86,19 +81,10 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 - (IBAction)showSettingsView:(UIBarButtonItem *)sender
 {
   [self.popupView popupContent];
-  [self.navigationItem setHidesBackButton:YES animated:YES];
-  [self.navigationItem setRightBarButtonItem:self.displaySettingsDoneButton animated:YES];
 }
 
 - (IBAction)dismissSettingsView {
   [self.popupView dismissContent];
-  [self.navigationItem setHidesBackButton:NO animated:YES];
-  self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)popupViewWasDismissed:(OBPopupView *)popupView
-{
-  
 }
 
 - (void)reload {

@@ -17,11 +17,17 @@
 @property (nonatomic, assign) CGRect contentHiddenFrame;
 @property (nonatomic, assign) CGRect contentVisibleFrame;
 
+@property (nonatomic, strong) UINavigationItem *navigationItem;
+@property (nonatomic, strong) UIBarButtonItem *savedRightBarButton;
+@property (nonatomic, strong) UIBarButtonItem *displaySettingsDoneButton;
+
 @end
 
 @implementation OBPopupView
 
-- (id)initWithFrame:(CGRect)frame andContentView:(UIView *)view
+- (id)initWithFrame:(CGRect)frame
+     andContentView:(UIView *)view
+  andNavigationItem:(UINavigationItem *)navItem
 {
     self = [super initWithFrame:CGRectZero];
 
@@ -29,6 +35,12 @@
       _parentFrame = frame;
       _contentIsVisible = NO;
       _contentView = view;
+
+      _navigationItem = navItem;
+      _displaySettingsDoneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                    style:UIBarButtonItemStyleDone
+                                                                   target:self
+                                                                   action:@selector(dismissContent)];
 
       _dismissButton = [[UIButton alloc] initWithFrame:frame];
       _dismissButton.backgroundColor = [UIColor blackColor];
@@ -51,11 +63,18 @@
 
 - (void)popupContent
 {
-  // TODO: could this view adjust the nav bar?  Seems out of place
-
   if (self.contentIsVisible) {
     return;
   }
+
+  // In an ideal world, this navbar modification logic would go in a delegate
+  // class.  We're mixing up the controller and view logic a bit.  However,
+  // in this case, it makes the code a bit more simple, and it has little impact
+  // on maintainability. If this becomes a problem, a delegate can always be
+  // created.
+  [self.navigationItem setHidesBackButton:YES animated:YES];
+  self.savedRightBarButton = self.navigationItem.rightBarButtonItem;
+  [self.navigationItem setRightBarButtonItem:self.displaySettingsDoneButton animated:YES];
 
   self.frame = self.parentFrame;
 
@@ -75,6 +94,9 @@
   if (!self.contentIsVisible) {
     return;
   }
+
+  [self.navigationItem setHidesBackButton:NO animated:YES];
+  self.navigationItem.rightBarButtonItem = self.savedRightBarButton;
 
   [UIView animateWithDuration:0.25
                    animations:^{
