@@ -415,24 +415,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view alpha="0.25" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EY9-Rm-PzW">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYf-oH-vEo">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="dismissSettingsView" destination="G4Y-bP-qbh" eventType="touchUpInside" id="pB3-KD-4WQ"/>
-                                            <action selector="dismissSettingsView" destination="puw-U2-Nhe" eventType="touchUpInside" id="yfu-jP-OdZ"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0q9-E7-rrC" customClass="OBIngredientGauge">
                                 <rect key="frame" x="0.0" y="63" width="320" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -557,7 +539,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ME5-pj-6yX"/>
                                     <barButtonItem title="Info" id="ZMz-cQ-Uy2">
                                         <connections>
-                                            <action selector="showSettingsView:" destination="puw-U2-Nhe" id="Wf1-sS-ZB5"/>
+                                            <action selector="showSettingsView:" destination="puw-U2-Nhe" id="kaM-Y9-4SI"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -567,7 +549,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="1rp-kv-EeL"/>
                     <connections>
-                        <outlet property="blackoutView" destination="EY9-Rm-PzW" id="bYr-PF-xAK"/>
                         <outlet property="gauge" destination="0q9-E7-rrC" id="MG1-xR-sU6"/>
                         <outlet property="tableView" destination="0DW-GT-hvd" id="bg7-lx-hYq"/>
                     </connections>

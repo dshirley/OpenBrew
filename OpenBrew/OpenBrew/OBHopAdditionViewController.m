@@ -16,6 +16,7 @@
 #import "OBPickerDelegate.h"
 #import <math.h>
 #import "OBKvoUtils.h"
+#import "OBPopupView.h"
 
 // What hop related metric the gauge should display.  These values should
 // correspond to the indices of the segements in HopAdditionDisplaySettings.xib
@@ -27,11 +28,9 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 @interface OBHopAdditionViewController ()
 
 // Elements from MaltAdditionDisplaySettings.xib
+@property (nonatomic, strong) OBPopupView *popupView;
 @property (strong, nonatomic) IBOutlet UIView *displaySettingsView;
-@property (nonatomic, assign) BOOL settingsViewIsShowing;
 @property (nonatomic, strong) UIBarButtonItem *displaySettingsDoneButton;
-
-@property (weak, nonatomic) IBOutlet UIView *blackoutView;
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, assign) OBHopGaugeMetric gaugeMetric;
@@ -56,11 +55,6 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
   [self addHopDisplaySettingsView];
 
-  // We can hide the view either here or in storyboard.
-  // If it was done in storyboard, it would grey out the whole view, which is confusing.
-  // This needs to be done because grey boxes pop up in weird places otherwise.
-  [self.blackoutView setHidden:YES];
-
   self.displaySettingsDoneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                     style:UIBarButtonItemStyleDone
                                                                    target:self
@@ -80,63 +74,32 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
                                                     owner:self
                                                   options:nil] objectAtIndex:0];
 
+
   assert(subview == self.displaySettingsView);
 
-  subview.frame = [self settingsViewHiddenFrame];
+  _popupView = [[OBPopupView alloc] initWithFrame:self.view.frame andContentView:subview];
+  _popupView.delegate = self;
 
-  [self.view addSubview:subview];
-
-  self.settingsViewIsShowing = NO;
-}
-
-- (CGRect)settingsViewVisibleFrame
-{
-  CGRect hiddenFrame = [self settingsViewHiddenFrame];
-
-  return CGRectMake(hiddenFrame.origin.x, hiddenFrame.origin.y - hiddenFrame.size.height,
-                    hiddenFrame.size.width, hiddenFrame.size.height);
-}
-
-- (CGRect)settingsViewHiddenFrame
-{
-  CGRect myFrame = self.view.frame;
-
-  return CGRectMake(myFrame.origin.x, myFrame.origin.y + myFrame.size.height,
-                    myFrame.size.width, self.displaySettingsView.frame.size.height);
+  [self.view addSubview:_popupView];
 }
 
 - (IBAction)showSettingsView:(UIBarButtonItem *)sender
 {
-  [self.view bringSubviewToFront:self.blackoutView];
-  [self.view bringSubviewToFront:self.displaySettingsView];
-  [self.blackoutView setHidden:NO];
-
+  [self.popupView popupContent];
   [self.navigationItem setHidesBackButton:YES animated:YES];
   [self.navigationItem setRightBarButtonItem:self.displaySettingsDoneButton animated:YES];
-
-  self.settingsViewIsShowing = YES;
-
-  [UIView animateWithDuration:0.5
-                   animations:^{
-                     self.displaySettingsView.frame = [self settingsViewVisibleFrame];
-                   }];
 }
 
 - (IBAction)dismissSettingsView {
-  [self.blackoutView setHidden:YES];
-  [self.view sendSubviewToBack:self.blackoutView];
-
+  [self.popupView dismissContent];
   [self.navigationItem setHidesBackButton:NO animated:YES];
   self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
-  self.settingsViewIsShowing = NO;
-
-  [UIView animateWithDuration:0.5
-                   animations:^{
-                     self.displaySettingsView.frame = [self settingsViewHiddenFrame];
-                   }];
 }
 
+- (void)popupViewWasDismissed:(OBPopupView *)popupView
+{
+  
+}
 
 - (void)reload {
   [self.tableView reloadData];
