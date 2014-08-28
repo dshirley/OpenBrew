@@ -68,6 +68,16 @@
   return [[self.recipe hopAdditions] sortedArrayUsingDescriptors:sortSpecification];
 }
 
+- (void)setHopAdditionMetricToDisplay:(OBHopAdditionMetric)newSelection
+{
+  _hopAdditionMetricToDisplay = newSelection;
+
+  // TODO: perhaps a reload is more heavy weight than we need? Not sure...
+  // there probably aren't majore performance implications since the data we're
+  // dealing with is so small
+  [self.tableView reloadData];
+}
+
 - (void)finishDisplayingDrawerCell:(UITableViewCell *)cell
 {
   if (!cell) {
@@ -91,13 +101,29 @@
   float alphaAcids = [hopAddition.alphaAcidPercent floatValue];
   hopCell.alphaAcid.text = [NSString stringWithFormat:@"%.1f%%", alphaAcids];
 
-  float quantityInOunces = [hopAddition.quantityInOunces floatValue];
-  hopCell.quantity.text = [NSString stringWithFormat:@"%.1f oz", quantityInOunces];
-
   NSInteger boilMinutes = [hopAddition.boilTimeInMinutes integerValue];
   hopCell.boilTime.text = [NSString stringWithFormat:@"%ld", (long)boilMinutes];
 
   hopCell.boilUnits.text = @"min";
+
+
+  switch (self.hopAdditionMetricToDisplay) {
+    case OBHopAdditionDisplayIBU:
+      hopCell.primaryMetric.text = [NSString stringWithFormat:@"%d",
+                                    (int)roundf([hopAddition ibuContribution])];
+      break;
+    case OBHopAdditionDisplayIBUPercent:
+      hopCell.primaryMetric.text = [NSString stringWithFormat:@"%@%%",
+                                    @([hopAddition percentOfIBUs])];
+      break;
+    case OBHopAdditionDisplayWeight:
+      hopCell.primaryMetric.text = [NSString stringWithFormat:@"%.1f oz",
+                                    [hopAddition.quantityInOunces floatValue]];
+      break;
+    default:
+      [NSException raise:@"Invalid hop addition metric"
+                  format:@"%d", self.hopAdditionMetricToDisplay];
+  }
 }
 
 - (void)populateDrawerCell:(UITableViewCell *)cell

@@ -210,8 +210,8 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 - (IBAction)ingredientDisplaySettingsChanged:(UISegmentedControl *)sender
 {
 //  // Note that the segment indices must allign with the metric enum
-//  OBMaltAdditionMetric newMetric = sender.selectedSegmentIndex;
-//  self.tableViewDelegate.maltAdditionMetricToDisplay = newMetric;
+  OBHopAdditionMetric newMetric = sender.selectedSegmentIndex;
+  self.tableViewDelegate.hopAdditionMetricToDisplay = newMetric;
 }
 
 @end

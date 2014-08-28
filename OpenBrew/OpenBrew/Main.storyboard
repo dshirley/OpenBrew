@@ -476,7 +476,7 @@
                                             <outlet property="boilTime" destination="P5J-Yv-BrX" id="orK-PQ-Llg"/>
                                             <outlet property="boilUnits" destination="rg4-ZK-6Bw" id="kus-ak-PZa"/>
                                             <outlet property="hopVariety" destination="ff7-yV-REU" id="Aw8-EA-WUk"/>
-                                            <outlet property="quantity" destination="fEy-2O-ul8" id="jQp-bw-wXG"/>
+                                            <outlet property="primaryMetric" destination="fEy-2O-ul8" id="Vg7-92-Biy"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DrawerCell" rowHeight="216" id="f7N-MK-K4b" customClass="OBMultiPickerTableViewCell">

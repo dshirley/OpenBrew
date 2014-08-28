@@ -39,6 +39,9 @@
   return self;
 }
 
+// TODO: rename this method to ibuContributionForVolume
+// The current name is very confusing because we're actually passing hte
+// "postBoilSize"
 - (float)ibuContributionWithBoilSize:(float)gallons andGravity:(float)gravity {
   // Using John Palmer's formula from How To Brew
   // http://www.howtobrew.com/section1/chapter5-5.html
@@ -47,6 +50,11 @@
   float utilization = [self utilizationForGravity:gravity];
   
   return (alphaAcidUnits * utilization * IMPERIAL_TO_METRIC_CONST) / gallons;
+}
+
+- (float)ibuContribution
+{
+  return [self.recipe ibusForHopAddition:self];
 }
 
 - (float)alphaAcidUnits {

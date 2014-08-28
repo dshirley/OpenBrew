@@ -8,7 +8,15 @@
 
 #import "OBDrawerTableViewDelegate.h"
 
+typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
+  OBHopAdditionDisplayWeight,
+  OBHopAdditionDisplayIBU,
+  OBHopAdditionDisplayIBUPercent
+};
+
 @interface OBHopAdditionTableViewDelegate : OBDrawerTableViewDelegate
+
+@property (nonatomic, assign) OBHopAdditionMetric hopAdditionMetricToDisplay;
 
 - (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView;
 

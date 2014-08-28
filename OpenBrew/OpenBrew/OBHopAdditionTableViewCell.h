@@ -11,7 +11,7 @@
 @interface OBHopAdditionTableViewCell : UITableViewCell
 @property (nonatomic, weak) IBOutlet UILabel *hopVariety;
 @property (nonatomic, weak) IBOutlet UILabel *alphaAcid;
-@property (nonatomic, weak) IBOutlet UILabel *quantity;
+@property (nonatomic, weak) IBOutlet UILabel *primaryMetric;
 @property (nonatomic, weak) IBOutlet UILabel *boilTime;
 @property (nonatomic, weak) IBOutlet UILabel *boilUnits;
 @end
