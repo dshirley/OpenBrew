@@ -109,7 +109,7 @@
 
   switch (self.hopAdditionMetricToDisplay) {
     case OBHopAdditionDisplayIBU:
-      hopCell.primaryMetric.text = [NSString stringWithFormat:@"%d",
+      hopCell.primaryMetric.text = [NSString stringWithFormat:@"%d IBUs",
                                     (int)roundf([hopAddition ibuContribution])];
       break;
     case OBHopAdditionDisplayIBUPercent:
