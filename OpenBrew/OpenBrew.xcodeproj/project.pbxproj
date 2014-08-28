@@ -41,6 +41,8 @@
 		9F98D3821880F8EE00469323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F98D3801880F8EE00469323 /* InfoPlist.strings */; };
 		9F98D3921880FB7600469323 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F98D3911880FB7600469323 /* Main.storyboard */; };
 		9FB13E6319A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB13E6219A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib */; };
+		9FB13E6C19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB13E6B19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib */; };
+		9FB13E6F19AE2684008BA8C3 /* OBPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB13E6E19AE2684008BA8C3 /* OBPopupView.m */; };
 		9FCECC5B18879B430045FADD /* OBHopsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCECC5A18879B430045FADD /* OBHopsTest.m */; };
 		9FCECC60188831320045FADD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3761880F8EE00469323 /* XCTest.framework */; };
 		9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */; };
@@ -126,6 +128,9 @@
 		9F98D3811880F8EE00469323 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F98D3911880FB7600469323 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9FB13E6219A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaltAdditionDisplaySettings.xib; sourceTree = "<group>"; };
+		9FB13E6B19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HopAdditionDisplaySettings.xib; sourceTree = "<group>"; };
+		9FB13E6D19AE2684008BA8C3 /* OBPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPopupView.h; sourceTree = "<group>"; };
+		9FB13E6E19AE2684008BA8C3 /* OBPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPopupView.m; sourceTree = "<group>"; };
 		9FCECC5A18879B430045FADD /* OBHopsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopsTest.m; sourceTree = "<group>"; };
 		9FCECC5C1887A1150045FADD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9FD14131197CC7CE005220BC /* OBBatchSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBatchSizeViewController.h; sourceTree = "<group>"; };
@@ -372,11 +377,14 @@
 		9FF686C31893E47700B36486 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9F98D3911880FB7600469323 /* Main.storyboard */,
-				9FB13E6219A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib */,
 				9F92E8DF18A4536200118D76 /* OBIngredientGauge.h */,
 				9F92E8E018A4536200118D76 /* OBIngredientGauge.m */,
+				9F98D3911880FB7600469323 /* Main.storyboard */,
+				9FB13E6B19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib */,
+				9FB13E6219A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib */,
 				9F5033BF198B55E800C302C1 /* TableViewCells */,
+				9FB13E6D19AE2684008BA8C3 /* OBPopupView.h */,
+				9FB13E6E19AE2684008BA8C3 /* OBPopupView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -460,6 +468,7 @@
 				9F98D3651880F8ED00469323 /* InfoPlist.strings in Resources */,
 				9F98D3701880F8ED00469323 /* Images.xcassets in Resources */,
 				9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */,
+				9FB13E6C19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib in Resources */,
 				9F98D3921880FB7600469323 /* Main.storyboard in Resources */,
 				9FB13E6319A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib in Resources */,
 				9FD66384198212DB0056EEEC /* HopCatalog.csv in Resources */,
@@ -490,6 +499,7 @@
 				9FD66387198218220056EEEC /* OBHopAdditionViewController.m in Sources */,
 				9FF686C91894099A00B36486 /* OBRecipeOverviewController.m in Sources */,
 				9FF686C21893E45F00B36486 /* OBRecipeViewController.m in Sources */,
+				9FB13E6F19AE2684008BA8C3 /* OBPopupView.m in Sources */,
 				9FE86433198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m in Sources */,
 				9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */,
 				9FF68676189327B000B36486 /* OBMaltAdditionViewController.m in Sources */,

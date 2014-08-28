@@ -23,6 +23,7 @@
 - (id)initWithHopVariety:(OBHops *)hopVariety andRecipe:(OBRecipe *)recipe;
 
 - (float)ibuContributionWithBoilSize:(float)gallons andGravity:(float)gravity;
+- (float)ibuContribution;
 - (float)utilizationForGravity:(float)gravity;
 - (float)alphaAcidUnits;
 

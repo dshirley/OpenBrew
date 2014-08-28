@@ -16,10 +16,23 @@
 #import "OBPickerDelegate.h"
 #import <math.h>
 #import "OBKvoUtils.h"
+#import "OBPopupView.h"
+
+// What hop related metric the gauge should display.  These values should
+// correspond to the indices of the segements in HopAdditionDisplaySettings.xib
+typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
+  OBHopGaugeMetricIBU,
+  OBHopGaugeMetricBitteringToGravityRatio
+};
 
 @interface OBHopAdditionViewController ()
 
+// Elements from MaltAdditionDisplaySettings.xib
+@property (nonatomic, strong) OBPopupView *popupView;
+@property (strong, nonatomic) IBOutlet UIView *displaySettingsView;
+
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, assign) OBHopGaugeMetric gaugeMetric;
 @property (nonatomic, strong) IBOutlet OBIngredientGauge *gauge;
 @property (nonatomic, strong) OBHopAdditionTableViewDelegate *tableViewDelegate;
 @end
@@ -39,7 +52,39 @@
 
   self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
+  [self addHopDisplaySettingsView];
+
   [self reload];
+}
+
+
+#pragma mark Display Settings View Logic
+
+// Create the settings view and place it below the visible screen.  This view
+// will pop up/down to allow users to display different malt metrics
+- (void)addHopDisplaySettingsView
+{
+  UIView *subview =  [[[NSBundle mainBundle] loadNibNamed:@"HopAdditionDisplaySettings"
+                                                    owner:self
+                                                  options:nil] objectAtIndex:0];
+
+
+  assert(subview == self.displaySettingsView);
+
+  _popupView = [[OBPopupView alloc] initWithFrame:self.view.frame
+                                   andContentView:subview
+                                andNavigationItem:self.navigationItem];
+
+  [self.view addSubview:_popupView];
+}
+
+- (IBAction)showSettingsView:(UIBarButtonItem *)sender
+{
+  [self.popupView popupContent];
+}
+
+- (IBAction)dismissSettingsView {
+  [self.popupView dismissContent];
 }
 
 - (void)reload {
@@ -49,9 +94,17 @@
 
 - (void)refreshGauge
 {
-  float ibu = [self.recipe IBUs];
-  _gauge.value.text = [NSString stringWithFormat:@"%d", (int) round(ibu)];
-  _gauge.description.text = @"IBUs";
+  if (self.gaugeMetric == OBHopGaugeMetricIBU) {
+    float ibu = [self.recipe IBUs];
+    _gauge.value.text = [NSString stringWithFormat:@"%d", (int) round(ibu)];
+    _gauge.description.text = @"IBUs";
+  } else if (self.gaugeMetric == OBHopGaugeMetricBitteringToGravityRatio) {
+    float buToGuRatio = [self.recipe bitternessToGravityRatio];
+    _gauge.value.text = [NSString stringWithFormat:@"%.2f", buToGuRatio];
+    _gauge.description.text = @"Bitterness to Gravity Ratio";
+  } else {
+    [NSException raise:@"Bad OBHopGaugeMetric" format:@"Metric: %ld", self.gaugeMetric];
+  }
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -139,5 +192,26 @@
   }
 }
 
+
+#pragma mark - MaltAdditionDisplaySettings
+
+// Linked to MaltAdditionDisplaySettings.xib.  This method gets called when a
+// UISegment is selected. This method changes the value that is displayed for
+// the gauge.
+- (IBAction)gaugeDisplaySettingsChanged:(UISegmentedControl *)sender
+{
+  self.gaugeMetric = sender.selectedSegmentIndex;
+  [self refreshGauge];
+}
+
+// Linked to MaltAdditionDisplaySettings.xib.  This method gets called when a
+// UISegment is selected that changes the information displayed for each malt
+// line item.
+- (IBAction)ingredientDisplaySettingsChanged:(UISegmentedControl *)sender
+{
+//  // Note that the segment indices must allign with the metric enum
+  OBHopAdditionMetric newMetric = sender.selectedSegmentIndex;
+  self.tableViewDelegate.hopAdditionMetricToDisplay = newMetric;
+}
 
 @end

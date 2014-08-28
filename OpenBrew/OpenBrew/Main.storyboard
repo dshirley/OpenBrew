@@ -254,23 +254,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view alpha="0.24999999999999967" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qk0-YG-ORl">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJn-XS-1cB">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal">
-                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="dismissSettingsView" destination="G4Y-bP-qbh" eventType="touchUpInside" id="Qi8-Lk-re8"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kOa-7I-0kp" customClass="OBIngredientGauge">
                                 <rect key="frame" x="0.0" y="64" width="320" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -394,7 +377,6 @@
                     <navigationItem key="navigationItem" id="KxO-Sm-tW2"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="blackoutView" destination="Qk0-YG-ORl" id="a2H-ya-zTI"/>
                         <outlet property="gauge" destination="kOa-7I-0kp" id="toB-W6-q80"/>
                         <outlet property="tableView" destination="UdS-iz-4Sc" id="gEw-F7-HPk"/>
                     </connections>
@@ -452,17 +434,17 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7.2%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bV-8Q-Ias">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="7.2%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bV-8Q-Ias">
                                                     <rect key="frame" x="53" y="31" width="157" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2.0 oz" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEy-2O-ul8">
-                                                    <rect key="frame" x="264" y="16" width="47" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="2.0 oz" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEy-2O-ul8">
+                                                    <rect key="frame" x="218" y="16" width="93" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="47" id="y47-HT-vGX"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="y47-HT-vGX"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
@@ -494,7 +476,7 @@
                                             <outlet property="boilTime" destination="P5J-Yv-BrX" id="orK-PQ-Llg"/>
                                             <outlet property="boilUnits" destination="rg4-ZK-6Bw" id="kus-ak-PZa"/>
                                             <outlet property="hopVariety" destination="ff7-yV-REU" id="Aw8-EA-WUk"/>
-                                            <outlet property="quantity" destination="fEy-2O-ul8" id="jQp-bw-wXG"/>
+                                            <outlet property="primaryMetric" destination="fEy-2O-ul8" id="Vg7-92-Biy"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DrawerCell" rowHeight="216" id="f7N-MK-K4b" customClass="OBMultiPickerTableViewCell">
@@ -526,17 +508,24 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7T-c2-002">
-                                <rect key="frame" x="62" y="526" width="197" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Add Hops">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Nnt-Ep-Rhn" kind="push" identifier="addHops" id="7C1-BP-c9j"/>
-                                </connections>
-                            </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="txg-L1-5Qg">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8ml-wy-5DR"/>
+                                    <barButtonItem systemItem="add" id="eIa-96-Xq2">
+                                        <connections>
+                                            <segue destination="Nnt-Ep-Rhn" kind="push" identifier="addHops" id="iJC-3P-zeu"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ME5-pj-6yX"/>
+                                    <barButtonItem title="Info" id="ZMz-cQ-Uy2">
+                                        <connections>
+                                            <action selector="showSettingsView:" destination="puw-U2-Nhe" id="kaM-Y9-4SI"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>

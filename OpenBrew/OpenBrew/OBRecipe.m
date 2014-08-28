@@ -111,12 +111,22 @@
   return percentOfTotal;
 }
 
+- (float)ibusForHopAddition:(OBHopAddition *)hopAddition
+{
+  assert([self.hopAdditions containsObject:hopAddition]);
+
+  return [hopAddition ibuContributionWithBoilSize:[self postBoilSizeInGallons]
+                                       andGravity:[self boilGravity]];
+}
+
 - (NSInteger)percentIBUOfHopAddition:(OBHopAddition *)hopAddition
 {
   assert([self.hopAdditions containsObject:hopAddition]);
 
   float ibusTotal = [self IBUs];
-  float ibusOfHopAddition = [hopAddition ibuContributionWithBoilSize:[self boilSizeInGallons] andGravity:[self boilGravity]];
+
+  // TODO: this ibu contribution method is really confusing
+  float ibusOfHopAddition = [hopAddition ibuContributionWithBoilSize:[self postBoilSizeInGallons] andGravity:[self boilGravity]];
 
   NSInteger percentOfTotal = 0;
   if (ibusTotal > 0) {
