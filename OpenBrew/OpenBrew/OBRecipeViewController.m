@@ -121,6 +121,10 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
     [tableView deleteRowsAtIndexPaths:@[indexPath]
                      withRowAnimation:UITableViewRowAnimationAutomatic];
+
+    NSError *error = nil;
+    [self.brewery.managedObjectContext save:&error];
+    // TODO: log error
   }
 }
 
