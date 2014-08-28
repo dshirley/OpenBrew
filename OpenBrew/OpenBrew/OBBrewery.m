@@ -76,74 +76,73 @@
 
 + (BOOL)loadMaltsIntoCatalog:(OBIngredientCatalog *)catalog
 {
-  NSString *maltCatalogPath = [[NSBundle mainBundle]
-                               pathForResource:@"MaltCatalog.csv"
-                               ofType:nil];
-
-  NSError *error = nil;
-  NSString *maltCatalogCsv = [NSString stringWithContentsOfFile:maltCatalogPath
-                                                       encoding:NSUTF8StringEncoding
-                                                          error:&error];
-
-  if (error) {
-    // TODO: log Critter error
-    return NO;
-  }
-
-  NSArray *malts = [maltCatalogCsv componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-
   NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
-  [nf setNumberStyle:NSNumberFormatterDecimalStyle];
+    [nf setNumberStyle:NSNumberFormatterDecimalStyle];
 
-  for (NSString *maltData in malts) {
-    NSArray *attributes = [maltData componentsSeparatedByString:@","];
+  return [self loadDataIntoCatalog:catalog
+                          fromPath:@"MaltCatalog.csv"
+                         withBlock:^void (NSArray *attributes, OBIngredientCatalog *catalog)
+          {
+            OBMalt *malt = [NSEntityDescription
+                            insertNewObjectForEntityForName:@"Malt"
+                            inManagedObjectContext:catalog.managedObjectContext];
 
-    OBMalt *malt = [NSEntityDescription
-                    insertNewObjectForEntityForName:@"Malt"
-                    inManagedObjectContext:catalog.managedObjectContext];
+            malt.name = attributes[MALT_NAME_IDX];
+            malt.defaultExtractPotential = [nf numberFromString:attributes[MALT_EXTRACT_IDX]];
+            malt.defaultLovibond = [nf numberFromString:attributes[MALT_COLOR_IDX]];
+            malt.type = [nf numberFromString:attributes[MALT_TYPE_IDX]];
 
-    malt.name = attributes[MALT_NAME_IDX];
-    malt.defaultExtractPotential = [nf numberFromString:attributes[MALT_EXTRACT_IDX]];
-    malt.defaultLovibond = [nf numberFromString:attributes[MALT_COLOR_IDX]];
-    malt.type = [nf numberFromString:attributes[MALT_TYPE_IDX]];
+            [catalog addMaltsObject:malt];
 
-    [catalog addMaltsObject:malt];
-  }
-
-  return YES;
+          }];
 }
 
 + (BOOL)loadHopsIntoCatalog:(OBIngredientCatalog *)catalog
 {
-  NSString *hopCatalogPath = [[NSBundle mainBundle]
-                              pathForResource:@"HopCatalog.csv"
-                              ofType:nil];
+  NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
+  [nf setNumberStyle:NSNumberFormatterDecimalStyle];
+
+  return [self loadDataIntoCatalog:catalog
+                          fromPath:@"HopCatalog.csv"
+                         withBlock:^void (NSArray *attributes, OBIngredientCatalog *catalog)
+          {
+            OBHops *hops = [NSEntityDescription insertNewObjectForEntityForName:@"Hops"
+                                                         inManagedObjectContext:catalog.managedObjectContext];
+
+            hops.name = attributes[HOP_NAME_IDX];
+            hops.defaultAlphaAcidPercent = [nf numberFromString:attributes[HOP_ALPHA_IDX]];
+
+            [catalog addHopsObject:hops];
+
+          }];
+}
+
++ (BOOL)loadDataIntoCatalog:(OBIngredientCatalog *)catalog
+                   fromPath:(NSString *)path
+                  withBlock:(void (^)(NSArray *, OBIngredientCatalog *))parser
+{
+  NSString *csvPath = [[NSBundle mainBundle]
+                       pathForResource:path
+                       ofType:nil];
 
   NSError *error = nil;
-  NSString *hopCatalogCsv = [NSString stringWithContentsOfFile:hopCatalogPath
-                                                      encoding:NSUTF8StringEncoding
-                                                         error:&error];
+  NSString *csv = [NSString stringWithContentsOfFile:csvPath
+                                            encoding:NSUTF8StringEncoding
+                                               error:&error];
 
   if (error) {
     // TODO: log critter error
     return NO;
   }
 
-  NSArray *hops = [hopCatalogCsv componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+  NSArray *lines = [csv componentsSeparatedByCharactersInSet:
+                    [NSCharacterSet newlineCharacterSet]];
 
   NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
   [nf setNumberStyle:NSNumberFormatterDecimalStyle];
 
-  for (NSString *hopData in hops) {
-    NSArray *attributes = [hopData componentsSeparatedByString:@","];
-
-    OBHops *hops = [NSEntityDescription insertNewObjectForEntityForName:@"Hops"
-                                                 inManagedObjectContext:catalog.managedObjectContext];
-
-    hops.name = attributes[HOP_NAME_IDX];
-    hops.defaultAlphaAcidPercent = [nf numberFromString:attributes[HOP_ALPHA_IDX]];
-
-    [catalog addHopsObject:hops];
+  for (NSString *line in lines) {
+    parser([line componentsSeparatedByString:@","], catalog);
   }
 
   return YES;
