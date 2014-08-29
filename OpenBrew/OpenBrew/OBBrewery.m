@@ -11,14 +11,7 @@
 #import "OBIngredientCatalog.h"
 #import "OBMalt.h"
 #import "OBHops.h"
-
-#define MALT_NAME_IDX 0
-#define MALT_EXTRACT_IDX 1
-#define MALT_COLOR_IDX 2
-#define MALT_TYPE_IDX 3
-
-#define HOP_NAME_IDX 0
-#define HOP_ALPHA_IDX 1
+#import "OBYeast.h"
 
 @implementation OBBrewery
 
@@ -69,31 +62,34 @@
     return nil;
   }
 
+  if (![self loadYeastIntoCatalog:catalog]) {
+    return nil;
+  }
+
   brewery.ingredientCatalog = catalog;
 
   return brewery;
 }
 
++ (BOOL)loadYeastIntoCatalog:(OBIngredientCatalog *)catalog
+{
+  return [self loadDataIntoCatalog:catalog
+                          fromPath:@"YeastCatalog.csv"
+                         withBlock:^void (NSArray *attributes, OBIngredientCatalog *catalog)
+          {
+            OBYeast *yeast = [[OBYeast alloc] initWithCatalog:catalog andCsvData:attributes];
+            [catalog addYeastObject:yeast];
+          }];
+}
+
 + (BOOL)loadMaltsIntoCatalog:(OBIngredientCatalog *)catalog
 {
-  NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
-    [nf setNumberStyle:NSNumberFormatterDecimalStyle];
-
   return [self loadDataIntoCatalog:catalog
                           fromPath:@"MaltCatalog.csv"
                          withBlock:^void (NSArray *attributes, OBIngredientCatalog *catalog)
           {
-            OBMalt *malt = [NSEntityDescription
-                            insertNewObjectForEntityForName:@"Malt"
-                            inManagedObjectContext:catalog.managedObjectContext];
-
-            malt.name = attributes[MALT_NAME_IDX];
-            malt.defaultExtractPotential = [nf numberFromString:attributes[MALT_EXTRACT_IDX]];
-            malt.defaultLovibond = [nf numberFromString:attributes[MALT_COLOR_IDX]];
-            malt.type = [nf numberFromString:attributes[MALT_TYPE_IDX]];
-
+            OBMalt *malt = [[OBMalt alloc] initWithCatalog:catalog andCsvData:attributes];
             [catalog addMaltsObject:malt];
-
           }];
 }
 
@@ -106,14 +102,8 @@
                           fromPath:@"HopCatalog.csv"
                          withBlock:^void (NSArray *attributes, OBIngredientCatalog *catalog)
           {
-            OBHops *hops = [NSEntityDescription insertNewObjectForEntityForName:@"Hops"
-                                                         inManagedObjectContext:catalog.managedObjectContext];
-
-            hops.name = attributes[HOP_NAME_IDX];
-            hops.defaultAlphaAcidPercent = [nf numberFromString:attributes[HOP_ALPHA_IDX]];
-
+            OBHops *hops = [[OBHops alloc] initWithCatalog:catalog andCsvData:attributes];
             [catalog addHopsObject:hops];
-
           }];
 }
 

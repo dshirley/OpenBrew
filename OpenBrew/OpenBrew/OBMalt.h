@@ -23,6 +23,9 @@
 @property (nonatomic, retain) NSNumber *defaultExtractPotential;
 @property (nonatomic, retain) NSSet *maltAdditions;
 
+- (id)initWithCatalog:(OBIngredientCatalog *)catalog
+           andCsvData:(NSArray *)data;
+
 - (BOOL)isGrain;
 - (BOOL)isSugar;
 - (BOOL)isExtract;

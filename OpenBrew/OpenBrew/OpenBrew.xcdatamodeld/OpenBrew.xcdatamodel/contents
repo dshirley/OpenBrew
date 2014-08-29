@@ -51,11 +51,16 @@
         <relationship name="yeast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="YeastAddition" inverseName="recipe" inverseEntity="YeastAddition" syncable="YES"/>
     </entity>
     <entity name="Yeast" representedClassName="OBYeast" syncable="YES">
-        <attribute name="attenuationMaxPercent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="attenuationMinPercent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="alcoholTolerance" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="3" defaultValueString="2" syncable="YES"/>
+        <attribute name="category" attributeType="Integer 16" minValueString="0" maxValueString="4" syncable="YES"/>
+        <attribute name="flocculation" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="4" defaultValueString="3" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="manufacturer" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="maxAttenuation" optional="YES" attributeType="Float" minValueString="0" maxValueString="1" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="maxTemperature" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="minAttenuation" optional="YES" attributeType="Float" minValueString="0" maxValueString="1" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="minTemperature" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="referenceLink" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="catalog" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IngredientCatalog" inverseName="yeast" inverseEntity="IngredientCatalog" syncable="YES"/>
         <relationship name="yeastAddidions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="YeastAddition" inverseName="yeast" inverseEntity="YeastAddition" syncable="YES"/>
     </entity>
@@ -72,7 +77,7 @@
         <element name="Malt" positionX="0" positionY="0" width="128" height="135"/>
         <element name="MaltAddition" positionX="0" positionY="0" width="128" height="135"/>
         <element name="Recipe" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="Yeast" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="Yeast" positionX="0" positionY="0" width="128" height="225"/>
         <element name="YeastAddition" positionX="0" positionY="0" width="128" height="90"/>
     </elements>
 </model>

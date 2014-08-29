@@ -16,4 +16,7 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * defaultAlphaAcidPercent;
 
+- (id)initWithCatalog:(OBIngredientCatalog *)catalog
+           andCsvData:(NSArray *)csvData;
+
 @end
