@@ -176,7 +176,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
   }
 }
 
-- (void)ingredientSelected:(UIStoryboardSegue *)unwindSegue
+- (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue
 {
   if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {
     OBIngredientFinderViewController *finderView = [unwindSegue sourceViewController];

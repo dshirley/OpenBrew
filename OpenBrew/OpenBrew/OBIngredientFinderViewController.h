@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OBIngredientFinderViewController : UITableViewController <UITableViewDataSource>
+@interface OBIngredientFinderViewController : UIViewController <UITableViewDataSource>
 
 @property (strong, nonatomic) id selectedIngredient;
 

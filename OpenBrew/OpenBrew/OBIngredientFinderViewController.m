@@ -10,29 +10,15 @@
 
 @interface OBIngredientFinderViewController ()
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 // Format:  { "section =_name" : [ ingredient1, ingredient2, ... ]
 @property (nonatomic, strong) NSDictionary *ingredientsIndex;
-
 @property (nonatomic, strong) NSArray *sections;
 
-- (id)ingredientAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @implementation OBIngredientFinderViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-  self = [super initWithStyle:style];
-  if (self) {
-    // Custom initialization
-  }
-  return self;
-}
-
-- (void)viewDidLoad
-{
-  [super viewDidLoad];
-}
 
 /**
  * Populate the ingredientsIndex dictionary which contains all of the sections

@@ -356,7 +356,6 @@
 			isa = PBXGroup;
 			children = (
 				9F0815381996D5E700E5E575 /* DrawerTableView */,
-				9FE86434198DBE9F007AD9E7 /* Picker Delegates */,
 				9F98D3691880F8ED00469323 /* OBAppDelegate.h */,
 				9F98D36A1880F8ED00469323 /* OBAppDelegate.m */,
 				9FD14131197CC7CE005220BC /* OBBatchSizeViewController.h */,
@@ -373,6 +372,7 @@
 				9FF686C81894099A00B36486 /* OBRecipeOverviewController.m */,
 				9FF686C01893E45F00B36486 /* OBRecipeViewController.h */,
 				9FF686C11893E45F00B36486 /* OBRecipeViewController.m */,
+				9FE86434198DBE9F007AD9E7 /* Picker Delegates */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

@@ -169,7 +169,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 }
 
 // TODO: duplicate code except with hops instead of malts... not too egregious, though
-- (void)ingredientSelected:(UIStoryboardSegue *)unwindSegue
+- (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue
 {
   if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {
     OBIngredientFinderViewController *finderView = [unwindSegue sourceViewController];
