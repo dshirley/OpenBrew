@@ -11,6 +11,12 @@
 
 @class OBIngredientCatalog, OBMaltAddition;
 
+typedef NS_ENUM(NSInteger, OBMaltType) {
+  OBMaltTypeGrain,
+  OBMaltTypeSugar,
+  OBMaltTypeExtract
+};
+
 @interface OBMalt : NSManagedObject
 
 @property (nonatomic, retain) OBIngredientCatalog *catalog;

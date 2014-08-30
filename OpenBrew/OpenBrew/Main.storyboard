@@ -586,10 +586,10 @@
             </objects>
             <point key="canvasLocation" x="2276" y="655"/>
         </scene>
-        <!--Ingredient Finder View Controller - Select Malts-->
+        <!--Malt Finder View Controller - Select Malts-->
         <scene sceneID="cNo-1L-LHJ">
             <objects>
-                <viewController id="4Hg-8Q-mli" customClass="OBIngredientFinderViewController" sceneMemberID="viewController">
+                <viewController id="4Hg-8Q-mli" customClass="OBMaltFinderViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8Ld-ld-TMd"/>
                         <viewControllerLayoutGuide type="bottom" id="juE-ix-KX4"/>
@@ -612,6 +612,9 @@
                                                 <segment title="Extracts"/>
                                                 <segment title="Sugars"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="applyMaltTypeFilter:" destination="4Hg-8Q-mli" eventType="valueChanged" id="hqQ-Vd-J93"/>
+                                            </connections>
                                         </segmentedControl>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="jeH-nM-5t2"/>
@@ -653,7 +656,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="tableView" destination="RCk-FT-MY2" id="Fw3-hg-GaW"/>
+                        <outlet property="tableView" destination="RCk-FT-MY2" id="gUq-2T-bXG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nbW-qz-fjd" userLabel="First Responder" sceneMemberID="firstResponder"/>

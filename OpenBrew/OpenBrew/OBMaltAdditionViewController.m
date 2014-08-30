@@ -8,7 +8,7 @@
 
 #import "OBMaltAdditionViewController.h"
 #import "OBIngredientGauge.h"
-#import "OBIngredientFinderViewController.h"
+#import "OBMaltFinderViewController.h"
 #import "OBRecipe.h"
 #import "OBMalt.h"
 #import "OBMaltAddition.h"
@@ -154,7 +154,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([[segue identifier] isEqualToString:@"addIngredient"]) {
 
-    OBIngredientFinderViewController *next = [segue destinationViewController];
+    OBMaltFinderViewController *next = [segue destinationViewController];
 
     NSManagedObjectContext *ctx = self.recipe.managedObjectContext;
 
@@ -167,7 +167,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 - (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue
 {
   if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {
-    OBIngredientFinderViewController *finderView = [unwindSegue sourceViewController];
+    OBMaltFinderViewController *finderView = [unwindSegue sourceViewController];
     OBMalt *malt = [finderView selectedIngredient];
     OBMaltAddition *maltAddition = [[OBMaltAddition alloc] initWithMalt:malt
                                                               andRecipe:self.recipe];

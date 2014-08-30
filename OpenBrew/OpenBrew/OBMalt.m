@@ -10,11 +10,6 @@
 #import "OBIngredientCatalog.h"
 #import "OBMaltAddition.h"
 
-#define MALT_TYPE_GRAIN 0
-#define MALT_TYPE_SUGAR 1
-#define MALT_TYPE_EXTRACT 2
-
-
 #define MALT_NAME_IDX 0
 #define MALT_EXTRACT_IDX 1
 #define MALT_COLOR_IDX 2
@@ -52,17 +47,17 @@
 
 - (BOOL)isGrain
 {
-  return [self.type intValue] == MALT_TYPE_GRAIN;
+  return [self.type intValue] == OBMaltTypeGrain;
 }
 
 - (BOOL)isSugar
 {
-  return [self.type intValue] == MALT_TYPE_SUGAR;
+  return [self.type intValue] == OBMaltTypeSugar;
 }
 
 - (BOOL)isExtract
 {
-  return [self.type intValue] == MALT_TYPE_EXTRACT;
+  return [self.type intValue] == OBMaltTypeExtract;
 }
 
 @end
