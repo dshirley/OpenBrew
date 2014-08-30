@@ -43,6 +43,7 @@
 		9F98D37A1880F8EE00469323 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D35E1880F8ED00469323 /* CoreData.framework */; };
 		9F98D3821880F8EE00469323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F98D3801880F8EE00469323 /* InfoPlist.strings */; };
 		9F98D3921880FB7600469323 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F98D3911880FB7600469323 /* Main.storyboard */; };
+		9FA3890119B27A0B0009DB07 /* OBSrmColorTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA3890019B27A0B0009DB07 /* OBSrmColorTable.m */; };
 		9FB13E6319A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB13E6219A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib */; };
 		9FB13E6C19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB13E6B19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib */; };
 		9FB13E6F19AE2684008BA8C3 /* OBPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB13E6E19AE2684008BA8C3 /* OBPopupView.m */; };
@@ -135,6 +136,8 @@
 		9F98D37F1880F8EE00469323 /* OpenBrewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenBrewTests-Info.plist"; sourceTree = "<group>"; };
 		9F98D3811880F8EE00469323 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F98D3911880FB7600469323 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9FA388FF19B27A0B0009DB07 /* OBSrmColorTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSrmColorTable.h; sourceTree = "<group>"; };
+		9FA3890019B27A0B0009DB07 /* OBSrmColorTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSrmColorTable.m; sourceTree = "<group>"; };
 		9FB13E6219A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaltAdditionDisplaySettings.xib; sourceTree = "<group>"; };
 		9FB13E6B19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HopAdditionDisplaySettings.xib; sourceTree = "<group>"; };
 		9FB13E6D19AE2684008BA8C3 /* OBPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPopupView.h; sourceTree = "<group>"; };
@@ -335,6 +338,8 @@
 				9F92E8CC18A0D63300118D76 /* OBYeastAddition.h */,
 				9F92E8CD18A0D63300118D76 /* OBYeastAddition.m */,
 				9FE9745A188975C700FFAA56 /* OpenBrew.xcdatamodeld */,
+				9FA388FF19B27A0B0009DB07 /* OBSrmColorTable.h */,
+				9FA3890019B27A0B0009DB07 /* OBSrmColorTable.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -370,8 +375,12 @@
 				9FD66386198218220056EEEC /* OBHopAdditionViewController.m */,
 				9F92E8A718A0910200118D76 /* OBIngredientFinderViewController.h */,
 				9F92E8A818A0910200118D76 /* OBIngredientFinderViewController.m */,
+				9F60CF2719B251D00076A600 /* OBIngredientTableViewDataSource.h */,
+				9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */,
 				9FF68674189327B000B36486 /* OBMaltAdditionViewController.h */,
 				9FF68675189327B000B36486 /* OBMaltAdditionViewController.m */,
+				9F60CF2A19B264A10076A600 /* OBMaltFinderViewController.h */,
+				9F60CF2B19B264A10076A600 /* OBMaltFinderViewController.m */,
 				9F92E8D218A10AAB00118D76 /* OBRecipeNavigationController.h */,
 				9F92E8D318A10AAB00118D76 /* OBRecipeNavigationController.m */,
 				9FF686C71894099A00B36486 /* OBRecipeOverviewController.h */,
@@ -379,10 +388,6 @@
 				9FF686C01893E45F00B36486 /* OBRecipeViewController.h */,
 				9FF686C11893E45F00B36486 /* OBRecipeViewController.m */,
 				9FE86434198DBE9F007AD9E7 /* Picker Delegates */,
-				9F60CF2719B251D00076A600 /* OBIngredientTableViewDataSource.h */,
-				9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */,
-				9F60CF2A19B264A10076A600 /* OBMaltFinderViewController.h */,
-				9F60CF2B19B264A10076A600 /* OBMaltFinderViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -535,6 +540,7 @@
 				9F92E8E118A4536200118D76 /* OBIngredientGauge.m in Sources */,
 				9F0815441996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m in Sources */,
 				9F92E8BF18A0CED100118D76 /* OBMaltAddition.m in Sources */,
+				9FA3890119B27A0B0009DB07 /* OBSrmColorTable.m in Sources */,
 				9F98D36B1880F8ED00469323 /* OBAppDelegate.m in Sources */,
 				9F92E8CE18A0D63300118D76 /* OBYeastAddition.m in Sources */,
 				9F0815411996F69E00E5E575 /* OBMaltAdditionTableViewCell.m in Sources */,

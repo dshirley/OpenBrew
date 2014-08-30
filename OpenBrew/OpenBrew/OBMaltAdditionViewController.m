@@ -16,6 +16,7 @@
 #import "OBKvoUtils.h"
 #import "OBPopupView.h"
 #import "OBIngredientTableViewDataSource.h"
+#import "OBSrmColorTable.h"
 
 // What malt related metric should the gauge display.  These values should
 // correspond to the indices of the MaltAdditionDisplaySettings segmentview.
@@ -111,17 +112,24 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
 - (void)refreshGauge
 {
+  NSInteger srm = roundf([self.recipe colorInSRM]);
+
   if (self.gaugeMetric == OBMaltGaugeMetricGravity) {
     float gravity = [self.recipe originalGravity];
     _gauge.value.text = [NSString stringWithFormat:@"%.3f", gravity];
     _gauge.description.text = @"Starting Gravity";
   } else if (self.gaugeMetric == OBMaltGaugeMetricColor) {
-    float srm = [self.recipe colorInSRM];
-    _gauge.value.text = [NSString stringWithFormat:@"%.0f", srm];
+
+    _gauge.value.text = [NSString stringWithFormat:@"%d", srm];
     _gauge.description.text = @"SRM";
   } else {
     [NSException raise:@"Bad OBMaltGaugeMetric" format:@"Metric: %d", self.gaugeMetric];
   }
+
+  UIColor *beerColor = colorForSrm(srm);
+  _gauge.backgroundColor = beerColor;
+  _gauge.value.textColor = contrastColor(beerColor);
+  _gauge.description.textColor = contrastColor(beerColor);
 }
 
 - (void)setRecipe:(OBRecipe *)recipe
