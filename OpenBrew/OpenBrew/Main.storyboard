@@ -572,10 +572,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="xMB-0f-Tz6" id="dby-8L-Wcb"/>
-                                    <outlet property="delegate" destination="xMB-0f-Tz6" id="jst-ia-BZv"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -647,10 +643,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="4Hg-8Q-mli" id="drw-yd-MKH"/>
-                                    <outlet property="delegate" destination="4Hg-8Q-mli" id="kwA-vl-VeU"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -660,6 +652,9 @@
                         <barButtonItem key="backBarButtonItem" title="Malts" id="V10-ZV-VaN"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="RCk-FT-MY2" id="Fw3-hg-GaW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nbW-qz-fjd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="o3p-xl-Rl5" userLabel="Exit" sceneMemberID="exit"/>

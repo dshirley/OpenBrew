@@ -15,6 +15,7 @@
 #import "OBMaltAdditionTableViewDelegate.h"
 #import "OBKvoUtils.h"
 #import "OBPopupView.h"
+#import "OBIngredientTableViewDataSource.h"
 
 // What malt related metric should the gauge display.  These values should
 // correspond to the indices of the MaltAdditionDisplaySettings segmentview.
@@ -155,24 +156,11 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
     OBIngredientFinderViewController *next = [segue destinationViewController];
 
-    NSManagedObjectContext *moc = self.recipe.managedObjectContext;
-    NSEntityDescription *entityDescription = [NSEntityDescription
-                                              entityForName:@"Malt"
-                                              inManagedObjectContext:moc];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDescription];
+    NSManagedObjectContext *ctx = self.recipe.managedObjectContext;
 
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
-                                        initWithKey:@"name" ascending:YES];\
-
-    [request setSortDescriptors:@[sortDescriptor]];
-
-    NSError *error;
-    NSArray *array = [moc executeFetchRequest:request error:&error];
-
-    assert(array);
-
-    [next setIngredients:array];
+    next.tableViewDataSource = [[OBIngredientTableViewDataSource alloc]
+                                initIngredientEntityName:@"Malt"
+                                andManagedObjectContext:ctx];
   }
 }
 

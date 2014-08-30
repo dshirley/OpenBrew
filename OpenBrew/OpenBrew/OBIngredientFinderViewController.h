@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OBIngredientFinderViewController : UIViewController <UITableViewDataSource>
+@class OBIngredientTableViewDataSource;
 
-@property (strong, nonatomic) id selectedIngredient;
+@interface OBIngredientFinderViewController : UIViewController
 
-- (void)setIngredients:(NSArray *)ingredients;
+@property (nonatomic, strong) id selectedIngredient;
+@property (nonatomic, strong) OBIngredientTableViewDataSource *tableViewDataSource;
 
 @end

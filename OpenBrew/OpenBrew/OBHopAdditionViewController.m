@@ -17,6 +17,7 @@
 #import <math.h>
 #import "OBKvoUtils.h"
 #import "OBPopupView.h"
+#import "OBIngredientTableViewDataSource.h"
 
 // What hop related metric the gauge should display.  These values should
 // correspond to the indices of the segements in HopAdditionDisplaySettings.xib
@@ -144,27 +145,13 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([[segue identifier] isEqualToString:@"addHops"]) {
-
     OBIngredientFinderViewController *next = [segue destinationViewController];
 
-    NSManagedObjectContext *moc = self.recipe.managedObjectContext;
-    NSEntityDescription *entityDescription = [NSEntityDescription
-                                              entityForName:@"Hops"
-                                              inManagedObjectContext:moc];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDescription];
+    NSManagedObjectContext *ctx = self.recipe.managedObjectContext;
 
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
-                                        initWithKey:@"name" ascending:YES];
-
-    [request setSortDescriptors:@[sortDescriptor]];
-
-    NSError *error;
-    NSArray *array = [moc executeFetchRequest:request error:&error];
-
-    assert(array);
-
-    [next setIngredients:array];
+    next.tableViewDataSource = [[OBIngredientTableViewDataSource alloc]
+                                initIngredientEntityName:@"Hops"
+                                andManagedObjectContext:ctx];
   }
 }
 
