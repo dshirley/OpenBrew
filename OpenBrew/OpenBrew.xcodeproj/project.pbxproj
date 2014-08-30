@@ -13,6 +13,7 @@
 		9F0815441996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815431996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m */; };
 		9F08154719970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F08154619970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m */; };
 		9F08154A1997147C00E5E575 /* OBMaltColorPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815491997147C00E5E575 /* OBMaltColorPickerDelegate.m */; };
+		9F60CF2319B15CBA0076A600 /* YeastCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F60CF2219B15CBA0076A600 /* YeastCatalog.csv */; };
 		9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */; };
 		9F92E8A918A0910200118D76 /* OBIngredientFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8A818A0910200118D76 /* OBIngredientFinderViewController.m */; };
 		9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */; };
@@ -85,6 +86,7 @@
 		9F0815481997147C00E5E575 /* OBMaltColorPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltColorPickerDelegate.h; sourceTree = "<group>"; };
 		9F0815491997147C00E5E575 /* OBMaltColorPickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltColorPickerDelegate.m; sourceTree = "<group>"; };
 		9F4C5C5E199DC574008A6F1B /* OBKvoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBKvoUtils.h; sourceTree = "<group>"; };
+		9F60CF2219B15CBA0076A600 /* YeastCatalog.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = YeastCatalog.csv; path = data/YeastCatalog.csv; sourceTree = "<group>"; };
 		9F77C612198CAECA0023EB3C /* OBMultiPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMultiPickerTableViewCell.h; sourceTree = "<group>"; };
 		9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerTableViewCell.m; sourceTree = "<group>"; };
 		9F92E8A718A0910200118D76 /* OBIngredientFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientFinderViewController.h; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 		9F92E8AE18A0A8C200118D76 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				9F60CF2219B15CBA0076A600 /* YeastCatalog.csv */,
 				9FD66383198212DB0056EEEC /* HopCatalog.csv */,
 				9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */,
 			);
@@ -468,6 +471,7 @@
 				9F98D3651880F8ED00469323 /* InfoPlist.strings in Resources */,
 				9F98D3701880F8ED00469323 /* Images.xcassets in Resources */,
 				9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */,
+				9F60CF2319B15CBA0076A600 /* YeastCatalog.csv in Resources */,
 				9FB13E6C19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib in Resources */,
 				9F98D3921880FB7600469323 /* Main.storyboard in Resources */,
 				9FB13E6319A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib in Resources */,

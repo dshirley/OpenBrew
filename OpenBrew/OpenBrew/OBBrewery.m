@@ -122,6 +122,8 @@
 
   if (error) {
     // TODO: log critter error
+    NSLog(@"error %@", error);
+    assert(NO);
     return NO;
   }
 
@@ -132,6 +134,10 @@
   [nf setNumberStyle:NSNumberFormatterDecimalStyle];
 
   for (NSString *line in lines) {
+    if (!line || line.length == 0) {
+      continue;
+    }
+    
     parser([line componentsSeparatedByString:@","], catalog);
   }
 
