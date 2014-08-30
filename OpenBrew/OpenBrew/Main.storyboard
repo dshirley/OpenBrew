@@ -260,7 +260,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="19" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="UdS-iz-4Sc">
-                                <rect key="frame" x="0.0" y="183" width="320" height="387"/>
+                                <rect key="frame" x="0.0" y="183" width="320" height="341"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -380,7 +380,7 @@
             </objects>
             <point key="canvasLocation" x="1736" y="-45"/>
         </scene>
-        <!--Hop Addition View Controller - Hop Bill-->
+        <!--Hop Addition View Controller - Hop Schedule-->
         <scene sceneID="0Xc-8q-VVF">
             <objects>
                 <viewController id="puw-U2-Nhe" customClass="OBHopAdditionViewController" sceneMemberID="viewController">
@@ -398,7 +398,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0DW-GT-hvd">
-                                <rect key="frame" x="0.0" y="181" width="320" height="338"/>
+                                <rect key="frame" x="0.0" y="181" width="320" height="343"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -524,7 +524,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Hop Bill" id="1rp-kv-EeL"/>
+                    <navigationItem key="navigationItem" title="Hop Schedule" id="1rp-kv-EeL"/>
                     <connections>
                         <outlet property="gauge" destination="0q9-E7-rrC" id="MG1-xR-sU6"/>
                         <outlet property="tableView" destination="0DW-GT-hvd" id="bg7-lx-hYq"/>
