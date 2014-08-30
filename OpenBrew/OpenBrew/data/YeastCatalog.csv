@@ -1,91 +1,1 @@
-Wyeast,Ale,1007,German Ale,73,77,1,55,68,3
-Wyeast,Ale,1010,American Wheat,74,78,1,58,74,2
-Wyeast,Ale,1028,London Ale,73,77,2,60,72,3
-Wyeast,Ale,1056,American Ale,73,77,2,60,72,3
-Wyeast,Ale,1084,Irish Ale,71,75,3,62,72,4
-Wyeast,Ale,1098,British Ale,73,75,3,64,72,2
-Wyeast,Ale,1099,Whitbread Ale,68,72,4,64,75,2
-Wyeast,Ale,1187,Ringwood Ale,68,72,5,64,74,2
-Wyeast,Belgian,1214,Belgian Abbey,74,78,2,68,78,4
-Wyeast,Ale,1272,American Ale II,72,76,3,60,72,2
-Wyeast,Ale,1275,Thames Valley Ale,72,76,2,62,72,2
-Wyeast,Ale,1318,London Ale III,71,75,5,64,74,2
-Wyeast,Ale,1332,Northwest Ale,67,71,5,65,75,2
-Wyeast,Ale,1335,British Ale II,73,76,5,63,75,2
-Wyeast,Belgian,1388,Belgian Strong Ale,74,78,1,64,80,4
-Wyeast,Ale,1450,Denny's Favorite 5,74,76,1,60,70,2
-Wyeast,Ale,1469,West Yorkshire Al,67,71,5,74,72,1
-Wyeast,Ale,1728,Scottish Ale,69,73,5,55,75,4
-Wyeast,Belgian,1762,Belgian Abbey II,73,77,3,65,75,4
-Wyeast,Ale,1968,London ESB Ale,67,71,5,64,72,1
-Wyeast,Lager,2000,Budvar Lager,71,75,4,48,56,1
-Wyeast,Lager,2001,Urquell Lager,72,76,4,48,56,1
-Wyeast,Lager,2007,Pilsen Lager,71,75,3,48,56,1
-Wyeast,Lager,2035,American Lager,73,77,3,48,58,1
-Wyeast,Lager,2042,Danish Lager,73,77,1,46,56,1
-Wyeast,Lager,2112,California Lager,67,71,5,58,68,1
-Wyeast,Lager,2124,Bohemian Lager,73,77,2,45,68,1
-Wyeast,Lager,2206,Bavarian Lager,73,77,4,46,58,1
-Wyeast,Lager,2278,Czech Pils,70,74,4,50,58,1
-Wyeast,Lager,2308,Munich Lager,70,74,3,48,56,1
-Wyeast,Ale,2565,Kolsch,73,77,1,56,70,2
-Wyeast,Lager,2633,Octoberfest Lager Blend,73,77,2,48,58,1
-Wyeast,Belgian,3056,Bavarian Wheat Blend,73,77,3,64,74,2
-Wyeast,Belgian,3068,Weihenstephan Weizen,73,77,1,64,75,2
-Wyeast,Belgian,3278,Belgian Lambic Blend,70,80,,63,75,3
-Wyeast,Belgian,3333,German Wheat,70,76,3,63,75,2
-Wyeast,Belgian,3463,Forbidden Fruit,72,76,1,63,76,4
-Wyeast,Belgian,3522,Belgian Ardennes,72,76,5,65,76,4
-Wyeast,Belgian,3638,Bavarian Wheat,70,76,1,64,75,2
-Wyeast,Belgian,3711,French Saiso,77,83,1,65,77,4
-Wyeast,Belgian,3724,Belgian Saison,76,80,1,70,95,4
-Wyeast,Belgian,3763,Roeselare Ale Blen,80,80,,65,85,3
-Wyeast,Belgian,3787,Trappist High Gravity,74,78,3,64,78,3
-Wyeast,Belgian,3942,Belgian Wheat,72,76,3,64,74,4
-Wyeast,Belgian,3944,Belgian Witbier,72,76,3,62,75,3
-Wyeast,Lambic,5112,Brettanomyces bruxellensi,90,100,3,60,75,4
-Wyeast,Lambic,5335,Lactobacillus,,,,60,95,
-Wyeast,Lambic,5526,Brettanomyces lambicus,90,100,3,60,75,4
-Wyeast,Lambic,5733,Pediococcus,,,,60,95,
-White Labs,Ale,WLP001,California Ale,73,80,3,68,73,3
-White Labs,Ale,WLP002,English Ale,63,70,5,65,68,1
-White Labs,Ale,WLP004,Irish Ale,69,74,4,65,68,2
-White Labs,Ale,WLP005,British Ale,67,74,5,65,70,1
-White Labs,Ale,WLP007,Dry English Ale,70,80,4,65,70,2
-White Labs,Ale,WLP008,East Coast Ale,70,75,2,68,73,1
-White Labs,Ale,WLP011,European Ale,65,70,3,65,70,1
-White Labs,Ale,WLP013,London Ale,67,75,3,66,71,1
-White Labs,Ale,WLP017,Whitbread Ale,67,73,5,66,70,1
-White Labs,Ale,WLP022,Essex Ale,71,76,4,66,70,1
-White Labs,Ale,WLP023,Burton Ale,69,75,3,68,73,1
-White Labs,Ale,WLP026,Premium Bitter Ale,70,75,3,67,70,1
-White Labs,Ale,WLP028,Edinburgh Scottish Ale,70,75,3,65,70,2
-White Labs,Ale,WLP029,German Ale/Kolsh,72,78,3,65,69,1
-White Labs,Ale,WLP036,Dusseldorf Alt Ale,65,72,3,65,69,1
-White Labs,Ale,WLP041,Pacific Ale,65,70,5,65,70,1
-White Labs,Ale,WLP051,California Ale V,70,75,4,70,75,1
-White Labs,Ale,WLP099,Super High Gravity Ale,80,80,3,65,69,4
-White Labs,Belgian,WLP300,Hefeweizen Ale,72,76,1,68,72,1
-White Labs,Belgian,WLP320,American Hefe Ale,70,75,1,65,69,1
-White Labs,Belgian,WLP351,Bavarian Weizen Ale,73,77,1,66,70,1
-White Labs,Belgian,WLP380,Hefeweizen IV Ale,73,80,1,66,70,1
-White Labs,Belgian,WLP400,Belgian Wit Ale,74,78,2,67,74,1
-White Labs,Belgian,WLP410,Belgain Wit II Ale,70,75,2,67,74,1
-White Labs,Belgian,WLP500,Trappist Ale,75,80,2,65,72,3
-White Labs,Belgian,WLP510,Belgian Bastogne Ale,74,80,3,66,72,3
-White Labs,Belgian,WLP530,Abbey Ale,75,80,4,66,72,3
-White Labs,Belgian,WLP550,Belgain Ale,78,85,3,68,78,2
-White Labs,Belgian,WLP565,Belgian Saison Ale,65,75,3,68,75,1
-White Labs,Belgian,WLP570,Belgian Golden Ale,73,78,1,68,75,3
-White Labs,Lager,WLP800,Pilsner Lager,72,77,4,50,55,1
-White Labs,Lager,WLP802,Czech Budejovice Lager,75,80,4,50,55,1
-White Labs,Lager,WLP810,San Fransisco Lager,65,70,5,58,65,2
-White Labs,Lager,WLP820,Oktoberfest/Marzen,65,73,3,52,58,2
-White Labs,Lager,WLP830,German Lager,74,79,3,50,55,1
-White Labs,Lager,WLP833,German Bock Lager,70,76,3,48,55,2
-White Labs,Lager,WLP838,Southern German Lager,68,76,4,50,55,1
-White Labs,Lager,WLP840,American Lager,75,80,3,50,55,1
-White Labs,Lager,WLP850,Copenhagen Lager,72,78,3,50,58,1
-White Labs,Lager,WLP885,Zurich Lager,70,80,3,50,55,4
-White Labs,Lager,WLP920,Old Bavarian Lager,66,73,3,50,55,2
-White Labs,Lager,WLP940,Mexican Lager,70,78,3,50,55,1
+Wyeast,Ale,1007,German Ale,73,77,0,55,68,2Wyeast,Ale,1010,American Wheat,74,78,0,58,74,1Wyeast,Ale,1028,London Ale,73,77,1,60,72,2Wyeast,Ale,1056,American Ale,73,77,1,60,72,2Wyeast,Ale,1084,Irish Ale,71,75,2,62,72,3Wyeast,Ale,1098,British Ale,73,75,2,64,72,1Wyeast,Ale,1099,Whitbread Ale,68,72,3,64,75,1Wyeast,Ale,1187,Ringwood Ale,68,72,4,64,74,1Wyeast,Belgian,1214,Belgian Abbey,74,78,1,68,78,3Wyeast,Ale,1272,American Ale II,72,76,2,60,72,1Wyeast,Ale,1275,Thames Valley Ale,72,76,1,62,72,1Wyeast,Ale,1318,London Ale III,71,75,4,64,74,1Wyeast,Ale,1332,Northwest Ale,67,71,4,65,75,1Wyeast,Ale,1335,British Ale II,73,76,4,63,75,1Wyeast,Belgian,1388,Belgian Strong Ale,74,78,0,64,80,3Wyeast,Ale,1450,Denny's Favorite 5,74,76,0,60,70,1Wyeast,Ale,1469,West Yorkshire Al,67,71,4,74,72,0Wyeast,Ale,1728,Scottish Ale,69,73,4,55,75,3Wyeast,Belgian,1762,Belgian Abbey II,73,77,2,65,75,3Wyeast,Ale,1968,London ESB Ale,67,71,4,64,72,0Wyeast,Lager,2000,Budvar Lager,71,75,3,48,56,0Wyeast,Lager,2001,Urquell Lager,72,76,3,48,56,0Wyeast,Lager,2007,Pilsen Lager,71,75,2,48,56,0Wyeast,Lager,2035,American Lager,73,77,2,48,58,0Wyeast,Lager,2042,Danish Lager,73,77,0,46,56,0Wyeast,Lager,2112,California Lager,67,71,4,58,68,0Wyeast,Lager,2124,Bohemian Lager,73,77,1,45,68,0Wyeast,Lager,2206,Bavarian Lager,73,77,3,46,58,0Wyeast,Lager,2278,Czech Pils,70,74,3,50,58,0Wyeast,Lager,2308,Munich Lager,70,74,2,48,56,0Wyeast,Ale,2565,Kolsch,73,77,0,56,70,1Wyeast,Lager,2633,Octoberfest Lager Blend,73,77,1,48,58,0Wyeast,Belgian,3056,Bavarian Wheat Blend,73,77,2,64,74,1Wyeast,Belgian,3068,Weihenstephan Weizen,73,77,0,64,75,1Wyeast,Belgian,3278,Belgian Lambic Blend,70,80,,63,75,2Wyeast,Belgian,3333,German Wheat,70,76,2,63,75,1Wyeast,Belgian,3463,Forbidden Fruit,72,76,0,63,76,3Wyeast,Belgian,3522,Belgian Ardennes,72,76,4,65,76,3Wyeast,Belgian,3638,Bavarian Wheat,70,76,0,64,75,1Wyeast,Belgian,3711,French Saiso,77,83,0,65,77,3Wyeast,Belgian,3724,Belgian Saison,76,80,0,70,95,3Wyeast,Belgian,3763,Roeselare Ale Blen,80,80,,65,85,2Wyeast,Belgian,3787,Trappist High Gravity,74,78,2,64,78,2Wyeast,Belgian,3942,Belgian Wheat,72,76,2,64,74,3Wyeast,Belgian,3944,Belgian Witbier,72,76,2,62,75,2Wyeast,Lambic,5112,Brettanomyces bruxellensi,90,100,2,60,75,3Wyeast,Lambic,5335,Lactobacillus,,,,60,95,3Wyeast,Lambic,5526,Brettanomyces lambicus,90,100,2,60,75,3Wyeast,Lambic,5733,Pediococcus,,,,60,95,3White Labs,Ale,WLP001,California Ale,73,80,2,68,73,2White Labs,Ale,WLP002,English Ale,63,70,4,65,68,0White Labs,Ale,WLP004,Irish Ale,69,74,3,65,68,1White Labs,Ale,WLP005,British Ale,67,74,4,65,70,0White Labs,Ale,WLP007,Dry English Ale,70,80,3,65,70,1White Labs,Ale,WLP008,East Coast Ale,70,75,1,68,73,0White Labs,Ale,WLP011,European Ale,65,70,2,65,70,0White Labs,Ale,WLP013,London Ale,67,75,2,66,71,0White Labs,Ale,WLP017,Whitbread Ale,67,73,4,66,70,0White Labs,Ale,WLP022,Essex Ale,71,76,3,66,70,0White Labs,Ale,WLP023,Burton Ale,69,75,2,68,73,0White Labs,Ale,WLP026,Premium Bitter Ale,70,75,2,67,70,0White Labs,Ale,WLP028,Edinburgh Scottish Ale,70,75,2,65,70,1White Labs,Ale,WLP029,German Ale/Kolsh,72,78,2,65,69,0White Labs,Ale,WLP036,Dusseldorf Alt Ale,65,72,2,65,69,0White Labs,Ale,WLP041,Pacific Ale,65,70,4,65,70,0White Labs,Ale,WLP051,California Ale V,70,75,3,70,75,0White Labs,Ale,WLP099,Super High Gravity Ale,80,80,2,65,69,3White Labs,Belgian,WLP300,Hefeweizen Ale,72,76,0,68,72,0White Labs,Belgian,WLP320,American Hefe Ale,70,75,0,65,69,0White Labs,Belgian,WLP351,Bavarian Weizen Ale,73,77,0,66,70,0White Labs,Belgian,WLP380,Hefeweizen IV Ale,73,80,0,66,70,0White Labs,Belgian,WLP400,Belgian Wit Ale,74,78,1,67,74,0White Labs,Belgian,WLP410,Belgain Wit II Ale,70,75,1,67,74,0White Labs,Belgian,WLP500,Trappist Ale,75,80,1,65,72,2White Labs,Belgian,WLP510,Belgian Bastogne Ale,74,80,2,66,72,2White Labs,Belgian,WLP530,Abbey Ale,75,80,3,66,72,2White Labs,Belgian,WLP550,Belgain Ale,78,85,2,68,78,1White Labs,Belgian,WLP565,Belgian Saison Ale,65,75,2,68,75,0White Labs,Belgian,WLP570,Belgian Golden Ale,73,78,0,68,75,2White Labs,Lager,WLP800,Pilsner Lager,72,77,3,50,55,0White Labs,Lager,WLP802,Czech Budejovice Lager,75,80,3,50,55,0White Labs,Lager,WLP810,San Fransisco Lager,65,70,4,58,65,1White Labs,Lager,WLP820,Oktoberfest/Marzen,65,73,2,52,58,1White Labs,Lager,WLP830,German Lager,74,79,2,50,55,0White Labs,Lager,WLP833,German Bock Lager,70,76,2,48,55,1White Labs,Lager,WLP838,Southern German Lager,68,76,3,50,55,0White Labs,Lager,WLP840,American Lager,75,80,2,50,55,0White Labs,Lager,WLP850,Copenhagen Lager,72,78,2,50,58,0White Labs,Lager,WLP885,Zurich Lager,70,80,2,50,55,3White Labs,Lager,WLP920,Old Bavarian Lager,66,73,2,50,55,1White Labs,Lager,WLP940,Mexican Lager,70,78,2,50,55,0

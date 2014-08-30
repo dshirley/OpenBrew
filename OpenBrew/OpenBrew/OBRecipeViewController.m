@@ -103,6 +103,11 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
     NSError *err = nil;
     [ctx save:&err];
+    if (err) {
+      // TODO: log critter error
+      NSLog(@"%@", err);
+      assert(NO);
+    }
   } else if ([segueId isEqualToString:SELECT_RECIPE_SEGUE]) {
     NSIndexPath *cellIndex = [self.tableView indexPathForCell:sender];
     recipe = [self recipeData][cellIndex.row];
