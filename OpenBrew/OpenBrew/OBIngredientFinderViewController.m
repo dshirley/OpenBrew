@@ -77,6 +77,8 @@
   return [ingredientsInSection objectAtIndex:indexPath.row];
 }
 
+#pragma mark - UITableViewDataSource Methods
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -92,6 +94,7 @@
   return cell;
 }
 
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
   return [self.sections count];
@@ -101,23 +104,6 @@
 titleForHeaderInSection:(NSInteger)section
 {
   return [self.sections objectAtIndex:section];
-}
-
-- (NSString *)tableView:(UITableView *)tableView
-titleForFooterInSection:(NSInteger)section
-{
-  return nil;
-}
-
-- (BOOL)tableView:(UITableView *)tableView
-canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  return NO;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  return NO;
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
@@ -132,6 +118,7 @@ canEditRowAtIndexPath:(NSIndexPath *)indexPath
   return indexTitles;
 }
 
+// tell table which section corresponds to section title/index (e.g. "B",1))
 - (NSInteger)tableView:(UITableView *)tableView
 sectionForSectionIndexTitle:(NSString *)title
                atIndex:(NSInteger)index
