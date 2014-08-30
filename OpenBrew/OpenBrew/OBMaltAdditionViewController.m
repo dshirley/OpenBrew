@@ -30,7 +30,6 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
 // Elements from MaltAdditionDisplaySettings.xib
 @property (nonatomic, strong) OBPopupView *popupView;
-@property (strong, nonatomic) IBOutlet UIView *displaySettingsView;
 
 @property (nonatomic, strong) NSIndexPath *drawerIndexPath;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
@@ -69,8 +68,6 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
   UIView *subview =  [[[NSBundle mainBundle] loadNibNamed:@"MaltAdditionDisplaySettings"
                                                     owner:self
                                                   options:nil] objectAtIndex:0];
-
-  assert(subview == self.displaySettingsView);
 
   _popupView = [[OBPopupView alloc] initWithFrame:self.view.frame
                                    andContentView:subview
