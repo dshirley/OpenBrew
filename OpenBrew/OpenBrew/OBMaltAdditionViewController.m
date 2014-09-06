@@ -121,13 +121,13 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
     _gauge.description.text = @"Starting Gravity";
   } else if (self.gaugeMetric == OBMaltGaugeMetricColor) {
 
-    _gauge.value.text = [NSString stringWithFormat:@"%d", srm];
+    _gauge.value.text = [NSString stringWithFormat:@"%ld", (long)srm];
     _gauge.description.text = @"SRM";
   } else {
-    [NSException raise:@"Bad OBMaltGaugeMetric" format:@"Metric: %d", self.gaugeMetric];
+    [NSException raise:@"Bad OBMaltGaugeMetric" format:@"Metric: %d", (int) self.gaugeMetric];
   }
 
-  UIColor *beerColor = colorForSrm(srm);
+  UIColor *beerColor = colorForSrm((uint32_t) srm);
   _gauge.backgroundColor = beerColor;
   _gauge.value.textColor = contrastColor(beerColor);
   _gauge.description.textColor = contrastColor(beerColor);

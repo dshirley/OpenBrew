@@ -59,7 +59,7 @@
             forComponent:(NSInteger)component
 {
   NSInteger lovibond = [self lovibondForRow:row];
-  return [NSString stringWithFormat:@"%dL", lovibond];
+  return [NSString stringWithFormat:@"%dL", (int)lovibond];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView

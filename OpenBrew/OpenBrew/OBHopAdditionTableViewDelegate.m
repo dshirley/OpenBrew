@@ -122,7 +122,7 @@
       break;
     default:
       [NSException raise:@"Invalid hop addition metric"
-                  format:@"%d", self.hopAdditionMetricToDisplay];
+                  format:@"%d", (int) self.hopAdditionMetricToDisplay];
   }
 }
 

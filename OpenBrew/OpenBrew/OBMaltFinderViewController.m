@@ -48,7 +48,7 @@
       break;
     default:
       [NSException raise:@"Segment index not defined"
-                  format:@"%d", sender.selectedSegmentIndex];
+                  format:@"%@", @(sender.selectedSegmentIndex)];
   }
 
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == %d", maltType];

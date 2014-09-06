@@ -100,7 +100,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
     _gauge.value.text = [NSString stringWithFormat:@"%.2f", buToGuRatio];
     _gauge.description.text = @"Bitterness to Gravity Ratio";
   } else {
-    [NSException raise:@"Bad OBHopGaugeMetric" format:@"Metric: %ld", self.gaugeMetric];
+    [NSException raise:@"Bad OBHopGaugeMetric" format:@"Metric: %d", (int) self.gaugeMetric];
   }
 }
 
