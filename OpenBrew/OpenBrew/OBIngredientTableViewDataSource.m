@@ -7,6 +7,7 @@
 //
 
 #import "OBIngredientTableViewDataSource.h"
+#import "Crittercism+NSErrorLogging.h"
 
 @interface OBIngredientTableViewDataSource()
 
@@ -72,8 +73,7 @@
   NSArray *array = [self.ctx executeFetchRequest:request error:&error];
 
   if (error) {
-    // TODO: log critter error
-    assert(NO);
+    CRITTERCISM_LOG_ERROR(error);
     array = [NSArray array];
   }
 

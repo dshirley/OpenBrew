@@ -10,6 +10,7 @@
 #import "OBRecipeNavigationController.h"
 #import "OBRecipeOverviewController.h"
 #import "OBBrewery.h"
+#import "Crittercism+NSErrorLogging.h"
 
 static NSString *const ADD_RECIPE_SEGUE = @"addRecipe";
 static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
@@ -103,11 +104,8 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
     NSError *err = nil;
     [ctx save:&err];
-    if (err) {
-      // TODO: log critter error
-      NSLog(@"%@", err);
-      assert(NO);
-    }
+    CRITTERCISM_LOG_ERROR(err);
+
   } else if ([segueId isEqualToString:SELECT_RECIPE_SEGUE]) {
     NSIndexPath *cellIndex = [self.tableView indexPathForCell:sender];
     recipe = [self recipeData][cellIndex.row];
@@ -129,7 +127,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
     NSError *error = nil;
     [self.brewery.managedObjectContext save:&error];
-    // TODO: log error
+    CRITTERCISM_LOG_ERROR(error);
   }
 }
 

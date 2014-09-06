@@ -47,6 +47,10 @@
 		9FB13E6319A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB13E6219A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib */; };
 		9FB13E6C19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB13E6B19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib */; };
 		9FB13E6F19AE2684008BA8C3 /* OBPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB13E6E19AE2684008BA8C3 /* OBPopupView.m */; };
+		9FC73F4B19BB66A900AD964A /* dsym_upload.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9FC73F4919BB66A900AD964A /* dsym_upload.sh */; };
+		9FC73F4C19BB66A900AD964A /* libCrittercism_v4_3_7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC73F4A19BB66A900AD964A /* libCrittercism_v4_3_7.a */; };
+		9FC73F4F19BB683400AD964A /* Crittercism+NSErrorLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC73F4E19BB683400AD964A /* Crittercism+NSErrorLogging.m */; };
+		9FC73F5119BB6DCB00AD964A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */; };
 		9FCECC5B18879B430045FADD /* OBHopsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCECC5A18879B430045FADD /* OBHopsTest.m */; };
 		9FCECC60188831320045FADD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3761880F8EE00469323 /* XCTest.framework */; };
 		9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */; };
@@ -142,6 +146,14 @@
 		9FB13E6B19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HopAdditionDisplaySettings.xib; sourceTree = "<group>"; };
 		9FB13E6D19AE2684008BA8C3 /* OBPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPopupView.h; sourceTree = "<group>"; };
 		9FB13E6E19AE2684008BA8C3 /* OBPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPopupView.m; sourceTree = "<group>"; };
+		9FC73F4619BB66A900AD964A /* CRFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFilter.h; sourceTree = "<group>"; };
+		9FC73F4719BB66A900AD964A /* Crittercism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crittercism.h; sourceTree = "<group>"; };
+		9FC73F4819BB66A900AD964A /* CrittercismDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismDelegate.h; sourceTree = "<group>"; };
+		9FC73F4919BB66A900AD964A /* dsym_upload.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = dsym_upload.sh; sourceTree = "<group>"; };
+		9FC73F4A19BB66A900AD964A /* libCrittercism_v4_3_7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCrittercism_v4_3_7.a; sourceTree = "<group>"; };
+		9FC73F4D19BB683400AD964A /* Crittercism+NSErrorLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Crittercism+NSErrorLogging.h"; sourceTree = "<group>"; };
+		9FC73F4E19BB683400AD964A /* Crittercism+NSErrorLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Crittercism+NSErrorLogging.m"; sourceTree = "<group>"; };
+		9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9FCECC5A18879B430045FADD /* OBHopsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopsTest.m; sourceTree = "<group>"; };
 		9FCECC5C1887A1150045FADD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9FD14131197CC7CE005220BC /* OBBatchSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBatchSizeViewController.h; sourceTree = "<group>"; };
@@ -175,7 +187,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FC73F5119BB6DCB00AD964A /* SystemConfiguration.framework in Frameworks */,
 				9F98D35B1880F8ED00469323 /* CoreGraphics.framework in Frameworks */,
+				9FC73F4C19BB66A900AD964A /* libCrittercism_v4_3_7.a in Frameworks */,
 				9F98D35F1880F8ED00469323 /* CoreData.framework in Frameworks */,
 				9F98D35D1880F8ED00469323 /* UIKit.framework in Frameworks */,
 				9F98D3591880F8ED00469323 /* Foundation.framework in Frameworks */,
@@ -213,6 +227,8 @@
 			isa = PBXGroup;
 			children = (
 				9F4C5C5E199DC574008A6F1B /* OBKvoUtils.h */,
+				9FC73F4D19BB683400AD964A /* Crittercism+NSErrorLogging.h */,
+				9FC73F4E19BB683400AD964A /* Crittercism+NSErrorLogging.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -262,6 +278,8 @@
 		9F98D3571880F8ED00469323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */,
+				9FC73F4519BB66A900AD964A /* CrittercismSDK */,
 				9FCECC5C1887A1150045FADD /* SenTestingKit.framework */,
 				9F98D3581880F8ED00469323 /* Foundation.framework */,
 				9F98D35A1880F8ED00469323 /* CoreGraphics.framework */,
@@ -342,6 +360,18 @@
 				9FA3890019B27A0B0009DB07 /* OBSrmColorTable.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		9FC73F4519BB66A900AD964A /* CrittercismSDK */ = {
+			isa = PBXGroup;
+			children = (
+				9FC73F4619BB66A900AD964A /* CRFilter.h */,
+				9FC73F4719BB66A900AD964A /* Crittercism.h */,
+				9FC73F4819BB66A900AD964A /* CrittercismDelegate.h */,
+				9FC73F4919BB66A900AD964A /* dsym_upload.sh */,
+				9FC73F4A19BB66A900AD964A /* libCrittercism_v4_3_7.a */,
+			);
+			path = CrittercismSDK;
 			sourceTree = "<group>";
 		};
 		9FE86434198DBE9F007AD9E7 /* Picker Delegates */ = {
@@ -483,6 +513,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FC73F4B19BB66A900AD964A /* dsym_upload.sh in Resources */,
 				9F98D3651880F8ED00469323 /* InfoPlist.strings in Resources */,
 				9F98D3701880F8ED00469323 /* Images.xcassets in Resources */,
 				9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */,
@@ -523,6 +554,7 @@
 				9FE86433198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m in Sources */,
 				9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */,
 				9FF68676189327B000B36486 /* OBMaltAdditionViewController.m in Sources */,
+				9FC73F4F19BB683400AD964A /* Crittercism+NSErrorLogging.m in Sources */,
 				9F60CF2919B251D00076A600 /* OBIngredientTableViewDataSource.m in Sources */,
 				9F92E8C518A0D0D000118D76 /* OBRecipe.m in Sources */,
 				9F92E8C818A0D45F00118D76 /* OBHopAddition.m in Sources */,
@@ -667,6 +699,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenBrew/OpenBrew-Prefix.pch";
 				INFOPLIST_FILE = "OpenBrew/OpenBrew-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CrittercismSDK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -680,6 +716,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenBrew/OpenBrew-Prefix.pch";
 				INFOPLIST_FILE = "OpenBrew/OpenBrew-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CrittercismSDK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

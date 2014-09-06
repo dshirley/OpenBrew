@@ -12,6 +12,7 @@
 #import "OBMalt.h"
 #import "OBHops.h"
 #import "OBYeast.h"
+#import "Crittercism+NSErrorLogging.h"
 
 @implementation OBBrewery
 
@@ -121,9 +122,7 @@
                                                error:&error];
 
   if (error) {
-    // TODO: log critter error
-    NSLog(@"error %@", error);
-    assert(NO);
+    CRITTERCISM_LOG_ERROR(error);
     return NO;
   }
 

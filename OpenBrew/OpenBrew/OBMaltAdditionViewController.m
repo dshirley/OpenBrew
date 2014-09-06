@@ -17,6 +17,7 @@
 #import "OBPopupView.h"
 #import "OBIngredientTableViewDataSource.h"
 #import "OBSrmColorTable.h"
+#import "Crittercism+NSErrorLogging.h"
 
 // What malt related metric should the gauge display.  These values should
 // correspond to the indices of the MaltAdditionDisplaySettings segmentview.
@@ -187,7 +188,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
     NSError *error = nil;
     [self.recipe.managedObjectContext save:&error];
-    // TODO: log critter error
+    CRITTERCISM_LOG_ERROR(error);
 
     [self reload];
   }

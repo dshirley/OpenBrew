@@ -12,6 +12,11 @@
 #import "OBIngredientCatalog.h"
 #import "OBRecipeNavigationController.h"
 #import "OBBrewery.h"
+#import "Crittercism.h"
+#import "Crittercism+NSErrorLogging.h"
+
+static NSString *const CRITTER_APP_ID_PRODUCTION = @"540b2fc9d478bc6abf000001";
+static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"540b2fe1bb947505e5000003";
 
 @implementation OBAppDelegate
 
@@ -21,6 +26,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  if (DEBUG) {
+    [Crittercism enableWithAppID:CRITTER_APP_ID_DEVELOPMENT];
+  } else {
+    [Crittercism enableWithAppID:CRITTER_APP_ID_PRODUCTION];
+  }
+
   OBBrewery *brewery = [OBBrewery breweryFromContext:self.managedObjectContext];
   if (brewery) {
     [self.managedObjectContext save:nil];
@@ -125,9 +136,12 @@
   
   NSError *error = nil;
   _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-  if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-    abort();
+  if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                 configuration:nil
+                                                           URL:storeURL
+                                                       options:nil
+                                                         error:&error]) {
+    CRITTERCISM_LOG_ERROR(error);
   }
   
   return _persistentStoreCoordinator;
