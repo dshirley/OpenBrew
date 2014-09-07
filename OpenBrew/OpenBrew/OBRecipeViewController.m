@@ -17,6 +17,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
 @interface OBRecipeViewController ()
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIView *placeholderText;
 @end
 
 @implementation OBRecipeViewController
@@ -33,7 +34,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
   [self.tableView reloadData];
 }
 
@@ -41,10 +42,45 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 {
   [super viewWillAppear:animated];
 
+  if ([self tableViewIsEmpty]) {
+    [self switchToEmptyTableViewMode];
+  } else {
+    [self switchToNonEmptyTableViewMode];
+  }
+
   if (!self.isMovingToParentViewController) {
     // A sub-view controller is being popped
     [self.tableView reloadData];
   }
+}
+
+- (BOOL)tableViewIsEmpty
+{
+  return (self.brewery.recipes.count == 0);
+}
+
+// Changes the look and feel to have placeholder text that makes it clear
+// there are no recipes available.  Also remove the unnecessary "edit" button
+// to eliminate confusion.
+- (void)switchToEmptyTableViewMode
+{
+  if (!self.placeholderText) {
+    UILabel *label = [[UILabel alloc] initWithFrame:self.tableView.frame];
+    label.text = @"No Recipes";
+    label.textColor = [UIColor grayColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:24];
+    self.placeholderText = label;
+  }
+
+  self.tableView.tableFooterView = self.placeholderText;
+  self.navigationItem.rightBarButtonItem = nil;
+}
+
+- (void)switchToNonEmptyTableViewMode
+{
+  self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  self.tableView.tableFooterView = nil;
 }
 
 - (OBBrewery *)brewery
@@ -128,6 +164,10 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
     NSError *error = nil;
     [self.brewery.managedObjectContext save:&error];
     CRITTERCISM_LOG_ERROR(error);
+
+    if ([self tableViewIsEmpty]) {
+      [self switchToEmptyTableViewMode];
+    }
   }
 }
 
