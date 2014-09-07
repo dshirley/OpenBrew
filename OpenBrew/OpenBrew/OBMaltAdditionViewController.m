@@ -17,6 +17,7 @@
 #import "OBPopupView.h"
 #import "OBIngredientTableViewDataSource.h"
 #import "OBSrmColorTable.h"
+#import "OBTableViewPlaceholderLabel.h"
 #import "Crittercism+NSErrorLogging.h"
 
 // What malt related metric should the gauge display.  These values should
@@ -36,6 +37,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
 @property (nonatomic, strong) NSIndexPath *drawerIndexPath;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) OBTableViewPlaceholderLabel *placeholderText;
 @property (assign) NSInteger drawerCellRowHeight;
 
 @property (nonatomic, assign) OBMaltGaugeMetric gaugeMetric;
@@ -53,13 +55,53 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 - (void)loadView {
   [super loadView];
 
-  self.tableViewDelegate = [[OBMaltAdditionTableViewDelegate alloc] initWithRecipe:self.recipe andTableView:self.tableView];
+  self.tableViewDelegate = [[OBMaltAdditionTableViewDelegate alloc]
+                            initWithRecipe:self.recipe
+                            andTableView:self.tableView];
+
   self.tableView.delegate = self.tableViewDelegate;
   self.tableView.dataSource = self.tableViewDelegate;
 
   [self addMaltDisplaySettingsView];
 
   [self reload];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+
+  if ([self tableViewIsEmpty]) {
+    [self switchToEmptyTableViewMode];
+  } else {
+    [self switchToNonEmptyTableViewMode];
+  }
+}
+
+- (BOOL)tableViewIsEmpty
+{
+  return (self.recipe.maltAdditions.count == 0);
+}
+
+// Changes the look and feel to have placeholder text that makes it clear
+// there are no recipes available.  Also remove the unnecessary "edit" button
+// to eliminate confusion.
+- (void)switchToEmptyTableViewMode
+{
+  if (!self.placeholderText) {
+    self.placeholderText = [[OBTableViewPlaceholderLabel alloc]
+                            initWithFrame:self.tableView.frame
+                            andText:@"No Malts"];
+  }
+
+  self.tableView.tableFooterView = self.placeholderText;
+  self.navigationItem.rightBarButtonItem = nil;
+}
+
+- (void)switchToNonEmptyTableViewMode
+{
+  self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  self.tableView.tableFooterView = nil;
 }
 
 #pragma mark Display Settings View Logic
@@ -155,6 +197,16 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 {
   if ([keyPath isEqualToString:KVO_KEY(originalGravity)]) {
     [self refreshGauge];
+
+    // This if statement is a bit of a hack.  It allows detecting changes to
+    // the malt bill.  However, we certainly don't need to update the view when
+    // the malt addition weight changes or when the color changes. This is much
+    // simpler than adding a callback to the table view data source delegate.
+    if ([self tableViewIsEmpty]) {
+      [self switchToEmptyTableViewMode];
+    } else {
+      [self switchToNonEmptyTableViewMode];
+    }
   }
 }
 

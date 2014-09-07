@@ -11,6 +11,7 @@
 #import "OBRecipeOverviewController.h"
 #import "OBBrewery.h"
 #import "Crittercism+NSErrorLogging.h"
+#import "OBTableViewPlaceholderLabel.h"
 
 static NSString *const ADD_RECIPE_SEGUE = @"addRecipe";
 static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
@@ -65,12 +66,9 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 - (void)switchToEmptyTableViewMode
 {
   if (!self.placeholderText) {
-    UILabel *label = [[UILabel alloc] initWithFrame:self.tableView.frame];
-    label.text = @"No Recipes";
-    label.textColor = [UIColor grayColor];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:24];
-    self.placeholderText = label;
+    self.placeholderText = [[OBTableViewPlaceholderLabel alloc]
+                            initWithFrame:self.tableView.frame
+                            andText:@"No Recipes"];
   }
 
   self.tableView.tableFooterView = self.placeholderText;

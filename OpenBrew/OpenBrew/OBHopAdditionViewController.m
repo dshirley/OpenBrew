@@ -18,6 +18,7 @@
 #import "OBKvoUtils.h"
 #import "OBPopupView.h"
 #import "OBIngredientTableViewDataSource.h"
+#import "OBTableViewPlaceholderLabel.h"
 
 // What hop related metric the gauge should display.  These values should
 // correspond to the indices of the segements in HopAdditionDisplaySettings.xib
@@ -32,6 +33,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 @property (nonatomic, strong) OBPopupView *popupView;
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) OBTableViewPlaceholderLabel *placeholderText;
 @property (nonatomic, assign) OBHopGaugeMetric gaugeMetric;
 @property (nonatomic, strong) IBOutlet OBIngredientGauge *gauge;
 @property (nonatomic, strong) OBHopAdditionTableViewDelegate *tableViewDelegate;
@@ -58,10 +60,47 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 }
 
 
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+
+  if ([self tableViewIsEmpty]) {
+    [self switchToEmptyTableViewMode];
+  } else {
+    [self switchToNonEmptyTableViewMode];
+  }
+}
+
+- (BOOL)tableViewIsEmpty
+{
+  return (self.recipe.hopAdditions.count == 0);
+}
+
+// Changes the look and feel to have placeholder text that makes it clear
+// there are no recipes available.  Also remove the unnecessary "edit" button
+// to eliminate confusion.
+- (void)switchToEmptyTableViewMode
+{
+  if (!self.placeholderText) {
+    self.placeholderText = [[OBTableViewPlaceholderLabel alloc]
+                            initWithFrame:self.tableView.frame
+                            andText:@"No Hops"];
+  }
+
+  self.tableView.tableFooterView = self.placeholderText;
+  self.navigationItem.rightBarButtonItem = nil;
+}
+
+- (void)switchToNonEmptyTableViewMode
+{
+  self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  self.tableView.tableFooterView = nil;
+}
+
 #pragma mark Display Settings View Logic
 
 // Create the settings view and place it below the visible screen.  This view
-// will pop up/down to allow users to display different malt metrics
+// will pop up/down to allow users to display different hop metrics
 - (void)addHopDisplaySettingsView
 {
   UIView *subview =  [[[NSBundle mainBundle] loadNibNamed:@"HopAdditionDisplaySettings"
@@ -125,6 +164,12 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
   if ([keyPath isEqualToString:KVO_KEY(IBUs)]) {
     [self refreshGauge];
   }
+
+  if ([self tableViewIsEmpty]) {
+    [self switchToEmptyTableViewMode];
+  } else {
+    [self switchToNonEmptyTableViewMode];
+  }
 }
 
 - (void)setRecipe:(OBRecipe *)recipe
@@ -155,7 +200,6 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
   }
 }
 
-// TODO: duplicate code except with hops instead of malts... not too egregious, though
 - (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue
 {
   if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {

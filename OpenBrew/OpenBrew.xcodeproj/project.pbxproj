@@ -51,6 +51,7 @@
 		9FC73F4C19BB66A900AD964A /* libCrittercism_v4_3_7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC73F4A19BB66A900AD964A /* libCrittercism_v4_3_7.a */; };
 		9FC73F4F19BB683400AD964A /* Crittercism+NSErrorLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC73F4E19BB683400AD964A /* Crittercism+NSErrorLogging.m */; };
 		9FC73F5119BB6DCB00AD964A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */; };
+		9FC73F5719BD128200AD964A /* OBTableViewPlaceholderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC73F5619BD128200AD964A /* OBTableViewPlaceholderLabel.m */; };
 		9FCECC5B18879B430045FADD /* OBHopsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCECC5A18879B430045FADD /* OBHopsTest.m */; };
 		9FCECC60188831320045FADD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3761880F8EE00469323 /* XCTest.framework */; };
 		9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */; };
@@ -154,6 +155,8 @@
 		9FC73F4D19BB683400AD964A /* Crittercism+NSErrorLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Crittercism+NSErrorLogging.h"; sourceTree = "<group>"; };
 		9FC73F4E19BB683400AD964A /* Crittercism+NSErrorLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Crittercism+NSErrorLogging.m"; sourceTree = "<group>"; };
 		9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9FC73F5519BD128200AD964A /* OBTableViewPlaceholderLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTableViewPlaceholderLabel.h; sourceTree = "<group>"; };
+		9FC73F5619BD128200AD964A /* OBTableViewPlaceholderLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTableViewPlaceholderLabel.m; sourceTree = "<group>"; };
 		9FCECC5A18879B430045FADD /* OBHopsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopsTest.m; sourceTree = "<group>"; };
 		9FCECC5C1887A1150045FADD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9FD14131197CC7CE005220BC /* OBBatchSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBatchSizeViewController.h; sourceTree = "<group>"; };
@@ -433,6 +436,8 @@
 				9F5033BF198B55E800C302C1 /* TableViewCells */,
 				9FB13E6D19AE2684008BA8C3 /* OBPopupView.h */,
 				9FB13E6E19AE2684008BA8C3 /* OBPopupView.m */,
+				9FC73F5519BD128200AD964A /* OBTableViewPlaceholderLabel.h */,
+				9FC73F5619BD128200AD964A /* OBTableViewPlaceholderLabel.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -565,6 +570,7 @@
 				9F08154A1997147C00E5E575 /* OBMaltColorPickerDelegate.m in Sources */,
 				9F08154719970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m in Sources */,
 				9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */,
+				9FC73F5719BD128200AD964A /* OBTableViewPlaceholderLabel.m in Sources */,
 				9F08153B1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m in Sources */,
 				9F92E8D118A0D6CF00118D76 /* OBYeast.m in Sources */,
 				9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */,
