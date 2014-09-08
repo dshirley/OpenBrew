@@ -168,35 +168,4 @@
   [self.tableView reloadData];
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  if (editingStyle == UITableViewCellEditingStyleDelete) {
-    OBMaltAddition *maltToRemove = [self ingredientAtIndexPath:indexPath];
-    [self.recipe removeMaltAdditionsObject:maltToRemove];
-
-    int i = 0;
-    for (OBMaltAddition *malt in [self ingredientData]) {
-      [malt setDisplayOrder:[NSNumber numberWithInt:i]];
-      i++;
-    }
-
-    [tableView deleteRowsAtIndexPaths:@[indexPath]
-                     withRowAnimation:UITableViewRowAnimationAutomatic];
-  }
-}
-
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
-{
-  NSMutableArray *maltData = [NSMutableArray arrayWithArray:[self ingredientData]];
-  OBMaltAddition *maltToMove = maltData[sourceIndexPath.row];
-  [maltData removeObjectAtIndex:sourceIndexPath.row];
-  [maltData insertObject:maltToMove atIndex:destinationIndexPath.row];
-
-  int i = 0;
-  for (OBMaltAddition *malt in maltData) {
-    [malt setDisplayOrder:[NSNumber numberWithInt:i]];
-    i++;
-  }
-}
-
 @end

@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "OBIngredientAddition.h"
 
 @class OBHops, OBRecipe;
 
-@interface OBHopAddition : NSManagedObject
+@interface OBHopAddition : NSManagedObject <OBIngredientAddition>;
 
 @property (nonatomic, retain) NSNumber * alphaAcidPercent;
 @property (nonatomic, retain) NSNumber * boilTimeInMinutes;
@@ -28,5 +29,9 @@
 - (float)alphaAcidUnits;
 
 - (NSInteger)percentOfIBUs;
+
+#pragma mark - OBIngredientAddition Protocol
+
+- (void)removeFromRecipe;
 
 @end

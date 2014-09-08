@@ -10,6 +10,7 @@
 
 @class OBIngredientGauge;
 @class OBRecipe;
+@protocol OBIngredientAddition;
 
 @interface OBDrawerTableViewDelegate : NSObject <UITableViewDataSource, UITableViewDelegate>
 
@@ -38,6 +39,6 @@
 - (UITableViewCell *)cellBeforeDrawerForTableView:(UITableView *)tableView;
 - (UITableViewCell *)drawerCellForTableView:(UITableView *)tableView;
 
-- (id)ingredientAtIndexPath:(NSIndexPath *)indexPath;
+- (id<OBIngredientAddition>)ingredientAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

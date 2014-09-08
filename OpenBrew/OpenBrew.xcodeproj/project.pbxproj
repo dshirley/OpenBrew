@@ -157,6 +157,7 @@
 		9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9FC73F5519BD128200AD964A /* OBTableViewPlaceholderLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTableViewPlaceholderLabel.h; sourceTree = "<group>"; };
 		9FC73F5619BD128200AD964A /* OBTableViewPlaceholderLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTableViewPlaceholderLabel.m; sourceTree = "<group>"; };
+		9FC73F5819BDFF9D00AD964A /* OBIngredientAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientAddition.h; sourceTree = "<group>"; };
 		9FCECC5A18879B430045FADD /* OBHopsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopsTest.m; sourceTree = "<group>"; };
 		9FCECC5C1887A1150045FADD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9FD14131197CC7CE005220BC /* OBBatchSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBatchSizeViewController.h; sourceTree = "<group>"; };
@@ -346,6 +347,7 @@
 				9F92E8C718A0D45F00118D76 /* OBHopAddition.m */,
 				9F92E8C918A0D53E00118D76 /* OBHops.h */,
 				9F92E8CA18A0D53E00118D76 /* OBHops.m */,
+				9FC73F5819BDFF9D00AD964A /* OBIngredientAddition.h */,
 				9F92E8B018A0C2D900118D76 /* OBIngredientCatalog.h */,
 				9F92E8B118A0C2D900118D76 /* OBIngredientCatalog.m */,
 				9F92E8C018A0CFF700118D76 /* OBMalt.h */,
@@ -354,13 +356,13 @@
 				9F92E8BE18A0CED100118D76 /* OBMaltAddition.m */,
 				9F92E8C318A0D0D000118D76 /* OBRecipe.h */,
 				9F92E8C418A0D0D000118D76 /* OBRecipe.m */,
+				9FA388FF19B27A0B0009DB07 /* OBSrmColorTable.h */,
+				9FA3890019B27A0B0009DB07 /* OBSrmColorTable.m */,
 				9F92E8CF18A0D6CF00118D76 /* OBYeast.h */,
 				9F92E8D018A0D6CF00118D76 /* OBYeast.m */,
 				9F92E8CC18A0D63300118D76 /* OBYeastAddition.h */,
 				9F92E8CD18A0D63300118D76 /* OBYeastAddition.m */,
 				9FE9745A188975C700FFAA56 /* OpenBrew.xcdatamodeld */,
-				9FA388FF19B27A0B0009DB07 /* OBSrmColorTable.h */,
-				9FA3890019B27A0B0009DB07 /* OBSrmColorTable.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";

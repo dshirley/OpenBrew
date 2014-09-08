@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "OBIngredientAddition.h"
 
 @class OBMalt, OBRecipe;
 
-@interface OBMaltAddition : NSManagedObject
+@interface OBMaltAddition : NSManagedObject <OBIngredientAddition>
 
 @property (nonatomic, retain) OBMalt *malt;
 @property (nonatomic, retain) OBRecipe *recipe;
@@ -33,5 +34,9 @@
 - (float)maltColorUnitsForBoilSize:(float)boilSize;
 
 - (NSInteger)percentOfGravity;
+
+#pragma mark - OBIngredientAddition protocol
+
+- (void)removeFromRecipe;
 
 @end

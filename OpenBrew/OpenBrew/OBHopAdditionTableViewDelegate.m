@@ -190,36 +190,4 @@
   [self populateIngredientCell:cell withIngredientData:hopAddition];
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  if (editingStyle == UITableViewCellEditingStyleDelete) {
-    id ingredientToRemove = [self ingredientAtIndexPath:indexPath];
-
-    [self.recipe removeHopAdditionsObject:ingredientToRemove];
-
-    int i = 0;
-    for (id ingredient in [self ingredientData]) {
-      [ingredient setDisplayOrder:[NSNumber numberWithInt:i]];
-      i++;
-    }
-
-    [tableView deleteRowsAtIndexPaths:@[indexPath]
-                     withRowAnimation:UITableViewRowAnimationAutomatic];
-  }
-}
-
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
-{
-  NSMutableArray *ingredientData = [NSMutableArray arrayWithArray:[self ingredientData]];
-  OBHopAddition *ingredientToMove = ingredientData[sourceIndexPath.row];
-  [ingredientData removeObjectAtIndex:sourceIndexPath.row];
-  [ingredientData insertObject:ingredientToMove atIndex:destinationIndexPath.row];
-
-  int i = 0;
-  for (OBHopAddition *ingredient in ingredientData) {
-    [ingredient setDisplayOrder:[NSNumber numberWithInt:i]];
-    i++;
-  }
-}
-
 @end

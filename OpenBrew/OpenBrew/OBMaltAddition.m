@@ -94,4 +94,12 @@
   return [self.recipe percentTotalGravityOfMaltAddition:self];
 }
 
+#pragma mark - OBIngredientAddition Protocol
+
+- (void)removeFromRecipe
+{
+  [self.recipe removeMaltAdditionsObject:self];
+  self.recipe = nil;
+}
+
 @end

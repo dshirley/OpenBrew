@@ -7,6 +7,7 @@
 //
 
 #import "OBDrawerTableViewDelegate.h"
+#import "OBIngredientAddition.h"
 
 static NSString *const INGREDIENT_ADDITION_CELL = @"IngredientAddition";
 static NSString *const DRAWER_CELL = @"DrawerCell";
@@ -44,7 +45,7 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 /**
  * Lookup the hop addition at the given index in the UITableView
  */
-- (id)ingredientAtIndexPath:(NSIndexPath *)indexPath
+- (id<OBIngredientAddition>)ingredientAtIndexPath:(NSIndexPath *)indexPath
 {
   // There can't be a hop addition in the same index as the drawer
   assert(!self.drawerIndexPath || self.drawerIndexPath.row != indexPath.row);
@@ -243,5 +244,37 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 {
   return ![self isDrawerIndexPath:indexPath];
 }
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+    id<OBIngredientAddition> ingredientToRemove = [self ingredientAtIndexPath:indexPath];
+    [ingredientToRemove removeFromRecipe];
+
+    int i = 0;
+    for (id<OBIngredientAddition> ingredientAddition in [self ingredientData]) {
+      [ingredientAddition setDisplayOrder:[NSNumber numberWithInt:i]];
+      i++;
+    }
+
+    [tableView deleteRowsAtIndexPaths:@[indexPath]
+                     withRowAnimation:UITableViewRowAnimationAutomatic];
+  }
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+  NSMutableArray *data = [NSMutableArray arrayWithArray:[self ingredientData]];
+  id<OBIngredientAddition> toMove = data[sourceIndexPath.row];
+  [data removeObjectAtIndex:sourceIndexPath.row];
+  [data insertObject:toMove atIndex:destinationIndexPath.row];
+
+  int i = 0;
+  for (id<OBIngredientAddition> ingredient in data) {
+    [ingredient setDisplayOrder:[NSNumber numberWithInt:i]];
+    i++;
+  }
+}
+
 
 @end

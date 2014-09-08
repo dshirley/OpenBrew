@@ -76,4 +76,13 @@
   return [self.recipe percentIBUOfHopAddition:self];
 }
 
+
+#pragma mark - OBIngredientAddition Protocol
+
+- (void)removeFromRecipe
+{
+  [self.recipe removeHopAdditionsObject:self];
+  self.recipe = nil;
+}
+
 @end
