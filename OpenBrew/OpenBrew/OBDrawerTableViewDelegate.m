@@ -257,8 +257,18 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
       i++;
     }
 
+    if ([self drawerIsOpen] && ((self.drawerIndexPath.row - 1) == indexPath.row)) {
+      // The cell with the drawer has been removed. We need to remove the drawer, too.
+      [self closeDrawerForTableView:tableView];
+    }
+
     [tableView deleteRowsAtIndexPaths:@[indexPath]
                      withRowAnimation:UITableViewRowAnimationAutomatic];
+
+    if ([self drawerIsOpen] && (indexPath.row < self.drawerIndexPath.row)) {
+      self.drawerIndexPath = [self indexPathOfCellBeforeDrawer];
+      [tableView reloadData];
+    }
   }
 }
 
