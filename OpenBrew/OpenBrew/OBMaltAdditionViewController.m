@@ -78,6 +78,17 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
   }
 }
 
+// This method is here to prevent a crash.
+// For a full description read either of the two following:
+// https://github.com/dshirley/OpenBrew/issues/14
+// http://stackoverflow.com/questions/19230446/tableviewcaneditrowatindexpath-crash-when-popping-viewcontroller
+// This works around an apple bug that causes the app to crash if the swipe to
+// delete button is showing when the view controller is popped.
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  [self.tableView setEditing:NO];
+}
+
 - (BOOL)tableViewIsEmpty
 {
   return (self.recipe.maltAdditions.count == 0);
