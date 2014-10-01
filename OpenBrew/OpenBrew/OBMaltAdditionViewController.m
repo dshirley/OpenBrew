@@ -170,20 +170,20 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
   if (self.gaugeMetric == OBMaltGaugeMetricGravity) {
     float gravity = [self.recipe originalGravity];
-    _gauge.value.text = [NSString stringWithFormat:@"%.3f", gravity];
-    _gauge.description.text = @"Starting Gravity";
+    _gauge.valueLabel.text = [NSString stringWithFormat:@"%.3f", gravity];
+    _gauge.descriptionLabel.text = @"Starting Gravity";
   } else if (self.gaugeMetric == OBMaltGaugeMetricColor) {
 
-    _gauge.value.text = [NSString stringWithFormat:@"%ld", (long)srm];
-    _gauge.description.text = @"SRM";
+    _gauge.valueLabel.text = [NSString stringWithFormat:@"%ld", (long)srm];
+    _gauge.descriptionLabel.text = @"SRM";
   } else {
     [NSException raise:@"Bad OBMaltGaugeMetric" format:@"Metric: %d", (int) self.gaugeMetric];
   }
 
   UIColor *beerColor = colorForSrm((uint32_t) srm);
   _gauge.backgroundColor = beerColor;
-  _gauge.value.textColor = contrastColor(beerColor);
-  _gauge.description.textColor = contrastColor(beerColor);
+  _gauge.valueLabel.textColor = contrastColor(beerColor);
+  _gauge.descriptionLabel.textColor = contrastColor(beerColor);
 }
 
 - (void)setRecipe:(OBRecipe *)recipe

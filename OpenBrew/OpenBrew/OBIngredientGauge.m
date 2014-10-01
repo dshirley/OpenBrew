@@ -41,16 +41,16 @@
 
 - (void)doInit
 {
-  _value = [[UILabel alloc] initWithFrame:[self valueBounds]];
-  _description = [[UILabel alloc] initWithFrame:[self descriptionBounds]];
+  _valueLabel = [[UILabel alloc] initWithFrame:[self valueBounds]];
+  _descriptionLabel = [[UILabel alloc] initWithFrame:[self descriptionBounds]];
   
-  _value.text = @"Default";
-  _value.textColor = [UIColor blackColor];
+  _valueLabel.text = @"Default";
+  _valueLabel.textColor = [UIColor blackColor];
   
-  _description.text = @"Default";
+  _descriptionLabel.text = @"Default";
   
-  [self addSubview:_value];
-  [self addSubview:_description];
+  [self addSubview:_valueLabel];
+  [self addSubview:_descriptionLabel];
 }
 
 - (CGRect)valueBounds
@@ -67,14 +67,14 @@
 {
   [super layoutSubviews];
   
-  [_value setFrame:[self valueBounds]];
-  [_value setTextAlignment:NSTextAlignmentCenter];
-  [_value setFont:[UIFont systemFontOfSize:VALUE_FONT_SIZE]];
+  [_valueLabel setFrame:[self valueBounds]];
+  [_valueLabel setTextAlignment:NSTextAlignmentCenter];
+  [_valueLabel setFont:[UIFont systemFontOfSize:VALUE_FONT_SIZE]];
   
-  [_description setFrame:[self descriptionBounds]];
-  [_description setTextAlignment:NSTextAlignmentCenter];
-  [_description setFont:[UIFont systemFontOfSize:12]];
-  [_description setTextColor:[UIColor grayColor]];
+  [_descriptionLabel setFrame:[self descriptionBounds]];
+  [_descriptionLabel setTextAlignment:NSTextAlignmentCenter];
+  [_descriptionLabel setFont:[UIFont systemFontOfSize:12]];
+  [_descriptionLabel setTextColor:[UIColor grayColor]];
 }
 
 // Only override drawRect: if you perform custom drawing.

@@ -143,12 +143,12 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 {
   if (self.gaugeMetric == OBHopGaugeMetricIBU) {
     float ibu = [self.recipe IBUs];
-    _gauge.value.text = [NSString stringWithFormat:@"%d", (int) round(ibu)];
-    _gauge.description.text = @"IBUs";
+    _gauge.valueLabel.text = [NSString stringWithFormat:@"%d", (int) round(ibu)];
+    _gauge.descriptionLabel.text = @"IBUs";
   } else if (self.gaugeMetric == OBHopGaugeMetricBitteringToGravityRatio) {
     float buToGuRatio = [self.recipe bitternessToGravityRatio];
-    _gauge.value.text = [NSString stringWithFormat:@"%.2f", buToGuRatio];
-    _gauge.description.text = @"Bitterness to Gravity Ratio";
+    _gauge.valueLabel.text = [NSString stringWithFormat:@"%.2f", buToGuRatio];
+    _gauge.descriptionLabel.text = @"Bitterness to Gravity Ratio";
   } else {
     [NSException raise:@"Bad OBHopGaugeMetric" format:@"Metric: %d", (int) self.gaugeMetric];
   }
