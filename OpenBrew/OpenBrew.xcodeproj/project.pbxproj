@@ -16,6 +16,8 @@
 		9F60CF2319B15CBA0076A600 /* YeastCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F60CF2219B15CBA0076A600 /* YeastCatalog.csv */; };
 		9F60CF2919B251D00076A600 /* OBIngredientTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */; };
 		9F60CF2C19B264A10076A600 /* OBMaltFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60CF2B19B264A10076A600 /* OBMaltFinderViewController.m */; };
+		9F68D98B1B23BE2700E0003E /* dsym_upload.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9F68D9891B23BE2700E0003E /* dsym_upload.sh */; };
+		9F68D98C1B23BE2700E0003E /* libCrittercism_v5_2_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F68D98A1B23BE2700E0003E /* libCrittercism_v5_2_0.a */; };
 		9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */; };
 		9F92E8A918A0910200118D76 /* OBIngredientFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8A818A0910200118D76 /* OBIngredientFinderViewController.m */; };
 		9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */; };
@@ -47,8 +49,6 @@
 		9FB13E6319A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB13E6219A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib */; };
 		9FB13E6C19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB13E6B19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib */; };
 		9FB13E6F19AE2684008BA8C3 /* OBPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB13E6E19AE2684008BA8C3 /* OBPopupView.m */; };
-		9FC73F4B19BB66A900AD964A /* dsym_upload.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9FC73F4919BB66A900AD964A /* dsym_upload.sh */; };
-		9FC73F4C19BB66A900AD964A /* libCrittercism_v4_3_7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC73F4A19BB66A900AD964A /* libCrittercism_v4_3_7.a */; };
 		9FC73F4F19BB683400AD964A /* Crittercism+NSErrorLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC73F4E19BB683400AD964A /* Crittercism+NSErrorLogging.m */; };
 		9FC73F5119BB6DCB00AD964A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */; };
 		9FC73F5719BD128200AD964A /* OBTableViewPlaceholderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC73F5619BD128200AD964A /* OBTableViewPlaceholderLabel.m */; };
@@ -99,6 +99,12 @@
 		9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIngredientTableViewDataSource.m; sourceTree = "<group>"; };
 		9F60CF2A19B264A10076A600 /* OBMaltFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltFinderViewController.h; sourceTree = "<group>"; };
 		9F60CF2B19B264A10076A600 /* OBMaltFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltFinderViewController.m; sourceTree = "<group>"; };
+		9F68D9851B23BE2700E0003E /* CRFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFilter.h; sourceTree = "<group>"; };
+		9F68D9861B23BE2700E0003E /* Crittercism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crittercism.h; sourceTree = "<group>"; };
+		9F68D9871B23BE2700E0003E /* CrittercismConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismConfig.h; sourceTree = "<group>"; };
+		9F68D9881B23BE2700E0003E /* CrittercismDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismDelegate.h; sourceTree = "<group>"; };
+		9F68D9891B23BE2700E0003E /* dsym_upload.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = dsym_upload.sh; sourceTree = "<group>"; };
+		9F68D98A1B23BE2700E0003E /* libCrittercism_v5_2_0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCrittercism_v5_2_0.a; sourceTree = "<group>"; };
 		9F77C612198CAECA0023EB3C /* OBMultiPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMultiPickerTableViewCell.h; sourceTree = "<group>"; };
 		9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerTableViewCell.m; sourceTree = "<group>"; };
 		9F92E8A718A0910200118D76 /* OBIngredientFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientFinderViewController.h; sourceTree = "<group>"; };
@@ -147,11 +153,6 @@
 		9FB13E6B19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HopAdditionDisplaySettings.xib; sourceTree = "<group>"; };
 		9FB13E6D19AE2684008BA8C3 /* OBPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPopupView.h; sourceTree = "<group>"; };
 		9FB13E6E19AE2684008BA8C3 /* OBPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPopupView.m; sourceTree = "<group>"; };
-		9FC73F4619BB66A900AD964A /* CRFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFilter.h; sourceTree = "<group>"; };
-		9FC73F4719BB66A900AD964A /* Crittercism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crittercism.h; sourceTree = "<group>"; };
-		9FC73F4819BB66A900AD964A /* CrittercismDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismDelegate.h; sourceTree = "<group>"; };
-		9FC73F4919BB66A900AD964A /* dsym_upload.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = dsym_upload.sh; sourceTree = "<group>"; };
-		9FC73F4A19BB66A900AD964A /* libCrittercism_v4_3_7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCrittercism_v4_3_7.a; sourceTree = "<group>"; };
 		9FC73F4D19BB683400AD964A /* Crittercism+NSErrorLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Crittercism+NSErrorLogging.h"; sourceTree = "<group>"; };
 		9FC73F4E19BB683400AD964A /* Crittercism+NSErrorLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Crittercism+NSErrorLogging.m"; sourceTree = "<group>"; };
 		9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -193,9 +194,9 @@
 			files = (
 				9FC73F5119BB6DCB00AD964A /* SystemConfiguration.framework in Frameworks */,
 				9F98D35B1880F8ED00469323 /* CoreGraphics.framework in Frameworks */,
-				9FC73F4C19BB66A900AD964A /* libCrittercism_v4_3_7.a in Frameworks */,
 				9F98D35F1880F8ED00469323 /* CoreData.framework in Frameworks */,
 				9F98D35D1880F8ED00469323 /* UIKit.framework in Frameworks */,
+				9F68D98C1B23BE2700E0003E /* libCrittercism_v5_2_0.a in Frameworks */,
 				9F98D3591880F8ED00469323 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +251,19 @@
 			name = TableViewCells;
 			sourceTree = "<group>";
 		};
+		9F68D9841B23BE2700E0003E /* CrittercismSDK */ = {
+			isa = PBXGroup;
+			children = (
+				9F68D9851B23BE2700E0003E /* CRFilter.h */,
+				9F68D9861B23BE2700E0003E /* Crittercism.h */,
+				9F68D9871B23BE2700E0003E /* CrittercismConfig.h */,
+				9F68D9881B23BE2700E0003E /* CrittercismDelegate.h */,
+				9F68D9891B23BE2700E0003E /* dsym_upload.sh */,
+				9F68D98A1B23BE2700E0003E /* libCrittercism_v5_2_0.a */,
+			);
+			path = CrittercismSDK;
+			sourceTree = "<group>";
+		};
 		9F92E8AE18A0A8C200118D76 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,13 +296,13 @@
 		9F98D3571880F8ED00469323 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */,
-				9FC73F4519BB66A900AD964A /* CrittercismSDK */,
-				9FCECC5C1887A1150045FADD /* SenTestingKit.framework */,
-				9F98D3581880F8ED00469323 /* Foundation.framework */,
-				9F98D35A1880F8ED00469323 /* CoreGraphics.framework */,
-				9F98D35C1880F8ED00469323 /* UIKit.framework */,
 				9F98D35E1880F8ED00469323 /* CoreData.framework */,
+				9F98D35A1880F8ED00469323 /* CoreGraphics.framework */,
+				9F68D9841B23BE2700E0003E /* CrittercismSDK */,
+				9F98D3581880F8ED00469323 /* Foundation.framework */,
+				9FCECC5C1887A1150045FADD /* SenTestingKit.framework */,
+				9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */,
+				9F98D35C1880F8ED00469323 /* UIKit.framework */,
 				9F98D3761880F8EE00469323 /* XCTest.framework */,
 			);
 			name = Frameworks;
@@ -365,18 +379,6 @@
 				9FE9745A188975C700FFAA56 /* OpenBrew.xcdatamodeld */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		9FC73F4519BB66A900AD964A /* CrittercismSDK */ = {
-			isa = PBXGroup;
-			children = (
-				9FC73F4619BB66A900AD964A /* CRFilter.h */,
-				9FC73F4719BB66A900AD964A /* Crittercism.h */,
-				9FC73F4819BB66A900AD964A /* CrittercismDelegate.h */,
-				9FC73F4919BB66A900AD964A /* dsym_upload.sh */,
-				9FC73F4A19BB66A900AD964A /* libCrittercism_v4_3_7.a */,
-			);
-			path = CrittercismSDK;
 			sourceTree = "<group>";
 		};
 		9FE86434198DBE9F007AD9E7 /* Picker Delegates */ = {
@@ -520,7 +522,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FC73F4B19BB66A900AD964A /* dsym_upload.sh in Resources */,
+				9F68D98B1B23BE2700E0003E /* dsym_upload.sh in Resources */,
 				9F98D3651880F8ED00469323 /* InfoPlist.strings in Resources */,
 				9F98D3701880F8ED00469323 /* Images.xcassets in Resources */,
 				9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */,
