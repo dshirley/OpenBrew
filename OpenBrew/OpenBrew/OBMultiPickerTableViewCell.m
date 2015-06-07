@@ -8,7 +8,13 @@
 
 #import "OBMultiPickerTableViewCell.h"
 
-#define SEGMENT_HEIGHT 35
+// The segment control should be about 1/2 the width of the picker
+#define SEGMENT_WIDTH_PCT 0.40
+#define PICKER_WIDTH_PCT (1.0 - SEGMENT_WIDTH_PCT)
+
+@interface OBMultiPickerTableViewCell()
+@property (nonatomic, assign) CGFloat origSegmentHeight;
+@end
 
 @implementation OBMultiPickerTableViewCell
 
@@ -19,7 +25,37 @@
 
 - (void)awakeFromNib
 {
+  self.origSegmentHeight = self.selector.frame.size.height;
   [self rotateSegmentController];
+}
+
+
+- (void)layoutSubviews
+{
+  [super layoutSubviews];
+
+  // There's two slivers of deadspace:
+  //   1) between the left edge the segment control
+  //   2) between the segment control and the picker
+  CGFloat componentWidth = self.contentView.frame.size.width - (2 * self.contentView.layoutMargins.left);
+
+  // Layout the segment selector.  Warning: this is confusing.  The height and width are reversed
+  // because we rotated the segment selector by 90 degrees.
+  CGFloat selectorHeight = componentWidth * SEGMENT_WIDTH_PCT;
+  CGFloat selectorWidth = self.origSegmentHeight * self.selector.numberOfSegments;
+  CGRect selectorFrame = CGRectMake(self.contentView.layoutMargins.left,
+                                    (self.contentView.frame.size.height - selectorWidth) / 2,
+                                    selectorHeight,
+                                    selectorWidth);
+
+  [self.selector setFrame:selectorFrame];
+
+  CGRect pickerFrame = CGRectMake(self.contentView.frame.size.width - (componentWidth * PICKER_WIDTH_PCT),
+                                  0,
+                                  componentWidth * PICKER_WIDTH_PCT,
+                                  self.picker.frame.size.height);
+
+  [self.picker setFrame:pickerFrame];
 }
 
 - (void)rotateSegmentController
@@ -29,7 +65,7 @@
 
   // Set the width of each segment.  Since we've rotated, the widths are now the heights
   for (int i = 0; i < [self.selector numberOfSegments]; i++) {
-    [self.selector setWidth:35 forSegmentAtIndex:i];
+    [self.selector setWidth:self.origSegmentHeight forSegmentAtIndex:i];
   }
 
   // Rotate each segment label so that they read horizontally again
@@ -46,13 +82,6 @@
       }
     }
   }
-}
-
-- (CGFloat)segmentControllerX
-{
-  CGFloat segmentControllerHeight = (self.selector.numberOfSegments * SEGMENT_HEIGHT);
-
-  return (self.frame.size.height - segmentControllerHeight) / 2;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

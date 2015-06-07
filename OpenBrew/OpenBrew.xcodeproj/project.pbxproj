@@ -106,7 +106,7 @@
 		9F68D9891B23BE2700E0003E /* dsym_upload.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = dsym_upload.sh; sourceTree = "<group>"; };
 		9F68D98A1B23BE2700E0003E /* libCrittercism_v5_2_0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCrittercism_v5_2_0.a; sourceTree = "<group>"; };
 		9F77C612198CAECA0023EB3C /* OBMultiPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMultiPickerTableViewCell.h; sourceTree = "<group>"; };
-		9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerTableViewCell.m; sourceTree = "<group>"; };
+		9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerTableViewCell.m; sourceTree = "<group>"; tabWidth = 2; };
 		9F92E8A718A0910200118D76 /* OBIngredientFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientFinderViewController.h; sourceTree = "<group>"; };
 		9F92E8A818A0910200118D76 /* OBIngredientFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIngredientFinderViewController.m; sourceTree = "<group>"; };
 		9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MaltCatalog.csv; path = data/MaltCatalog.csv; sourceTree = "<group>"; };
