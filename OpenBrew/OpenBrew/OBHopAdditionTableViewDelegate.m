@@ -131,6 +131,8 @@
 {
   OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
 
+  [drawerCell setSegments:@[ @"Alpha Acid %", @"Quantity", @"Boil Time"]];
+
   [drawerCell.selector addTarget:self
                          action:@selector(segmentSelected:)
                forControlEvents:UIControlEventValueChanged];

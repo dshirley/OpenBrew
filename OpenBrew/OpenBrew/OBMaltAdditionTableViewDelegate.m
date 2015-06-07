@@ -110,6 +110,8 @@
 {
   OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
 
+  [drawerCell setSegments:@[ @"Quantity", @"Color"]];
+
   [drawerCell.selector addTarget:self
                          action:@selector(segmentSelected:)
                forControlEvents:UIControlEventValueChanged];

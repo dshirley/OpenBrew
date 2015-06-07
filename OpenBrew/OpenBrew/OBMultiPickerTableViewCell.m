@@ -25,15 +25,24 @@
 
 - (void)awakeFromNib
 {
+  // Add a single segment in order to obtain the default segment height.
+  // This is removed below
+  self.selector = [[UISegmentedControl alloc] initWithItems:@[ @"dummy" ]];
+  self.picker = [[UIPickerView alloc] init];
+
   self.origSegmentHeight = self.selector.frame.size.height;
-  [self rotateSegmentController];
+  [self.selector removeAllSegments];
+
+  [self.contentView addSubview:self.selector];
+  [self.contentView addSubview:self.picker];
 }
 
 
 - (void)layoutSubviews
 {
   [super layoutSubviews];
-
+  [self rotateSegmentController];
+  
   // There's two slivers of deadspace:
   //   1) between the left edge the segment control
   //   2) between the segment control and the picker
@@ -87,8 +96,18 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+- (void)setSegments:(NSArray *)segmentTitles
+{
+  [self.selector removeAllSegments];
+
+  for (int i = 0; i < segmentTitles.count; i++) {
+    [self.selector insertSegmentWithTitle:segmentTitles[i] atIndex:i animated:NO];
+  }
+
+  [self.selector setSelectedSegmentIndex:0];
+  [self setNeedsLayout];
 }
 
 @end

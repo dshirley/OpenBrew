@@ -12,8 +12,14 @@
 // view controllers.  It has to be layed out very manually due to the fact that
 // the SegmentedControl is rotated.
 @interface OBMultiPickerTableViewCell : UITableViewCell
-@property (nonatomic, weak) IBOutlet UISegmentedControl* selector;
-@property (nonatomic, weak) IBOutlet UIPickerView *picker;
+
+// TODO: these properties should not be public. For example, setting the segments
+// without using "setSegments" would result in improper formatting. These should be
+// made private in order to enforce the integrity of the component
+@property (nonatomic, strong) IBOutlet UISegmentedControl* selector;
+@property (nonatomic, strong) IBOutlet UIPickerView *picker;
+
+- (void)setSegments:(NSArray *)segmentTitles;
 @end
 
 @protocol OBMultiPickerDelegate <NSObject>
