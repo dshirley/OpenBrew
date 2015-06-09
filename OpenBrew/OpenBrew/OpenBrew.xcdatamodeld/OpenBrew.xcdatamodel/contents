@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Brewery" representedClassName="OBBrewery" syncable="YES">
         <attribute name="defaultBatchSize" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="mashEfficiency" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -43,7 +43,10 @@
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="maltAdditions" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <entity name="Recipe" representedClassName="OBRecipe" syncable="YES">
-        <attribute name="batchSizeInGallons" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="batchSizeInGallons" optional="YES" attributeType="Float" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="boilOffInGallons" optional="YES" attributeType="Float" minValueString="0" defaultValueString="1" syncable="YES"/>
+        <attribute name="fermentorLossageInGallons" optional="YES" attributeType="Float" minValueString="0" defaultValueString="0.5" syncable="YES"/>
+        <attribute name="kettleLossageInGallons" optional="YES" attributeType="Float" minValueString="0" defaultValueString="0.5" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="brewery" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Brewery" inverseName="recipes" inverseEntity="Brewery" syncable="YES"/>
         <relationship name="hopAdditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HopAddition" inverseName="recipe" inverseEntity="HopAddition" syncable="YES"/>
@@ -76,7 +79,7 @@
         <element name="IngredientCatalog" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Malt" positionX="0" positionY="0" width="128" height="135"/>
         <element name="MaltAddition" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="Recipe" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Recipe" positionX="0" positionY="0" width="128" height="178"/>
         <element name="Yeast" positionX="0" positionY="0" width="128" height="223"/>
         <element name="YeastAddition" positionX="0" positionY="0" width="128" height="90"/>
     </elements>

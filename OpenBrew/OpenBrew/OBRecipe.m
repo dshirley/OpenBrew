@@ -70,13 +70,13 @@
 }
 
 - (float)boilSizeInGallons {
-  // FIXME: this should be tunable rather than just adding 2 gallons
-  return [[self batchSizeInGallons] floatValue] + 2;
+  return [self.batchSizeInGallons floatValue] + [self.boilOffInGallons floatValue];
 }
 
 - (float)postBoilSizeInGallons {
-  // FIXME: this should be tunable rather than just adding 1 gallons
-  return [[self batchSizeInGallons] floatValue] + 1;
+  return [self.batchSizeInGallons floatValue] +
+    [self.kettleLossageInGallons floatValue] +
+    [self.fermentorLossageInGallons floatValue];
 }
 
 - (float)efficiency

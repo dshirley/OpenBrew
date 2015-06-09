@@ -16,6 +16,9 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) OBYeastAddition *yeast;
 @property (nonatomic, retain) NSNumber * batchSizeInGallons;
+@property (nonatomic, retain) NSNumber * boilOffInGallons;
+@property (nonatomic, retain) NSNumber *fermentorLossageInGallons;
+@property (nonatomic, retain) NSNumber *kettleLossageInGallons;
 
 @property (nonatomic, retain) OBBrewery *brewery;
 @property (nonatomic, retain) NSSet *hopAdditions;
