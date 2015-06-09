@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "OBMalt.h"
+#import "OBMaltAddition.h"
 
 @interface OBMaltTest : XCTestCase
 
@@ -33,14 +34,14 @@
   OBMaltAddition *maltAddition = [[OBMaltAddition alloc] init];
                   
   [maltAddition setMalt:malt];
-  [maltAddition setQuantityInPounds:5.25];
-  [maltAddition setMaxYield:37];
+  [maltAddition setQuantityInPounds:@(5.25)];
+  [maltAddition setExtractPotential:@(37)];
 
   XCTAssertEqualWithAccuracy(139.86, [maltAddition gravityUnitsWithEfficiency:.72], .01, @"");
   XCTAssertEqualWithAccuracy(194.25, [maltAddition gravityUnitsWithEfficiency:1], .01, @"");
   XCTAssertEqualWithAccuracy(0.0, [maltAddition gravityUnitsWithEfficiency:0], .01, @"");
 
-  [maltAddition setQuantityInPounds:1];
+  [maltAddition setQuantityInPounds:@(1)];
   XCTAssertEqualWithAccuracy(37.00, [maltAddition gravityUnitsWithEfficiency:1], .01, @"");
   XCTAssertEqualWithAccuracy(24.42, [maltAddition gravityUnitsWithEfficiency:.66], .01, @"");
 }

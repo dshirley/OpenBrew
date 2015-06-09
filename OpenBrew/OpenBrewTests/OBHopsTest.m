@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "OBHops.h"
+#import "OBHopAddition.h"
 
 
 @interface OBHopsTest : XCTestCase
@@ -34,8 +35,8 @@
 {
   // The only quantity that matters is boil time
   OBHopAddition *hopAddition = [[OBHopAddition alloc] init];
-  [hopAddition setQuantityInOunces:2];
-  [hopAddition setBoilTimeInMinutes:10];
+  [hopAddition setQuantityInOunces:@(2)];
+  [hopAddition setBoilTimeInMinutes:@(10)];
 //  OBHops *hops = [[OBHops alloc]
 //                  initWithName:@"TestHop"
 //                  andDescription:@""
@@ -47,12 +48,12 @@
   XCTAssertEqualWithAccuracy(0.070, [hopAddition utilizationForGravity:1.070], EPSILON, @"");
   XCTAssertEqualWithAccuracy(0.045, [hopAddition utilizationForGravity:1.120], EPSILON, @"");
 
-  [hopAddition setBoilTimeInMinutes:30];
+  [hopAddition setBoilTimeInMinutes:@(30)];
   XCTAssertEqualWithAccuracy(0.194, [hopAddition utilizationForGravity:1.040], EPSILON, @"");
   XCTAssertEqualWithAccuracy(0.162, [hopAddition utilizationForGravity:1.060], EPSILON, @"");
   XCTAssertEqualWithAccuracy(0.135, [hopAddition utilizationForGravity:1.080], EPSILON, @"");
 
-  [hopAddition setBoilTimeInMinutes:60];
+  [hopAddition setBoilTimeInMinutes:@(60)];
   XCTAssertEqualWithAccuracy(0.231, [hopAddition utilizationForGravity:1.050], EPSILON, @"");
   XCTAssertEqualWithAccuracy(0.193, [hopAddition utilizationForGravity:1.070], EPSILON, @"");
   XCTAssertEqualWithAccuracy(0.161, [hopAddition utilizationForGravity:1.090], EPSILON, @"");
@@ -66,25 +67,25 @@
 
   OBHopAddition *hopAddition = [[OBHopAddition alloc] init];
   
-  [hopAddition setAlphaAcidPercent:6.4];
-  [hopAddition setQuantityInOunces:1.5];
+  [hopAddition setAlphaAcidPercent:@(6.4)];
+  [hopAddition setQuantityInOunces:@(1.5)];
   XCTAssertEqualWithAccuracy(9.6, [hopAddition alphaAcidUnits], EPSILON, @"");
 
-  [hopAddition setAlphaAcidPercent:4.6];
-  [hopAddition setQuantityInOunces:1];
+  [hopAddition setAlphaAcidPercent:@(4.6)];
+  [hopAddition setQuantityInOunces:@(1)];
   XCTAssertEqualWithAccuracy(4.6, [hopAddition alphaAcidUnits], EPSILON, @"");
 
   // Throw in a non-float, zero value
   [hopAddition setAlphaAcidPercent:0];
   XCTAssertEqualWithAccuracy(0.0, [hopAddition alphaAcidUnits], EPSILON, @"");
 
-  [hopAddition setQuantityInOunces:0.0];
+  [hopAddition setQuantityInOunces:@(0.0)];
   XCTAssertEqualWithAccuracy(0.0, [hopAddition alphaAcidUnits], EPSILON, @"");
 
-  [hopAddition setAlphaAcidPercent:15.2];
+  [hopAddition setAlphaAcidPercent:@(15.2)];
   XCTAssertEqualWithAccuracy(0.0, [hopAddition alphaAcidUnits], EPSILON, @"");
 
-  [hopAddition setQuantityInOunces:.66];
+  [hopAddition setQuantityInOunces:@(.66)];
   XCTAssertEqualWithAccuracy(10.032, [hopAddition alphaAcidUnits], EPSILON, @"");
 }
 
@@ -102,9 +103,9 @@
 
   XCTAssertEqualWithAccuracy(25, [hopAddition ibuContributionWithBoilSize:5 andGravity:1.080], 1, @"");
 
-  [hopAddition setAlphaAcidPercent:4.6];
-  [hopAddition setQuantityInOunces:1];
-  [hopAddition setBoilTimeInMinutes:15];
+  [hopAddition setAlphaAcidPercent:@(4.6)];
+  [hopAddition setQuantityInOunces:@(1)];
+  [hopAddition setBoilTimeInMinutes:@(15)];
 
   XCTAssertEqualWithAccuracy(6, [hopAddition ibuContributionWithBoilSize:5 andGravity:1.080], 1, @"");
 }
