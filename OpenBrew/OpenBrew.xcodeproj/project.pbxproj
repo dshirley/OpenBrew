@@ -32,6 +32,7 @@
 		9F92E8D118A0D6CF00118D76 /* OBYeast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8D018A0D6CF00118D76 /* OBYeast.m */; };
 		9F92E8D418A10AAB00118D76 /* OBRecipeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8D318A10AAB00118D76 /* OBRecipeNavigationController.m */; };
 		9F92E8E118A4536200118D76 /* OBIngredientGauge.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8E018A4536200118D76 /* OBIngredientGauge.m */; };
+		9F95B23C1B2677C6009DC9D9 /* OBBatchSizeTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F95B23B1B2677C6009DC9D9 /* OBBatchSizeTableViewDelegate.m */; };
 		9F98D3591880F8ED00469323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3581880F8ED00469323 /* Foundation.framework */; };
 		9F98D35B1880F8ED00469323 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D35A1880F8ED00469323 /* CoreGraphics.framework */; };
 		9F98D35D1880F8ED00469323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D35C1880F8ED00469323 /* UIKit.framework */; };
@@ -67,6 +68,7 @@
 		9FF686C21893E45F00B36486 /* OBRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF686C11893E45F00B36486 /* OBRecipeViewController.m */; };
 		9FF686C61893F00B00B36486 /* OBBrewery.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF686C51893F00B00B36486 /* OBBrewery.m */; };
 		9FF686C91894099A00B36486 /* OBRecipeOverviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF686C81894099A00B36486 /* OBRecipeOverviewController.m */; };
+		9FFE13151B27EF6E00D3F76A /* OBVolumePickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE13141B27EF6E00D3F76A /* OBVolumePickerDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,8 @@
 		9F92E8D318A10AAB00118D76 /* OBRecipeNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeNavigationController.m; sourceTree = "<group>"; };
 		9F92E8DF18A4536200118D76 /* OBIngredientGauge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientGauge.h; sourceTree = "<group>"; };
 		9F92E8E018A4536200118D76 /* OBIngredientGauge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIngredientGauge.m; sourceTree = "<group>"; };
+		9F95B23A1B2677C6009DC9D9 /* OBBatchSizeTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBatchSizeTableViewDelegate.h; sourceTree = "<group>"; };
+		9F95B23B1B2677C6009DC9D9 /* OBBatchSizeTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBatchSizeTableViewDelegate.m; sourceTree = "<group>"; };
 		9F98D3551880F8ED00469323 /* OpenBrew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenBrew.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F98D3581880F8ED00469323 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9F98D35A1880F8ED00469323 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -185,6 +189,8 @@
 		9FF686C51893F00B00B36486 /* OBBrewery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBrewery.m; sourceTree = "<group>"; };
 		9FF686C71894099A00B36486 /* OBRecipeOverviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBRecipeOverviewController.h; sourceTree = "<group>"; };
 		9FF686C81894099A00B36486 /* OBRecipeOverviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeOverviewController.m; sourceTree = "<group>"; };
+		9FFE13131B27EF6E00D3F76A /* OBVolumePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBVolumePickerDelegate.h; sourceTree = "<group>"; };
+		9FFE13141B27EF6E00D3F76A /* OBVolumePickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBVolumePickerDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +224,8 @@
 		9F0815381996D5E700E5E575 /* DrawerTableView */ = {
 			isa = PBXGroup;
 			children = (
+				9F95B23A1B2677C6009DC9D9 /* OBBatchSizeTableViewDelegate.h */,
+				9F95B23B1B2677C6009DC9D9 /* OBBatchSizeTableViewDelegate.m */,
 				9F0815351992655A00E5E575 /* OBDrawerTableViewDelegate.h */,
 				9F0815361992655A00E5E575 /* OBDrawerTableViewDelegate.m */,
 				9F0815391996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.h */,
@@ -396,6 +404,8 @@
 				9F0815431996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m */,
 				9F081534199120C100E5E575 /* OBPickerDelegate.h */,
 				9FE86438198F4649007AD9E7 /* OBPickerObserver.h */,
+				9FFE13131B27EF6E00D3F76A /* OBVolumePickerDelegate.h */,
+				9FFE13141B27EF6E00D3F76A /* OBVolumePickerDelegate.m */,
 			);
 			name = "Picker Delegates";
 			sourceTree = "<group>";
@@ -553,6 +563,7 @@
 				9FE8643B198FBCE0007AD9E7 /* OBHopQuantityPickerDelegate.m in Sources */,
 				9F98D3671880F8ED00469323 /* main.m in Sources */,
 				9F92E8B218A0C2D900118D76 /* OBIngredientCatalog.m in Sources */,
+				9FFE13151B27EF6E00D3F76A /* OBVolumePickerDelegate.m in Sources */,
 				9F60CF2C19B264A10076A600 /* OBMaltFinderViewController.m in Sources */,
 				9FF686C61893F00B00B36486 /* OBBrewery.m in Sources */,
 				9FE8643E198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m in Sources */,
@@ -583,6 +594,7 @@
 				9F0815441996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m in Sources */,
 				9F92E8BF18A0CED100118D76 /* OBMaltAddition.m in Sources */,
 				9FA3890119B27A0B0009DB07 /* OBSrmColorTable.m in Sources */,
+				9F95B23C1B2677C6009DC9D9 /* OBBatchSizeTableViewDelegate.m in Sources */,
 				9F98D36B1880F8ED00469323 /* OBAppDelegate.m in Sources */,
 				9F92E8CE18A0D63300118D76 /* OBYeastAddition.m in Sources */,
 				9F0815411996F69E00E5E575 /* OBMaltAdditionTableViewCell.m in Sources */,

@@ -31,7 +31,11 @@
 @synthesize observedHopVariables;
 @synthesize observedMaltVariables;
 
+
 @dynamic batchSizeInGallons;
+@dynamic kettleLossageInGallons;
+@dynamic fermentorLossageInGallons;
+@dynamic boilOffInGallons;
 @dynamic name;
 @dynamic brewery;
 @dynamic hopAdditions;
