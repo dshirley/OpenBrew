@@ -224,10 +224,9 @@
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-  // FIXME: include self.recipe variables
   if ([self.observedMaltVariables containsObject:keyPath] ||
       [self.observedHopVariables containsObject:keyPath] ||
-      [KVO_KEY(desiredBeerVolumeInGallons) isEqualToString:keyPath])
+      [self.observedRecipeVariables containsObject:keyPath])
   {
     [self notifyCalculatedValuesChanged];
   } else {
@@ -250,7 +249,7 @@
   [self willChangeValueForKey:KVO_KEY(colorInSRM)];
   [self didChangeValueForKey:KVO_KEY(colorInSRM)];
   [self willChangeValueForKey:KVO_KEY(boilSizeInGallons)];
-  [self willChangeValueForKey:KVO_KEY(postBoilSizeInGallons)];
+  [self willChangeValueForKey:KVO_KEY(wortVolumeAfterBoilInGallons)];
 }
 
 - (void)startObservingKeys:(NSSet *)keys ofObject:(id)object
