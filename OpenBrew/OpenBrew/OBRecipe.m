@@ -33,7 +33,7 @@
 @synthesize observedMaltVariables;
 @synthesize observedRecipeVariables;
 
-@dynamic batchSizeInGallons;
+@dynamic desiredBeerVolumeInGallons;
 @dynamic kettleLossageInGallons;
 @dynamic fermentorLossageInGallons;
 @dynamic boilOffInGallons;
@@ -52,7 +52,7 @@
 
   if (self) {
     // TODO: should this be in awake from insert instead?
-    self.batchSizeInGallons = @5;
+    self.desiredBeerVolumeInGallons = @5;
     [self startObserving];
   }
 
@@ -75,11 +75,11 @@
 }
 
 - (float)boilSizeInGallons {
-  return [self.batchSizeInGallons floatValue] + [self.boilOffInGallons floatValue];
+  return [self.desiredBeerVolumeInGallons floatValue] + [self.boilOffInGallons floatValue];
 }
 
-- (float)postBoilSizeInGallons {
-  return [self.batchSizeInGallons floatValue] +
+- (float)wortVolumeAfterBoilInGallons {
+  return [self.desiredBeerVolumeInGallons floatValue] +
     [self.kettleLossageInGallons floatValue] +
     [self.fermentorLossageInGallons floatValue];
 }
@@ -120,7 +120,7 @@
 {
   assert([self.hopAdditions containsObject:hopAddition]);
 
-  return [hopAddition ibuContributionWithBoilSize:[self postBoilSizeInGallons]
+  return [hopAddition ibuContributionWithBoilSize:[self wortVolumeAfterBoilInGallons]
                                        andGravity:[self boilGravity]];
 }
 
@@ -131,7 +131,7 @@
   float ibusTotal = [self IBUs];
 
   // TODO: this ibu contribution method is really confusing
-  float ibusOfHopAddition = [hopAddition ibuContributionWithBoilSize:[self postBoilSizeInGallons] andGravity:[self boilGravity]];
+  float ibusOfHopAddition = [hopAddition ibuContributionWithBoilSize:[self wortVolumeAfterBoilInGallons] andGravity:[self boilGravity]];
 
   NSInteger percentOfTotal = 0;
   if (ibusTotal > 0) {
@@ -142,13 +142,13 @@
 }
 
 - (float)originalGravity {
-  return 1 + ([self gravityUnits] / [self postBoilSizeInGallons] / 1000);
+  return 1 + ([self gravityUnits] / [self wortVolumeAfterBoilInGallons] / 1000);
 }
 
 - (float)finalGravity {
   float attenuationLevel = [[[self yeast] yeast] estimatedAttenuationAsDecimal];
   float finalGravityUnits = [self gravityUnits] * (1 - attenuationLevel);
-  return finalGravityUnits / [self postBoilSizeInGallons];
+  return finalGravityUnits / [self wortVolumeAfterBoilInGallons];
 }
 
 - (float)boilGravity {
@@ -157,11 +157,11 @@
 
 - (float)IBUs {
   float ibus = 0.0;
-  float postBoilSizeInGallons = [self postBoilSizeInGallons];
+  float wortVolumeAfterBoilInGallons = [self wortVolumeAfterBoilInGallons];
   float boilGravity = [self boilGravity];
 
   for (OBHopAddition *hops in [self hopAdditions]) {
-    ibus += [hops ibuContributionWithBoilSize:postBoilSizeInGallons
+    ibus += [hops ibuContributionWithBoilSize:wortVolumeAfterBoilInGallons
                                    andGravity:boilGravity];
   }
 
@@ -175,7 +175,7 @@
   float maltColorUnits = 0.0;
 
   for (OBMaltAddition *malt in [self maltAdditions]) {
-    maltColorUnits += [malt maltColorUnitsForBoilSize:[self postBoilSizeInGallons]];
+    maltColorUnits += [malt maltColorUnitsForBoilSize:[self wortVolumeAfterBoilInGallons]];
   }
 
   return 1.4922 * powf(maltColorUnits, 0.6859);
@@ -213,7 +213,7 @@
                                 KVO_KEY(lovibond), nil];
 
   self.observedRecipeVariables = [NSSet setWithObjects:
-                                  KVO_KEY(batchSizeInGallons),
+                                  KVO_KEY(desiredBeerVolumeInGallons),
                                   KVO_KEY(boilOffInGallons),
                                   KVO_KEY(kettleLossageInGallons),
                                   KVO_KEY(fermentorLossageInGallons), nil];
@@ -224,9 +224,10 @@
                         change:(NSDictionary *)change
                        context:(void *)context
 {
+  // FIXME: include self.recipe variables
   if ([self.observedMaltVariables containsObject:keyPath] ||
       [self.observedHopVariables containsObject:keyPath] ||
-      [KVO_KEY(batchSizeInGallons) isEqualToString:keyPath])
+      [KVO_KEY(desiredBeerVolumeInGallons) isEqualToString:keyPath])
   {
     [self notifyCalculatedValuesChanged];
   } else {

@@ -93,7 +93,7 @@
   [[self abvLabel] setText:abv];
 
   NSString *batchSize = [NSString stringWithFormat:@"%.1f gallons",
-                         [[[self recipe] batchSizeInGallons] floatValue]];
+                         [[[self recipe] desiredBeerVolumeInGallons] floatValue]];
   
   [[self batchSizeLabel] setText:batchSize];
   

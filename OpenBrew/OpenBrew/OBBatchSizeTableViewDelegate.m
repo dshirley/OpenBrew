@@ -44,8 +44,8 @@ NSString * const OBBatchSizeCellStrings[] = {
     self.recipe = recipe;
     self.tableView = tableView;
     self.batchSizePickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
-                                                                andPropertyGetter:@selector(batchSizeInGallons)
-                                                                andPropertySetter:@selector(setBatchSizeInGallons:)
+                                                                andPropertyGetter:@selector(desiredBeerVolumeInGallons)
+                                                                andPropertySetter:@selector(setDesiredBeerVolumeInGallons:)
                                                                       andObserver:self];
 
     self.boilOffPickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
@@ -86,7 +86,7 @@ NSString * const OBBatchSizeCellStrings[] = {
   switch (idx) {
     case OBBatchSizeCellFinalVolumeOfBeer:
       description = @"Final beer volume";
-      volume = self.recipe.batchSizeInGallons;
+      volume = self.recipe.desiredBeerVolumeInGallons;
       break;
     case OBBatchSizeCellKettleLossage:
       description = @"Kettle lossage";

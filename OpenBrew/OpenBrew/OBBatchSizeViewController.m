@@ -33,7 +33,7 @@
 {
   [super viewDidLoad];
 
-  float gallons = [self.recipe.batchSizeInGallons floatValue];
+  float gallons = [self.recipe.desiredBeerVolumeInGallons floatValue];
   int fraction = (gallons - trunc(gallons)) * NUM_FRACTIONAL_GALLONS_PER_GALLON;
 
   NSInteger row = trunc(gallons) * NUM_FRACTIONAL_GALLONS_PER_GALLON + fraction - 1;
@@ -85,7 +85,7 @@
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component
 {
-  self.recipe.batchSizeInGallons = [NSNumber numberWithFloat:[self valueForRow:row]];
+  self.recipe.desiredBeerVolumeInGallons = [NSNumber numberWithFloat:[self valueForRow:row]];
 }
 
 @end
