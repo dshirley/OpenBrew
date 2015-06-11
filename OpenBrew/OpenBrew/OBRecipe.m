@@ -17,6 +17,7 @@
 @interface OBRecipe()
 @property (nonatomic, strong) NSSet *observedHopVariables;
 @property (nonatomic, strong) NSSet *observedMaltVariables;
+@property (nonatomic, strong) NSSet *observedRecipeVariables;
 @end
 
 @interface OBRecipe(PrimitiveAccessors)
@@ -30,7 +31,7 @@
 
 @synthesize observedHopVariables;
 @synthesize observedMaltVariables;
-
+@synthesize observedRecipeVariables;
 
 @dynamic batchSizeInGallons;
 @dynamic kettleLossageInGallons;
@@ -210,6 +211,12 @@
   self.observedMaltVariables = [NSSet setWithObjects:
                                 KVO_KEY(quantityInPounds),
                                 KVO_KEY(lovibond), nil];
+
+  self.observedRecipeVariables = [NSSet setWithObjects:
+                                  KVO_KEY(batchSizeInGallons),
+                                  KVO_KEY(boilOffInGallons),
+                                  KVO_KEY(kettleLossageInGallons),
+                                  KVO_KEY(fermentorLossageInGallons), nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -227,6 +234,10 @@
   }
 }
 
+// This method is a big KVO hammer. Instead of trying to tease out exactly which
+// calculations have been changed, we assume all of them change.  Most calculations
+// include many variables, and it isn't worth nitpicking through the code to
+// create a more targetted KVO notification method.
 - (void)notifyCalculatedValuesChanged
 {
   [self willChangeValueForKey:KVO_KEY(IBUs)];
@@ -237,6 +248,8 @@
   [self didChangeValueForKey:KVO_KEY(boilGravity)];
   [self willChangeValueForKey:KVO_KEY(colorInSRM)];
   [self didChangeValueForKey:KVO_KEY(colorInSRM)];
+  [self willChangeValueForKey:KVO_KEY(boilSizeInGallons)];
+  [self willChangeValueForKey:KVO_KEY(postBoilSizeInGallons)];
 }
 
 - (void)startObservingKeys:(NSSet *)keys ofObject:(id)object
@@ -253,6 +266,13 @@
   }
 }
 
+// Our goal is to provide KVO for calculated values of this object. That is accomplished
+// by observing for changes in the attributes of each malt addition and hop addition.
+// Because this recipe could already contain malt & hop additions when it is instantiated
+// (ie. if this recipe was saved in a previous session), then we need to go through
+// the existing malts & hops and start observing them.  We also need add observers
+// as new malts and hops get added to the mix, which is why we override "addHopAdditionsObject"
+// and "addMaltAdditionsObject"
 - (void)startObserving
 {
   [self initializeVariableLists];
@@ -264,7 +284,7 @@
     [self startObservingKeys:self.observedMaltVariables ofObject:maltAddition];
   }
 
-  [self addObserver:self forKeyPath:KVO_KEY(batchSizeInGallons) options:0 context:nil];
+  [self startObservingKeys:self.observedRecipeVariables ofObject:self];
 }
 
 - (void)stopObserving
@@ -277,7 +297,7 @@
     [self stopObservingKeys:self.observedMaltVariables ofObject:maltAddition];
   }
 
-  [self removeObserver:self forKeyPath:KVO_KEY(batchSizeInGallons)];
+  [self stopObservingKeys:self.observedRecipeVariables ofObject:self];
 }
 
 #pragma mark - Hop Addition Properties

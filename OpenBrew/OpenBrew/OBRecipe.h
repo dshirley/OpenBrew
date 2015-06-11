@@ -15,6 +15,8 @@
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) OBYeastAddition *yeast;
+
+// This is the final volume of beer that can be consumed.
 @property (nonatomic, retain) NSNumber * batchSizeInGallons;
 @property (nonatomic, retain) NSNumber * boilOffInGallons;
 @property (nonatomic, retain) NSNumber *fermentorLossageInGallons;
