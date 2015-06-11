@@ -89,7 +89,7 @@ static const float pickerValues[] = {
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component
 {
-  return [NSString stringWithFormat:@"%.2f%%", pickerValues[row]];
+  return [NSString stringWithFormat:@"%.2f", pickerValues[row]];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView

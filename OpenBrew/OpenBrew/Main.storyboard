@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RpZ-4Y-4oi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RpZ-4Y-4oi">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -196,61 +197,6 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="2278.125" y="-47.535211267605632"/>
-        </scene>
-        <!--Batch Size-->
-        <scene sceneID="7HE-kM-sVe">
-            <objects>
-                <viewController id="WJc-8C-8xt" customClass="OBBatchSizeViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yoP-ru-RCr"/>
-                        <viewControllerLayoutGuide type="bottom" id="oEA-hW-jz2"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QJf-iF-8wc" customClass="OBBatch">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wp5-uc-wII">
-                                <rect key="frame" x="-10" y="299" width="610" height="162"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="WJc-8C-8xt" id="nkf-KS-hKo"/>
-                                    <outlet property="delegate" destination="WJc-8C-8xt" id="DBD-M0-Ejn"/>
-                                </connections>
-                            </pickerView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select the quantity of beer to make" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1k-JH-fIr">
-                                <rect key="frame" x="160" y="270" width="280" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Batch size is the quantity of beer that ends up in a keg or bottles." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSC-kh-2J0">
-                                <rect key="frame" x="160" y="128" width="280" height="92"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="92" id="IwC-Et-j3D"/>
-                                    <constraint firstAttribute="width" constant="280" id="KWf-WE-ZzB"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="a1k-JH-fIr" firstAttribute="top" secondItem="bSC-kh-2J0" secondAttribute="bottom" constant="50" id="Tel-FX-TXr"/>
-                            <constraint firstItem="wp5-uc-wII" firstAttribute="top" secondItem="a1k-JH-fIr" secondAttribute="bottom" constant="8" id="ZG8-5Y-84R"/>
-                            <constraint firstItem="bSC-kh-2J0" firstAttribute="top" secondItem="yoP-ru-RCr" secondAttribute="bottom" constant="64" id="bir-EL-ufp"/>
-                            <constraint firstAttribute="centerX" secondItem="bSC-kh-2J0" secondAttribute="centerX" constant="140" id="laQ-Wy-Uhb"/>
-                            <constraint firstItem="wp5-uc-wII" firstAttribute="leading" secondItem="QJf-iF-8wc" secondAttribute="leading" id="t1c-wb-HZr"/>
-                            <constraint firstAttribute="trailing" secondItem="wp5-uc-wII" secondAttribute="trailing" id="udh-Xy-v4L"/>
-                            <constraint firstAttribute="centerX" secondItem="a1k-JH-fIr" secondAttribute="centerX" constant="140" id="yzw-g8-u75"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Batch Size" id="QSx-xA-iGR"/>
-                    <connections>
-                        <outlet property="picker" destination="wp5-uc-wII" id="fzh-1e-wdV"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pcu-F3-CUp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3255" y="-772"/>
         </scene>
         <!--Grain Bill-->
         <scene sceneID="0wT-Ic-1wr">
@@ -743,7 +689,7 @@
         <!--Batch Size Scene-->
         <scene sceneID="9w3-28-Ebi">
             <objects>
-                <viewController title="Batch Size Scene" automaticallyAdjustsScrollViewInsets="NO" id="ahh-Jm-DTH" customClass="OBMaltAdditionViewController" sceneMemberID="viewController">
+                <viewController title="Batch Size Scene" automaticallyAdjustsScrollViewInsets="NO" id="ahh-Jm-DTH" customClass="OBBatchSizeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uBO-IX-sdo"/>
                         <viewControllerLayoutGuide type="bottom" id="svI-Kd-HJP"/>
@@ -794,10 +740,6 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="ahh-Jm-DTH" id="PaD-gR-Qf5"/>
-                                    <outlet property="delegate" destination="ahh-Jm-DTH" id="0eQ-JD-bcA"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -814,8 +756,8 @@
                     <navigationItem key="navigationItem" title="Grain Bill" id="G17-AJ-PGr"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="gauge" destination="rfn-Fz-7yv" id="ZDu-6x-9rP"/>
-                        <outlet property="tableView" destination="ZOJ-lI-12F" id="g6B-HU-3Kw"/>
+                        <outlet property="gauge" destination="rfn-Fz-7yv" id="lh9-ld-SfT"/>
+                        <outlet property="tableView" destination="ZOJ-lI-12F" id="tJb-B2-0EZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaT-ps-Xqm" userLabel="First Responder" sceneMemberID="firstResponder"/>

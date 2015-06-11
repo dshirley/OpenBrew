@@ -8,6 +8,9 @@
 
 #import "OBBatchSizeViewController.h"
 #import "OBRecipe.h"
+#import "OBIngredientGauge.h"
+#import "OBBatchSizeTableViewDelegate.h"
+#import "OBKvoUtils.h"
 #import <math.h>
 
 #define MAX_GALLONS 20
@@ -15,77 +18,67 @@
 #define NUM_ROWS_IN_PICKER (MAX_GALLONS * NUM_FRACTIONAL_GALLONS_PER_GALLON)
 
 @interface OBBatchSizeViewController ()
-@property (nonatomic, weak) IBOutlet UIPickerView *picker;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
+@property (nonatomic, strong) OBBatchSizeTableViewDelegate *tableViewDelegate;
 @end
 
 @implementation OBBatchSizeViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  if (self) {
-    // Custom initialization
+  return [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+}
+
+- (void)loadView {
+  [super loadView];
+
+  self.tableViewDelegate = [[OBBatchSizeTableViewDelegate alloc]
+                            initWithRecipe:self.recipe
+                            andTableView:self.tableView];
+
+  self.tableView.delegate = self.tableViewDelegate;
+  self.tableView.dataSource = self.tableViewDelegate;
+
+  // TODO: Do we need a display settings view for this controller?
+  // Eg. [self addMaltDisplaySettingsView];
+
+  [self reload];
+}
+
+- (void)reload {
+  [self.tableView reloadData];
+  [self refreshGauge];
+}
+
+- (void)refreshGauge
+{
+  self.gauge.valueLabel.text = [NSString stringWithFormat:@"%.2f", self.recipe.wortVolumeAfterBoilInGallons];
+  self.gauge.descriptionLabel.text = @"Wort Volume";
+}
+
+#pragma mark KVO Setup
+
+- (void)setRecipe:(OBRecipe *)recipe
+{
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(wortVolumeAfterBoilInGallons)];
+  _recipe = recipe;
+  [_recipe addObserver:self forKeyPath:KVO_KEY(wortVolumeAfterBoilInGallons) options:0 context:nil];
+}
+
+- (void)dealloc
+{
+  self.recipe = nil;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+  if ([keyPath isEqualToString:KVO_KEY(wortVolumeAfterBoilInGallons)]) {
+    [self refreshGauge];
   }
-  return self;
-}
-
-- (void)viewDidLoad
-{
-  [super viewDidLoad];
-
-  float gallons = [self.recipe.desiredBeerVolumeInGallons floatValue];
-  int fraction = (gallons - trunc(gallons)) * NUM_FRACTIONAL_GALLONS_PER_GALLON;
-
-  NSInteger row = trunc(gallons) * NUM_FRACTIONAL_GALLONS_PER_GALLON + fraction - 1;
-
-  [self.picker selectRow:row inComponent:0 animated:YES];
-}
-
-- (void)didReceiveMemoryWarning
-{
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
-}
-
-#pragma mark UIPickerViewDataSource Methods
-
-// returns the number of 'columns' to display.
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-  return 1;
-}
-
-// returns the # of rows in each component..
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-  return NUM_ROWS_IN_PICKER;
-}
-
-#pragma mark UIPickerViewDelegate Methods
-
-- (float)valueForRow:(NSInteger)row
-{
-  // Don't allow zero gallons: add one to the row
-  row += 1;
-
-  float gallons = row / NUM_FRACTIONAL_GALLONS_PER_GALLON;
-  float fraction = (float) (row % NUM_FRACTIONAL_GALLONS_PER_GALLON) / (float)NUM_FRACTIONAL_GALLONS_PER_GALLON;
-
-  return gallons + fraction;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView
-             titleForRow:(NSInteger)row
-            forComponent:(NSInteger)component
-{
-  return [NSString stringWithFormat:@"%.2f gallons", [self valueForRow:row]];
-}
-
-- (void)pickerView:(UIPickerView *)pickerView
-      didSelectRow:(NSInteger)row
-       inComponent:(NSInteger)component
-{
-  self.recipe.desiredBeerVolumeInGallons = [NSNumber numberWithFloat:[self valueForRow:row]];
 }
 
 @end

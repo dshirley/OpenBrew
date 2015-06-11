@@ -163,4 +163,14 @@ NSString * const OBBatchSizeCellStrings[] = {
   return pickerDelegate;
 }
 
+#pragma mark OBPickerDelegate methods
+
+- (void)pickerChanged
+{
+  OBMultiPickerTableViewCell *cell = (OBMultiPickerTableViewCell *)[self cellBeforeDrawerForTableView:self.tableView];
+  id volumeInfo = [self ingredientForDrawer];
+  [self populateIngredientCell:cell withIngredientData:volumeInfo];
+}
+
+
 @end

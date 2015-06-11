@@ -249,7 +249,9 @@
   [self willChangeValueForKey:KVO_KEY(colorInSRM)];
   [self didChangeValueForKey:KVO_KEY(colorInSRM)];
   [self willChangeValueForKey:KVO_KEY(boilSizeInGallons)];
+  [self didChangeValueForKey:KVO_KEY(boilSizeInGallons)];
   [self willChangeValueForKey:KVO_KEY(wortVolumeAfterBoilInGallons)];
+  [self didChangeValueForKey:KVO_KEY(wortVolumeAfterBoilInGallons)];
 }
 
 - (void)startObservingKeys:(NSSet *)keys ofObject:(id)object
