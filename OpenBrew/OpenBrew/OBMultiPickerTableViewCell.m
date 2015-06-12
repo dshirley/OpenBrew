@@ -57,14 +57,26 @@
                                     selectorHeight,
                                     selectorWidth);
 
-  [self.selector setFrame:selectorFrame];
-
   CGRect pickerFrame = CGRectMake(self.contentView.frame.size.width - (componentWidth * PICKER_WIDTH_PCT),
                                   0,
                                   componentWidth * PICKER_WIDTH_PCT,
                                   self.picker.frame.size.height);
 
-  [self.picker setFrame:pickerFrame];
+  // At this point we have the frames for both the picker and the segment control.
+  // If the segment control doesn't have any entries, we want the picker to take
+  // up the whole cell.
+
+  if (self.selector.numberOfSegments > 0) {
+    [self.selector setFrame:selectorFrame];
+    [self.picker setFrame:pickerFrame];
+  } else {
+    [self.selector removeFromSuperview];
+
+    // Expand the width of the picker to encompass the X position of where we had
+    // planned to put the picker.
+    pickerFrame.size.width += pickerFrame.origin.x - selectorFrame.origin.x;
+    pickerFrame.origin.x = selectorFrame.origin.x;
+  }
 }
 
 - (void)rotateSegmentController

@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>5DBC2480-765B-4C6E-90CB-3B595BA174D5</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>OpenBrew</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>AE9331BB6359E8772F15470FBB05EB603CB7E32B</key>
 		<string>github.com:dshirley/OpenBrew.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>OpenBrew/OpenBrew.xcodeproj/project.xcworkspace</string>
+	<string>OpenBrew/OpenBrew.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>AE9331BB6359E8772F15470FBB05EB603CB7E32B</key>

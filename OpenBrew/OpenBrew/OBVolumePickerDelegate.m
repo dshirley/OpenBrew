@@ -58,7 +58,7 @@ static const float pickerValues[] = {
 
   for (int i = 0; i < NUM_PICKER_VALUES; i++) {
     if (volume == pickerValues[i]) {
-      volume = pickerValues[i];
+      row = i;
       break;
     }
   }

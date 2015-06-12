@@ -67,6 +67,8 @@ NSString * const OBBatchSizeCellStrings[] = {
   return self;
 }
 
+#pragma mark OBDrawerTableViewDelegate template methods
+
 - (NSArray *)ingredientData {
   return @[ @(OBBatchSizeCellFinalVolumeOfBeer),
             @(OBBatchSizeCellKettleLossage),
@@ -135,6 +137,21 @@ NSString * const OBBatchSizeCellStrings[] = {
   id<OBPickerDelegate> pickerDelegate = (id<OBPickerDelegate>) drawerCell.picker.delegate;
 
   [pickerDelegate updateSelectionForPicker:drawerCell.picker];
+}
+
+#pragma mark UITableViewDelegate override methods
+
+// OBDrawerTableViewDelegate allows editing by default.  Since the content of the
+// batch size view controller is static, we don't want this.
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return NO;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return NO;
 }
 
 #pragma mark Picker Management Methods
