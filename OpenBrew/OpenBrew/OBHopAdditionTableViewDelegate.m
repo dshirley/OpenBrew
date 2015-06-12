@@ -65,7 +65,7 @@
 
   NSArray *sortSpecification = @[ sortByDisplayOrder ];
 
-  return [[self.recipe hopAdditions] sortedArrayUsingDescriptors:sortSpecification];
+  return @[ [[self.recipe hopAdditions] sortedArrayUsingDescriptors:sortSpecification] ];
 }
 
 - (void)setHopAdditionMetricToDisplay:(OBHopAdditionMetric)newSelection

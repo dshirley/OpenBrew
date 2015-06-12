@@ -69,7 +69,7 @@
 
   NSArray *sortSpecification = @[ sortByDisplayOrder ];
 
-  return [[self.recipe maltAdditions] sortedArrayUsingDescriptors:sortSpecification];
+  return @[ [[self.recipe maltAdditions] sortedArrayUsingDescriptors:sortSpecification] ];
 }
 
 - (void)finishDisplayingDrawerCell:(UITableViewCell *)cell

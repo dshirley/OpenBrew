@@ -47,23 +47,28 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
  */
 - (id<OBIngredientAddition>)ingredientAtIndexPath:(NSIndexPath *)indexPath
 {
-  // There can't be a hop addition in the same index as the drawer
-  assert(!self.drawerIndexPath || self.drawerIndexPath.row != indexPath.row);
+  // There can't be an ingredient in the same index as the drawer
+  NSAssert(!self.drawerIndexPath || ![self.drawerIndexPath isEqual:indexPath],
+           @"drawerIndexPath:%@ indexPath:%@", self.drawerIndexPath, indexPath);
 
   NSArray *data = [self ingredientData];
 
-  NSUInteger index = indexPath.row;
-  if ([self drawerIsOpen] && self.drawerIndexPath.row < indexPath.row) {
-    index -= 1;
+  NSUInteger row = indexPath.row;
+  if ([self drawerIsOpen] &&
+      self.drawerIndexPath.section == indexPath.section &&
+      self.drawerIndexPath.row < indexPath.row)
+  {
+    row -= 1;
   }
 
-  return data[index];
+  return data[indexPath.section][row];
 }
 
 - (NSIndexPath *)indexPathOfCellBeforeDrawer
 {
   NSInteger cellRow = self.drawerIndexPath.row - 1;
-  NSIndexPath *cellBeforeDrawerIndex = [NSIndexPath indexPathForRow:cellRow inSection:0];
+  NSIndexPath *cellBeforeDrawerIndex = [NSIndexPath indexPathForRow:cellRow
+                                                          inSection:self.drawerIndexPath.section];
   return cellBeforeDrawerIndex;
 }
 
@@ -80,7 +85,7 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
 - (BOOL)drawerIsAtIndex:(NSIndexPath *)indexPath
 {
-  return ([self drawerIsOpen] && self.drawerIndexPath.row == indexPath.row);
+  return ([self drawerIsOpen] && [self.drawerIndexPath isEqual:indexPath]);
 }
 
 - (UITableViewCell *)cellBeforeDrawerForTableView:(UITableView *)tableView;
@@ -146,18 +151,18 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
   // indicates if the drawer is below "indexPath", help us determine which row to reveal
   BOOL before = NO;
-  BOOL sameCellClicked = (self.drawerIndexPath.row - 1 == indexPath.row);
+  BOOL sameCellClicked = (self.drawerIndexPath.row - 1 == indexPath.row) && (self.drawerIndexPath.section == indexPath.section);
 
   if ([self drawerIsOpen]) {
     // Close the old drawer if one is open
-    before = self.drawerIndexPath.row < indexPath.row;
+    before = (self.drawerIndexPath.section == indexPath.section) && (self.drawerIndexPath.row < indexPath.row);
     [self closeDrawerForTableView:tableView];
   }
 
   if (!sameCellClicked) {
     // Open the new drawer
     NSInteger row = (before ? indexPath.row : indexPath.row + 1);
-    [self tableView:tableView openDrawerAtRow:row inSection:0];
+    [self tableView:tableView openDrawerAtRow:row inSection:indexPath.section];
   }
 
   [tableView endUpdates];
@@ -185,11 +190,16 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
 #pragma mark - UITableViewDataSource Methods
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+  return [[self ingredientData] count];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  NSInteger numRows = [[self ingredientData] count];
+  NSInteger numRows = [[self ingredientData][section] count];
 
-  if ([self drawerIsOpen]) {
+  if ([self drawerIsOpen] && (self.drawerIndexPath.section == section)) {
     numRows += 1;
   }
 
@@ -252,12 +262,12 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
     [ingredientToRemove removeFromRecipe];
 
     int i = 0;
-    for (id<OBIngredientAddition> ingredientAddition in [self ingredientData]) {
+    for (id<OBIngredientAddition> ingredientAddition in [self ingredientData][indexPath.section]) {
       [ingredientAddition setDisplayOrder:[NSNumber numberWithInt:i]];
       i++;
     }
 
-    if ([self drawerIsOpen] && ((self.drawerIndexPath.row - 1) == indexPath.row)) {
+    if ([self drawerIsOpen] && ((self.drawerIndexPath.row - 1) == indexPath.row) && (self.drawerIndexPath.section == indexPath.section)) {
       // The cell with the drawer has been removed. We need to remove the drawer, too.
       [self closeDrawerForTableView:tableView];
     }
@@ -265,7 +275,10 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
     [tableView deleteRowsAtIndexPaths:@[indexPath]
                      withRowAnimation:UITableViewRowAnimationAutomatic];
 
-    if ([self drawerIsOpen] && (indexPath.row < self.drawerIndexPath.row)) {
+    if ([self drawerIsOpen] &&
+        (self.drawerIndexPath.section == indexPath.section) &&
+        (indexPath.row < self.drawerIndexPath.row))
+    {
       self.drawerIndexPath = [self indexPathOfCellBeforeDrawer];
       [tableView reloadData];
     }
@@ -274,7 +287,7 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-  NSMutableArray *data = [NSMutableArray arrayWithArray:[self ingredientData]];
+  NSMutableArray *data = [NSMutableArray arrayWithArray:[self ingredientData][sourceIndexPath.section]];
   id<OBIngredientAddition> toMove = data[sourceIndexPath.row];
   [data removeObjectAtIndex:sourceIndexPath.row];
   [data insertObject:toMove atIndex:destinationIndexPath.row];

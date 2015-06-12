@@ -70,10 +70,10 @@ NSString * const OBBatchSizeCellStrings[] = {
 #pragma mark OBDrawerTableViewDelegate template methods
 
 - (NSArray *)ingredientData {
-  return @[ @(OBBatchSizeCellFinalVolumeOfBeer),
-            @(OBBatchSizeCellKettleLossage),
-            @(OBBatchSizeCellFermentorLossage),
-            @(OBBatchSizeCellBoilOff) ];
+  return @[ @[ @(OBBatchSizeCellFinalVolumeOfBeer) ],
+            @[ @(OBBatchSizeCellKettleLossage),
+               @(OBBatchSizeCellFermentorLossage),
+               @(OBBatchSizeCellBoilOff) ]];
 }
 
 - (void)populateIngredientCell:(UITableViewCell *)cell
@@ -140,6 +140,11 @@ NSString * const OBBatchSizeCellStrings[] = {
 }
 
 #pragma mark UITableViewDelegate override methods
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+  return 32; //section == 0 ? 0 : 32;
+}
 
 // OBDrawerTableViewDelegate allows editing by default.  Since the content of the
 // batch size view controller is static, we don't want this.
