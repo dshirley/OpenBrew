@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "OBPickerObserver.h"
+#import "OBBrewController.h"
 
 @class OBRecipe;
 
-@interface OBMaltAdditionViewController : UIViewController
+@interface OBMaltAdditionViewController : UIViewController <OBBrewController>
 
 @property (nonatomic, strong) OBRecipe *recipe;
 

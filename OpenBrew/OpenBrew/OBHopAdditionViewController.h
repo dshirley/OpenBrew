@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "OBDrawerTableViewDelegate.h"
+#import "OBBrewController.h"
 
-@interface OBHopAdditionViewController : UIViewController
+@interface OBHopAdditionViewController : UIViewController <OBBrewController>
 @property (nonatomic, retain) OBRecipe *recipe;
 @end

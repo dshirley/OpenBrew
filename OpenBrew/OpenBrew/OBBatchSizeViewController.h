@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OBBrewController.h"
 
 @class OBRecipe;
 
-@interface OBBatchSizeViewController : UIViewController
+@interface OBBatchSizeViewController : UIViewController <OBBrewController>
 @property (nonatomic, strong) OBRecipe *recipe;
 @end
