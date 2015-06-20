@@ -92,6 +92,10 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   self.originalGravityLabel.text = [NSString stringWithFormat:@"%.3f", [self.recipe originalGravity]];
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+  [self.view endEditing:YES];
+}
+
 #pragma mark UITextFieldDelegate methods
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -102,6 +106,12 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 
   NSError *error = nil;
   [self.recipe.managedObjectContext save:&error];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  [textField resignFirstResponder];
+  return YES;
 }
 
 #pragma mark UITableViewDataSource methods
