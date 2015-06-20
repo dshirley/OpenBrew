@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5099D5C8EA46E0FB4FB987B8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 412DB53DD8041549B2B7A537 /* libPods.a */; };
 		9F0815371992655A00E5E575 /* OBDrawerTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815361992655A00E5E575 /* OBDrawerTableViewDelegate.m */; };
 		9F08153B1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F08153A1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m */; };
 		9F0815411996F69E00E5E575 /* OBMaltAdditionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815401996F69E00E5E575 /* OBMaltAdditionTableViewCell.m */; };
@@ -17,8 +18,6 @@
 		9F60CF2319B15CBA0076A600 /* YeastCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F60CF2219B15CBA0076A600 /* YeastCatalog.csv */; };
 		9F60CF2919B251D00076A600 /* OBIngredientTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */; };
 		9F60CF2C19B264A10076A600 /* OBMaltFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60CF2B19B264A10076A600 /* OBMaltFinderViewController.m */; };
-		9F68D98B1B23BE2700E0003E /* dsym_upload.sh in Resources */ = {isa = PBXBuildFile; fileRef = 9F68D9891B23BE2700E0003E /* dsym_upload.sh */; };
-		9F68D98C1B23BE2700E0003E /* libCrittercism_v5_2_0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F68D98A1B23BE2700E0003E /* libCrittercism_v5_2_0.a */; };
 		9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */; };
 		9F92E8A918A0910200118D76 /* OBIngredientFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8A818A0910200118D76 /* OBIngredientFinderViewController.m */; };
 		9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */; };
@@ -83,6 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		412DB53DD8041549B2B7A537 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		57AFB48A88221FA111EB993E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9F081534199120C100E5E575 /* OBPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPickerDelegate.h; sourceTree = "<group>"; };
 		9F0815351992655A00E5E575 /* OBDrawerTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBDrawerTableViewDelegate.h; sourceTree = "<group>"; };
 		9F0815361992655A00E5E575 /* OBDrawerTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBDrawerTableViewDelegate.m; sourceTree = "<group>"; };
@@ -105,12 +106,6 @@
 		9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIngredientTableViewDataSource.m; sourceTree = "<group>"; };
 		9F60CF2A19B264A10076A600 /* OBMaltFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltFinderViewController.h; sourceTree = "<group>"; };
 		9F60CF2B19B264A10076A600 /* OBMaltFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltFinderViewController.m; sourceTree = "<group>"; };
-		9F68D9851B23BE2700E0003E /* CRFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFilter.h; sourceTree = "<group>"; };
-		9F68D9861B23BE2700E0003E /* Crittercism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crittercism.h; sourceTree = "<group>"; };
-		9F68D9871B23BE2700E0003E /* CrittercismConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismConfig.h; sourceTree = "<group>"; };
-		9F68D9881B23BE2700E0003E /* CrittercismDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismDelegate.h; sourceTree = "<group>"; };
-		9F68D9891B23BE2700E0003E /* dsym_upload.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = dsym_upload.sh; sourceTree = "<group>"; };
-		9F68D98A1B23BE2700E0003E /* libCrittercism_v5_2_0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCrittercism_v5_2_0.a; sourceTree = "<group>"; };
 		9F77C612198CAECA0023EB3C /* OBMultiPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMultiPickerTableViewCell.h; sourceTree = "<group>"; };
 		9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerTableViewCell.m; sourceTree = "<group>"; tabWidth = 2; };
 		9F92E8A718A0910200118D76 /* OBIngredientFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientFinderViewController.h; sourceTree = "<group>"; };
@@ -195,6 +190,7 @@
 		9FF686C81894099A00B36486 /* OBRecipeOverviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeOverviewController.m; sourceTree = "<group>"; };
 		9FFE13131B27EF6E00D3F76A /* OBVolumePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBVolumePickerDelegate.h; sourceTree = "<group>"; };
 		9FFE13141B27EF6E00D3F76A /* OBVolumePickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBVolumePickerDelegate.m; sourceTree = "<group>"; };
+		B6FAFE14E22FD5BE92E5D660 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,8 +202,8 @@
 				9F98D35B1880F8ED00469323 /* CoreGraphics.framework in Frameworks */,
 				9F98D35F1880F8ED00469323 /* CoreData.framework in Frameworks */,
 				9F98D35D1880F8ED00469323 /* UIKit.framework in Frameworks */,
-				9F68D98C1B23BE2700E0003E /* libCrittercism_v5_2_0.a in Frameworks */,
 				9F98D3591880F8ED00469323 /* Foundation.framework in Frameworks */,
+				5099D5C8EA46E0FB4FB987B8 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +221,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		91870267D1FFE306912B02B6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B6FAFE14E22FD5BE92E5D660 /* Pods.debug.xcconfig */,
+				57AFB48A88221FA111EB993E /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9F0815381996D5E700E5E575 /* DrawerTableView */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,19 +277,6 @@
 			name = TableViewCells;
 			sourceTree = "<group>";
 		};
-		9F68D9841B23BE2700E0003E /* CrittercismSDK */ = {
-			isa = PBXGroup;
-			children = (
-				9F68D9851B23BE2700E0003E /* CRFilter.h */,
-				9F68D9861B23BE2700E0003E /* Crittercism.h */,
-				9F68D9871B23BE2700E0003E /* CrittercismConfig.h */,
-				9F68D9881B23BE2700E0003E /* CrittercismDelegate.h */,
-				9F68D9891B23BE2700E0003E /* dsym_upload.sh */,
-				9F68D98A1B23BE2700E0003E /* libCrittercism_v5_2_0.a */,
-			);
-			path = CrittercismSDK;
-			sourceTree = "<group>";
-		};
 		9F92E8AE18A0A8C200118D76 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +294,7 @@
 				9F98D37D1880F8EE00469323 /* OpenBrewTests */,
 				9F98D3571880F8ED00469323 /* Frameworks */,
 				9F98D3561880F8ED00469323 /* Products */,
+				91870267D1FFE306912B02B6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -319,12 +312,12 @@
 			children = (
 				9F98D35E1880F8ED00469323 /* CoreData.framework */,
 				9F98D35A1880F8ED00469323 /* CoreGraphics.framework */,
-				9F68D9841B23BE2700E0003E /* CrittercismSDK */,
 				9F98D3581880F8ED00469323 /* Foundation.framework */,
 				9FCECC5C1887A1150045FADD /* SenTestingKit.framework */,
 				9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */,
 				9F98D35C1880F8ED00469323 /* UIKit.framework */,
 				9F98D3761880F8EE00469323 /* XCTest.framework */,
+				412DB53DD8041549B2B7A537 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -478,9 +471,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F98D3871880F8EE00469323 /* Build configuration list for PBXNativeTarget "OpenBrew" */;
 			buildPhases = (
+				C0AD2084356259E424B867BF /* Check Pods Manifest.lock */,
 				9F98D3511880F8ED00469323 /* Sources */,
 				9F98D3521880F8ED00469323 /* Frameworks */,
 				9F98D3531880F8ED00469323 /* Resources */,
+				256161998A953F0954ACB554 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -547,7 +542,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F68D98B1B23BE2700E0003E /* dsym_upload.sh in Resources */,
 				9F98D3651880F8ED00469323 /* InfoPlist.strings in Resources */,
 				9F98D3701880F8ED00469323 /* Images.xcassets in Resources */,
 				9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */,
@@ -569,6 +563,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		256161998A953F0954ACB554 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0AD2084356259E424B867BF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9F98D3511880F8ED00469323 /* Sources */ = {
@@ -731,6 +758,7 @@
 		};
 		9F98D3881880F8EE00469323 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6FAFE14E22FD5BE92E5D660 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -749,6 +777,7 @@
 		};
 		9F98D3891880F8EE00469323 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57AFB48A88221FA111EB993E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

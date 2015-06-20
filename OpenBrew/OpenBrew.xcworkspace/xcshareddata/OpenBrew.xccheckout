@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3FF69AA1-7FB5-4CFE-BE45-44E83DA83BF7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>OpenBrew</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AE9331BB6359E8772F15470FBB05EB603CB7E32B</key>
+		<string>github.com:dshirley/OpenBrew.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>OpenBrew/OpenBrew.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AE9331BB6359E8772F15470FBB05EB603CB7E32B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:dshirley/OpenBrew.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AE9331BB6359E8772F15470FBB05EB603CB7E32B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AE9331BB6359E8772F15470FBB05EB603CB7E32B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>OpenBrew</string>
+		</dict>
+	</array>
+</dict>
+</plist>
