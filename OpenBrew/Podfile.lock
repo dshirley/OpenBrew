@@ -2,7 +2,7 @@ PODS:
   - CrittercismSDK (5.2.0)
 
 DEPENDENCIES:
-  - CrittercismSDK (~> 5.2.0)
+  - CrittercismSDK (= 5.2.0)
 
 SPEC CHECKSUMS:
   CrittercismSDK: b22f9541803c2babb1c8996862b097dc47ec7105
