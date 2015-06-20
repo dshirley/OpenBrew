@@ -142,7 +142,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
       cell.detailTextLabel.text = self.recipe.yeast.yeast.name;
       break;
     default:
-      NSAssert(YES, @"Invalid row: %d", indexPath.row);
+      NSAssert(YES, @"Invalid row: %ld", indexPath.row);
   }
 
   return cell;
@@ -171,7 +171,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
       // TODO: add yeast view controller
       break;
     default:
-      NSAssert(YES, @"Invalid row when cell was selected: %d", indexPath.row);
+      NSAssert(YES, @"Invalid row when cell was selected: %ld", (long)indexPath.row);
   }
 }
 
@@ -222,7 +222,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
       description = @"BU:GU";
       break;
     default:
-      NSAssert(YES, @"Bad index: %d", cellType);
+      NSAssert(YES, @"Bad index: %ld", (long)cellType);
   }
 
   statsCell.statisticLabel.text = value;
