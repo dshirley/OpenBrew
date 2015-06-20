@@ -47,6 +47,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
 - (void)loadView {
   [super loadView];
+  self.screenName = @"Hop Addition Screen";
 
   self.tableViewDelegate = [[OBHopAdditionTableViewDelegate alloc] initWithRecipe:self.recipe andTableView:self.tableView];
   self.tableView.delegate = self.tableViewDelegate;

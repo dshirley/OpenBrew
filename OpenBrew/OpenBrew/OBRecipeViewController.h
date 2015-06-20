@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "OBBrewery.h"
+#import "GAITrackedViewController.h"
 
-@interface OBRecipeViewController : UIViewController <UITableViewDataSource>
+@interface OBRecipeViewController : GAITrackedViewController <UITableViewDataSource>
 
 @property (nonatomic, strong) OBBrewery *brewery;
 

@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "OBPickerObserver.h"
 #import "OBBrewController.h"
+#import "GAITrackedViewController.h"
 
 @class OBRecipe;
 
-@interface OBMaltAdditionViewController : UIViewController <OBBrewController>
+@interface OBMaltAdditionViewController : GAITrackedViewController <OBBrewController>
 
 @property (nonatomic, strong) OBRecipe *recipe;
 

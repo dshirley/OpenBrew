@@ -43,6 +43,8 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 {
   [super viewWillAppear:animated];
 
+  self.screenName = @"Recipe List Screen";
+
   if ([self tableViewIsEmpty]) {
     [self switchToEmptyTableViewMode];
   } else {

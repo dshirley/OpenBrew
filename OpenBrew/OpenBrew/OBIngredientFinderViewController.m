@@ -18,6 +18,8 @@
 - (void)loadView {
   [super loadView];
 
+  self.screenName = @"Hop Finder Screen";
+
   self.tableView.dataSource = self.tableViewDataSource;
   [self.tableView reloadData];
 }

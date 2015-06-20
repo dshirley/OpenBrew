@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "OBRecipe.h"
+#import "GAITrackedViewController.h"
 
-@interface OBRecipeOverviewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource>
+@interface OBRecipeOverviewController : GAITrackedViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) OBRecipe *recipe;
 

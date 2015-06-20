@@ -32,7 +32,8 @@
 
 - (void)loadView {
   [super loadView];
-
+  self.screenName = @"Batch Size Screen";
+  
   self.tableViewDelegate = [[OBBatchSizeTableViewDelegate alloc]
                             initWithRecipe:self.recipe
                             andTableView:self.tableView];

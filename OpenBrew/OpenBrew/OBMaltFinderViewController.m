@@ -26,6 +26,8 @@
 - (void)loadView {
   [super loadView];
 
+  self.screenName = @"Malt Finder Screen";
+
   self.tableView.dataSource = self.tableViewDataSource;
   [self applyMaltTypeFilter:GRAIN_SEGMENT_INDEX];
   [self.tableView reloadData];

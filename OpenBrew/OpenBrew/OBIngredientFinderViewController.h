@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
 @class OBIngredientTableViewDataSource;
 
-@interface OBIngredientFinderViewController : UIViewController
+@interface OBIngredientFinderViewController : GAITrackedViewController
 
 @property (nonatomic, strong) id selectedIngredient;
 @property (nonatomic, strong) OBIngredientTableViewDataSource *tableViewDataSource;

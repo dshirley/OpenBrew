@@ -67,6 +67,8 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 {
   [super viewWillAppear:animated];
 
+  self.screenName = @"Recipe Overview Screen";
+
   if (!self.isMovingToParentViewController) {
     // A sub-view controller is being popped
     [self reloadData];

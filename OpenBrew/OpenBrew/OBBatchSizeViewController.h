@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "OBBrewController.h"
+#import "GAITrackedViewController.h"
 
 @class OBRecipe;
 
-@interface OBBatchSizeViewController : UIViewController <OBBrewController>
+@interface OBBatchSizeViewController : GAITrackedViewController <OBBrewController>
 @property (nonatomic, strong) OBRecipe *recipe;
 @end

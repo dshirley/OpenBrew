@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "OBDrawerTableViewDelegate.h"
 #import "OBBrewController.h"
+#import "GAITrackedViewController.h"
 
-@interface OBHopAdditionViewController : UIViewController <OBBrewController>
+@interface OBHopAdditionViewController : GAITrackedViewController <OBBrewController>
 @property (nonatomic, retain) OBRecipe *recipe;
 @end

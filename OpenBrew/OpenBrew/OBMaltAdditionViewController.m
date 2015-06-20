@@ -55,6 +55,8 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 - (void)loadView {
   [super loadView];
 
+  self.screenName = @"Malt Addition Screen";
+
   self.tableViewDelegate = [[OBMaltAdditionTableViewDelegate alloc]
                             initWithRecipe:self.recipe
                             andTableView:self.tableView];
