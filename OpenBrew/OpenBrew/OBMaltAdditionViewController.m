@@ -19,6 +19,11 @@
 #import "OBSrmColorTable.h"
 #import "OBTableViewPlaceholderLabel.h"
 #import "Crittercism+NSErrorLogging.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+
+// Google Analytics event category
+NSString* const OBGACategoryMaltSettings = @"Malt Settings";
 
 // What malt related metric should the gauge display.  These values should
 // correspond to the indices of the MaltAdditionDisplaySettings segmentview.
@@ -266,6 +271,26 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 // the gauge.
 - (IBAction)gaugeDisplaySettingsChanged:(UISegmentedControl *)sender
 {
+  OBMaltGaugeMetric metric = (OBMaltGaugeMetric) sender.selectedSegmentIndex;
+  NSString *gaAction = @"n/a gauge action";
+
+  switch (metric) {
+    case OBMaltGaugeMetricColor:
+      gaAction = @"Show beer color";
+      break;
+    case OBMaltGaugeMetricGravity:
+      gaAction = @"Show beer gravity";
+      break;
+    default:
+      NSAssert(YES, @"Invalid gauge metric: %ld", metric);
+  }
+
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGACategoryMaltSettings
+                                                        action:gaAction
+                                                         label:nil
+                                                         value:nil] build]];
+
   self.gaugeMetric = sender.selectedSegmentIndex;
   [self refreshGauge];
 }
@@ -275,7 +300,27 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 // line item.
 - (IBAction)ingredientDisplaySettingsChanged:(UISegmentedControl *)sender
 {
-  // Note that the segment indices must allign with the metric enum
+  OBMaltAdditionMetric metric = (OBMaltAdditionMetric) sender.selectedSegmentIndex;
+  NSString *gaAction = @"n/a ingredient action";
+
+  switch (metric) {
+    case OBMaltAdditionMetricWeight:
+      gaAction = @"Show malt weight";
+      break;
+    case OBMaltAdditionMetricPercentOfGravity:
+      gaAction = @"Show % gravity";
+      break;
+    default:
+      NSAssert(YES, @"Invalid malt addition metric: %ld", metric);
+  }
+
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGACategoryMaltSettings
+                                                        action:gaAction
+                                                         label:nil
+                                                         value:nil] build]];
+
+  // Note that the segment indices must align with the metric enum
   OBMaltAdditionMetric newMetric = sender.selectedSegmentIndex;
   self.tableViewDelegate.maltAdditionMetricToDisplay = newMetric;
 }
