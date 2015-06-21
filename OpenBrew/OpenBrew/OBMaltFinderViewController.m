@@ -10,6 +10,11 @@
 #import "OBIngredientTableViewDataSource.h"
 #import "OBKvoUtils.h"
 #import "OBMalt.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+
+// Google Analytics event category
+static NSString* const OBGAScreenName = @"Malt Finder Screen";
 
 // Indices of the UISegmentControl of the OBMaltFinderViewController in storyboard
 #define GRAIN_SEGMENT_INDEX 0
@@ -17,7 +22,10 @@
 #define SUGAR_SEGMENT_INDEX 2
 
 @interface OBMaltFinderViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+// This allows Google Analytics to track the amount of time taken to find an ingredient
+@property (nonatomic, assign) CFAbsoluteTime startTime;
 
 @end
 
@@ -33,25 +41,42 @@
   [self.tableView reloadData];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  self.screenName = OBGAScreenName;
+  self.startTime = CFAbsoluteTimeGetCurrent();
+}
+
 // The user wants to filter by malt type (grain, extract or sugar)
 // Set the data source predicate to apply a filter
 - (IBAction)applyMaltTypeFilter:(UISegmentedControl *)sender {
   OBMaltType maltType;
+  NSString *gaFilterType = @"invalid filter";
 
   switch (sender.selectedSegmentIndex) {
     case GRAIN_SEGMENT_INDEX:
       maltType = OBMaltTypeGrain;
+      gaFilterType = @"Grain";
       break;
     case EXTRACT_SEGMENT_INDEX:
       maltType = OBMaltTypeExtract;
+      gaFilterType = @"Extract";
       break;
     case SUGAR_SEGMENT_INDEX:
       maltType = OBMaltTypeSugar;
+      gaFilterType = @"Sugar";
       break;
     default:
       [NSException raise:@"Segment index not defined"
                   format:@"%@", @(sender.selectedSegmentIndex)];
   }
+
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
+                                                        action:@"Filter"
+                                                         label:gaFilterType
+                                                         value:nil] build]];
 
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == %d", maltType];
   self.tableViewDataSource.predicate = predicate;
@@ -66,6 +91,13 @@
 
     NSIndexPath *cellIndex = [self.tableView indexPathForCell:sender];
     self.selectedIngredient = [self.tableViewDataSource ingredientAtIndexPath:cellIndex];
+
+    NSNumber *timeDelta = @(CFAbsoluteTimeGetCurrent() - self.startTime);
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
+                                                          action:@"Malt selected"
+                                                           label:self.selectedIngredient.name
+                                                           value:timeDelta] build]];
   }
 }
 

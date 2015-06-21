@@ -8,9 +8,18 @@
 
 #import "OBHopFinderViewController.h"
 #import "OBIngredientTableViewDataSource.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "OBHops.h"
+
+// Google Analytics event category
+static NSString* const OBGAScreenName = @"Hop Finder Screen";
 
 @interface OBHopFinderViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+// This allows Google Analytics to track the amount of time taken to find an ingredient
+@property (nonatomic, assign) CFAbsoluteTime startTime;
 @end
 
 @implementation OBHopFinderViewController
@@ -18,10 +27,15 @@
 - (void)loadView {
   [super loadView];
 
-  self.screenName = @"Hop Finder Screen";
-
   self.tableView.dataSource = self.tableViewDataSource;
   [self.tableView reloadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  self.screenName = OBGAScreenName;
+  self.startTime = CFAbsoluteTimeGetCurrent();
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -32,6 +46,13 @@
 
     NSIndexPath *cellIndex = [self.tableView indexPathForCell:sender];
     self.selectedIngredient = [self.tableViewDataSource ingredientAtIndexPath:cellIndex];
+
+    NSNumber *timeDelta = @(CFAbsoluteTimeGetCurrent() - self.startTime);
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
+                                                          action:@"Hop selected"
+                                                           label:self.selectedIngredient.name
+                                                           value:timeDelta] build]];
   }
 }
 

@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
 
+@class OBHops;
 @class OBIngredientTableViewDataSource;
 
 @interface OBHopFinderViewController : GAITrackedViewController
 
-@property (nonatomic, strong) id selectedIngredient;
+@property (nonatomic, strong) OBHops *selectedIngredient;
 @property (nonatomic, strong) OBIngredientTableViewDataSource *tableViewDataSource;
 
 @end
