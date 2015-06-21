@@ -19,6 +19,11 @@
 #import "OBPopupView.h"
 #import "OBIngredientTableViewDataSource.h"
 #import "OBTableViewPlaceholderLabel.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+
+// Google Analytics event category
+NSString* const OBGACategoryHopSettings = @"Hop Settings";
 
 // What hop related metric the gauge should display.  These values should
 // correspond to the indices of the segements in HopAdditionDisplaySettings.xib
@@ -37,6 +42,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 @property (nonatomic, assign) OBHopGaugeMetric gaugeMetric;
 @property (nonatomic, strong) IBOutlet OBIngredientGauge *gauge;
 @property (nonatomic, strong) OBHopAdditionTableViewDelegate *tableViewDelegate;
+
 @end
 
 @implementation OBHopAdditionViewController
@@ -239,7 +245,27 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 // the gauge.
 - (IBAction)gaugeDisplaySettingsChanged:(UISegmentedControl *)sender
 {
-  self.gaugeMetric = sender.selectedSegmentIndex;
+  OBHopGaugeMetric metric = (OBHopGaugeMetric) sender.selectedSegmentIndex;
+  NSString *gaAction = @"n/a hop gauge metric";
+
+  switch (metric) {
+    case OBHopGaugeMetricIBU:
+      gaAction = @"Show beer IBU";
+      break;
+    case OBHopGaugeMetricBitteringToGravityRatio:
+      gaAction = @"Show beer bu:gu";
+      break;
+    default:
+      NSAssert(YES, @"Invalid hop addition metric: %ld", metric);
+  }
+
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGACategoryHopSettings
+                                                        action:gaAction
+                                                         label:nil
+                                                         value:nil] build]];
+
+  self.gaugeMetric = metric;
   [self refreshGauge];
 }
 
@@ -249,8 +275,30 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 - (IBAction)ingredientDisplaySettingsChanged:(UISegmentedControl *)sender
 {
 //  // Note that the segment indices must allign with the metric enum
-  OBHopAdditionMetric newMetric = sender.selectedSegmentIndex;
-  self.tableViewDelegate.hopAdditionMetricToDisplay = newMetric;
+  OBHopAdditionMetric metric = sender.selectedSegmentIndex;
+  NSString *gaAction = @"n/a hop addition metric";
+
+  switch (metric) {
+    case OBHopAdditionDisplayWeight:
+      gaAction = @"Show hop weight";
+      break;
+    case OBHopAdditionDisplayIBU:
+      gaAction = @"Show hop ibu";
+      break;
+    case OBHopAdditionDisplayIBUPercent:
+      gaAction = @"Show hop ibu %";
+      break;
+    default:
+      NSAssert(YES, @"Invalid hop addition metric: %ld", metric);
+  }
+
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGACategoryHopSettings
+                                                        action:gaAction
+                                                         label:nil
+                                                         value:nil] build]];
+
+  self.tableViewDelegate.hopAdditionMetricToDisplay = metric;
 }
 
 @end
