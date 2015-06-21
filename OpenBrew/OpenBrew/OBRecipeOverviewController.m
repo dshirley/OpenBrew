@@ -15,6 +15,9 @@
 #import "OBBrewController.h"
 #import "OBTextStatisticsCollectionViewCell.h"
 
+// Google Analytics event category
+static NSString* const OBGAScreenName = @"Recipe Overview Screen";
+
 typedef NS_ENUM(NSInteger, OBRecipeOverviewCellType) {
   OBBatchSizeCell,
   OBMaltsCell,
@@ -67,7 +70,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 {
   [super viewWillAppear:animated];
 
-  self.screenName = @"Recipe Overview Screen";
+  self.screenName = OBGAScreenName;
 
   if (!self.isMovingToParentViewController) {
     // A sub-view controller is being popped
