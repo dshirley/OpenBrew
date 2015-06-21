@@ -11,7 +11,7 @@
 
 @class OBIngredientTableViewDataSource;
 
-@interface OBIngredientFinderViewController : GAITrackedViewController
+@interface OBHopFinderViewController : GAITrackedViewController
 
 @property (nonatomic, strong) id selectedIngredient;
 @property (nonatomic, strong) OBIngredientTableViewDataSource *tableViewDataSource;

@@ -19,7 +19,7 @@
 		9F60CF2919B251D00076A600 /* OBIngredientTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */; };
 		9F60CF2C19B264A10076A600 /* OBMaltFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60CF2B19B264A10076A600 /* OBMaltFinderViewController.m */; };
 		9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */; };
-		9F92E8A918A0910200118D76 /* OBIngredientFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8A818A0910200118D76 /* OBIngredientFinderViewController.m */; };
+		9F92E8A918A0910200118D76 /* OBHopFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8A818A0910200118D76 /* OBHopFinderViewController.m */; };
 		9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */; };
 		9F92E8AF18A0A93A00118D76 /* MaltCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */; };
 		9F92E8B218A0C2D900118D76 /* OBIngredientCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8B118A0C2D900118D76 /* OBIngredientCatalog.m */; };
@@ -108,8 +108,8 @@
 		9F60CF2B19B264A10076A600 /* OBMaltFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltFinderViewController.m; sourceTree = "<group>"; };
 		9F77C612198CAECA0023EB3C /* OBMultiPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMultiPickerTableViewCell.h; sourceTree = "<group>"; };
 		9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerTableViewCell.m; sourceTree = "<group>"; tabWidth = 2; };
-		9F92E8A718A0910200118D76 /* OBIngredientFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientFinderViewController.h; sourceTree = "<group>"; };
-		9F92E8A818A0910200118D76 /* OBIngredientFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIngredientFinderViewController.m; sourceTree = "<group>"; };
+		9F92E8A718A0910200118D76 /* OBHopFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopFinderViewController.h; sourceTree = "<group>"; };
+		9F92E8A818A0910200118D76 /* OBHopFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopFinderViewController.m; sourceTree = "<group>"; };
 		9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MaltCatalog.csv; path = data/MaltCatalog.csv; sourceTree = "<group>"; };
 		9F92E8B018A0C2D900118D76 /* OBIngredientCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientCatalog.h; sourceTree = "<group>"; };
 		9F92E8B118A0C2D900118D76 /* OBIngredientCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIngredientCatalog.m; sourceTree = "<group>"; };
@@ -426,8 +426,8 @@
 				9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */,
 				9FD66385198218220056EEEC /* OBHopAdditionViewController.h */,
 				9FD66386198218220056EEEC /* OBHopAdditionViewController.m */,
-				9F92E8A718A0910200118D76 /* OBIngredientFinderViewController.h */,
-				9F92E8A818A0910200118D76 /* OBIngredientFinderViewController.m */,
+				9F92E8A718A0910200118D76 /* OBHopFinderViewController.h */,
+				9F92E8A818A0910200118D76 /* OBHopFinderViewController.m */,
 				9F60CF2719B251D00076A600 /* OBIngredientTableViewDataSource.h */,
 				9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */,
 				9FF68674189327B000B36486 /* OBMaltAdditionViewController.h */,
@@ -632,7 +632,7 @@
 				9F08153B1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m in Sources */,
 				9F92E8D118A0D6CF00118D76 /* OBYeast.m in Sources */,
 				9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */,
-				9F92E8A918A0910200118D76 /* OBIngredientFinderViewController.m in Sources */,
+				9F92E8A918A0910200118D76 /* OBHopFinderViewController.m in Sources */,
 				9F92E8E118A4536200118D76 /* OBIngredientGauge.m in Sources */,
 				9F0815441996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m in Sources */,
 				9F92E8BF18A0CED100118D76 /* OBMaltAddition.m in Sources */,

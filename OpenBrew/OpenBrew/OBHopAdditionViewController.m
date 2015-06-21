@@ -8,7 +8,7 @@
 
 #import "OBHopAdditionViewController.h"
 #import "OBIngredientGauge.h"
-#import "OBIngredientFinderViewController.h"
+#import "OBHopFinderViewController.h"
 #import "OBRecipe.h"
 #import "OBHops.h"
 #import "OBHopAddition.h"
@@ -208,7 +208,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([[segue identifier] isEqualToString:@"addHops"]) {
-    OBIngredientFinderViewController *next = [segue destinationViewController];
+    OBHopFinderViewController *next = [segue destinationViewController];
 
     NSManagedObjectContext *ctx = self.recipe.managedObjectContext;
 
@@ -221,7 +221,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 - (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue
 {
   if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {
-    OBIngredientFinderViewController *finderView = [unwindSegue sourceViewController];
+    OBHopFinderViewController *finderView = [unwindSegue sourceViewController];
     OBHops *hopVariety = [finderView selectedIngredient];
     OBHopAddition *hopAddition = [[OBHopAddition alloc] initWithHopVariety:hopVariety
                                                                  andRecipe:self.recipe];

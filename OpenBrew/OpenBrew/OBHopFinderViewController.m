@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 OpenBrew. All rights reserved.
 //
 
-#import "OBIngredientFinderViewController.h"
+#import "OBHopFinderViewController.h"
 #import "OBIngredientTableViewDataSource.h"
 
-@interface OBIngredientFinderViewController ()
+@interface OBHopFinderViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @end
 
-@implementation OBIngredientFinderViewController
+@implementation OBHopFinderViewController
 
 - (void)loadView {
   [super loadView];
