@@ -11,7 +11,7 @@
 
 @interface OBBatchSizeTableViewDelegate : OBDrawerTableViewDelegate <OBPickerObserver>
 
-- (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView;
+- (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView andGACategory:(NSString *)gaCategory;
 
 - (void)pickerChanged;
 

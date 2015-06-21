@@ -63,9 +63,9 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
   self.screenName = OBGAScreenName;
 
-  self.tableViewDelegate = [[OBMaltAdditionTableViewDelegate alloc]
-                            initWithRecipe:self.recipe
-                            andTableView:self.tableView];
+  self.tableViewDelegate = [[OBMaltAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
+                                                                      andTableView:self.tableView
+                                                                     andGACategory:OBGAScreenName];
 
   self.tableView.delegate = self.tableViewDelegate;
   self.tableView.dataSource = self.tableViewDelegate;

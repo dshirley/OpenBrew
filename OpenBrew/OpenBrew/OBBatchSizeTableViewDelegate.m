@@ -10,6 +10,8 @@
 #import "OBRecipe.h"
 #import "OBMultiPickerTableViewCell.h"
 #import "OBVolumePickerDelegate.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 
 typedef NS_ENUM(NSInteger, OBBatchSizeCell) {
   OBBatchSizeCellFinalVolumeOfBeer,
@@ -32,13 +34,18 @@ NSString * const OBBatchSizeCellStrings[] = {
 @property (nonatomic, strong) OBVolumePickerDelegate *boilOffPickerDelegate;
 @property (nonatomic, strong) OBVolumePickerDelegate *fermentorLosagePickerDelegate;
 @property (nonatomic, strong) OBVolumePickerDelegate *kettleLossagePickerDelegate;
+
+// Used for Google Analytics (GA) tracking. We track which metrics are being used, but
+// we only need to log one GA event per picker.
+@property (nonatomic, strong) NSMutableSet *pickersThatHaveChanged;
+
 @end
 
 @implementation OBBatchSizeTableViewDelegate
 
-- (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView
+- (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView andGACategory:(NSString *)gaCategory
 {
-  self = [super init];
+  self = [super initWithGACategory:gaCategory];
 
   if (self) {
     self.recipe = recipe;
@@ -62,6 +69,8 @@ NSString * const OBBatchSizeCellStrings[] = {
                                                                     andPropertyGetter:@selector(kettleLossageInGallons)
                                                                     andPropertySetter:@selector(setKettleLossageInGallons:)
                                                                           andObserver:self];
+
+    self.pickersThatHaveChanged = [NSMutableSet set];
   }
 
   return self;
@@ -192,6 +201,16 @@ NSString * const OBBatchSizeCellStrings[] = {
   OBMultiPickerTableViewCell *cell = (OBMultiPickerTableViewCell *)[self cellBeforeDrawerForTableView:self.tableView];
   id volumeInfo = [self ingredientForDrawer];
   [self populateIngredientCell:cell withIngredientData:volumeInfo];
+
+  NSString *metricName = cell.textLabel.text;
+  if (![self.pickersThatHaveChanged containsObject:metricName]) {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:self.gaCategory
+                                                          action:metricName
+                                                           label:nil
+                                                           value:nil] build]];
+    [self.pickersThatHaveChanged addObject:metricName];
+  }
 }
 
 

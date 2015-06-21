@@ -56,7 +56,9 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
   [super loadView];
   self.screenName = OBGAScreenName;
 
-  self.tableViewDelegate = [[OBHopAdditionTableViewDelegate alloc] initWithRecipe:self.recipe andTableView:self.tableView];
+  self.tableViewDelegate = [[OBHopAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
+                                                                     andTableView:self.tableView
+                                                                    andGACategory:OBGAScreenName];
   self.tableView.delegate = self.tableViewDelegate;
   self.tableView.dataSource = self.tableViewDelegate;
 

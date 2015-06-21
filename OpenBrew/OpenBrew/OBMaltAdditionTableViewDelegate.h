@@ -25,6 +25,6 @@ typedef NS_ENUM(NSInteger, OBMaltAdditionMetric) {
 
 @property (nonatomic, assign) OBMaltAdditionMetric maltAdditionMetricToDisplay;
 
-- (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView;
+- (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView andGACategory:(NSString *)gaCategory;
 
 @end

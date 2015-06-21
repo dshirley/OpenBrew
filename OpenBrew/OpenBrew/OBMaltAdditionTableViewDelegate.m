@@ -31,9 +31,9 @@
 
 @implementation OBMaltAdditionTableViewDelegate
 
-- (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView
+- (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView andGACategory:(NSString *)gaCategory
 {
-  self = [super init];
+  self = [super initWithGACategory:gaCategory];
 
   if (self) {
     self.recipe = recipe;

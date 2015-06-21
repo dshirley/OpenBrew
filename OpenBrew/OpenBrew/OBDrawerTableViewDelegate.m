@@ -8,6 +8,8 @@
 
 #import "OBDrawerTableViewDelegate.h"
 #import "OBIngredientAddition.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 
 static NSString *const INGREDIENT_ADDITION_CELL = @"IngredientAddition";
 static NSString *const DRAWER_CELL = @"DrawerCell";
@@ -18,11 +20,13 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
 @implementation OBDrawerTableViewDelegate
 
-- (id)init
+- (id)initWithGACategory:(NSString *)gaCategory;
 {
   self = [super init];
 
   if (self) {
+    self.gaCategory = gaCategory;
+
     // Really dumb way to get the default height of a UIPickerView
     // Apple doesn't provide a constant, though, and the default shown in
     // Interface Builder is wrong (it says 162.  For iOS 7 it is 216)
@@ -282,6 +286,12 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
       self.drawerIndexPath = [self indexPathOfCellBeforeDrawer];
       [tableView reloadData];
     }
+
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:self.gaCategory
+                                                          action:@"Delete"
+                                                           label:nil
+                                                           value:nil] build]];
   }
 }
 
@@ -297,6 +307,12 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
     [ingredient setDisplayOrder:[NSNumber numberWithInt:i]];
     i++;
   }
+
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:self.gaCategory
+                                                        action:@"Move"
+                                                         label:nil
+                                                         value:nil] build]];
 }
 
 

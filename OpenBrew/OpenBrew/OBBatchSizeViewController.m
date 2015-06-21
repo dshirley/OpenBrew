@@ -17,6 +17,9 @@
 #define NUM_FRACTIONAL_GALLONS_PER_GALLON 4
 #define NUM_ROWS_IN_PICKER (MAX_GALLONS * NUM_FRACTIONAL_GALLONS_PER_GALLON)
 
+// Google Analytics constants
+static NSString* const OBGAScreenName = @"Batch Size Screen";
+
 @interface OBBatchSizeViewController ()
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
@@ -32,11 +35,11 @@
 
 - (void)loadView {
   [super loadView];
-  self.screenName = @"Batch Size Screen";
+  self.screenName = OBGAScreenName;
   
-  self.tableViewDelegate = [[OBBatchSizeTableViewDelegate alloc]
-                            initWithRecipe:self.recipe
-                            andTableView:self.tableView];
+  self.tableViewDelegate = [[OBBatchSizeTableViewDelegate alloc] initWithRecipe:self.recipe
+                                                                   andTableView:self.tableView
+                                                                  andGACategory:OBGAScreenName];
 
   self.tableView.delegate = self.tableViewDelegate;
   self.tableView.dataSource = self.tableViewDelegate;

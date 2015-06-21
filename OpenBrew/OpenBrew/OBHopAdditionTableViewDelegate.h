@@ -19,6 +19,6 @@ typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
 
 @property (nonatomic, assign) OBHopAdditionMetric hopAdditionMetricToDisplay;
 
-- (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView;
+- (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView andGACategory:(NSString *)gaCategory;
 
 @end

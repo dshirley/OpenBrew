@@ -16,7 +16,11 @@
 
 @property (nonatomic, strong) NSIndexPath *drawerIndexPath;
 
-- (id)init;
+// This is used for tracking delete and move events & potentially more if subclasses
+// do something with it.
+@property (nonatomic, strong) NSString *gaCategory;
+
+- (id)initWithGACategory:(NSString *)gaCategory;
 
 #pragma mark Template Methods
 
