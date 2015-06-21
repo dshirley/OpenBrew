@@ -12,6 +12,11 @@
 #import "OBBrewery.h"
 #import "Crittercism+NSErrorLogging.h"
 #import "OBTableViewPlaceholderLabel.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+
+// Google Analytics constants
+static NSString *const OBGAScreenName = @"Recipe List Screen";
 
 static NSString *const ADD_RECIPE_SEGUE = @"addRecipe";
 static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
@@ -19,6 +24,10 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 @interface OBRecipeViewController ()
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIView *placeholderText;
+
+// Variables for tracking first interaction time with Google Analytics
+@property (nonatomic, assign) CFAbsoluteTime loadTime;
+@property (nonatomic, assign) BOOL firstInteractionComplete;
 @end
 
 @implementation OBRecipeViewController
@@ -27,10 +36,12 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+      self.firstInteractionComplete = NO;
     }
     return self;
 }
+
+#pragma mark UIViewController Override Methods
 
 - (void)viewDidLoad
 {
@@ -43,7 +54,11 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 {
   [super viewWillAppear:animated];
 
-  self.screenName = @"Recipe List Screen";
+  self.screenName = OBGAScreenName;
+
+  if (!self.firstInteractionComplete) {
+    self.loadTime = CFAbsoluteTimeGetCurrent();
+  }
 
   if ([self tableViewIsEmpty]) {
     [self switchToEmptyTableViewMode];
@@ -56,6 +71,50 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
     [self.tableView reloadData];
   }
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  OBRecipeNavigationController *nav = (OBRecipeNavigationController *) [self navigationController];
+  NSManagedObjectContext *ctx = [nav managedContext];
+  NSString *segueId = [segue identifier];
+  OBRecipe *recipe = nil;
+
+  if (!self.firstInteractionComplete) {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    CFTimeInterval timeDelta = CFAbsoluteTimeGetCurrent() - self.loadTime;
+
+    [tracker send:[[GAIDictionaryBuilder createTimingWithCategory:OBGAScreenName
+                                                         interval:@((NSUInteger)(timeDelta * 1000))
+                                                             name:@"First Interaction"
+                                                            label:segueId] build]];
+
+    self.firstInteractionComplete = YES;
+  }
+
+  if ([segueId isEqualToString:ADD_RECIPE_SEGUE]) {
+    OBBrewery *brewery = [self brewery];
+
+    recipe = [[OBRecipe alloc] initWithContext:ctx];
+    recipe.name = @"New Recipe";
+
+    [brewery addRecipesObject:recipe];
+    recipe.brewery = brewery;
+
+    NSError *err = nil;
+    [ctx save:&err];
+    CRITTERCISM_LOG_ERROR(err);
+
+  } else if ([segueId isEqualToString:SELECT_RECIPE_SEGUE]) {
+    NSIndexPath *cellIndex = [self.tableView indexPathForCell:sender];
+    recipe = [self recipeData][cellIndex.row];
+  }
+
+  assert(recipe);
+  id nextController = [segue destinationViewController];
+  [nextController setRecipe:recipe];
+}
+
+
+#pragma mark UITableView Utility Methods
 
 - (BOOL)tableViewIsEmpty
 {
@@ -123,35 +182,6 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   return cell;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  OBRecipeNavigationController *nav = (OBRecipeNavigationController *) [self navigationController];
-  NSManagedObjectContext *ctx = [nav managedContext];
-  NSString *segueId = [segue identifier];
-  OBRecipe *recipe = nil;
-
-  if ([segueId isEqualToString:ADD_RECIPE_SEGUE]) {
-    OBBrewery *brewery = [self brewery];
-
-    recipe = [[OBRecipe alloc] initWithContext:ctx];
-    recipe.name = @"New Recipe";
-
-    [brewery addRecipesObject:recipe];
-    recipe.brewery = brewery;
-
-    NSError *err = nil;
-    [ctx save:&err];
-    CRITTERCISM_LOG_ERROR(err);
-
-  } else if ([segueId isEqualToString:SELECT_RECIPE_SEGUE]) {
-    NSIndexPath *cellIndex = [self.tableView indexPathForCell:sender];
-    recipe = [self recipeData][cellIndex.row];
-  }
-
-  assert(recipe);
-  id nextController = [segue destinationViewController];
-  [nextController setRecipe:recipe];
-}
-
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
   if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -168,6 +198,12 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
     if ([self tableViewIsEmpty]) {
       [self switchToEmptyTableViewMode];
     }
+
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
+                                                          action:@"Delete"
+                                                           label:nil
+                                                           value:nil] build]];
   }
 }
 

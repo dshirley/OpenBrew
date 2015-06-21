@@ -14,6 +14,8 @@
 #import "OBHopAdditionViewController.h"
 #import "OBBrewController.h"
 #import "OBTextStatisticsCollectionViewCell.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 
 // Google Analytics event category
 static NSString* const OBGAScreenName = @"Recipe Overview Screen";
@@ -233,12 +235,6 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   statsCell.statisticLabel.text = value;
   statsCell.descriptionLabel.text = description;
 
-  // Make the cell 1/3 the width of the collection view
-//  CGRect frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y,
-//                            cell.frame.size.width, collectionView.frame.size.width / 3);
-
-//  statsCell.frame = frame;
-
   return statsCell;
 }
 
@@ -247,6 +243,33 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
   return CGSizeMake(self.view.frame.size.width / 3.0, collectionView.frame.size.height / 2.0);
+}
+
+// Nothing happens when interacting with the statistics in the collection view,
+// however, it would be useful to know if users think something *should* happen.
+// This could indicate a confusing UI, or it may indicate that it's a goog place to
+// add a tool tip or perhaps a way to customize the statistics.
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+  static BOOL hasTriedTapping = NO;
+
+  if (hasTriedTapping) {
+    id cell = [collectionView cellForItemAtIndexPath:indexPath];
+    NSString *gaCellDescription = @"unknown";
+
+    NSAssert([cell respondsToSelector:@selector(descriptionLabel)], @"All cells should have a description label");
+    if ([cell respondsToSelector:@selector(descriptionLabel)]) {
+      gaCellDescription = [[cell descriptionLabel] text];
+    }
+
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
+                                                          action:@"Stats tapped"
+                                                           label:gaCellDescription
+                                                           value:nil] build]];
+
+    hasTriedTapping = YES;
+  }
 }
 
 @end
