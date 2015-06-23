@@ -10,7 +10,7 @@
 
 @interface OBIngredientGauge : UIView
 
-@property (nonatomic, readonly, strong) UILabel *valueLabel;
-@property (nonatomic, readonly, strong) UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *valueLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @end
