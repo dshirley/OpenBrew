@@ -15,6 +15,8 @@
 		9F08154719970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F08154619970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m */; };
 		9F08154A1997147C00E5E575 /* OBMaltColorPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815491997147C00E5E575 /* OBMaltColorPickerDelegate.m */; };
 		9F33116A1B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3311691B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m */; };
+		9F33116D1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F33116C1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m */; };
+		9F3311701B35BF22008C0029 /* OBColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F33116F1B35BF22008C0029 /* OBColorView.m */; };
 		9F60CF2319B15CBA0076A600 /* YeastCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F60CF2219B15CBA0076A600 /* YeastCatalog.csv */; };
 		9F60CF2919B251D00076A600 /* OBIngredientTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */; };
 		9F60CF2C19B264A10076A600 /* OBMaltFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60CF2B19B264A10076A600 /* OBMaltFinderViewController.m */; };
@@ -100,6 +102,10 @@
 		9F3311661B34581C008C0029 /* OBBrewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBrewController.h; sourceTree = "<group>"; };
 		9F3311681B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTextStatisticsCollectionViewCell.h; sourceTree = "<group>"; };
 		9F3311691B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTextStatisticsCollectionViewCell.m; sourceTree = "<group>"; };
+		9F33116B1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBColorStatisticsCollectionViewCell.h; sourceTree = "<group>"; };
+		9F33116C1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBColorStatisticsCollectionViewCell.m; sourceTree = "<group>"; };
+		9F33116E1B35BF22008C0029 /* OBColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBColorView.h; sourceTree = "<group>"; };
+		9F33116F1B35BF22008C0029 /* OBColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBColorView.m; sourceTree = "<group>"; };
 		9F4C5C5E199DC574008A6F1B /* OBKvoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBKvoUtils.h; sourceTree = "<group>"; };
 		9F60CF2219B15CBA0076A600 /* YeastCatalog.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = YeastCatalog.csv; path = data/YeastCatalog.csv; sourceTree = "<group>"; };
 		9F60CF2719B251D00076A600 /* OBIngredientTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientTableViewDataSource.h; sourceTree = "<group>"; };
@@ -250,6 +256,8 @@
 			children = (
 				9F3311681B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.h */,
 				9F3311691B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m */,
+				9F33116B1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.h */,
+				9F33116C1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m */,
 			);
 			name = CollectionViewCells;
 			sourceTree = "<group>";
@@ -460,6 +468,8 @@
 				9FB13E6E19AE2684008BA8C3 /* OBPopupView.m */,
 				9FC73F5519BD128200AD964A /* OBTableViewPlaceholderLabel.h */,
 				9FC73F5619BD128200AD964A /* OBTableViewPlaceholderLabel.m */,
+				9F33116E1B35BF22008C0029 /* OBColorView.h */,
+				9F33116F1B35BF22008C0029 /* OBColorView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -611,11 +621,13 @@
 				9FE8643E198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m in Sources */,
 				9FD66387198218220056EEEC /* OBHopAdditionViewController.m in Sources */,
 				9FF686C91894099A00B36486 /* OBRecipeOverviewController.m in Sources */,
+				9F33116D1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m in Sources */,
 				9FF686C21893E45F00B36486 /* OBRecipeViewController.m in Sources */,
 				9FB13E6F19AE2684008BA8C3 /* OBPopupView.m in Sources */,
 				9FE86433198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m in Sources */,
 				9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */,
 				9FF68676189327B000B36486 /* OBMaltAdditionViewController.m in Sources */,
+				9F3311701B35BF22008C0029 /* OBColorView.m in Sources */,
 				9FC73F4F19BB683400AD964A /* Crittercism+NSErrorLogging.m in Sources */,
 				9F33116A1B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m in Sources */,
 				9F60CF2919B251D00076A600 /* OBIngredientTableViewDataSource.m in Sources */,

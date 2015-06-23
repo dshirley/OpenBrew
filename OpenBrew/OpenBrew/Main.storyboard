@@ -599,15 +599,46 @@
                                             <outlet property="statisticLabel" destination="RHT-tS-Njw" id="F5q-d9-MWh"/>
                                         </connections>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="colorMetric" id="DY4-b4-ZIt">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="colorMetric" id="DY4-b4-ZIt" customClass="OBColorStatisticsCollectionViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="103"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyi-WQ-NdB" customClass="OBColorView">
+                                                    <rect key="frame" x="50" y="18" width="100" height="34"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="VS0-eg-mcp"/>
+                                                        <constraint firstAttribute="height" constant="34" id="h7N-py-okf"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Original Gravity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uA7-0K-xW3">
+                                                    <rect key="frame" x="0.0" y="51" width="200" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="4T1-Zu-v81"/>
+                                                        <constraint firstAttribute="height" constant="15" id="N5e-IY-KUG"/>
+                                                        <constraint firstAttribute="width" constant="200" id="zSX-V5-Ta7"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="centerX" secondItem="uA7-0K-xW3" secondAttribute="centerX" id="5aB-ly-MAJ"/>
+                                            <constraint firstAttribute="centerX" secondItem="gyi-WQ-NdB" secondAttribute="centerX" id="DRr-t4-GlF"/>
+                                            <constraint firstItem="uA7-0K-xW3" firstAttribute="top" secondItem="DY4-b4-ZIt" secondAttribute="centerYWithinMargins" id="HSZ-kN-6iM"/>
+                                            <constraint firstAttribute="centerY" secondItem="gyi-WQ-NdB" secondAttribute="bottom" id="d1E-uS-Gqc"/>
+                                        </constraints>
                                         <size key="customSize" width="200" height="103"/>
+                                        <connections>
+                                            <outlet property="colorView" destination="gyi-WQ-NdB" id="Rlp-dl-GQT"/>
+                                            <outlet property="descriptionLabel" destination="uA7-0K-xW3" id="m2W-YD-j23"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>

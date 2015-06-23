@@ -14,6 +14,7 @@
 #import "OBHopAdditionViewController.h"
 #import "OBBrewController.h"
 #import "OBTextStatisticsCollectionViewCell.h"
+#import "OBColorStatisticsCollectionViewCell.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 
@@ -42,13 +43,6 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UITextField *recipeNameTextField;
-
-@property (nonatomic, weak) IBOutlet UILabel *originalGravityLabel;
-@property (nonatomic, weak) IBOutlet UILabel *finalGravityLabel;
-@property (nonatomic, weak) IBOutlet UILabel *abvLabel;
-@property (nonatomic, weak) IBOutlet UILabel *srmLabel;
-@property (weak, nonatomic) IBOutlet UIView *colorSample;
-@property (nonatomic, weak) IBOutlet UILabel *ibuLabel;
 @end
 
 @implementation OBRecipeOverviewController
@@ -92,11 +86,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 }
 
 - (void)reloadData {
-  self.abvLabel.text = [NSString stringWithFormat:@"%.1f%%", [self.recipe alcoholByVolume]];
-  self.srmLabel.text = [NSString stringWithFormat:@"%d", (int)[self.recipe colorInSRM]];
-  self.finalGravityLabel.text = [NSString stringWithFormat:@"%.3f", [self.recipe finalGravity]];
-  self.ibuLabel.text = [NSString stringWithFormat:@"%d", (int) roundf([self.recipe IBUs])];
-  self.originalGravityLabel.text = [NSString stringWithFormat:@"%.3f", [self.recipe originalGravity]];
+  [self.collectionView reloadData];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -198,6 +188,35 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+  OBRecipeStatistic cellType = (OBRecipeStatistic) indexPath.row;
+  UICollectionViewCell *cell = nil;
+
+  if (cellType == OBColor) {
+    cell = [self collectionView:collectionView colorStatisticsCellForIndexPath:indexPath];
+  } else {
+    cell = [self collectionView:collectionView textStatisticsCellForIndexPath:indexPath];
+  }
+
+  return cell;
+}
+
+- (OBColorStatisticsCollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                        colorStatisticsCellForIndexPath:(NSIndexPath *)indexPath
+{
+  UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"colorMetric"
+                                                                         forIndexPath:indexPath];
+
+  OBColorStatisticsCollectionViewCell *colorCell = (OBColorStatisticsCollectionViewCell *) cell;
+
+  colorCell.colorView.colorInSrm = roundf([self.recipe colorInSRM]);
+  colorCell.descriptionLabel.text = @"Color";
+
+  return colorCell;
+}
+
+- (OBTextStatisticsCollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                        textStatisticsCellForIndexPath:(NSIndexPath *)indexPath
+{
   UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"textMetric"
                                                                          forIndexPath:indexPath];
   OBRecipeStatistic cellType = (OBRecipeStatistic) indexPath.row;
@@ -217,8 +236,6 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
     case OBAbv:
       value = [NSString stringWithFormat:@"%.1f%%", [self.recipe alcoholByVolume]];
       description = @"% ABV";
-      break;
-    case OBColor:
       break;
     case OBIbu:
       value = [NSString stringWithFormat:@"%d", (int) roundf([self.recipe IBUs])];
