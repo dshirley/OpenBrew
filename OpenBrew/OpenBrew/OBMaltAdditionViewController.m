@@ -283,7 +283,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
       gaSettingName = @"Show beer gravity";
       break;
     default:
-      NSAssert(YES, @"Invalid gauge metric: %ld", metric);
+      NSAssert(YES, @"Invalid gauge metric: %@", @(metric));
   }
 
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -312,7 +312,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
       gaSettingName = @"Show % gravity";
       break;
     default:
-      NSAssert(YES, @"Invalid malt addition metric: %ld", metric);
+      NSAssert(YES, @"Invalid malt addition metric: %@", @(metric));
   }
 
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];

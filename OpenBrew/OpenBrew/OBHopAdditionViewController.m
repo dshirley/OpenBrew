@@ -259,7 +259,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
       gaSettingName = @"Show beer bu:gu";
       break;
     default:
-      NSAssert(YES, @"Invalid hop addition metric: %ld", metric);
+      NSAssert(YES, @"Invalid hop addition metric: %@", @(metric));
   }
 
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -292,7 +292,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
       gaSettingName = @"Hop ibu %";
       break;
     default:
-      NSAssert(YES, @"Invalid hop addition metric: %ld", metric);
+      NSAssert(YES, @"Invalid hop addition metric: %@", @(metric));
   }
 
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];

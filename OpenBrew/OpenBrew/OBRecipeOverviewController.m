@@ -139,7 +139,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
       cell.detailTextLabel.text = self.recipe.yeast.yeast.name;
       break;
     default:
-      NSAssert(YES, @"Invalid row: %ld", indexPath.row);
+      NSAssert(YES, @"Invalid row: %@", @(indexPath.row));
   }
 
   return cell;
