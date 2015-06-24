@@ -163,11 +163,9 @@
 
 - (void)pickerChanged
 {
-//  OBMultiPickerTableViewCell *cell = (OBMultiPickerTableViewCell *)[self cellBeforeDrawerForTableView:self.tableView];
-//  OBMaltAddition *maltAddition = [self ingredientForDrawer];
-//  [self populateIngredientCell:cell withIngredientData:maltAddition];
-
-  [self.tableView reloadData];
+  OBMultiPickerTableViewCell *cell = (OBMultiPickerTableViewCell *)[self cellBeforeDrawerForTableView:self.tableView];
+  OBMaltAddition *maltAddition = [self ingredientForDrawer];
+  [self populateIngredientCell:cell withIngredientData:maltAddition];
 }
 
 @end
