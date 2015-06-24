@@ -3,11 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OBIngredientGauge">
             <connections>
+                <outlet property="colorView" destination="uYA-Z8-spY" id="eWO-KZ-TJY"/>
                 <outlet property="descriptionLabel" destination="aF1-AT-bJW" id="HIC-c2-6PD"/>
                 <outlet property="valueLabel" destination="pM0-0i-pG2" id="0R4-uK-Lwo"/>
             </connections>
@@ -20,6 +22,10 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWs-7v-VRk">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYA-Z8-spY" userLabel="Color View" customClass="OBColorView">
+                            <rect key="frame" x="0.0" y="8" width="600" height="396"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pM0-0i-pG2">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="497"/>
                             <fontDescription key="fontDescription" type="system" pointSize="64"/>
@@ -36,12 +42,16 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="pM0-0i-pG2" secondAttribute="trailing" id="AFm-Nf-Exs"/>
+                        <constraint firstItem="uYA-Z8-spY" firstAttribute="leading" secondItem="pWs-7v-VRk" secondAttribute="leading" id="Nce-to-aFL"/>
                         <constraint firstItem="aF1-AT-bJW" firstAttribute="bottom" secondItem="pWs-7v-VRk" secondAttribute="bottom" id="QNq-a2-3Ku"/>
+                        <constraint firstAttribute="trailing" secondItem="uYA-Z8-spY" secondAttribute="trailing" id="WIo-Gs-gdk"/>
                         <constraint firstItem="pM0-0i-pG2" firstAttribute="top" secondItem="pWs-7v-VRk" secondAttribute="top" id="c2V-7z-JD3"/>
                         <constraint firstItem="pM0-0i-pG2" firstAttribute="leading" secondItem="aF1-AT-bJW" secondAttribute="leading" id="fel-nv-9SE"/>
                         <constraint firstItem="pM0-0i-pG2" firstAttribute="height" secondItem="pWs-7v-VRk" secondAttribute="height" multiplier="0.8282" id="gRx-7J-QF6"/>
                         <constraint firstItem="pM0-0i-pG2" firstAttribute="trailing" secondItem="aF1-AT-bJW" secondAttribute="trailing" id="gXX-ML-kaL"/>
                         <constraint firstItem="aF1-AT-bJW" firstAttribute="height" secondItem="pWs-7v-VRk" secondAttribute="height" multiplier="0.35" id="hLA-bc-zUy"/>
+                        <constraint firstItem="uYA-Z8-spY" firstAttribute="top" secondItem="pWs-7v-VRk" secondAttribute="topMargin" id="nan-YO-LEF"/>
+                        <constraint firstItem="uYA-Z8-spY" firstAttribute="height" secondItem="pWs-7v-VRk" secondAttribute="height" multiplier="0.66" id="s68-Mw-H5V"/>
                         <constraint firstItem="pM0-0i-pG2" firstAttribute="leading" secondItem="pWs-7v-VRk" secondAttribute="leading" id="xT8-rx-VAL"/>
                     </constraints>
                 </view>

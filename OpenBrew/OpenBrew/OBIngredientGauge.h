@@ -13,4 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
+- (void)setColorInSrm:(uint32_t)srm;
+- (uint32_t)colorInSrm;
+
 @end

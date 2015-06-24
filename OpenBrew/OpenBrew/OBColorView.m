@@ -25,20 +25,21 @@
 
   UIColor *darkColor = colorForSrm(self.colorInSrm + 1);
   UIColor *lightColor = nil;
-  if (self.colorInSrm > 1) {
-    lightColor = colorForSrm(self.colorInSrm - 1);
+  if (self.colorInSrm == 0) {
+    darkColor = [UIColor whiteColor];
+    lightColor = [UIColor whiteColor];
   } else {
     lightColor = colorForSrm(self.colorInSrm);
   }
 
   NSArray *colors = @[ darkColor, lightColor, [UIColor whiteColor]];
-
+//  NSArray *colors = @[ colorForSrm(self.colorInSrm), colorForSrm(self.colorInSrm), [UIColor whiteColor]];
   NSMutableArray *cgColors = [[NSMutableArray alloc] init];
   for (UIColor *color in colors) {
     [cgColors addObject:(id)[color CGColor]];
   }
 
-  CGFloat locations[3] = {0.0, 0.5, 0.75};
+  CGFloat locations[3] = {0.0, 0.8, 1};
 
   //Default to the RGB Colorspace
   CGColorSpaceRef myColorspace = CGColorSpaceCreateDeviceRGB();
