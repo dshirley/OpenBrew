@@ -14,9 +14,10 @@
 #import "OBBrewery.h"
 #import "Crittercism.h"
 #import "Crittercism+NSErrorLogging.h"
+#import "GAI.h"
 
-static NSString *const CRITTER_APP_ID_PRODUCTION = @"540b2fc9d478bc6abf000001";
-static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"540b2fe1bb947505e5000003";
+static NSString *const CRITTER_APP_ID_PRODUCTION = @"558d6dda9ccc10f6040881c2";
+static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
 
 @implementation OBAppDelegate
 
@@ -26,11 +27,8 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"540b2fe1bb947505e5000003";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  if (DEBUG) {
-    [Crittercism enableWithAppID:CRITTER_APP_ID_DEVELOPMENT];
-  } else {
-    [Crittercism enableWithAppID:CRITTER_APP_ID_PRODUCTION];
-  }
+  [self initializeCrittercism];
+  [self initializeGoogleAnalytics];
 
   OBBrewery *brewery = [OBBrewery breweryFromContext:self.managedObjectContext];
   if (brewery) {
@@ -48,6 +46,27 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"540b2fe1bb947505e5000003";
   nav.brewery = brewery;
   
   return YES;
+}
+
+- (void)initializeCrittercism
+{
+  if (DEBUG) {
+    [Crittercism enableWithAppID:CRITTER_APP_ID_DEVELOPMENT];
+  } else {
+    [Crittercism enableWithAppID:CRITTER_APP_ID_PRODUCTION];
+  }
+}
+
+- (void)initializeGoogleAnalytics
+{
+  // Optional: automatically send uncaught exceptions to Google Analytics.
+  [GAI sharedInstance].trackUncaughtExceptions = NO;
+
+  // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+  [GAI sharedInstance].dispatchInterval = 20;
+
+  // Initialize tracker. Replace with your tracking ID.
+  [[GAI sharedInstance] trackerWithTrackingId:@"UA-64333354-1"];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
