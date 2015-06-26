@@ -90,7 +90,8 @@ typedef NS_ENUM(NSInteger, OBYeastCsvIndex) {
 - (float)estimatedAttenuationAsDecimal {
   float min = [[self minAttenuation] floatValue];
   float max = [[self maxAttenuation] floatValue];
-  return (min + max) / 2;
+
+  return ((min + max) / 2) / 100;
 }
 
 @end

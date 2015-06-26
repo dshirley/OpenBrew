@@ -148,7 +148,7 @@
 - (float)finalGravity {
   float attenuationLevel = [[[self yeast] yeast] estimatedAttenuationAsDecimal];
   float finalGravityUnits = [self gravityUnits] * (1 - attenuationLevel);
-  return finalGravityUnits / [self wortVolumeAfterBoilInGallons];
+  return 1 + (finalGravityUnits / [self wortVolumeAfterBoilInGallons] / 1000);
 }
 
 - (float)boilGravity {
@@ -216,7 +216,8 @@
                                   KVO_KEY(desiredBeerVolumeInGallons),
                                   KVO_KEY(boilOffInGallons),
                                   KVO_KEY(kettleLossageInGallons),
-                                  KVO_KEY(fermentorLossageInGallons), nil];
+                                  KVO_KEY(fermentorLossageInGallons),
+                                  KVO_KEY(yeast), nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -252,6 +253,10 @@
   [self didChangeValueForKey:KVO_KEY(boilSizeInGallons)];
   [self willChangeValueForKey:KVO_KEY(wortVolumeAfterBoilInGallons)];
   [self didChangeValueForKey:KVO_KEY(wortVolumeAfterBoilInGallons)];
+  [self willChangeValueForKey:KVO_KEY(finalGravity)];
+  [self didChangeValueForKey:KVO_KEY(finalGravity)];
+  [self willChangeValueForKey:KVO_KEY(alcoholByVolume)];
+  [self didChangeValueForKey:KVO_KEY(alcoholByVolume)];
 }
 
 - (void)startObservingKeys:(NSSet *)keys ofObject:(id)object

@@ -165,7 +165,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
       [self performSegueWithIdentifier:@"selectedHops" sender:self];
       break;
     case OBYeastCell:
-      // TODO: add yeast view controller
+      [self performSegueWithIdentifier:@"selectedYeast" sender:self];
       break;
     default:
       NSAssert(YES, @"Invalid row when cell was selected: %ld", (long)indexPath.row);
@@ -235,7 +235,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
       break;
     case OBAbv:
       value = [NSString stringWithFormat:@"%.1f%%", [self.recipe alcoholByVolume]];
-      description = @"% ABV";
+      description = @"ABV";
       break;
     case OBIbu:
       value = [NSString stringWithFormat:@"%d", (int) roundf([self.recipe IBUs])];

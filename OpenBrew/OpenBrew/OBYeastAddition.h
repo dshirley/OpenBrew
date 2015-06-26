@@ -17,4 +17,6 @@
 @property (nonatomic, retain) OBRecipe *recipe;
 @property (nonatomic, retain) OBYeast *yeast;
 
+- (id)initWithYeast:(OBYeast *)yeast andRecipe:(OBRecipe *)recipe;
+
 @end

@@ -17,4 +17,19 @@
 @dynamic recipe;
 @dynamic yeast;
 
+- (id)initWithYeast:(OBYeast *)yeast andRecipe:(OBRecipe *)recipe;
+{
+  NSManagedObjectContext *ctx = [yeast managedObjectContext];
+  NSEntityDescription *desc = [NSEntityDescription entityForName:@"YeastAddition"
+                                          inManagedObjectContext:ctx];
+
+  if (self = [self initWithEntity:desc insertIntoManagedObjectContext:ctx]) {
+    self.yeast = yeast;
+    self.quantity = @0;
+    self.recipe = recipe;
+  }
+
+  return self;
+}
+
 @end
