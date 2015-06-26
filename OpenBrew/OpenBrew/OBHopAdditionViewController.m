@@ -30,7 +30,7 @@ static NSString* const OBGaugeDisplaySegmentKey = @"Hop Gauge Selected Segment";
 static NSString* const OBIngredientDisplaySegmentKey = @"Hop Ingredient Selected Segment";
 
 // What hop related metric the gauge should display.  These values should
-// correspond to the indices of the segements in HopAdditionDisplaySettings.xib
+// correspond to the indices of the segements in OBHopAdditionDisplaySettings.xib
 typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
   OBHopGaugeMetricIBU,
   OBHopGaugeMetricBitteringToGravityRatio
@@ -135,7 +135,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 // will pop up/down to allow users to display different hop metrics
 - (void)addHopDisplaySettingsView
 {
-  UIView *subview =  [[[NSBundle mainBundle] loadNibNamed:@"HopAdditionDisplaySettings"
+  UIView *subview =  [[[NSBundle mainBundle] loadNibNamed:@"OBHopAdditionDisplaySettings"
                                                     owner:self
                                                   options:nil] objectAtIndex:0];
 

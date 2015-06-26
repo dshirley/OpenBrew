@@ -50,8 +50,8 @@
 		9F98D3821880F8EE00469323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F98D3801880F8EE00469323 /* InfoPlist.strings */; };
 		9F98D3921880FB7600469323 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F98D3911880FB7600469323 /* Main.storyboard */; };
 		9FA3890119B27A0B0009DB07 /* OBSrmColorTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA3890019B27A0B0009DB07 /* OBSrmColorTable.m */; };
-		9FB13E6319A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB13E6219A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib */; };
-		9FB13E6C19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB13E6B19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib */; };
+		9FB13E6319A953B3008BA8C3 /* OBMaltAdditionDisplaySettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB13E6219A953B3008BA8C3 /* OBMaltAdditionDisplaySettings.xib */; };
+		9FB13E6C19ACCACD008BA8C3 /* OBHopAdditionDisplaySettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FB13E6B19ACCACD008BA8C3 /* OBHopAdditionDisplaySettings.xib */; };
 		9FB13E6F19AE2684008BA8C3 /* OBPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB13E6E19AE2684008BA8C3 /* OBPopupView.m */; };
 		9FC73F4F19BB683400AD964A /* Crittercism+NSErrorLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC73F4E19BB683400AD964A /* Crittercism+NSErrorLogging.m */; };
 		9FC73F5119BB6DCB00AD964A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */; };
@@ -160,8 +160,8 @@
 		9F98D3911880FB7600469323 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9FA388FF19B27A0B0009DB07 /* OBSrmColorTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSrmColorTable.h; sourceTree = "<group>"; };
 		9FA3890019B27A0B0009DB07 /* OBSrmColorTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSrmColorTable.m; sourceTree = "<group>"; };
-		9FB13E6219A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaltAdditionDisplaySettings.xib; sourceTree = "<group>"; };
-		9FB13E6B19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HopAdditionDisplaySettings.xib; sourceTree = "<group>"; };
+		9FB13E6219A953B3008BA8C3 /* OBMaltAdditionDisplaySettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OBMaltAdditionDisplaySettings.xib; sourceTree = "<group>"; };
+		9FB13E6B19ACCACD008BA8C3 /* OBHopAdditionDisplaySettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OBHopAdditionDisplaySettings.xib; sourceTree = "<group>"; };
 		9FB13E6D19AE2684008BA8C3 /* OBPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPopupView.h; sourceTree = "<group>"; };
 		9FB13E6E19AE2684008BA8C3 /* OBPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPopupView.m; sourceTree = "<group>"; };
 		9FC73F4D19BB683400AD964A /* Crittercism+NSErrorLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Crittercism+NSErrorLogging.h"; sourceTree = "<group>"; };
@@ -460,14 +460,14 @@
 			isa = PBXGroup;
 			children = (
 				9F3311671B345E7D008C0029 /* CollectionViewCells */,
-				9FB13E6B19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib */,
 				9F98D3911880FB7600469323 /* Main.storyboard */,
-				9FB13E6219A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib */,
 				9F33116E1B35BF22008C0029 /* OBColorView.h */,
 				9F33116F1B35BF22008C0029 /* OBColorView.m */,
+				9FB13E6B19ACCACD008BA8C3 /* OBHopAdditionDisplaySettings.xib */,
 				9F92E8DF18A4536200118D76 /* OBIngredientGauge.h */,
 				9F92E8E018A4536200118D76 /* OBIngredientGauge.m */,
 				9F6570D01B3906ED0004EBE0 /* OBIngredientGauge.xib */,
+				9FB13E6219A953B3008BA8C3 /* OBMaltAdditionDisplaySettings.xib */,
 				9FB13E6D19AE2684008BA8C3 /* OBPopupView.h */,
 				9FB13E6E19AE2684008BA8C3 /* OBPopupView.m */,
 				9FC73F5519BD128200AD964A /* OBTableViewPlaceholderLabel.h */,
@@ -560,9 +560,9 @@
 				9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */,
 				9F6570D11B3906ED0004EBE0 /* OBIngredientGauge.xib in Resources */,
 				9F60CF2319B15CBA0076A600 /* YeastCatalog.csv in Resources */,
-				9FB13E6C19ACCACD008BA8C3 /* HopAdditionDisplaySettings.xib in Resources */,
+				9FB13E6C19ACCACD008BA8C3 /* OBHopAdditionDisplaySettings.xib in Resources */,
 				9F98D3921880FB7600469323 /* Main.storyboard in Resources */,
-				9FB13E6319A953B3008BA8C3 /* MaltAdditionDisplaySettings.xib in Resources */,
+				9FB13E6319A953B3008BA8C3 /* OBMaltAdditionDisplaySettings.xib in Resources */,
 				9FD66384198212DB0056EEEC /* HopCatalog.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

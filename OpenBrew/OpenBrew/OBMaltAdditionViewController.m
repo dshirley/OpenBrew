@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
 @interface OBMaltAdditionViewController ()
 
-// Elements from MaltAdditionDisplaySettings.xib
+// Elements from OBMaltAdditionDisplaySettings.xib
 @property (nonatomic, strong) OBPopupView *popupView;
 
 @property (nonatomic, strong) NSIndexPath *drawerIndexPath;
@@ -143,7 +143,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 // will pop up/down to allow users to display different malt metrics
 - (void)addMaltDisplaySettingsView
 {
-  UIView *subview =  [[[NSBundle mainBundle] loadNibNamed:@"MaltAdditionDisplaySettings"
+  UIView *subview =  [[[NSBundle mainBundle] loadNibNamed:@"OBMaltAdditionDisplaySettings"
                                                     owner:self
                                                   options:nil] objectAtIndex:0];
 
@@ -283,7 +283,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
 #pragma mark - MaltAdditionDisplaySettings
 
-// Linked to MaltAdditionDisplaySettings.xib.  This method gets called when a
+// Linked to OBMaltAdditionDisplaySettings.xib.  This method gets called when a
 // UISegment is selected. This method changes the value that is displayed for
 // the gauge.
 - (IBAction)gaugeDisplaySettingsChanged:(UISegmentedControl *)sender
@@ -316,7 +316,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
   [self refreshGauge];
 }
 
-// Linked to MaltAdditionDisplaySettings.xib.  This method gets called when a
+// Linked to OBMaltAdditionDisplaySettings.xib.  This method gets called when a
 // UISegment is selected that changes the information displayed for each malt
 // line item.
 - (IBAction)ingredientDisplaySettingsChanged:(UISegmentedControl *)sender
