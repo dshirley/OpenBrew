@@ -38,7 +38,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
 @interface OBHopAdditionViewController ()
 
-// Elements from MaltAdditionDisplaySettings.xib
+// Elements from OBHopAdditionDisplaySettings.xib
 @property (nonatomic, strong) OBPopupView *popupView;
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
@@ -54,17 +54,15 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
 @implementation OBHopAdditionViewController
 
-- (void)awakeFromNib {
-  [super awakeFromNib];
-}
-
 - (void)loadView {
   [super loadView];
+
   self.screenName = OBGAScreenName;
 
   self.tableViewDelegate = [[OBHopAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
                                                                      andTableView:self.tableView
                                                                     andGACategory:OBGAScreenName];
+
   self.tableView.delegate = self.tableViewDelegate;
   self.tableView.dataSource = self.tableViewDelegate;
 
@@ -79,7 +77,6 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
   [self reload];
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -157,8 +154,17 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
   [self.popupView popupContent];
 }
 
-- (IBAction)dismissSettingsView {
-  [self.popupView dismissContent];
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+  [super setEditing:editing animated:animated];
+
+  // Get rid of the picker.  It'll get in the way and we don't want users to
+  // be able to move it anyways.
+  [self.tableView beginUpdates];
+  [self.tableViewDelegate closeDrawerForTableView:self.tableView];
+  [self.tableView endUpdates];
+
+  [self.tableView setEditing:editing animated:animated];
 }
 
 - (void)reload {
@@ -181,17 +187,18 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
   }
 }
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+- (void)setRecipe:(OBRecipe *)recipe
 {
-  [super setEditing:editing animated:animated];
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(IBUs)];
 
-  // Get rid of the picker.  It'll get in the way and we don't want users to
-  // be able to move it anyways.
-  [self.tableView beginUpdates];
-  [self.tableViewDelegate closeDrawerForTableView:self.tableView];
-  [self.tableView endUpdates];
+  _recipe = recipe;
 
-  [self.tableView setEditing:editing animated:animated];
+  [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs) options:0 context:nil];
+}
+
+- (void)dealloc
+{
+  self.recipe = nil;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -210,19 +217,6 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
   }
 }
 
-- (void)setRecipe:(OBRecipe *)recipe
-{
-  [_recipe removeObserver:self forKeyPath:KVO_KEY(IBUs)];
-
-  _recipe = recipe;
-
-  [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs) options:0 context:nil];
-}
-
-- (void)dealloc
-{
-  self.recipe = nil;
-}
 
 #pragma mark - Navigation
 
@@ -257,10 +251,9 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
   }
 }
 
+#pragma mark - HopAdditionDisplaySettings
 
-#pragma mark - MaltAdditionDisplaySettings
-
-// Linked to MaltAdditionDisplaySettings.xib.  This method gets called when a
+// Linked to OBHopAdditionDisplaySettings.xib.  This method gets called when a
 // UISegment is selected. This method changes the value that is displayed for
 // the gauge.
 - (IBAction)gaugeDisplaySettingsChanged:(UISegmentedControl *)sender
@@ -289,15 +282,15 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
                                                          value:nil] build]];
 
   self.gaugeMetric = metric;
+
   [self refreshGauge];
 }
 
-// Linked to MaltAdditionDisplaySettings.xib.  This method gets called when a
+// Linked to OBHopAdditionDisplaySettings.xib.  This method gets called when a
 // UISegment is selected that changes the information displayed for each malt
 // line item.
 - (IBAction)ingredientDisplaySettingsChanged:(UISegmentedControl *)sender
 {
-//  // Note that the segment indices must allign with the metric enum
   OBHopAdditionMetric metric = sender.selectedSegmentIndex;
   NSString *gaSettingName = @"n/a hop addition metric";
 
@@ -324,6 +317,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
                                                          label:gaSettingName
                                                          value:nil] build]];
 
+  // Note that the segment indices must align with the metric enum
   self.tableViewDelegate.hopAdditionMetricToDisplay = metric;
 }
 

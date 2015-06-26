@@ -36,19 +36,13 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
   OBMaltGaugeMetricColor
 };
 
-// TODO: add comments on how the settings view works
-// Name variables  more consistently too
-
 @interface OBMaltAdditionViewController ()
 
 // Elements from OBMaltAdditionDisplaySettings.xib
 @property (nonatomic, strong) OBPopupView *popupView;
 
-@property (nonatomic, strong) NSIndexPath *drawerIndexPath;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) OBTableViewPlaceholderLabel *placeholderText;
-@property (assign) NSInteger drawerCellRowHeight;
-
 @property (nonatomic, assign) OBMaltGaugeMetric gaugeMetric;
 @property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
 @property (nonatomic, strong) OBMaltAdditionTableViewDelegate *tableViewDelegate;
@@ -59,11 +53,6 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 @end
 
 @implementation OBMaltAdditionViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-  return [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-}
 
 - (void)loadView {
   [super loadView];
@@ -165,15 +154,6 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
   [self.popupView popupContent];
 }
 
-- (void)viewDidLoad
-{
-  [super viewDidLoad];
-
-  self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
-  [self reload];
-}
-
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
   [super setEditing:editing animated:animated];
@@ -212,11 +192,10 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
 - (void)setRecipe:(OBRecipe *)recipe
 {
-  // TODO: we could also register for changes to recipe color; however, since
-  // color and gravity depend on similar variables, we'd start getting two callbacks
-  // which would be unnecessary. Perhaps this is something we could refine in the future.
   [_recipe removeObserver:self forKeyPath:KVO_KEY(originalGravity)];
+
   _recipe = recipe;
+
   [_recipe addObserver:self forKeyPath:KVO_KEY(originalGravity) options:0 context:nil];
 }
 
