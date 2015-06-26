@@ -26,6 +26,9 @@
 static NSString* const OBGAScreenName = @"Malt Addition Screen";
 static NSString* const OBGASettingsAction = @"Settings change";
 
+static NSString* const OBGaugeDisplaySegmentKey = @"Malt Gauge Selected Segment";
+static NSString* const OBIngredientDisplaySegmentKey = @"Malt Ingredient Selected Segment";
+
 // What malt related metric should the gauge display.  These values should
 // correspond to the indices of the MaltAdditionDisplaySettings segmentview.
 typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
@@ -49,6 +52,10 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 @property (nonatomic, assign) OBMaltGaugeMetric gaugeMetric;
 @property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
 @property (nonatomic, strong) OBMaltAdditionTableViewDelegate *tableViewDelegate;
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *gaugeDisplaySettingSegmentedControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
+
 @end
 
 @implementation OBMaltAdditionViewController
@@ -69,6 +76,13 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
   self.tableView.delegate = self.tableViewDelegate;
   self.tableView.dataSource = self.tableViewDelegate;
+
+  self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  NSInteger index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBGaugeDisplaySegmentKey] integerValue];
+  self.gaugeMetric = (OBMaltGaugeMetric)index;
+
+  index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBIngredientDisplaySegmentKey] integerValue];
+  self.tableViewDelegate.maltAdditionMetricToDisplay = (OBMaltAdditionMetric)index;
 
   [self addMaltDisplaySettingsView];
 
@@ -136,6 +150,12 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
   _popupView = [[OBPopupView alloc] initWithFrame:self.view.frame
                                    andContentView:subview
                                 andNavigationItem:self.navigationItem];
+
+  NSInteger index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBGaugeDisplaySegmentKey] integerValue];
+  self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = index;
+
+  index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBIngredientDisplaySegmentKey] integerValue];
+  self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = index;
 
   [self.view addSubview:_popupView];
 }
@@ -282,13 +302,17 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
       NSAssert(YES, @"Invalid gauge metric: %@", @(metric));
   }
 
+  // Persist the selected segment so that it will appear the next time this view is loaded
+  [[NSUserDefaults standardUserDefaults] setObject:@(metric) forKey:OBGaugeDisplaySegmentKey];
+
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
   [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
                                                         action:OBGASettingsAction
                                                          label:gaSettingName
                                                          value:nil] build]];
 
-  self.gaugeMetric = sender.selectedSegmentIndex;
+  self.gaugeMetric = metric;
+
   [self refreshGauge];
 }
 
@@ -311,6 +335,9 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
       NSAssert(YES, @"Invalid malt addition metric: %@", @(metric));
   }
 
+  // Persist the selected segment so that it will appear the next time this view is loaded
+  [[NSUserDefaults standardUserDefaults] setObject:@(metric) forKey:OBIngredientDisplaySegmentKey];
+
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
   [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
                                                         action:OBGASettingsAction
@@ -318,8 +345,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
                                                          value:nil] build]];
 
   // Note that the segment indices must align with the metric enum
-  OBMaltAdditionMetric newMetric = sender.selectedSegmentIndex;
-  self.tableViewDelegate.maltAdditionMetricToDisplay = newMetric;
+  self.tableViewDelegate.maltAdditionMetricToDisplay = metric;
 }
 
 @end

@@ -26,6 +26,9 @@
 static NSString* const OBGAScreenName = @"Hop Addition Screen";
 static NSString* const OBGASettingsAction = @"Settings change";
 
+static NSString* const OBGaugeDisplaySegmentKey = @"Hop Gauge Selected Segment";
+static NSString* const OBIngredientDisplaySegmentKey = @"Hop Ingredient Selected Segment";
+
 // What hop related metric the gauge should display.  These values should
 // correspond to the indices of the segements in HopAdditionDisplaySettings.xib
 typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
@@ -43,6 +46,9 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 @property (nonatomic, assign) OBHopGaugeMetric gaugeMetric;
 @property (nonatomic, strong) IBOutlet OBIngredientGauge *gauge;
 @property (nonatomic, strong) OBHopAdditionTableViewDelegate *tableViewDelegate;
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *gaugeDisplaySettingSegmentedControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
 
 @end
 
@@ -63,6 +69,11 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
   self.tableView.dataSource = self.tableViewDelegate;
 
   self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  NSInteger index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBGaugeDisplaySegmentKey] integerValue];
+  self.gaugeMetric = (OBHopGaugeMetric)index;
+
+  index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBIngredientDisplaySegmentKey] integerValue];
+  self.tableViewDelegate.hopAdditionMetricToDisplay = (OBHopAdditionMetric)index;
 
   [self addHopDisplaySettingsView];
 
@@ -131,6 +142,12 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
   _popupView = [[OBPopupView alloc] initWithFrame:self.view.frame
                                    andContentView:subview
                                 andNavigationItem:self.navigationItem];
+
+  NSInteger index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBGaugeDisplaySegmentKey] integerValue];
+  self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = index;
+
+  index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBIngredientDisplaySegmentKey] integerValue];
+  self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = index;
 
   [self.view addSubview:_popupView];
 }
@@ -262,6 +279,9 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
       NSAssert(YES, @"Invalid hop addition metric: %@", @(metric));
   }
 
+  // Persist the selected segment so that it will appear the next time this view is loaded
+  [[NSUserDefaults standardUserDefaults] setObject:@(metric) forKey:OBGaugeDisplaySegmentKey];
+
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
   [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
                                                         action:OBGASettingsAction
@@ -294,6 +314,9 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
     default:
       NSAssert(YES, @"Invalid hop addition metric: %@", @(metric));
   }
+
+  // Persist the selected segment so that it will appear the next time this view is loaded
+  [[NSUserDefaults standardUserDefaults] setObject:@(metric) forKey:OBIngredientDisplaySegmentKey];
 
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
   [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
