@@ -17,6 +17,10 @@
 #import "OBColorStatisticsCollectionViewCell.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
+#import "OBMaltAddition.h"
+#import "OBHopAddition.h"
+#import "OBMalt.h"
+#import "OBHops.h"
 
 // Google Analytics event category
 static NSString* const OBGAScreenName = @"Recipe Overview Screen";
@@ -87,6 +91,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 
 - (void)reloadData {
   [self.collectionView reloadData];
+  [self.tableView reloadData];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -118,25 +123,69 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   return (NSInteger) OBNumberOfCells;
 }
 
+- (int)numberOfHopVarieties
+{
+  NSMutableSet *seenHops = [NSMutableSet set];
+
+  for (OBHopAddition *hopAddition in self.recipe.hopAdditions) {
+    [seenHops addObject:hopAddition.hops.name];
+  }
+
+  return seenHops.count;
+}
+
+- (int)numberOfMaltVarieties
+{
+  NSMutableSet *seenMalts = [NSMutableSet set];
+
+  for (OBMaltAddition *maltAddition in self.recipe.maltAdditions) {
+    [seenMalts addObject:maltAddition.malt.name];
+  }
+
+  return seenMalts.count;
+}
+
+- (NSString *)hopAndMaltDetailDisplayValue:(int)count
+{
+  NSString *display = @"none";
+
+  if (count == 1) {
+    display = [NSString stringWithFormat:@"%d variety", count];
+  } else {
+    display = [NSString stringWithFormat:@"%d varieties", count];
+  }
+
+  return display;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
   OBRecipeOverviewCellType cellType = (OBRecipeOverviewCellType) indexPath.row;
+  int count = 0;
 
   switch (cellType) {
     case OBBatchSizeCell:
       cell.textLabel.text = @"Batch size";
-      cell.detailTextLabel.text = [NSString stringWithFormat:@"%d gal", [self.recipe.desiredBeerVolumeInGallons intValue]];
+      cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1f gallons", [self.recipe.desiredBeerVolumeInGallons floatValue]];
       break;
     case OBMaltsCell:
       cell.textLabel.text = @"Malts";
+      count = [self numberOfMaltVarieties];
+      cell.detailTextLabel.text = [self hopAndMaltDetailDisplayValue:count];
       break;
     case OBHopsCell:
       cell.textLabel.text = @"Hops";
+      count = [self numberOfHopVarieties];
+      cell.detailTextLabel.text = [self hopAndMaltDetailDisplayValue:count];
       break;
     case OBYeastCell:
       cell.textLabel.text = @"Yeast";
-      cell.detailTextLabel.text = self.recipe.yeast.yeast.name;
+      if (self.recipe.yeast) {
+        cell.detailTextLabel.text = self.recipe.yeast.yeast.name;
+      } else {
+        cell.detailTextLabel.text = @"none";
+      }
       break;
     default:
       NSAssert(YES, @"Invalid row: %@", @(indexPath.row));
