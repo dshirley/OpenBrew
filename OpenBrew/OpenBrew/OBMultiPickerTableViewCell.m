@@ -77,6 +77,9 @@
     pickerFrame.size.width += pickerFrame.origin.x - selectorFrame.origin.x;
     pickerFrame.origin.x = selectorFrame.origin.x;
   }
+
+  [self.selector setNeedsLayout];
+  [self.picker setNeedsLayout];
 }
 
 - (void)rotateSegmentController
