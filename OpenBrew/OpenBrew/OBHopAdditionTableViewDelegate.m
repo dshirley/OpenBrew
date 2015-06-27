@@ -19,8 +19,8 @@
 #import "OBHopQuantityPickerDelegate.h"
 #import "OBHopBoilTimePickerDelegate.h"
 
-#define ALPHA_ACID_SEGMENT_ID 0
-#define QUANTITY_SEGMENT_ID 1
+#define QUANTITY_SEGMENT_ID 0
+#define ALPHA_ACID_SEGMENT_ID 1
 #define BOIL_TIME_SEGMENT_ID 2
 
 @interface OBHopAdditionTableViewDelegate()
@@ -131,7 +131,7 @@
 {
   OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
 
-  [drawerCell setSegments:@[ @"Alpha Acid %", @"Quantity", @"Boil Time"]];
+  [drawerCell setSegments:@[ @"Quantity", @"Alpha Acid %", @"Boil Time"]];
 
   [drawerCell.selector addTarget:self
                          action:@selector(segmentSelected:)
