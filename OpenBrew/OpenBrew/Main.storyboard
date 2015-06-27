@@ -306,7 +306,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zja-WO-28t">
-                                <rect key="frame" x="0.0" y="175" width="600" height="425"/>
+                                <rect key="frame" x="0.0" y="175" width="600" height="381"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="yeastCell" rowHeight="54" id="YQ8-T5-k4E" customClass="OBYeastTableViewCell">
@@ -355,24 +355,48 @@
                                     <outlet property="delegate" destination="Kvv-HR-LrN" id="x5Q-mZ-gx9"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AJl-57-IFL">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="mCb-aO-JqD"/>
+                                    <barButtonItem style="plain" id="lsm-Rk-KAI">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="gg0-jU-5pC">
+                                            <rect key="frame" x="196" y="7" width="207" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="White Labs"/>
+                                                <segment title="Wyeast"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="filterValueChanged:" destination="Kvv-HR-LrN" eventType="valueChanged" id="MNN-xo-3DK"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="5fk-kA-Ryg"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="95d-gg-xSE" firstAttribute="leading" secondItem="eIe-Wx-OUG" secondAttribute="leading" id="3Yz-EW-5c5"/>
+                            <constraint firstAttribute="trailing" secondItem="AJl-57-IFL" secondAttribute="trailing" id="BDn-wb-uDD"/>
                             <constraint firstItem="y7s-2t-c5h" firstAttribute="top" secondItem="95d-gg-xSE" secondAttribute="bottom" id="CWq-Fo-bZJ"/>
                             <constraint firstItem="y7s-2t-c5h" firstAttribute="leading" secondItem="eIe-Wx-OUG" secondAttribute="leading" id="E8H-mg-zZS"/>
                             <constraint firstItem="zja-WO-28t" firstAttribute="leading" secondItem="eIe-Wx-OUG" secondAttribute="leading" id="L47-ZH-oqf"/>
                             <constraint firstAttribute="trailing" secondItem="95d-gg-xSE" secondAttribute="trailing" id="Lu4-9C-q5y"/>
+                            <constraint firstItem="0LN-yN-sel" firstAttribute="top" secondItem="AJl-57-IFL" secondAttribute="bottom" id="M0f-z2-rpA"/>
                             <constraint firstAttribute="trailing" secondItem="y7s-2t-c5h" secondAttribute="trailing" id="R6W-HV-Rxd"/>
-                            <constraint firstItem="0LN-yN-sel" firstAttribute="top" secondItem="zja-WO-28t" secondAttribute="bottom" id="mE5-Nh-gfX"/>
+                            <constraint firstItem="AJl-57-IFL" firstAttribute="top" secondItem="zja-WO-28t" secondAttribute="bottom" id="aR2-G6-skg"/>
                             <constraint firstAttribute="trailing" secondItem="zja-WO-28t" secondAttribute="trailing" id="ptB-cN-N7l"/>
                             <constraint firstItem="95d-gg-xSE" firstAttribute="top" secondItem="Sig-HD-Uck" secondAttribute="bottom" id="qjt-Mz-ZrM"/>
+                            <constraint firstItem="AJl-57-IFL" firstAttribute="leading" secondItem="eIe-Wx-OUG" secondAttribute="leading" id="u1f-PS-qo4"/>
                             <constraint firstItem="y7s-2t-c5h" firstAttribute="bottom" secondItem="zja-WO-28t" secondAttribute="top" id="zfZ-p8-kbl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Yeast Selection" id="9Vn-1C-acM"/>
                     <connections>
                         <outlet property="gauge" destination="95d-gg-xSE" id="rtu-7p-9W6"/>
+                        <outlet property="segmentedControl" destination="gg0-jU-5pC" id="76b-hn-hab"/>
                         <outlet property="tableView" destination="zja-WO-28t" id="D8U-y7-ZhR"/>
                     </connections>
                 </viewController>

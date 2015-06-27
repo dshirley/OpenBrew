@@ -13,9 +13,27 @@
 #import "OBYeast.h"
 #import "OBYeastAddition.h"
 #import "Crittercism+NSErrorLogging.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Yeast Addition Screen";
+
+// Indices of the UISegmentControl of the OBMaltFinderViewController in storyboard
+#define WHITE_LABS_SEGMENT_INDEX 0
+#define WYEAST_SEGMENT_INDEX 1
+
+NSString * const filterLabels[] = {
+  [WHITE_LABS_SEGMENT_INDEX] = @"White Labs",
+  [WYEAST_SEGMENT_INDEX] = @"Wyeast"
+};
+
+OBYeastManufacturer const manufacturerToSegmentMapping[] = {
+  [WHITE_LABS_SEGMENT_INDEX] = OBYeastManufacturerWhiteLabs,
+  [WYEAST_SEGMENT_INDEX] = OBYeastManufacturerWyeast
+};
+
+#define NUMBER_OF_SEGMENTS (sizeof(filterLabels) / sizeof(NSString *))
 
 typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
   OBYeastGaugeMetricFinalGravity,
@@ -26,6 +44,7 @@ typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
 @property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, assign) OBYeastGaugeMetric gaugeMetric;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 // We have to hold a strong reference to this because the tableView doesn't
 @property (strong, nonatomic) OBIngredientTableViewDataSource *dataSource;
@@ -45,6 +64,15 @@ typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
                                andManagedObjectContext:ctx];
 
   self.tableView.dataSource = self.dataSource;
+
+  // Setup segments in filter
+  [self.segmentedControl removeAllSegments];
+
+  for (int i = 0; i < NUMBER_OF_SEGMENTS; i++) {
+    [self.segmentedControl insertSegmentWithTitle:filterLabels[i] atIndex:i animated:NO];
+  }
+
+  [self.segmentedControl setSelectedSegmentIndex:WHITE_LABS_SEGMENT_INDEX];
 
   [self reload];
 }
@@ -66,6 +94,20 @@ typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
   } else {
     [NSException raise:@"Bad OBYeastGaugeMetric" format:@"Metric: %d", (int) self.gaugeMetric];
   }
+}
+
+- (IBAction)filterValueChanged:(UISegmentedControl *)sender {
+  OBYeastManufacturer manufacturer = manufacturerToSegmentMapping[sender.selectedSegmentIndex];
+
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
+                                                        action:@"Filter"
+                                                         label:filterLabels[sender.selectedSegmentIndex]
+                                                         value:nil] build]];
+
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"manufacturer == %d", manufacturer];
+  self.dataSource.predicate = predicate;
+  [self.tableView reloadData];
 }
 
 #pragma mark UITableViewDelegate methods
