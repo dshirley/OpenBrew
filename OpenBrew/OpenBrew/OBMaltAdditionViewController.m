@@ -174,7 +174,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
 - (void)refreshGauge
 {
-  NSInteger srm = roundf([self.recipe colorInSRM]);
+  uint32_t srm = roundf([self.recipe colorInSRM]);
 
   if (self.gaugeMetric == OBMaltGaugeMetricGravity) {
     float gravity = [self.recipe originalGravity];

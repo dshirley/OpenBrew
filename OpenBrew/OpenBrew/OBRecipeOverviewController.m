@@ -123,7 +123,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   return (NSInteger) OBNumberOfCells;
 }
 
-- (int)numberOfHopVarieties
+- (NSUInteger)numberOfHopVarieties
 {
   NSMutableSet *seenHops = [NSMutableSet set];
 
@@ -134,7 +134,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   return seenHops.count;
 }
 
-- (int)numberOfMaltVarieties
+- (NSUInteger)numberOfMaltVarieties
 {
   NSMutableSet *seenMalts = [NSMutableSet set];
 
@@ -145,14 +145,14 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   return seenMalts.count;
 }
 
-- (NSString *)hopAndMaltDetailDisplayValue:(int)count
+- (NSString *)hopAndMaltDetailDisplayValue:(NSUInteger)count
 {
   NSString *display = @"none";
 
   if (count == 1) {
-    display = [NSString stringWithFormat:@"%d variety", count];
+    display = [NSString stringWithFormat:@"%lu variety", (unsigned long)count];
   } else {
-    display = [NSString stringWithFormat:@"%d varieties", count];
+    display = [NSString stringWithFormat:@"%lu varieties", (unsigned long)count];
   }
 
   return display;
@@ -162,7 +162,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 {
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
   OBRecipeOverviewCellType cellType = (OBRecipeOverviewCellType) indexPath.row;
-  int count = 0;
+  NSUInteger count = 0;
 
   switch (cellType) {
     case OBBatchSizeCell:
