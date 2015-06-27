@@ -30,7 +30,7 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
     // Really dumb way to get the default height of a UIPickerView
     // Apple doesn't provide a constant, though, and the default shown in
     // Interface Builder is wrong (it says 162.  For iOS 7 it is 216)
-    UIPickerView *picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 77, 320, 0)];
+    UIPickerView *picker = [[UIPickerView alloc] init];
     self.drawerCellRowHeight = picker.frame.size.height;
   }
 
