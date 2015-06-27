@@ -38,11 +38,11 @@
                                 <rect key="frame" x="0.0" y="174" width="600" height="338"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IngredientAddition" rowHeight="53" id="EDW-mH-5Fs" customClass="OBMaltAdditionTableViewCell">
-                                        <rect key="frame" x="0.0" y="19" width="600" height="53"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IngredientAddition" rowHeight="60" id="EDW-mH-5Fs" customClass="OBMaltAdditionTableViewCell">
+                                        <rect key="frame" x="0.0" y="19" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EDW-mH-5Fs" id="Be7-EW-EMk">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="52.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Two Row" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="th8-2c-w45">
@@ -64,7 +64,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2lb 4oz" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUj-0S-Fgq">
-                                                    <rect key="frame" x="449" y="14" width="110" height="24"/>
+                                                    <rect key="frame" x="449" y="18" width="110" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="IQo-oL-Utu"/>
                                                     </constraints>
@@ -90,7 +90,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DrawerCell" rowHeight="217" id="Aap-AG-mzu" customClass="OBMultiPickerTableViewCell">
-                                        <rect key="frame" x="0.0" y="72" width="600" height="217"/>
+                                        <rect key="frame" x="0.0" y="79" width="600" height="217"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Aap-AG-mzu" id="liC-u0-uYk">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="216.5"/>
