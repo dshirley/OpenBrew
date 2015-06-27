@@ -9,8 +9,15 @@
 #import "OBMultiPickerTableViewCell.h"
 
 // The segment control should be about 1/2 the width of the picker
-#define SEGMENT_WIDTH_PCT 0.40
-#define PICKER_WIDTH_PCT (1.0 - SEGMENT_WIDTH_PCT)
+#define PICKER_WIDTH_PCT (0.60)
+#define SEGMENT_WIDTH_PCT (0.30)
+#define MARGIN_WIDTH_PCT ((1.0 - PICKER_WIDTH_PCT - SEGMENT_WIDTH_PCT) / 2.0)
+
+
+// Apple recommends 44 points as a minimum size for buttons
+// Originally the code was using the height of a segmented control.  This felt
+// a bit cramped on my iPhone 5s.
+#define SEGMENT_HEIGHT 44
 
 @interface OBMultiPickerTableViewCell()
 @property (nonatomic, assign) CGFloat origSegmentHeight;
@@ -30,7 +37,7 @@
   self.selector = [[UISegmentedControl alloc] initWithItems:@[ @"dummy" ]];
   self.picker = [[UIPickerView alloc] init];
 
-  self.origSegmentHeight = self.selector.frame.size.height;
+  self.origSegmentHeight = 44;//self.selector.frame.size.height * 2;
   [self.selector removeAllSegments];
 
   [self.contentView addSubview:self.selector];
@@ -46,20 +53,20 @@
   // There's two slivers of deadspace:
   //   1) between the left edge the segment control
   //   2) between the segment control and the picker
-  CGFloat componentWidth = self.contentView.frame.size.width - (2 * self.contentView.layoutMargins.left);
+  CGFloat marginWidth = self.contentView.frame.size.width * MARGIN_WIDTH_PCT;
 
   // Layout the segment selector.  Warning: this is confusing.  The height and width are reversed
   // because we rotated the segment selector by 90 degrees.
-  CGFloat selectorHeight = componentWidth * SEGMENT_WIDTH_PCT;
+  CGFloat selectorHeight = self.contentView.frame.size.width * SEGMENT_WIDTH_PCT;
   CGFloat selectorWidth = self.origSegmentHeight * self.selector.numberOfSegments;
-  CGRect selectorFrame = CGRectMake(self.contentView.layoutMargins.left,
+  CGRect selectorFrame = CGRectMake(marginWidth,
                                     (self.contentView.frame.size.height - selectorWidth) / 2,
                                     selectorHeight,
                                     selectorWidth);
 
-  CGRect pickerFrame = CGRectMake(self.contentView.frame.size.width - (componentWidth * PICKER_WIDTH_PCT),
+  CGRect pickerFrame = CGRectMake(self.contentView.frame.size.width * (1.0 - PICKER_WIDTH_PCT),
                                   0,
-                                  componentWidth * PICKER_WIDTH_PCT,
+                                  self.contentView.frame.size.width * PICKER_WIDTH_PCT,
                                   self.picker.frame.size.height);
 
   // At this point we have the frames for both the picker and the segment control.
