@@ -559,7 +559,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Q9b-JK-P6B">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="OBRecipeCell" textLabel="YV4-4b-oYL" style="IBUITableViewCellStyleDefault" id="nWO-Dr-odo">
@@ -587,32 +587,22 @@
                                     <outlet property="dataSource" destination="ZCu-KW-rz9" id="ZxF-lO-RDq"/>
                                 </connections>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7xw-UJ-Elr">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="GJh-CC-ZBp"/>
-                                    <barButtonItem systemItem="add" id="TY5-qd-20E">
-                                        <connections>
-                                            <segue destination="EwC-Vl-NBE" kind="show" identifier="addRecipe" id="lPe-T7-yCx"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Yqe-3p-raT"/>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7xw-UJ-Elr" firstAttribute="leading" secondItem="XLK-j1-U3m" secondAttribute="leading" id="Ium-at-tiB"/>
+                            <constraint firstItem="fgx-oB-dFc" firstAttribute="top" secondItem="Q9b-JK-P6B" secondAttribute="bottom" id="8kg-Tg-tt1"/>
                             <constraint firstAttribute="trailing" secondItem="Q9b-JK-P6B" secondAttribute="trailing" id="NiF-2h-IYl" userLabel="TableView Right Edge"/>
-                            <constraint firstItem="fgx-oB-dFc" firstAttribute="top" secondItem="7xw-UJ-Elr" secondAttribute="bottom" id="VjZ-m1-tp5"/>
-                            <constraint firstAttribute="trailing" secondItem="7xw-UJ-Elr" secondAttribute="trailing" id="WeT-qh-Qnx"/>
                             <constraint firstItem="Q9b-JK-P6B" firstAttribute="top" secondItem="XLK-j1-U3m" secondAttribute="top" id="gJI-NN-z2C" userLabel="TableView Top Edge"/>
-                            <constraint firstAttribute="bottom" secondItem="7xw-UJ-Elr" secondAttribute="bottom" id="rra-6U-hpS" userLabel="Toolbar Bottom Edge"/>
                             <constraint firstItem="Q9b-JK-P6B" firstAttribute="leading" secondItem="XLK-j1-U3m" secondAttribute="leading" id="w55-s5-uCA" userLabel="TableView Left Edge"/>
-                            <constraint firstItem="7xw-UJ-Elr" firstAttribute="top" secondItem="Q9b-JK-P6B" secondAttribute="bottom" id="ygc-Ic-x8P" userLabel="Toolbar - TableView"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Recipes" id="whR-0c-yd0"/>
+                    <navigationItem key="navigationItem" title="Recipes" id="whR-0c-yd0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TY5-qd-20E">
+                            <connections>
+                                <segue destination="EwC-Vl-NBE" kind="show" identifier="addRecipe" id="lPe-T7-yCx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Q9b-JK-P6B" id="cnh-Jq-elT"/>
                     </connections>

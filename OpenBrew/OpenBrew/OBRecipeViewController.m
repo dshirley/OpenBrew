@@ -133,12 +133,10 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   }
 
   self.tableView.tableFooterView = self.placeholderText;
-  self.navigationItem.rightBarButtonItem = nil;
 }
 
 - (void)switchToNonEmptyTableViewMode
 {
-  self.navigationItem.rightBarButtonItem = self.editButtonItem;
   self.tableView.tableFooterView = nil;
 }
 
@@ -205,13 +203,6 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
                                                            label:nil
                                                            value:nil] build]];
   }
-}
-
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
-{
-  [super setEditing:editing animated:animated];
-
-  [self.tableView setEditing:editing animated:animated];
 }
 
 @end
