@@ -237,12 +237,6 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="txg-L1-5Qg">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8ml-wy-5DR"/>
-                                    <barButtonItem systemItem="add" id="eIa-96-Xq2">
-                                        <connections>
-                                            <segue destination="xMB-0f-Tz6" kind="show" identifier="addHops" id="hPN-a2-6Kb"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ME5-pj-6yX"/>
                                     <barButtonItem title="Info" id="ZMz-cQ-Uy2">
                                         <connections>
@@ -269,7 +263,13 @@
                             <constraint firstAttribute="trailing" secondItem="klD-In-wen" secondAttribute="trailing" id="zHF-Vn-QO6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Hops" id="1rp-kv-EeL"/>
+                    <navigationItem key="navigationItem" title="Hops" id="1rp-kv-EeL">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="eIa-96-Xq2">
+                            <connections>
+                                <segue destination="xMB-0f-Tz6" kind="show" identifier="addHops" id="hPN-a2-6Kb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="gauge" destination="0q9-E7-rrC" id="MG1-xR-sU6"/>
                         <outlet property="tableView" destination="0DW-GT-hvd" id="bg7-lx-hYq"/>
