@@ -23,23 +23,26 @@
   // Draw a horizontal line at the bottom of the gauge
   CGContextRef context = UIGraphicsGetCurrentContext();
 
-  UIColor *darkColor = colorForSrm(self.colorInSrm + 1);
-  UIColor *lightColor = nil;
+  NSArray *colors = nil;
+  CGFloat twolocations[2] = { 0.0, 1.0 };
+  CGFloat threeLocations[3] = { 0.0, 0.8, 1.0 };
+  CGFloat *locations = NULL;
+
   if (self.colorInSrm == 0) {
-    darkColor = [UIColor whiteColor];
-    lightColor = [UIColor whiteColor];
+    colors = @[[UIColor colorWithRed:(192.0 / 255.0) green:(237.0 / 255.0) blue:(254.0 / 255.0) alpha:1.0],
+               [UIColor whiteColor]];
+    locations = twolocations;
   } else {
-    lightColor = colorForSrm(self.colorInSrm);
+    colors = @[colorForSrm(self.colorInSrm + 1),
+               colorForSrm(self.colorInSrm),
+               [UIColor whiteColor]];
+    locations = threeLocations;
   }
 
-  NSArray *colors = @[ darkColor, lightColor, [UIColor whiteColor]];
-//  NSArray *colors = @[ colorForSrm(self.colorInSrm), colorForSrm(self.colorInSrm), [UIColor whiteColor]];
   NSMutableArray *cgColors = [[NSMutableArray alloc] init];
   for (UIColor *color in colors) {
     [cgColors addObject:(id)[color CGColor]];
   }
-
-  CGFloat locations[3] = {0.0, 0.8, 1};
 
   //Default to the RGB Colorspace
   CGColorSpaceRef myColorspace = CGColorSpaceCreateDeviceRGB();

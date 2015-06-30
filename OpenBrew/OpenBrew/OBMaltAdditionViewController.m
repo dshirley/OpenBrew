@@ -178,10 +178,11 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
   if (self.gaugeMetric == OBMaltGaugeMetricGravity) {
     float gravity = [self.recipe originalGravity];
-    _gauge.colorInSrm = 0;
+    [_gauge hideColor];
     _gauge.valueLabel.text = [NSString stringWithFormat:@"%.3f", gravity];
     _gauge.descriptionLabel.text = @"Starting Gravity";
   } else if (self.gaugeMetric == OBMaltGaugeMetricColor) {
+    [_gauge showColor];
     _gauge.colorInSrm = srm;
     _gauge.valueLabel.text = @"";
     _gauge.descriptionLabel.text = [NSString stringWithFormat:@"%ld SRM", (long)srm];

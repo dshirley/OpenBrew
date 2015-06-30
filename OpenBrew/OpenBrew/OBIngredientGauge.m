@@ -61,4 +61,15 @@
   return self.colorView.colorInSrm;
 }
 
+- (void)hideColor
+{
+  self.colorView.hidden = YES;
+}
+
+- (void)showColor
+{
+  self.colorView.hidden = NO;
+}
+
+
 @end

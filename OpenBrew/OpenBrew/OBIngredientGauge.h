@@ -16,4 +16,7 @@
 - (void)setColorInSrm:(uint32_t)srm;
 - (uint32_t)colorInSrm;
 
+- (void)hideColor;
+- (void)showColor;
+
 @end
