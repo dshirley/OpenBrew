@@ -66,7 +66,6 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
   self.tableView.delegate = self.tableViewDelegate;
   self.tableView.dataSource = self.tableViewDelegate;
 
-  self.navigationItem.rightBarButtonItem = self.editButtonItem;
   NSInteger index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBGaugeDisplaySegmentKey] integerValue];
   self.gaugeMetric = (OBMaltGaugeMetric)index;
 
@@ -117,12 +116,10 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
   }
 
   self.tableView.tableFooterView = self.placeholderText;
-  self.navigationItem.rightBarButtonItem = nil;
 }
 
 - (void)switchToNonEmptyTableViewMode
 {
-  self.navigationItem.rightBarButtonItem = self.editButtonItem;
   self.tableView.tableFooterView = nil;
 }
 
@@ -152,19 +149,6 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 - (IBAction)showSettingsView:(UIBarButtonItem *)sender
 {
   [self.popupView popupContent];
-}
-
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
-{
-  [super setEditing:editing animated:animated];
-
-  // Get rid of the picker.  It'll get in the way and we don't want users to
-  // be able to move it anyways.
-  [self.tableView beginUpdates];
-  [self.tableViewDelegate closeDrawerForTableView:self.tableView];
-  [self.tableView endUpdates];
-
-  [self.tableView setEditing:editing animated:animated];
 }
 
 - (void)reload {

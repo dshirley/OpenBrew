@@ -106,12 +106,6 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyc-2V-TX0">
                                 <rect key="frame" x="0.0" y="512" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="rgi-tD-vjb"/>
-                                    <barButtonItem systemItem="add" id="WBw-ry-yje">
-                                        <connections>
-                                            <segue destination="4Hg-8Q-mli" kind="show" identifier="addIngredient" id="Eh4-fV-cKv"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ZEW-Zg-Z2B"/>
                                     <barButtonItem title="Info" id="5Yk-uS-MSm">
                                         <connections>
@@ -139,7 +133,13 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Malts" id="KxO-Sm-tW2"/>
+                    <navigationItem key="navigationItem" title="Malts" id="KxO-Sm-tW2">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="WBw-ry-yje">
+                            <connections>
+                                <segue destination="4Hg-8Q-mli" kind="show" identifier="addIngredient" id="Eh4-fV-cKv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="gauge" destination="kOa-7I-0kp" id="toB-W6-q80"/>
