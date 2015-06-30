@@ -183,8 +183,9 @@
 
 - (float)alcoholByVolume
 {
-  // FIXME
-  return 0;
+  float og = [self originalGravity];
+  float fg = [self finalGravity];
+  return (76.08 * (og - fg) / (1.775 - og)) * (fg / 0.794);
 }
 
 - (float)bitternessToGravityRatio
