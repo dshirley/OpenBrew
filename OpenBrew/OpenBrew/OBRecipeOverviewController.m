@@ -79,11 +79,6 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   id<OBBrewController> brewController = segue.destinationViewController;
   [brewController setRecipe:self.recipe];
@@ -194,11 +189,21 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   return cell;
 }
 
+- (void)dismissKeyboard
+{
+  // This is pretty annoying: dismiss the keyboard if the user was editing the recipe title.
+  // TODO: is there a more efficient way to do this?  Surely if there were 10 different components, this
+  // code wouldn't need to be added to each of them.
+  [self.view endEditing:YES];
+}
+
 #pragma mark UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   OBRecipeOverviewCellType cellType = (OBRecipeOverviewCellType) indexPath.row;
+
+  [self dismissKeyboard];
 
   // This table is not used for selection. It is used as a table of contents to other views.
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -318,6 +323,8 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
   static BOOL hasTriedTapping = NO;
+
+  [self dismissKeyboard];
 
   if (hasTriedTapping) {
     id cell = [collectionView cellForItemAtIndexPath:indexPath];
