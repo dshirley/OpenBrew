@@ -37,7 +37,9 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
   self.screenName = @"Malt Finder Screen";
 
   self.tableView.dataSource = self.tableViewDataSource;
+
   [self applyMaltTypeFilter:GRAIN_SEGMENT_INDEX];
+
   [self.tableView reloadData];
 }
 
@@ -51,6 +53,10 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
 // The user wants to filter by malt type (grain, extract or sugar)
 // Set the data source predicate to apply a filter
 - (IBAction)applyMaltTypeFilter:(UISegmentedControl *)sender {
+  [self applyMaltTypeFilter:sender trackInGoogleAnalytics:YES];
+}
+
+- (void)applyMaltTypeFilter:(UISegmentedControl *)sender trackInGoogleAnalytics:(BOOL)doTracking {
   OBMaltType maltType;
   NSString *gaFilterType = @"invalid filter";
 
@@ -72,11 +78,13 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
                   format:@"%@", @(sender.selectedSegmentIndex)];
   }
 
-  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
-                                                        action:@"Filter"
-                                                         label:gaFilterType
-                                                         value:nil] build]];
+  if (doTracking) {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
+                                                          action:@"Filter"
+                                                           label:gaFilterType
+                                                           value:nil] build]];
+  }
 
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == %d", maltType];
   self.tableViewDataSource.predicate = predicate;
