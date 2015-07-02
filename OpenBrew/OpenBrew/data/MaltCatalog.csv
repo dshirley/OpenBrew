@@ -1,6 +1,7 @@
 Acid Malt,1.027,3,0
 Amber DME,1.045,10,2
 Aromatic Malt,1.036,26,0
+Barley (flaked),1.032,1.7,0
 Biscuit,1.036,23,0
 Black Barley,1.025,500,0
 Black Patent,1.025,500,0
@@ -26,6 +27,7 @@ CaraVienna,1.034,22,0
 Chocolate,1.034,350,0
 Chocolate Rye,1.031,250,0
 Chocolate Wheat,1.033,400,0
+Corn (flaked),1.037,1.3,0
 Corn Sugar,1.042,0,1
 Corn Syrup,1.036,1,1
 Crystal 10,1.034,10,0
@@ -47,7 +49,7 @@ Light LME,1.035,3,2
 Maple Syrup,1.03,35,1
 Maris Otter,1.038,3,0
 Maris Otter LME,1.035,4,2
-Melanoidin,1.037,20,0
+Melanoidin Malt,1.037,20,0
 Mild Malt,1.036,5,0
 Molasses,1.036,80,1
 Munich 10,1.035,10,0
@@ -59,7 +61,10 @@ Pale LME,1.035,4,2
 Pilsner DME,1.045,1,2
 Pilsner LME,1.035,2,2
 Pilsner Malt,1.036,2,0
+Rice (flaked),1.032,1.0,0
+Rice Syrup,1.045,0,1
 Roasted Barley,1.025,300,0
+Rye,1.036,2.0,0
 Rye LME,1.035,4,2
 Six-Row,1.035,2,0
 Smoked Malt,1.037,9,0
@@ -73,5 +78,6 @@ Victory,1.034,28,0
 Vienna,1.036,4,0
 Wheat Dark,1.039,9,0
 Wheat DME,1.045,2,2
+Wheat (flaked),1.035,1.6,0
 Wheat Light,1.039,2,0
 Wheat LME,1.035,2,2

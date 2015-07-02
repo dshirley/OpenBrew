@@ -42,6 +42,7 @@
 @dynamic hopAdditions;
 @dynamic maltAdditions;
 @dynamic yeast;
+@dynamic efficiency;
 
 - (id)initWithContext:(NSManagedObjectContext *)context
 {
@@ -84,15 +85,9 @@
     [self.fermentorLossageInGallons floatValue];
 }
 
-- (float)efficiency
-{
-  // FIXME: don't hardcode the efficiency
-  return .75; //[[[OBBrewery instance] mashEfficiency] floatValue];
-}
-
 - (float)gravityUnits {
   float gravityUnits = 0.0;
-  float efficiency = [self efficiency];
+  float efficiency = [[self efficiency] floatValue];
 
   for (OBMaltAddition *malt in [self maltAdditions]) {
     gravityUnits += [malt gravityUnitsWithEfficiency:efficiency];
@@ -106,7 +101,7 @@
   assert([self.maltAdditions containsObject:maltAddition]);
 
   float gravityUnits = [self gravityUnits];
-  float maltGravityUnits = [maltAddition gravityUnitsWithEfficiency:[self efficiency]];
+  float maltGravityUnits = [maltAddition gravityUnitsWithEfficiency:[self.efficiency floatValue]];
 
   NSInteger percentOfTotal = 0;
   if (gravityUnits > 0) {
@@ -142,17 +137,26 @@
 }
 
 - (float)originalGravity {
-  return 1 + ([self gravityUnits] / [self wortVolumeAfterBoilInGallons] / 1000);
+  float gravityUnits = [self gravityUnits];
+  float wortVolumeAfterBoil = [self wortVolumeAfterBoilInGallons];
+
+  return 1 + (gravityUnits / wortVolumeAfterBoil / 1000);
 }
 
 - (float)finalGravity {
   float attenuationLevel = [[[self yeast] yeast] estimatedAttenuationAsDecimal];
-  float finalGravityUnits = [self gravityUnits] * (1 - attenuationLevel);
-  return 1 + (finalGravityUnits / [self wortVolumeAfterBoilInGallons] / 1000);
+  float gravityUnits = [self gravityUnits];
+  float finalGravityUnits = gravityUnits * (1 - attenuationLevel);
+  float wortVolumeAfterBoil = [self wortVolumeAfterBoilInGallons];
+
+  return 1 + (finalGravityUnits / wortVolumeAfterBoil / 1000);
 }
 
 - (float)boilGravity {
-  return 1 + ([self gravityUnits] / [self boilSizeInGallons] / 1000);
+  float gravityUnits = [self gravityUnits];
+  float boilSize = [self boilSizeInGallons];
+
+  return 1 + (gravityUnits / boilSize / 1000);
 }
 
 - (float)IBUs {

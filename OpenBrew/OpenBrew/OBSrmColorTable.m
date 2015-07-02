@@ -23,8 +23,9 @@ UIColor *colorForSrm(uint32_t srm)
 {
   if (srm >= (sizeof(colorMapping) / sizeof(uint32_t))) {
     return [UIColor blackColor];
+  } else if (srm == 0) {
+    return [UIColor clearColor];
   }
-
 
   return colorForHex(colorMapping[srm]);
 }

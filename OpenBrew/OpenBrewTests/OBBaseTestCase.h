@@ -13,4 +13,11 @@
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong) NSManagedObjectContext *ctx;
 @property (nonatomic, strong) OBBrewery *brewery;
+
+// For example:
+// [self fetchEntity:@"Malt" withProperty:@"name" equalTo:@"Pilsner Malt"]
+- (id)fetchEntity:(NSString *)entityName
+     withProperty:(NSString *)property
+          equalTo:(NSString *)value;
+
 @end

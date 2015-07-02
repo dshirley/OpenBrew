@@ -26,6 +26,8 @@
 @property (nonatomic, retain) NSSet *hopAdditions;
 @property (nonatomic, retain) NSSet *maltAdditions;
 
+@property (nonatomic, retain) NSNumber *efficiency;
+
 - (id)initWithContext:(NSManagedObjectContext *)context;
 
 - (float)boilSizeInGallons;

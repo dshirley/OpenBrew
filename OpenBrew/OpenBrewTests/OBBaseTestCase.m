@@ -36,4 +36,32 @@
   [super tearDown];
 }
 
+- (id)fetchEntity:(NSString *)entityName
+     withProperty:(NSString *)property
+          equalTo:(NSString *)value
+{
+  NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName
+                                                       inManagedObjectContext:self.ctx];
+
+  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  [request setEntity:entityDescription];
+
+  NSString *query = [NSString stringWithFormat:@"(%@ == '%@')", property, value];
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:query];
+  [request setPredicate:predicate];
+
+  NSError *error = nil;
+  NSArray *array = [self.ctx executeFetchRequest:request error:&error];
+  XCTAssertNil(error);
+  XCTAssertNotNil(array);
+  XCTAssertEqual(1, array.count, @"%@", array);
+
+
+  if (array.count >= 1) {
+    return array[0];
+  } else {
+    return nil;
+  }
+}
+
 @end
