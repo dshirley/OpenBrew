@@ -60,6 +60,7 @@
 		9FC73F5719BD128200AD964A /* OBTableViewPlaceholderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC73F5619BD128200AD964A /* OBTableViewPlaceholderLabel.m */; };
 		9FC8EE8F1B45A31600EEF14D /* OBBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8EE8E1B45A31600EEF14D /* OBBaseTestCase.m */; };
 		9FC8EE921B45A87F00EEF14D /* OBMaltTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8EE911B45A87F00EEF14D /* OBMaltTest.m */; };
+		9FC8EE941B45AFA500EEF14D /* OBHopsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8EE931B45AFA500EEF14D /* OBHopsTest.m */; };
 		9FCECC5B18879B430045FADD /* OBHopAdditionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCECC5A18879B430045FADD /* OBHopAdditionTest.m */; };
 		9FCECC60188831320045FADD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3761880F8EE00469323 /* XCTest.framework */; };
 		9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */; };
@@ -181,6 +182,7 @@
 		9FC8EE8E1B45A31600EEF14D /* OBBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBaseTestCase.m; sourceTree = "<group>"; };
 		9FC8EE901B45A39900EEF14D /* OBBaseTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBBaseTestCase.h; sourceTree = "<group>"; };
 		9FC8EE911B45A87F00EEF14D /* OBMaltTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltTest.m; sourceTree = "<group>"; };
+		9FC8EE931B45AFA500EEF14D /* OBHopsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopsTest.m; sourceTree = "<group>"; };
 		9FCECC5A18879B430045FADD /* OBHopAdditionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionTest.m; sourceTree = "<group>"; };
 		9FCECC5C1887A1150045FADD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9FD14131197CC7CE005220BC /* OBBatchSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBatchSizeViewController.h; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				9FC8EE901B45A39900EEF14D /* OBBaseTestCase.h */,
 				9FC8EE8E1B45A31600EEF14D /* OBBaseTestCase.m */,
 				9FCECC5A18879B430045FADD /* OBHopAdditionTest.m */,
+				9FC8EE931B45AFA500EEF14D /* OBHopsTest.m */,
 				9FE9745718883C8500FFAA56 /* OBMaltAdditionTest.m */,
 				9FC8EE911B45A87F00EEF14D /* OBMaltTest.m */,
 				9F98D37E1880F8EE00469323 /* Supporting Files */,
@@ -687,6 +690,7 @@
 			files = (
 				9FE9745818883C8500FFAA56 /* OBMaltAdditionTest.m in Sources */,
 				9FC8EE8F1B45A31600EEF14D /* OBBaseTestCase.m in Sources */,
+				9FC8EE941B45AFA500EEF14D /* OBHopsTest.m in Sources */,
 				9FC8EE921B45A87F00EEF14D /* OBMaltTest.m in Sources */,
 				9FCECC5B18879B430045FADD /* OBHopAdditionTest.m in Sources */,
 			);
