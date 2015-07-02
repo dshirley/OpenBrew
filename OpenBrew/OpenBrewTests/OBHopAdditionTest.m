@@ -88,13 +88,13 @@
   hopAddition.boilTimeInMinutes = @(60);
   hopAddition.quantityInOunces = @(1.5);
 
-  XCTAssertEqualWithAccuracy(25, [hopAddition ibuContributionWithBoilSize:5 andGravity:1.080], 1);
+  XCTAssertEqualWithAccuracy(25, [hopAddition ibuContributionWithBoilSize:5 andGravity:1.080], 0.5);
 
   hopAddition.alphaAcidPercent = @(4.6);
   hopAddition.quantityInOunces = @(1);
   hopAddition.boilTimeInMinutes = @(15);
 
-  XCTAssertEqualWithAccuracy(6, [hopAddition ibuContributionWithBoilSize:5 andGravity:1.080], 1);
+  XCTAssertEqualWithAccuracy(6, [hopAddition ibuContributionWithBoilSize:5 andGravity:1.080], 0.5);
 }
 
 @end
