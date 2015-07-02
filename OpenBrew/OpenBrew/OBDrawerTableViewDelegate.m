@@ -38,15 +38,6 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 }
 
 /**
- * Returns the hops in this recipe in an array format that represents the order
- * of elements in the table view.
- */
-- (NSArray *)ingredientData {
-  assert(YES);
-  return nil;
-}
-
-/**
  * Lookup the hop addition at the given index in the UITableView
  */
 - (id<OBIngredientAddition>)ingredientAtIndexPath:(NSIndexPath *)indexPath
@@ -118,6 +109,14 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 - (void)closeDrawerForTableView:(UITableView *)tableView
 {
   if ([self drawerIsOpen]) {
+    UITableViewCell *drawerCell = [self drawerCellForTableView:tableView];
+
+    // This allows subclasses to unregister listening to UI events that could
+    // still trigger while the cell is not present. The cell will still exist
+    // the table view's reuse queue. This means for example that a picker that
+    // is spinning can still send updates
+    [self willRemoveDrawerCell:drawerCell];
+
     [tableView deleteRowsAtIndexPaths:@[self.drawerIndexPath]
                      withRowAnimation:UITableViewRowAnimationFade];
 
@@ -134,6 +133,41 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
   [tableView insertRowsAtIndexPaths:@[self.drawerIndexPath]
                    withRowAnimation:UITableViewRowAnimationFade];
+}
+
+#pragma mark - Template Methods
+
+- (NSArray *)ingredientData {
+  [NSException raise:@"Unimplemented Method"
+              format:@"Subclasses must implement ingredientData"];
+  return nil;
+}
+
+- (void)populateIngredientCell:(UITableViewCell *)cell
+            withIngredientData:(id)ingredientData
+{
+  [NSException raise:@"Unimplemented Method"
+              format:@"Subclasses must implement populateIngredientCell:withIngredientData:"];
+}
+
+- (void)populateDrawerCell:(UITableViewCell *)cell
+        withIngredientData:(id)ingredientData
+{
+  [NSException raise:@"Unimplemented Method"
+              format:@"Subclasses must implement populateDrawerCell:withIngredientData:"];
+}
+
+
+- (void)finishDisplayingDrawerCell:(UITableViewCell *)cell
+{
+  [NSException raise:@"Unimplemented Method"
+              format:@"Subclasses must implement finishDisplayingDrawerCell:"];
+}
+
+- (void)willRemoveDrawerCell:(UITableViewCell *)cell
+{
+  [NSException raise:@"Unimplemented Method"
+              format:@"Subclasses must implement willRemoveDrawerCell:"];
 }
 
 #pragma mark - UITableViewDelegate Methods
@@ -187,11 +221,6 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   }
 }
 
-- (void)finishDisplayingDrawerCell:(UITableViewCell *)cell
-{
-  assert(YES);
-}
-
 #pragma mark - UITableViewDataSource Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -208,18 +237,6 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   }
 
   return numRows;
-}
-
-- (void)populateIngredientCell:(UITableViewCell *)cell
-            withIngredientData:(id)ingredientData
-{
-  assert(YES);
-}
-
-- (void)populateDrawerCell:(UITableViewCell *)cell
-        withIngredientData:(id)ingredientData
-{
-  assert(YES);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView

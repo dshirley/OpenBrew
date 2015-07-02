@@ -135,6 +135,14 @@ NSString * const OBBatchSizeCellStrings[] = {
   drawerCell.picker.dataSource = pickerDelegate;
 }
 
+- (void)willRemoveDrawerCell:(UITableViewCell *)cell
+{
+  OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
+
+  drawerCell.picker.delegate = nil;
+  drawerCell.picker.dataSource = nil;
+}
+
 // TODO: this seems like a duplicate method. Can this go in the parent class?
 - (void)finishDisplayingDrawerCell:(UITableViewCell *)cell
 {
@@ -198,6 +206,13 @@ NSString * const OBBatchSizeCellStrings[] = {
 
 - (void)pickerChanged
 {
+  if (![self drawerIsOpen]) {
+    // This can get called if a picker is still spinning when the drawer is closed.
+    // When it finally lands on a number, some code will get triggered to update the
+    // cell.  This should just be ignored.
+    return;
+  }
+
   OBMultiPickerTableViewCell *cell = (OBMultiPickerTableViewCell *)[self cellBeforeDrawerForTableView:self.tableView];
   id volumeInfo = [self ingredientForDrawer];
   [self populateIngredientCell:cell withIngredientData:volumeInfo];

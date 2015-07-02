@@ -34,7 +34,11 @@
 
 - (void)finishDisplayingDrawerCell:(UITableViewCell *)cell;
 
+- (void)willRemoveDrawerCell:(UITableViewCell *)cell;
+
 #pragma mark Utility Methods
+
+- (BOOL)drawerIsOpen;
 
 - (void)closeDrawerForTableView:(UITableView *)tableView;
 

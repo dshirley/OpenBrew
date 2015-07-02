@@ -140,9 +140,18 @@
   id pickerDelegate = [self pickerDelegateForSegmentControl:drawerCell.selector];
 
   [pickerDelegate setHopAddition:ingredientData];
+  [pickerDelegate updateSelectionForPicker:drawerCell.picker];
 
   drawerCell.picker.delegate = pickerDelegate;
   drawerCell.picker.dataSource = pickerDelegate;
+}
+
+- (void)willRemoveDrawerCell:(UITableViewCell *)cell
+{
+  OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
+
+  drawerCell.picker.delegate = nil;
+  drawerCell.picker.dataSource = nil;
 }
 
 #pragma mark - Drawer Management Methods
@@ -187,6 +196,13 @@
 
 - (void)pickerChanged
 {
+  if (![self drawerIsOpen]) {
+    // This can get called if a picker is still spinning when the drawer is closed.
+    // When it finally lands on a number, some code will get triggered to update the
+    // cell.  This should just be ignored.
+    return;
+  }
+
   OBMultiPickerTableViewCell *cell = (OBMultiPickerTableViewCell *)[self cellBeforeDrawerForTableView:self.tableView];
   OBHopAddition *hopAddition = [self ingredientForDrawer];
   [self populateIngredientCell:cell withIngredientData:hopAddition];
