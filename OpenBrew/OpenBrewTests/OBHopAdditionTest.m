@@ -11,11 +11,11 @@
 #import "OBHopAddition.h"
 #import "OBBaseTestCase.h"
 
-@interface OBHopsTest : OBBaseTestCase
+@interface OBHopAdditionTest : OBBaseTestCase
 
 @end
 
-@implementation OBHopsTest
+@implementation OBHopAdditionTest
 
 #define EPSILON .001
 

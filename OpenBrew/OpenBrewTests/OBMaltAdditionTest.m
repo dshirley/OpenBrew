@@ -11,11 +11,11 @@
 #import "OBMaltAddition.h"
 #import "OBBaseTestCase.h"
 
-@interface OBMaltTest : OBBaseTestCase
+@interface OBMaltAdditionTest : OBBaseTestCase
 
 @end
 
-@implementation OBMaltTest
+@implementation OBMaltAdditionTest
 
 - (OBMaltAddition *)createTestMaltAdditionWithMaltType:(OBMaltType)type {
   OBMalt *malt = [[OBMalt alloc] initWithCatalog:self.brewery.ingredientCatalog
