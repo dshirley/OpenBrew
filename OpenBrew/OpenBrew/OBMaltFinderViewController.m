@@ -100,12 +100,12 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
     NSIndexPath *cellIndex = [self.tableView indexPathForCell:sender];
     self.selectedIngredient = [self.tableViewDataSource ingredientAtIndexPath:cellIndex];
 
-    NSNumber *timeDelta = @(CFAbsoluteTimeGetCurrent() - self.startTime);
+    NSTimeInterval timeDelta = CFAbsoluteTimeGetCurrent() - self.startTime;
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
-                                                          action:@"Malt selected"
-                                                           label:self.selectedIngredient.name
-                                                           value:timeDelta] build]];
+    [tracker send:[[GAIDictionaryBuilder createTimingWithCategory:OBGAScreenName
+                                                         interval:@(timeDelta * 1000)
+                                                             name:@"Malt selected"
+                                                            label:self.selectedIngredient.name] build]];
   }
 }
 
