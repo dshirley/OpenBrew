@@ -9,33 +9,29 @@
 #import <XCTest/XCTest.h>
 #import "OBMalt.h"
 #import "OBMaltAddition.h"
+#import "OBBaseTestCase.h"
 
-@interface OBMaltTest : XCTestCase
+@interface OBMaltTest : OBBaseTestCase
 
 @end
 
 @implementation OBMaltTest
 
-- (void)setUp
-{
-    [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
-}
+- (OBMaltAddition *)createTestMaltAdditionWithMaltType:(OBMaltType)type {
+  OBMalt *malt = [[OBMalt alloc] initWithCatalog:self.brewery.ingredientCatalog
+                                            name:@"test malt"
+                                extractPotential:@(0)
+                                        lovibond:@(0)
+                                            type:@(type)];
 
-- (void)tearDown
-{
-    // Put teardown code here; it will be run once, after the last test case.
-    [super tearDown];
+  return [[OBMaltAddition alloc] initWithMalt:malt andRecipe:nil];
 }
 
 - (void)testContributedGravityUnitsWithEfficiency {
-  OBMalt *malt = [[OBMalt alloc] init];
-
-  OBMaltAddition *maltAddition = [[OBMaltAddition alloc] init];
+  OBMaltAddition *maltAddition = [self createTestMaltAdditionWithMaltType:OBMaltTypeGrain];
                   
-  [maltAddition setMalt:malt];
   [maltAddition setQuantityInPounds:@(5.25)];
-  [maltAddition setExtractPotential:@(37)];
+  [maltAddition setExtractPotential:@(1.037)];
 
   XCTAssertEqualWithAccuracy(139.86, [maltAddition gravityUnitsWithEfficiency:.72], .01, @"");
   XCTAssertEqualWithAccuracy(194.25, [maltAddition gravityUnitsWithEfficiency:1], .01, @"");
@@ -44,6 +40,24 @@
   [maltAddition setQuantityInPounds:@(1)];
   XCTAssertEqualWithAccuracy(37.00, [maltAddition gravityUnitsWithEfficiency:1], .01, @"");
   XCTAssertEqualWithAccuracy(24.42, [maltAddition gravityUnitsWithEfficiency:.66], .01, @"");
+}
+
+- (void)testContributedGravityUnitsWithEfficiencyForSugars {
+  OBMaltAddition *maltAddition = [self createTestMaltAdditionWithMaltType:OBMaltTypeSugar];
+
+  [maltAddition setQuantityInPounds:@(1)];
+  [maltAddition setExtractPotential:@(1.037)];
+  XCTAssertEqualWithAccuracy(37.00, [maltAddition gravityUnitsWithEfficiency:1], .01, @"");
+  XCTAssertEqualWithAccuracy(37.00, [maltAddition gravityUnitsWithEfficiency:.66], .01, @"");
+}
+
+- (void)testContributedGravityUnitsWithEfficiencyForExtracts {
+  OBMaltAddition *maltAddition = [self createTestMaltAdditionWithMaltType:OBMaltTypeExtract];
+
+  [maltAddition setQuantityInPounds:@(1)];
+  [maltAddition setExtractPotential:@(1.037)];
+  XCTAssertEqualWithAccuracy(37.00, [maltAddition gravityUnitsWithEfficiency:1], .01, @"");
+  XCTAssertEqualWithAccuracy(37.00, [maltAddition gravityUnitsWithEfficiency:.66], .01, @"");
 }
 
 @end

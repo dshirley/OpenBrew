@@ -27,19 +27,32 @@
 - (id)initWithCatalog:(OBIngredientCatalog *)catalog
            andCsvData:(NSArray *)csvData
 {
+  NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
+  [nf setNumberStyle:NSNumberFormatterDecimalStyle];
+
+  return [self initWithCatalog:catalog
+                          name:csvData[MALT_NAME_IDX]
+              extractPotential:[nf numberFromString:csvData[MALT_EXTRACT_IDX]]
+                      lovibond:[nf numberFromString:csvData[MALT_COLOR_IDX]]
+                          type:[nf numberFromString:csvData[MALT_TYPE_IDX]]];
+}
+
+- (id)initWithCatalog:(OBIngredientCatalog *)catalog
+                 name:(NSString *)name
+     extractPotential:(NSNumber *)extractPotential
+             lovibond:(NSNumber *)lovibond
+                 type:(NSNumber *)type
+{
   NSManagedObjectContext *ctx = [catalog managedObjectContext];
   NSEntityDescription *desc = [NSEntityDescription entityForName:@"Malt"
                                           inManagedObjectContext:ctx];
 
   if (self = [self initWithEntity:desc insertIntoManagedObjectContext:ctx]) {
-    NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
-    [nf setNumberStyle:NSNumberFormatterDecimalStyle];
-
     self.catalog = catalog;
-    self.name = csvData[MALT_NAME_IDX];
-    self.defaultExtractPotential = [nf numberFromString:csvData[MALT_EXTRACT_IDX]];
-    self.defaultLovibond = [nf numberFromString:csvData[MALT_COLOR_IDX]];
-    self.type = [nf numberFromString:csvData[MALT_TYPE_IDX]];
+    self.name = name;
+    self.defaultExtractPotential = extractPotential;
+    self.defaultLovibond = lovibond;
+    self.type = type;
   }
 
   return self;

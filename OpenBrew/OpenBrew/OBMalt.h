@@ -32,6 +32,12 @@ typedef NS_ENUM(NSInteger, OBMaltType) {
 - (id)initWithCatalog:(OBIngredientCatalog *)catalog
            andCsvData:(NSArray *)data;
 
+- (id)initWithCatalog:(OBIngredientCatalog *)catalog
+                 name:(NSString *)name
+     extractPotential:(NSNumber *)extractPotential
+             lovibond:(NSNumber *)lovibond
+                 type:(NSNumber *)type;
+
 - (BOOL)isGrain;
 - (BOOL)isSugar;
 - (BOOL)isExtract;

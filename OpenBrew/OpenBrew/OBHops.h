@@ -13,10 +13,15 @@
 
 @interface OBHops : NSManagedObject
 
+@property (nonatomic, retain) OBIngredientCatalog *catalog;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * defaultAlphaAcidPercent;
 
 - (id)initWithCatalog:(OBIngredientCatalog *)catalog
            andCsvData:(NSArray *)csvData;
+
+- (id)initWithCatalog:(OBIngredientCatalog *)catalog
+                 name:(NSString *)name
+     alphaAcidPercent:(NSNumber *)alphaAcidPercent;
 
 @end
