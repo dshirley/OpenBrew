@@ -29,18 +29,3 @@ UIColor *colorForSrm(uint32_t srm)
   return colorForHex(colorMapping[srm]);
 }
 
-UIColor *contrastColor(UIColor *color)
-{
-  CGFloat red = 0.0, green = 0.0, blue = 0.0, alpha =0.0;
-  [color getRed:&red green:&green blue:&blue alpha:&alpha];
-
-  // The coefficients add up to 1. Black has a = 0
-  double a = 1 - ( 0.299 * red + 0.587 * green + 0.114 * blue);
-
-  if (a < 0.5)
-    return [UIColor blackColor];
-  else
-    return [UIColor whiteColor];
-
-}
-

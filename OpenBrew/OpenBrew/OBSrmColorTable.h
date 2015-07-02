@@ -9,4 +9,3 @@
 #import <Foundation/Foundation.h>
 
 UIColor *colorForSrm(uint32_t srm);
-UIColor *contrastColor(UIColor *color);
