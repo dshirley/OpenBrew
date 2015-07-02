@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 OpenBrew. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "OBBaseTestCase.h"
 
