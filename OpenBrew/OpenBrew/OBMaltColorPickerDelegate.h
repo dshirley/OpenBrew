@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OBPickerDelegate.h"
+#import "OBMultiPickerView.h"
 
 @class OBMaltAddition;
 @protocol OBPickerObserver;

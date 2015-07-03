@@ -13,7 +13,6 @@
 #import "OBHops.h"
 #import "OBHopAddition.h"
 #import "OBHopAdditionTableViewDelegate.h"
-#import "OBPickerDelegate.h"
 #import <math.h>
 #import "OBKvoUtils.h"
 #import "OBPopupView.h"
@@ -201,7 +200,6 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
     [self switchToNonEmptyTableViewMode];
   }
 }
-
 
 #pragma mark - Navigation
 

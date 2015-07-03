@@ -32,20 +32,13 @@
 - (void)populateDrawerCell:(UITableViewCell *)cell
         withIngredientData:(id)ingredientData;
 
-- (void)finishDisplayingDrawerCell:(UITableViewCell *)cell;
-
-- (void)willRemoveDrawerCell:(UITableViewCell *)cell;
-
 #pragma mark Utility Methods
 
-- (BOOL)drawerIsOpen;
-
-- (void)closeDrawerForTableView:(UITableView *)tableView;
+// FIXME: some of these might not be needed externally anymore
 
 - (id)ingredientForDrawer;
 
 - (UITableViewCell *)cellBeforeDrawerForTableView:(UITableView *)tableView;
-- (UITableViewCell *)drawerCellForTableView:(UITableView *)tableView;
 
 - (id<OBIngredientAddition>)ingredientAtIndexPath:(NSIndexPath *)indexPath;
 

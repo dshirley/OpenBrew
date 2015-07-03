@@ -95,7 +95,22 @@
                                         <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Aap-AG-mzu" id="liC-u0-uYk">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="216.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ko3-js-Pm0" customClass="OBMultiPickerView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="217"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ko3-js-Pm0" firstAttribute="top" secondItem="liC-u0-uYk" secondAttribute="top" id="2ip-JO-fGN"/>
+                                                <constraint firstAttribute="bottom" secondItem="ko3-js-Pm0" secondAttribute="bottom" id="e4E-zD-CT2"/>
+                                                <constraint firstAttribute="trailing" secondItem="ko3-js-Pm0" secondAttribute="trailing" id="eoe-Vu-5U8"/>
+                                                <constraint firstItem="ko3-js-Pm0" firstAttribute="leading" secondItem="liC-u0-uYk" secondAttribute="leading" id="n62-Qg-Ura"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="multiPickerView" destination="ko3-js-Pm0" id="kwS-bf-rhB"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -230,7 +245,22 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f7N-MK-K4b" id="SJN-ac-Gdr">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="215.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9FJ-3f-f1r" customClass="OBMultiPickerView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="216"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="9FJ-3f-f1r" firstAttribute="trailing" secondItem="SJN-ac-Gdr" secondAttribute="trailing" id="1xy-gA-KJ2"/>
+                                                <constraint firstItem="9FJ-3f-f1r" firstAttribute="top" secondItem="SJN-ac-Gdr" secondAttribute="top" id="CVn-7C-qKV"/>
+                                                <constraint firstItem="9FJ-3f-f1r" firstAttribute="leading" secondItem="SJN-ac-Gdr" secondAttribute="leading" id="MBG-DS-gEh"/>
+                                                <constraint firstAttribute="bottom" secondItem="9FJ-3f-f1r" secondAttribute="bottom" id="sCa-pB-UGS"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="multiPickerView" destination="9FJ-3f-f1r" id="6Ca-UV-n5u"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -860,7 +890,22 @@
                                         <tableViewCellContentView key="contentView" autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YwJ-Wd-Aw0" id="kEh-xU-1s1">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="216.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dnI-UG-0j5" customClass="OBMultiPickerView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="217"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="dnI-UG-0j5" secondAttribute="bottom" id="DqT-cN-5Lz"/>
+                                                <constraint firstItem="dnI-UG-0j5" firstAttribute="trailing" secondItem="kEh-xU-1s1" secondAttribute="trailing" id="Nkv-P0-R7p"/>
+                                                <constraint firstItem="dnI-UG-0j5" firstAttribute="top" secondItem="kEh-xU-1s1" secondAttribute="top" id="XoZ-zD-FqL"/>
+                                                <constraint firstItem="dnI-UG-0j5" firstAttribute="leading" secondItem="kEh-xU-1s1" secondAttribute="leading" id="l3R-xB-4Dj"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="multiPickerView" destination="dnI-UG-0j5" id="bIv-Bl-yhJ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

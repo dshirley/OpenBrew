@@ -109,14 +109,6 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 - (void)closeDrawerForTableView:(UITableView *)tableView
 {
   if ([self drawerIsOpen]) {
-    UITableViewCell *drawerCell = [self drawerCellForTableView:tableView];
-
-    // This allows subclasses to unregister listening to UI events that could
-    // still trigger while the cell is not present. The cell will still exist
-    // the table view's reuse queue. This means for example that a picker that
-    // is spinning can still send updates
-    [self willRemoveDrawerCell:drawerCell];
-
     [tableView deleteRowsAtIndexPaths:@[self.drawerIndexPath]
                      withRowAnimation:UITableViewRowAnimationFade];
 
@@ -157,19 +149,6 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
               format:@"Subclasses must implement populateDrawerCell:withIngredientData:"];
 }
 
-
-- (void)finishDisplayingDrawerCell:(UITableViewCell *)cell
-{
-  [NSException raise:@"Unimplemented Method"
-              format:@"Subclasses must implement finishDisplayingDrawerCell:"];
-}
-
-- (void)willRemoveDrawerCell:(UITableViewCell *)cell
-{
-  [NSException raise:@"Unimplemented Method"
-              format:@"Subclasses must implement willRemoveDrawerCell:"];
-}
-
 #pragma mark - UITableViewDelegate Methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -204,12 +183,6 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   }
 
   [tableView endUpdates];
-
-  // Annoyingly, it seems that a cell cannot be selected until it is visible on
-  // the screen.  However, we have to set the delegate at cell creation time so
-  // that iOS can determine the list of items in the picker.  Hence the logic
-  // is spread across two functions
-  [self finishDisplayingDrawerCell:[self drawerCellForTableView:tableView]];
 
   if (!sameCellClicked) {
     // After experimenting, it seems this needs to be outside of the beginUpdates/endUpdates

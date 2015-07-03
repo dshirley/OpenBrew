@@ -16,7 +16,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OBPickerDelegate.h"
+#import "OBMultiPickerView.h"
 
 @protocol OBPickerObserver;
 @class OBRecipe;

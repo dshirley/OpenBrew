@@ -8,7 +8,6 @@
 
 #import "OBMaltQuantityPickerDelegate.h"
 #import "OBMaltAddition.h"
-#import "OBPickerObserver.h"
 
 #define LEFT_PICKER_COMPONENT 0
 #define RIGHT_PICKER_COMPONENT 1

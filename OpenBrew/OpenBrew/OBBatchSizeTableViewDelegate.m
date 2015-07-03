@@ -101,32 +101,19 @@ NSString * const OBBatchSizeCellStrings[] = {
   NSIndexPath *indexPathOfIngredient = [self.tableView indexPathForCell:ingredientCell];
 
   // FIXME: ingredientAtIndexPath returns an OBIngredientAddition... this is being hacked in
-  OBBatchSizeCell cellType = [(NSNumber *)[self ingredientAtIndexPath:indexPathOfIngredient] intValue];
-  id pickerDelegate = [self pickerDelegateForCellType:cellType];
-
-  drawerCell.picker.delegate = pickerDelegate;
-  drawerCell.picker.dataSource = pickerDelegate;
+//  OBBatchSizeCell cellType = [(NSNumber *)[self ingredientAtIndexPath:indexPathOfIngredient] intValue];
+//  id pickerDelegate = [self pickerDelegateForCellType:cellType];
+//
+//  drawerCell.picker.delegate = pickerDelegate;
+//  drawerCell.picker.dataSource = pickerDelegate;
 }
 
 - (void)willRemoveDrawerCell:(UITableViewCell *)cell
 {
-  OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
-
-  drawerCell.picker.delegate = nil;
-  drawerCell.picker.dataSource = nil;
-}
-
-// TODO: this seems like a duplicate method. Can this go in the parent class?
-- (void)finishDisplayingDrawerCell:(UITableViewCell *)cell
-{
-  if (!cell) {
-    return;
-  }
-
-  OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
-  id<OBPickerDelegate> pickerDelegate = (id<OBPickerDelegate>) drawerCell.picker.delegate;
-
-  [pickerDelegate updateSelectionForPicker:drawerCell.picker];
+//  OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
+//
+//  drawerCell.picker.delegate = nil;
+//  drawerCell.picker.dataSource = nil;
 }
 
 #pragma mark UITableViewDelegate override methods

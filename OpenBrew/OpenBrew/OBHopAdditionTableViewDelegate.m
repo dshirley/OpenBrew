@@ -19,18 +19,12 @@
 #import "OBHopQuantityPickerDelegate.h"
 #import "OBHopBoilTimePickerDelegate.h"
 
-#define QUANTITY_SEGMENT_ID 0
-#define ALPHA_ACID_SEGMENT_ID 1
-#define BOIL_TIME_SEGMENT_ID 2
+#import "OBMultiPickerView.h"
 
 @interface OBHopAdditionTableViewDelegate()
 
 @property (nonatomic, strong) OBRecipe *recipe;
 @property (nonatomic, strong) UITableView *tableView;
-
-@property (nonatomic, strong) OBAlphaAcidPickerDelegate *alphaAcidPickerDelegate;
-@property (nonatomic, strong) OBHopQuantityPickerDelegate *hopQuantityPickerDelegate;
-@property (nonatomic, strong) OBHopBoilTimePickerDelegate *hopBoilTimeDelegate;
 
 @end
 
@@ -43,10 +37,6 @@
   if (self) {
     self.recipe = recipe;
     self.tableView = tableView;
-
-    self.alphaAcidPickerDelegate = [[OBAlphaAcidPickerDelegate alloc] initWithHopAddition:nil];
-    self.hopQuantityPickerDelegate = [[OBHopQuantityPickerDelegate alloc] initWithHopAddition:nil];
-    self.hopBoilTimeDelegate = [[OBHopBoilTimePickerDelegate alloc] initWithHopAddition:nil];
   }
 
   return self;
@@ -76,18 +66,6 @@
   // there probably aren't majore performance implications since the data we're
   // dealing with is so small
   [self.tableView reloadData];
-}
-
-- (void)finishDisplayingDrawerCell:(UITableViewCell *)cell
-{
-  if (!cell) {
-    return;
-  }
-
-  OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
-  id<OBPickerDelegate> pickerDelegate = (id<OBPickerDelegate>) drawerCell.picker.delegate;
-
-  [pickerDelegate updateSelectionForPicker:drawerCell.picker];
 }
 
 - (void)populateIngredientCell:(UITableViewCell *)cell
@@ -130,68 +108,16 @@
         withIngredientData:(id)ingredientData
 {
   OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
-
-  [drawerCell setSegments:@[ @"Quantity", @"Alpha Acid %", @"Boil Time"]];
-
-  [drawerCell.selector addTarget:self
-                         action:@selector(segmentSelected:)
-               forControlEvents:UIControlEventValueChanged];
-
-  id pickerDelegate = [self pickerDelegateForSegmentControl:drawerCell.selector];
-
-  [pickerDelegate setHopAddition:ingredientData];
-  [pickerDelegate updateSelectionForPicker:drawerCell.picker];
-
-  drawerCell.picker.delegate = pickerDelegate;
-  drawerCell.picker.dataSource = pickerDelegate;
-}
-
-- (void)willRemoveDrawerCell:(UITableViewCell *)cell
-{
-  OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
-
-  drawerCell.picker.delegate = nil;
-  drawerCell.picker.dataSource = nil;
-}
-
-#pragma mark - Drawer Management Methods
-
-- (void)segmentSelected:(id)sender
-{
-  id pickerDelegate = [self pickerDelegateForSegmentControl:sender];
   OBHopAddition *hopAddition = [self ingredientForDrawer];
 
-  [pickerDelegate setHopAddition:hopAddition];
+  OBAlphaAcidPickerDelegate *alphaAcidPickerDelegate = [[OBAlphaAcidPickerDelegate alloc] initWithHopAddition:hopAddition];
+  OBHopQuantityPickerDelegate *hopQuantityPickerDelegate = [[OBHopQuantityPickerDelegate alloc] initWithHopAddition:hopAddition];
+  OBHopBoilTimePickerDelegate *hopBoilTimeDelegate = [[OBHopBoilTimePickerDelegate alloc] initWithHopAddition:hopAddition];
 
-  OBMultiPickerTableViewCell *multiCell = (OBMultiPickerTableViewCell *)[self drawerCellForTableView:self.tableView];
-  multiCell.picker.delegate = pickerDelegate;
-  multiCell.picker.dataSource = pickerDelegate;
-
-  // TODO: perhaps combine these methods
-  [self finishDisplayingDrawerCell:multiCell];
-}
-
-- (id)pickerDelegateForSegmentControl:(UISegmentedControl *)segmentControl
-{
-  NSInteger segmentId = segmentControl.selectedSegmentIndex;
-  id pickerDelegate = nil;
-
-  switch (segmentId) {
-    case ALPHA_ACID_SEGMENT_ID:
-      pickerDelegate = self.alphaAcidPickerDelegate;
-      break;
-    case QUANTITY_SEGMENT_ID:
-      pickerDelegate = self.hopQuantityPickerDelegate;
-      break;
-    case BOIL_TIME_SEGMENT_ID:
-      pickerDelegate = self.hopBoilTimeDelegate;
-      break;
-    default:
-      NSLog(@"ERROR: Bad segment ID: %ld", (long)segmentId);
-      assert(NO);
-  }
-
-  return pickerDelegate;
+  [drawerCell.multiPickerView removeAllPickers];
+  [drawerCell.multiPickerView addPickerDelegate:hopQuantityPickerDelegate withTitle:@"Quantity"];
+  [drawerCell.multiPickerView addPickerDelegate:alphaAcidPickerDelegate withTitle:@"Alpha Acid %"];
+  [drawerCell.multiPickerView addPickerDelegate:hopBoilTimeDelegate withTitle:@"Boil Time"];
 }
 
 @end
