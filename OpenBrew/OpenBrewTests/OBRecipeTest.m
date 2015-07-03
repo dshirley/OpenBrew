@@ -15,9 +15,10 @@
 #import "OBHopAddition.h"
 #import "OBYeast.h"
 #import "OBYeastAddition.h"
+#import "OBSettings.h"
 
-#define OBAssertOriginalGravity(og) XCTAssertEqualWithAccuracy([self.recipe originalGravity], og, 0.002);
-#define OBAssertFinalGravity(fg) XCTAssertEqualWithAccuracy([self.recipe finalGravity], fg, 0.002);
+#define OBAssertOriginalGravity(og) XCTAssertEqualWithAccuracy([self.recipe originalGravity], og, 0.001);
+#define OBAssertFinalGravity(fg) XCTAssertEqualWithAccuracy([self.recipe finalGravity], fg, 0.001);
 #define OBAssertIBU(ibus) XCTAssertEqualWithAccuracy([self.recipe IBUs], ibus, 1);
 #define OBAssertColorInSrm(colorSrm) XCTAssertEqualWithAccuracy([self.recipe colorInSRM], colorSrm, 1);
 #define OBAssertABV(abv) XCTAssertEqualWithAccuracy([self.recipe alcoholByVolume], abv, 0.2);
@@ -32,6 +33,10 @@
 {
   [super setUp];
   self.recipe = [[OBRecipe alloc] initWithContext:self.ctx];
+
+  // Most of the tests in this suite are based on recipes in Brewing Classic Styles.
+  // The recipes in that book use the Rager formula.
+  [OBSettings setIbuFormula:OBIbuFormulaRager];
 }
 
 - (void)testBrewingClassicStyles_LighAmericanLager_Extract
@@ -94,7 +99,7 @@
 {
   [self addMalt:@"Light LME" quantity:8.0 color:2.2];
   [self addMalt:@"Rice Syrup" quantity:1.0 color:0];
-  [self addHops:@"Hallertau" quantity:0.72 aaPercent:4.0 boilTime:60];
+  [self addHops:@"Hallertau" quantity:1.25 aaPercent:4.0 boilTime:60];
   [self addYeast:@"WLP840"];
 
   OBAssertOriginalGravity(1.053);
@@ -108,7 +113,7 @@
 {
   [self addMalt:@"Two-Row" quantity:11.6];
   [self addMalt:@"Rice (flaked)" quantity:1.0];
-  [self addHops:@"Hallertau" quantity:0.72 aaPercent:4.0 boilTime:60];
+  [self addHops:@"Hallertau" quantity:1.25 aaPercent:4.0 boilTime:60];
   [self addYeast:@"2007"];
 
   OBAssertOriginalGravity(1.053);

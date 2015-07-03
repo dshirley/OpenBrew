@@ -28,26 +28,58 @@
 }
 
 
-- (void)testUtilizationForGravity
+- (void)testTinsethUtilizationForGravity
 {
   OBHopAddition *hopAddition = [self createTestHopAddition];
   hopAddition.quantityInOunces = @(2);
   hopAddition.boilTimeInMinutes = @(10);
 
-  XCTAssertEqualWithAccuracy(0.100, [hopAddition utilizationForGravity:1.030], EPSILON);
-  XCTAssertEqualWithAccuracy(0.070, [hopAddition utilizationForGravity:1.070], EPSILON);
-  XCTAssertEqualWithAccuracy(0.045, [hopAddition utilizationForGravity:1.120], EPSILON);
+  XCTAssertEqualWithAccuracy(0.100, [hopAddition tinsethUtilizationForGravity:1.030], EPSILON);
+  XCTAssertEqualWithAccuracy(0.070, [hopAddition tinsethUtilizationForGravity:1.070], EPSILON);
+  XCTAssertEqualWithAccuracy(0.045, [hopAddition tinsethUtilizationForGravity:1.120], EPSILON);
 
   hopAddition.boilTimeInMinutes = @(30);
-  XCTAssertEqualWithAccuracy(0.194, [hopAddition utilizationForGravity:1.040], EPSILON);
-  XCTAssertEqualWithAccuracy(0.162, [hopAddition utilizationForGravity:1.060], EPSILON);
-  XCTAssertEqualWithAccuracy(0.135, [hopAddition utilizationForGravity:1.080], EPSILON);
+  XCTAssertEqualWithAccuracy(0.194, [hopAddition tinsethUtilizationForGravity:1.040], EPSILON);
+  XCTAssertEqualWithAccuracy(0.162, [hopAddition tinsethUtilizationForGravity:1.060], EPSILON);
+  XCTAssertEqualWithAccuracy(0.135, [hopAddition tinsethUtilizationForGravity:1.080], EPSILON);
 
   hopAddition.boilTimeInMinutes = @(60);
-  XCTAssertEqualWithAccuracy(0.231, [hopAddition utilizationForGravity:1.050], EPSILON);
-  XCTAssertEqualWithAccuracy(0.193, [hopAddition utilizationForGravity:1.070], EPSILON);
-  XCTAssertEqualWithAccuracy(0.161, [hopAddition utilizationForGravity:1.090], EPSILON);
+  XCTAssertEqualWithAccuracy(0.231, [hopAddition tinsethUtilizationForGravity:1.050], EPSILON);
+  XCTAssertEqualWithAccuracy(0.193, [hopAddition tinsethUtilizationForGravity:1.070], EPSILON);
+  XCTAssertEqualWithAccuracy(0.161, [hopAddition tinsethUtilizationForGravity:1.090], EPSILON);
+}
 
+// Test values match the table at this URL: http://rhbc.co/wiki/calculating-ibus
+- (void)testRagerUtilization
+{
+  OBHopAddition *hopAddition = [self createTestHopAddition];
+  hopAddition.boilTimeInMinutes = @(3);
+
+  XCTAssertEqualWithAccuracy([hopAddition ragerUtilization], .050, 1);
+
+  hopAddition.boilTimeInMinutes = @(8);
+  XCTAssertEqualWithAccuracy([hopAddition ragerUtilization], .060, 1);
+
+  hopAddition.boilTimeInMinutes = @(13);
+  XCTAssertEqualWithAccuracy([hopAddition ragerUtilization], .080, 1);
+
+  hopAddition.boilTimeInMinutes = @(18);
+  XCTAssertEqualWithAccuracy([hopAddition ragerUtilization], .101, 1);
+
+  hopAddition.boilTimeInMinutes = @(23);
+  XCTAssertEqualWithAccuracy([hopAddition ragerUtilization], .121, 1);
+
+  hopAddition.boilTimeInMinutes = @(28);
+  XCTAssertEqualWithAccuracy([hopAddition ragerUtilization], .153, 1);
+
+  hopAddition.boilTimeInMinutes = @(33);
+  XCTAssertEqualWithAccuracy([hopAddition ragerUtilization], .188, 1);
+
+  hopAddition.boilTimeInMinutes = @(38);
+  XCTAssertEqualWithAccuracy([hopAddition ragerUtilization], .228, 1);
+
+  hopAddition.boilTimeInMinutes = @(43);
+  XCTAssertEqualWithAccuracy([hopAddition ragerUtilization], .269, 1);
 }
 
 - (void)testAlphaAcidUnits {
@@ -79,7 +111,7 @@
   XCTAssertEqualWithAccuracy(10.032, [hopAddition alphaAcidUnits], EPSILON);
 }
 
-- (void)testIbuContributionWithBoilSize {
+- (void)testIbusTinseth {
   // Again, for sanity, use test examples from How To Brew
   // http://www.howtobrew.com/section1/chapter5-5.html
 
@@ -88,13 +120,36 @@
   hopAddition.boilTimeInMinutes = @(60);
   hopAddition.quantityInOunces = @(1.5);
 
-  XCTAssertEqualWithAccuracy(25, [hopAddition ibuContributionWithBoilSize:5 andGravity:1.080], 0.5);
+  XCTAssertEqualWithAccuracy(25, [hopAddition ibusForRecipeVolume:5 boilGravity:1.080 ibuFormula:OBIbuFormulaTinseth], 0.5);
 
   hopAddition.alphaAcidPercent = @(4.6);
   hopAddition.quantityInOunces = @(1);
   hopAddition.boilTimeInMinutes = @(15);
 
-  XCTAssertEqualWithAccuracy(6, [hopAddition ibuContributionWithBoilSize:5 andGravity:1.080], 0.5);
+  XCTAssertEqualWithAccuracy(6, [hopAddition ibusForRecipeVolume:5 boilGravity:1.080 ibuFormula:OBIbuFormulaTinseth], 0.5);
+}
+
+- (void)testIbusRager {
+  // Based on some calculations for a German Pilsner in Brewing Classic Styles
+  OBHopAddition *hopAddition = [self createTestHopAddition];
+
+  hopAddition.alphaAcidPercent = @(8.0);
+  hopAddition.boilTimeInMinutes = @(60);
+  hopAddition.quantityInOunces = @(1.0);
+
+  // Though after scrutinizing the formula for an hour, it turns out that BCS is slightly wrong (off by 2).
+  // Maybe there was a typo in the book. I ended up adjusting the assertion to fit my manually calculated value.
+  XCTAssertEqualWithAccuracy([hopAddition ibusForRecipeVolume:6 boilGravity:1.041 ibuFormula:OBIbuFormulaRager], 30.8, 0.5);
+
+  hopAddition.alphaAcidPercent = @(4.0);
+  hopAddition.boilTimeInMinutes = @(15);
+  hopAddition.quantityInOunces = @(0.5);
+  XCTAssertEqualWithAccuracy([hopAddition ibusForRecipeVolume:6 boilGravity:1.041 ibuFormula:OBIbuFormulaRager], 2.2, 0.5);
+
+  hopAddition.alphaAcidPercent = @(4.0);
+  hopAddition.boilTimeInMinutes = @(60);
+  hopAddition.quantityInOunces = @(2.42);
+  XCTAssertEqualWithAccuracy([hopAddition ibusForRecipeVolume:6 boilGravity:1.087 ibuFormula:OBIbuFormulaRager], 31.4, 0.5);
 }
 
 @end

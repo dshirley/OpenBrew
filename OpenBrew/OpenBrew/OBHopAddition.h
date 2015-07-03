@@ -12,6 +12,12 @@
 
 @class OBHops, OBRecipe;
 
+
+typedef NS_ENUM(NSInteger, OBIbuFormula) {
+  OBIbuFormulaTinseth,
+  OBIbuFormulaRager
+};
+
 @interface OBHopAddition : NSManagedObject <OBIngredientAddition>;
 
 @property (nonatomic, retain) NSNumber * alphaAcidPercent;
@@ -23,9 +29,10 @@
 
 - (id)initWithHopVariety:(OBHops *)hopVariety andRecipe:(OBRecipe *)recipe;
 
-- (float)ibuContributionWithBoilSize:(float)gallons andGravity:(float)gravity;
+- (float)ibusForRecipeVolume:(float)gallons boilGravity:(float)gravity ibuFormula:(OBIbuFormula)formula;
 - (float)ibuContribution;
-- (float)utilizationForGravity:(float)gravity;
+- (float)tinsethUtilizationForGravity:(float)gravity;
+- (float)ragerUtilization;
 - (float)alphaAcidUnits;
 
 - (NSInteger)percentOfIBUs;

@@ -39,16 +39,41 @@
   return self;
 }
 
-// TODO: rename this method to ibuContributionForVolume
-// The current name is very confusing because we're actually passing hte
-// "postBoilSize"
-- (float)ibuContributionWithBoilSize:(float)gallons andGravity:(float)gravity {
+- (float)ibusForRecipeVolume:(float)gallons boilGravity:(float)gravity ibuFormula:(OBIbuFormula)formula {
+  if (formula == OBIbuFormulaTinseth) {
+    return [self tinsethIbusForRecipeVolume:gallons boilGravity:gravity];
+  } else {
+    return [self ragerIbusForRecipeVolume:gallons boilGravity:gravity];
+  }
+}
+
+- (float)ragerIbusForRecipeVolume:(float)gallons boilGravity:(float)gravity
+{
+  // From http://rhbc.co/wiki/calculating-ibus
+  float alphaAcidUnits = [self alphaAcidUnits];
+  float utilization = [self ragerUtilization];
+  float gravityAdjustment = 0;
+
+  if (gravity > 1.050) {
+    gravityAdjustment = (gravity - 1.050) / 0.2;
+  }
+
+  return (alphaAcidUnits * utilization * IMPERIAL_TO_METRIC_CONST) / (gallons * (1 + gravityAdjustment));
+}
+
+- (float)ragerUtilization
+{
+  return (18.11 + 13.86 * tanh(([self.boilTimeInMinutes floatValue] - 31.32) / 18.27)) / 100.0;
+}
+
+- (float)tinsethIbusForRecipeVolume:(float)gallons boilGravity:(float)gravity
+{
   // Using John Palmer's formula from How To Brew
   // http://www.howtobrew.com/section1/chapter5-5.html
-  
+
   float alphaAcidUnits = [self alphaAcidUnits];
-  float utilization = [self utilizationForGravity:gravity];
-  
+  float utilization = [self tinsethUtilizationForGravity:gravity];
+
   return (alphaAcidUnits * utilization * IMPERIAL_TO_METRIC_CONST) / gallons;
 }
 
@@ -61,7 +86,7 @@
   return [[self alphaAcidPercent] floatValue] * [[self quantityInOunces] floatValue];
 }
 
-- (float)utilizationForGravity:(float)gravity {
+- (float)tinsethUtilizationForGravity:(float)gravity {
   // Tinseth formula:
   // (1.65 * 0.000125^(wort gravity - 1)) * (1 - e^(-0.04 * time in mins) )
   

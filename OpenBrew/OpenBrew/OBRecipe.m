@@ -13,6 +13,7 @@
 #import "OBYeastAddition.h"
 #import "OBYeast.h"
 #import "OBKvoUtils.h"
+#import "OBSettings.h"
 
 @interface OBRecipe()
 @property (nonatomic, strong) NSSet *observedHopVariables;
@@ -115,8 +116,13 @@
 {
   assert([self.hopAdditions containsObject:hopAddition]);
 
-  return [hopAddition ibuContributionWithBoilSize:[self wortVolumeAfterBoilInGallons]
-                                       andGravity:[self boilGravity]];
+  float recipeVolume = [self wortVolumeAfterBoilInGallons];
+  float boilGravity = [self boilGravity];
+  OBIbuFormula formula = [OBSettings ibuFormula];
+
+  return [hopAddition ibusForRecipeVolume:recipeVolume
+                              boilGravity:boilGravity
+                               ibuFormula:formula];
 }
 
 - (NSInteger)percentIBUOfHopAddition:(OBHopAddition *)hopAddition
@@ -124,9 +130,13 @@
   assert([self.hopAdditions containsObject:hopAddition]);
 
   float ibusTotal = [self IBUs];
+  float recipeVolume = [self wortVolumeAfterBoilInGallons];
+  float boilGravity = [self boilGravity];
+  OBIbuFormula formula = [OBSettings ibuFormula];
 
-  // TODO: this ibu contribution method is really confusing
-  float ibusOfHopAddition = [hopAddition ibuContributionWithBoilSize:[self wortVolumeAfterBoilInGallons] andGravity:[self boilGravity]];
+  float ibusOfHopAddition = [hopAddition ibusForRecipeVolume:recipeVolume
+                                                 boilGravity:boilGravity
+                                                  ibuFormula:formula];
 
   NSInteger percentOfTotal = 0;
   if (ibusTotal > 0) {
@@ -163,10 +173,12 @@
   float ibus = 0.0;
   float wortVolumeAfterBoilInGallons = [self wortVolumeAfterBoilInGallons];
   float boilGravity = [self boilGravity];
+  OBIbuFormula formula = [OBSettings ibuFormula];
 
   for (OBHopAddition *hops in [self hopAdditions]) {
-    ibus += [hops ibuContributionWithBoilSize:wortVolumeAfterBoilInGallons
-                                   andGravity:boilGravity];
+    ibus += [hops ibusForRecipeVolume:wortVolumeAfterBoilInGallons
+                                   boilGravity:boilGravity
+                           ibuFormula:formula];
   }
 
   return ibus;

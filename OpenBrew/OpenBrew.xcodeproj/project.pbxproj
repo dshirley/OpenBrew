@@ -70,6 +70,8 @@
 		9FD66384198212DB0056EEEC /* HopCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9FD66383198212DB0056EEEC /* HopCatalog.csv */; };
 		9FD66387198218220056EEEC /* OBHopAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD66386198218220056EEEC /* OBHopAdditionViewController.m */; };
 		9FE243461B45CD1B00D1EE25 /* OBRecipeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE243451B45CD1B00D1EE25 /* OBRecipeTest.m */; };
+		9FE2434C1B45F99900D1EE25 /* OBSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE2434B1B45F99900D1EE25 /* OBSettings.m */; };
+		9FE2434E1B45FA7600D1EE25 /* OBSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE2434D1B45FA7600D1EE25 /* OBSettingsTest.m */; };
 		9FE86433198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE86432198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m */; };
 		9FE86437198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE86436198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.m */; };
 		9FE8643B198FBCE0007AD9E7 /* OBHopQuantityPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8643A198FBCE0007AD9E7 /* OBHopQuantityPickerDelegate.m */; };
@@ -198,6 +200,9 @@
 		9FD66385198218220056EEEC /* OBHopAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionViewController.h; sourceTree = "<group>"; };
 		9FD66386198218220056EEEC /* OBHopAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionViewController.m; sourceTree = "<group>"; };
 		9FE243451B45CD1B00D1EE25 /* OBRecipeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeTest.m; sourceTree = "<group>"; };
+		9FE2434A1B45F99900D1EE25 /* OBSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSettings.h; sourceTree = "<group>"; };
+		9FE2434B1B45F99900D1EE25 /* OBSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSettings.m; sourceTree = "<group>"; };
+		9FE2434D1B45FA7600D1EE25 /* OBSettingsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSettingsTest.m; sourceTree = "<group>"; };
 		9FE86431198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionTableViewCell.h; sourceTree = "<group>"; };
 		9FE86432198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionTableViewCell.m; sourceTree = "<group>"; };
 		9FE86435198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBAlphaAcidPickerDelegate.h; sourceTree = "<group>"; };
@@ -391,6 +396,7 @@
 				9FE9745718883C8500FFAA56 /* OBMaltAdditionTest.m */,
 				9FC8EE911B45A87F00EEF14D /* OBMaltTest.m */,
 				9FE243451B45CD1B00D1EE25 /* OBRecipeTest.m */,
+				9FE2434D1B45FA7600D1EE25 /* OBSettingsTest.m */,
 				9FC8EE991B45C3F300EEF14D /* OBSrmColorTableTest.m */,
 				9FC8EE971B45BD0D00EEF14D /* OBYeastTest.m */,
 				9F98D37E1880F8EE00469323 /* Supporting Files */,
@@ -425,6 +431,8 @@
 				9F92E8BE18A0CED100118D76 /* OBMaltAddition.m */,
 				9F92E8C318A0D0D000118D76 /* OBRecipe.h */,
 				9F92E8C418A0D0D000118D76 /* OBRecipe.m */,
+				9FE2434A1B45F99900D1EE25 /* OBSettings.h */,
+				9FE2434B1B45F99900D1EE25 /* OBSettings.m */,
 				9FA388FF19B27A0B0009DB07 /* OBSrmColorTable.h */,
 				9FA3890019B27A0B0009DB07 /* OBSrmColorTable.m */,
 				9F92E8CF18A0D6CF00118D76 /* OBYeast.h */,
@@ -684,6 +692,7 @@
 				9F92E8D118A0D6CF00118D76 /* OBYeast.m in Sources */,
 				9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */,
 				9F92E8A918A0910200118D76 /* OBHopFinderViewController.m in Sources */,
+				9FE2434C1B45F99900D1EE25 /* OBSettings.m in Sources */,
 				9F92E8E118A4536200118D76 /* OBIngredientGauge.m in Sources */,
 				9F0815441996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m in Sources */,
 				9F92E8BF18A0CED100118D76 /* OBMaltAddition.m in Sources */,
@@ -701,6 +710,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FE9745818883C8500FFAA56 /* OBMaltAdditionTest.m in Sources */,
+				9FE2434E1B45FA7600D1EE25 /* OBSettingsTest.m in Sources */,
 				9FC8EE981B45BD0D00EEF14D /* OBYeastTest.m in Sources */,
 				9FC8EE9A1B45C3F300EEF14D /* OBSrmColorTableTest.m in Sources */,
 				9FC8EE961B45B19900EEF14D /* OBBreweryTest.m in Sources */,
