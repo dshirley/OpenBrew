@@ -14,10 +14,8 @@
 
 @interface OBMaltQuantityPickerDelegate : NSObject <OBPickerDelegate>
 @property (nonatomic, strong) OBMaltAddition *maltAddition;
-@property (nonatomic, weak) id<OBPickerObserver> pickerObserver;
 
-- (id)initWithMaltAddition:(OBMaltAddition *)maltAddition
-               andObserver:(id)updateObserver;
+- (id)initWithMaltAddition:(OBMaltAddition *)maltAddition;
 
 - (void)updateSelectionForPicker:(UIPickerView *)picker;
 

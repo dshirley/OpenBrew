@@ -39,8 +39,8 @@
     self.recipe = recipe;
     self.tableView = tableView;
 
-    self.maltQuantityPickerDelegate = [[OBMaltQuantityPickerDelegate alloc] initWithMaltAddition:nil andObserver:self];
-    self.maltColorPickerDelegate = [[OBMaltColorPickerDelegate alloc] initWithMaltAddition:nil andObserver:self];
+    self.maltQuantityPickerDelegate = [[OBMaltQuantityPickerDelegate alloc] initWithMaltAddition:nil];
+    self.maltColorPickerDelegate = [[OBMaltColorPickerDelegate alloc] initWithMaltAddition:nil];
   }
 
   return self;
@@ -167,20 +167,6 @@
   }
 
   return pickerDelegate;
-}
-
-- (void)pickerChanged
-{
-  if (![self drawerIsOpen]) {
-    // This can get called if a picker is still spinning when the drawer is closed.
-    // When it finally lands on a number, some code will get triggered to update the
-    // cell.  This should just be ignored.
-    return;
-  }
-  
-  OBMultiPickerTableViewCell *cell = (OBMultiPickerTableViewCell *)[self cellBeforeDrawerForTableView:self.tableView];
-  OBMaltAddition *maltAddition = [self ingredientForDrawer];
-  [self populateIngredientCell:cell withIngredientData:maltAddition];
 }
 
 @end

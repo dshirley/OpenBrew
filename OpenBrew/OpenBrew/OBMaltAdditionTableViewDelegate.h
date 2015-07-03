@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger, OBMaltAdditionMetric) {
   OBMaltAdditionMetricPercentOfGravity
 };
 
-@interface OBMaltAdditionTableViewDelegate : OBDrawerTableViewDelegate <OBPickerObserver>
+@interface OBMaltAdditionTableViewDelegate : OBDrawerTableViewDelegate
 
 @property (nonatomic, assign) OBMaltAdditionMetric maltAdditionMetricToDisplay;
 

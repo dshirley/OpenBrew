@@ -50,11 +50,11 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
 
 - (void)initializeCrittercism
 {
-  if (DEBUG) {
-    [Crittercism enableWithAppID:CRITTER_APP_ID_DEVELOPMENT];
-  } else {
-    [Crittercism enableWithAppID:CRITTER_APP_ID_PRODUCTION];
-  }
+//  if (DEBUG) {
+//    [Crittercism enableWithAppID:CRITTER_APP_ID_DEVELOPMENT];
+//  } else {
+//    [Crittercism enableWithAppID:CRITTER_APP_ID_PRODUCTION];
+//  }
 }
 
 - (void)initializeGoogleAnalytics

@@ -15,13 +15,11 @@
 @implementation OBMaltColorPickerDelegate
 
 - (id)initWithMaltAddition:(OBMaltAddition *)maltAddition
-               andObserver:(id)updateObserver
 {
   self = [super init];
 
   if (self) {
     self.maltAddition = maltAddition;
-    self.pickerObserver = updateObserver;
   }
 
   return self;
@@ -68,8 +66,6 @@
 {
   NSInteger lovibond = [self lovibondForRow:row];
   self.maltAddition.lovibond = @(lovibond);
-
-  [self.pickerObserver pickerChanged];
 }
 
 @end

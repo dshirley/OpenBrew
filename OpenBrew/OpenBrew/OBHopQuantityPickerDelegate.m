@@ -16,13 +16,11 @@
 @implementation OBHopQuantityPickerDelegate
 
 - (id)initWithHopAddition:(OBHopAddition *)hopAddition
-              andObserver:(id)pickerObserver
 {
   self = [super init];
 
   if (self) {
     self.hopAddition = hopAddition;
-    self.pickerObserver = pickerObserver;
   }
 
   return self;
@@ -73,8 +71,6 @@
 {
   float quantity = [self quantityInOuncesForRow:row];
   self.hopAddition.quantityInOunces = [NSNumber numberWithFloat:quantity];
-
-  [self.pickerObserver pickerChanged];
 }
 
 @end

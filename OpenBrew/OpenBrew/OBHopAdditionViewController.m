@@ -174,10 +174,13 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 - (void)setRecipe:(OBRecipe *)recipe
 {
   [_recipe removeObserver:self forKeyPath:KVO_KEY(IBUs)];
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(hopAdditions)];
 
   _recipe = recipe;
 
+  // When a recipe changes we refresh the view
   [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs) options:0 context:nil];
+  [_recipe addObserver:self forKeyPath:KVO_KEY(hopAdditions) options:0 context:nil];
 }
 
 - (void)dealloc
@@ -190,9 +193,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-  if ([keyPath isEqualToString:KVO_KEY(IBUs)]) {
-    [self refreshGauge];
-  }
+  [self reload];
 
   if ([self tableViewIsEmpty]) {
     [self switchToEmptyTableViewMode];
@@ -210,6 +211,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
     NSManagedObjectContext *ctx = self.recipe.managedObjectContext;
 
+    next.recipe = self.recipe;
     next.tableViewDataSource = [[OBIngredientTableViewDataSource alloc]
                                 initIngredientEntityName:@"Hops"
                                 andManagedObjectContext:ctx];
@@ -218,21 +220,21 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
 - (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue
 {
-  if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {
-    OBHopFinderViewController *finderView = [unwindSegue sourceViewController];
-    OBHops *hopVariety = [finderView selectedIngredient];
-    OBHopAddition *hopAddition = [[OBHopAddition alloc] initWithHopVariety:hopVariety
-                                                                 andRecipe:self.recipe];
-
-    NSUInteger numberOfHops = [[self.recipe hopAdditions] count];
-
-    hopAddition.displayOrder = [NSNumber numberWithUnsignedInteger:numberOfHops];
-
-    [self.recipe addHopAdditionsObject:hopAddition];
-
-    [self.recipe.managedObjectContext save:nil];
-    [self reload];
-  }
+//  if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {
+//    OBHopFinderViewController *finderView = [unwindSegue sourceViewController];
+//    OBHops *hopVariety = [finderView selectedIngredient];
+//    OBHopAddition *hopAddition = [[OBHopAddition alloc] initWithHopVariety:hopVariety
+//                                                                 andRecipe:self.recipe];
+//
+//    NSUInteger numberOfHops = [[self.recipe hopAdditions] count];
+//
+//    hopAddition.displayOrder = [NSNumber numberWithUnsignedInteger:numberOfHops];
+//
+//    [self.recipe addHopAdditionsObject:hopAddition];
+//
+//    [self.recipe.managedObjectContext save:nil];
+//    [self reload];
+//  }
 }
 
 #pragma mark - HopAdditionDisplaySettings

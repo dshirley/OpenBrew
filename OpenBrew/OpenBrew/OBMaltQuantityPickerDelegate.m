@@ -16,13 +16,11 @@
 @implementation OBMaltQuantityPickerDelegate 
 
 - (id)initWithMaltAddition:(OBMaltAddition *)maltAddition
-              andObserver:(id)updateObserver
 {
   self = [super init];
 
   if (self) {
     self.maltAddition = maltAddition;
-    self.pickerObserver = updateObserver;
   }
 
   return self;
@@ -112,8 +110,6 @@
 
     self.maltAddition.quantityInPounds = [NSNumber numberWithFloat:currentPounds + newOunces];
   }
-  
-  [self.pickerObserver pickerChanged];
 }
 
 @end

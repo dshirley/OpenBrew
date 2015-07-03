@@ -10,14 +10,11 @@
 #import "OBPickerDelegate.h"
 
 @class OBHopAddition;
-@protocol OBPickerObserver;
 
 @interface OBHopBoilTimePickerDelegate : NSObject <OBPickerDelegate>
 @property (nonatomic, strong) OBHopAddition *hopAddition;
-@property (nonatomic, weak) id<OBPickerObserver> pickerObserver;
 
-- (id)initWithHopAddition:(OBHopAddition *)hopAddition
-              andObserver:(id)updateObserver;
+- (id)initWithHopAddition:(OBHopAddition *)hopAddition;
 
 - (void)updateSelectionForPicker:(UIPickerView *)picker;
 

@@ -12,6 +12,9 @@
 #import "OBMalt.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
+#import "OBMaltAddition.h"
+#import "OBRecipe.h"
+#import "Crittercism+NSErrorLogging.h"
 
 // Google Analytics event category
 static NSString* const OBGAScreenName = @"Malt Finder Screen";
@@ -98,14 +101,27 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
     // Set the selectedIngredient so that we can add it when the segue completes
 
     NSIndexPath *cellIndex = [self.tableView indexPathForCell:sender];
-    self.selectedIngredient = [self.tableViewDataSource ingredientAtIndexPath:cellIndex];
+    OBMalt *selectedMalt = [self.tableViewDataSource ingredientAtIndexPath:cellIndex];
+
+    OBMaltAddition *maltAddition = [[OBMaltAddition alloc] initWithMalt:selectedMalt
+                                                              andRecipe:self.recipe];
+
+    // FIXME: the display order should be set in the Recipe
+    NSUInteger numberOfMalts = [[self.recipe maltAdditions] count];
+    maltAddition.displayOrder = [NSNumber numberWithUnsignedInteger:numberOfMalts];
+
+    [self.recipe addMaltAdditionsObject:maltAddition];
+
+    NSError *error = nil;
+    [self.recipe.managedObjectContext save:&error];
+    CRITTERCISM_LOG_ERROR(error);
 
     NSTimeInterval timeDelta = CFAbsoluteTimeGetCurrent() - self.startTime;
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[GAIDictionaryBuilder createTimingWithCategory:OBGAScreenName
                                                          interval:@(timeDelta * 1000)
                                                              name:@"Malt selected"
-                                                            label:self.selectedIngredient.name] build]];
+                                                            label:selectedMalt.name] build]];
   }
 }
 

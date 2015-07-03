@@ -10,7 +10,10 @@
 #import "OBIngredientTableViewDataSource.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
+#import "OBHopAddition.h"
 #import "OBHops.h"
+#import "OBRecipe.h"
+#import "Crittercism+NSErrorLogging.h"
 
 // Google Analytics event category
 static NSString* const OBGAScreenName = @"Hop Finder Screen";
@@ -45,14 +48,31 @@ static NSString* const OBGAScreenName = @"Hop Finder Screen";
     // Set the selectedIngredient so that we can add it when the segue completes
 
     NSIndexPath *cellIndex = [self.tableView indexPathForCell:sender];
-    self.selectedIngredient = [self.tableViewDataSource ingredientAtIndexPath:cellIndex];
+    OBHops *selectedHops = [self.tableViewDataSource ingredientAtIndexPath:cellIndex];
+
+
+    OBHopAddition *hopAddition = [[OBHopAddition alloc] initWithHopVariety:selectedHops
+                                                                 andRecipe:self.recipe];
+
+    NSUInteger numberOfHops = [[self.recipe hopAdditions] count];
+
+    // TODO: move the display order logic into the recipe object
+    hopAddition.displayOrder = [NSNumber numberWithUnsignedInteger:numberOfHops];
+
+    [self.recipe addHopAdditionsObject:hopAddition];
+
+    NSError *error = nil;
+    [self.recipe.managedObjectContext save:&error];
+    if (!error) {
+      CRITTERCISM_LOG_ERROR(error);
+    }
 
     NSTimeInterval timeDelta = CFAbsoluteTimeGetCurrent() - self.startTime;
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     [tracker send:[[GAIDictionaryBuilder createTimingWithCategory:OBGAScreenName
                                                          interval:@(timeDelta * 1000)
                                                              name:@"Hop selected"
-                                                            label:self.selectedIngredient.name] build]];
+                                                            label:selectedHops.name] build]];
 
   }
 }

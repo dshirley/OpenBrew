@@ -50,4 +50,29 @@ static NSString* const OBGAScreenName = @"Batch Size Screen";
   [self.tableView reloadData];
 }
 
+- (void)setRecipe:(OBRecipe *)recipe
+{
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(postBoilVolumeInGallons)];
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(preBoilVolumeInGallons)];
+
+  _recipe = recipe;
+
+  [_recipe addObserver:self forKeyPath:KVO_KEY(postBoilVolumeInGallons) options:0 context:nil];
+  [_recipe addObserver:self forKeyPath:KVO_KEY(preBoilVolumeInGallons) options:0 context:nil];
+
+}
+
+- (void)dealloc
+{
+  self.recipe = nil;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+  [self.tableView reloadData];
+}
+
 @end

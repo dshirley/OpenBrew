@@ -9,10 +9,8 @@
 #import "OBDrawerTableViewDelegate.h"
 #import "OBPickerObserver.h"
 
-@interface OBBatchSizeTableViewDelegate : OBDrawerTableViewDelegate <OBPickerObserver>
+@interface OBBatchSizeTableViewDelegate : OBDrawerTableViewDelegate
 
 - (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView andGACategory:(NSString *)gaCategory;
-
-- (void)pickerChanged;
 
 @end

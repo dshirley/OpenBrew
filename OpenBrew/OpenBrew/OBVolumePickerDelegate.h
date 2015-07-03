@@ -22,14 +22,12 @@
 @class OBRecipe;
 
 @interface OBVolumePickerDelegate : NSObject <OBPickerDelegate>
-@property (nonatomic, strong) OBRecipe *recipe;
-@property (nonatomic, weak) id<OBPickerObserver> pickerObserver;
 
+@property (nonatomic, strong) OBRecipe *recipe;
 
 - (id)initWithRecipe:(OBRecipe *)recipe
    andPropertyGetter:(SEL)propertyGetterSelector
-   andPropertySetter:(SEL)propertySetterSelector
-         andObserver:(id)updateObserver;
+   andPropertySetter:(SEL)propertySetterSelector;
 
 - (void)updateSelectionForPicker:(UIPickerView *)picker;
 

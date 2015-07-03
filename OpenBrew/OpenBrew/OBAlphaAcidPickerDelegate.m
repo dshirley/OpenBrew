@@ -17,14 +17,12 @@
 
 @implementation OBAlphaAcidPickerDelegate
 
-- (id)initWithHopAddition:(OBHopAddition *)hopAddition
-              andObserver:(id)updateObserver;
+- (id)initWithHopAddition:(OBHopAddition *)hopAddition;
 {
   self = [super init];
 
   if (self) {
     self.hopAddition = hopAddition;
-    self.pickerObserver = updateObserver;
   }
 
   return self;
@@ -74,8 +72,6 @@
 {
   float alphaAcid = [self alphaAcidPercentForRow:row];
   self.hopAddition.alphaAcidPercent = [NSNumber numberWithFloat:alphaAcid];
-
-  [self.pickerObserver pickerChanged];
 }
 
 @end

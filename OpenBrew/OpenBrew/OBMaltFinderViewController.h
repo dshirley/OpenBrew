@@ -10,11 +10,12 @@
 #import "GAITrackedViewController.h"
 
 @class OBMalt;
+@class OBRecipe;
 @class OBIngredientTableViewDataSource;
 
 @interface OBMaltFinderViewController : GAITrackedViewController
 
-@property (nonatomic, strong) OBMalt *selectedIngredient;
+@property (nonatomic, strong) OBRecipe *recipe;
 @property (nonatomic, strong) OBIngredientTableViewDataSource *tableViewDataSource;
 
 @end

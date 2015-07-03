@@ -178,10 +178,13 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 - (void)setRecipe:(OBRecipe *)recipe
 {
   [_recipe removeObserver:self forKeyPath:KVO_KEY(originalGravity)];
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(maltAdditions)];
 
   _recipe = recipe;
 
   [_recipe addObserver:self forKeyPath:KVO_KEY(originalGravity) options:0 context:nil];
+  [_recipe addObserver:self forKeyPath:KVO_KEY(maltAdditions) options:0 context:nil];
+
 }
 
 - (void)dealloc
@@ -194,18 +197,12 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-  if ([keyPath isEqualToString:KVO_KEY(originalGravity)]) {
-    [self refreshGauge];
+  [self reload];
 
-    // This if statement is a bit of a hack.  It allows detecting changes to
-    // the malt bill.  However, we certainly don't need to update the view when
-    // the malt addition weight changes or when the color changes. This is much
-    // simpler than adding a callback to the table view data source delegate.
-    if ([self tableViewIsEmpty]) {
-      [self switchToEmptyTableViewMode];
-    } else {
-      [self switchToNonEmptyTableViewMode];
-    }
+  if ([self tableViewIsEmpty]) {
+    [self switchToEmptyTableViewMode];
+  } else {
+    [self switchToNonEmptyTableViewMode];
   }
 }
 
@@ -218,31 +215,18 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
     NSManagedObjectContext *ctx = self.recipe.managedObjectContext;
 
+    next.recipe = self.recipe;
     next.tableViewDataSource = [[OBIngredientTableViewDataSource alloc]
                                 initIngredientEntityName:@"Malt"
                                 andManagedObjectContext:ctx];
   }
 }
 
+// Unwinding from the malt finder screen.  Updates come through KVO on self.recipe
+// so we don't need to do anything here.
 - (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue
 {
-  if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {
-    OBMaltFinderViewController *finderView = [unwindSegue sourceViewController];
-    OBMalt *malt = [finderView selectedIngredient];
-    OBMaltAddition *maltAddition = [[OBMaltAddition alloc] initWithMalt:malt
-                                                              andRecipe:self.recipe];
 
-    NSUInteger numberOfMalts = [[self.recipe maltAdditions] count];
-    maltAddition.displayOrder = [NSNumber numberWithUnsignedInteger:numberOfMalts];
-
-    [self.recipe addMaltAdditionsObject:maltAddition];
-
-    NSError *error = nil;
-    [self.recipe.managedObjectContext save:&error];
-    CRITTERCISM_LOG_ERROR(error);
-
-    [self reload];
-  }
 }
 
 #pragma mark - MaltAdditionDisplaySettings

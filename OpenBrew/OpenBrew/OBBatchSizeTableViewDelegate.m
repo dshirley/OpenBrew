@@ -47,13 +47,11 @@ NSString * const OBBatchSizeCellStrings[] = {
     self.tableView = tableView;
     self.preBoilVolumePickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
                                                                 andPropertyGetter:@selector(preBoilVolumeInGallons)
-                                                                andPropertySetter:@selector(setPreBoilVolumeInGallons:)
-                                                                      andObserver:self];
+                                                                andPropertySetter:@selector(setPreBoilVolumeInGallons:)];
 
     self.postBoilVolumePickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
                                                               andPropertyGetter:@selector(postBoilVolumeInGallons)
-                                                              andPropertySetter:@selector(setPostBoilVolumeInGallons:)
-                                                                    andObserver:self];
+                                                              andPropertySetter:@selector(setPostBoilVolumeInGallons:)];
 
     self.pickersThatHaveChanged = [NSMutableSet set];
   }
@@ -170,32 +168,5 @@ NSString * const OBBatchSizeCellStrings[] = {
 
   return pickerDelegate;
 }
-
-#pragma mark OBPickerDelegate methods
-
-- (void)pickerChanged
-{
-  if (![self drawerIsOpen]) {
-    // This can get called if a picker is still spinning when the drawer is closed.
-    // When it finally lands on a number, some code will get triggered to update the
-    // cell.  This should just be ignored.
-    return;
-  }
-
-  OBMultiPickerTableViewCell *cell = (OBMultiPickerTableViewCell *)[self cellBeforeDrawerForTableView:self.tableView];
-  id volumeInfo = [self ingredientForDrawer];
-  [self populateIngredientCell:cell withIngredientData:volumeInfo];
-
-  NSString *metricName = cell.textLabel.text;
-  if (![self.pickersThatHaveChanged containsObject:metricName]) {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:self.gaCategory
-                                                          action:metricName
-                                                           label:nil
-                                                           value:nil] build]];
-    [self.pickersThatHaveChanged addObject:metricName];
-  }
-}
-
 
 @end

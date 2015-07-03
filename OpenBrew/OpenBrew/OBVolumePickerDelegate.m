@@ -31,8 +31,7 @@ static const float pickerValues[] = {
 
 - (id)initWithRecipe:(OBRecipe *)recipe
    andPropertyGetter:(SEL)propertyGetterSelector
-   andPropertySetter:(SEL)propertySetterSelector
-         andObserver:(id)updateObserver
+   andPropertySetter:(SEL)propertySetterSelector;
 {
   self = [super init];
 
@@ -44,7 +43,6 @@ static const float pickerValues[] = {
     self.recipe = recipe;
     self.propertyGetterSelector = propertyGetterSelector;
     self.propertySetterSelector = propertySetterSelector;
-    self.pickerObserver = updateObserver;
   }
 
   return self;
@@ -108,8 +106,6 @@ static const float pickerValues[] = {
   IMP imp = [self.recipe methodForSelector:self.propertySetterSelector];
   void (*func)(id, SEL, NSNumber *) = (void *)imp;
   func(self.recipe, self.propertySetterSelector, gallons);
-
-  [self.pickerObserver pickerChanged];
 }
 
 @end

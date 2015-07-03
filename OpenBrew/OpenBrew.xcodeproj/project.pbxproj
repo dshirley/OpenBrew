@@ -207,7 +207,6 @@
 		9FE86432198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionTableViewCell.m; sourceTree = "<group>"; };
 		9FE86435198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBAlphaAcidPickerDelegate.h; sourceTree = "<group>"; };
 		9FE86436198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBAlphaAcidPickerDelegate.m; sourceTree = "<group>"; };
-		9FE86438198F4649007AD9E7 /* OBPickerObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPickerObserver.h; sourceTree = "<group>"; };
 		9FE86439198FBCE0007AD9E7 /* OBHopQuantityPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopQuantityPickerDelegate.h; sourceTree = "<group>"; };
 		9FE8643A198FBCE0007AD9E7 /* OBHopQuantityPickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopQuantityPickerDelegate.m; sourceTree = "<group>"; };
 		9FE8643C198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopBoilTimePickerDelegate.h; sourceTree = "<group>"; };
@@ -458,7 +457,6 @@
 				9F0815421996FF0400E5E575 /* OBMaltQuantityPickerDelegate.h */,
 				9F0815431996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m */,
 				9F081534199120C100E5E575 /* OBPickerDelegate.h */,
-				9FE86438198F4649007AD9E7 /* OBPickerObserver.h */,
 				9FFE13131B27EF6E00D3F76A /* OBVolumePickerDelegate.h */,
 				9FFE13141B27EF6E00D3F76A /* OBVolumePickerDelegate.m */,
 			);

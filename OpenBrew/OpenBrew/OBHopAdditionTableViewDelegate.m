@@ -44,9 +44,9 @@
     self.recipe = recipe;
     self.tableView = tableView;
 
-    self.alphaAcidPickerDelegate = [[OBAlphaAcidPickerDelegate alloc] initWithHopAddition:nil andObserver:self];
-    self.hopQuantityPickerDelegate = [[OBHopQuantityPickerDelegate alloc] initWithHopAddition:nil andObserver:self];
-    self.hopBoilTimeDelegate = [[OBHopBoilTimePickerDelegate alloc] initWithHopAddition:nil andObserver:self];
+    self.alphaAcidPickerDelegate = [[OBAlphaAcidPickerDelegate alloc] initWithHopAddition:nil];
+    self.hopQuantityPickerDelegate = [[OBHopQuantityPickerDelegate alloc] initWithHopAddition:nil];
+    self.hopBoilTimeDelegate = [[OBHopBoilTimePickerDelegate alloc] initWithHopAddition:nil];
   }
 
   return self;
@@ -192,20 +192,6 @@
   }
 
   return pickerDelegate;
-}
-
-- (void)pickerChanged
-{
-  if (![self drawerIsOpen]) {
-    // This can get called if a picker is still spinning when the drawer is closed.
-    // When it finally lands on a number, some code will get triggered to update the
-    // cell.  This should just be ignored.
-    return;
-  }
-
-  OBMultiPickerTableViewCell *cell = (OBMultiPickerTableViewCell *)[self cellBeforeDrawerForTableView:self.tableView];
-  OBHopAddition *hopAddition = [self ingredientForDrawer];
-  [self populateIngredientCell:cell withIngredientData:hopAddition];
 }
 
 @end
