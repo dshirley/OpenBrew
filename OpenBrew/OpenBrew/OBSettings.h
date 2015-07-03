@@ -11,7 +11,16 @@
 
 @interface OBSettings : NSObject
 
++ (NSNumber *)defaultPreBoilSize;
+
++ (void)setDefaultPreBoilSize:(NSNumber *)preBoilSize;
+
++ (NSNumber *)defaultPostBoilSize;
+
++ (void)setDefaultPostBoilSize:(NSNumber *)postBoilSize;
+
 + (OBIbuFormula)ibuFormula;
+
 + (void)setIbuFormula:(OBIbuFormula)formula;
 
 @end

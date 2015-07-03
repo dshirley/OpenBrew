@@ -69,7 +69,7 @@
   yeast.minAttenuation = @(60);
   yeast.maxAttenuation = @(70);
 
-  XCTAssertEqualWithAccuracy(.65, [yeast estimatedAttenuationAsDecimal], 0.001);
+  XCTAssertEqualWithAccuracy(.70, [yeast estimatedAttenuationAsDecimal], 0.001);
 
 }
 

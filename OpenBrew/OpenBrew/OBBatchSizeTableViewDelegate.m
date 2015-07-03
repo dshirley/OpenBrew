@@ -14,26 +14,21 @@
 #import "GAIDictionaryBuilder.h"
 
 typedef NS_ENUM(NSInteger, OBBatchSizeCell) {
-  OBBatchSizeCellFinalVolumeOfBeer,
-  OBBatchSizeCellKettleLossage,
-  OBBatchSizeCellFermentorLossage,
-  OBBatchSizeCellBoilOff
+  OBBatchSizeCellPreBoilVolume,
+  OBBatchSizeCellPostBoilVolume
 };
 
 NSString * const OBBatchSizeCellStrings[] = {
-  [OBBatchSizeCellFinalVolumeOfBeer] = @"Final beer volume",
-  [OBBatchSizeCellKettleLossage] = @"Kettle lossage",
-  [OBBatchSizeCellFermentorLossage] = @"Fermentor lossage",
-  [OBBatchSizeCellBoilOff] = @"Boil off"
+  [OBBatchSizeCellPreBoilVolume] = @"Pre-boil volume",
+  [OBBatchSizeCellPostBoilVolume] = @"Post-boil volume"
 };
 
 @interface OBBatchSizeTableViewDelegate()
 @property (nonatomic, strong) OBRecipe *recipe;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) OBVolumePickerDelegate *batchSizePickerDelegate;
-@property (nonatomic, strong) OBVolumePickerDelegate *boilOffPickerDelegate;
-@property (nonatomic, strong) OBVolumePickerDelegate *fermentorLosagePickerDelegate;
-@property (nonatomic, strong) OBVolumePickerDelegate *kettleLossagePickerDelegate;
+
+@property (nonatomic, strong) OBVolumePickerDelegate *preBoilVolumePickerDelegate;
+@property (nonatomic, strong) OBVolumePickerDelegate *postBoilVolumePickerDelegate;
 
 // Used for Google Analytics (GA) tracking. We track which metrics are being used, but
 // we only need to log one GA event per picker.
@@ -50,25 +45,15 @@ NSString * const OBBatchSizeCellStrings[] = {
   if (self) {
     self.recipe = recipe;
     self.tableView = tableView;
-    self.batchSizePickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
-                                                                andPropertyGetter:@selector(desiredBeerVolumeInGallons)
-                                                                andPropertySetter:@selector(setDesiredBeerVolumeInGallons:)
+    self.preBoilVolumePickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
+                                                                andPropertyGetter:@selector(preBoilVolumeInGallons)
+                                                                andPropertySetter:@selector(setPreBoilVolumeInGallons:)
                                                                       andObserver:self];
 
-    self.boilOffPickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
-                                                              andPropertyGetter:@selector(boilOffInGallons)
-                                                              andPropertySetter:@selector(setBoilOffInGallons:)
+    self.postBoilVolumePickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
+                                                              andPropertyGetter:@selector(postBoilVolumeInGallons)
+                                                              andPropertySetter:@selector(setPostBoilVolumeInGallons:)
                                                                     andObserver:self];
-
-    self.fermentorLosagePickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
-                                                                      andPropertyGetter:@selector(fermentorLossageInGallons)
-                                                                      andPropertySetter:@selector(setFermentorLossageInGallons:)
-                                                                            andObserver:self];
-
-    self.kettleLossagePickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
-                                                                    andPropertyGetter:@selector(kettleLossageInGallons)
-                                                                    andPropertySetter:@selector(setKettleLossageInGallons:)
-                                                                          andObserver:self];
 
     self.pickersThatHaveChanged = [NSMutableSet set];
   }
@@ -79,10 +64,8 @@ NSString * const OBBatchSizeCellStrings[] = {
 #pragma mark OBDrawerTableViewDelegate template methods
 
 - (NSArray *)ingredientData {
-  return @[ @[ @(OBBatchSizeCellFinalVolumeOfBeer) ],
-            @[ @(OBBatchSizeCellKettleLossage),
-               @(OBBatchSizeCellFermentorLossage),
-               @(OBBatchSizeCellBoilOff) ]];
+  return @[ @[ @(OBBatchSizeCellPreBoilVolume),
+               @(OBBatchSizeCellPostBoilVolume) ]];
 }
 
 - (void)populateIngredientCell:(UITableViewCell *)cell
@@ -95,21 +78,13 @@ NSString * const OBBatchSizeCellStrings[] = {
 
 
   switch (idx) {
-    case OBBatchSizeCellFinalVolumeOfBeer:
-      description = @"Final beer volume";
-      volume = self.recipe.desiredBeerVolumeInGallons;
+    case OBBatchSizeCellPreBoilVolume:
+      description = @"Pre-boil volume";
+      volume = self.recipe.preBoilVolumeInGallons;
       break;
-    case OBBatchSizeCellKettleLossage:
-      description = @"Kettle lossage";
-      volume = self.recipe.kettleLossageInGallons;
-      break;
-    case OBBatchSizeCellFermentorLossage:
-      description = @"Fermentor lossage";
-      volume = self.recipe.fermentorLossageInGallons;
-      break;
-    case OBBatchSizeCellBoilOff:
-      description = @"Boil off";
-      volume = self.recipe.boilOffInGallons;
+    case OBBatchSizeCellPostBoilVolume:
+      description = @"Post-boil volume";
+      volume = self.recipe.postBoilVolumeInGallons;
       break;
     default:
       NSAssert(YES, @"Bad index: %d", idx);
@@ -183,17 +158,11 @@ NSString * const OBBatchSizeCellStrings[] = {
   id pickerDelegate = nil;
 
   switch (cellType) {
-    case OBBatchSizeCellFinalVolumeOfBeer:
-      pickerDelegate = self.batchSizePickerDelegate;
+    case OBBatchSizeCellPreBoilVolume:
+      pickerDelegate = self.preBoilVolumePickerDelegate;
       break;
-    case OBBatchSizeCellKettleLossage:
-      pickerDelegate = self.kettleLossagePickerDelegate;
-      break;
-    case OBBatchSizeCellFermentorLossage:
-      pickerDelegate = self.fermentorLosagePickerDelegate;
-      break;
-    case OBBatchSizeCellBoilOff:
-      pickerDelegate = self.batchSizePickerDelegate;
+    case OBBatchSizeCellPostBoilVolume:
+      pickerDelegate = self.postBoilVolumePickerDelegate;
       break;
     default:
       NSAssert(YES, @"Bad index: %d", (int) cellType);

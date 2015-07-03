@@ -47,42 +47,7 @@ static NSString* const OBGAScreenName = @"Batch Size Screen";
   // TODO: Do we need a display settings view for this controller?
   // Eg. [self addMaltDisplaySettingsView];
 
-  [self reload];
-}
-
-- (void)reload {
   [self.tableView reloadData];
-  [self refreshGauge];
-}
-
-- (void)refreshGauge
-{
-  self.gauge.valueLabel.text = [NSString stringWithFormat:@"%.2f", self.recipe.wortVolumeAfterBoilInGallons];
-  self.gauge.descriptionLabel.text = @"Wort Volume";
-}
-
-#pragma mark KVO Setup
-
-- (void)setRecipe:(OBRecipe *)recipe
-{
-  [_recipe removeObserver:self forKeyPath:KVO_KEY(wortVolumeAfterBoilInGallons)];
-  _recipe = recipe;
-  [_recipe addObserver:self forKeyPath:KVO_KEY(wortVolumeAfterBoilInGallons) options:0 context:nil];
-}
-
-- (void)dealloc
-{
-  self.recipe = nil;
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context
-{
-  if ([keyPath isEqualToString:KVO_KEY(wortVolumeAfterBoilInGallons)]) {
-    [self refreshGauge];
-  }
 }
 
 @end

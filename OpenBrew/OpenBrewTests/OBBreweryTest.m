@@ -68,7 +68,7 @@
   // Test the last one in the CSV
   malt = [self fetchEntity:@"Malt" withProperty:@"name" equalTo:@"Wheat LME"];
   XCTAssertEqualObjects(@"Wheat LME", malt.name);
-  XCTAssertEqualWithAccuracy(1.035, [malt.defaultExtractPotential floatValue], 0.00001);
+  XCTAssertEqualWithAccuracy(1.036, [malt.defaultExtractPotential floatValue], 0.00001);
   XCTAssertEqual(2, [malt.defaultLovibond integerValue]);
   XCTAssertEqual(OBMaltTypeExtract, [malt.type integerValue]);
 }

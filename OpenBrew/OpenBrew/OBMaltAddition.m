@@ -86,6 +86,14 @@
   float lovibond = [[self lovibond] floatValue];
   float quantityInPounds = [[self quantityInPounds] floatValue];
 
+  if ([self.malt isExtract]) {
+    // Extract is a concentrated form of grain.  We need to "reinflate" it in order
+    // to get a realistic color reading.  0.7 is essentially the extract : grain
+    // concentrate ratio. I noticed this was necessary when the Munich Dunkel
+    // test for color was failing for extract, but not for all grain.
+    quantityInPounds /= 0.70;
+  }
+
   return (lovibond * quantityInPounds) / boilSize;
 }
 

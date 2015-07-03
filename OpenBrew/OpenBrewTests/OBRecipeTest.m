@@ -17,11 +17,14 @@
 #import "OBYeastAddition.h"
 #import "OBSettings.h"
 
-#define OBAssertOriginalGravity(og) XCTAssertEqualWithAccuracy([self.recipe originalGravity], og, 0.001);
-#define OBAssertFinalGravity(fg) XCTAssertEqualWithAccuracy([self.recipe finalGravity], fg, 0.001);
+#define OBAssertOriginalGravity(og) XCTAssertEqualWithAccuracy([self.recipe originalGravity], og, 0.002);
+#define OBAssertFinalGravity(fg) XCTAssertEqualWithAccuracy([self.recipe finalGravity], fg, 0.002);
 #define OBAssertIBU(ibus) XCTAssertEqualWithAccuracy([self.recipe IBUs], ibus, 1);
 #define OBAssertColorInSrm(colorSrm) XCTAssertEqualWithAccuracy([self.recipe colorInSRM], colorSrm, 1);
-#define OBAssertABV(abv) XCTAssertEqualWithAccuracy([self.recipe alcoholByVolume], abv, 0.2);
+
+// Allow a greater degree of flexibility for ABV.  Brewing Classic Styles uses the
+// simple formula ((og - fg) * 131.25), which comes out a bit lower.
+#define OBAssertABV(abv) XCTAssertEqualWithAccuracy([self.recipe alcoholByVolume], abv, 0.5);
 
 @interface OBRecipeTest : OBBaseTestCase
 @property (nonatomic, strong) OBRecipe *recipe;
@@ -72,7 +75,7 @@
   [self addMalt:@"Light LME" quantity:6.25 color:2.2];
   [self addMalt:@"Rice Syrup" quantity:1.5 color:0];
   [self addHops:@"Hallertau" quantity:0.72 aaPercent:4.0 boilTime:60];
-  [self addYeast:@"2007"];
+  [self addYeast:@"WLP840"];
 
   OBAssertOriginalGravity(1.046);
   OBAssertFinalGravity(1.008);
@@ -86,7 +89,7 @@
   [self addMalt:@"Two-Row" quantity:8.3];
   [self addMalt:@"Rice (flaked)" quantity:2.8];
   [self addHops:@"Hallertau" quantity:0.72 aaPercent:4.0 boilTime:60];
-  [self addYeast:@"2007"];
+  [self addYeast:@"WLP840"];
 
   OBAssertOriginalGravity(1.046);
   OBAssertFinalGravity(1.008);
@@ -114,7 +117,7 @@
   [self addMalt:@"Two-Row" quantity:11.6];
   [self addMalt:@"Rice (flaked)" quantity:1.0];
   [self addHops:@"Hallertau" quantity:1.25 aaPercent:4.0 boilTime:60];
-  [self addYeast:@"2007"];
+  [self addYeast:@"WLP840"];
 
   OBAssertOriginalGravity(1.053);
   OBAssertFinalGravity(1.010);
@@ -128,9 +131,10 @@
   [self addMalt:@"Pilsner LME" quantity:7.6 color:2.3];
   [self addMalt:@"Munich LME" quantity:0.5 color:9];
   [self addMalt:@"Melanoidin Malt" quantity:0.25 color:28];
-  [self addHops:@"Hallertau" quantity:1.1 aaPercent:4.0 boilTime:60];
+  [self addHops:@"Hallertau" quantity:1.1 aaPercent:4.0 boilTime:90];
   [self addYeast:@"WLP838"];
 
+  // 77% attenuation
   OBAssertOriginalGravity(1.048);
   OBAssertFinalGravity(1.011);
   OBAssertIBU(18);
@@ -142,8 +146,8 @@
 {
   [self addMalt:@"Pilsner Malt" quantity:10.5];
   [self addMalt:@"Munich 10" quantity:0.75];
-//  [self addMalt:@"Melanoidin Malt" quantity:0.25 color:28];
-  [self addHops:@"Hallertau" quantity:1.1 aaPercent:4.0 boilTime:60];
+  [self addMalt:@"Melanoidin Malt" quantity:0.25 color:28];
+  [self addHops:@"Hallertau" quantity:1.1 aaPercent:4.0 boilTime:90];
   [self addYeast:@"2308"];
 
   OBAssertOriginalGravity(1.048);
@@ -185,6 +189,66 @@
   OBAssertIBU(29);
   OBAssertColorInSrm(6);
   OBAssertABV(5.6);
+}
+
+- (void)testBrewingClassicStyles_GermanPilsner_Extract
+{
+  [self addMalt:@"Pilsner LME" quantity:8.2 color:2.3];
+  [self addHops:@"Perle" quantity:1.0 aaPercent:8.0 boilTime:90];
+  [self addHops:@"Hallertau" quantity:0.5 aaPercent:4.0 boilTime:15];
+  [self addHops:@"Hallertau" quantity:0.5 aaPercent:4.0 boilTime:1];
+  [self addYeast:@"WLP830"];
+
+  OBAssertOriginalGravity(1.048);
+  OBAssertFinalGravity(1.009);
+  OBAssertIBU(36);
+  OBAssertColorInSrm(3);
+  OBAssertABV(5.1);
+}
+
+- (void)testBrewingClassicStyles_GermanPilsner_AllGrain
+{
+  [self addMalt:@"Pilsner Malt" quantity:10.8];
+  [self addHops:@"Perle" quantity:1.0 aaPercent:8.0 boilTime:90];
+  [self addHops:@"Hallertau" quantity:0.5 aaPercent:4.0 boilTime:15];
+  [self addHops:@"Hallertau" quantity:0.5 aaPercent:4.0 boilTime:1];
+  [self addYeast:@"WLP830"];
+
+  OBAssertOriginalGravity(1.048);
+  OBAssertFinalGravity(1.009);
+  OBAssertIBU(36);
+  OBAssertColorInSrm(3);
+  OBAssertABV(5.1);
+}
+
+- (void)testBrewingClassicStyles_MunichDunkel_Extract
+{
+  [self addMalt:@"Munich LME" quantity:8.5 color:9];
+  [self addMalt:@"Carafa II" quantity:(6.0/16) color:430];
+  [self addHops:@"Hallertau" quantity:1.2 aaPercent:4.0 boilTime:60];
+  [self addHops:@"Hallertau" quantity:0.5 aaPercent:4.0 boilTime:20];
+  [self addYeast:@"WLP833"];
+
+  OBAssertOriginalGravity(1.054);
+  OBAssertFinalGravity(1.014);
+  OBAssertIBU(22);
+  OBAssertColorInSrm(19);
+  OBAssertABV(5.3);
+}
+
+- (void)testBrewingClassicStyles_MunichDunkel_AllGrain
+{
+  [self addMalt:@"Munich 10" quantity:12.2];
+  [self addMalt:@"Carafa II" quantity:(6.0/16) color:430];
+  [self addHops:@"Hallertau" quantity:1.2 aaPercent:4.0 boilTime:60];
+  [self addHops:@"Hallertau" quantity:0.5 aaPercent:4.0 boilTime:20];
+  [self addYeast:@"WLP833"];
+
+  OBAssertOriginalGravity(1.054);
+  OBAssertFinalGravity(1.014);
+  OBAssertIBU(22);
+  OBAssertColorInSrm(19);
+  OBAssertABV(5.3);
 }
 
 - (void)addMalt:(NSString *)maltName quantity:(float)quantity {

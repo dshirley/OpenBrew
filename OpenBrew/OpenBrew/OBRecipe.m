@@ -34,10 +34,8 @@
 @synthesize observedMaltVariables;
 @synthesize observedRecipeVariables;
 
-@dynamic desiredBeerVolumeInGallons;
-@dynamic kettleLossageInGallons;
-@dynamic fermentorLossageInGallons;
-@dynamic boilOffInGallons;
+@dynamic preBoilVolumeInGallons;
+@dynamic postBoilVolumeInGallons;
 @dynamic name;
 @dynamic brewery;
 @dynamic hopAdditions;
@@ -54,7 +52,8 @@
 
   if (self) {
     // TODO: should this be in awake from insert instead?
-    self.desiredBeerVolumeInGallons = @5;
+    self.preBoilVolumeInGallons = [OBSettings defaultPreBoilSize];
+    self.postBoilVolumeInGallons = [OBSettings defaultPostBoilSize];
     [self startObserving];
   }
 
@@ -74,16 +73,6 @@
 - (void)prepareForDeletion
 {
   [self stopObserving];
-}
-
-- (float)boilSizeInGallons {
-  return [self.desiredBeerVolumeInGallons floatValue] + [self.boilOffInGallons floatValue];
-}
-
-- (float)wortVolumeAfterBoilInGallons {
-  return [self.desiredBeerVolumeInGallons floatValue] +
-    [self.kettleLossageInGallons floatValue] +
-    [self.fermentorLossageInGallons floatValue];
 }
 
 - (float)gravityUnits {
@@ -116,7 +105,7 @@
 {
   assert([self.hopAdditions containsObject:hopAddition]);
 
-  float recipeVolume = [self wortVolumeAfterBoilInGallons];
+  float recipeVolume = [self.postBoilVolumeInGallons floatValue];
   float boilGravity = [self boilGravity];
   OBIbuFormula formula = [OBSettings ibuFormula];
 
@@ -130,7 +119,7 @@
   assert([self.hopAdditions containsObject:hopAddition]);
 
   float ibusTotal = [self IBUs];
-  float recipeVolume = [self wortVolumeAfterBoilInGallons];
+  float recipeVolume = [self.postBoilVolumeInGallons floatValue];
   float boilGravity = [self boilGravity];
   OBIbuFormula formula = [OBSettings ibuFormula];
 
@@ -148,7 +137,7 @@
 
 - (float)originalGravity {
   float gravityUnits = [self gravityUnits];
-  float wortVolumeAfterBoil = [self wortVolumeAfterBoilInGallons];
+  float wortVolumeAfterBoil = [self.postBoilVolumeInGallons floatValue];
 
   return 1 + (gravityUnits / wortVolumeAfterBoil / 1000);
 }
@@ -157,26 +146,26 @@
   float attenuationLevel = [[[self yeast] yeast] estimatedAttenuationAsDecimal];
   float gravityUnits = [self gravityUnits];
   float finalGravityUnits = gravityUnits * (1 - attenuationLevel);
-  float wortVolumeAfterBoil = [self wortVolumeAfterBoilInGallons];
+  float wortVolumeAfterBoil = [self.postBoilVolumeInGallons floatValue];
 
   return 1 + (finalGravityUnits / wortVolumeAfterBoil / 1000);
 }
 
 - (float)boilGravity {
   float gravityUnits = [self gravityUnits];
-  float boilSize = [self boilSizeInGallons];
+  float boilSize = [self.preBoilVolumeInGallons floatValue];
 
   return 1 + (gravityUnits / boilSize / 1000);
 }
 
 - (float)IBUs {
   float ibus = 0.0;
-  float wortVolumeAfterBoilInGallons = [self wortVolumeAfterBoilInGallons];
+  float wortVolumeAfterBoil = [self.postBoilVolumeInGallons floatValue];
   float boilGravity = [self boilGravity];
   OBIbuFormula formula = [OBSettings ibuFormula];
 
   for (OBHopAddition *hops in [self hopAdditions]) {
-    ibus += [hops ibusForRecipeVolume:wortVolumeAfterBoilInGallons
+    ibus += [hops ibusForRecipeVolume:wortVolumeAfterBoil
                                    boilGravity:boilGravity
                            ibuFormula:formula];
   }
@@ -191,7 +180,7 @@
   float maltColorUnits = 0.0;
 
   for (OBMaltAddition *malt in [self maltAdditions]) {
-    maltColorUnits += [malt maltColorUnitsForBoilSize:[self wortVolumeAfterBoilInGallons]];
+    maltColorUnits += [malt maltColorUnitsForBoilSize:[self.preBoilVolumeInGallons floatValue]];
   }
 
   return 1.4922 * powf(maltColorUnits, 0.6859);
@@ -230,10 +219,8 @@
                                 KVO_KEY(lovibond), nil];
 
   self.observedRecipeVariables = [NSSet setWithObjects:
-                                  KVO_KEY(desiredBeerVolumeInGallons),
-                                  KVO_KEY(boilOffInGallons),
-                                  KVO_KEY(kettleLossageInGallons),
-                                  KVO_KEY(fermentorLossageInGallons),
+                                  KVO_KEY(preBoilVolumeInGallons),
+                                  KVO_KEY(postBoilVolumeInGallons),
                                   KVO_KEY(yeast), nil];
 }
 
@@ -266,10 +253,6 @@
   [self didChangeValueForKey:KVO_KEY(boilGravity)];
   [self willChangeValueForKey:KVO_KEY(colorInSRM)];
   [self didChangeValueForKey:KVO_KEY(colorInSRM)];
-  [self willChangeValueForKey:KVO_KEY(boilSizeInGallons)];
-  [self didChangeValueForKey:KVO_KEY(boilSizeInGallons)];
-  [self willChangeValueForKey:KVO_KEY(wortVolumeAfterBoilInGallons)];
-  [self didChangeValueForKey:KVO_KEY(wortVolumeAfterBoilInGallons)];
   [self willChangeValueForKey:KVO_KEY(finalGravity)];
   [self didChangeValueForKey:KVO_KEY(finalGravity)];
   [self willChangeValueForKey:KVO_KEY(alcoholByVolume)];

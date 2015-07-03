@@ -87,11 +87,10 @@ typedef NS_ENUM(NSInteger, OBYeastCsvIndex) {
   return self;
 }
 
+// It seems Brewing Classic Styles always reports on the high end.
+// This is typically what I experience with my beers as well.
 - (float)estimatedAttenuationAsDecimal {
-  float min = [[self minAttenuation] floatValue];
-  float max = [[self maxAttenuation] floatValue];
-
-  return ((min + max) / 2) / 100;
+  return [[self maxAttenuation] floatValue] / 100.0;
 }
 
 @end

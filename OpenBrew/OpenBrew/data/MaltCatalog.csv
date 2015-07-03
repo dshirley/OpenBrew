@@ -1,5 +1,5 @@
 Acid Malt,1.027,3,0
-Amber DME,1.045,10,2
+Amber DME,1.042,10,2
 Aromatic Malt,1.036,26,0
 Barley (flaked),1.032,1.7,0
 Biscuit,1.036,23,0
@@ -39,33 +39,33 @@ Crystal 40,1.034,40,0
 Crystal 60,1.034,60,0
 Crystal 80,1.034,80,0
 Crystal 90,1.034,90,0
-Dark DME,1.045,30,2
+Dark DME,1.042,30,2
 Dextrin Malt,1.033,2,0
 Golden Promise,1.037,2,0
 Honey,1.035,1,1
 Honey Malt,1.037,25,0
-Light DME,1.045,4,2
-Light LME,1.035,3,2
+Light DME,1.042,4,2
+Light LME,1.036,3,2
 Maple Syrup,1.03,35,1
 Maris Otter,1.038,3,0
-Maris Otter LME,1.035,4,2
+Maris Otter LME,1.036,4,2
 Melanoidin Malt,1.037,20,0
 Mild Malt,1.036,5,0
 Molasses,1.036,80,1
-Munich 10,1.035,10,0
+Munich 10,1.036,10,0
 Munich 20,1.035,20,0
-Munich DME,1.045,10,2
-Munich LME,1.035,10,2
+Munich DME,1.042,10,2
+Munich LME,1.036,10,2
 Oats,1.037,1,0
-Pale LME,1.035,4,2
-Pilsner DME,1.045,1,2
-Pilsner LME,1.035,2,2
-Pilsner Malt,1.036,2,0
+Pale LME,1.036,4,2
+Pilsner DME,1.042,1,2
+Pilsner LME,1.036,2,2
+Pilsner Malt,1.037,2,0
 Rice (flaked),1.032,1.0,0
-Rice Syrup,1.045,0,1
+Rice Syrup,1.036,0,1
 Roasted Barley,1.025,300,0
 Rye,1.036,2.0,0
-Rye LME,1.035,4,2
+Rye LME,1.036,4,2
 Six-Row,1.035,2,0
 Smoked Malt,1.037,9,0
 Sorghum Extract,1.04,2,2
@@ -77,7 +77,7 @@ Two-Row,1.036,2,0
 Victory,1.034,28,0
 Vienna,1.036,4,0
 Wheat Dark,1.039,9,0
-Wheat DME,1.045,2,2
+Wheat DME,1.042,2,2
 Wheat (flaked),1.035,1.6,0
 Wheat Light,1.039,2,0
-Wheat LME,1.035,2,2
+Wheat LME,1.036,2,2

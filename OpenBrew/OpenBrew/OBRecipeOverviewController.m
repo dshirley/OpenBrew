@@ -162,7 +162,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   switch (cellType) {
     case OBBatchSizeCell:
       cell.textLabel.text = @"Batch size";
-      cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1f gallons", [self.recipe.desiredBeerVolumeInGallons floatValue]];
+      cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1f gallons", [self.recipe.postBoilVolumeInGallons floatValue]];
       break;
     case OBMaltsCell:
       cell.textLabel.text = @"Malts";

@@ -43,12 +43,10 @@
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="maltAdditions" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <entity name="Recipe" representedClassName="OBRecipe" syncable="YES">
-        <attribute name="boilOffInGallons" optional="YES" attributeType="Float" minValueString="0" defaultValueString="1" syncable="YES"/>
-        <attribute name="desiredBeerVolumeInGallons" optional="YES" attributeType="Float" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="efficiency" optional="YES" attributeType="Float" defaultValueString="0.7" syncable="YES"/>
-        <attribute name="fermentorLossageInGallons" optional="YES" attributeType="Float" minValueString="0" defaultValueString="0.5" syncable="YES"/>
-        <attribute name="kettleLossageInGallons" optional="YES" attributeType="Float" minValueString="0" defaultValueString="0.5" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postBoilVolumeInGallons" optional="YES" attributeType="Float" minValueString="0" defaultValueString="0.5" syncable="YES"/>
+        <attribute name="preBoilVolumeInGallons" optional="YES" attributeType="Float" minValueString="0" defaultValueString="0.5" syncable="YES"/>
         <relationship name="brewery" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Brewery" inverseName="recipes" inverseEntity="Brewery" syncable="YES"/>
         <relationship name="hopAdditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HopAddition" inverseName="recipe" inverseEntity="HopAddition" syncable="YES"/>
         <relationship name="maltAdditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MaltAddition" inverseName="recipe" inverseEntity="MaltAddition" syncable="YES"/>
@@ -80,7 +78,7 @@
         <element name="IngredientCatalog" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Malt" positionX="0" positionY="0" width="128" height="135"/>
         <element name="MaltAddition" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="Recipe" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="Recipe" positionX="0" positionY="0" width="128" height="165"/>
         <element name="Yeast" positionX="0" positionY="0" width="128" height="225"/>
         <element name="YeastAddition" positionX="0" positionY="0" width="128" height="90"/>
     </elements>

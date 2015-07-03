@@ -36,6 +36,10 @@ static const float pickerValues[] = {
 {
   self = [super init];
 
+  for (int i = 0; i < NUM_PICKER_VALUES; i++) {
+    NSLog(@"%f", pickerValues[i]);
+  }
+
   if (self) {
     self.recipe = recipe;
     self.propertyGetterSelector = propertyGetterSelector;

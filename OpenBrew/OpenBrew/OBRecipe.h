@@ -16,11 +16,8 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) OBYeastAddition *yeast;
 
-// This is the final volume of beer that can be consumed.
-@property (nonatomic, retain) NSNumber * desiredBeerVolumeInGallons;
-@property (nonatomic, retain) NSNumber * boilOffInGallons;
-@property (nonatomic, retain) NSNumber *fermentorLossageInGallons;
-@property (nonatomic, retain) NSNumber *kettleLossageInGallons;
+@property (nonatomic, retain) NSNumber *postBoilVolumeInGallons;
+@property (nonatomic, retain) NSNumber *preBoilVolumeInGallons;
 
 @property (nonatomic, retain) OBBrewery *brewery;
 @property (nonatomic, retain) NSSet *hopAdditions;
@@ -30,8 +27,6 @@
 
 - (id)initWithContext:(NSManagedObjectContext *)context;
 
-- (float)boilSizeInGallons;
-- (float)wortVolumeAfterBoilInGallons;
 - (float)boilGravity;
 - (float)gravityUnits;
 - (float)originalGravity;

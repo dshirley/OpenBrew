@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.20" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RpZ-4Y-4oi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RpZ-4Y-4oi">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -643,7 +643,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipe Title" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ohv-8T-HTZ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipe Title" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ohv-8T-HTZ">
                                 <rect key="frame" x="20" y="80" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
@@ -826,22 +826,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfn-Fz-7yv" customClass="OBIngredientGauge">
-                                <rect key="frame" x="0.0" y="64" width="600" height="110"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="110" id="70C-Vi-SdF"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nlw-ct-fSN" userLabel="Separator">
-                                <rect key="frame" x="0.0" y="174" width="600" height="1"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="8zb-Pa-Z54"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="19" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="ZOJ-lI-12F">
-                                <rect key="frame" x="0.0" y="175" width="600" height="381"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IngredientAddition" textLabel="SI3-Qt-MPD" detailTextLabel="krQ-tv-9n3" rowHeight="53" style="IBUITableViewCellStyleValue1" id="BCT-MD-8R4">
@@ -881,23 +867,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Nlw-ct-fSN" firstAttribute="leading" secondItem="JXO-F6-7Nr" secondAttribute="leading" id="HW0-k6-e2s"/>
-                            <constraint firstAttribute="trailing" secondItem="rfn-Fz-7yv" secondAttribute="trailing" id="KYg-x3-yiZ"/>
-                            <constraint firstItem="Nlw-ct-fSN" firstAttribute="bottom" secondItem="ZOJ-lI-12F" secondAttribute="top" id="Rem-k4-h5D"/>
-                            <constraint firstItem="rfn-Fz-7yv" firstAttribute="top" secondItem="uBO-IX-sdo" secondAttribute="bottom" id="TIr-bj-oku"/>
-                            <constraint firstItem="rfn-Fz-7yv" firstAttribute="bottom" secondItem="Nlw-ct-fSN" secondAttribute="top" id="Txc-jp-zOg"/>
+                            <constraint firstItem="ZOJ-lI-12F" firstAttribute="top" secondItem="uBO-IX-sdo" secondAttribute="bottom" id="8eg-PY-xT2"/>
                             <constraint firstItem="ZOJ-lI-12F" firstAttribute="leading" secondItem="JXO-F6-7Nr" secondAttribute="leading" id="cl7-8H-GaF"/>
-                            <constraint firstItem="rfn-Fz-7yv" firstAttribute="leading" secondItem="JXO-F6-7Nr" secondAttribute="leading" id="hXi-mF-geG"/>
                             <constraint firstItem="svI-Kd-HJP" firstAttribute="top" secondItem="ZOJ-lI-12F" secondAttribute="bottom" id="naQ-Wd-pb4"/>
-                            <constraint firstAttribute="trailing" secondItem="Nlw-ct-fSN" secondAttribute="trailing" id="rJQ-5P-Bim"/>
                             <constraint firstAttribute="trailing" secondItem="ZOJ-lI-12F" secondAttribute="trailing" id="uTx-39-8g2"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Grain Bill" id="G17-AJ-PGr"/>
+                    <navigationItem key="navigationItem" id="G17-AJ-PGr"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="gauge" destination="rfn-Fz-7yv" id="lh9-ld-SfT"/>
                         <outlet property="tableView" destination="ZOJ-lI-12F" id="tJb-B2-0EZ"/>
                     </connections>
                 </viewController>
