@@ -8,7 +8,6 @@
 
 #import "OBVolumePickerDelegate.h"
 #import "OBRecipe.h"
-#import "OBPickerObserver.h"
 
 // Allow #.# precision when selecting volume
 #define NUM_DECIMALS 10

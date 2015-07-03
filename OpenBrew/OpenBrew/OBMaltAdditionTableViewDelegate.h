@@ -7,7 +7,6 @@
 //
 
 #import "OBDrawerTableViewDelegate.h"
-#import "OBPickerObserver.h"
 
 // A list of metrics that can be selected for display for malt addition
 // line items.  Currently just weight and % of gravity. There could easily be

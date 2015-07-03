@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OBPickerObserver.h"
 #import "OBBrewController.h"
 #import "GAITrackedViewController.h"
 

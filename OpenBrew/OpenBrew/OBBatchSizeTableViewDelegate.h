@@ -7,7 +7,6 @@
 //
 
 #import "OBDrawerTableViewDelegate.h"
-#import "OBPickerObserver.h"
 
 @interface OBBatchSizeTableViewDelegate : OBDrawerTableViewDelegate
 

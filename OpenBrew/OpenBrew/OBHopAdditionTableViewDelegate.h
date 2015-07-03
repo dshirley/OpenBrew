@@ -7,7 +7,6 @@
 //
 
 #import "OBDrawerTableViewDelegate.h"
-#import "OBPickerObserver.h"
 
 typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
   OBHopAdditionDisplayWeight,

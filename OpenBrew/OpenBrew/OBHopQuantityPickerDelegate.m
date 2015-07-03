@@ -8,7 +8,6 @@
 
 #import "OBHopQuantityPickerDelegate.h"
 #import "OBHopAddition.h"
-#import "OBPickerObserver.h"
 
 #define NUM_DECIMALS 10
 #define MAX_QUANTITY 16

@@ -8,7 +8,6 @@
 
 #import "OBAlphaAcidPickerDelegate.h"
 #import "OBHopAddition.h"
-#import "OBPickerObserver.h"
 
 // Allow #.# precision when selecting alpha acid percentages
 #define NUM_DECIMALS 10

@@ -8,7 +8,6 @@
 
 #import "OBHopBoilTimePickerDelegate.h"
 #import "OBHopAddition.h"
-#import "OBPickerObserver.h"
 
 #define NUM_DECIMALS 1
 #define MAX_BOIL_TIME 91

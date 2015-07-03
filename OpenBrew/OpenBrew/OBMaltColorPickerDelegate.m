@@ -8,7 +8,6 @@
 
 #import "OBMaltColorPickerDelegate.h"
 #import "OBMaltAddition.h"
-#import "OBPickerObserver.h"
 
 #define MAX_DEGREES_LOVIBOND 600
 
