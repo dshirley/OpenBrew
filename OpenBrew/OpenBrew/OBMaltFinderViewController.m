@@ -106,10 +106,6 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
     OBMaltAddition *maltAddition = [[OBMaltAddition alloc] initWithMalt:selectedMalt
                                                               andRecipe:self.recipe];
 
-    // FIXME: the display order should be set in the Recipe
-    NSUInteger numberOfMalts = [[self.recipe maltAdditions] count];
-    maltAddition.displayOrder = [NSNumber numberWithUnsignedInteger:numberOfMalts];
-
     [self.recipe addMaltAdditionsObject:maltAddition];
 
     NSError *error = nil;

@@ -251,6 +251,66 @@
   OBAssertABV(5.3);
 }
 
+- (void)testAddHopsDisplayOrder
+{
+  OBHops *testHops = [[OBHops alloc] initWithCatalog:self.brewery.ingredientCatalog
+                                                name:@"test hops"
+                                    alphaAcidPercent:@(8.0)];
+
+  OBHopAddition *testHopAddition1 = [[OBHopAddition alloc] initWithHopVariety:testHops andRecipe:nil];
+  OBHopAddition *testHopAddition2 = [[OBHopAddition alloc] initWithHopVariety:testHops andRecipe:nil];
+
+  XCTAssertEqual([testHopAddition1.displayOrder integerValue], 0);
+  XCTAssertEqual([testHopAddition2.displayOrder integerValue], 0);
+
+  testHopAddition1.displayOrder = @(888);
+  [self.recipe addHopAdditionsObject:testHopAddition1];
+  XCTAssertEqual([testHopAddition1.displayOrder integerValue], 0);
+
+  // The items are a set, so it shouldn't get added again, thus the display order won't change.
+  XCTAssertEqual([testHopAddition1.displayOrder integerValue], 0);
+
+  // Add the second hops, its display should get set to an incremental value based on the number of existing hops
+  [self.recipe addHopAdditionsObject:testHopAddition2];
+  XCTAssertEqual([testHopAddition2.displayOrder integerValue], 1);
+
+  // Setting the recipe in the initializer has the affect of adding the malt to the recipe
+  OBHopAddition *testHopAddition3 = [[OBHopAddition alloc] initWithHopVariety:testHops andRecipe:self.recipe];
+  XCTAssertEqual([testHopAddition3.displayOrder integerValue], 2);
+  
+}
+
+- (void)testAddMaltDisplayOrder
+{
+  OBMalt *testMalt = [[OBMalt alloc] initWithCatalog:self.brewery.ingredientCatalog
+                                                name:@"test malt"
+                                    extractPotential:@(0)
+                                            lovibond:@(0)
+                                                type:@(OBMaltTypeExtract)];
+
+  OBMaltAddition *testMaltAddition1 = [[OBMaltAddition alloc] initWithMalt:testMalt andRecipe:nil];
+  OBMaltAddition *testMaltAddition2 = [[OBMaltAddition alloc] initWithMalt:testMalt andRecipe:nil];
+
+  XCTAssertEqual([testMaltAddition1.displayOrder integerValue], 0);
+  XCTAssertEqual([testMaltAddition2.displayOrder integerValue], 0);
+
+  testMaltAddition1.displayOrder = @(888);
+  [self.recipe addMaltAdditionsObject:testMaltAddition1];
+  XCTAssertEqual([testMaltAddition1.displayOrder integerValue], 0);
+
+  // The items are a set, so it shouldn't get added again, thus the display order won't change.
+  XCTAssertEqual([testMaltAddition1.displayOrder integerValue], 0);
+
+  // Add the second malt, its display should get set to an incremental value based on the number of existing malts
+  [self.recipe addMaltAdditionsObject:testMaltAddition2];
+  XCTAssertEqual([testMaltAddition2.displayOrder integerValue], 1);
+
+  // Setting the recipe in the initializer has the affect of adding the malt to the recipe
+  OBMaltAddition *testMaltAddition3 = [[OBMaltAddition alloc] initWithMalt:testMalt andRecipe:self.recipe];
+  XCTAssertEqual([testMaltAddition3.displayOrder integerValue], 2);
+
+}
+
 - (void)addMalt:(NSString *)maltName quantity:(float)quantity {
   [self addMalt:maltName quantity:quantity color:-1];
 }

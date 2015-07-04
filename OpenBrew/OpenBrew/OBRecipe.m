@@ -317,6 +317,8 @@
               withSetMutation:NSKeyValueUnionSetMutation
                  usingObjects:changedObjects];
 
+  value.displayOrder = @(self.hopAdditions.count);
+
   if (![[self primitiveHopAdditions] containsObject:value]) {
     [self startObservingKeys:self.observedHopVariables ofObject:value];
   }
@@ -361,6 +363,8 @@
   [self willChangeValueForKey:KVO_KEY(maltAdditions)
               withSetMutation:NSKeyValueUnionSetMutation
                  usingObjects:changedObjects];
+
+  value.displayOrder = @(self.maltAdditions.count);
 
   if (![[self primitiveMaltAdditions] containsObject:value]) {
     [self startObservingKeys:self.observedMaltVariables ofObject:value];

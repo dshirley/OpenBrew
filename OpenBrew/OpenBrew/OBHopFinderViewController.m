@@ -54,11 +54,6 @@ static NSString* const OBGAScreenName = @"Hop Finder Screen";
     OBHopAddition *hopAddition = [[OBHopAddition alloc] initWithHopVariety:selectedHops
                                                                  andRecipe:self.recipe];
 
-    NSUInteger numberOfHops = [[self.recipe hopAdditions] count];
-
-    // TODO: move the display order logic into the recipe object
-    hopAddition.displayOrder = [NSNumber numberWithUnsignedInteger:numberOfHops];
-
     [self.recipe addHopAdditionsObject:hopAddition];
 
     NSError *error = nil;
@@ -73,7 +68,6 @@ static NSString* const OBGAScreenName = @"Hop Finder Screen";
                                                          interval:@(timeDelta * 1000)
                                                              name:@"Hop selected"
                                                             label:selectedHops.name] build]];
-
   }
 }
 
