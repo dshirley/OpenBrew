@@ -9,17 +9,11 @@
 #import "OBVolumePickerDelegate.h"
 #import "OBRecipe.h"
 
-// Allow #.# precision when selecting volume
-#define NUM_DECIMALS 10
+#define MAX_GALLONS 30
 
-#define MAX_GALLONS 10
+#define INCREMENT 0.25
 
-static const float pickerValues[] = {
-  0.0, 0.25, 0.5, 0.75, 1.0, 1.25, 1.5, 1.75,
-  2.0, 2.5, 3,0, 3.5, 4.0, 4.5, 5.0,
-  6.0, 7.0, 8.0, 10.0 };
-
-#define NUM_PICKER_VALUES (sizeof(pickerValues) / sizeof(float))
+#define NUM_PICKER_VALUES (MAX_GALLONS / INCREMENT)
 
 @interface OBVolumePickerDelegate()
 @property (nonatomic, assign) SEL propertyGetterSelector;
@@ -33,10 +27,6 @@ static const float pickerValues[] = {
    andPropertySetter:(SEL)propertySetterSelector;
 {
   self = [super init];
-
-  for (int i = 0; i < NUM_PICKER_VALUES; i++) {
-    NSLog(@"%f", pickerValues[i]);
-  }
 
   if (self) {
     self.recipe = recipe;
@@ -55,14 +45,7 @@ static const float pickerValues[] = {
   IMP imp = [self.recipe methodForSelector:self.propertyGetterSelector];
   NSNumber *(*func)(id, SEL) = (void *)imp;
   float volume = [func(self.recipe, self.propertyGetterSelector) floatValue];
-  int row = 0;
-
-  for (int i = 0; i < NUM_PICKER_VALUES; i++) {
-    if (volume == pickerValues[i]) {
-      row = i;
-      break;
-    }
-  }
+  int row = (int) (volume / INCREMENT);
 
   [picker selectRow:row inComponent:0 animated:NO];
 }
@@ -86,18 +69,23 @@ static const float pickerValues[] = {
 
 #pragma mark - UIPickerViewDelegate
 
+- (float)gallonsForRow:(NSInteger)row
+{
+  return (float) row * INCREMENT;
+}
+
 - (NSString *)pickerView:(UIPickerView *)pickerView
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component
 {
-  return [NSString stringWithFormat:@"%.2f", pickerValues[row]];
+  return [NSString stringWithFormat:@"%.2f", [self gallonsForRow:row]];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component
 {
-  NSNumber *gallons = @(pickerValues[row]);
+  NSNumber *gallons = @([self gallonsForRow:row]);
 
   // The compiler complains about a potential memory leak since the selector is unknown
   // http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
