@@ -44,9 +44,6 @@ static NSString* const OBGAScreenName = @"Batch Size Screen";
   self.tableView.delegate = self.tableViewDelegate;
   self.tableView.dataSource = self.tableViewDelegate;
 
-  // TODO: Do we need a display settings view for this controller?
-  // Eg. [self addMaltDisplaySettingsView];
-
   [self.tableView reloadData];
 }
 

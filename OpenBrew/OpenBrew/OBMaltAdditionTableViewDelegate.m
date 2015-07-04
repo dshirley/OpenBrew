@@ -44,9 +44,6 @@
 {
   _maltAdditionMetricToDisplay = newSelection;
 
-  // TODO: perhaps a reload is more heavy weight than we need? Not sure...
-  // there probably aren't majore performance implications since the data we're
-  // dealing with is so small
   [self.tableView reloadData];
 }
 

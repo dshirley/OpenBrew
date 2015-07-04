@@ -34,10 +34,6 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
   if (brewery) {
     [self.managedObjectContext save:nil];
   } else {
-    // TODO: maybe this should go into the brewery initializer? That could have unwanted
-    // side effects, though. Maybe we pass an error and check if there was an error and then
-    // abort.  Maybe there's a notion of a transaction that can be used to ensure
-    // brewery initialization happens atomically.
     [self.managedObjectContext reset];
   }
 

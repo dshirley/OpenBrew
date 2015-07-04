@@ -61,9 +61,6 @@
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-  // TODO: this will need to be implemented differently for each picker.
-  // For example, kettleLossage should not be allowed to be greater than the batch size
-
   return NUM_PICKER_VALUES;
 }
 

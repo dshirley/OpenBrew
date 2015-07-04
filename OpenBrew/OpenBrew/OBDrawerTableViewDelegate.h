@@ -34,12 +34,6 @@
 
 #pragma mark Utility Methods
 
-// FIXME: some of these might not be needed externally anymore
-
 - (id)ingredientForDrawer;
-
-- (UITableViewCell *)cellBeforeDrawerForTableView:(UITableView *)tableView;
-
-- (id<OBIngredientAddition>)ingredientAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

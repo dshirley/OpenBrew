@@ -14,8 +14,6 @@ static NSString *const OBPostBoilSizeKey = @"OBSettingsPostBoilSize";
 
 @implementation OBSettings
 
-// FIXME:  all of these need to have default values when the keys are not set
-
 + (NSNumber *)defaultPreBoilSize;
 {
   NSNumber *preBoilSize = [[NSUserDefaults standardUserDefaults] valueForKey:OBPreBoilSizeKey];

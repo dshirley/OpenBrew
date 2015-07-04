@@ -51,7 +51,6 @@
   self = [self initWithEntity:desc insertIntoManagedObjectContext:context];
 
   if (self) {
-    // TODO: should this be in awake from insert instead?
     self.preBoilVolumeInGallons = [OBSettings defaultPreBoilSize];
     self.postBoilVolumeInGallons = [OBSettings defaultPostBoilSize];
     [self startObserving];
