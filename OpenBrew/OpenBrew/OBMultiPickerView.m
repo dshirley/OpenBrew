@@ -107,7 +107,7 @@
   // If the segment control doesn't have any entries, we want the picker to take
   // up the whole cell.
 
-  if (self.segmentedControl.numberOfSegments > 0) {
+  if (self.segmentedControl.numberOfSegments > 1) {
     [self.segmentedControl setFrame:selectorFrame];
     [self.picker setFrame:pickerFrame];
   } else {

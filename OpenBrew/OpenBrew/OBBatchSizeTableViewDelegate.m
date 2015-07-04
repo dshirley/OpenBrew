@@ -27,9 +27,6 @@ NSString * const OBBatchSizeCellStrings[] = {
 @property (nonatomic, strong) OBRecipe *recipe;
 @property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic, strong) OBVolumePickerDelegate *preBoilVolumePickerDelegate;
-@property (nonatomic, strong) OBVolumePickerDelegate *postBoilVolumePickerDelegate;
-
 // Used for Google Analytics (GA) tracking. We track which metrics are being used, but
 // we only need to log one GA event per picker.
 @property (nonatomic, strong) NSMutableSet *pickersThatHaveChanged;
@@ -45,13 +42,6 @@ NSString * const OBBatchSizeCellStrings[] = {
   if (self) {
     self.recipe = recipe;
     self.tableView = tableView;
-    self.preBoilVolumePickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
-                                                                andPropertyGetter:@selector(preBoilVolumeInGallons)
-                                                                andPropertySetter:@selector(setPreBoilVolumeInGallons:)];
-
-    self.postBoilVolumePickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
-                                                              andPropertyGetter:@selector(postBoilVolumeInGallons)
-                                                              andPropertySetter:@selector(setPostBoilVolumeInGallons:)];
 
     self.pickersThatHaveChanged = [NSMutableSet set];
   }
@@ -96,24 +86,27 @@ NSString * const OBBatchSizeCellStrings[] = {
         withIngredientData:(id)ingredientData
 {
   OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
+  OBBatchSizeCell cellType = [ingredientData intValue];
+  id<OBPickerDelegate> pickerDelegate = nil;
 
-  UITableViewCell *ingredientCell = [self cellBeforeDrawerForTableView:self.tableView];
-  NSIndexPath *indexPathOfIngredient = [self.tableView indexPathForCell:ingredientCell];
+  [drawerCell.multiPickerView removeAllPickers];
 
-  // FIXME: ingredientAtIndexPath returns an OBIngredientAddition... this is being hacked in
-//  OBBatchSizeCell cellType = [(NSNumber *)[self ingredientAtIndexPath:indexPathOfIngredient] intValue];
-//  id pickerDelegate = [self pickerDelegateForCellType:cellType];
-//
-//  drawerCell.picker.delegate = pickerDelegate;
-//  drawerCell.picker.dataSource = pickerDelegate;
-}
+  if (cellType == OBBatchSizeCellPreBoilVolume) {
 
-- (void)willRemoveDrawerCell:(UITableViewCell *)cell
-{
-//  OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
-//
-//  drawerCell.picker.delegate = nil;
-//  drawerCell.picker.dataSource = nil;
+    pickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
+                                                  andPropertyGetter:@selector(preBoilVolumeInGallons)
+                                                  andPropertySetter:@selector(setPreBoilVolumeInGallons:)];
+  } else if (cellType == OBBatchSizeCellPostBoilVolume) {
+
+    pickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
+                                                  andPropertyGetter:@selector(postBoilVolumeInGallons)
+                                                  andPropertySetter:@selector(setPostBoilVolumeInGallons:)];
+
+  } else {
+    [NSException raise:@"Invalid OBBatchSizeCell" format:@"Cell: %ld", cellType];
+  }
+
+  [drawerCell.multiPickerView addPickerDelegate:pickerDelegate withTitle:@"unused"];
 }
 
 #pragma mark UITableViewDelegate override methods
@@ -134,26 +127,6 @@ NSString * const OBBatchSizeCellStrings[] = {
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
   return NO;
-}
-
-#pragma mark Picker Management Methods
-
-- (id)pickerDelegateForCellType:(OBBatchSizeCell)cellType
-{
-  id pickerDelegate = nil;
-
-  switch (cellType) {
-    case OBBatchSizeCellPreBoilVolume:
-      pickerDelegate = self.preBoilVolumePickerDelegate;
-      break;
-    case OBBatchSizeCellPostBoilVolume:
-      pickerDelegate = self.postBoilVolumePickerDelegate;
-      break;
-    default:
-      NSAssert(YES, @"Bad index: %d", (int) cellType);
-  }
-
-  return pickerDelegate;
 }
 
 @end
