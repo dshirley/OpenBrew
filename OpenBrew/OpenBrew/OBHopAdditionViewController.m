@@ -48,6 +48,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gaugeDisplaySettingSegmentedControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *infoButton;
 
 @end
 
@@ -72,6 +73,10 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
   self.tableViewDelegate.hopAdditionMetricToDisplay = (OBHopAdditionMetric)index;
 
   [self addHopDisplaySettingsView];
+
+  UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
+  [button addTarget:self action:@selector(showSettingsView:) forControlEvents:UIControlEventTouchUpInside];
+  [self.infoButton setCustomView:button];
 
   [self reload];
 }

@@ -49,6 +49,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gaugeDisplaySettingSegmentedControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *infoButton;
 
 @end
 
@@ -71,6 +72,10 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
   index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBIngredientDisplaySegmentKey] integerValue];
   self.tableViewDelegate.maltAdditionMetricToDisplay = (OBMaltAdditionMetric)index;
+
+  UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
+  [button addTarget:self action:@selector(showSettingsView:) forControlEvents:UIControlEventTouchUpInside];
+  [self.infoButton setCustomView:button];
 
   [self addMaltDisplaySettingsView];
 

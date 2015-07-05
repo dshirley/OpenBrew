@@ -15,7 +15,6 @@
 #import "Crittercism.h"
 #import "Crittercism+NSErrorLogging.h"
 #import "GAI.h"
-#import "UIColor+OBColorScheme.h"
 
 static NSString *const CRITTER_APP_ID_PRODUCTION = @"558d6dda9ccc10f6040881c2";
 static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
@@ -61,8 +60,8 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
   [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor whiteColor]];
   
   [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:emeraldGreen];
-
-  [[UISegmentedControl appearance] setTintColor:emeraldGreen];
+//  [[UIButton appearance] setTintColor:emeraldGreen];
+//  [[UISegmentedControl appearance] setTintColor:emeraldGreen];
 
 }
 

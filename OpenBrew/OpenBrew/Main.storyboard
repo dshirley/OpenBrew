@@ -158,6 +158,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="gauge" destination="kOa-7I-0kp" id="toB-W6-q80"/>
+                        <outlet property="infoButton" destination="5Yk-uS-MSm" id="53u-DD-uI4"/>
                         <outlet property="tableView" destination="UdS-iz-4Sc" id="gEw-F7-HPk"/>
                     </connections>
                 </viewController>
@@ -302,6 +303,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="gauge" destination="0q9-E7-rrC" id="MG1-xR-sU6"/>
+                        <outlet property="infoButton" destination="ZMz-cQ-Uy2" id="z48-u4-cDT"/>
                         <outlet property="tableView" destination="0DW-GT-hvd" id="bg7-lx-hYq"/>
                     </connections>
                 </viewController>
