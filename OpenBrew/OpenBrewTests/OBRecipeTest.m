@@ -16,6 +16,7 @@
 #import "OBYeast.h"
 #import "OBYeastAddition.h"
 #import "OBSettings.h"
+#import "OBKvoUtils.h"
 
 #define OBAssertOriginalGravity(og) XCTAssertEqualWithAccuracy([self.recipe originalGravity], og, 0.002);
 #define OBAssertFinalGravity(fg) XCTAssertEqualWithAccuracy([self.recipe finalGravity], fg, 0.002);
@@ -28,6 +29,10 @@
 
 @interface OBRecipeTest : OBBaseTestCase
 @property (nonatomic, strong) OBRecipe *recipe;
+
+// For the KVO test
+@property (nonatomic, strong) NSMutableDictionary *keysObserved;
+
 @end
 
 @implementation OBRecipeTest
@@ -36,10 +41,16 @@
 {
   [super setUp];
   self.recipe = [[OBRecipe alloc] initWithContext:self.ctx];
+  self.keysObserved = [NSMutableDictionary dictionary];
 
   // Most of the tests in this suite are based on recipes in Brewing Classic Styles.
   // The recipes in that book use the Rager formula.
   [OBSettings setIbuFormula:OBIbuFormulaRager];
+}
+
+- (void)tearDown
+{
+  self.recipe = nil;
 }
 
 - (void)testBrewingClassicStyles_LighAmericanLager_Extract
@@ -250,6 +261,233 @@
   OBAssertColorInSrm(19);
   OBAssertABV(5.3);
 }
+
+// When any of the key metrics of a recipe change. KVO should fire off for all
+// of these keys. Even if only gravity changes, IBUs will still fire. This is
+// intentional. It would be relatively error prone to tease out all of the variables that
+// affect IBUs (it would be easy to miss something), and the performance cost
+// of notifying for all of these keys simply isn't high enough to warrant the effort
+// of making KVO more targetted.
+- (void)checkAllCalculatedKeysSeen
+{
+  XCTAssertEqual(self.keysObserved[KVO_KEY(originalGravity)], self.recipe);
+  XCTAssertEqual(self.keysObserved[KVO_KEY(IBUs)], self.recipe);
+  XCTAssertEqual(self.keysObserved[KVO_KEY(boilGravity)], self.recipe);
+  XCTAssertEqual(self.keysObserved[KVO_KEY(colorInSRM)], self.recipe);
+  XCTAssertEqual(self.keysObserved[KVO_KEY(finalGravity)], self.recipe);
+  XCTAssertEqual(self.keysObserved[KVO_KEY(alcoholByVolume)], self.recipe);
+}
+
+- (void)startObservingAllCalculatedKeys
+{
+  [self.recipe addObserver:self forKeyPath:KVO_KEY(originalGravity) options:0 context:nil];
+  [self.recipe addObserver:self forKeyPath:KVO_KEY(IBUs) options:0 context:nil];
+  [self.recipe addObserver:self forKeyPath:KVO_KEY(boilGravity) options:0 context:nil];
+  [self.recipe addObserver:self forKeyPath:KVO_KEY(colorInSRM) options:0 context:nil];
+  [self.recipe addObserver:self forKeyPath:KVO_KEY(finalGravity) options:0 context:nil];
+  [self.recipe addObserver:self forKeyPath:KVO_KEY(alcoholByVolume) options:0 context:nil];
+}
+
+- (void)testCalculatedKvo_AddingMaltsZeroQuantity
+{
+  [self startObservingAllCalculatedKeys];
+  [self addMalt:@"Munich 10" quantity:0];
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_AddingMalts
+{
+  [self startObservingAllCalculatedKeys];
+  [self addMalt:@"Munich 10" quantity:1.0];
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_AddingHops
+{
+  [self startObservingAllCalculatedKeys];
+  [self addHops:@"Citra" quantity:1.0 aaPercent:13.0 boilTime:60];
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_AddingHopsZeroBoilTime
+{
+  [self startObservingAllCalculatedKeys];
+  [self addHops:@"Citra" quantity:1.0 aaPercent:13.0 boilTime:0];
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_AddingHopsZeroQuantity
+{
+  [self startObservingAllCalculatedKeys];
+  [self addHops:@"Citra" quantity:0 aaPercent:13.0 boilTime:0];
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_AddingHopsZeroAlphaAcids
+{
+  [self startObservingAllCalculatedKeys];
+  [self addHops:@"Citra" quantity:0 aaPercent:0.0 boilTime:0];
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_AddYeast
+{
+  [self startObservingAllCalculatedKeys];
+  [self addYeast:@"WLP833"];
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_ChangingMaltQuantity
+{
+  [self addMalt:@"Pilsner Malt" quantity:5.0];
+  OBMaltAddition *maltAddition = [self.recipe.maltAdditions anyObject];
+
+  [self startObservingAllCalculatedKeys];
+  maltAddition.quantityInPounds = @(5.0);
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_ChangingMaltQuantityToSameValue
+{
+  [self addMalt:@"Pilsner Malt" quantity:5.0];
+  OBMaltAddition *maltAddition = [self.recipe.maltAdditions anyObject];
+  maltAddition.quantityInPounds = @(5.0);
+
+  [self startObservingAllCalculatedKeys];
+  maltAddition.quantityInPounds = @(5.0);
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_ChangingMaltColor
+{
+  [self addMalt:@"Pilsner Malt" quantity:5.0];
+  OBMaltAddition *maltAddition = [self.recipe.maltAdditions anyObject];
+
+  [self startObservingAllCalculatedKeys];
+  maltAddition.quantityInPounds = @(7.0);
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_ChangingMaltColorToSameValue
+{
+  [self addMalt:@"Pilsner Malt" quantity:5.0];
+  OBMaltAddition *maltAddition = [self.recipe.maltAdditions anyObject];
+  maltAddition.lovibond = @(7.0);
+
+  [self startObservingAllCalculatedKeys];
+  maltAddition.quantityInPounds = @(7.0);
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_ChangingHopQuantity
+{
+  [self addHops:@"Hallertau" quantity:1.2 aaPercent:4.0 boilTime:60];
+
+  OBHopAddition *hopAddition = [self.recipe.hopAdditions anyObject];
+
+  [self startObservingAllCalculatedKeys];
+  hopAddition.quantityInOunces = @(7.0);
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_ChangingHopQuantityToSameValue
+{
+  [self addHops:@"Hallertau" quantity:1.2 aaPercent:4.0 boilTime:60];
+
+  OBHopAddition *hopAddition = [self.recipe.hopAdditions anyObject];
+  hopAddition.quantityInOunces = @(7.0);
+
+  [self startObservingAllCalculatedKeys];
+  hopAddition.quantityInOunces = @(7.0);
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_ChangingHopAlphaAcidPercent
+{
+  [self addHops:@"Hallertau" quantity:1.2 aaPercent:4.0 boilTime:60];
+
+  OBHopAddition *hopAddition = [self.recipe.hopAdditions anyObject];
+
+  [self startObservingAllCalculatedKeys];
+  hopAddition.alphaAcidPercent = @(7.0);
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_ChangingHopAlphaAcidPercentToSameValue
+{
+  [self addHops:@"Hallertau" quantity:1.2 aaPercent:4.0 boilTime:60];
+
+  OBHopAddition *hopAddition = [self.recipe.hopAdditions anyObject];
+  hopAddition.alphaAcidPercent = @(7.0);
+
+  [self startObservingAllCalculatedKeys];
+  hopAddition.alphaAcidPercent = @(7.0);
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_ChangingHopBoilTime
+{
+  [self addHops:@"Hallertau" quantity:1.2 aaPercent:4.0 boilTime:60];
+
+  OBHopAddition *hopAddition = [self.recipe.hopAdditions anyObject];
+
+  [self startObservingAllCalculatedKeys];
+  hopAddition.boilTimeInMinutes = @(7.0);
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_ChangingHopBoilTimeToSameValue
+{
+  [self addHops:@"Hallertau" quantity:1.2 aaPercent:4.0 boilTime:60];
+
+  OBHopAddition *hopAddition = [self.recipe.hopAdditions anyObject];
+  hopAddition.boilTimeInMinutes = @(7.0);
+
+  [self startObservingAllCalculatedKeys];
+  hopAddition.boilTimeInMinutes = @(7.0);
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_SetPreBoilVolume
+{
+  [self startObservingAllCalculatedKeys];
+  self.recipe.preBoilVolumeInGallons = @(8.0);
+  [self checkAllCalculatedKeysSeen];
+}
+
+// This could probably be optimized pretty easily, but it is the current behavior and its pretty harmless
+- (void)testCalculatedKvo_SetPreBoilVolumeTwiceWithSameValue
+{
+  self.recipe.preBoilVolumeInGallons = @(8.0);
+  [self startObservingAllCalculatedKeys];
+  self.recipe.preBoilVolumeInGallons = @(8.0);
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_SetPostBoilVolume
+{
+  [self startObservingAllCalculatedKeys];
+  self.recipe.postBoilVolumeInGallons = @(7.0);
+  [self checkAllCalculatedKeysSeen];
+}
+
+// This could probably be optimized pretty easily, but it is the current behavior and its pretty harmless
+- (void)testCalculatedKvo_SetPostBoilVolumeTwiceWithSameValue
+{
+  self.recipe.postBoilVolumeInGallons = @(8.0);
+  [self startObservingAllCalculatedKeys];
+  self.recipe.postBoilVolumeInGallons = @(8.0);
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+  self.keysObserved[keyPath] = object;
+}
+
 
 - (void)testAddHopsDisplayOrder
 {
