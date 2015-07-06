@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface OBYeastTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *yeastVariety;
-
+@property (weak, nonatomic) IBOutlet UILabel *yeastName;
+@property (weak, nonatomic) IBOutlet UILabel *yeastIdentifier;
 @end
