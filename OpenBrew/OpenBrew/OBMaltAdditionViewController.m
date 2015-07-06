@@ -215,15 +215,8 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([[segue identifier] isEqualToString:@"addIngredient"]) {
-
     OBMaltFinderViewController *next = [segue destinationViewController];
-
-    NSManagedObjectContext *ctx = self.recipe.managedObjectContext;
-
     next.recipe = self.recipe;
-    next.tableViewDataSource = [[OBIngredientTableViewDataSource alloc]
-                                initIngredientEntityName:@"Malt"
-                                andManagedObjectContext:ctx];
   }
 }
 

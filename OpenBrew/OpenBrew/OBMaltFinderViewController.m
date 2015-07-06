@@ -27,6 +27,8 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
 @interface OBMaltFinderViewController ()
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
+@property (nonatomic, strong) OBIngredientTableViewDataSource *tableViewDataSource;
+
 // This allows Google Analytics to track the amount of time taken to find an ingredient
 @property (nonatomic, assign) CFAbsoluteTime startTime;
 
@@ -38,6 +40,10 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
   [super loadView];
 
   self.screenName = @"Malt Finder Screen";
+
+  self.tableViewDataSource = [[OBIngredientTableViewDataSource alloc]
+                              initIngredientEntityName:@"Malt"
+                              andManagedObjectContext:self.recipe.managedObjectContext];
 
   self.tableView.dataSource = self.tableViewDataSource;
 

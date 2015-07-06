@@ -6,12 +6,9 @@
 //  Copyright (c) 2014 OpenBrew. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
 
-@class OBHops;
 @class OBRecipe;
-@class OBIngredientTableViewDataSource;
 
 @interface OBHopFinderViewController : GAITrackedViewController
 
