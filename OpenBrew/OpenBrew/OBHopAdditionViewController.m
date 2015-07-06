@@ -162,6 +162,8 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
 - (void)refreshGauge
 {
+  [self.gauge hideColor];
+
   if (self.gaugeMetric == OBHopGaugeMetricIBU) {
     float ibu = [self.recipe IBUs];
     _gauge.valueLabel.text = [NSString stringWithFormat:@"%d", (int) round(ibu)];
@@ -211,33 +213,13 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([[segue identifier] isEqualToString:@"addHops"]) {
     OBHopFinderViewController *next = [segue destinationViewController];
-
-    NSManagedObjectContext *ctx = self.recipe.managedObjectContext;
-
     next.recipe = self.recipe;
-    next.tableViewDataSource = [[OBIngredientTableViewDataSource alloc]
-                                initIngredientEntityName:@"Hops"
-                                andManagedObjectContext:ctx];
   }
 }
 
 - (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue
 {
-//  if ([[unwindSegue identifier] isEqualToString:@"IngredientSelected"]) {
-//    OBHopFinderViewController *finderView = [unwindSegue sourceViewController];
-//    OBHops *hopVariety = [finderView selectedIngredient];
-//    OBHopAddition *hopAddition = [[OBHopAddition alloc] initWithHopVariety:hopVariety
-//                                                                 andRecipe:self.recipe];
-//
-//    NSUInteger numberOfHops = [[self.recipe hopAdditions] count];
-//
-//    hopAddition.displayOrder = [NSNumber numberWithUnsignedInteger:numberOfHops];
-//
-//    [self.recipe addHopAdditionsObject:hopAddition];
-//
-//    [self.recipe.managedObjectContext save:nil];
-//    [self reload];
-//  }
+
 }
 
 #pragma mark - HopAdditionDisplaySettings

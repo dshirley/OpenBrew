@@ -16,6 +16,5 @@
 @interface OBHopFinderViewController : GAITrackedViewController
 
 @property (nonatomic, strong) OBRecipe *recipe;
-@property (nonatomic, strong) OBIngredientTableViewDataSource *tableViewDataSource;
 
 @end
