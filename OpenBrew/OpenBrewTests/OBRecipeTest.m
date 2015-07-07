@@ -140,6 +140,80 @@
   XCTAssertTrue([self.recipe.maltAdditions containsObject:testMaltAddition3]);
 }
 
+#pragma mark Calculation Tests
+
+// The thing to test here is that gravities are the sum of gravities of all malts
+// The OBMaltAddition test already checks the OG math for an individual malt
+- (void)testOriginalGravity
+{
+  XCTAssertEqualWithAccuracy([self.recipe originalGravity], 1.0, 0.0000001);
+
+  [self addMalt:@"Munich 10" quantity:5];
+  float ogIncrement = [self.recipe originalGravity] - 1.0;
+
+  // Sanity check that gravity went up
+  XCTAssertGreaterThan([self.recipe originalGravity], 1.010);
+
+  [self addMalt:@"Munich 10" quantity:5];
+  XCTAssertEqualWithAccuracy([self.recipe originalGravity], 1 + (ogIncrement * 2), 0.000001);
+
+  [self addMalt:@"Munich 10" quantity:5];
+  XCTAssertEqualWithAccuracy([self.recipe originalGravity], 1 + (ogIncrement * 3), 0.000001);
+}
+
+- (void)testPreBoilVolumeDoesNotAffectGravity
+{
+  self.recipe.preBoilVolumeInGallons = @(7.0);
+  self.recipe.postBoilVolumeInGallons = @(6.0);
+  [self addMalt:@"Munich 10" quantity:5];
+
+  float gravity = [self.recipe originalGravity];
+  self.recipe.preBoilVolumeInGallons = @(20);
+
+  XCTAssertEqual(gravity, gravity);
+}
+
+- (void)testPostBoilVolumeScalesGravityLinearly
+{
+  self.recipe.preBoilVolumeInGallons = @(7.0);
+  self.recipe.postBoilVolumeInGallons = @(6.0);
+  [self addMalt:@"Munich 10" quantity:5];
+
+  float gravityIncrement = [self.recipe originalGravity] - 1;
+
+  self.recipe.postBoilVolumeInGallons = @(3);
+  XCTAssertEqualWithAccuracy([self.recipe originalGravity] - 1, gravityIncrement * 2, 0.0000001);
+
+  self.recipe.postBoilVolumeInGallons = @(12);
+  XCTAssertEqualWithAccuracy([self.recipe originalGravity] - 1, gravityIncrement / 2, 0.0000001);
+}
+
+- (void)testPostBoilVolumeScalesIbusLinearly
+{
+  // TODO: implement me
+}
+
+- (void)testPreBoilVolumesImpactOnIbus
+{
+  // TODO: implement me
+}
+
+- (void)testIbu
+{
+  XCTAssertEqualWithAccuracy([self.recipe IBUs], 0.0, 0.0000001);
+
+  [self addHops:@"Citra" quantity:1.0 aaPercent:10.0 boilTime:60];
+  float ibuIncrement = [self.recipe IBUs];
+
+  XCTAssertGreaterThan([self.recipe IBUs], 10);
+
+  [self addHops:@"Citra" quantity:1.0 aaPercent:10.0 boilTime:60];
+  XCTAssertEqualWithAccuracy([self.recipe IBUs], (ibuIncrement * 2), 0.000001);
+
+  [self addHops:@"Citra" quantity:1.0 aaPercent:10.0 boilTime:60];
+  XCTAssertEqualWithAccuracy([self.recipe IBUs], (ibuIncrement * 3), 0.000001);
+}
+
 #pragma mark KVO Tests
 
 // When any of the key metrics of a recipe change. KVO should fire off for all
