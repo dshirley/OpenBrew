@@ -14,6 +14,7 @@
 #import "OBYeast.h"
 #import "OBKvoUtils.h"
 #import "OBSettings.h"
+#import "OBMalt.h"
 
 @interface OBRecipe()
 @property (nonatomic, strong) NSSet *observedHopVariables;
@@ -143,9 +144,18 @@
 
 - (float)finalGravity {
   float attenuationLevel = [[[self yeast] yeast] estimatedAttenuationAsDecimal];
-  float gravityUnits = [self gravityUnits];
-  float finalGravityUnits = gravityUnits * (1 - attenuationLevel);
   float wortVolumeAfterBoil = [self.postBoilVolumeInGallons floatValue];
+  float finalGravityUnits = 0;
+
+  for (OBMaltAddition *maltAddition in self.maltAdditions) {
+    if ([maltAddition.malt isSugar]) {
+      // Sugars attenuate to zero.
+      continue;
+    }
+
+    float gravityUnits = [maltAddition gravityUnitsWithEfficiency:[self.efficiency floatValue]];
+    finalGravityUnits += gravityUnits * (1 - attenuationLevel);
+  }
 
   return 1 + (finalGravityUnits / wortVolumeAfterBoil / 1000);
 }

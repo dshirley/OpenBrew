@@ -161,6 +161,50 @@
   XCTAssertEqualWithAccuracy([self.recipe originalGravity], 1 + (ogIncrement * 3), 0.000001);
 }
 
+- (void)testEfficiencyImpactOnOriginalGravity
+{
+  [self addMalt:@"Pilsner Malt" quantity:10.0];
+
+  self.recipe.efficiency = @(1.0);
+
+  float og = [self.recipe originalGravity];
+  self.recipe.efficiency = @(.75);
+
+  XCTAssertEqualWithAccuracy([self.recipe originalGravity], 1 + ((og - 1) * 0.75), 0.0000001);
+}
+
+- (void)testFinalGravity
+{
+  OBMalt *malt = [[OBMalt alloc] initWithCatalog:self.brewery.ingredientCatalog
+                                                 name:@"Grain"
+                                     extractPotential:@(1.040)
+                                             lovibond:@(1.0)
+                                                 type:OBMaltTypeGrain];
+
+  OBMaltAddition *maltAddition = [[OBMaltAddition alloc] initWithMalt:malt andRecipe:self.recipe];
+  maltAddition.quantityInPounds = @(1.0);
+
+  // Gravity should be 1.040
+  self.recipe.postBoilVolumeInGallons = @(1.0);
+
+  NSEntityDescription *yeastEntity = [NSEntityDescription entityForName:@"Yeast" inManagedObjectContext:self.ctx];
+  OBYeast *yeast = [[OBYeast alloc] initWithEntity:yeastEntity insertIntoManagedObjectContext:self.ctx];
+  yeast.name = @"Test Yeast";
+  yeast.maxAttenuation = @(100);
+
+  self.recipe.yeast = [[OBYeastAddition alloc] initWithYeast:yeast andRecipe:self.recipe];
+  self.recipe.efficiency = @(1.0);
+
+  XCTAssertEqualWithAccuracy([self.recipe finalGravity], 1.000, 0.0000001);
+
+  yeast.maxAttenuation = @(75);
+  XCTAssertEqualWithAccuracy([self.recipe finalGravity], 1.010, 0.0000001, @"Orig gravity: %f", [self.recipe originalGravity]);
+
+  // Sugars should attenuate to zero regardless of the yeast attenuation level
+  malt.type = @(OBMaltTypeSugar);
+  XCTAssertEqualWithAccuracy([self.recipe finalGravity], 1.000, 0.0000001);
+}
+
 - (void)testPreBoilVolumeDoesNotAffectGravity
 {
   self.recipe.preBoilVolumeInGallons = @(7.0);
@@ -190,12 +234,37 @@
 
 - (void)testPostBoilVolumeScalesIbusLinearly
 {
-  // TODO: implement me
+  self.recipe.preBoilVolumeInGallons = @(7.0);
+  self.recipe.postBoilVolumeInGallons = @(6.0);
+
+  [self addHops:@"Citra" quantity:1.0 aaPercent:13.0 boilTime:60];
+
+  float ibus = [self.recipe IBUs];
+
+  self.recipe.postBoilVolumeInGallons = @(3.0);
+  XCTAssertEqualWithAccuracy([self.recipe IBUs], ibus * 2, 0.0000001);
+
+  self.recipe.postBoilVolumeInGallons = @(12.0);
+  XCTAssertEqualWithAccuracy([self.recipe IBUs], ibus / 2, 0.0000001);
 }
 
 - (void)testPreBoilVolumesImpactOnIbus
 {
-  // TODO: implement me
+  self.recipe.preBoilVolumeInGallons = @(10.0);
+  self.recipe.postBoilVolumeInGallons = @(6.0);
+
+  OBHops *testHops = [[OBHops alloc] initWithCatalog:self.brewery.ingredientCatalog name:@"Test" alphaAcidPercent:@(5.8)];
+  OBHopAddition *testHopAddition = [[OBHopAddition alloc] initWithHopVariety:testHops andRecipe:nil];
+
+  float ibus10gal = [testHopAddition ibusForRecipeVolume:10.0 boilGravity:1.5 ibuFormula:OBIbuFormulaTinseth];
+  float ibus5gal = [testHopAddition ibusForRecipeVolume:5.0 boilGravity:1.5 ibuFormula:OBIbuFormulaTinseth];
+
+  [self.recipe addHopAdditionsObject:testHopAddition];
+
+  XCTAssertEqualWithAccuracy([self.recipe IBUs], ibus10gal, 0.0000001);
+
+  self.recipe.preBoilVolumeInGallons = @(5.0);
+  XCTAssertEqualWithAccuracy([self.recipe IBUs], ibus5gal, 0.0000001);
 }
 
 - (void)testIbu
