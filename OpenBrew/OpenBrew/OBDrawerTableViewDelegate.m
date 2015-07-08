@@ -11,6 +11,10 @@
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 
+// Setting up a table with this data source class requires using the following
+// naming conventions for reuse identifiers. While these could be passed in as
+// properties to the class, this keeps things consistent.  The downside is that
+// it is somewhat arbitrary and things break when the convention isn't followed.
 static NSString *const INGREDIENT_ADDITION_CELL = @"IngredientAddition";
 static NSString *const DRAWER_CELL = @"DrawerCell";
 
