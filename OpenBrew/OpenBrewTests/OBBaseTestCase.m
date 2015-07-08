@@ -8,6 +8,12 @@
 
 #import <XCTest/XCTest.h>
 #import "OBBaseTestCase.h"
+#import "OBMalt.h"
+#import "OBMaltAddition.h"
+#import "OBHops.h"
+#import "OBHopAddition.h"
+#import "OBYeast.h"
+#import "OBYeastAddition.h"
 
 @implementation OBBaseTestCase
 
@@ -29,9 +35,11 @@
   self.ctx.persistentStoreCoordinator = self.persistentStoreCoordinator;
 
   self.brewery = [OBBrewery breweryFromContext:self.ctx];
+  self.recipe = [[OBRecipe alloc] initWithContext:self.ctx];
 }
 
 - (void)tearDown {
+  self.recipe = nil;
   self.ctx = nil;
   [super tearDown];
 }
@@ -62,6 +70,50 @@
   } else {
     return nil;
   }
+}
+
+
+#pragma mark Recipe Building Helper Methods
+
+- (void)addMalt:(NSString *)maltName quantity:(float)quantity {
+  [self addMalt:maltName quantity:quantity color:-1];
+}
+
+- (void)addMalt:(NSString *)maltName quantity:(float)quantity color:(float)color
+{
+  OBMalt *malt = [self fetchEntity:@"Malt" withProperty:@"name" equalTo:maltName];
+  XCTAssertNotNil(malt);
+
+  OBMaltAddition *maltAddition = [[OBMaltAddition alloc] initWithMalt:malt andRecipe:self.recipe];
+  maltAddition.quantityInPounds = @(quantity);
+
+  if (color >= 0) {
+    maltAddition.lovibond = @(color);
+  }
+
+  [self.recipe addMaltAdditionsObject:maltAddition];
+}
+
+- (void)addHops:(NSString *)hopsName quantity:(float)quantity aaPercent:(float)aaPercent boilTime:(float)boilTime
+{
+  OBHops *hops = [self fetchEntity:@"Hops" withProperty:@"name" equalTo:hopsName];
+  XCTAssertNotNil(hops);
+
+  OBHopAddition *hopAddition = [[OBHopAddition alloc] initWithHopVariety:hops andRecipe:self.recipe];
+  hopAddition.alphaAcidPercent = @(aaPercent);
+  hopAddition.quantityInOunces = @(quantity);
+  hopAddition.boilTimeInMinutes = @(boilTime);
+
+  [self.recipe addHopAdditionsObject:hopAddition];
+}
+
+- (void)addYeast:(NSString *)identifier
+{
+  OBYeast *yeast = [self fetchEntity:@"Yeast" withProperty:@"identifier" equalTo:identifier];
+  XCTAssertNotNil(yeast);
+
+  OBYeastAddition *yeastAddition = [[OBYeastAddition alloc] initWithYeast:yeast andRecipe:self.recipe];
+  self.recipe.yeast = yeastAddition;
 }
 
 @end

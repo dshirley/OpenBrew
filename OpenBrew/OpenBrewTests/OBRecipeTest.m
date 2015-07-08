@@ -40,19 +40,13 @@
 - (void)setUp
 {
   [super setUp];
-  self.recipe = [[OBRecipe alloc] initWithContext:self.ctx];
+
   self.keysObserved = [NSMutableDictionary dictionary];
 
   // Most of the tests in this suite are based on recipes in Brewing Classic Styles.
   // The recipes in that book use the Rager formula.
   [OBSettings setIbuFormula:OBIbuFormulaRager];
 }
-
-- (void)tearDown
-{
-  self.recipe = nil;
-}
-
 
 #pragma mark Property Tests
 
@@ -734,49 +728,6 @@
   OBAssertIBU(22);
   OBAssertColorInSrm(19);
   OBAssertABV(5.3);
-}
-
-#pragma mark Recipe Building Helper Methods
-
-- (void)addMalt:(NSString *)maltName quantity:(float)quantity {
-  [self addMalt:maltName quantity:quantity color:-1];
-}
-
-- (void)addMalt:(NSString *)maltName quantity:(float)quantity color:(float)color
-{
-  OBMalt *malt = [self fetchEntity:@"Malt" withProperty:@"name" equalTo:maltName];
-  XCTAssertNotNil(malt);
-
-  OBMaltAddition *maltAddition = [[OBMaltAddition alloc] initWithMalt:malt andRecipe:self.recipe];
-  maltAddition.quantityInPounds = @(quantity);
-
-  if (color >= 0) {
-    maltAddition.lovibond = @(color);
-  }
-
-  [self.recipe addMaltAdditionsObject:maltAddition];
-}
-
-- (void)addHops:(NSString *)hopsName quantity:(float)quantity aaPercent:(float)aaPercent boilTime:(float)boilTime
-{
-  OBHops *hops = [self fetchEntity:@"Hops" withProperty:@"name" equalTo:hopsName];
-  XCTAssertNotNil(hops);
-
-  OBHopAddition *hopAddition = [[OBHopAddition alloc] initWithHopVariety:hops andRecipe:self.recipe];
-  hopAddition.alphaAcidPercent = @(aaPercent);
-  hopAddition.quantityInOunces = @(quantity);
-  hopAddition.boilTimeInMinutes = @(boilTime);
-
-  [self.recipe addHopAdditionsObject:hopAddition];
-}
-
-- (void)addYeast:(NSString *)identifier
-{
-  OBYeast *yeast = [self fetchEntity:@"Yeast" withProperty:@"identifier" equalTo:identifier];
-  XCTAssertNotNil(yeast);
-
-  OBYeastAddition *yeastAddition = [[OBYeastAddition alloc] initWithYeast:yeast andRecipe:self.recipe];
-  self.recipe.yeast = yeastAddition;
 }
 
 @end
