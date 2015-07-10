@@ -30,8 +30,6 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
   [self initializeCrittercism];
   [self initializeGoogleAnalytics];
 
-  [self setupApperance];
-
   OBBrewery *brewery = [OBBrewery breweryFromContext:self.managedObjectContext];
   if (brewery) {
     [self.managedObjectContext save:nil];
@@ -45,26 +43,6 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
   
   return YES;
 }
-
-- (void)setupApperance
-{
-
-  UIColor *emeraldGreen = [UIColor colorWithRed:(8.0/255.0)
-                                          green:(179.0 / 255.0)
-                                           blue:(64.0 / 255.0)
-                                          alpha:1.0];
-
-  [[UINavigationBar appearance] setBarTintColor:emeraldGreen];
-  [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-
-  [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTintColor:[UIColor whiteColor]];
-  
-  [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:emeraldGreen];
-//  [[UIButton appearance] setTintColor:emeraldGreen];
-//  [[UISegmentedControl appearance] setTintColor:emeraldGreen];
-
-}
-
 
 - (void)initializeCrittercism
 {
