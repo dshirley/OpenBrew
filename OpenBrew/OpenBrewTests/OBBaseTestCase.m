@@ -75,11 +75,11 @@
 
 #pragma mark Recipe Building Helper Methods
 
-- (void)addMalt:(NSString *)maltName quantity:(float)quantity {
-  [self addMalt:maltName quantity:quantity color:-1];
+- (OBMaltAddition *)addMalt:(NSString *)maltName quantity:(float)quantity {
+  return [self addMalt:maltName quantity:quantity color:-1];
 }
 
-- (void)addMalt:(NSString *)maltName quantity:(float)quantity color:(float)color
+- (OBMaltAddition *)addMalt:(NSString *)maltName quantity:(float)quantity color:(float)color
 {
   OBMalt *malt = [self fetchEntity:@"Malt" withProperty:@"name" equalTo:maltName];
   XCTAssertNotNil(malt);
@@ -92,9 +92,11 @@
   }
 
   [self.recipe addMaltAdditionsObject:maltAddition];
+
+  return maltAddition;
 }
 
-- (void)addHops:(NSString *)hopsName quantity:(float)quantity aaPercent:(float)aaPercent boilTime:(float)boilTime
+- (OBHopAddition *)addHops:(NSString *)hopsName quantity:(float)quantity aaPercent:(float)aaPercent boilTime:(float)boilTime
 {
   OBHops *hops = [self fetchEntity:@"Hops" withProperty:@"name" equalTo:hopsName];
   XCTAssertNotNil(hops);
@@ -105,15 +107,19 @@
   hopAddition.boilTimeInMinutes = @(boilTime);
 
   [self.recipe addHopAdditionsObject:hopAddition];
+
+  return hopAddition;
 }
 
-- (void)addYeast:(NSString *)identifier
+- (OBYeastAddition *)addYeast:(NSString *)identifier
 {
   OBYeast *yeast = [self fetchEntity:@"Yeast" withProperty:@"identifier" equalTo:identifier];
   XCTAssertNotNil(yeast);
 
   OBYeastAddition *yeastAddition = [[OBYeastAddition alloc] initWithYeast:yeast andRecipe:self.recipe];
   self.recipe.yeast = yeastAddition;
+
+  return yeastAddition;
 }
 
 @end

@@ -28,7 +28,6 @@
 #define OBAssertABV(abv) XCTAssertEqualWithAccuracy([self.recipe alcoholByVolume], abv, 0.5);
 
 @interface OBRecipeTest : OBBaseTestCase
-@property (nonatomic, strong) OBRecipe *recipe;
 
 // For the KVO test
 @property (nonatomic, strong) NSMutableDictionary *keysObserved;

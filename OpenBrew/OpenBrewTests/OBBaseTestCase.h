@@ -25,12 +25,12 @@
      withProperty:(NSString *)property
           equalTo:(NSString *)value;
 
-- (void)addMalt:(NSString *)maltName quantity:(float)quantity;
+- (OBMaltAddition *)addMalt:(NSString *)maltName quantity:(float)quantity;
 
-- (void)addMalt:(NSString *)maltName quantity:(float)quantity color:(float)color;
+- (OBMaltAddition *)addMalt:(NSString *)maltName quantity:(float)quantity color:(float)color;
 
-- (void)addHops:(NSString *)hopsName quantity:(float)quantity aaPercent:(float)aaPercent boilTime:(float)boilTime;
+- (OBHopAddition *)addHops:(NSString *)hopsName quantity:(float)quantity aaPercent:(float)aaPercent boilTime:(float)boilTime;
 
-- (void)addYeast:(NSString *)identifier;
+- (OBYeastAddition *)addYeast:(NSString *)identifier;
 
 @end
