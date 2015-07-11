@@ -199,7 +199,9 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-  [self reload];
+  if ([keyPath isEqualToString:KVO_KEY(IBUs)]) {
+    [self refreshGauge];
+  }
 
   if ([self tableViewIsEmpty]) {
     [self switchToEmptyTableViewMode];
@@ -219,7 +221,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
 - (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue
 {
-
+  [self reload];
 }
 
 #pragma mark - HopAdditionDisplaySettings

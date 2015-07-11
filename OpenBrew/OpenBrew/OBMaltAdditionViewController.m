@@ -202,7 +202,9 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-  [self reload];
+  if ([keyPath isEqualToString:KVO_KEY(originalGravity)]) {
+    [self refreshGauge];
+  }
 
   if ([self tableViewIsEmpty]) {
     [self switchToEmptyTableViewMode];
@@ -224,7 +226,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 // so we don't need to do anything here.
 - (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue
 {
-
+  [self reload];
 }
 
 #pragma mark - MaltAdditionDisplaySettings
