@@ -1,0 +1,3 @@
+language: objective-c
+xcode_workspace: OpenBrew.xcworkspace
+xcode_scheme: OpenBrew
