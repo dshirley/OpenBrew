@@ -103,7 +103,7 @@ NSString * const OBBatchSizeCellStrings[] = {
                                                   andPropertySetter:@selector(setPostBoilVolumeInGallons:)];
 
   } else {
-    [NSException raise:@"Invalid OBBatchSizeCell" format:@"Cell: %ld", cellType];
+    [NSException raise:@"Invalid OBBatchSizeCell" format:@"Cell: %@", @(cellType)];
   }
 
   [drawerCell.multiPickerView addPickerDelegate:pickerDelegate withTitle:@"unused"];
