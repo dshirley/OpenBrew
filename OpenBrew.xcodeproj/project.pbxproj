@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5099D5C8EA46E0FB4FB987B8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 412DB53DD8041549B2B7A537 /* libPods.a */; };
+		809F503BA3E57D057303B596 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 412DB53DD8041549B2B7A537 /* libPods.a */; };
 		9F0815371992655A00E5E575 /* OBDrawerTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815361992655A00E5E575 /* OBDrawerTableViewDelegate.m */; };
 		9F08153B1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F08153A1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m */; };
 		9F0815411996F69E00E5E575 /* OBMaltAdditionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815401996F69E00E5E575 /* OBMaltAdditionTableViewCell.m */; };
@@ -252,6 +253,7 @@
 				9F98D37A1880F8EE00469323 /* CoreData.framework in Frameworks */,
 				9F98D3791880F8EE00469323 /* UIKit.framework in Frameworks */,
 				9F98D3781880F8EE00469323 /* Foundation.framework in Frameworks */,
+				809F503BA3E57D057303B596 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,9 +550,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F98D38A1880F8EE00469323 /* Build configuration list for PBXNativeTarget "OpenBrewTests" */;
 			buildPhases = (
+				67D0BF55B7FF828A400B1D00 /* Check Pods Manifest.lock */,
 				9F98D3711880F8EE00469323 /* Sources */,
 				9F98D3721880F8EE00469323 /* Frameworks */,
 				9F98D3731880F8EE00469323 /* Resources */,
+				D6D04A696B109B5FC187189E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -639,6 +643,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		67D0BF55B7FF828A400B1D00 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		C0AD2084356259E424B867BF /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -652,6 +671,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D6D04A696B109B5FC187189E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -871,6 +905,7 @@
 		};
 		9F98D38B1880F8EE00469323 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6FAFE14E22FD5BE92E5D660 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OpenBrew.app/OpenBrew";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -894,6 +929,7 @@
 		};
 		9F98D38C1880F8EE00469323 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57AFB48A88221FA111EB993E /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OpenBrew.app/OpenBrew";
 				FRAMEWORK_SEARCH_PATHS = (
