@@ -2,5 +2,6 @@
 
 # OpenBrew
 
-OpenBrew is an home brewing app for iOS.  The mission of OpenBrew is to provide a clean, minimal interface for designing beer recipes on the go.  
+OpenBrew is a home brewing app for iOS.  OpenBrew is to provides a clean,
+minimal interface for designing beer recipes on the go.
 
