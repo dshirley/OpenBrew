@@ -43,12 +43,6 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   OBNumberOfStatistics
 };
 
-@interface OBRecipeOverviewController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, weak) IBOutlet UITextField *recipeNameTextField;
-@end
-
 @implementation OBRecipeOverviewController
 
 - (void)viewDidLoad

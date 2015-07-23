@@ -14,6 +14,11 @@
 
 @property (nonatomic, strong) OBRecipe *recipe;
 
+// Subviews are made visible for the purpose of unit testing
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, weak) IBOutlet UITextField *recipeNameTextField;
+
 - (void)reloadData;
 
 #pragma mark UITableViewDataSource methods
