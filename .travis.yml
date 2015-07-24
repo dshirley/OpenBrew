@@ -1,3 +1,4 @@
 language: objective-c
 xcode_workspace: OpenBrew.xcworkspace
 xcode_scheme: OpenBrew
+script: xctool -workspace OpenBrew.xcworkspace -scheme OpenBrew CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO build test
