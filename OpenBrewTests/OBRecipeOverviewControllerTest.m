@@ -131,19 +131,23 @@
   [self loadView];
 
   id vcMock = [OCMockObject partialMockForObject:self.vc];
-  id viewMock = [OCMockObject partialMockForObject:self.vc.view];
+
+  // TODO: uncomment this when this bug is fixed in OCMock (I filed it)
+  // Alternatively delete it if the bug never gets fixed
+  // https://github.com/erikdoe/ocmock/issues/214
+//  id viewMock = [OCMockObject partialMockForObject:self.vc.view];
 
   @try {
     [[vcMock expect] performSegueWithIdentifier:segueId sender:self.vc];
-    [[viewMock expect] endEditing:OCMOCK_VALUE(YES)];
+//    [[viewMock expect] endEditing:OCMOCK_VALUE(YES)];
 
     [self.vc tableView:self.vc.tableView didSelectRowAtIndexPath:indexPath];
 
     [vcMock verify];
-    [viewMock verify];
+//    [viewMock verify];
   } @finally {
     [vcMock stopMocking];
-    [viewMock stopMocking];
+//    [viewMock stopMocking];
   }
 }
 
