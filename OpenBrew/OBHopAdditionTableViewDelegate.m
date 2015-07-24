@@ -48,14 +48,7 @@
  */
 - (NSArray *)ingredientData
 {
-  NSSortDescriptor *sortByDisplayOrder;
-
-  sortByDisplayOrder = [[NSSortDescriptor alloc] initWithKey:@"displayOrder"
-                                                   ascending:YES];
-
-  NSArray *sortSpecification = @[ sortByDisplayOrder ];
-
-  return @[ [[self.recipe hopAdditions] sortedArrayUsingDescriptors:sortSpecification] ];
+  return @[ [self.recipe hopAdditionsSorted] ];
 }
 
 - (void)setHopAdditionMetricToDisplay:(OBHopAdditionMetric)newSelection

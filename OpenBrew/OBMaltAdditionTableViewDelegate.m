@@ -53,14 +53,7 @@
  */
 - (NSArray *)ingredientData
 {
-  NSSortDescriptor *sortByDisplayOrder;
-
-  sortByDisplayOrder = [[NSSortDescriptor alloc] initWithKey:@"displayOrder"
-                                                   ascending:YES];
-
-  NSArray *sortSpecification = @[ sortByDisplayOrder ];
-
-  return @[ [[self.recipe maltAdditions] sortedArrayUsingDescriptors:sortSpecification] ];
+  return @[ [self.recipe maltAdditionsSorted] ];
 }
 
 - (void)populateIngredientCell:(UITableViewCell *)cell

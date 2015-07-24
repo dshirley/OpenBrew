@@ -133,6 +133,36 @@
   XCTAssertTrue([self.recipe.maltAdditions containsObject:testMaltAddition3]);
 }
 
+- (void)testMaltAdditionsSorted
+{
+  XCTAssertEqualObjects(@[], [self.recipe maltAdditionsSorted]);
+
+  OBMaltAddition *malt1 = [self addMalt:@"Munich 10" quantity:5];
+  XCTAssertEqualObjects(@[ malt1 ], [self.recipe maltAdditionsSorted]);
+
+  OBMaltAddition *malt2 = [self addMalt:@"Munich 20" quantity:6];
+  XCTAssertEqualObjects((@[ malt1, malt2 ]), [self.recipe maltAdditionsSorted]);
+
+  malt2.displayOrder = @(0);
+  malt1.displayOrder = @(1);
+  XCTAssertEqualObjects((@[ malt2, malt1 ]), [self.recipe maltAdditionsSorted]);
+}
+
+- (void)testHopAdditionsSorted
+{
+  XCTAssertEqualObjects(@[], [self.recipe maltAdditionsSorted]);
+
+  OBHopAddition *hop1 = [self addHops:@"Citra" quantity:1.0 aaPercent:13.5 boilTime:60];
+  XCTAssertEqualObjects(@[ hop1 ], [self.recipe hopAdditionsSorted]);
+
+  OBHopAddition *hop2 = [self addHops:@"Citra" quantity:1.0 aaPercent:13.5 boilTime:60];
+  XCTAssertEqualObjects((@[ hop1, hop2 ]), [self.recipe hopAdditionsSorted]);
+
+  hop2.displayOrder = @(0);
+  hop1.displayOrder = @(1);
+  XCTAssertEqualObjects((@[ hop2, hop1 ]), [self.recipe hopAdditionsSorted]);
+}
+
 #pragma mark Calculation Tests
 
 // The thing to test here is that gravities are the sum of gravities of all malts

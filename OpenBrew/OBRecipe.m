@@ -214,6 +214,28 @@
   return ibu / nonDecimalGravity;
 }
 
+#pragma mark - Sorted Accessors
+
+- (NSArray *)maltAdditionsSorted
+{
+  NSSortDescriptor *sortByDisplayOrder = [[NSSortDescriptor alloc] initWithKey:@"displayOrder"
+                                                                     ascending:YES];
+
+  NSArray *sortSpecification = @[ sortByDisplayOrder ];
+
+  return [self.maltAdditions sortedArrayUsingDescriptors:sortSpecification];
+}
+
+- (NSArray *)hopAdditionsSorted
+{
+  NSSortDescriptor *sortByDisplayOrder = [[NSSortDescriptor alloc] initWithKey:@"displayOrder"
+                                                                     ascending:YES];
+
+  NSArray *sortSpecification = @[ sortByDisplayOrder ];
+
+  return [self.hopAdditions sortedArrayUsingDescriptors:sortSpecification];
+}
+
 #pragma mark - KVO Related Methods
 
 - (void)initializeVariableLists
@@ -327,9 +349,8 @@
               withSetMutation:NSKeyValueUnionSetMutation
                  usingObjects:changedObjects];
 
-  value.displayOrder = @(self.hopAdditions.count);
-
   if (![[self primitiveHopAdditions] containsObject:value]) {
+    value.displayOrder = @(self.hopAdditions.count);
     [self startObservingKeys:self.observedHopVariables ofObject:value];
   }
 
@@ -369,14 +390,12 @@
 {
   NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
 
-
   [self willChangeValueForKey:KVO_KEY(maltAdditions)
               withSetMutation:NSKeyValueUnionSetMutation
                  usingObjects:changedObjects];
 
-  value.displayOrder = @(self.maltAdditions.count);
-
   if (![[self primitiveMaltAdditions] containsObject:value]) {
+    value.displayOrder = @(self.maltAdditions.count);
     [self startObservingKeys:self.observedMaltVariables ofObject:value];
   }
 
