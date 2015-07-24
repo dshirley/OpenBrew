@@ -1,0 +1,16 @@
+PODS:
+  - CrittercismSDK (5.2.0)
+  - GoogleAnalytics (3.12.0)
+  - OCMock (3.1.2)
+
+DEPENDENCIES:
+  - CrittercismSDK (= 5.2.0)
+  - GoogleAnalytics (= 3.12)
+  - OCMock (= 3.1.2)
+
+SPEC CHECKSUMS:
+  CrittercismSDK: b22f9541803c2babb1c8996862b097dc47ec7105
+  GoogleAnalytics: ef2e0b800ef3c1e62688cdfc959e0d3132bc246c
+  OCMock: a10ea9f0a6e921651f96f78b6faee95ebc813b92
+
+COCOAPODS: 0.34.4
