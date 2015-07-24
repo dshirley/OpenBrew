@@ -14,11 +14,11 @@
 		<string>github.com:dshirley/OpenBrew.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>OpenBrew/OpenBrew.xcworkspace</string>
+	<string>OpenBrew.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>AE9331BB6359E8772F15470FBB05EB603CB7E32B</key>
-		<string>../..</string>
+		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:dshirley/OpenBrew.git</string>
