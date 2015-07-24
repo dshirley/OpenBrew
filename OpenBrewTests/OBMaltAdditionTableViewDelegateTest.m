@@ -344,16 +344,7 @@ typedef BOOL(^CanChangeRowAtIndexPath)(NSIndexPath *indexPath);
   XCTAssertEqualObjects(cell.color.text, @"120 Lovibond");
 }
 
-// Methods that need testing:
-
-//
 //- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
 //      toIndexPath:(NSIndexPath *)destinationIndexPath;
-//
-//- (void)populateIngredientCell:(UITableViewCell *)cell
-//            withIngredientData:(id)ingredientData;
-//
-//- (void)populateDrawerCell:(UITableViewCell *)cell
-//        withIngredientData:(id)ingredientData;
 
 @end

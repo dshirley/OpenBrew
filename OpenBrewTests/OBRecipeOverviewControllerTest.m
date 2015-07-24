@@ -10,6 +10,7 @@
 #import "OBBaseTestCase.h"
 #import "OBRecipeOverviewController.h"
 #import "OBTextStatisticsCollectionViewCell.h"
+#import "OCMock.h"
 
 @interface OBRecipeOverviewControllerTest : OBBaseTestCase
 @property (nonatomic) OBRecipeOverviewController *vc;
@@ -103,6 +104,47 @@
   statsCell = (id)[self.vc collectionView:self.vc.collectionView cellForItemAtIndexPath:self.r5s0];
   XCTAssertEqualObjects(@"inf", statsCell.statisticLabel.text);
   XCTAssertEqualObjects(@"BU:GU", statsCell.descriptionLabel.text);
+}
+
+- (void)testTableViewHeightForRowAtIndexPath
+{
+  [self loadView];
+
+  for (NSIndexPath *path in @[ self.r0s0, self.r1s0, self.r2s0, self.r3s0 ]) {
+    XCTAssertEqual(self.vc.tableView.frame.size.height / 4.0,
+                   [self.vc tableView:self.vc.tableView heightForRowAtIndexPath:path]);
+  }
+}
+
+- (void)testTableViewDidSelectRowAtIndexPath
+{
+  [self doTestSelectRowAtIndexPath:self.r0s0 expectedSegueId:@"selectedBatchSize"];
+  [self doTestSelectRowAtIndexPath:self.r1s0 expectedSegueId:@"selectedMalts"];
+  [self doTestSelectRowAtIndexPath:self.r2s0 expectedSegueId:@"selectedHops"];
+  [self doTestSelectRowAtIndexPath:self.r3s0 expectedSegueId:@"selectedYeast"];
+
+  XCTAssertThrows([self doTestSelectRowAtIndexPath:self.r4s0 expectedSegueId:@"n/a"]);
+}
+
+- (void)doTestSelectRowAtIndexPath:(NSIndexPath *)indexPath expectedSegueId:(NSString *)segueId
+{
+  [self loadView];
+
+  id vcMock = [OCMockObject partialMockForObject:self.vc];
+  id viewMock = [OCMockObject partialMockForObject:self.vc.view];
+
+  @try {
+    [[vcMock expect] performSegueWithIdentifier:segueId sender:self.vc];
+    [[viewMock expect] endEditing:OCMOCK_VALUE(YES)];
+
+    [self.vc tableView:self.vc.tableView didSelectRowAtIndexPath:indexPath];
+
+    [vcMock verify];
+    [viewMock verify];
+  } @finally {
+    [vcMock stopMocking];
+    [viewMock stopMocking];
+  }
 }
 
 @end
