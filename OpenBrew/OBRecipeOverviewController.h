@@ -19,6 +19,13 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UITextField *recipeNameTextField;
 
+// We log tabs to google analytics when the user taps on the collection view cell
+// The idea is that it will give us feedback on whether or not the user things
+// the clicking on the statistics should do something.  This variable prevents
+// us from logging a bunch of google analytics events (we only log one tap
+// once the view controller is loaded)
+@property (nonatomic, assign) BOOL hasTriedTapping;
+
 - (void)reloadData;
 
 #pragma mark UITableViewDataSource methods
@@ -40,5 +47,11 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath;
+
+#pragma mark UICollectionViewDelegate methods
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath;
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

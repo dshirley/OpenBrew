@@ -48,6 +48,8 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+
+  self.hasTriedTapping = NO;
   [self reloadData];
   self.recipeNameTextField.text = self.recipe.name;
   [self addSeparatorToTopOfTableView];
@@ -316,11 +318,9 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 // add a tool tip or perhaps a way to customize the statistics.
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-  static BOOL hasTriedTapping = NO;
-
   [self dismissKeyboard];
 
-  if (hasTriedTapping) {
+  if (!self.hasTriedTapping) {
     id cell = [collectionView cellForItemAtIndexPath:indexPath];
     NSString *gaCellDescription = @"unknown";
 
@@ -335,7 +335,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
                                                            label:gaCellDescription
                                                            value:nil] build]];
 
-    hasTriedTapping = YES;
+    self.hasTriedTapping = YES;
   }
 }
 
