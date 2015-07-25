@@ -21,10 +21,6 @@
 @dynamic recipes;
 @dynamic ingredientCatalog;
 
-+ (OBBrewery *)instance {
-  return nil;
-}
-
 + (OBBrewery *)breweryFromContext:(NSManagedObjectContext *)ctx
 {
   NSEntityDescription *entityDescription = [NSEntityDescription
