@@ -87,29 +87,6 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
   return ([self drawerIsOpen] && [self.drawerIndexPath isEqual:indexPath]);
 }
 
-- (UITableViewCell *)cellBeforeDrawerForTableView:(UITableView *)tableView;
-{
-  UITableViewCell *cell = nil;
-
-  if ([self drawerIsOpen]) {
-    NSIndexPath *index = [self indexPathOfCellBeforeDrawer];
-    cell = [tableView cellForRowAtIndexPath:index];
-  }
-
-  return cell;
-}
-
-- (UITableViewCell *)drawerCellForTableView:(UITableView *)tableView
-{
-  UITableViewCell *cell = nil;
-
-  if ([self drawerIsOpen]) {
-    cell = [tableView cellForRowAtIndexPath:[self drawerIndexPath]];
-  }
-
-  return cell;
-}
-
 - (void)closeDrawerForTableView:(UITableView *)tableView
 {
   if ([self drawerIsOpen]) {

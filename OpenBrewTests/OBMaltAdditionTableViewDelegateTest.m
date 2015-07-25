@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSIndexPath *r0s0;
 @property (nonatomic, strong) NSIndexPath *r1s0;
 @property (nonatomic, strong) NSIndexPath *r2s0;
+@property (nonatomic, strong) NSIndexPath *r3s0;
 @end
 
 @implementation OBMaltAdditionTableViewDelegateTest
@@ -29,6 +30,7 @@
   self.r0s0 = [NSIndexPath indexPathForRow:0 inSection:0];
   self.r1s0 = [NSIndexPath indexPathForRow:1 inSection:0];
   self.r2s0 = [NSIndexPath indexPathForRow:2 inSection:0];
+  self.r3s0 = [NSIndexPath indexPathForRow:3 inSection:0];
 
   self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 240, 320)];
   self.delegate = [[OBMaltAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
@@ -225,6 +227,77 @@ typedef BOOL(^CanChangeRowAtIndexPath)(NSIndexPath *indexPath);
   XCTAssertNil(malt3.recipe);
   XCTAssertNil(malt2.recipe);
   XCTAssertNil(malt1.recipe);
+}
+
+- (void)testCommitEditingStyle_DeleteRowAboveRowWithDrawer
+{
+  OBMaltAddition *malt1 = [self addMalt:@"Crystal 30" quantity:0.5];
+  OBMaltAddition *malt2 = [self addMalt:@"Crystal 60" quantity:0.5];
+  OBMaltAddition *malt3 = [self addMalt:@"Crystal 120" quantity:0.5];
+
+  XCTAssertEqual(self.recipe.maltAdditions.count, 3);
+  XCTAssertEqual([self.tableView numberOfRowsInSection:0], 3);
+
+  [self.delegate tableView:self.tableView didSelectRowAtIndexPath:self.r1s0];
+
+  [self.delegate tableView:self.tableView
+        commitEditingStyle:UITableViewCellEditingStyleDelete
+         forRowAtIndexPath:self.r0s0];
+
+
+  XCTAssertEqual(2, self.recipe.maltAdditions.count);
+  XCTAssertNil(malt1.recipe);
+  XCTAssertEqualObjects(malt2.displayOrder, @(0));
+  XCTAssertEqualObjects(malt3.displayOrder, @(1));
+
+  XCTAssertEqualObjects([self.delegate drawerIndexPath], self.r1s0);
+}
+
+- (void)testCommitEditingStyle_DeleteRowWithDrawerOpen
+{
+  OBMaltAddition *malt1 = [self addMalt:@"Crystal 30" quantity:0.5];
+  OBMaltAddition *malt2 = [self addMalt:@"Crystal 60" quantity:0.5];
+  OBMaltAddition *malt3 = [self addMalt:@"Crystal 120" quantity:0.5];
+
+  XCTAssertEqual(self.recipe.maltAdditions.count, 3);
+  XCTAssertEqual([self.tableView numberOfRowsInSection:0], 3);
+
+  [self.delegate tableView:self.tableView didSelectRowAtIndexPath:self.r1s0];
+
+  [self.delegate tableView:self.tableView
+        commitEditingStyle:UITableViewCellEditingStyleDelete
+         forRowAtIndexPath:self.r1s0];
+
+  XCTAssertEqual(2, self.recipe.maltAdditions.count);
+  XCTAssertEqualObjects(malt1.displayOrder, @(0));
+  XCTAssertNil(malt2.recipe);
+  XCTAssertEqualObjects(malt3.displayOrder, @(1));
+
+  XCTAssertNil([self.delegate drawerIndexPath]);
+}
+
+- (void)testCommitEditingStyle_DeleteRowBelowDrawer
+{
+  OBMaltAddition *malt1 = [self addMalt:@"Crystal 30" quantity:0.5];
+  OBMaltAddition *malt2 = [self addMalt:@"Crystal 60" quantity:0.5];
+  OBMaltAddition *malt3 = [self addMalt:@"Crystal 120" quantity:0.5];
+
+  XCTAssertEqual(self.recipe.maltAdditions.count, 3);
+  XCTAssertEqual([self.tableView numberOfRowsInSection:0], 3);
+
+  [self.delegate tableView:self.tableView didSelectRowAtIndexPath:self.r1s0];
+
+  [self.delegate tableView:self.tableView
+        commitEditingStyle:UITableViewCellEditingStyleDelete
+         forRowAtIndexPath:self.r3s0];
+
+  XCTAssertEqual(2, self.recipe.maltAdditions.count);
+
+  XCTAssertEqualObjects(malt1.displayOrder, @(0));
+  XCTAssertEqualObjects(malt2.displayOrder, @(1));
+  XCTAssertNil(malt3.recipe);
+
+  XCTAssertEqualObjects([self.delegate drawerIndexPath], self.r2s0);
 }
 
 - (void)testDidSelectRowAtIndexPath_SingleCell
