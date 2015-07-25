@@ -417,7 +417,58 @@ typedef BOOL(^CanChangeRowAtIndexPath)(NSIndexPath *indexPath);
   XCTAssertEqualObjects(cell.color.text, @"120 Lovibond");
 }
 
-//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
-//      toIndexPath:(NSIndexPath *)destinationIndexPath;
+- (void)testMoveRowToSameSpot
+{
+  OBMaltAddition *malt1 = [self addMalt:@"Crystal 30" quantity:0.5];
+  OBMaltAddition *malt2 = [self addMalt:@"Crystal 60" quantity:0.5];
+  OBMaltAddition *malt3 = [self addMalt:@"Crystal 120" quantity:0.5];
+
+  [self.delegate tableView:self.tableView moveRowAtIndexPath:self.r0s0 toIndexPath:self.r0s0];
+
+  XCTAssertEqualObjects(malt1.displayOrder, @(0));
+  XCTAssertEqualObjects(malt2.displayOrder, @(1));
+  XCTAssertEqualObjects(malt3.displayOrder, @(2));
+}
+
+- (void)testMoveRowToSameSpotWithDrawerOpen
+{
+  [self addMalt:@"Crystal 30" quantity:0.5];
+  [self addMalt:@"Crystal 60" quantity:0.5];
+  [self addMalt:@"Crystal 120" quantity:0.5];
+
+  [self.delegate tableView:self.tableView didSelectRowAtIndexPath:self.r2s0];
+
+  XCTAssertThrows([self.delegate tableView:self.tableView moveRowAtIndexPath:self.r0s0 toIndexPath:self.r1s0]);
+}
+
+- (void)testMoveRow
+{
+  OBMaltAddition *malt1 = [self addMalt:@"Crystal 30" quantity:0.5];
+  OBMaltAddition *malt2 = [self addMalt:@"Crystal 60" quantity:0.5];
+  OBMaltAddition *malt3 = [self addMalt:@"Crystal 120" quantity:0.5];
+
+  [self.delegate tableView:self.tableView moveRowAtIndexPath:self.r0s0 toIndexPath:self.r1s0];
+
+  XCTAssertEqualObjects(malt2.displayOrder, @(0));
+  XCTAssertEqualObjects(malt1.displayOrder, @(1));
+  XCTAssertEqualObjects(malt3.displayOrder, @(2));
+
+  [self.delegate tableView:self.tableView moveRowAtIndexPath:self.r2s0 toIndexPath:self.r0s0];
+
+  XCTAssertEqualObjects(malt3.displayOrder, @(0));
+  XCTAssertEqualObjects(malt2.displayOrder, @(1));
+  XCTAssertEqualObjects(malt1.displayOrder, @(2));
+}
+
+- (void)testMoveRowWithDrawerOpen
+{
+  [self addMalt:@"Crystal 30" quantity:0.5];
+  [self addMalt:@"Crystal 60" quantity:0.5];
+  [self addMalt:@"Crystal 120" quantity:0.5];
+
+  [self.delegate tableView:self.tableView didSelectRowAtIndexPath:self.r2s0];
+
+  XCTAssertThrows([self.delegate tableView:self.tableView moveRowAtIndexPath:self.r0s0 toIndexPath:self.r1s0]);
+}
 
 @end

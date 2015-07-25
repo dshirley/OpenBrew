@@ -268,6 +268,8 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
+  NSAssert(![self drawerIsOpen], @"Drawer must be closed before moving rows");
+  
   NSMutableArray *data = [NSMutableArray arrayWithArray:[self ingredientData][sourceIndexPath.section]];
   id<OBIngredientAddition> toMove = data[sourceIndexPath.row];
   [data removeObjectAtIndex:sourceIndexPath.row];
