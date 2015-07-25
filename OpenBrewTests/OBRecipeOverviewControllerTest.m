@@ -53,18 +53,68 @@
   [self.vc performSelectorOnMainThread:@selector(loadView) withObject:nil waitUntilDone:YES];
 }
 
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//  [super viewWillAppear:animated];
-//
-//  self.screenName = OBGAScreenName;
-//
-//  if (!self.isMovingToParentViewController) {
-//    // A sub-view controller is being popped
-//    [self reloadData];
-//    [self.recipe.managedObjectContext save:nil];
-//  }
-//}
+- (void)testViewWillAppearPoppingNavigationStack
+{
+  id mockVc = [OCMockObject partialMockForObject:self.vc];
+  id mockCtx = [OCMockObject partialMockForObject:self.recipe.managedObjectContext];
+
+  [[[mockVc stub] andReturnValue:OCMOCK_VALUE(NO)] isMovingToParentViewController];
+
+  [[mockVc expect] reloadData];
+
+  [[mockCtx expect] save:(id __autoreleasing *)[OCMArg anyPointer]];
+
+  [self.vc viewWillAppear:YES];
+
+  [mockVc verify];
+  [mockCtx verify];
+
+  XCTAssertEqualObjects(self.vc.screenName, @"Recipe Overview Screen");
+}
+
+- (void)testViewWillAppearPushingNavigationStack
+{
+  id mockVc = [OCMockObject partialMockForObject:self.vc];
+  id mockCtx = [OCMockObject partialMockForObject:self.recipe.managedObjectContext];
+
+  [[[mockVc stub] andReturnValue:OCMOCK_VALUE(YES)] isMovingToParentViewController];
+
+  [[mockVc expect] reloadData];
+
+  [[mockCtx expect] save:(id __autoreleasing *)[OCMArg anyPointer]];
+
+  [self.vc viewWillAppear:YES];
+
+  XCTAssertThrows([mockVc verify]);
+  XCTAssertThrows([mockCtx verify]);
+
+  XCTAssertEqualObjects(self.vc.screenName, @"Recipe Overview Screen");
+}
+
+- (void)testTextFieldDidEndEditing
+{
+  [self loadView];
+
+  self.vc.recipeNameTextField.text = @"Broskie Brew";
+
+  id mockCtx = [OCMockObject partialMockForObject:self.recipe.managedObjectContext];
+  [[mockCtx expect] save:(id __autoreleasing *)[OCMArg anyPointer]];
+
+  [self.vc textFieldDidEndEditing:self.vc.recipeNameTextField];
+
+  XCTAssertEqualObjects(@"Broskie Brew", self.recipe.name);
+  [mockCtx verify];
+}
+
+- (void)testTextFieldShouldReturn
+{
+  UITextField *textField = [[UITextField alloc] initWithFrame:CGRectZero];
+  id mockTextField = [OCMockObject partialMockForObject:textField];
+  [[mockTextField expect] resignFirstResponder];
+
+  [self.vc textFieldShouldReturn:textField];
+  [mockTextField verify];
+}
 
 - (void)testViewDidLoad
 {
@@ -95,6 +145,15 @@
 
   [self.vc prepareForSegue:segue sender:nil];
   [mockDestVc verify];
+}
+
+- (void)testTouchesBeganWithEvent
+{
+  id mockVc = [OCMockObject partialMockForObject:self.vc];
+  [[mockVc expect] dismissKeyboard];
+
+  [self.vc touchesBegan:[NSSet set] withEvent:nil];
+  [mockVc verify];
 }
 
 - (void)addIngredients

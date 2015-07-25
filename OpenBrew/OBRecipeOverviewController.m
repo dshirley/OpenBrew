@@ -21,6 +21,7 @@
 #import "OBHopAddition.h"
 #import "OBMalt.h"
 #import "OBHops.h"
+#import "Crittercism+NSErrorLogging.h"
 
 // Google Analytics event category
 static NSString* const OBGAScreenName = @"Recipe Overview Screen";
@@ -50,6 +51,8 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   [super viewDidLoad];
 
   self.hasTriedTapping = NO;
+
+  // TODO: reload data should be placed outside the if statement in viewWillAppear
   [self reloadData];
   self.recipeNameTextField.text = self.recipe.name;
   [self addSeparatorToTopOfTableView];
@@ -68,10 +71,14 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 
   self.screenName = OBGAScreenName;
 
-  if (!self.isMovingToParentViewController) {
+  if (![self isMovingToParentViewController]) {
     // A sub-view controller is being popped
     [self reloadData];
-    [self.recipe.managedObjectContext save:nil];
+
+    // TODO: recipe saving should probably be done in the controller that edited the data
+    NSError *error = nil;
+    [self.recipe.managedObjectContext save:&error];
+    CRITTERCISM_LOG_ERROR(error);
   }
 }
 
@@ -86,7 +93,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-  [self.view endEditing:YES];
+  [self dismissKeyboard];
 }
 
 #pragma mark UITextFieldDelegate methods
@@ -99,6 +106,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 
   NSError *error = nil;
   [self.recipe.managedObjectContext save:&error];
+  CRITTERCISM_LOG_ERROR(error);
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
