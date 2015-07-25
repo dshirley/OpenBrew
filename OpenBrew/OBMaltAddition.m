@@ -57,7 +57,7 @@
   // consider putting this somewhere else
 
   double pounds = trunc([self.quantityInPounds doubleValue]);
-  double ounces = [self.quantityInPounds doubleValue] - pounds;
+  double ounces = ([self.quantityInPounds doubleValue] - pounds) * 16;
 
   if (pounds == 0 && (ounces * 1000 < 1)) {
     return @"0lb";
@@ -71,14 +71,15 @@
     poundsString = [NSString stringWithFormat:@"%dlb", (int)pounds];
   }
 
-  if ((ounces * 16) > 0) {
-    ouncesString = [NSString stringWithFormat:@" %doz", (int) (ounces * 16)];
+  if (ounces >= 1) {
+    ouncesString = [NSString stringWithFormat:@" %doz", (int) ounces];
   } else if (pounds == 0) {
     // Only display ounce decimals if there's less than an ounce of this ingredient
     ouncesString = [NSString stringWithFormat:@" %.3foz", (float) ounces];
   }
 
-  return [poundsString stringByAppendingString:ouncesString];
+  NSString *combined = [poundsString stringByAppendingString:ouncesString];
+  return [combined stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
 - (float)maltColorUnitsForBoilSize:(float)boilSize

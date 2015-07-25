@@ -27,6 +27,36 @@
   return [[OBMaltAddition alloc] initWithMalt:malt andRecipe:nil];
 }
 
+- (void)testName
+{
+  OBMaltAddition *maltAddition = [self createTestMaltAdditionWithMaltType:OBMaltTypeGrain];
+  XCTAssertEqualObjects(@"test malt", maltAddition.name);
+}
+
+- (void)testQuantityText
+{
+  OBMaltAddition *maltAddition = [self createTestMaltAdditionWithMaltType:OBMaltTypeGrain];
+
+  maltAddition.quantityInPounds = @(0.25);
+  XCTAssertEqualObjects(@"4oz", [maltAddition quantityText]);
+
+  maltAddition.quantityInPounds = @(1.5);
+  XCTAssertEqualObjects(@"1lb 8oz", [maltAddition quantityText]);
+
+  maltAddition.quantityInPounds = @(8);
+  XCTAssertEqualObjects(@"8lb", [maltAddition quantityText]);
+
+  maltAddition.quantityInPounds = @(((1.0 / 16.0) / 8.0));
+  XCTAssertEqualObjects(@"0.125oz", [maltAddition quantityText]);
+
+  maltAddition.quantityInPounds = @((1.0 / 16.0) / 1001);
+  XCTAssertEqualObjects(@"0lb", [maltAddition quantityText]);
+
+  // 2oz + 1/8oz should round down to 2oz
+  maltAddition.quantityInPounds = @(1.125 + ((1.0 / 16.0) / 8.0));
+  XCTAssertEqualObjects(@"1lb 2oz", [maltAddition quantityText]);
+}
+
 - (void)testContributedGravityUnitsWithEfficiency {
   OBMaltAddition *maltAddition = [self createTestMaltAdditionWithMaltType:OBMaltTypeGrain];
                   
