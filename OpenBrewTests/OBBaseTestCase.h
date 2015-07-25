@@ -19,6 +19,14 @@
 @property (nonatomic, strong) OBBrewery *brewery;
 @property (nonatomic, strong) OBRecipe *recipe;
 
+// Some index paths that are used throughout many controller tests
+@property (nonatomic) NSIndexPath *r0s0;
+@property (nonatomic) NSIndexPath *r1s0;
+@property (nonatomic) NSIndexPath *r2s0;
+@property (nonatomic) NSIndexPath *r3s0;
+@property (nonatomic) NSIndexPath *r4s0;
+@property (nonatomic) NSIndexPath *r5s0;
+
 // For example:
 // [self fetchEntity:@"Malt" withProperty:@"name" equalTo:@"Pilsner Malt"]
 - (id)fetchEntity:(NSString *)entityName

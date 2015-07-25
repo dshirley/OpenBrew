@@ -36,6 +36,13 @@
 
   self.brewery = [OBBrewery breweryFromContext:self.ctx];
   self.recipe = [[OBRecipe alloc] initWithContext:self.ctx];
+
+  self.r0s0 = [NSIndexPath indexPathForRow:0 inSection:0];
+  self.r1s0 = [NSIndexPath indexPathForRow:1 inSection:0];
+  self.r2s0 = [NSIndexPath indexPathForRow:2 inSection:0];
+  self.r3s0 = [NSIndexPath indexPathForRow:3 inSection:0];
+  self.r4s0 = [NSIndexPath indexPathForRow:4 inSection:0];
+  self.r5s0 = [NSIndexPath indexPathForRow:5 inSection:0];
 }
 
 - (void)tearDown {

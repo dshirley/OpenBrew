@@ -16,21 +16,12 @@
 @interface OBMaltAdditionTableViewDelegateTest : OBBaseTestCase
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) OBMaltAdditionTableViewDelegate *delegate;
-@property (nonatomic, strong) NSIndexPath *r0s0;
-@property (nonatomic, strong) NSIndexPath *r1s0;
-@property (nonatomic, strong) NSIndexPath *r2s0;
-@property (nonatomic, strong) NSIndexPath *r3s0;
 @end
 
 @implementation OBMaltAdditionTableViewDelegateTest
 
 - (void)setUp {
   [super setUp];
-
-  self.r0s0 = [NSIndexPath indexPathForRow:0 inSection:0];
-  self.r1s0 = [NSIndexPath indexPathForRow:1 inSection:0];
-  self.r2s0 = [NSIndexPath indexPathForRow:2 inSection:0];
-  self.r3s0 = [NSIndexPath indexPathForRow:3 inSection:0];
 
   self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 240, 320)];
   self.delegate = [[OBMaltAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
