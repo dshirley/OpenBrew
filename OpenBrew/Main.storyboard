@@ -730,6 +730,7 @@
                                 </items>
                             </navigationBar>
                         </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="009-eA-FD4" firstAttribute="top" secondItem="vjS-QD-jMQ" secondAttribute="bottom" id="3df-sp-4pM"/>
                             <constraint firstItem="12S-LB-c4q" firstAttribute="leading" secondItem="ZFg-qo-mXQ" secondAttribute="leadingMargin" constant="-20" id="4q7-Ex-Uu5"/>

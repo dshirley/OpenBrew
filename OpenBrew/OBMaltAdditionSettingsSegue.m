@@ -17,7 +17,7 @@
   OBMaltAdditionSettingsViewController *settingsVc = (id)self.destinationViewController;
   OBMaltAdditionViewController *maltsVc = (id)self.sourceViewController;
 
-//  settingsVc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+  settingsVc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 
   // This line is required in order for the IBOutlets to get setup for the settingsVc
   // Wow - that was super painful to debug
@@ -36,7 +36,7 @@
   settingsVc.settingsView.frame = CGRectOffset(origSettingsFrame, 0, origSettingsFrame.size.height);
   [maltsVc.view bringSubviewToFront:settingsVc.settingsView];
 
-  [UIView animateWithDuration:5.0
+  [UIView animateWithDuration:0.5
                         delay:0.0
                       options:0
                    animations:^{
@@ -44,10 +44,6 @@
                      settingsVc.greyoutView.backgroundColor = originGreyoutColor;
                    }
                    completion:^(BOOL finished) {
-//                     [settingsVc.settingsView removeFromSuperview];
-//                     [settingsVc.greyoutView removeFromSuperview];
-                     [settingsVc.view removeFromSuperview];
-                     settingsVc.greyoutView.backgroundColor = originGreyoutColor;
                      [maltsVc presentViewController:settingsVc animated:NO completion:nil];
                    }];
 }
