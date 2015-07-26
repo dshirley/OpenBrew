@@ -124,7 +124,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ZEW-Zg-Z2B"/>
                                     <barButtonItem title="Info" id="5Yk-uS-MSm">
                                         <connections>
-                                            <action selector="showSettingsView:" destination="G4Y-bP-qbh" id="yhp-9L-AHJ"/>
+                                            <segue destination="fuN-sW-SMS" kind="custom" identifier="maltAdditionSettings" customClass="OBMaltAdditionSettingsSegue" id="VAp-0d-gw2"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -340,7 +340,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0BE-wp-DVO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3255" y="691"/>
+            <point key="canvasLocation" x="3255" y="1427"/>
         </scene>
         <!--Yeast Addition-->
         <scene sceneID="FFE-0J-204">
@@ -505,7 +505,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6qe-s3-oxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2286" y="691"/>
+            <point key="canvasLocation" x="2286" y="1427"/>
         </scene>
         <!--Hop Selection-->
         <scene sceneID="owd-Qz-fkX">
@@ -562,7 +562,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Twi-WN-JCG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ina-W0-BOQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4267" y="691"/>
+            <point key="canvasLocation" x="4267" y="1427"/>
         </scene>
         <!--Malt Selection-->
         <scene sceneID="cNo-1L-LHJ">
@@ -648,6 +648,108 @@
                 <exit id="o3p-xl-Rl5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4267" y="-48"/>
+        </scene>
+        <!--Malt Addition View Settings-->
+        <scene sceneID="BnS-Pc-mrL">
+            <objects>
+                <viewController id="fuN-sW-SMS" userLabel="Malt Addition View Settings" customClass="OBMaltAdditionSettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Wz-9d-Hdz"/>
+                        <viewControllerLayoutGuide type="bottom" id="009-eA-FD4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZFg-qo-mXQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjS-QD-jMQ" userLabel="Settings View">
+                                <rect key="frame" x="0.0" y="442" width="600" height="158"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Mht-9t-XaA">
+                                        <rect key="frame" x="20" y="40.5" width="560" height="29"/>
+                                        <segments>
+                                            <segment title="Gravity"/>
+                                            <segment title="Color"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="gaugeDisplaySettingsChanged:" destination="fuN-sW-SMS" eventType="valueChanged" id="Ao5-L5-lko"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7Lz-kA-Eih">
+                                        <rect key="frame" x="20" y="109" width="560" height="29"/>
+                                        <segments>
+                                            <segment title="Weight"/>
+                                            <segment title="% Gravity"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="ingredientDisplaySettingsChanged:" destination="fuN-sW-SMS" eventType="valueChanged" id="fJS-Jl-GgA"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient Units" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dg-5d-aJv">
+                                        <rect key="frame" x="20" y="80.5" width="560" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gauge Display" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9q-zn-f3r">
+                                        <rect key="frame" x="20" y="12" width="560" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="7dg-5d-aJv" secondAttribute="trailing" constant="20" id="2Ok-AL-e3U"/>
+                                    <constraint firstAttribute="trailing" secondItem="w9q-zn-f3r" secondAttribute="trailing" constant="20" id="5am-3g-rp5"/>
+                                    <constraint firstItem="Mht-9t-XaA" firstAttribute="top" secondItem="w9q-zn-f3r" secondAttribute="bottom" constant="8" id="8XK-6V-8Xp"/>
+                                    <constraint firstItem="w9q-zn-f3r" firstAttribute="leading" secondItem="vjS-QD-jMQ" secondAttribute="leading" constant="20" id="EFc-fv-mRu"/>
+                                    <constraint firstItem="7dg-5d-aJv" firstAttribute="leading" secondItem="vjS-QD-jMQ" secondAttribute="leading" constant="20" id="Ez9-bG-5Vu"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mht-9t-XaA" secondAttribute="trailing" constant="20" id="LVZ-n7-hZY"/>
+                                    <constraint firstItem="7Lz-kA-Eih" firstAttribute="leading" secondItem="Mht-9t-XaA" secondAttribute="leading" id="LcW-qG-lJk"/>
+                                    <constraint firstItem="Mht-9t-XaA" firstAttribute="leading" secondItem="vjS-QD-jMQ" secondAttribute="leading" constant="20" id="T79-Br-e2A"/>
+                                    <constraint firstItem="7Lz-kA-Eih" firstAttribute="trailing" secondItem="Mht-9t-XaA" secondAttribute="trailing" id="YFD-Va-Djv"/>
+                                    <constraint firstItem="w9q-zn-f3r" firstAttribute="top" secondItem="vjS-QD-jMQ" secondAttribute="top" constant="12" id="dMC-jJ-be7"/>
+                                    <constraint firstItem="7Lz-kA-Eih" firstAttribute="top" secondItem="7dg-5d-aJv" secondAttribute="bottom" constant="8" id="f8W-8w-0DU"/>
+                                    <constraint firstItem="7dg-5d-aJv" firstAttribute="top" secondItem="Mht-9t-XaA" secondAttribute="bottom" constant="12" id="hrs-3C-ftS"/>
+                                    <constraint firstAttribute="height" constant="158" id="jBh-FD-ff9"/>
+                                </constraints>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="12S-LB-c4q">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem id="Yck-cL-Uel">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="efc-Vq-nfG">
+                                            <connections>
+                                                <segue destination="K5j-g6-qw8" kind="unwind" unwindAction="dismissSettingsView:" id="lwJ-jo-CwX"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="009-eA-FD4" firstAttribute="top" secondItem="vjS-QD-jMQ" secondAttribute="bottom" id="3df-sp-4pM"/>
+                            <constraint firstItem="12S-LB-c4q" firstAttribute="leading" secondItem="ZFg-qo-mXQ" secondAttribute="leadingMargin" constant="-20" id="4q7-Ex-Uu5"/>
+                            <constraint firstItem="vjS-QD-jMQ" firstAttribute="leading" secondItem="ZFg-qo-mXQ" secondAttribute="leading" id="A2T-rv-FfP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="12S-LB-c4q" secondAttribute="trailing" constant="-20" id="RiT-Ta-AxT"/>
+                            <constraint firstItem="12S-LB-c4q" firstAttribute="top" secondItem="2Wz-9d-Hdz" secondAttribute="bottom" id="mWV-tc-DEQ"/>
+                            <constraint firstAttribute="trailing" secondItem="vjS-QD-jMQ" secondAttribute="trailing" id="yXi-gL-EbZ"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="gaugeDisplaySettingSegmentedControl" destination="Mht-9t-XaA" id="6fm-qm-ZuV"/>
+                        <outlet property="ingredientDisplaySettingSegmentedControl" destination="7Lz-kA-Eih" id="ieT-IF-47j"/>
+                        <outlet property="settingsView" destination="vjS-QD-jMQ" id="fy7-5A-wU2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1FX-Lw-Wu0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="K5j-g6-qw8" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4267" y="689"/>
         </scene>
         <!--Recipes-->
         <scene sceneID="pOQ-kK-BHW">

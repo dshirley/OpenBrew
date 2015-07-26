@@ -19,32 +19,15 @@
 #import "OBSrmColorTable.h"
 #import "OBTableViewPlaceholderLabel.h"
 #import "Crittercism+NSErrorLogging.h"
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
+#import "OBMaltAdditionSettingsViewController.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Malt Addition Screen";
-static NSString* const OBGASettingsAction = @"Settings change";
 
 static NSString* const OBGaugeDisplaySegmentKey = @"Malt Gauge Selected Segment";
 static NSString* const OBIngredientDisplaySegmentKey = @"Malt Ingredient Selected Segment";
 
-// What malt related metric should the gauge display.  These values should
-// correspond to the indices of the MaltAdditionDisplaySettings segmentview.
-typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
-  OBMaltGaugeMetricGravity,
-  OBMaltGaugeMetricColor
-};
-
-OBRecipeMetric const maltSettingsToMetricMapping[] = {
-  [OBMaltGaugeMetricGravity] = OBOriginalGravity,
-  [OBMaltGaugeMetricColor] = OBColor
-};
-
 @interface OBMaltAdditionViewController ()
-
-// Elements from OBMaltAdditionDisplaySettings.xib
-@property (nonatomic, strong) OBPopupView *popupView;
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) OBTableViewPlaceholderLabel *placeholderText;
@@ -71,17 +54,12 @@ OBRecipeMetric const maltSettingsToMetricMapping[] = {
   self.tableView.delegate = self.tableViewDelegate;
   self.tableView.dataSource = self.tableViewDelegate;
 
-  NSInteger index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBGaugeDisplaySegmentKey] integerValue];
-  self.gauge.metricToDisplay = maltSettingsToMetricMapping[index];
-
-  index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBIngredientDisplaySegmentKey] integerValue];
-  self.tableViewDelegate.maltAdditionMetricToDisplay = (OBMaltAdditionMetric)index;
+  self.gauge.metricToDisplay = [OBMaltAdditionSettingsViewController currentGaugeSetting];
+  self.tableViewDelegate.maltAdditionMetricToDisplay = [OBMaltAdditionSettingsViewController currentMaltDisplaySetting];
 
   UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
   [button addTarget:self action:@selector(showSettingsView:) forControlEvents:UIControlEventTouchUpInside];
   [self.infoButton setCustomView:button];
-
-  [self addMaltDisplaySettingsView];
 
   [self reload];
 }
@@ -134,30 +112,9 @@ OBRecipeMetric const maltSettingsToMetricMapping[] = {
 
 #pragma mark Display Settings View Logic
 
-// Create the settings view and place it below the visible screen.  This view
-// will pop up/down to allow users to display different malt metrics
-- (void)addMaltDisplaySettingsView
-{
-  UIView *subview =  [[[NSBundle mainBundle] loadNibNamed:@"OBMaltAdditionDisplaySettings"
-                                                    owner:self
-                                                  options:nil] objectAtIndex:0];
-
-  _popupView = [[OBPopupView alloc] initWithFrame:self.view.frame
-                                   andContentView:subview
-                                andNavigationItem:self.navigationItem];
-
-  NSInteger index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBGaugeDisplaySegmentKey] integerValue];
-  self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = index;
-
-  index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBIngredientDisplaySegmentKey] integerValue];
-  self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = index;
-
-  [self.view addSubview:_popupView];
-}
-
 - (IBAction)showSettingsView:(UIBarButtonItem *)sender
 {
-  [self.popupView popupContent];
+  [self performSegueWithIdentifier:@"maltAdditionSettings" sender:self];
 }
 
 - (void)reload {
@@ -204,78 +161,31 @@ OBRecipeMetric const maltSettingsToMetricMapping[] = {
   if ([[segue identifier] isEqualToString:@"addIngredient"]) {
     OBMaltFinderViewController *next = [segue destinationViewController];
     next.recipe = self.recipe;
+  } else if ([[segue identifier] isEqualToString:@"maltAdditionSettings"]) {
+    OBMaltAdditionSettingsViewController *next = [segue destinationViewController];
+    next.delegate = self;
   }
 }
 
-// Unwinding from the malt finder screen.  Updates come through KVO on self.recipe
-// so we don't need to do anything here.
 - (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue
 {
   [self reload];
 }
 
-#pragma mark - MaltAdditionDisplaySettings
-
-// Linked to OBMaltAdditionDisplaySettings.xib.  This method gets called when a
-// UISegment is selected. This method changes the value that is displayed for
-// the gauge.
-- (IBAction)gaugeDisplaySettingsChanged:(UISegmentedControl *)sender
+- (IBAction)dismissSettingsView:(UIStoryboardSegue *)unwindSegue
 {
-  OBMaltGaugeMetric metric = (OBMaltGaugeMetric) sender.selectedSegmentIndex;
-  NSString *gaSettingName = @"n/a gauge action";
 
-  switch (metric) {
-    case OBMaltGaugeMetricColor:
-      self.gauge.metricToDisplay = OBColor;
-      gaSettingName = @"Show beer color";
-      break;
-    case OBMaltGaugeMetricGravity:
-      self.gauge.metricToDisplay = OBOriginalGravity;
-      gaSettingName = @"Show beer gravity";
-      break;
-    default:
-      NSAssert(YES, @"Invalid gauge metric: %@", @(metric));
-  }
-
-  // Persist the selected segment so that it will appear the next time this view is loaded
-  [[NSUserDefaults standardUserDefaults] setObject:@(metric) forKey:OBGaugeDisplaySegmentKey];
-
-  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
-                                                        action:OBGASettingsAction
-                                                         label:gaSettingName
-                                                         value:nil] build]];
 }
 
-// Linked to OBMaltAdditionDisplaySettings.xib.  This method gets called when a
-// UISegment is selected that changes the information displayed for each malt
-// line item.
-- (IBAction)ingredientDisplaySettingsChanged:(UISegmentedControl *)sender
+#pragma mark - OBMaltSettingsViewControllerDelegate methods
+
+- (void)gaugeDisplaySettingChanged:(OBRecipeMetric)metric
 {
-  OBMaltAdditionMetric metric = (OBMaltAdditionMetric) sender.selectedSegmentIndex;
-  NSString *gaSettingName = @"n/a ingredient action";
+  self.gauge.metricToDisplay = metric;
+}
 
-  switch (metric) {
-    case OBMaltAdditionMetricWeight:
-      gaSettingName = @"Show malt weight";
-      break;
-    case OBMaltAdditionMetricPercentOfGravity:
-      gaSettingName = @"Show % gravity";
-      break;
-    default:
-      NSAssert(YES, @"Invalid malt addition metric: %@", @(metric));
-  }
-
-  // Persist the selected segment so that it will appear the next time this view is loaded
-  [[NSUserDefaults standardUserDefaults] setObject:@(metric) forKey:OBIngredientDisplaySegmentKey];
-
-  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
-                                                        action:OBGASettingsAction
-                                                         label:gaSettingName
-                                                         value:nil] build]];
-
-  // Note that the segment indices must align with the metric enum
+- (void)maltAdditionMetricSettingChanged:(OBMaltAdditionMetric)metric
+{
   self.tableViewDelegate.maltAdditionMetricToDisplay = metric;
 }
 

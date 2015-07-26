@@ -36,8 +36,8 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 };
 
 OBRecipeMetric const hopSettingsToMetricMapping[] = {
-  [OBHopGaugeMetricIBU] = OBIbu,
-  [OBHopGaugeMetricBitteringToGravityRatio] = OBBuToGuRatio
+  [OBHopGaugeMetricIBU] = OBMetricIbu,
+  [OBHopGaugeMetricBitteringToGravityRatio] = OBMetricBuToGuRatio
 };
 
 @interface OBHopAdditionViewController ()
@@ -223,11 +223,11 @@ OBRecipeMetric const hopSettingsToMetricMapping[] = {
 
   switch (metric) {
     case OBHopGaugeMetricIBU:
-      self.gauge.metricToDisplay = OBIbu;
+      self.gauge.metricToDisplay = OBMetricIbu;
       gaSettingName = @"Show beer IBU";
       break;
     case OBHopGaugeMetricBitteringToGravityRatio:
-      self.gauge.metricToDisplay = OBBuToGuRatio;
+      self.gauge.metricToDisplay = OBMetricBuToGuRatio;
       gaSettingName = @"Show beer bu:gu";
       break;
     default:

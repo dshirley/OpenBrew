@@ -66,34 +66,34 @@
   uint32_t srm = roundf([self.recipe colorInSRM]);
 
   [self setColorInSrm:srm];
-  if (self.metricToDisplay == OBColor) {
+  if (self.metricToDisplay == OBMetricColor) {
     self.colorView.hidden = NO;
   } else {
     self.colorView.hidden = YES;
   }
 
   switch (self.metricToDisplay) {
-    case OBOriginalGravity:
+    case OBMetricOriginalGravity:
       value = [NSString stringWithFormat:@"%.3f", [self.recipe originalGravity]];
       description = @"Original gravity";
       break;
-    case OBFinalGravity:
+    case OBMetricFinalGravity:
       value = [NSString stringWithFormat:@"%.3f", [self.recipe finalGravity]];
       description = @"Final gravity";
       break;
-    case OBAbv:
+    case OBMetricAbv:
       value = [NSString stringWithFormat:@"%.1f%%", [self.recipe alcoholByVolume]];
       description = @"ABV";
       break;
-    case OBIbu:
+    case OBMetricIbu:
       value = [NSString stringWithFormat:@"%d", (int) roundf([self.recipe IBUs])];
       description = @"IBU";
       break;
-    case OBBuToGuRatio:
+    case OBMetricBuToGuRatio:
       value = [NSString stringWithFormat:@"%.2f", [self.recipe bitternessToGravityRatio]];
       description = @"BU:GU";
       break;
-    case OBColor:
+    case OBMetricColor:
       value = @"";
       description = [NSString stringWithFormat:@"%ld SRM", (long)srm];
       break;

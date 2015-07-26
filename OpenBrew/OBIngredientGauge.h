@@ -15,12 +15,12 @@
 @class OBRecipe;
 
 typedef NS_ENUM(NSInteger, OBRecipeMetric) {
-  OBOriginalGravity,
-  OBFinalGravity,
-  OBAbv,
-  OBColor,
-  OBIbu,
-  OBBuToGuRatio
+  OBMetricOriginalGravity,
+  OBMetricFinalGravity,
+  OBMetricAbv,
+  OBMetricColor,
+  OBMetricIbu,
+  OBMetricBuToGuRatio
 };
 
 @interface OBIngredientGauge : UIView
