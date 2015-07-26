@@ -36,6 +36,11 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
   OBMaltGaugeMetricColor
 };
 
+OBRecipeMetric const maltSettingsToMetricMapping[] = {
+  [OBMaltGaugeMetricGravity] = OBOriginalGravity,
+  [OBMaltGaugeMetricColor] = OBColor
+};
+
 @interface OBMaltAdditionViewController ()
 
 // Elements from OBMaltAdditionDisplaySettings.xib
@@ -43,7 +48,6 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) OBTableViewPlaceholderLabel *placeholderText;
-@property (nonatomic, assign) OBMaltGaugeMetric gaugeMetric;
 @property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
 @property (nonatomic, strong) OBMaltAdditionTableViewDelegate *tableViewDelegate;
 
@@ -68,7 +72,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
   self.tableView.dataSource = self.tableViewDelegate;
 
   NSInteger index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBGaugeDisplaySegmentKey] integerValue];
-  self.gaugeMetric = (OBMaltGaugeMetric)index;
+  self.gauge.metricToDisplay = maltSettingsToMetricMapping[index];
 
   index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBIngredientDisplaySegmentKey] integerValue];
   self.tableViewDelegate.maltAdditionMetricToDisplay = (OBMaltAdditionMetric)index;
@@ -158,26 +162,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
 - (void)reload {
   [self.tableView reloadData];
-  [self refreshGauge];
-}
-
-- (void)refreshGauge
-{
-  uint32_t srm = roundf([self.recipe colorInSRM]);
-
-  if (self.gaugeMetric == OBMaltGaugeMetricGravity) {
-    float gravity = [self.recipe originalGravity];
-    [_gauge hideColor];
-    _gauge.valueLabel.text = [NSString stringWithFormat:@"%.3f", gravity];
-    _gauge.descriptionLabel.text = @"Starting Gravity";
-  } else if (self.gaugeMetric == OBMaltGaugeMetricColor) {
-    [_gauge showColor];
-    _gauge.colorInSrm = srm;
-    _gauge.valueLabel.text = @"";
-    _gauge.descriptionLabel.text = [NSString stringWithFormat:@"%ld SRM", (long)srm];
-  } else {
-    [NSException raise:@"Bad OBMaltGaugeMetric" format:@"Metric: %d", (int) self.gaugeMetric];
-  }
+  [self.gauge refresh];
 }
 
 - (void)setRecipe:(OBRecipe *)recipe
@@ -203,7 +188,7 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
                        context:(void *)context
 {
   if ([keyPath isEqualToString:KVO_KEY(originalGravity)]) {
-    [self refreshGauge];
+    [self.gauge refresh];
   }
 
   if ([self tableViewIsEmpty]) {
@@ -241,9 +226,11 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
 
   switch (metric) {
     case OBMaltGaugeMetricColor:
+      self.gauge.metricToDisplay = OBColor;
       gaSettingName = @"Show beer color";
       break;
     case OBMaltGaugeMetricGravity:
+      self.gauge.metricToDisplay = OBOriginalGravity;
       gaSettingName = @"Show beer gravity";
       break;
     default:
@@ -258,10 +245,6 @@ typedef NS_ENUM(NSInteger, OBMaltGaugeMetric) {
                                                         action:OBGASettingsAction
                                                          label:gaSettingName
                                                          value:nil] build]];
-
-  self.gaugeMetric = metric;
-
-  [self refreshGauge];
 }
 
 // Linked to OBMaltAdditionDisplaySettings.xib.  This method gets called when a

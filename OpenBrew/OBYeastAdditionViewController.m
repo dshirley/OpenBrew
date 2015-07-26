@@ -73,7 +73,7 @@ typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
   self.selectedManufacturer = OBYeastManufacturerWhiteLabs;
 
   [self reloadTable];
-  [self refreshGauge];
+  [self.gauge refresh];
 }
 
 // Query the CoreData store to get all of the ingredient data
@@ -104,22 +104,6 @@ typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
   [self.tableView reloadData];
 }
 
-- (void)refreshGauge
-{
-  [self.gauge hideColor];
-
-  if (self.gaugeMetric == OBYeastGaugeMetricFinalGravity) {
-    float finalGravity = [self.recipe finalGravity];
-    _gauge.valueLabel.text = [NSString stringWithFormat:@"%.3f", finalGravity];
-    _gauge.descriptionLabel.text = @"Final Gravity";
-  } else if (self.gaugeMetric == OBYeastGaugeMetricABV) {
-    _gauge.valueLabel.text = [NSString stringWithFormat:@"%.1f%%", [self.recipe alcoholByVolume]];
-    _gauge.descriptionLabel.text = @"ABV";
-  } else {
-    [NSException raise:@"Bad OBYeastGaugeMetric" format:@"Metric: %d", (int) self.gaugeMetric];
-  }
-}
-
 - (IBAction)filterValueChanged:(UISegmentedControl *)sender {
   self.selectedManufacturer = manufacturerToSegmentMapping[sender.selectedSegmentIndex];
 
@@ -145,7 +129,7 @@ typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
   [self.recipe.managedObjectContext save:&error];
   CRITTERCISM_LOG_ERROR(error);
 
-  [self refreshGauge];
+  [self.gauge refresh];
 }
 
 #pragma mark UITableViewDataSource methods

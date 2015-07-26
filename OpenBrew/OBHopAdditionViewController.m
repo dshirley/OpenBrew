@@ -35,6 +35,11 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
   OBHopGaugeMetricBitteringToGravityRatio
 };
 
+OBRecipeMetric const hopSettingsToMetricMapping[] = {
+  [OBHopGaugeMetricIBU] = OBIbu,
+  [OBHopGaugeMetricBitteringToGravityRatio] = OBBuToGuRatio
+};
+
 @interface OBHopAdditionViewController ()
 
 // Elements from OBHopAdditionDisplaySettings.xib
@@ -42,7 +47,6 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) OBTableViewPlaceholderLabel *placeholderText;
-@property (nonatomic, assign) OBHopGaugeMetric gaugeMetric;
 @property (nonatomic, strong) IBOutlet OBIngredientGauge *gauge;
 @property (nonatomic, strong) OBHopAdditionTableViewDelegate *tableViewDelegate;
 
@@ -67,7 +71,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
   self.tableView.dataSource = self.tableViewDelegate;
 
   NSInteger index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBGaugeDisplaySegmentKey] integerValue];
-  self.gaugeMetric = (OBHopGaugeMetric)index;
+  self.gauge.metricToDisplay = hopSettingsToMetricMapping[index];
 
   index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBIngredientDisplaySegmentKey] integerValue];
   self.tableViewDelegate.hopAdditionMetricToDisplay = (OBHopAdditionMetric)index;
@@ -157,24 +161,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
 - (void)reload {
   [self.tableView reloadData];
-  [self refreshGauge];
-}
-
-- (void)refreshGauge
-{
-  [self.gauge hideColor];
-
-  if (self.gaugeMetric == OBHopGaugeMetricIBU) {
-    float ibu = [self.recipe IBUs];
-    _gauge.valueLabel.text = [NSString stringWithFormat:@"%d", (int) round(ibu)];
-    _gauge.descriptionLabel.text = @"IBUs";
-  } else if (self.gaugeMetric == OBHopGaugeMetricBitteringToGravityRatio) {
-    float buToGuRatio = [self.recipe bitternessToGravityRatio];
-    _gauge.valueLabel.text = [NSString stringWithFormat:@"%.2f", buToGuRatio];
-    _gauge.descriptionLabel.text = @"Bitterness to Gravity Ratio";
-  } else {
-    [NSException raise:@"Bad OBHopGaugeMetric" format:@"Metric: %d", (int) self.gaugeMetric];
-  }
+  [self.gauge refresh];
 }
 
 - (void)setRecipe:(OBRecipe *)recipe
@@ -200,7 +187,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
                        context:(void *)context
 {
   if ([keyPath isEqualToString:KVO_KEY(IBUs)]) {
-    [self refreshGauge];
+    [self.gauge refresh];
   }
 
   if ([self tableViewIsEmpty]) {
@@ -236,9 +223,11 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
 
   switch (metric) {
     case OBHopGaugeMetricIBU:
+      self.gauge.metricToDisplay = OBIbu;
       gaSettingName = @"Show beer IBU";
       break;
     case OBHopGaugeMetricBitteringToGravityRatio:
+      self.gauge.metricToDisplay = OBBuToGuRatio;
       gaSettingName = @"Show beer bu:gu";
       break;
     default:
@@ -254,9 +243,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
                                                          label:gaSettingName
                                                          value:nil] build]];
 
-  self.gaugeMetric = metric;
-
-  [self refreshGauge];
+  [self.gauge refresh];
 }
 
 // Linked to OBHopAdditionDisplaySettings.xib.  This method gets called when a
