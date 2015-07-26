@@ -40,7 +40,6 @@ OBRecipeMetric const maltSettingsToMetricMapping[] = {
 @interface OBMaltAdditionSettingsViewController ()
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gaugeDisplaySettingSegmentedControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
-
 @end
 
 @implementation OBMaltAdditionSettingsViewController
@@ -56,6 +55,16 @@ OBRecipeMetric const maltSettingsToMetricMapping[] = {
   return [[[NSUserDefaults standardUserDefaults] valueForKey:OBIngredientDisplaySegmentKey] integerValue];
 }
 
+- (id)initWithCoder:(nonnull NSCoder *)aDecoder
+{
+  return [super initWithCoder:aDecoder];
+}
+
+- (void)setSettingsView:(UIView * __nullable)settingsView
+{
+  _settingsView = settingsView;
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
 
@@ -64,6 +73,22 @@ OBRecipeMetric const maltSettingsToMetricMapping[] = {
 
   index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBIngredientDisplaySegmentKey] integerValue];
   self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = index;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+}
+
+- (UIView *)greyoutView
+{
+  return _greyoutView;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+  [super viewDidAppear:animated];
+  self.greyoutView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.25];
 }
 
 - (IBAction)gaugeDisplaySettingsChanged:(UISegmentedControl *)sender

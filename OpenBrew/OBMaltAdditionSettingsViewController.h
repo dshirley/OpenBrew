@@ -23,9 +23,10 @@
 @end
 
 @interface OBMaltAdditionSettingsViewController : UIViewController
-
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UIView *settingsView;
 @property (weak, nonatomic) id<OBMaltSettingsViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIView *greyoutView;
 
 + (OBRecipeMetric)currentGaugeSetting;
 

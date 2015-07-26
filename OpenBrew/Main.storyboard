@@ -661,11 +661,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dyK-MF-NEA" userLabel="Greyout">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="calibratedRGB"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjS-QD-jMQ" userLabel="Settings View">
                                 <rect key="frame" x="0.0" y="442" width="600" height="158"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Mht-9t-XaA">
-                                        <rect key="frame" x="20" y="40.5" width="560" height="29"/>
+                                        <rect key="frame" x="20" y="40" width="560" height="29"/>
                                         <segments>
                                             <segment title="Gravity"/>
                                             <segment title="Color"/>
@@ -685,7 +689,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient Units" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dg-5d-aJv">
-                                        <rect key="frame" x="20" y="80.5" width="560" height="20.5"/>
+                                        <rect key="frame" x="20" y="80" width="560" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
@@ -716,22 +720,25 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="12S-LB-c4q">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
-                                    <navigationItem id="Yck-cL-Uel">
+                                    <navigationItem title="Malts" id="Yck-cL-Uel">
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="efc-Vq-nfG">
                                             <connections>
-                                                <segue destination="K5j-g6-qw8" kind="unwind" unwindAction="dismissSettingsView:" id="lwJ-jo-CwX"/>
+                                                <segue destination="K5j-g6-qw8" kind="unwind" customClass="OBMaltAdditionSettingsUnwindSegue" animates="NO" unwindAction="dismissSettingsView:" id="lwJ-jo-CwX"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.25" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="009-eA-FD4" firstAttribute="top" secondItem="vjS-QD-jMQ" secondAttribute="bottom" id="3df-sp-4pM"/>
                             <constraint firstItem="12S-LB-c4q" firstAttribute="leading" secondItem="ZFg-qo-mXQ" secondAttribute="leadingMargin" constant="-20" id="4q7-Ex-Uu5"/>
                             <constraint firstItem="vjS-QD-jMQ" firstAttribute="leading" secondItem="ZFg-qo-mXQ" secondAttribute="leading" id="A2T-rv-FfP"/>
+                            <constraint firstItem="009-eA-FD4" firstAttribute="top" secondItem="dyK-MF-NEA" secondAttribute="bottom" id="KB3-xi-PIo"/>
+                            <constraint firstAttribute="trailing" secondItem="dyK-MF-NEA" secondAttribute="trailing" id="QUo-cH-mv5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="12S-LB-c4q" secondAttribute="trailing" constant="-20" id="RiT-Ta-AxT"/>
+                            <constraint firstItem="dyK-MF-NEA" firstAttribute="top" secondItem="12S-LB-c4q" secondAttribute="bottom" id="XcF-l2-K9h"/>
+                            <constraint firstItem="dyK-MF-NEA" firstAttribute="leading" secondItem="ZFg-qo-mXQ" secondAttribute="leading" id="iZ1-gu-YER"/>
                             <constraint firstItem="12S-LB-c4q" firstAttribute="top" secondItem="2Wz-9d-Hdz" secondAttribute="bottom" id="mWV-tc-DEQ"/>
                             <constraint firstAttribute="trailing" secondItem="vjS-QD-jMQ" secondAttribute="trailing" id="yXi-gL-EbZ"/>
                         </constraints>
@@ -742,7 +749,9 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="gaugeDisplaySettingSegmentedControl" destination="Mht-9t-XaA" id="6fm-qm-ZuV"/>
+                        <outlet property="greyoutView" destination="dyK-MF-NEA" id="6Ip-DX-jrc"/>
                         <outlet property="ingredientDisplaySettingSegmentedControl" destination="7Lz-kA-Eih" id="ieT-IF-47j"/>
+                        <outlet property="navigationBar" destination="12S-LB-c4q" id="PU1-cB-YF4"/>
                         <outlet property="settingsView" destination="vjS-QD-jMQ" id="fy7-5A-wU2"/>
                     </connections>
                 </viewController>

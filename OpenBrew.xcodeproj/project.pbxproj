@@ -38,6 +38,7 @@
 		9F92E8E118A4536200118D76 /* OBIngredientGauge.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8E018A4536200118D76 /* OBIngredientGauge.m */; };
 		9F95B23C1B2677C6009DC9D9 /* OBBatchSizeTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F95B23B1B2677C6009DC9D9 /* OBBatchSizeTableViewDelegate.m */; };
 		9F977BC01B656D020068DC7A /* OBMaltAdditionSettingsSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F977BBF1B656D020068DC7A /* OBMaltAdditionSettingsSegue.m */; };
+		9F977BC31B6582E90068DC7A /* OBMaltAdditionSettingsUnwindSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F977BC21B6582E90068DC7A /* OBMaltAdditionSettingsUnwindSegue.m */; };
 		9F98D3591880F8ED00469323 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3581880F8ED00469323 /* Foundation.framework */; };
 		9F98D35B1880F8ED00469323 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D35A1880F8ED00469323 /* CoreGraphics.framework */; };
 		9F98D35D1880F8ED00469323 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D35C1880F8ED00469323 /* UIKit.framework */; };
@@ -162,6 +163,8 @@
 		9F95B23B1B2677C6009DC9D9 /* OBBatchSizeTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBatchSizeTableViewDelegate.m; sourceTree = "<group>"; };
 		9F977BBE1B656D020068DC7A /* OBMaltAdditionSettingsSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltAdditionSettingsSegue.h; sourceTree = "<group>"; };
 		9F977BBF1B656D020068DC7A /* OBMaltAdditionSettingsSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionSettingsSegue.m; sourceTree = "<group>"; };
+		9F977BC11B6582E90068DC7A /* OBMaltAdditionSettingsUnwindSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltAdditionSettingsUnwindSegue.h; sourceTree = "<group>"; };
+		9F977BC21B6582E90068DC7A /* OBMaltAdditionSettingsUnwindSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionSettingsUnwindSegue.m; sourceTree = "<group>"; };
 		9F98D3551880F8ED00469323 /* OpenBrew.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenBrew.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F98D3581880F8ED00469323 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9F98D35A1880F8ED00469323 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -492,14 +495,16 @@
 		9FF510141B65687E00970C22 /* MaltConfiguration */ = {
 			isa = PBXGroup;
 			children = (
+				9F977BBE1B656D020068DC7A /* OBMaltAdditionSettingsSegue.h */,
+				9F977BBF1B656D020068DC7A /* OBMaltAdditionSettingsSegue.m */,
+				9F977BC11B6582E90068DC7A /* OBMaltAdditionSettingsUnwindSegue.h */,
+				9F977BC21B6582E90068DC7A /* OBMaltAdditionSettingsUnwindSegue.m */,
+				9FF510161B6568E400970C22 /* OBMaltAdditionSettingsViewController.h */,
+				9FF510171B6568E400970C22 /* OBMaltAdditionSettingsViewController.m */,
 				9FF68674189327B000B36486 /* OBMaltAdditionViewController.h */,
 				9FF68675189327B000B36486 /* OBMaltAdditionViewController.m */,
 				9F60CF2A19B264A10076A600 /* OBMaltFinderViewController.h */,
 				9F60CF2B19B264A10076A600 /* OBMaltFinderViewController.m */,
-				9FF510161B6568E400970C22 /* OBMaltAdditionSettingsViewController.h */,
-				9FF510171B6568E400970C22 /* OBMaltAdditionSettingsViewController.m */,
-				9F977BBE1B656D020068DC7A /* OBMaltAdditionSettingsSegue.h */,
-				9F977BBF1B656D020068DC7A /* OBMaltAdditionSettingsSegue.m */,
 			);
 			name = MaltConfiguration;
 			sourceTree = "<group>";
@@ -735,6 +740,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F977BC31B6582E90068DC7A /* OBMaltAdditionSettingsUnwindSegue.m in Sources */,
 				9FE8643B198FBCE0007AD9E7 /* OBHopQuantityPickerDelegate.m in Sources */,
 				9FF510181B6568E400970C22 /* OBMaltAdditionSettingsViewController.m in Sources */,
 				9F98D3671880F8ED00469323 /* main.m in Sources */,
