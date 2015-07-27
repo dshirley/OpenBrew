@@ -38,8 +38,11 @@ OBRecipeMetric const maltSettingsToMetricMapping[] = {
 
 
 @interface OBMaltAdditionSettingsViewController ()
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gaugeDisplaySettingSegmentedControl;
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
+
 @end
 
 @implementation OBMaltAdditionSettingsViewController
@@ -55,40 +58,25 @@ OBRecipeMetric const maltSettingsToMetricMapping[] = {
   return [[[NSUserDefaults standardUserDefaults] valueForKey:OBIngredientDisplaySegmentKey] integerValue];
 }
 
-- (id)initWithCoder:(nonnull NSCoder *)aDecoder
-{
-  return [super initWithCoder:aDecoder];
-}
-
-- (void)setSettingsView:(UIView * __nullable)settingsView
-{
-  _settingsView = settingsView;
-}
-
-- (void)viewDidLoad {
-  [super viewDidLoad];
-
-  NSInteger index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBGaugeDisplaySegmentKey] integerValue];
-  self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = index;
-
-  index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBIngredientDisplaySegmentKey] integerValue];
-  self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = index;
-}
+#pragma mark UIViewController overrides
 
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+
+  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+  NSInteger index = [[userDefaults valueForKey:OBGaugeDisplaySegmentKey] integerValue];
+
+  self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = index;
+
+  index = [[userDefaults valueForKey:OBIngredientDisplaySegmentKey] integerValue];
+  self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = index;
 }
 
-- (UIView *)greyoutView
-{
-  return _greyoutView;
-}
+#pragma mark Actions
 
-- (void)viewDidAppear:(BOOL)animated
-{
-  [super viewDidAppear:animated];
-  self.greyoutView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.25];
+- (IBAction)greyAreaTouchDown:(id)sender {
+  [self performSegueWithIdentifier:@"dismissSettingsView" sender:self];
 }
 
 - (IBAction)gaugeDisplaySettingsChanged:(UISegmentedControl *)sender
