@@ -16,15 +16,16 @@
 {
   OBMaltAdditionSettingsViewController *settingsVc = (id)self.sourceViewController;
   OBMaltAdditionViewController *maltsVc = (id)self.destinationViewController;
-//  [maltsVc.navigationItem setHidesBackButton:YES animated:YES];
 
-//  settingsVc.navigationBar.frame = maltsVc.navigationController.navigationBar.frame;
-//  [maltsVc.view bringSubviewToFront:settingsVc.navigationBar];
+  UIBarButtonItem *savedAddButton = maltsVc.navigationItem.rightBarButtonItem;
+  maltsVc.navigationItem.rightBarButtonItem = settingsVc.navigationBar.topItem.rightBarButtonItem;
+
+  // Use hide rather than remove from superview. Removing the view causes the
+  // settingsView to "jump up" due to some issues with the constraints.
+  settingsVc.navigationBar.hidden = YES;
 
   [maltsVc.navigationItem setHidesBackButton:NO animated:YES];
-
-  UIBarButtonItem *addPlaceholder = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
-//  [settingsVc.navigationBar.topItem setRightBarButtonItem:addPlaceholder animated:YES];
+  [maltsVc.navigationItem setRightBarButtonItem:savedAddButton animated:YES];
 
   [UIView animateWithDuration:0.5
                         delay:0.0
@@ -41,10 +42,6 @@
                      [self.sourceViewController dismissViewControllerAnimated:NO
                                                                    completion:NULL];
                    }];
-
-
-
-
 }
 
 @end

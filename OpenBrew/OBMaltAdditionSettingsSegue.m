@@ -23,10 +23,12 @@
   // Wow - that was super painful to debug
   [maltsVc.view addSubview:settingsVc.view];
 
+  // The unwind segue will add this back
   [maltsVc.navigationItem setHidesBackButton:YES animated:YES];
 
-  settingsVc.navigationBar.frame = maltsVc.navigationController.navigationBar.frame;
-  [maltsVc.view bringSubviewToFront:settingsVc.navigationBar];
+  UIBarButtonItem *origItem = maltsVc.navigationItem.rightBarButtonItem;
+  UIBarButtonItem *doneItem = settingsVc.navigationBar.topItem.rightBarButtonItem;
+  [maltsVc.navigationItem setRightBarButtonItem:doneItem animated:YES];
 
   UIColor *originGreyoutColor = settingsVc.greyoutView.backgroundColor;
   settingsVc.greyoutView.backgroundColor = [UIColor clearColor];
@@ -45,6 +47,7 @@
                    }
                    completion:^(BOOL finished) {
                      [maltsVc presentViewController:settingsVc animated:NO completion:nil];
+                     [maltsVc.navigationItem setRightBarButtonItem:origItem animated:YES];
                    }];
 }
 
