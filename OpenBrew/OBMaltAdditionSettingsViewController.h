@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-// FIXME: find some other way to get the enum
-#import "OBIngredientGauge.h"
+// FIXME: use KVO rather than the delegate below & get rid of this import statement
+#import "OBRecipe.h"
 
 // FIXME do it
 #import "OBMaltAdditionTableViewDelegate.h"

@@ -8,20 +8,12 @@
 //  This class is responsible for displaying a single recipe metric.
 //  The design diverges from the MVC model as this is a view class and it
 //  talks directly to the model.  It seemed far and away the most efficient
-//  approach.
+//  approach. FIXME ^^^^
 
 #import <UIKit/UIKit.h>
 
-@class OBRecipe;
-
-typedef NS_ENUM(NSInteger, OBRecipeMetric) {
-  OBMetricOriginalGravity,
-  OBMetricFinalGravity,
-  OBMetricAbv,
-  OBMetricColor,
-  OBMetricIbu,
-  OBMetricBuToGuRatio
-};
+// FIXME: the view shouldn't be importing part of the model
+#import "OBRecipe.h"
 
 @interface OBIngredientGauge : UIView
 

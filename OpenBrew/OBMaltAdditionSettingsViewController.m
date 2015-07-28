@@ -9,18 +9,15 @@
 #import "OBMaltAdditionSettingsViewController.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
+#import "OBRecipe.h"
 
 // FIXME: importing this is weird too
 #import "OBMaltAdditionTableViewDelegate.h"
-
-// FIXME: importing the gauge to get the OBMaltGaugeMetric enum is wonky
-#import "OBIngredientGauge.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Malt Addition Settings";
 static NSString* const OBGASettingsAction = @"Settings change";
 
-// FIXME: these should be in the OBSettings.m
 static NSString* const OBGaugeDisplaySegmentKey = @"Malt Gauge Selected Segment";
 static NSString* const OBIngredientDisplaySegmentKey = @"Malt Ingredient Selected Segment";
 
@@ -81,8 +78,6 @@ OBRecipeMetric const maltSettingsToMetricMapping[] = {
 
 - (IBAction)gaugeDisplaySettingsChanged:(UISegmentedControl *)sender
 {
-  // FIXME: cleanup this method, its a bit ugly.
-
   OBMaltGaugeMetric metric = (OBMaltGaugeMetric) sender.selectedSegmentIndex;
   NSString *gaSettingName = @"n/a gauge action";
 

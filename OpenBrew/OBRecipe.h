@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+typedef NS_ENUM(NSInteger, OBRecipeMetric) {
+  OBMetricOriginalGravity,
+  OBMetricFinalGravity,
+  OBMetricAbv,
+  OBMetricColor,
+  OBMetricIbu,
+  OBMetricBuToGuRatio
+};
+
 @class OBBrewery, OBHopAddition, OBMaltAddition, OBYeastAddition;
 
 @interface OBRecipe : NSManagedObject
