@@ -53,7 +53,7 @@
 // They're worth testing
 - (void)testAddHops
 {
-  OBHops *testHops = [[OBHops alloc] initWithCatalog:self.brewery.ingredientCatalog
+  OBHops *testHops = [[OBHops alloc] initWithContext:self.ctx
                                                 name:@"test hops"
                                     alphaAcidPercent:@(8.0)];
 
@@ -92,7 +92,7 @@
 
 - (void)testAddMaltDisplayOrder
 {
-  OBMalt *testMalt = [[OBMalt alloc] initWithCatalog:self.brewery.ingredientCatalog
+  OBMalt *testMalt = [[OBMalt alloc] initWithContext:self.ctx
                                                 name:@"test malt"
                                     extractPotential:@(0)
                                             lovibond:@(0)
@@ -198,7 +198,7 @@
 
 - (void)testFinalGravity
 {
-  OBMalt *malt = [[OBMalt alloc] initWithCatalog:self.brewery.ingredientCatalog
+  OBMalt *malt = [[OBMalt alloc] initWithContext:self.ctx
                                                  name:@"Grain"
                                      extractPotential:@(1.040)
                                              lovibond:@(1.0)
@@ -276,7 +276,7 @@
   self.recipe.preBoilVolumeInGallons = @(10.0);
   self.recipe.postBoilVolumeInGallons = @(6.0);
 
-  OBHops *testHops = [[OBHops alloc] initWithCatalog:self.brewery.ingredientCatalog name:@"Test" alphaAcidPercent:@(5.8)];
+  OBHops *testHops = [[OBHops alloc] initWithContext:self.ctx name:@"Test" alphaAcidPercent:@(5.8)];
   OBHopAddition *testHopAddition = [[OBHopAddition alloc] initWithHopVariety:testHops andRecipe:nil];
 
   float ibus10gal = [testHopAddition ibusForRecipeVolume:10.0 boilGravity:1.5 ibuFormula:OBIbuFormulaTinseth];

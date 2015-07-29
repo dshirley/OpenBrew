@@ -18,7 +18,7 @@
 @implementation OBMaltAdditionTest
 
 - (OBMaltAddition *)createTestMaltAdditionWithMaltType:(OBMaltType)type {
-  OBMalt *malt = [[OBMalt alloc] initWithCatalog:self.brewery.ingredientCatalog
+  OBMalt *malt = [[OBMalt alloc] initWithContext:self.ctx
                                             name:@"test malt"
                                 extractPotential:@(0)
                                         lovibond:@(0)

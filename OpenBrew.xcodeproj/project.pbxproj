@@ -26,7 +26,6 @@
 		9F92E8A918A0910200118D76 /* OBHopFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8A818A0910200118D76 /* OBHopFinderViewController.m */; };
 		9F92E8AB18A0947F00118D76 /* MaltCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */; };
 		9F92E8AF18A0A93A00118D76 /* MaltCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */; };
-		9F92E8B218A0C2D900118D76 /* OBIngredientCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8B118A0C2D900118D76 /* OBIngredientCatalog.m */; };
 		9F92E8BF18A0CED100118D76 /* OBMaltAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8BE18A0CED100118D76 /* OBMaltAddition.m */; };
 		9F92E8C218A0CFF700118D76 /* OBMalt.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8C118A0CFF700118D76 /* OBMalt.m */; };
 		9F92E8C518A0D0D000118D76 /* OBRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8C418A0D0D000118D76 /* OBRecipe.m */; };
@@ -139,8 +138,6 @@
 		9F92E8A718A0910200118D76 /* OBHopFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopFinderViewController.h; sourceTree = "<group>"; };
 		9F92E8A818A0910200118D76 /* OBHopFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopFinderViewController.m; sourceTree = "<group>"; };
 		9F92E8AA18A0947F00118D76 /* MaltCatalog.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MaltCatalog.csv; path = data/MaltCatalog.csv; sourceTree = "<group>"; };
-		9F92E8B018A0C2D900118D76 /* OBIngredientCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientCatalog.h; sourceTree = "<group>"; };
-		9F92E8B118A0C2D900118D76 /* OBIngredientCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIngredientCatalog.m; sourceTree = "<group>"; };
 		9F92E8BD18A0CED100118D76 /* OBMaltAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltAddition.h; sourceTree = "<group>"; };
 		9F92E8BE18A0CED100118D76 /* OBMaltAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAddition.m; sourceTree = "<group>"; };
 		9F92E8C018A0CFF700118D76 /* OBMalt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMalt.h; sourceTree = "<group>"; };
@@ -452,8 +449,6 @@
 				9F92E8C918A0D53E00118D76 /* OBHops.h */,
 				9F92E8CA18A0D53E00118D76 /* OBHops.m */,
 				9FC73F5819BDFF9D00AD964A /* OBIngredientAddition.h */,
-				9F92E8B018A0C2D900118D76 /* OBIngredientCatalog.h */,
-				9F92E8B118A0C2D900118D76 /* OBIngredientCatalog.m */,
 				9F92E8C018A0CFF700118D76 /* OBMalt.h */,
 				9F92E8C118A0CFF700118D76 /* OBMalt.m */,
 				9F92E8BD18A0CED100118D76 /* OBMaltAddition.h */,
@@ -744,7 +739,6 @@
 				9FE8643B198FBCE0007AD9E7 /* OBHopQuantityPickerDelegate.m in Sources */,
 				9FF510181B6568E400970C22 /* OBMaltAdditionSettingsViewController.m in Sources */,
 				9F98D3671880F8ED00469323 /* main.m in Sources */,
-				9F92E8B218A0C2D900118D76 /* OBIngredientCatalog.m in Sources */,
 				9FFE13151B27EF6E00D3F76A /* OBVolumePickerDelegate.m in Sources */,
 				9F60CF2C19B264A10076A600 /* OBMaltFinderViewController.m in Sources */,
 				9FF686C61893F00B00B36486 /* OBBrewery.m in Sources */,

@@ -8,38 +8,34 @@
 
 #import "OBHops.h"
 #import "OBHopAddition.h"
-#import "OBIngredientCatalog.h"
 
 #define HOP_NAME_IDX 0
 #define HOP_ALPHA_IDX 1
 
 @implementation OBHops
 
-@dynamic catalog;
 @dynamic defaultAlphaAcidPercent;
 @dynamic name;
 
-- (id)initWithCatalog:(OBIngredientCatalog *)catalog
+- (id)initWithContext:(NSManagedObjectContext *)moc
            andCsvData:(NSArray *)csvData
 {
   NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
   [nf setNumberStyle:NSNumberFormatterDecimalStyle];
 
-  return [self initWithCatalog:catalog
+  return [self initWithContext:moc
                           name:csvData[HOP_NAME_IDX]
               alphaAcidPercent:[nf numberFromString:csvData[HOP_ALPHA_IDX]]];
 }
 
-- (id)initWithCatalog:(OBIngredientCatalog *)catalog
+- (id)initWithContext:(NSManagedObjectContext *)moc
                  name:(NSString *)name
      alphaAcidPercent:(NSNumber *)alphaAcidPercent
 {
-  NSManagedObjectContext *ctx = [catalog managedObjectContext];
   NSEntityDescription *desc = [NSEntityDescription entityForName:@"Hops"
-                                          inManagedObjectContext:ctx];
+                                          inManagedObjectContext:moc];
 
-  if (self = [self initWithEntity:desc insertIntoManagedObjectContext:ctx]) {
-    self.catalog = catalog;
+  if (self = [self initWithEntity:desc insertIntoManagedObjectContext:moc]) {
     self.name = name;
     self.defaultAlphaAcidPercent = alphaAcidPercent;
   }

@@ -19,7 +19,7 @@
 - (void)testInitWithCatalogAndCsvData
 {
   NSArray *csvData = @[ @"Wyeast", @"Ale", @"1187", @"Ringwood Ale", @"68", @"72", @"4", @"64", @"74", @"1"];
-  OBYeast *yeast = [[OBYeast alloc] initWithCatalog:self.brewery.ingredientCatalog andCsvData:csvData];
+  OBYeast *yeast = [[OBYeast alloc] initWithContext:self.ctx andCsvData:csvData];
 
   XCTAssertEqual(OBYeastManufacturerWyeast, [yeast.manufacturer integerValue]);
   XCTAssertEqual(OBYeastCategoryAle, [yeast.category integerValue]);
@@ -41,7 +41,7 @@
 
   for (NSString *category in categories) {
     NSArray *csvData = @[ @"Wyeast", category, @"0", @"Test", @"0", @"0", @"0", @"0", @"0", @"0"];
-    OBYeast *yeast = [[OBYeast alloc] initWithCatalog:self.brewery.ingredientCatalog andCsvData:csvData];
+    OBYeast *yeast = [[OBYeast alloc] initWithContext:self.ctx andCsvData:csvData];
     XCTAssertEqual((OBYeastCategory) i, [yeast.category integerValue]);
     i++;
   }
@@ -55,7 +55,7 @@
 
   for (NSString *manufacturer in manufacturers) {
     NSArray *csvData = @[ manufacturer, @"Ale", @"0", @"Test", @"0", @"0", @"0", @"0", @"0", @"0"];
-    OBYeast *yeast = [[OBYeast alloc] initWithCatalog:self.brewery.ingredientCatalog andCsvData:csvData];
+    OBYeast *yeast = [[OBYeast alloc] initWithContext:self.ctx andCsvData:csvData];
     XCTAssertEqual((OBYeastManufacturer) i, [yeast.manufacturer integerValue]);
     i++;
   }
@@ -64,7 +64,7 @@
 - (void)testEstimatedAttenuationAsDecimal
 {
   NSArray *csvData = @[ @"Wyeast", @"Ale", @"1187", @"Ringwood Ale", @"68", @"72", @"4", @"64", @"74", @"1"];
-  OBYeast *yeast = [[OBYeast alloc] initWithCatalog:self.brewery.ingredientCatalog andCsvData:csvData];
+  OBYeast *yeast = [[OBYeast alloc] initWithContext:self.ctx andCsvData:csvData];
 
   yeast.minAttenuation = @(60);
   yeast.maxAttenuation = @(70);

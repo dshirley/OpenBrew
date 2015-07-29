@@ -7,7 +7,6 @@
 //
 
 #import "OBYeast.h"
-#import "OBIngredientCatalog.h"
 #import "OBYeastAddition.h"
 
 typedef NS_ENUM(NSInteger, OBYeastCsvIndex) {
@@ -37,16 +36,13 @@ typedef NS_ENUM(NSInteger, OBYeastCsvIndex) {
 @dynamic minTemperature;
 @dynamic catalog;
 
-- (id)initWithCatalog:(OBIngredientCatalog *)catalog
-           andCsvData:(NSArray *)data
+- (id)initWithContext:(NSManagedObjectContext *)moc
+           andCsvData:(NSArray *)data;
 {
-  NSManagedObjectContext *ctx = [catalog managedObjectContext];
   NSEntityDescription *desc = [NSEntityDescription entityForName:@"Yeast"
-                                          inManagedObjectContext:ctx];
+                                          inManagedObjectContext:moc];
 
-  if (self = [self initWithEntity:desc insertIntoManagedObjectContext:ctx]) {
-    self.catalog = catalog;
-
+  if (self = [self initWithEntity:desc insertIntoManagedObjectContext:moc]) {
     NSString *manufacturerString = data[OBYeastCsvManufacturerIndex];
     if ([manufacturerString isEqualToString:@"Wyeast"]) {
       self.manufacturer = @(OBYeastManufacturerWyeast);

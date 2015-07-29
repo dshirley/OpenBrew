@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class OBIngredientCatalog, OBMaltAddition;
+@class OBMaltAddition;
 
 typedef NS_ENUM(NSInteger, OBMaltType) {
   OBMaltTypeGrain,
@@ -19,8 +19,6 @@ typedef NS_ENUM(NSInteger, OBMaltType) {
 
 @interface OBMalt : NSManagedObject
 
-@property (nonatomic, retain) OBIngredientCatalog *catalog;
-
 @property (nonatomic, retain) NSString *name;
 
 // Malt, sugar, extract
@@ -29,10 +27,10 @@ typedef NS_ENUM(NSInteger, OBMaltType) {
 @property (nonatomic, retain) NSNumber *defaultExtractPotential;
 @property (nonatomic, retain) NSSet *maltAdditions;
 
-- (id)initWithCatalog:(OBIngredientCatalog *)catalog
+- (id)initWithContext:(NSManagedObjectContext *)moc
            andCsvData:(NSArray *)data;
 
-- (id)initWithCatalog:(OBIngredientCatalog *)catalog
+- (id)initWithContext:(NSManagedObjectContext *)moc
                  name:(NSString *)name
      extractPotential:(NSNumber *)extractPotential
              lovibond:(NSNumber *)lovibond

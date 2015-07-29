@@ -27,6 +27,8 @@
 @property (nonatomic) NSIndexPath *r4s0;
 @property (nonatomic) NSIndexPath *r5s0;
 
+- (NSArray *)fetchAllEntity:(NSString *)entityName;
+
 // For example:
 // [self fetchEntity:@"Malt" withProperty:@"name" equalTo:@"Pilsner Malt"]
 - (id)fetchEntity:(NSString *)entityName

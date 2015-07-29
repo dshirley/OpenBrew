@@ -55,7 +55,7 @@ typedef NS_ENUM(NSInteger, OBYeastManufacturer) {
 
 - (float)estimatedAttenuationAsDecimal;
 
-- (id)initWithCatalog:(OBIngredientCatalog *)catalog
+- (id)initWithContext:(NSManagedObjectContext *)moc
            andCsvData:(NSArray *)data;
 
 @end

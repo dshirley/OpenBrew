@@ -10,7 +10,6 @@
 
 #import <XCTest/XCTest.h>
 #import "OBBaseTestCase.h"
-#import "OBIngredientCatalog.h"
 #import "OBMalt.h"
 #import "OBHops.h"
 #import "OBYeast.h"
@@ -28,7 +27,7 @@
 
 - (void)testYeastsWereLoaded
 {
-  XCTAssertEqual(91, self.brewery.ingredientCatalog.yeast.count);
+  XCTAssertEqual(91, [self fetchAllEntity:@"Yeast"].count);
 
   OBYeast *yeast = [self fetchEntity:@"Yeast" withProperty:@"identifier" equalTo:@"1007"];
   XCTAssertEqualObjects(@"German Ale", yeast.name);
@@ -43,7 +42,7 @@
 
 - (void)testHopsWereLoaded
 {
-  XCTAssertEqual(64, self.brewery.ingredientCatalog.hops.count);
+  XCTAssertEqual(64, [self fetchAllEntity:@"Hops"].count);
 
   OBHops *hops = [self fetchEntity:@"Hops" withProperty:@"name" equalTo:@"Admiral"];
   XCTAssertEqualObjects(@"Admiral", hops.name);
@@ -56,7 +55,7 @@
 
 - (void)testMaltsWereLoaded
 {
-  XCTAssertEqual(83, self.brewery.ingredientCatalog.malts.count);
+  XCTAssertEqual(83, [self fetchAllEntity:@"Malt"].count);
 
   // Test the first one in the CSV
   OBMalt *malt = [self fetchEntity:@"Malt" withProperty:@"name" equalTo:@"Acid Malt"];

@@ -9,7 +9,6 @@
 #import "OBAppDelegate.h"
 #import "OBMalt.h"
 #import "OBHops.h"
-#import "OBIngredientCatalog.h"
 #import "OBRecipeNavigationController.h"
 #import "OBBrewery.h"
 #import "Crittercism.h"

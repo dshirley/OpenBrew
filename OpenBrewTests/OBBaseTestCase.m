@@ -51,6 +51,23 @@
   [super tearDown];
 }
 
+- (NSArray *)fetchAllEntity:(NSString *)entityName
+{
+  NSEntityDescription *entityDescription = [NSEntityDescription
+                                            entityForName:entityName
+                                            inManagedObjectContext:self.ctx];
+
+  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  [request setEntity:entityDescription];
+
+  NSError *error = nil;
+  NSArray *array = [self.ctx executeFetchRequest:request error:&error];
+
+  XCTAssertNil(error);
+
+  return array;
+}
+
 - (id)fetchEntity:(NSString *)entityName
      withProperty:(NSString *)property
           equalTo:(NSString *)value

@@ -8,7 +8,6 @@
 
 #import "OBBrewery.h"
 #import "OBRecipe.h"
-#import "OBIngredientCatalog.h"
 #import "OBMalt.h"
 #import "OBHops.h"
 #import "OBYeast.h"
@@ -19,94 +18,84 @@
 @dynamic mashEfficiency;
 @dynamic defaultBatchSize;
 @dynamic recipes;
-@dynamic ingredientCatalog;
 
-+ (OBBrewery *)breweryFromContext:(NSManagedObjectContext *)ctx
++ (OBBrewery *)breweryFromContext:(NSManagedObjectContext *)moc
 {
   NSEntityDescription *entityDescription = [NSEntityDescription
                                             entityForName:@"Brewery"
-                                            inManagedObjectContext:ctx];
+                                            inManagedObjectContext:moc];
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
   [request setEntity:entityDescription];
 
   NSError *error = nil;
-  NSArray *array = [ctx executeFetchRequest:request error:&error];
+  NSArray *array = [moc executeFetchRequest:request error:&error];
 
   OBBrewery *brewery = nil;
   if (!error && array && array.count > 0) {
     brewery = array[0];
   } else {
-    brewery = [self createBreweryInContext:ctx];
+    brewery = [self createBreweryInContext:moc];
   }
 
   return brewery;
 }
 
-+ (OBBrewery *)createBreweryInContext:(NSManagedObjectContext *)ctx
++ (OBBrewery *)createBreweryInContext:(NSManagedObjectContext *)moc
 {
   OBBrewery *brewery = [NSEntityDescription insertNewObjectForEntityForName:@"Brewery"
-                                                     inManagedObjectContext:ctx];
+                                                     inManagedObjectContext:moc];
 
-  OBIngredientCatalog *catalog = [NSEntityDescription
-                                  insertNewObjectForEntityForName:@"IngredientCatalog"
-                                  inManagedObjectContext:ctx];
-
-  if (![self loadMaltsIntoCatalog:catalog]) {
+  if (![self loadMaltsIntoContext:moc]) {
     return nil;
   }
 
-  if (![self loadHopsIntoCatalog:catalog]) {
+  if (![self loadHopsIntoContext:moc]) {
     return nil;
   }
 
-  if (![self loadYeastIntoCatalog:catalog]) {
+  if (![self loadYeastIntoContext:moc]) {
     return nil;
   }
-
-  brewery.ingredientCatalog = catalog;
 
   return brewery;
 }
 
-+ (BOOL)loadYeastIntoCatalog:(OBIngredientCatalog *)catalog
++ (BOOL)loadYeastIntoContext:(NSManagedObjectContext *)moc
 {
-  return [self loadDataIntoCatalog:catalog
+  return [self loadDataIntoContext:moc
                           fromPath:@"YeastCatalog.csv"
-                         withBlock:^void (NSArray *attributes, OBIngredientCatalog *catalog)
+                         withBlock:^void (NSArray *attributes, NSManagedObjectContext *moc)
           {
-            OBYeast *yeast = [[OBYeast alloc] initWithCatalog:catalog andCsvData:attributes];
-            [catalog addYeastObject:yeast];
+            (void)[[OBYeast alloc] initWithContext:moc andCsvData:attributes];
           }];
 }
 
-+ (BOOL)loadMaltsIntoCatalog:(OBIngredientCatalog *)catalog
++ (BOOL)loadMaltsIntoContext:(NSManagedObjectContext *)moc
 {
-  return [self loadDataIntoCatalog:catalog
+  return [self loadDataIntoContext:moc
                           fromPath:@"MaltCatalog.csv"
-                         withBlock:^void (NSArray *attributes, OBIngredientCatalog *catalog)
+                         withBlock:^void (NSArray *attributes, NSManagedObjectContext *moc)
           {
-            OBMalt *malt = [[OBMalt alloc] initWithCatalog:catalog andCsvData:attributes];
-            [catalog addMaltsObject:malt];
+            (void)[[OBMalt alloc] initWithContext:moc andCsvData:attributes];
           }];
 }
 
-+ (BOOL)loadHopsIntoCatalog:(OBIngredientCatalog *)catalog
++ (BOOL)loadHopsIntoContext:(NSManagedObjectContext *)moc
 {
   NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
   [nf setNumberStyle:NSNumberFormatterDecimalStyle];
 
-  return [self loadDataIntoCatalog:catalog
+  return [self loadDataIntoContext:moc
                           fromPath:@"HopCatalog.csv"
-                         withBlock:^void (NSArray *attributes, OBIngredientCatalog *catalog)
+                         withBlock:^void (NSArray *attributes, NSManagedObjectContext *moc)
           {
-            OBHops *hops = [[OBHops alloc] initWithCatalog:catalog andCsvData:attributes];
-            [catalog addHopsObject:hops];
+            (void)[[OBHops alloc] initWithContext:moc andCsvData:attributes];
           }];
 }
 
-+ (BOOL)loadDataIntoCatalog:(OBIngredientCatalog *)catalog
++ (BOOL)loadDataIntoContext:(NSManagedObjectContext *)moc
                    fromPath:(NSString *)path
-                  withBlock:(void (^)(NSArray *, OBIngredientCatalog *))parser
+                  withBlock:(void (^)(NSArray *, NSManagedObjectContext *))parser
 {
   NSString *csvPath = [[NSBundle mainBundle]
                        pathForResource:path
@@ -133,7 +122,7 @@
       continue;
     }
     
-    parser([line componentsSeparatedByString:@","], catalog);
+    parser([line componentsSeparatedByString:@","], moc);
   }
 
   return YES;

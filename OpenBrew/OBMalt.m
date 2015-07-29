@@ -7,8 +7,8 @@
 //
 
 #import "OBMalt.h"
-#import "OBIngredientCatalog.h"
 #import "OBMaltAddition.h"
+#import "Crittercism+NSErrorLogging.h"
 
 #define MALT_NAME_IDX 0
 #define MALT_EXTRACT_IDX 1
@@ -20,35 +20,32 @@
 @dynamic defaultExtractPotential;
 @dynamic defaultLovibond;
 @dynamic name;
-@dynamic catalog;
 @dynamic maltAdditions;
 @dynamic type;
 
-- (id)initWithCatalog:(OBIngredientCatalog *)catalog
+- (id)initWithContext:(NSManagedObjectContext *)moc
            andCsvData:(NSArray *)csvData
 {
   NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
   [nf setNumberStyle:NSNumberFormatterDecimalStyle];
 
-  return [self initWithCatalog:catalog
+  return [self initWithContext:moc
                           name:csvData[MALT_NAME_IDX]
               extractPotential:[nf numberFromString:csvData[MALT_EXTRACT_IDX]]
                       lovibond:[nf numberFromString:csvData[MALT_COLOR_IDX]]
                           type:[nf numberFromString:csvData[MALT_TYPE_IDX]]];
 }
 
-- (id)initWithCatalog:(OBIngredientCatalog *)catalog
+- (id)initWithContext:(NSManagedObjectContext *)moc
                  name:(NSString *)name
      extractPotential:(NSNumber *)extractPotential
              lovibond:(NSNumber *)lovibond
                  type:(NSNumber *)type
 {
-  NSManagedObjectContext *ctx = [catalog managedObjectContext];
   NSEntityDescription *desc = [NSEntityDescription entityForName:@"Malt"
-                                          inManagedObjectContext:ctx];
+                                          inManagedObjectContext:moc];
 
-  if (self = [self initWithEntity:desc insertIntoManagedObjectContext:ctx]) {
-    self.catalog = catalog;
+  if (self = [self initWithEntity:desc insertIntoManagedObjectContext:moc]) {
     self.name = name;
     self.defaultExtractPotential = extractPotential;
     self.defaultLovibond = lovibond;

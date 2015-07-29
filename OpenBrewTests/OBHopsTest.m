@@ -19,15 +19,14 @@
 - (void)testInitWithCatalogAndCsvData
 {
   NSArray *csvData = @[ @"Glacier", @"5.6", @"US" ];
-  OBHops *hops = [[OBHops alloc] initWithCatalog:self.brewery.ingredientCatalog andCsvData:csvData];
+  OBHops *hops = [[OBHops alloc] initWithContext:self.ctx andCsvData:csvData];
 
-  XCTAssertEqual(self.brewery.ingredientCatalog, hops.catalog);
   XCTAssertEqualObjects(@"Glacier", hops.name);
   XCTAssertEqualWithAccuracy(5.6, [hops.defaultAlphaAcidPercent floatValue], 0.0001);
 
   csvData = @[ @"Cluster", @"7", @"US" ];
-  hops = [[OBHops alloc] initWithCatalog:self.brewery.ingredientCatalog andCsvData:csvData];
-  XCTAssertEqual(self.brewery.ingredientCatalog, hops.catalog);
+  hops = [[OBHops alloc] initWithContext:self.ctx andCsvData:csvData];
+
   XCTAssertEqualObjects(@"Cluster", hops.name);
   XCTAssertEqualWithAccuracy(7, [hops.defaultAlphaAcidPercent floatValue], 0.0001);
 
@@ -35,11 +34,10 @@
 
 - (void)testInitWithCatalogNameAlphaAcidPercent
 {
-  OBHops *hops = [[OBHops alloc] initWithCatalog:self.brewery.ingredientCatalog
+  OBHops *hops = [[OBHops alloc] initWithContext:self.ctx
                                             name:@"Cascade"
                                 alphaAcidPercent:@(5.85)];
 
-  XCTAssertEqual(self.brewery.ingredientCatalog, hops.catalog);
   XCTAssertEqualObjects(@"Cascade", hops.name);
   XCTAssertEqualWithAccuracy(5.85, [hops.defaultAlphaAcidPercent floatValue], 0.0001);
 }

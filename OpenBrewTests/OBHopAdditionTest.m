@@ -20,7 +20,7 @@
 #define EPSILON .001
 
 - (OBHopAddition *)createTestHopAddition {
-  OBHops *hops = [[OBHops alloc] initWithCatalog:self.brewery.ingredientCatalog
+  OBHops *hops = [[OBHops alloc] initWithContext:self.ctx
                                             name:@"test hops"
                                 alphaAcidPercent:@(5.0)];
 
