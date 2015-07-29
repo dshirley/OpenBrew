@@ -8,11 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@class OBBrewery;
-
 @interface OBRecipeNavigationController : UINavigationController
 
-@property (nonatomic, strong) NSManagedObjectContext *managedContext;
-@property (nonatomic, strong) OBBrewery *brewery;
+@property (nonatomic, strong) NSManagedObjectContext *moc;
 
 @end

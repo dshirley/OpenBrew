@@ -17,7 +17,6 @@
 
 @dynamic mashEfficiency;
 @dynamic defaultBatchSize;
-@dynamic recipes;
 
 + (OBBrewery *)breweryFromContext:(NSManagedObjectContext *)moc
 {

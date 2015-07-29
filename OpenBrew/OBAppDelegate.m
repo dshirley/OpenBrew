@@ -37,8 +37,7 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
   }
 
   OBRecipeNavigationController *nav = (OBRecipeNavigationController *) [[self window] rootViewController];
-  nav.managedContext = self.managedObjectContext;
-  nav.brewery = brewery;
+  nav.moc = self.managedObjectContext;
   
   return YES;
 }

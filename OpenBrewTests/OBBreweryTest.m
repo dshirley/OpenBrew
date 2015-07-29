@@ -20,11 +20,6 @@
 
 @implementation OBBreweryTest
 
-- (void)testNoRecipesByDefault
-{
-  XCTAssertEqual(0, self.brewery.recipes.count);
-}
-
 - (void)testYeastsWereLoaded
 {
   XCTAssertEqual(91, [self fetchAllEntity:@"Yeast"].count);

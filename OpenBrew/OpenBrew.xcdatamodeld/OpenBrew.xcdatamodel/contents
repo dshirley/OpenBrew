@@ -3,7 +3,6 @@
     <entity name="Brewery" representedClassName="OBBrewery" syncable="YES">
         <attribute name="defaultBatchSize" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="mashEfficiency" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="recipes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipe" inverseName="brewery" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <entity name="HopAddition" representedClassName="OBHopAddition" syncable="YES">
         <attribute name="alphaAcidPercent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -38,7 +37,6 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="postBoilVolumeInGallons" optional="YES" attributeType="Float" minValueString="0" defaultValueString="0.5" syncable="YES"/>
         <attribute name="preBoilVolumeInGallons" optional="YES" attributeType="Float" minValueString="0" defaultValueString="0.5" syncable="YES"/>
-        <relationship name="brewery" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Brewery" inverseName="recipes" inverseEntity="Brewery" syncable="YES"/>
         <relationship name="hopAdditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HopAddition" inverseName="recipe" inverseEntity="HopAddition" syncable="YES"/>
         <relationship name="maltAdditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MaltAddition" inverseName="recipe" inverseEntity="MaltAddition" syncable="YES"/>
         <relationship name="yeast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="YeastAddition" inverseName="recipe" inverseEntity="YeastAddition" syncable="YES"/>
@@ -62,13 +60,13 @@
         <relationship name="yeast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Yeast" inverseName="yeastAddidions" inverseEntity="Yeast" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Brewery" positionX="0" positionY="0" width="128" height="88"/>
-        <element name="HopAddition" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="Hops" positionX="0" positionY="0" width="128" height="88"/>
-        <element name="Malt" positionX="-252" positionY="81" width="128" height="118"/>
-        <element name="MaltAddition" positionX="70" positionY="189" width="128" height="135"/>
-        <element name="Recipe" positionX="-153" positionY="258" width="128" height="165"/>
+        <element name="HopAddition" positionX="-18" positionY="351" width="128" height="135"/>
+        <element name="Hops" positionX="9" positionY="117" width="128" height="88"/>
+        <element name="Malt" positionX="-252" positionY="-54" width="128" height="118"/>
+        <element name="MaltAddition" positionX="-263" positionY="126" width="128" height="135"/>
         <element name="Yeast" positionX="340" positionY="9" width="128" height="208"/>
-        <element name="YeastAddition" positionX="142" positionY="369" width="128" height="90"/>
+        <element name="YeastAddition" positionX="142" positionY="495" width="128" height="90"/>
+        <element name="Recipe" positionX="36" positionY="162" width="128" height="148"/>
+        <element name="Brewery" positionX="-333" positionY="360" width="128" height="73"/>
     </elements>
 </model>

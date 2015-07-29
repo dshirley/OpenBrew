@@ -9,13 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class OBRecipe;
-
 @interface OBBrewery : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * mashEfficiency;
 @property (nonatomic, retain) NSNumber * defaultBatchSize;
-@property (nonatomic, retain) NSSet *recipes;
 
 @end
 
@@ -23,10 +20,5 @@
 
 + (OBBrewery *)instance;
 + (OBBrewery *)breweryFromContext:(NSManagedObjectContext *)ctx;
-
-- (void)addRecipesObject:(OBRecipe *)value;
-- (void)removeRecipesObject:(OBRecipe *)value;
-- (void)addRecipes:(NSSet *)values;
-- (void)removeRecipes:(NSSet *)values;
 
 @end

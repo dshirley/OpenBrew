@@ -74,7 +74,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   OBRecipeNavigationController *nav = (OBRecipeNavigationController *) [self navigationController];
-  NSManagedObjectContext *ctx = [nav managedContext];
+  NSManagedObjectContext *ctx = [nav moc];
   NSString *segueId = [segue identifier];
   OBRecipe *recipe = nil;
 
@@ -91,13 +91,8 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   }
 
   if ([segueId isEqualToString:ADD_RECIPE_SEGUE]) {
-    OBBrewery *brewery = [self brewery];
-
     recipe = [[OBRecipe alloc] initWithContext:ctx];
     recipe.name = @"New Recipe";
-
-    [brewery addRecipesObject:recipe];
-    recipe.brewery = brewery;
 
     NSError *err = nil;
     [ctx save:&err];
@@ -118,7 +113,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
 - (BOOL)tableViewIsEmpty
 {
-  return (self.brewery.recipes.count == 0);
+  return ([self recipeData].count == 0);
 }
 
 // Changes the look and feel to have placeholder text that makes it clear
@@ -140,24 +135,36 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   self.tableView.tableFooterView = nil;
 }
 
-- (OBBrewery *)brewery
+- (NSManagedObjectContext *)moc
 {
   OBRecipeNavigationController *nav = nil;
   nav =(OBRecipeNavigationController *) [self navigationController];
-  return nav.brewery;
+  return nav.moc;
 }
 
 - (NSArray *)recipeData
 {
-  NSSortDescriptor *sortByDisplayOrder;
+  NSEntityDescription *entityDescription = [NSEntityDescription
+                                            entityForName:@"Recipe"
+                                            inManagedObjectContext:self.moc];
 
-  sortByDisplayOrder = [[NSSortDescriptor alloc] initWithKey:@"name"
-                                                   ascending:YES];
+  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  [request setEntity:entityDescription];
 
-  NSArray *sortSpecification = @[ sortByDisplayOrder ];
-  OBBrewery *brewery = [self brewery];
+  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name"
+                                                                 ascending:YES];
 
-  return [brewery.recipes sortedArrayUsingDescriptors:sortSpecification];
+  [request setSortDescriptors:@[sortDescriptor]];
+
+  NSError *error = nil;
+  NSArray *array = [self.moc executeFetchRequest:request error:&error];
+
+  if (error) {
+    CRITTERCISM_LOG_ERROR(error);
+    array = [NSArray array];
+  }
+
+  return array;
 }
 
 #pragma mark - UITableViewDataSource Methods
@@ -184,7 +191,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 {
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     OBRecipe *recipeToRemove = [self recipeData][indexPath.row];
-    [self.brewery removeRecipesObject:recipeToRemove];
+    [[self moc] deleteObject:recipeToRemove];
 
     [tableView deleteRowsAtIndexPaths:@[indexPath]
                      withRowAnimation:UITableViewRowAnimationAutomatic];
