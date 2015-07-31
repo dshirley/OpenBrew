@@ -843,10 +843,10 @@
             </objects>
             <point key="canvasLocation" x="1245" y="-48"/>
         </scene>
-        <!--Recipe Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="eY5-IE-gVq">
             <objects>
-                <navigationController definesPresentationContext="YES" id="RpZ-4Y-4oi" customClass="OBRecipeNavigationController" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="RpZ-4Y-4oi" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="mXC-UK-jh2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="G1G-qE-Mun">
                         <autoresizingMask key="autoresizingMask"/>

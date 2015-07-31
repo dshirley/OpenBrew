@@ -34,7 +34,6 @@
 		9F92E8CB18A0D53E00118D76 /* OBHops.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8CA18A0D53E00118D76 /* OBHops.m */; };
 		9F92E8CE18A0D63300118D76 /* OBYeastAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8CD18A0D63300118D76 /* OBYeastAddition.m */; };
 		9F92E8D118A0D6CF00118D76 /* OBYeast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8D018A0D6CF00118D76 /* OBYeast.m */; };
-		9F92E8D418A10AAB00118D76 /* OBRecipeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8D318A10AAB00118D76 /* OBRecipeNavigationController.m */; };
 		9F92E8E118A4536200118D76 /* OBIngredientGauge.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8E018A4536200118D76 /* OBIngredientGauge.m */; };
 		9F95B23C1B2677C6009DC9D9 /* OBBatchSizeTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F95B23B1B2677C6009DC9D9 /* OBBatchSizeTableViewDelegate.m */; };
 		9F977BC01B656D020068DC7A /* OBMaltAdditionSettingsSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F977BBF1B656D020068DC7A /* OBMaltAdditionSettingsSegue.m */; };
@@ -157,8 +156,6 @@
 		9F92E8CD18A0D63300118D76 /* OBYeastAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBYeastAddition.m; sourceTree = "<group>"; };
 		9F92E8CF18A0D6CF00118D76 /* OBYeast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBYeast.h; sourceTree = "<group>"; };
 		9F92E8D018A0D6CF00118D76 /* OBYeast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBYeast.m; sourceTree = "<group>"; };
-		9F92E8D218A10AAB00118D76 /* OBRecipeNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBRecipeNavigationController.h; sourceTree = "<group>"; };
-		9F92E8D318A10AAB00118D76 /* OBRecipeNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeNavigationController.m; sourceTree = "<group>"; };
 		9F92E8DF18A4536200118D76 /* OBIngredientGauge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientGauge.h; sourceTree = "<group>"; };
 		9F92E8E018A4536200118D76 /* OBIngredientGauge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIngredientGauge.m; sourceTree = "<group>"; };
 		9F95B23A1B2677C6009DC9D9 /* OBBatchSizeTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBatchSizeTableViewDelegate.h; sourceTree = "<group>"; };
@@ -539,8 +536,6 @@
 				9F3311661B34581C008C0029 /* OBBrewController.h */,
 				9F60CF2719B251D00076A600 /* OBIngredientTableViewDataSource.h */,
 				9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */,
-				9F92E8D218A10AAB00118D76 /* OBRecipeNavigationController.h */,
-				9F92E8D318A10AAB00118D76 /* OBRecipeNavigationController.m */,
 				9FF686C71894099A00B36486 /* OBRecipeOverviewController.h */,
 				9FF686C81894099A00B36486 /* OBRecipeOverviewController.m */,
 				9FF686C01893E45F00B36486 /* OBRecipeViewController.h */,
@@ -793,7 +788,6 @@
 				9F98D36B1880F8ED00469323 /* OBAppDelegate.m in Sources */,
 				9F92E8CE18A0D63300118D76 /* OBYeastAddition.m in Sources */,
 				9F0815411996F69E00E5E575 /* OBMaltAdditionTableViewCell.m in Sources */,
-				9F92E8D418A10AAB00118D76 /* OBRecipeNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,11 +9,11 @@
 #import "OBAppDelegate.h"
 #import "OBMalt.h"
 #import "OBHops.h"
-#import "OBRecipeNavigationController.h"
 #import "OBBrewery.h"
 #import "Crittercism.h"
 #import "Crittercism+NSErrorLogging.h"
 #import "GAI.h"
+#import "OBRecipeViewController.h"
 
 static NSString *const CRITTER_APP_ID_PRODUCTION = @"558d6dda9ccc10f6040881c2";
 static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
@@ -32,8 +32,11 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
     [self.managedObjectContext reset];
   }
 
-  OBRecipeNavigationController *nav = (OBRecipeNavigationController *) [[self window] rootViewController];
-  nav.moc = self.managedObjectContext;
+  UINavigationController *nav = (UINavigationController *)[[self window] rootViewController];
+  OBRecipeViewController *recipeVc = (OBRecipeViewController *)nav.topViewController;
+  NSAssert(recipeVc.class == OBRecipeViewController.class, @"Unexpected view controller: %@", recipeVc.class);
+
+  recipeVc.moc = self.managedObjectContext;
   
   return YES;
 }

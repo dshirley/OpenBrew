@@ -10,7 +10,6 @@
 #import <XCTest/XCTest.h>
 #import "OBBaseTestCase.h"
 #import "OBRecipeViewController.h"
-#import "OBRecipeNavigationController.h"
 #import <OCMock/OCMock.h>
 #import "OBAppDelegate.h"
 
@@ -26,19 +25,7 @@
 
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   self.vc = [storyboard instantiateViewControllerWithIdentifier:@"recipeList"];
-
-//  OBAppDelegate *delegate = [UIApplication sharedApplication].delegate;
-//  OBRecipeNavigationController *navController = (OBRecipeNavigationController *)delegate.window.rootViewController;
-//  navController.moc = self.ctx;
-//
-//  NSLog(@"%@", navController);
-  OBRecipeNavigationController *navController = [[OBRecipeNavigationController alloc] init];
-  navController.moc = self.ctx;
-
-  self.mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[[self.mockVc stub] andReturn:navController] navigationController];
-
-  XCTAssertEqual(self.ctx, [(id)self.vc moc]);
+  self.vc.moc = self.ctx;
 }
 
 - (void)tearDown {
@@ -52,7 +39,11 @@
 
   // One recipe is created by the OBBaseTestCase
   XCTAssertEqual(1, [self.vc tableView:nil numberOfRowsInSection:0]);
-//  XCTAssertEqual(0, [self.vc tableView:nil numberOfRowsInSection:1]);
+
+  [[OBRecipe alloc] initWithContext:self.ctx].name = @"A";
+  [[OBRecipe alloc] initWithContext:self.ctx].name = @"B";
+
+  XCTAssertEqual(3, [self.vc tableView:nil numberOfRowsInSection:1]);
 }
 
 

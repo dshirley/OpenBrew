@@ -12,7 +12,7 @@
 
 @interface OBRecipeViewController : GAITrackedViewController <UITableViewDataSource>
 
-@property (nonatomic, strong) OBBrewery *brewery;
+@property (nonatomic) NSManagedObjectContext *moc;
 
 #pragma mark - UITableViewDataSource methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;

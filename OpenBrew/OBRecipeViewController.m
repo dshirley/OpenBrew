@@ -7,7 +7,6 @@
 //
 
 #import "OBRecipeViewController.h"
-#import "OBRecipeNavigationController.h"
 #import "OBRecipeOverviewController.h"
 #import "OBBrewery.h"
 #import "Crittercism+NSErrorLogging.h"
@@ -73,8 +72,6 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  OBRecipeNavigationController *nav = (OBRecipeNavigationController *) [self navigationController];
-  NSManagedObjectContext *ctx = [nav moc];
   NSString *segueId = [segue identifier];
   OBRecipe *recipe = nil;
 
@@ -91,11 +88,11 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   }
 
   if ([segueId isEqualToString:ADD_RECIPE_SEGUE]) {
-    recipe = [[OBRecipe alloc] initWithContext:ctx];
+    recipe = [[OBRecipe alloc] initWithContext:self.moc];
     recipe.name = @"New Recipe";
 
     NSError *err = nil;
-    [ctx save:&err];
+    [self.moc save:&err];
     CRITTERCISM_LOG_ERROR(err);
 
   } else if ([segueId isEqualToString:SELECT_RECIPE_SEGUE]) {
@@ -133,13 +130,6 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 - (void)switchToNonEmptyTableViewMode
 {
   self.tableView.tableFooterView = nil;
-}
-
-- (NSManagedObjectContext *)moc
-{
-  OBRecipeNavigationController *nav = nil;
-  nav =(OBRecipeNavigationController *) [self navigationController];
-  return nav.moc;
 }
 
 - (NSArray *)recipeData
@@ -197,7 +187,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
                      withRowAnimation:UITableViewRowAnimationAutomatic];
 
     NSError *error = nil;
-    [self.brewery.managedObjectContext save:&error];
+    [self.moc save:&error];
     CRITTERCISM_LOG_ERROR(error);
 
     if ([self tableViewIsEmpty]) {
