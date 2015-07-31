@@ -21,32 +21,25 @@ static NSString *const ADD_RECIPE_SEGUE = @"addRecipe";
 static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
 @interface OBRecipeViewController ()
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
+
 @property (nonatomic, strong) UIView *placeholderText;
 
 // Variables for tracking first interaction time with Google Analytics
 @property (nonatomic, assign) CFAbsoluteTime loadTime;
+
 @property (nonatomic, assign) BOOL firstInteractionComplete;
+
 @end
 
 @implementation OBRecipeViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-      self.firstInteractionComplete = NO;
-    }
-    return self;
-}
 
 #pragma mark UIViewController Override Methods
 
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-
-  [self.tableView reloadData];
+  self.firstInteractionComplete = NO;
+  self.loadTime = CFAbsoluteTimeGetCurrent();
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -55,20 +48,13 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
   self.screenName = OBGAScreenName;
 
-  if (!self.firstInteractionComplete) {
-    self.loadTime = CFAbsoluteTimeGetCurrent();
-  }
-
   if ([self tableViewIsEmpty]) {
     [self switchToEmptyTableViewMode];
   } else {
     [self switchToNonEmptyTableViewMode];
   }
 
-  if (!self.isMovingToParentViewController) {
-    // A sub-view controller is being popped
-    [self.tableView reloadData];
-  }
+  [self.tableView reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -181,7 +167,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 {
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     OBRecipe *recipeToRemove = [self recipeData][indexPath.row];
-    [[self moc] deleteObject:recipeToRemove];
+    [self.moc deleteObject:recipeToRemove];
 
     [tableView deleteRowsAtIndexPaths:@[indexPath]
                      withRowAnimation:UITableViewRowAnimationAutomatic];

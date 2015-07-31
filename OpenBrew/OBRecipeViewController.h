@@ -12,11 +12,18 @@
 
 @interface OBRecipeViewController : GAITrackedViewController <UITableViewDataSource>
 
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic) NSManagedObjectContext *moc;
+@property (nonatomic, readonly, assign) BOOL firstInteractionComplete;
+@property (nonatomic, readonly, assign) CFAbsoluteTime loadTime;
 
 #pragma mark - UITableViewDataSource methods
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+
+- (void)switchToEmptyTableViewMode;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 

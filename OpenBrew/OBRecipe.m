@@ -70,11 +70,6 @@
   [self stopObserving];
 }
 
-- (void)prepareForDeletion
-{
-  [self stopObserving];
-}
-
 - (float)gravityUnits {
   float gravityUnits = 0.0;
   float efficiency = [[self efficiency] floatValue];
@@ -260,6 +255,7 @@
                         change:(NSDictionary *)change
                        context:(void *)context
 {
+  NSLog(@"-----observeValueForKeyPath:%@", keyPath);
   if ([self.observedMaltVariables containsObject:keyPath] ||
       [self.observedHopVariables containsObject:keyPath] ||
       [self.observedRecipeVariables containsObject:keyPath])
