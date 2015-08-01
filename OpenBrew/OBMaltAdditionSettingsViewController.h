@@ -8,28 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-// FIXME: use KVO rather than the delegate below & get rid of this import statement
-#import "OBRecipe.h"
-
-// FIXME do it
-#import "OBMaltAdditionTableViewDelegate.h"
-
-@protocol OBMaltSettingsViewControllerDelegate <NSObject>
-
-- (void)gaugeDisplaySettingChanged:(OBRecipeMetric)metric;
-
-- (void)maltAdditionMetricSettingChanged:(OBMaltAdditionMetric)metric;
-
-@end
+@class OBBrewery, OBSettingsSegmentedController;
 
 @interface OBMaltAdditionSettingsViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
-@property (weak, nonatomic) IBOutlet UIView *settingsView;
-@property (weak, nonatomic) id<OBMaltSettingsViewControllerDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UIView *greyoutView;
 
-+ (OBRecipeMetric)currentGaugeSetting;
+@property (nonatomic, strong) OBBrewery *brewery;
 
-+ (OBMaltAdditionMetric)currentMaltDisplaySetting;
+@property (nonatomic, readonly) OBSettingsSegmentedController *gaugeDisplaySettingController;
+@property (nonatomic, readonly) OBSettingsSegmentedController *ingredientDisplaySettingController;
+
+@property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
+@property (nonatomic, weak) IBOutlet UIView *settingsView;
+@property (nonatomic, weak) IBOutlet UIView *greyoutView;
 
 @end

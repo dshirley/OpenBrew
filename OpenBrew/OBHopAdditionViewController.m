@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
   OBHopGaugeMetricBitteringToGravityRatio
 };
 
-OBRecipeMetric const hopSettingsToMetricMapping[] = {
+OBGaugeMetric const hopSettingsToMetricMapping[] = {
   [OBHopGaugeMetricIBU] = OBMetricIbu,
   [OBHopGaugeMetricBitteringToGravityRatio] = OBMetricBuToGuRatio
 };

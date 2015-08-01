@@ -13,15 +13,17 @@
 #import <UIKit/UIKit.h>
 
 // FIXME: the view shouldn't be importing part of the model
-#import "OBRecipe.h"
+#import "OBBrewery.h"
+
+@class OBRecipe;
 
 @interface OBIngredientGauge : UIView
 
 @property (nonatomic, strong) OBRecipe *recipe;
-@property (nonatomic, assign) OBRecipeMetric metricToDisplay;
+@property (nonatomic, assign) OBGaugeMetric metricToDisplay;
 
 - (id)initWithRecipe:(OBRecipe *)recipe
-              metric:(OBRecipeMetric)metric
+              metric:(OBGaugeMetric)metric
                frame:(CGRect)frame;
 
 - (void)refresh;

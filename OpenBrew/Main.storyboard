@@ -652,7 +652,7 @@
         <!--Malt Addition View Settings-->
         <scene sceneID="BnS-Pc-mrL">
             <objects>
-                <viewController id="fuN-sW-SMS" userLabel="Malt Addition View Settings" customClass="OBMaltAdditionSettingsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="maltSettings" id="fuN-sW-SMS" userLabel="Malt Addition View Settings" customClass="OBMaltAdditionSettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2Wz-9d-Hdz"/>
                         <viewControllerLayoutGuide type="bottom" id="009-eA-FD4"/>
@@ -688,9 +688,6 @@
                                             <segment title="Gravity"/>
                                             <segment title="Color"/>
                                         </segments>
-                                        <connections>
-                                            <action selector="gaugeDisplaySettingsChanged:" destination="fuN-sW-SMS" eventType="valueChanged" id="Ao5-L5-lko"/>
-                                        </connections>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7Lz-kA-Eih">
                                         <rect key="frame" x="20" y="109" width="560" height="29"/>
@@ -698,14 +695,11 @@
                                             <segment title="Weight"/>
                                             <segment title="% Gravity"/>
                                         </segments>
-                                        <connections>
-                                            <action selector="ingredientDisplaySettingsChanged:" destination="fuN-sW-SMS" eventType="valueChanged" id="fJS-Jl-GgA"/>
-                                        </connections>
                                     </segmentedControl>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient Units" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dg-5d-aJv">
                                         <rect key="frame" x="20" y="80" width="560" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gauge Display" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9q-zn-f3r">
@@ -875,7 +869,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipe Title" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ohv-8T-HTZ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipe Title" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ohv-8T-HTZ">
                                 <rect key="frame" x="16" y="80" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
@@ -1022,13 +1016,13 @@
                             <constraint firstItem="Kyl-Uf-hHQ" firstAttribute="top" secondItem="pY2-5Q-JMe" secondAttribute="bottom" id="Awo-ly-58X"/>
                             <constraint firstItem="Kyl-Uf-hHQ" firstAttribute="height" secondItem="G4Q-WD-6yU" secondAttribute="height" multiplier="0.4" id="MKd-Iq-JYX"/>
                             <constraint firstItem="pY2-5Q-JMe" firstAttribute="top" secondItem="ohv-8T-HTZ" secondAttribute="bottom" constant="16" id="UkG-ZM-Dq7"/>
-                            <constraint firstItem="ohv-8T-HTZ" firstAttribute="trailing" secondItem="G4Q-WD-6yU" secondAttribute="trailingMargin" id="dT0-dc-VpA"/>
+                            <constraint firstItem="ohv-8T-HTZ" firstAttribute="trailing" secondItem="G4Q-WD-6yU" secondAttribute="trailing" constant="-16" id="dT0-dc-VpA"/>
                             <constraint firstAttribute="trailing" secondItem="Kyl-Uf-hHQ" secondAttribute="trailing" id="g3a-mW-hpa"/>
                             <constraint firstItem="pY2-5Q-JMe" firstAttribute="leading" secondItem="G4Q-WD-6yU" secondAttribute="leading" id="juP-hX-2kM"/>
                             <constraint firstItem="SDt-8f-A6c" firstAttribute="top" secondItem="Kyl-Uf-hHQ" secondAttribute="bottom" id="sR7-1o-CX4"/>
                             <constraint firstItem="ohv-8T-HTZ" firstAttribute="top" secondItem="zQD-HD-OBP" secondAttribute="bottom" constant="16" id="tf2-La-JhA"/>
                             <constraint firstItem="Kyl-Uf-hHQ" firstAttribute="leading" secondItem="G4Q-WD-6yU" secondAttribute="leading" id="yc0-UJ-v04"/>
-                            <constraint firstItem="ohv-8T-HTZ" firstAttribute="leading" secondItem="G4Q-WD-6yU" secondAttribute="leadingMargin" id="zDf-IZ-V4R"/>
+                            <constraint firstItem="ohv-8T-HTZ" firstAttribute="leading" secondItem="G4Q-WD-6yU" secondAttribute="leading" constant="16" id="zDf-IZ-V4R"/>
                             <constraint firstAttribute="trailing" secondItem="pY2-5Q-JMe" secondAttribute="trailing" id="zTa-No-W3R"/>
                         </constraints>
                     </view>

@@ -9,6 +9,7 @@
 #import "OBMaltAdditionViewController.h"
 #import "OBIngredientGauge.h"
 #import "OBMaltFinderViewController.h"
+#import "OBBrewery.h"
 #import "OBRecipe.h"
 #import "OBMalt.h"
 #import "OBMaltAddition.h"
@@ -46,6 +47,7 @@ static NSString* const OBIngredientDisplaySegmentKey = @"Malt Ingredient Selecte
   [super loadView];
 
   self.screenName = OBGAScreenName;
+  self.brewery = [OBBrewery breweryFromContext:self.recipe.managedObjectContext];
 
   self.tableViewDelegate = [[OBMaltAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
                                                                       andTableView:self.tableView
@@ -54,8 +56,8 @@ static NSString* const OBIngredientDisplaySegmentKey = @"Malt Ingredient Selecte
   self.tableView.delegate = self.tableViewDelegate;
   self.tableView.dataSource = self.tableViewDelegate;
 
-  self.gauge.metricToDisplay = [OBMaltAdditionSettingsViewController currentGaugeSetting];
-  self.tableViewDelegate.maltAdditionMetricToDisplay = [OBMaltAdditionSettingsViewController currentMaltDisplaySetting];
+  self.gauge.metricToDisplay = (OBGaugeMetric) [self.brewery.maltGaugeDisplayMetric integerValue];
+  self.tableViewDelegate.maltAdditionMetricToDisplay = (OBMaltAdditionMetric) [self.brewery.maltAdditionDisplayMetric integerValue];
 
   UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
   [button addTarget:self action:@selector(showSettingsView:) forControlEvents:UIControlEventTouchUpInside];
@@ -163,7 +165,7 @@ static NSString* const OBIngredientDisplaySegmentKey = @"Malt Ingredient Selecte
     next.recipe = self.recipe;
   } else if ([[segue identifier] isEqualToString:@"maltAdditionSettings"]) {
     OBMaltAdditionSettingsViewController *next = [segue destinationViewController];
-    next.delegate = self;
+    next.brewery = self.brewery;
   }
 }
 
@@ -179,7 +181,7 @@ static NSString* const OBIngredientDisplaySegmentKey = @"Malt Ingredient Selecte
 
 #pragma mark - OBMaltSettingsViewControllerDelegate methods
 
-- (void)gaugeDisplaySettingChanged:(OBRecipeMetric)metric
+- (void)gaugeDisplaySettingChanged:(OBGaugeMetric)metric
 {
   self.gauge.metricToDisplay = metric;
 }

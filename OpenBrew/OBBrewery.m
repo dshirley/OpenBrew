@@ -17,6 +17,8 @@
 
 @dynamic mashEfficiency;
 @dynamic defaultBatchSize;
+@dynamic maltAdditionDisplayMetric;
+@dynamic maltGaugeDisplayMetric;
 
 + (OBBrewery *)breweryFromContext:(NSManagedObjectContext *)moc
 {
@@ -31,6 +33,7 @@
 
   OBBrewery *brewery = nil;
   if (!error && array && array.count > 0) {
+    NSAssert(array.count == 1, @"Multiple breweries found: %d", (int)array.count);
     brewery = array[0];
   } else {
     brewery = [self createBreweryInContext:moc];

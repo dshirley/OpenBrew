@@ -255,7 +255,6 @@
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-  NSLog(@"-----observeValueForKeyPath:%@", keyPath);
   if ([self.observedMaltVariables containsObject:keyPath] ||
       [self.observedHopVariables containsObject:keyPath] ||
       [self.observedRecipeVariables containsObject:keyPath])

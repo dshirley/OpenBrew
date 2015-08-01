@@ -8,6 +8,8 @@
 
 #import "OBIngredientGauge.h"
 #import "OBColorView.h"
+
+// FIXME: decide if the view should be importing recipe
 #import "OBRecipe.h"
 
 #define VALUE_HEIGHT 90
@@ -27,7 +29,7 @@
 @implementation OBIngredientGauge
 
 - (id)initWithRecipe:(OBRecipe *)recipe
-              metric:(OBRecipeMetric)metric
+              metric:(OBGaugeMetric)metric
                frame:(CGRect)frame
 {
   self = [super initWithFrame:frame];
@@ -111,7 +113,7 @@
   [self refresh];
 }
 
-- (void)setMetricToDisplay:(OBRecipeMetric)metricToDisplay
+- (void)setMetricToDisplay:(OBGaugeMetric)metricToDisplay
 {
   _metricToDisplay = metricToDisplay;
   [self refresh];
