@@ -325,6 +325,33 @@
 			name = CollectionViewCells;
 			sourceTree = "<group>";
 		};
+		9F40C4C71B6D9252008334F6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9FF5100D1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m */,
+				9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */,
+				9FC89CBD1B4CCA4500E8EA2C /* OBMaltAdditionTableViewDelegateTest.m */,
+				9FCC01F21B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m */,
+				9FE608F41B69DD99008D1D88 /* OBRecipeViewControllerTest.m */,
+				9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		9F40C4C81B6D927F008334F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9FC8EE951B45B19900EEF14D /* OBBreweryTest.m */,
+				9FCECC5A18879B430045FADD /* OBHopAdditionTest.m */,
+				9FC8EE931B45AFA500EEF14D /* OBHopsTest.m */,
+				9FE9745718883C8500FFAA56 /* OBMaltAdditionTest.m */,
+				9FC8EE911B45A87F00EEF14D /* OBMaltTest.m */,
+				9FE243451B45CD1B00D1EE25 /* OBRecipeTest.m */,
+				9FC8EE971B45BD0D00EEF14D /* OBYeastTest.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		9F4C5C5D199DC534008A6F1B /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,23 +452,12 @@
 		9F98D37D1880F8EE00469323 /* OpenBrewTests */ = {
 			isa = PBXGroup;
 			children = (
+				9F40C4C81B6D927F008334F6 /* Model */,
+				9F40C4C71B6D9252008334F6 /* Controller */,
 				9FC8EE901B45A39900EEF14D /* OBBaseTestCase.h */,
 				9FC8EE8E1B45A31600EEF14D /* OBBaseTestCase.m */,
-				9FC8EE951B45B19900EEF14D /* OBBreweryTest.m */,
-				9FF5100D1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m */,
-				9FCECC5A18879B430045FADD /* OBHopAdditionTest.m */,
-				9FC8EE931B45AFA500EEF14D /* OBHopsTest.m */,
-				9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */,
-				9FC89CBD1B4CCA4500E8EA2C /* OBMaltAdditionTableViewDelegateTest.m */,
-				9FE9745718883C8500FFAA56 /* OBMaltAdditionTest.m */,
-				9FC8EE911B45A87F00EEF14D /* OBMaltTest.m */,
-				9FCC01F21B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m */,
-				9FE243451B45CD1B00D1EE25 /* OBRecipeTest.m */,
-				9FE608F41B69DD99008D1D88 /* OBRecipeViewControllerTest.m */,
-				9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */,
 				9FE2434D1B45FA7600D1EE25 /* OBSettingsTest.m */,
 				9FC8EE991B45C3F300EEF14D /* OBSrmColorTableTest.m */,
-				9FC8EE971B45BD0D00EEF14D /* OBYeastTest.m */,
 				9F98D37E1880F8EE00469323 /* Supporting Files */,
 			);
 			path = OpenBrewTests;
