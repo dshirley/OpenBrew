@@ -10,11 +10,19 @@
 #import "OBBrewController.h"
 #import "GAITrackedViewController.h"
 
-@class OBRecipe, OBBrewery;
+@class OBRecipe, OBBrewery, OBTableViewPlaceholderLabel, OBIngredientGauge, OBMaltAdditionTableViewDelegate;
 
 @interface OBMaltAdditionViewController : GAITrackedViewController <OBBrewController>
 
 @property (nonatomic, strong) OBRecipe *recipe;
 @property (nonatomic, strong) OBBrewery *brewery;
+
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) OBTableViewPlaceholderLabel *placeholderText;
+@property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
+@property (nonatomic, strong) OBMaltAdditionTableViewDelegate *tableViewDelegate;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *infoButton;
 
 @end

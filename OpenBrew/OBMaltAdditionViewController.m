@@ -25,28 +25,12 @@
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Malt Addition Screen";
 
-static NSString* const OBGaugeDisplaySegmentKey = @"Malt Gauge Selected Segment";
-static NSString* const OBIngredientDisplaySegmentKey = @"Malt Ingredient Selected Segment";
-
-@interface OBMaltAdditionViewController ()
-
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) OBTableViewPlaceholderLabel *placeholderText;
-@property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
-@property (nonatomic, strong) OBMaltAdditionTableViewDelegate *tableViewDelegate;
-
-@property (weak, nonatomic) IBOutlet UISegmentedControl *gaugeDisplaySettingSegmentedControl;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *infoButton;
-
-@end
-
 @implementation OBMaltAdditionViewController
 
-- (void)loadView {
+- (void)viewDidLoad
+{
   [super loadView];
 
-  self.screenName = OBGAScreenName;
   self.brewery = [OBBrewery breweryFromContext:self.recipe.managedObjectContext];
 
   self.tableViewDelegate = [[OBMaltAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
@@ -69,6 +53,8 @@ static NSString* const OBIngredientDisplaySegmentKey = @"Malt Ingredient Selecte
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+
+  self.screenName = OBGAScreenName;
 
   if ([self tableViewIsEmpty]) {
     [self switchToEmptyTableViewMode];

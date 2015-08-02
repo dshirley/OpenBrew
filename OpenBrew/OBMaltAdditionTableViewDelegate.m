@@ -19,13 +19,6 @@
 
 #import "OBMultiPickerView.h"
 
-@interface OBMaltAdditionTableViewDelegate()
-
-@property (nonatomic, strong) OBRecipe *recipe;
-@property (nonatomic, strong) UITableView *tableView;
-
-@end
-
 @implementation OBMaltAdditionTableViewDelegate
 
 - (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView andGACategory:(NSString *)gaCategory

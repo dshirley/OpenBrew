@@ -11,7 +11,7 @@
         <!--Malts-->
         <scene sceneID="0wT-Ic-1wr">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="G4Y-bP-qbh" customClass="OBMaltAdditionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="maltAdditions" automaticallyAdjustsScrollViewInsets="NO" id="G4Y-bP-qbh" customClass="OBMaltAdditionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7GB-IU-zZD"/>
                         <viewControllerLayoutGuide type="bottom" id="oWk-JD-d7Z"/>

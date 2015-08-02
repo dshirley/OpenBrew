@@ -12,6 +12,8 @@
 @interface OBMaltAdditionTableViewDelegate : OBDrawerTableViewDelegate
 
 @property (nonatomic, assign) OBMaltAdditionMetric maltAdditionMetricToDisplay;
+@property (nonatomic, strong) OBRecipe *recipe;
+@property (nonatomic, strong) UITableView *tableView;
 
 - (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView andGACategory:(NSString *)gaCategory;
 
