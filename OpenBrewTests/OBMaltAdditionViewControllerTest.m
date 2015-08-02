@@ -13,6 +13,7 @@
 #import "OBIngredientGauge.h"
 #import <OCMock/OCMock.h>
 #import "OBMaltAdditionTableViewCell.h"
+#import "OBMaltAddition.h"
 
 @interface OBMaltAdditionViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBMaltAdditionViewController *vc;
@@ -113,9 +114,55 @@
   XCTAssertEqualObjects(@"2 Lovibond", cell.color.text);
 }
 
-- (void)testViewWillAppear
+- (void)testViewDidLoad_gaugeRefreshes
 {
-  
+  self.brewery.maltAdditionDisplayMetric = @(OBMetricOriginalGravity);
+
+  id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
+  [[mockGauge expect] refresh];
+
+  [self.vc loadView];
+  [self.vc viewDidLoad];
+
+  [mockGauge verify];
 }
+
+- (void)testViewUpdatesWhenMaltAdditionsChange
+{
+  OBMaltAddition *maltAddition = [self addMalt:@"Two-Row" quantity:10.0 color:2];
+
+  [self.vc loadView];
+  [self.vc viewDidLoad];
+
+  XCTAssertEqual(1, [self.vc.tableView numberOfRowsInSection:0]);
+
+  OBMaltAdditionTableViewCell *cell = [self.vc.tableView cellForRowAtIndexPath:self.r0s0];
+  XCTAssertEqualObjects(@"Two-Row", cell.maltVariety.text);
+  XCTAssertEqualObjects(@"10lb", cell.primaryMetric.text);
+  XCTAssertEqualObjects(@"2 Lovibond", cell.color.text);
+
+  maltAddition.quantityInPounds = @(5.0);
+
+  cell = [self.vc.tableView cellForRowAtIndexPath:self.r0s0];
+  XCTAssertEqualObjects(@"Two-Row", cell.maltVariety.text);
+  XCTAssertEqualObjects(@"5lb", cell.primaryMetric.text);
+  XCTAssertEqualObjects(@"2 Lovibond", cell.color.text);
+}
+
+// TODO:  add a test for deleting a malt addition
+
+// TODO:  add a test for adding a malt
+
+// TODO:  test changing the brewery settings for the gauge
+
+// TODO:  test changing the brewery settings for the primary metric
+
+// TODO:  test view will appear
+
+// TODO:  test prepare for segue - malt finder
+
+// TODO:  test prepare for segue - malt settings
+
+// TODO:  test observe value for key path
 
 @end
