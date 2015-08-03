@@ -331,10 +331,10 @@
 				9FF5100D1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m */,
 				9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */,
 				9FC89CBD1B4CCA4500E8EA2C /* OBMaltAdditionTableViewDelegateTest.m */,
+				9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */,
 				9FCC01F21B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m */,
 				9FE608F41B69DD99008D1D88 /* OBRecipeViewControllerTest.m */,
 				9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */,
-				9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

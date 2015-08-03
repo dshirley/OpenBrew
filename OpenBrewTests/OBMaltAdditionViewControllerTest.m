@@ -16,6 +16,7 @@
 #import "OBMaltAddition.h"
 #import "OBMaltFinderViewController.h"
 #import "OBMaltAdditionSettingsViewController.h"
+#import "OBTableViewPlaceholderLabel.h"
 
 @interface OBMaltAdditionViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBMaltAdditionViewController *vc;
@@ -111,12 +112,12 @@
 
   XCTAssertEqual(2, [self.vc.tableView numberOfRowsInSection:0]);
 
-  OBMaltAdditionTableViewCell *cell = [self.vc.tableView cellForRowAtIndexPath:self.r0s0];
+  OBMaltAdditionTableViewCell *cell = (id)[self.vc.tableView cellForRowAtIndexPath:self.r0s0];
   XCTAssertEqualObjects(@"Acid Malt", cell.maltVariety.text);
   XCTAssertEqualObjects(@"1lb", cell.primaryMetric.text);
   XCTAssertEqualObjects(@"4 Lovibond", cell.color.text);
 
-  cell = [self.vc.tableView cellForRowAtIndexPath:self.r1s0];
+  cell = (id)[self.vc.tableView cellForRowAtIndexPath:self.r1s0];
   XCTAssertEqualObjects(@"Two-Row", cell.maltVariety.text);
   XCTAssertEqualObjects(@"10lb", cell.primaryMetric.text);
   XCTAssertEqualObjects(@"2 Lovibond", cell.color.text);
@@ -144,14 +145,14 @@
 
   XCTAssertEqual(1, [self.vc.tableView numberOfRowsInSection:0]);
 
-  OBMaltAdditionTableViewCell *cell = [self.vc.tableView cellForRowAtIndexPath:self.r0s0];
+  OBMaltAdditionTableViewCell *cell = (id)[self.vc.tableView cellForRowAtIndexPath:self.r0s0];
   XCTAssertEqualObjects(@"Two-Row", cell.maltVariety.text);
   XCTAssertEqualObjects(@"10lb", cell.primaryMetric.text);
   XCTAssertEqualObjects(@"2 Lovibond", cell.color.text);
 
   maltAddition.quantityInPounds = @(5.0);
 
-  cell = [self.vc.tableView cellForRowAtIndexPath:self.r0s0];
+  cell = (id)[self.vc.tableView cellForRowAtIndexPath:self.r0s0];
   XCTAssertEqualObjects(@"Two-Row", cell.maltVariety.text);
   XCTAssertEqualObjects(@"5lb", cell.primaryMetric.text);
   XCTAssertEqualObjects(@"2 Lovibond", cell.color.text);
@@ -179,14 +180,37 @@
   XCTAssertEqualObjects((@[ maltAddition2 ]), [self.recipe maltAdditionsSorted]);
   XCTAssertEqual(1, [self.vc.tableView numberOfRowsInSection:0]);
 
-  OBMaltAdditionTableViewCell *cell = [self.vc.tableView cellForRowAtIndexPath:self.r0s0];
+  OBMaltAdditionTableViewCell *cell = (id)[self.vc.tableView cellForRowAtIndexPath:self.r0s0];
   XCTAssertEqualObjects(@"Pilsner Malt", cell.maltVariety.text);
   XCTAssertEqualObjects(@"3lb", cell.primaryMetric.text);
   XCTAssertEqualObjects(@"1 Lovibond", cell.color.text);
 }
 
+// Malts should be added via KVO
+- (void)testAddMalt
+{
+  [self.vc loadView];
+  [self.vc viewDidLoad];
+  [self.vc viewWillAppear:YES];
 
-// TODO:  add a test for adding a malt
+  XCTAssertEqual(0, [self.vc.tableView numberOfRowsInSection:0]);
+  XCTAssertNotNil(self.vc.tableView.tableFooterView);
+
+  [self addMalt:@"Two-Row" quantity:10.0 color:2];
+  XCTAssertEqual(1, [self.vc.tableView numberOfRowsInSection:0]);
+  XCTAssertNil(self.vc.tableView.tableFooterView, @"Placeholder view should have been removed");
+
+  OBMaltAdditionTableViewCell *cell = (id)[self.vc.tableView cellForRowAtIndexPath:self.r0s0];
+  XCTAssertEqualObjects(@"Two-Row", cell.maltVariety.text);
+  XCTAssertEqualObjects(@"10lb", cell.primaryMetric.text);
+  XCTAssertEqualObjects(@"2 Lovibond", cell.color.text);
+
+  [self addMalt:@"Pilsner Malt" quantity:3.0 color:1];
+  cell = (id)[self.vc.tableView cellForRowAtIndexPath:self.r0s0];
+  XCTAssertEqualObjects(@"Pilsner Malt", cell.maltVariety.text);
+  XCTAssertEqualObjects(@"3lb", cell.primaryMetric.text);
+  XCTAssertEqualObjects(@"1 Lovibond", cell.color.text);
+}
 
 - (void)testGaugeDisplaySettingsChanged
 {
@@ -217,7 +241,29 @@
   [mockDelegate verify];
 }
 
-// TODO:  test view will appear
+- (void)testViewWillAppear_WhenEmpty
+{
+  [self.vc loadView];
+  [self.vc viewDidLoad];
+  [self.vc viewWillAppear:NO];
+
+  XCTAssertEqualObjects(@"Malt Addition Screen", self.vc.screenName);
+
+  OBTableViewPlaceholderLabel *placeHolderLabel = (id)self.vc.tableView.tableFooterView;
+  XCTAssertEqualObjects(@"No Malts", placeHolderLabel.text);
+}
+
+- (void)testViewWillAppear_WhenThereAreMalts
+{
+ [self addMalt:@"Two-Row" quantity:10.0 color:2];
+
+  [self.vc loadView];
+  [self.vc viewDidLoad];
+  [self.vc viewWillAppear:NO];
+
+  XCTAssertEqualObjects(@"Malt Addition Screen", self.vc.screenName);
+  XCTAssertNil(self.vc.tableView.tableFooterView);
+}
 
 - (void)testPrepareForSegue_MaltFinder
 {
