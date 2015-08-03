@@ -93,6 +93,11 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   self.tableView.tableFooterView = self.placeholderText;
 }
 
+- (void)setTableViewDelegate:(OBMaltAdditionTableViewDelegate *)tableViewDelegate
+{
+  _tableViewDelegate = tableViewDelegate;
+}
+
 - (void)switchToNonEmptyTableViewMode
 {
   self.tableView.tableFooterView = nil;

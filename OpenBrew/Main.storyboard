@@ -113,10 +113,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="G4Y-bP-qbh" id="1I2-Sz-iSt"/>
-                                    <outlet property="delegate" destination="G4Y-bP-qbh" id="f9Q-uM-cB7"/>
-                                </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyc-2V-TX0">
                                 <rect key="frame" x="0.0" y="512" width="600" height="44"/>

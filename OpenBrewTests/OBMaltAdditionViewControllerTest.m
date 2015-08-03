@@ -14,6 +14,8 @@
 #import <OCMock/OCMock.h>
 #import "OBMaltAdditionTableViewCell.h"
 #import "OBMaltAddition.h"
+#import "OBMaltFinderViewController.h"
+#import "OBMaltAdditionSettingsViewController.h"
 
 @interface OBMaltAdditionViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBMaltAdditionViewController *vc;
@@ -28,6 +30,12 @@
   self.vc = [storyboard instantiateViewControllerWithIdentifier:@"maltAdditions"];
   self.vc.brewery = self.brewery;
   self.vc.recipe = self.recipe;
+}
+
+- (void)tearDown {
+//  self.vc = nil;
+
+  [super tearDown];
 }
 
 - (void)testViewDidLoad_breweryIsSet
@@ -118,11 +126,11 @@
 {
   self.brewery.maltAdditionDisplayMetric = @(OBMetricOriginalGravity);
 
-  id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
-  [[mockGauge expect] refresh];
-
   [self.vc loadView];
   [self.vc viewDidLoad];
+
+  id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
+  [[mockGauge expect] refresh];
 
   [mockGauge verify];
 }
@@ -149,19 +157,103 @@
   XCTAssertEqualObjects(@"2 Lovibond", cell.color.text);
 }
 
-// TODO:  add a test for deleting a malt addition
+- (void)testDeleteMaltAddition
+{
+  [self addMalt:@"Two-Row" quantity:10.0 color:2];
+  OBMaltAddition *maltAddition2 = [self addMalt:@"Pilsner Malt" quantity:3.0 color:1];
+
+  [self.vc loadView];
+  [self.vc viewDidLoad];
+
+  id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
+  [[mockGauge expect] refresh];
+
+  XCTAssertEqual(2, [self.vc.tableView numberOfRowsInSection:0]);
+
+  [self.vc.tableViewDelegate tableView:self.vc.tableView
+                    commitEditingStyle:UITableViewCellEditingStyleDelete
+                     forRowAtIndexPath:self.r0s0];
+
+  [mockGauge verify];
+
+  XCTAssertEqualObjects((@[ maltAddition2 ]), [self.recipe maltAdditionsSorted]);
+  XCTAssertEqual(1, [self.vc.tableView numberOfRowsInSection:0]);
+
+  OBMaltAdditionTableViewCell *cell = [self.vc.tableView cellForRowAtIndexPath:self.r0s0];
+  XCTAssertEqualObjects(@"Pilsner Malt", cell.maltVariety.text);
+  XCTAssertEqualObjects(@"3lb", cell.primaryMetric.text);
+  XCTAssertEqualObjects(@"1 Lovibond", cell.color.text);
+}
+
 
 // TODO:  add a test for adding a malt
 
-// TODO:  test changing the brewery settings for the gauge
+- (void)testGaugeDisplaySettingsChanged
+{
+  [self.vc loadView];
+  [self.vc viewDidLoad];
 
-// TODO:  test changing the brewery settings for the primary metric
+  id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
+  [[mockGauge expect] setMetricToDisplay:OBMetricIbu];
+
+  [self.vc loadView];
+  [self.vc viewDidLoad];
+
+  self.brewery.maltGaugeDisplayMetric = @(OBMetricIbu);
+
+  [mockGauge verify];
+}
+
+- (void)testMaltAdditionDisplaySettingChanged
+{
+  [self.vc loadView];
+  [self.vc viewDidLoad];
+
+  id mockDelegate = [OCMockObject partialMockForObject:self.vc.tableViewDelegate];
+  [[mockDelegate expect] setMaltAdditionMetricToDisplay:OBMaltAdditionMetricPercentOfGravity];
+
+  self.brewery.maltAdditionDisplayMetric = @(OBMaltAdditionMetricPercentOfGravity);
+
+  [mockDelegate verify];
+}
 
 // TODO:  test view will appear
 
-// TODO:  test prepare for segue - malt finder
+- (void)testPrepareForSegue_MaltFinder
+{
+  [self.vc loadView];
+  [self.vc viewDidLoad];
 
-// TODO:  test prepare for segue - malt settings
+  OBMaltFinderViewController *maltFinder = [[OBMaltFinderViewController alloc] init];
+  maltFinder.recipe = nil;
+
+  UIStoryboardSegue *segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"addIngredient"
+                                                                    source:self.vc
+                                                               destination:maltFinder];
+
+  [self.vc prepareForSegue:segue sender:nil];
+
+  XCTAssertNotNil(maltFinder.recipe);
+  XCTAssertEqual(self.vc.recipe, maltFinder.recipe);
+}
+
+- (void)testPrepareForSegue_MaltSettings
+{
+  [self.vc loadView];
+  [self.vc viewDidLoad];
+
+  OBMaltAdditionSettingsViewController *settingsVc = [[OBMaltAdditionSettingsViewController alloc] init];
+  settingsVc.brewery = nil;
+
+  UIStoryboardSegue *segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"maltAdditionSettings"
+                                                                    source:self.vc
+                                                               destination:settingsVc];
+
+  [self.vc prepareForSegue:segue sender:nil];
+
+  XCTAssertNotNil(settingsVc.brewery);
+  XCTAssertEqual(self.vc.brewery, settingsVc.brewery);
+}
 
 // TODO:  test observe value for key path
 
