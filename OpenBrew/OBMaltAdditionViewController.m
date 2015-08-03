@@ -29,7 +29,7 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
 
 - (void)viewDidLoad
 {
-  [super loadView];
+  [super viewDidLoad];
 
   self.brewery = [OBBrewery breweryFromContext:self.recipe.managedObjectContext];
 
@@ -124,12 +124,23 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
 
   [_recipe addObserver:self forKeyPath:KVO_KEY(originalGravity) options:0 context:nil];
   [_recipe addObserver:self forKeyPath:KVO_KEY(maltAdditions) options:0 context:nil];
+}
 
+- (void)setBrewery:(OBBrewery *)brewery
+{
+  [_brewery removeObserver:self forKeyPath:KVO_KEY(maltAdditionDisplayMetric)];
+  [_brewery removeObserver:self forKeyPath:KVO_KEY(maltGaugeDisplayMetric)];
+
+  _brewery = brewery;
+
+  [_brewery addObserver:self forKeyPath:KVO_KEY(maltAdditionDisplayMetric) options:0 context:nil];
+  [_brewery addObserver:self forKeyPath:KVO_KEY(maltGaugeDisplayMetric) options:0 context:nil];
 }
 
 - (void)dealloc
 {
   self.recipe = nil;
+  self.brewery = nil;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -137,14 +148,25 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-  if ([keyPath isEqualToString:KVO_KEY(originalGravity)]) {
+  if ([keyPath isEqualToString:KVO_KEY(originalGravity)])
+  {
     [self.gauge refresh];
   }
-
-  if ([self tableViewIsEmpty]) {
-    [self switchToEmptyTableViewMode];
-  } else {
-    [self switchToNonEmptyTableViewMode];
+  else if ([keyPath isEqualToString:KVO_KEY(maltAdditionDisplayMetric)])
+  {
+    self.tableViewDelegate.maltAdditionMetricToDisplay = [self.brewery.maltAdditionDisplayMetric integerValue];
+  }
+  else if ([keyPath isEqualToString:KVO_KEY(maltGaugeDisplayMetric)])
+  {
+    self.gauge.metricToDisplay = [self.brewery.maltGaugeDisplayMetric integerValue];
+  }
+  else if ([keyPath isEqualToString:KVO_KEY(maltAdditions)])
+  {
+    if ([self tableViewIsEmpty]) {
+      [self switchToEmptyTableViewMode];
+    } else {
+      [self switchToNonEmptyTableViewMode];
+    }
   }
 }
 
@@ -168,18 +190,6 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
 - (IBAction)dismissSettingsView:(UIStoryboardSegue *)unwindSegue
 {
 
-}
-
-#pragma mark - OBMaltSettingsViewControllerDelegate methods
-
-- (void)gaugeDisplaySettingChanged:(OBGaugeMetric)metric
-{
-  self.gauge.metricToDisplay = metric;
-}
-
-- (void)maltAdditionMetricSettingChanged:(OBMaltAdditionMetric)metric
-{
-  self.tableViewDelegate.maltAdditionMetricToDisplay = metric;
 }
 
 @end

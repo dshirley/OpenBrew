@@ -48,7 +48,14 @@
  */
 - (NSArray *)ingredientData
 {
-  return @[ [self.recipe hopAdditionsSorted] ];
+  NSArray *hopAdditionsSorted = [self.recipe hopAdditionsSorted];
+
+  if (!hopAdditionsSorted) {
+    // This only occurs during unit tests when the managedObjectContext is being set to nil
+    hopAdditionsSorted = @[];
+  }
+
+  return @[ hopAdditionsSorted ];
 }
 
 - (void)setHopAdditionMetricToDisplay:(OBHopAdditionMetric)newSelection

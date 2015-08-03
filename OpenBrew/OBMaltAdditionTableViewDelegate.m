@@ -46,7 +46,14 @@
  */
 - (NSArray *)ingredientData
 {
-  return @[ [self.recipe maltAdditionsSorted] ];
+  NSArray *maltAdditionsSorted = [self.recipe maltAdditionsSorted];
+
+  if (!maltAdditionsSorted) {
+    // This only occurs during unit testing, when the managedObjectContext is being set to nil
+    maltAdditionsSorted = @[];
+  }
+
+  return @[ maltAdditionsSorted ];
 }
 
 - (void)populateIngredientCell:(UITableViewCell *)cell

@@ -34,7 +34,7 @@
 }
 
 - (void)tearDown {
-//  self.vc = nil;
+  self.vc = nil;
 
   [super tearDown];
 }
@@ -128,10 +128,11 @@
   self.brewery.maltAdditionDisplayMetric = @(OBMetricOriginalGravity);
 
   [self.vc loadView];
-  [self.vc viewDidLoad];
 
   id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
   [[mockGauge expect] refresh];
+
+  [self.vc viewDidLoad];
 
   [mockGauge verify];
 }
@@ -238,9 +239,6 @@
 
   id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
   [[mockGauge expect] setMetricToDisplay:OBMetricIbu];
-
-  [self.vc loadView];
-  [self.vc viewDidLoad];
 
   self.brewery.maltGaugeDisplayMetric = @(OBMetricIbu);
 
