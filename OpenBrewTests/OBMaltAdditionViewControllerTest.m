@@ -179,11 +179,30 @@
 
   XCTAssertEqualObjects((@[ maltAddition2 ]), [self.recipe maltAdditionsSorted]);
   XCTAssertEqual(1, [self.vc.tableView numberOfRowsInSection:0]);
+  XCTAssertNil(self.vc.tableView.tableFooterView);
 
   OBMaltAdditionTableViewCell *cell = (id)[self.vc.tableView cellForRowAtIndexPath:self.r0s0];
   XCTAssertEqualObjects(@"Pilsner Malt", cell.maltVariety.text);
   XCTAssertEqualObjects(@"3lb", cell.primaryMetric.text);
   XCTAssertEqualObjects(@"1 Lovibond", cell.color.text);
+}
+
+- (void)testDeletingLastMaltAdditionShowsPlaceholderView
+{
+  [self addMalt:@"Pilsner Malt" quantity:3.0 color:1];
+
+  [self.vc loadView];
+  [self.vc viewDidLoad];
+  [self.vc viewWillAppear:NO];
+
+  XCTAssertNil(self.vc.tableView.tableFooterView);
+
+  [self.vc.tableViewDelegate tableView:self.vc.tableView
+                    commitEditingStyle:UITableViewCellEditingStyleDelete
+                     forRowAtIndexPath:self.r0s0];
+
+  OBTableViewPlaceholderLabel *placeHolderLabel = (id)self.vc.tableView.tableFooterView;
+  XCTAssertEqualObjects(@"No Malts", placeHolderLabel.text);
 }
 
 // Malts should be added via KVO
