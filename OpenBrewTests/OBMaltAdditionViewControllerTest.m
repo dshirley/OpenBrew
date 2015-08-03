@@ -225,8 +225,15 @@
   XCTAssertEqualObjects(@"10lb", cell.primaryMetric.text);
   XCTAssertEqualObjects(@"2 Lovibond", cell.color.text);
 
+  // Add some more malts
   [self addMalt:@"Pilsner Malt" quantity:3.0 color:1];
+
   cell = (id)[self.vc.tableView cellForRowAtIndexPath:self.r0s0];
+  XCTAssertEqualObjects(@"Two-Row", cell.maltVariety.text);
+  XCTAssertEqualObjects(@"10lb", cell.primaryMetric.text);
+  XCTAssertEqualObjects(@"2 Lovibond", cell.color.text);
+
+  cell = (id)[self.vc.tableView cellForRowAtIndexPath:self.r1s0];
   XCTAssertEqualObjects(@"Pilsner Malt", cell.maltVariety.text);
   XCTAssertEqualObjects(@"3lb", cell.primaryMetric.text);
   XCTAssertEqualObjects(@"1 Lovibond", cell.color.text);

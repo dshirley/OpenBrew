@@ -16,6 +16,17 @@
 #import "OBSettings.h"
 #import "OBMalt.h"
 
+NSString * const calculatedKVOKeys[] = {
+  @"IBUs",
+  @"originalGravity",
+  @"boilGravity"
+  @"colorInSRM"
+  @"finalGravity",
+  @"alcoholByVolume",
+};
+
+#define NUM_CALCULATED_KVO_KEYS (sizeof(calculatedKVOKeys) / sizeof(NSString *))
+
 @interface OBRecipe()
 @property (nonatomic, strong) NSSet *observedHopVariables;
 @property (nonatomic, strong) NSSet *observedMaltVariables;
@@ -271,18 +282,36 @@
 // create a more targetted KVO notification method.
 - (void)notifyCalculatedValuesChanged
 {
-  [self willChangeValueForKey:KVO_KEY(IBUs)];
-  [self didChangeValueForKey:KVO_KEY(IBUs)];
-  [self willChangeValueForKey:KVO_KEY(originalGravity)];
-  [self didChangeValueForKey:KVO_KEY(originalGravity)];
-  [self willChangeValueForKey:KVO_KEY(boilGravity)];
-  [self didChangeValueForKey:KVO_KEY(boilGravity)];
-  [self willChangeValueForKey:KVO_KEY(colorInSRM)];
-  [self didChangeValueForKey:KVO_KEY(colorInSRM)];
-  [self willChangeValueForKey:KVO_KEY(finalGravity)];
-  [self didChangeValueForKey:KVO_KEY(finalGravity)];
-  [self willChangeValueForKey:KVO_KEY(alcoholByVolume)];
-  [self didChangeValueForKey:KVO_KEY(alcoholByVolume)];
+  for (int i = 0; i < NUM_CALCULATED_KVO_KEYS; i++) {
+    [self willChangeValueForKey:calculatedKVOKeys[i]];
+    [self didChangeValueForKey:calculatedKVOKeys[i]];
+  }
+}
+
+- (void)notifyCalculatedValuesDeletingObjects:(NSSet *)changedObjects
+{
+  for (int i = 0; i < NUM_CALCULATED_KVO_KEYS; i++) {
+    [self willChangeValueForKey:calculatedKVOKeys[i]
+                withSetMutation:NSKeyValueMinusSetMutation
+                   usingObjects:changedObjects];
+
+    [self didChangeValueForKey:calculatedKVOKeys[i]
+               withSetMutation:NSKeyValueMinusSetMutation
+                  usingObjects:changedObjects];
+  }
+}
+
+- (void)notifyCalculatedValuesInsertingObjects:(NSSet *)changedObjects
+{
+  for (int i = 0; i < NUM_CALCULATED_KVO_KEYS; i++) {
+    [self willChangeValueForKey:calculatedKVOKeys[i]
+                withSetMutation:NSKeyValueUnionSetMutation
+                   usingObjects:changedObjects];
+
+    [self didChangeValueForKey:calculatedKVOKeys[i]
+               withSetMutation:NSKeyValueUnionSetMutation
+                  usingObjects:changedObjects];
+  }
 }
 
 - (void)startObservingKeys:(NSSet *)keys ofObject:(id)object
@@ -355,7 +384,7 @@
              withSetMutation:NSKeyValueUnionSetMutation
                 usingObjects:changedObjects];
 
-  [self notifyCalculatedValuesChanged];
+  [self notifyCalculatedValuesInsertingObjects:changedObjects];
 }
 
 - (void)removeHopAdditionsObject:(OBHopAddition *)value
@@ -376,7 +405,7 @@
              withSetMutation:NSKeyValueMinusSetMutation
                 usingObjects:changedObjects];
 
-  [self notifyCalculatedValuesChanged];
+  [self notifyCalculatedValuesDeletingObjects:changedObjects];
 }
 
 #pragma mark - Malt Addition Properties
@@ -400,7 +429,7 @@
              withSetMutation:NSKeyValueUnionSetMutation
                 usingObjects:changedObjects];
 
-  [self notifyCalculatedValuesChanged];
+  [self notifyCalculatedValuesInsertingObjects:changedObjects];
 }
 
 - (void)removeMaltAdditionsObject:(OBMaltAddition *)value
@@ -421,7 +450,7 @@
              withSetMutation:NSKeyValueMinusSetMutation
                 usingObjects:changedObjects];
   
-  [self notifyCalculatedValuesChanged];
+  [self notifyCalculatedValuesDeletingObjects:changedObjects];
 }
 
 @end

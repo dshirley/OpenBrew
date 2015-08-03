@@ -46,8 +46,6 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
   [button addTarget:self action:@selector(showSettingsView:) forControlEvents:UIControlEventTouchUpInside];
   [self.infoButton setCustomView:button];
-
-  [self reload];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -110,11 +108,6 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   [self performSegueWithIdentifier:@"maltAdditionSettings" sender:self];
 }
 
-- (void)reload {
-  [self.tableView reloadData];
-  [self.gauge refresh];
-}
-
 - (void)setRecipe:(OBRecipe *)recipe
 {
   [_recipe removeObserver:self forKeyPath:KVO_KEY(originalGravity)];
@@ -148,9 +141,16 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
                         change:(NSDictionary *)change
                        context:(void *)context
 {
+  NSKeyValueChange changeType = [change[NSKeyValueChangeKindKey] integerValue];
+
   if ([keyPath isEqualToString:KVO_KEY(originalGravity)])
   {
     [self.gauge refresh];
+
+    if (NSKeyValueChangeSetting == changeType) {
+      // If the table is reloaded during a delete, a crash results.
+      [self.tableView reloadData];
+    }
   }
   else if ([keyPath isEqualToString:KVO_KEY(maltAdditionDisplayMetric)])
   {
@@ -162,10 +162,11 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   }
   else if ([keyPath isEqualToString:KVO_KEY(maltAdditions)])
   {
-    if ([self tableViewIsEmpty]) {
-      [self switchToEmptyTableViewMode];
-    } else {
+    if (NSKeyValueChangeInsertion == changeType) {
+      [self.tableView reloadData];
       [self switchToNonEmptyTableViewMode];
+    } else if ((NSKeyValueChangeRemoval == changeType) && [self tableViewIsEmpty]) {
+      [self switchToEmptyTableViewMode];
     }
   }
 }
@@ -182,14 +183,10 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   }
 }
 
-- (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue
-{
-  [self reload];
-}
+#pragma mark - UnwindSegues
 
-- (IBAction)dismissSettingsView:(UIStoryboardSegue *)unwindSegue
-{
+- (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue { }
 
-}
+- (IBAction)dismissSettingsView:(UIStoryboardSegue *)unwindSegue { }
 
 @end

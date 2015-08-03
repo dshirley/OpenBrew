@@ -109,10 +109,8 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
     NSIndexPath *cellIndex = [self.tableView indexPathForCell:sender];
     OBMalt *selectedMalt = [self.tableViewDataSource ingredientAtIndexPath:cellIndex];
 
-    OBMaltAddition *maltAddition = [[OBMaltAddition alloc] initWithMalt:selectedMalt
-                                                              andRecipe:self.recipe];
-
-    [self.recipe addMaltAdditionsObject:maltAddition];
+    // Create the malt addition and add it to the recipe in one go
+    (void)[[OBMaltAddition alloc] initWithMalt:selectedMalt andRecipe:self.recipe];
 
     NSError *error = nil;
     [self.recipe.managedObjectContext save:&error];
