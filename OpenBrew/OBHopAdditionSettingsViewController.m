@@ -39,7 +39,7 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
                                                        settingKey:KVO_KEY(hopGaugeDisplayMetric)];
 
   [self.gaugeDisplaySettingController addSegment:@"IBU" setsValue:@(OBMetricIbu)];
-  [self.gaugeDisplaySettingController addSegment:@"Bittering : Gravity" setsValue:@(OBMetricBuToGuRatio)];
+  [self.gaugeDisplaySettingController addSegment:@"Bitterness : Gravity" setsValue:@(OBMetricBuToGuRatio)];
   [self.gaugeDisplaySettingController updateSelectedSegment];
 
   self.ingredientDisplaySettingController =

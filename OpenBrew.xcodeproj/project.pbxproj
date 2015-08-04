@@ -59,6 +59,9 @@
 		9FA031EC1B3CD22D006C855D /* OBYeastTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA031EB1B3CD22D006C855D /* OBYeastTableViewCell.m */; };
 		9FA3890119B27A0B0009DB07 /* OBSrmColorTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA3890019B27A0B0009DB07 /* OBSrmColorTable.m */; };
 		9FC479661B7070A50053B996 /* OBHopAdditionSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC479651B7070A50053B996 /* OBHopAdditionSettingsViewController.m */; };
+		9FC4796B1B70811C0053B996 /* OBHopAdditionSettingsSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC479681B70811C0053B996 /* OBHopAdditionSettingsSegue.m */; };
+		9FC4796C1B70811C0053B996 /* OBHopAdditionSettingsUnwindSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4796A1B70811C0053B996 /* OBHopAdditionSettingsUnwindSegue.m */; };
+		9FC4796E1B7082BF0053B996 /* OBHopAdditionSettingsViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4796D1B7082BF0053B996 /* OBHopAdditionSettingsViewControllerTest.m */; };
 		9FC73F4F19BB683400AD964A /* Crittercism+NSErrorLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC73F4E19BB683400AD964A /* Crittercism+NSErrorLogging.m */; };
 		9FC73F5119BB6DCB00AD964A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */; };
 		9FC73F5719BD128200AD964A /* OBTableViewPlaceholderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC73F5619BD128200AD964A /* OBTableViewPlaceholderLabel.m */; };
@@ -196,6 +199,11 @@
 		9FA3890019B27A0B0009DB07 /* OBSrmColorTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSrmColorTable.m; sourceTree = "<group>"; };
 		9FC479641B7070A50053B996 /* OBHopAdditionSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionSettingsViewController.h; sourceTree = "<group>"; };
 		9FC479651B7070A50053B996 /* OBHopAdditionSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionSettingsViewController.m; sourceTree = "<group>"; };
+		9FC479671B70811C0053B996 /* OBHopAdditionSettingsSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionSettingsSegue.h; sourceTree = "<group>"; };
+		9FC479681B70811C0053B996 /* OBHopAdditionSettingsSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionSettingsSegue.m; sourceTree = "<group>"; };
+		9FC479691B70811C0053B996 /* OBHopAdditionSettingsUnwindSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionSettingsUnwindSegue.h; sourceTree = "<group>"; };
+		9FC4796A1B70811C0053B996 /* OBHopAdditionSettingsUnwindSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionSettingsUnwindSegue.m; sourceTree = "<group>"; };
+		9FC4796D1B7082BF0053B996 /* OBHopAdditionSettingsViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionSettingsViewControllerTest.m; sourceTree = "<group>"; };
 		9FC73F4D19BB683400AD964A /* Crittercism+NSErrorLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Crittercism+NSErrorLogging.h"; sourceTree = "<group>"; };
 		9FC73F4E19BB683400AD964A /* Crittercism+NSErrorLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Crittercism+NSErrorLogging.m"; sourceTree = "<group>"; };
 		9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -327,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				9FF5100D1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m */,
+				9FC4796D1B7082BF0053B996 /* OBHopAdditionSettingsViewControllerTest.m */,
 				9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */,
 				9FC89CBD1B4CCA4500E8EA2C /* OBMaltAdditionTableViewDelegateTest.m */,
 				9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */,
@@ -539,6 +548,10 @@
 		9FF510151B65689700970C22 /* HopConfiguration */ = {
 			isa = PBXGroup;
 			children = (
+				9FC479671B70811C0053B996 /* OBHopAdditionSettingsSegue.h */,
+				9FC479681B70811C0053B996 /* OBHopAdditionSettingsSegue.m */,
+				9FC479691B70811C0053B996 /* OBHopAdditionSettingsUnwindSegue.h */,
+				9FC4796A1B70811C0053B996 /* OBHopAdditionSettingsUnwindSegue.m */,
 				9FC479641B7070A50053B996 /* OBHopAdditionSettingsViewController.h */,
 				9FC479651B7070A50053B996 /* OBHopAdditionSettingsViewController.m */,
 				9FD66385198218220056EEEC /* OBHopAdditionViewController.h */,
@@ -769,11 +782,13 @@
 				9F98D3671880F8ED00469323 /* main.m in Sources */,
 				9FFE13151B27EF6E00D3F76A /* OBVolumePickerDelegate.m in Sources */,
 				9F60CF2C19B264A10076A600 /* OBMaltFinderViewController.m in Sources */,
+				9FC4796B1B70811C0053B996 /* OBHopAdditionSettingsSegue.m in Sources */,
 				9FF686C61893F00B00B36486 /* OBBrewery.m in Sources */,
 				9FE8643E198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m in Sources */,
 				9FD66387198218220056EEEC /* OBHopAdditionViewController.m in Sources */,
 				9FF686C91894099A00B36486 /* OBRecipeOverviewController.m in Sources */,
 				9F33116D1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m in Sources */,
+				9FC4796C1B70811C0053B996 /* OBHopAdditionSettingsUnwindSegue.m in Sources */,
 				9FF686C21893E45F00B36486 /* OBRecipeViewController.m in Sources */,
 				9F40C4C21B6BC54E008334F6 /* OBSettingsSegmentedController.m in Sources */,
 				9FA031E61B3CCF18006C855D /* OBYeastAdditionViewController.m in Sources */,
@@ -820,6 +835,7 @@
 			files = (
 				9F40C4C61B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m in Sources */,
 				9FE9745818883C8500FFAA56 /* OBMaltAdditionTest.m in Sources */,
+				9FC4796E1B7082BF0053B996 /* OBHopAdditionSettingsViewControllerTest.m in Sources */,
 				9F40C4CA1B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m in Sources */,
 				9FE2434E1B45FA7600D1EE25 /* OBSettingsTest.m in Sources */,
 				9F40C4C41B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m in Sources */,

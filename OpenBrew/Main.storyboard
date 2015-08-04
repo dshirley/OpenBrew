@@ -298,7 +298,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ME5-pj-6yX"/>
                                     <barButtonItem title="Info" id="ZMz-cQ-Uy2">
                                         <connections>
-                                            <segue destination="Dwr-3F-K3N" kind="show" identifier="hopAdditionSettings" id="C8a-4E-OFq"/>
+                                            <segue destination="Dwr-3F-K3N" kind="custom" identifier="hopAdditionSettings" customClass="OBHopAdditionSettingsSegue" id="C8a-4E-OFq"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -854,7 +854,7 @@
                                     <navigationItem title="Hops" id="jt8-mU-VXk">
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="AyJ-46-DBQ">
                                             <connections>
-                                                <segue destination="WIa-dQ-uqY" kind="unwind" identifier="dismissSettingsView" unwindAction="dismissSettingsView:" id="bz7-Kp-mdQ"/>
+                                                <segue destination="WIa-dQ-uqY" kind="unwind" identifier="dismissSettingsView" customClass="OBHopAdditionSettingsUnwindSegue" unwindAction="dismissSettingsView:" id="bz7-Kp-mdQ"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
