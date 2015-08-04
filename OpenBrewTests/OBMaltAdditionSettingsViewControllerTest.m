@@ -10,6 +10,7 @@
 #import "OBMaltAdditionSettingsViewController.h"
 #import "OBSettingsSegmentedController.h"
 #import "OBBaseTestCase.h"
+#import <OCMock/OCMock.h>
 
 @interface OBMaltAdditionSettingsViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBMaltAdditionSettingsViewController *vc;
@@ -66,6 +67,17 @@
   [ingredientSegmentedControl setSelectedSegmentIndex:0];
   [ingredientSegmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
   XCTAssertEqualObjects(@(OBMaltAdditionMetricWeight), self.brewery.maltGaugeDisplayMetric);
+}
+
+- (void)testGreyAreaTouchDown {
+  [self.vc loadView];
+
+  id mockVc = [OCMockObject partialMockForObject:self.vc];
+  [[mockVc expect] performSegueWithIdentifier:@"dismissSettingsView" sender:self.vc];
+
+  [self.vc.greyoutButton sendActionsForControlEvents:UIControlEventTouchDown];
+
+  [mockVc verify];
 }
 
 @end

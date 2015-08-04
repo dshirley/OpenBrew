@@ -327,4 +327,14 @@
 
 // TODO:  test observe value for key path
 
+- (void)testViewWillDissappear
+{
+  [self.vc loadView];
+
+  self.vc.tableView.editing = YES;
+  [self.vc viewWillDisappear:NO];
+
+  XCTAssertEqual(NO, self.vc.tableView.editing);
+}
+
 @end

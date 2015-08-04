@@ -19,6 +19,9 @@
 
 @property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, weak) IBOutlet UIView *settingsView;
-@property (nonatomic, weak) IBOutlet UIView *greyoutView;
+@property (weak, nonatomic) IBOutlet UIView *greyoutView;
+@property (nonatomic, weak) IBOutlet UIButton *greyoutButton;
+
+
 
 @end

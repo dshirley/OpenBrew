@@ -757,7 +757,8 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="gaugeDisplaySettingSegmentedControl" destination="Mht-9t-XaA" id="6fm-qm-ZuV"/>
-                        <outlet property="greyoutView" destination="dyK-MF-NEA" id="6Ip-DX-jrc"/>
+                        <outlet property="greyoutButton" destination="pkL-xM-Vjh" id="XlL-6I-8Cg"/>
+                        <outlet property="greyoutView" destination="dyK-MF-NEA" id="eHB-ID-Chx"/>
                         <outlet property="ingredientDisplaySettingSegmentedControl" destination="7Lz-kA-Eih" id="ieT-IF-47j"/>
                         <outlet property="navigationBar" destination="12S-LB-c4q" id="PU1-cB-YF4"/>
                         <outlet property="settingsView" destination="vjS-QD-jMQ" id="fy7-5A-wU2"/>

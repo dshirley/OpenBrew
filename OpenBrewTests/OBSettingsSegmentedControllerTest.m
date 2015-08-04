@@ -99,6 +99,20 @@
   XCTAssertEqualObjects(@(OBMetricOriginalGravity), self.brewery.maltAdditionDisplayMetric);
 }
 
+- (void)testUpdateSelectedSegment_noSegments
+{
+  UISegmentedControl *s = [[UISegmentedControl alloc] initWithFrame:CGRectZero];
+  OBSettingsSegmentedController *ctrl =
+  [[OBSettingsSegmentedController alloc] initWithSegmentedControl:s
+                                                          brewery:self.brewery
+                                                       settingKey:KVO_KEY(maltAdditionDisplayMetric)];
+
+  [ctrl updateSelectedSegment];
+
+  XCTAssertEqual(UISegmentedControlNoSegment, [s selectedSegmentIndex]);
+  XCTAssertEqual(0, [s numberOfSegments]);
+}
+
 - (void)testUpdateSelectedSegment_invalidKey
 {
   UISegmentedControl *s = [[UISegmentedControl alloc] initWithItems:@[ @"these", @"will", @"be", @"removed"]];
