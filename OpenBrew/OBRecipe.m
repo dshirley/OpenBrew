@@ -19,8 +19,8 @@
 NSString * const calculatedKVOKeys[] = {
   @"IBUs",
   @"originalGravity",
-  @"boilGravity"
-  @"colorInSRM"
+  @"boilGravity",
+  @"colorInSRM",
   @"finalGravity",
   @"alcoholByVolume",
 };
