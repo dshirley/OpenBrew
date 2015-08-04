@@ -11,6 +11,7 @@
 #import "OBHopAddition.h"
 #import "OBRecipe.h"
 #import "OBHops.h"
+#import "OBBrewery.h"
 
 #import "OBMultiPickerTableViewCell.h"
 #import "OBHopAdditionTableViewCell.h"
@@ -20,13 +21,6 @@
 #import "OBHopBoilTimePickerDelegate.h"
 
 #import "OBMultiPickerView.h"
-
-@interface OBHopAdditionTableViewDelegate()
-
-@property (nonatomic, strong) OBRecipe *recipe;
-@property (nonatomic, strong) UITableView *tableView;
-
-@end
 
 @implementation OBHopAdditionTableViewDelegate
 
@@ -81,17 +75,12 @@
 
   hopCell.boilUnits.text = @"min";
 
-
   switch (self.hopAdditionMetricToDisplay) {
-    case OBHopAdditionDisplayIBU:
+    case OBHopAdditionMetricIbu:
       hopCell.primaryMetric.text = [NSString stringWithFormat:@"%d IBUs",
                                     (int)roundf([hopAddition ibuContribution])];
       break;
-    case OBHopAdditionDisplayIBUPercent:
-      hopCell.primaryMetric.text = [NSString stringWithFormat:@"%@%%",
-                                    @([hopAddition percentOfIBUs])];
-      break;
-    case OBHopAdditionDisplayWeight:
+    case OBHopAdditionMetricWeight:
       hopCell.primaryMetric.text = [NSString stringWithFormat:@"%.1f oz",
                                     [hopAddition.quantityInOunces floatValue]];
       break;

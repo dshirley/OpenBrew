@@ -15,11 +15,9 @@
 #import "OBMaltAddition.h"
 #import "OBMaltAdditionTableViewDelegate.h"
 #import "OBKvoUtils.h"
-#import "OBPopupView.h"
 #import "OBIngredientTableViewDataSource.h"
 #import "OBSrmColorTable.h"
 #import "OBTableViewPlaceholderLabel.h"
-#import "Crittercism+NSErrorLogging.h"
 #import "OBMaltAdditionSettingsViewController.h"
 
 // Google Analytics constants
@@ -89,11 +87,6 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   }
 
   self.tableView.tableFooterView = self.placeholderText;
-}
-
-- (void)setTableViewDelegate:(OBMaltAdditionTableViewDelegate *)tableViewDelegate
-{
-  _tableViewDelegate = tableViewDelegate;
 }
 
 - (void)switchToNonEmptyTableViewMode

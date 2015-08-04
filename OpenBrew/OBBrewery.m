@@ -17,6 +17,8 @@
 
 @dynamic mashEfficiency;
 @dynamic defaultBatchSize;
+@dynamic hopAdditionDisplayMetric;
+@dynamic hopGaugeDisplayMetric;
 @dynamic maltAdditionDisplayMetric;
 @dynamic maltGaugeDisplayMetric;
 

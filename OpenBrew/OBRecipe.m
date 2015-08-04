@@ -120,27 +120,6 @@ NSString * const calculatedKVOKeys[] = {
                                ibuFormula:formula];
 }
 
-- (NSInteger)percentIBUOfHopAddition:(OBHopAddition *)hopAddition
-{
-  assert([self.hopAdditions containsObject:hopAddition]);
-
-  float ibusTotal = [self IBUs];
-  float recipeVolume = [self.postBoilVolumeInGallons floatValue];
-  float boilGravity = [self boilGravity];
-  OBIbuFormula formula = [OBSettings ibuFormula];
-
-  float ibusOfHopAddition = [hopAddition ibusForRecipeVolume:recipeVolume
-                                                 boilGravity:boilGravity
-                                                  ibuFormula:formula];
-
-  NSInteger percentOfTotal = 0;
-  if (ibusTotal > 0) {
-    percentOfTotal = roundf(100.0 * ibusOfHopAddition / ibusTotal);
-  }
-
-  return percentOfTotal;
-}
-
 - (float)originalGravity {
   float gravityUnits = [self gravityUnits];
   float wortVolumeAfterBoil = [self.postBoilVolumeInGallons floatValue];

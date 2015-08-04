@@ -11,9 +11,6 @@
 #import "OBSettingsSegmentedController.h"
 #import "OBKvoUtils.h"
 
-// FIXME: importing this is weird too
-#import "OBMaltAdditionTableViewDelegate.h"
-
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Malt Addition Settings";
 
