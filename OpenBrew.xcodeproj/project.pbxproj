@@ -62,6 +62,7 @@
 		9FC4796B1B70811C0053B996 /* OBHopAdditionSettingsSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC479681B70811C0053B996 /* OBHopAdditionSettingsSegue.m */; };
 		9FC4796C1B70811C0053B996 /* OBHopAdditionSettingsUnwindSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4796A1B70811C0053B996 /* OBHopAdditionSettingsUnwindSegue.m */; };
 		9FC4796E1B7082BF0053B996 /* OBHopAdditionSettingsViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4796D1B7082BF0053B996 /* OBHopAdditionSettingsViewControllerTest.m */; };
+		9FC479701B7084C40053B996 /* OBHopAdditionViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4796F1B7084C40053B996 /* OBHopAdditionViewControllerTest.m */; };
 		9FC73F4F19BB683400AD964A /* Crittercism+NSErrorLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC73F4E19BB683400AD964A /* Crittercism+NSErrorLogging.m */; };
 		9FC73F5119BB6DCB00AD964A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */; };
 		9FC73F5719BD128200AD964A /* OBTableViewPlaceholderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC73F5619BD128200AD964A /* OBTableViewPlaceholderLabel.m */; };
@@ -204,6 +205,7 @@
 		9FC479691B70811C0053B996 /* OBHopAdditionSettingsUnwindSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionSettingsUnwindSegue.h; sourceTree = "<group>"; };
 		9FC4796A1B70811C0053B996 /* OBHopAdditionSettingsUnwindSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionSettingsUnwindSegue.m; sourceTree = "<group>"; };
 		9FC4796D1B7082BF0053B996 /* OBHopAdditionSettingsViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionSettingsViewControllerTest.m; sourceTree = "<group>"; };
+		9FC4796F1B7084C40053B996 /* OBHopAdditionViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionViewControllerTest.m; sourceTree = "<group>"; };
 		9FC73F4D19BB683400AD964A /* Crittercism+NSErrorLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Crittercism+NSErrorLogging.h"; sourceTree = "<group>"; };
 		9FC73F4E19BB683400AD964A /* Crittercism+NSErrorLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Crittercism+NSErrorLogging.m"; sourceTree = "<group>"; };
 		9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -336,6 +338,7 @@
 			children = (
 				9FF5100D1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m */,
 				9FC4796D1B7082BF0053B996 /* OBHopAdditionSettingsViewControllerTest.m */,
+				9FC4796F1B7084C40053B996 /* OBHopAdditionViewControllerTest.m */,
 				9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */,
 				9FC89CBD1B4CCA4500E8EA2C /* OBMaltAdditionTableViewDelegateTest.m */,
 				9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */,
@@ -841,6 +844,7 @@
 				9F40C4C41B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m in Sources */,
 				9FCC01F31B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m in Sources */,
 				9FF5100E1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m in Sources */,
+				9FC479701B7084C40053B996 /* OBHopAdditionViewControllerTest.m in Sources */,
 				9FC8EE981B45BD0D00EEF14D /* OBYeastTest.m in Sources */,
 				9FC8EE9A1B45C3F300EEF14D /* OBSrmColorTableTest.m in Sources */,
 				9FC8EE961B45B19900EEF14D /* OBBreweryTest.m in Sources */,

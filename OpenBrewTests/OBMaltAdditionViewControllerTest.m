@@ -100,6 +100,8 @@
   [[mockVc expect] performSegueWithIdentifier:@"maltAdditionSettings" sender:self.vc];
 
   [button sendActionsForControlEvents:UIControlEventTouchUpInside];
+
+  [mockVc verify];
 }
 
 - (void)testViewDidLoad_tableViewHasCorrectData
