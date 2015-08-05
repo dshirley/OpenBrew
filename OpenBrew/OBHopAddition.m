@@ -96,12 +96,6 @@
   return gravityFactor * timeFactor;
 }
 
-- (NSInteger)percentOfIBUs
-{
-  return [self.recipe percentIBUOfHopAddition:self];
-}
-
-
 #pragma mark - OBIngredientAddition Protocol
 
 - (void)removeFromRecipe

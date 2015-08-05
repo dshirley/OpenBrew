@@ -18,12 +18,17 @@ typedef NS_ENUM(NSInteger, OBGaugeMetric) {
   OBMetricAbv,
   OBMetricColor,
   OBMetricIbu,
-  OBMetricBuToGuRatio,
+  OBMetricBuToGuRatio, // TODO: rename to BuToGravity (find all other places, too)
 };
 
 typedef NS_ENUM(NSInteger, OBMaltAdditionMetric) {
   OBMaltAdditionMetricWeight,
   OBMaltAdditionMetricPercentOfGravity
+};
+
+typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
+  OBHopAdditionMetricWeight,
+  OBHopAdditionMetricIbu
 };
 
 @interface OBBrewery : NSManagedObject
@@ -35,9 +40,14 @@ typedef NS_ENUM(NSInteger, OBMaltAdditionMetric) {
 // each malt addition on the right hand of the OBMaltAdditionViewController
 @property (nonatomic, strong) NSNumber *maltAdditionDisplayMetric;
 
-// OBGaugeMetric which corresponds to what metric should be displayed at the
-// top of the screen in the OBMaltAdditionViewController
+// OBGaugeMetric to display for the gauge of the OBMaltAdditionViewController
 @property (nonatomic, strong) NSNumber *maltGaugeDisplayMetric;
+
+// An OBHopAdditionMetric describes what to display for each cell of the OBHopAdditionViewController
+@property (nonatomic, strong) NSNumber *hopAdditionDisplayMetric;
+
+// OBGaugeMetric to display for the gauge of the OBHopAdditionViewController
+@property (nonatomic, strong) NSNumber *hopGaugeDisplayMetric;
 
 @end
 

@@ -9,59 +9,27 @@
 #import "OBHopAdditionViewController.h"
 #import "OBIngredientGauge.h"
 #import "OBHopFinderViewController.h"
+#import "OBBrewery.h"
 #import "OBRecipe.h"
 #import "OBHops.h"
 #import "OBHopAddition.h"
 #import "OBHopAdditionTableViewDelegate.h"
 #import <math.h>
 #import "OBKvoUtils.h"
-#import "OBPopupView.h"
 #import "OBIngredientTableViewDataSource.h"
 #import "OBTableViewPlaceholderLabel.h"
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
+#import "OBHopAdditionSettingsViewController.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Hop Addition Screen";
-static NSString* const OBGASettingsAction = @"Settings change";
-
-static NSString* const OBGaugeDisplaySegmentKey = @"Hop Gauge Selected Segment";
-static NSString* const OBIngredientDisplaySegmentKey = @"Hop Ingredient Selected Segment";
-
-// What hop related metric the gauge should display.  These values should
-// correspond to the indices of the segements in OBHopAdditionDisplaySettings.xib
-typedef NS_ENUM(NSInteger, OBHopGaugeMetric) {
-  OBHopGaugeMetricIBU,
-  OBHopGaugeMetricBitteringToGravityRatio
-};
-
-OBGaugeMetric const hopSettingsToMetricMapping[] = {
-  [OBHopGaugeMetricIBU] = OBMetricIbu,
-  [OBHopGaugeMetricBitteringToGravityRatio] = OBMetricBuToGuRatio
-};
-
-@interface OBHopAdditionViewController ()
-
-// Elements from OBHopAdditionDisplaySettings.xib
-@property (nonatomic, strong) OBPopupView *popupView;
-
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) OBTableViewPlaceholderLabel *placeholderText;
-@property (nonatomic, strong) IBOutlet OBIngredientGauge *gauge;
-@property (nonatomic, strong) OBHopAdditionTableViewDelegate *tableViewDelegate;
-
-@property (weak, nonatomic) IBOutlet UISegmentedControl *gaugeDisplaySettingSegmentedControl;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *infoButton;
-
-@end
 
 @implementation OBHopAdditionViewController
 
-- (void)loadView {
-  [super loadView];
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
 
-  self.screenName = OBGAScreenName;
+  self.brewery = [OBBrewery breweryFromContext:self.recipe.managedObjectContext];
 
   self.tableViewDelegate = [[OBHopAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
                                                                      andTableView:self.tableView
@@ -70,24 +38,20 @@ OBGaugeMetric const hopSettingsToMetricMapping[] = {
   self.tableView.delegate = self.tableViewDelegate;
   self.tableView.dataSource = self.tableViewDelegate;
 
-  NSInteger index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBGaugeDisplaySegmentKey] integerValue];
-  self.gauge.metricToDisplay = hopSettingsToMetricMapping[index];
-
-  index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBIngredientDisplaySegmentKey] integerValue];
-  self.tableViewDelegate.hopAdditionMetricToDisplay = (OBHopAdditionMetric)index;
-
-  [self addHopDisplaySettingsView];
+  self.gauge.recipe = self.recipe;
+  self.gauge.metricToDisplay = (OBGaugeMetric) [self.brewery.hopGaugeDisplayMetric integerValue];
+  self.tableViewDelegate.hopAdditionMetricToDisplay = (OBHopAdditionMetric)[self.brewery.hopAdditionDisplayMetric integerValue];
 
   UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
   [button addTarget:self action:@selector(showSettingsView:) forControlEvents:UIControlEventTouchUpInside];
   [self.infoButton setCustomView:button];
-
-  [self reload];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
+
+  self.screenName = OBGAScreenName;
 
   if ([self tableViewIsEmpty]) {
     [self switchToEmptyTableViewMode];
@@ -133,35 +97,9 @@ OBGaugeMetric const hopSettingsToMetricMapping[] = {
 
 #pragma mark Display Settings View Logic
 
-// Create the settings view and place it below the visible screen.  This view
-// will pop up/down to allow users to display different hop metrics
-- (void)addHopDisplaySettingsView
-{
-  UIView *subview =  [[[NSBundle mainBundle] loadNibNamed:@"OBHopAdditionDisplaySettings"
-                                                    owner:self
-                                                  options:nil] objectAtIndex:0];
-
-  _popupView = [[OBPopupView alloc] initWithFrame:self.view.frame
-                                   andContentView:subview
-                                andNavigationItem:self.navigationItem];
-
-  NSInteger index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBGaugeDisplaySegmentKey] integerValue];
-  self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = index;
-
-  index = [[[NSUserDefaults standardUserDefaults] valueForKey:OBIngredientDisplaySegmentKey] integerValue];
-  self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = index;
-
-  [self.view addSubview:_popupView];
-}
-
 - (IBAction)showSettingsView:(UIBarButtonItem *)sender
 {
-  [self.popupView popupContent];
-}
-
-- (void)reload {
-  [self.tableView reloadData];
-  [self.gauge refresh];
+  [self performSegueWithIdentifier:@"hopAdditionSettings" sender:self];
 }
 
 - (void)setRecipe:(OBRecipe *)recipe
@@ -171,14 +109,25 @@ OBGaugeMetric const hopSettingsToMetricMapping[] = {
 
   _recipe = recipe;
 
-  // When a recipe changes we refresh the view
   [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs) options:0 context:nil];
   [_recipe addObserver:self forKeyPath:KVO_KEY(hopAdditions) options:0 context:nil];
+}
+
+- (void)setBrewery:(OBBrewery *)brewery
+{
+  [_brewery removeObserver:self forKeyPath:KVO_KEY(hopAdditionDisplayMetric)];
+  [_brewery removeObserver:self forKeyPath:KVO_KEY(hopGaugeDisplayMetric)];
+
+  _brewery = brewery;
+
+  [_brewery addObserver:self forKeyPath:KVO_KEY(hopAdditionDisplayMetric) options:0 context:nil];
+  [_brewery addObserver:self forKeyPath:KVO_KEY(hopGaugeDisplayMetric) options:0 context:nil];
 }
 
 - (void)dealloc
 {
   self.recipe = nil;
+  self.brewery = nil;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -186,14 +135,33 @@ OBGaugeMetric const hopSettingsToMetricMapping[] = {
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-  if ([keyPath isEqualToString:KVO_KEY(IBUs)]) {
-    [self.gauge refresh];
-  }
+  NSKeyValueChange changeType = [change[NSKeyValueChangeKindKey] integerValue];
 
-  if ([self tableViewIsEmpty]) {
-    [self switchToEmptyTableViewMode];
-  } else {
-    [self switchToNonEmptyTableViewMode];
+  if ([keyPath isEqualToString:KVO_KEY(IBUs)]) 
+  {
+    [self.gauge refresh];
+
+    if (NSKeyValueChangeSetting == changeType) {
+      // If the table is reloaded during a delete, a crash results.
+      [self.tableView reloadData];
+    }
+  }
+  else if ([keyPath isEqualToString:KVO_KEY(hopAdditionDisplayMetric)])
+  {
+    self.tableViewDelegate.hopAdditionMetricToDisplay = [self.brewery.hopAdditionDisplayMetric integerValue];
+  }
+  else if ([keyPath isEqualToString:KVO_KEY(hopGaugeDisplayMetric)])
+  {
+    self.gauge.metricToDisplay = [self.brewery.hopGaugeDisplayMetric integerValue];
+  }
+  else if ([keyPath isEqualToString:KVO_KEY(hopAdditions)])
+  {
+    if (NSKeyValueChangeInsertion == changeType) {
+      [self.tableView reloadData];
+      [self switchToNonEmptyTableViewMode];
+    } else if ((NSKeyValueChangeRemoval == changeType) && [self tableViewIsEmpty]) {
+      [self switchToEmptyTableViewMode];
+    }
   }
 }
 
@@ -203,82 +171,16 @@ OBGaugeMetric const hopSettingsToMetricMapping[] = {
   if ([[segue identifier] isEqualToString:@"addHops"]) {
     OBHopFinderViewController *next = [segue destinationViewController];
     next.recipe = self.recipe;
+  } else if ([[segue identifier] isEqualToString:@"hopAdditionSettings"]) {
+    OBHopAdditionSettingsViewController *next = [segue destinationViewController];
+    next.brewery = self.brewery;
   }
 }
 
-- (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue
-{
-  [self reload];
-}
+#pragma mark - UnwindSegues
 
-#pragma mark - HopAdditionDisplaySettings
+- (IBAction)ingredientSelected:(UIStoryboardSegue *)unwindSegue { }
 
-// Linked to OBHopAdditionDisplaySettings.xib.  This method gets called when a
-// UISegment is selected. This method changes the value that is displayed for
-// the gauge.
-- (IBAction)gaugeDisplaySettingsChanged:(UISegmentedControl *)sender
-{
-  OBHopGaugeMetric metric = (OBHopGaugeMetric) sender.selectedSegmentIndex;
-  NSString *gaSettingName = @"n/a hop gauge metric";
-
-  switch (metric) {
-    case OBHopGaugeMetricIBU:
-      self.gauge.metricToDisplay = OBMetricIbu;
-      gaSettingName = @"Show beer IBU";
-      break;
-    case OBHopGaugeMetricBitteringToGravityRatio:
-      self.gauge.metricToDisplay = OBMetricBuToGuRatio;
-      gaSettingName = @"Show beer bu:gu";
-      break;
-    default:
-      NSAssert(YES, @"Invalid hop addition metric: %@", @(metric));
-  }
-
-  // Persist the selected segment so that it will appear the next time this view is loaded
-  [[NSUserDefaults standardUserDefaults] setObject:@(metric) forKey:OBGaugeDisplaySegmentKey];
-
-  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
-                                                        action:OBGASettingsAction
-                                                         label:gaSettingName
-                                                         value:nil] build]];
-
-  [self.gauge refresh];
-}
-
-// Linked to OBHopAdditionDisplaySettings.xib.  This method gets called when a
-// UISegment is selected that changes the information displayed for each malt
-// line item.
-- (IBAction)ingredientDisplaySettingsChanged:(UISegmentedControl *)sender
-{
-  OBHopAdditionMetric metric = sender.selectedSegmentIndex;
-  NSString *gaSettingName = @"n/a hop addition metric";
-
-  switch (metric) {
-    case OBHopAdditionDisplayWeight:
-      gaSettingName = @"Hop weight";
-      break;
-    case OBHopAdditionDisplayIBU:
-      gaSettingName = @"Hop ibu";
-      break;
-    case OBHopAdditionDisplayIBUPercent:
-      gaSettingName = @"Hop ibu %";
-      break;
-    default:
-      NSAssert(YES, @"Invalid hop addition metric: %@", @(metric));
-  }
-
-  // Persist the selected segment so that it will appear the next time this view is loaded
-  [[NSUserDefaults standardUserDefaults] setObject:@(metric) forKey:OBIngredientDisplaySegmentKey];
-
-  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
-                                                        action:OBGASettingsAction
-                                                         label:gaSettingName
-                                                         value:nil] build]];
-
-  // Note that the segment indices must align with the metric enum
-  self.tableViewDelegate.hopAdditionMetricToDisplay = metric;
-}
+- (IBAction)dismissSettingsView:(UIStoryboardSegue *)unwindSegue { }
 
 @end

@@ -37,7 +37,6 @@
 - (float)bitternessToGravityRatio;
 - (float)ibusForHopAddition:(OBHopAddition *)hopAddition;
 - (NSInteger)percentTotalGravityOfMaltAddition:(OBMaltAddition *)maltAddition;
-- (NSInteger)percentIBUOfHopAddition:(OBHopAddition *)hopAddition;
 
 - (NSArray *)maltAdditionsSorted;
 - (NSArray *)hopAdditionsSorted;

@@ -19,7 +19,6 @@
 #define DESCRIPTION_HEIGHT 20
 
 @interface OBIngredientGauge()
-// TODO: make these public & readonly for testing
 @property (weak, nonatomic) IBOutlet UILabel *valueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet OBColorView *colorView;
@@ -28,15 +27,11 @@
 
 @implementation OBIngredientGauge
 
-- (id)initWithRecipe:(OBRecipe *)recipe
-              metric:(OBGaugeMetric)metric
-               frame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame
 {
   self = [super initWithFrame:frame];
 
   if (self) {
-    self.recipe = recipe;
-    self.metricToDisplay = metric;
     [self doInit];
   }
 

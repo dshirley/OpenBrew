@@ -22,9 +22,7 @@
 @property (nonatomic, strong) OBRecipe *recipe;
 @property (nonatomic, assign) OBGaugeMetric metricToDisplay;
 
-- (id)initWithRecipe:(OBRecipe *)recipe
-              metric:(OBGaugeMetric)metric
-               frame:(CGRect)frame;
+- (id)initWithFrame:(CGRect)frame;
 
 - (void)refresh;
 

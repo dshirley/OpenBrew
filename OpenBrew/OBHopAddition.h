@@ -35,8 +35,6 @@ typedef NS_ENUM(NSInteger, OBIbuFormula) {
 - (float)ragerUtilization;
 - (float)alphaAcidUnits;
 
-- (NSInteger)percentOfIBUs;
-
 #pragma mark - OBIngredientAddition Protocol
 
 - (void)removeFromRecipe;

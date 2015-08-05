@@ -100,6 +100,8 @@
   [[mockVc expect] performSegueWithIdentifier:@"maltAdditionSettings" sender:self.vc];
 
   [button sendActionsForControlEvents:UIControlEventTouchUpInside];
+
+  [mockVc verify];
 }
 
 - (void)testViewDidLoad_tableViewHasCorrectData
@@ -125,12 +127,14 @@
 
 - (void)testViewDidLoad_gaugeRefreshes
 {
-  self.brewery.maltAdditionDisplayMetric = @(OBMetricOriginalGravity);
-
   [self.vc loadView];
 
+  self.brewery.maltGaugeDisplayMetric = @(OBMetricColor);
+
   id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
-  [[mockGauge expect] refresh];
+
+  [[mockGauge expect] setRecipe:self.recipe];
+  [[mockGauge expect] setMetricToDisplay:OBMetricColor];
 
   [self.vc viewDidLoad];
 
