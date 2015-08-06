@@ -17,8 +17,6 @@
 #import "OBMaltQuantityPickerDelegate.h"
 #import "OBMaltColorPickerDelegate.h"
 
-#import "OBMultiPickerView.h"
-
 @implementation OBMaltAdditionTableViewDelegate
 
 - (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView andGACategory:(NSString *)gaCategory
@@ -90,6 +88,13 @@
   [drawerCell.multiPickerView removeAllPickers];
   [drawerCell.multiPickerView addPickerDelegate:quantityPickerDelegate withTitle:@"Quantity"];
   [drawerCell.multiPickerView addPickerDelegate:colorPickerDelegate withTitle:@"Color"];
+  [drawerCell.multiPickerView setSelectedPicker:self.selectedPickerIndex];
+  drawerCell.multiPickerView.delegate = self;
+}
+
+- (void)selectedPickerDidChange:(NSInteger)pickerIndex
+{
+  self.selectedPickerIndex = pickerIndex;
 }
 
 
