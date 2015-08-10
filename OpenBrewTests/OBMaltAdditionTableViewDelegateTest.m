@@ -12,6 +12,18 @@
 #import "OBMaltAdditionTableViewCell.h"
 #import "OBMultiPickerTableViewCell.h"
 #import "OBMaltAddition.h"
+#import "OBMaltQuantityPickerDelegate.h"
+#import "OBMaltColorPickerDelegate.h"
+
+@interface OBMultiPickerView(Test)
+
+- (UISegmentedControl *)segmentedControl;
+
+- (UIPickerView *)picker;
+
+- (NSArray *)pickerDelegates;
+
+@end
 
 @interface OBMaltAdditionTableViewDelegateTest : OBBaseTestCase
 @property (nonatomic, strong) UITableView *tableView;
@@ -406,6 +418,42 @@ typedef BOOL(^CanChangeRowAtIndexPath)(NSIndexPath *indexPath);
   XCTAssertEqualObjects(cell.maltVariety.text, @"Crystal 120");
   XCTAssertEqualObjects(cell.primaryMetric.text, @"100%");
   XCTAssertEqualObjects(cell.color.text, @"120 Lovibond");
+}
+
+- (void)testPopulateDrawerCell
+{
+  OBMultiPickerTableViewCell *cell = [[OBMultiPickerTableViewCell alloc] initWithFrame:CGRectZero];
+  OBMultiPickerView *view = [[OBMultiPickerView alloc] initWithFrame:CGRectZero];
+  [view awakeFromNib];
+
+  cell.multiPickerView = view;
+
+  OBMaltAddition *malt = [self addMalt:@"Maris Otter" quantity:9.0];
+
+  OBMaltQuantityPickerDelegate *pickerDelegate = [[OBMaltQuantityPickerDelegate alloc] initWithMaltAddition:malt];
+  [view addPickerDelegate:pickerDelegate withTitle:@"This should be removed"];
+
+  [self.delegate populateDrawerCell:cell withIngredientData:malt];
+  XCTAssertEqual(2, [[view pickerDelegates] count]);
+  XCTAssertTrue([[view pickerDelegates][0] isKindOfClass:[OBMaltQuantityPickerDelegate class]]);
+  XCTAssertTrue([[view pickerDelegates][1] isKindOfClass:[OBMaltColorPickerDelegate class]]);
+  XCTAssertEqual(0, view.segmentedControl.selectedSegmentIndex);
+  XCTAssertEqual(self.delegate, view.delegate);
+  XCTAssertEqual(NSNotFound, [[view pickerDelegates] indexOfObject:pickerDelegate], @"Old one should have been removed");
+  
+  self.delegate.selectedPickerIndex = 1;
+
+  [self.delegate populateDrawerCell:cell withIngredientData:malt];
+  XCTAssertEqual(2, [[view pickerDelegates] count]);
+  XCTAssertTrue([[view pickerDelegates][0] isKindOfClass:[OBMaltQuantityPickerDelegate class]]);
+  XCTAssertTrue([[view pickerDelegates][1] isKindOfClass:[OBMaltColorPickerDelegate class]]);
+  XCTAssertEqual(1, view.segmentedControl.selectedSegmentIndex);
+  XCTAssertEqual(self.delegate, view.delegate);
+
+  cell.multiPickerView.segmentedControl.selectedSegmentIndex = 0;
+  [cell.multiPickerView.segmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
+
+  XCTAssertEqual(0, self.delegate.selectedPickerIndex);
 }
 
 - (void)testMoveRowToSameSpot

@@ -46,8 +46,22 @@
   [self addSubview:self.picker];
 }
 
-// Swap out the UIPickerDelegates when a new segment is selected
+// Triggered programatically
+- (void)setSelectedPicker:(NSInteger)pickerIndex
+{
+  self.segmentedControl.selectedSegmentIndex = pickerIndex;
+  [self updatePicker];
+}
+
+// Triggered from a UI event
 - (void)segmentSelected
+{
+  [self updatePicker];
+  [self.delegate selectedPickerDidChange:self.segmentedControl.selectedSegmentIndex];
+}
+
+// Swap out the UIPickerDelegates when a new segment is selected
+- (void)updatePicker
 {
   NSInteger index = self.segmentedControl.selectedSegmentIndex;
   id<OBPickerDelegate> pickerDelegate = self.pickerDelegates[index];
@@ -56,18 +70,14 @@
   self.picker.dataSource = pickerDelegate;
 
   [pickerDelegate updateSelectionForPicker:self.picker];
+
 }
 
 - (void)addPickerDelegate:(id<OBPickerDelegate>)pickerDelegate withTitle:(NSString *)title
 {
   [self.pickerDelegates addObject:pickerDelegate];
   [self.segmentedControl insertSegmentWithTitle:title atIndex:self.segmentedControl.numberOfSegments animated:NO];
-  [self.segmentedControl setSelectedSegmentIndex:0];
-
-  // Apparently callbacks don't get fired when programatically calling setSelectedSegmentIndex.
-  // We have to call it manually.
-  [self segmentSelected];
-  
+  [self setSelectedPicker:0];
   [self setNeedsLayout];
 }
 

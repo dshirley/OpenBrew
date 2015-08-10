@@ -10,10 +10,21 @@
 
 @protocol OBPickerDelegate;
 
+@protocol OBMultiPickerViewDelegate <NSObject>
+
+- (void)selectedPickerDidChange:(NSInteger)pickerIndex;
+
+@end
+
 @interface OBMultiPickerView : UIView
 
+@property (nonatomic) id<OBMultiPickerViewDelegate> delegate;
+
 - (void)addPickerDelegate:(id<OBPickerDelegate>)pickerDelegate withTitle:(NSString *)title;
+
 - (void)removeAllPickers;
+
+- (void)setSelectedPicker:(NSInteger)pickerIndex;
 
 @end
 

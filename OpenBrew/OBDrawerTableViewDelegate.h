@@ -32,10 +32,6 @@
 - (void)populateDrawerCell:(UITableViewCell *)cell
         withIngredientData:(id)ingredientData;
 
-#pragma mark Utility Methods
-
-- (id)ingredientForDrawer;
-
 #pragma mark UITableViewDataSource Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;

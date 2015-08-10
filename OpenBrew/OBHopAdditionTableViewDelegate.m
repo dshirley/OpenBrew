@@ -20,8 +20,6 @@
 #import "OBHopQuantityPickerDelegate.h"
 #import "OBHopBoilTimePickerDelegate.h"
 
-#import "OBMultiPickerView.h"
-
 @implementation OBHopAdditionTableViewDelegate
 
 - (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView andGACategory:(NSString *)gaCategory
@@ -94,7 +92,7 @@
         withIngredientData:(id)ingredientData
 {
   OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
-  OBHopAddition *hopAddition = [self ingredientForDrawer];
+  OBHopAddition *hopAddition = (OBHopAddition *)ingredientData;
 
   OBAlphaAcidPickerDelegate *alphaAcidPickerDelegate = [[OBAlphaAcidPickerDelegate alloc] initWithHopAddition:hopAddition];
   OBHopQuantityPickerDelegate *hopQuantityPickerDelegate = [[OBHopQuantityPickerDelegate alloc] initWithHopAddition:hopAddition];
@@ -104,6 +102,14 @@
   [drawerCell.multiPickerView addPickerDelegate:hopQuantityPickerDelegate withTitle:@"Quantity"];
   [drawerCell.multiPickerView addPickerDelegate:alphaAcidPickerDelegate withTitle:@"Alpha Acid %"];
   [drawerCell.multiPickerView addPickerDelegate:hopBoilTimeDelegate withTitle:@"Boil Time"];
+  [drawerCell.multiPickerView setSelectedPicker:self.selectedPickerIndex];
+  drawerCell.multiPickerView.delegate = self;
+}
+
+
+- (void)selectedPickerDidChange:(NSInteger)pickerIndex
+{
+  self.selectedPickerIndex = pickerIndex;
 }
 
 @end
