@@ -8,6 +8,7 @@
 
 #import "OBAlphaAcidPickerDelegate.h"
 #import "OBHopAddition.h"
+#import <math.h>
 
 // Allow #.# precision when selecting alpha acid percentages
 #define NUM_DECIMALS 10
@@ -29,9 +30,19 @@
 
 - (void)updateSelectionForPicker:(UIPickerView *)picker {
   float alphaAcidPercent = [[self.hopAddition alphaAcidPercent] floatValue];
-  NSInteger row = alphaAcidPercent * NUM_DECIMALS;
+  NSInteger row = roundf(alphaAcidPercent * NUM_DECIMALS);
+
+  if (row > [self pickerView:picker numberOfRowsInComponent:0]) {
+    row = [self pickerView:picker numberOfRowsInComponent:0];
+  }
 
   [picker selectRow:row inComponent:0 animated:NO];
+
+  // If the alpha % value was in between rows, we should update the alpha %
+  // value to reflect what is actually displayed on the picker.
+  // The only way that this will actually change the value is if we change
+  // what values are displayed by the picker in the future.
+  [self pickerView:picker didSelectRow:row inComponent:0];
 }
 
 - (float)alphaAcidPercentForRow:(NSInteger)row

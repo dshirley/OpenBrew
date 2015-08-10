@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5F99B5AFA24E36FD9B1137A4 /* libPods-OpenBrew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55799051A80861BAACCF1C47 /* libPods-OpenBrew.a */; };
 		9F0323311B786DC500E4B98B /* OBHopBoilTimePickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0323301B786DC500E4B98B /* OBHopBoilTimePickerDelegateTest.m */; };
+		9F0323331B78E4B300E4B98B /* OBAlphaAcidPickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0323321B78E4B300E4B98B /* OBAlphaAcidPickerDelegateTest.m */; };
 		9F0815371992655A00E5E575 /* OBDrawerTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815361992655A00E5E575 /* OBDrawerTableViewDelegate.m */; };
 		9F08153B1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F08153A1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m */; };
 		9F0815411996F69E00E5E575 /* OBMaltAdditionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815401996F69E00E5E575 /* OBMaltAdditionTableViewCell.m */; };
@@ -120,6 +121,7 @@
 		55799051A80861BAACCF1C47 /* libPods-OpenBrew.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenBrew.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AFB48A88221FA111EB993E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9F0323301B786DC500E4B98B /* OBHopBoilTimePickerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopBoilTimePickerDelegateTest.m; sourceTree = "<group>"; };
+		9F0323321B78E4B300E4B98B /* OBAlphaAcidPickerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBAlphaAcidPickerDelegateTest.m; sourceTree = "<group>"; };
 		9F0815351992655A00E5E575 /* OBDrawerTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBDrawerTableViewDelegate.h; sourceTree = "<group>"; };
 		9F0815361992655A00E5E575 /* OBDrawerTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBDrawerTableViewDelegate.m; sourceTree = "<group>"; };
 		9F0815391996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionTableViewDelegate.h; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				9FE608F41B69DD99008D1D88 /* OBRecipeViewControllerTest.m */,
 				9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */,
 				9F0323301B786DC500E4B98B /* OBHopBoilTimePickerDelegateTest.m */,
+				9F0323321B78E4B300E4B98B /* OBAlphaAcidPickerDelegateTest.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -855,6 +858,7 @@
 				9F0323311B786DC500E4B98B /* OBHopBoilTimePickerDelegateTest.m in Sources */,
 				9F40C4C61B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m in Sources */,
 				9FE9745818883C8500FFAA56 /* OBMaltAdditionTest.m in Sources */,
+				9F0323331B78E4B300E4B98B /* OBAlphaAcidPickerDelegateTest.m in Sources */,
 				9FC4796E1B7082BF0053B996 /* OBHopAdditionSettingsViewControllerTest.m in Sources */,
 				9F40C4CA1B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m in Sources */,
 				9FE2434E1B45FA7600D1EE25 /* OBSettingsTest.m in Sources */,

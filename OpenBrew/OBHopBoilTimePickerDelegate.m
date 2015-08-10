@@ -8,6 +8,7 @@
 
 #import "OBHopBoilTimePickerDelegate.h"
 #import "OBHopAddition.h"
+#import <math.h>
 
 #define NUM_DECIMALS 1
 #define MAX_BOIL_TIME 91
@@ -25,8 +26,7 @@
   if (self) {
     _hopAddition = hopAddition;
 
-    _referenceBoilTimes = @[ @0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10,
-                             @15, @20, @30, @45, @60, @75, @90 ];
+    _referenceBoilTimes = @[ @0, @1, @2, @3, @4, @5, @10, @15, @20, @25, @30, @35, @40, @45, @50, @55, @60, @75, @90 ];
   }
 
   return self;
@@ -34,9 +34,22 @@
 
 - (void)updateSelectionForPicker:(UIPickerView *)picker
 {
-  NSInteger row = [self.referenceBoilTimes indexOfObject:self.hopAddition.boilTimeInMinutes];
+  NSUInteger row = 0;
+  NSUInteger closestRow = row;
+  float hopBoilTime = [self.hopAddition.boilTimeInMinutes floatValue];
 
-  [picker selectRow:row inComponent:0 animated:NO];
+  for (; row < self.referenceBoilTimes.count; row++) {
+    float boilTimeCurrentRow = [self.referenceBoilTimes[row] floatValue];
+    float boilTimeClosestRow = [self.referenceBoilTimes[closestRow] floatValue];
+
+    if (ABS(hopBoilTime - boilTimeCurrentRow) <= ABS(hopBoilTime - boilTimeClosestRow)) {
+      closestRow = row;
+    }
+  }
+
+  [picker selectRow:closestRow inComponent:0 animated:NO];
+
+  [self pickerView:picker didSelectRow:closestRow inComponent:0];
 }
 
 #pragma mark - UIPickerViewDataSource Methods
