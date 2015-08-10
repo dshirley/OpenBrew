@@ -155,5 +155,40 @@
   XCTAssertThrows([self.delegate populateIngredientCell:cell withIngredientData:hops]);
 }
 
+- (void)testPopulateIngredientCell_nonStandardBoilTime
+{
+  OBHopAdditionTableViewCell *cell = [[OBHopAdditionTableViewCell alloc] initWithFrame:CGRectZero];
+  UILabel *boilTime = [[UILabel alloc] initWithFrame:CGRectZero];
+  UILabel *boilUnits = [[UILabel alloc] initWithFrame:CGRectZero];
+
+  cell.boilTime = boilTime;
+  cell.boilUnits = boilUnits;
+
+  OBHopAddition *hops = [self addHops:@"Admiral" quantity:1.0 aaPercent:8.5 boilTime:300];
+  [self.delegate populateIngredientCell:cell withIngredientData:hops];
+  XCTAssertEqualObjects(@"300", boilTime.text);
+  XCTAssertEqualObjects(@"min", boilUnits.text);
+
+  hops.boilTimeInMinutes = @(1.5);
+  [self.delegate populateIngredientCell:cell withIngredientData:hops];
+  XCTAssertEqualObjects(@"1", boilTime.text);
+  XCTAssertEqualObjects(@"min", boilUnits.text);
+}
+
+- (void)testPopulateIngredientCell_nonStandardAlphaAcid
+{
+  OBHopAdditionTableViewCell *cell = [[OBHopAdditionTableViewCell alloc] initWithFrame:CGRectZero];
+  UILabel *alphaAcid = [[UILabel alloc] initWithFrame:CGRectZero];
+
+  cell.alphaAcid = alphaAcid;
+
+  OBHopAddition *hops = [self addHops:@"Admiral" quantity:1.0 aaPercent:8.53103 boilTime:300];
+  [self.delegate populateIngredientCell:cell withIngredientData:hops];
+  XCTAssertEqualObjects(@"8.5%", alphaAcid.text);
+
+  hops.alphaAcidPercent = @(99.99);
+  [self.delegate populateIngredientCell:cell withIngredientData:hops];
+  XCTAssertEqualObjects(@"100.0%", alphaAcid.text);
+}
 
 @end

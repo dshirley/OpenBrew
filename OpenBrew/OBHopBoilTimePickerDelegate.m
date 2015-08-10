@@ -48,8 +48,6 @@
   }
 
   [picker selectRow:closestRow inComponent:0 animated:NO];
-
-  [self pickerView:picker didSelectRow:closestRow inComponent:0];
 }
 
 #pragma mark - UIPickerViewDataSource Methods

@@ -37,12 +37,6 @@
   }
 
   [picker selectRow:row inComponent:0 animated:NO];
-
-  // If the alpha % value was in between rows, we should update the alpha %
-  // value to reflect what is actually displayed on the picker.
-  // The only way that this will actually change the value is if we change
-  // what values are displayed by the picker in the future.
-  [self pickerView:picker didSelectRow:row inComponent:0];
 }
 
 - (float)alphaAcidPercentForRow:(NSInteger)row

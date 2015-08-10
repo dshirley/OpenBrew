@@ -35,25 +35,24 @@
 
 - (void)testUpdateSelectionForPicker
 {
-  [self doTestUpdateSelectionForPickerExpectedRow:0 forAlphaAcid:0.0 newAlphaAcid:0.0];
-  [self doTestUpdateSelectionForPickerExpectedRow:10 forAlphaAcid:1.0 newAlphaAcid:1.0];
-  [self doTestUpdateSelectionForPickerExpectedRow:15 forAlphaAcid:1.5 newAlphaAcid:1.5];
+  [self doTestUpdateSelectionForPickerExpectedRow:0 forAlphaAcid:0.0];
+  [self doTestUpdateSelectionForPickerExpectedRow:10 forAlphaAcid:1.0];
+  [self doTestUpdateSelectionForPickerExpectedRow:15 forAlphaAcid:1.5];
 
   // Test some in between values
-  [self doTestUpdateSelectionForPickerExpectedRow:15 forAlphaAcid:1.54 newAlphaAcid:1.5];
-  [self doTestUpdateSelectionForPickerExpectedRow:16 forAlphaAcid:1.55 newAlphaAcid:1.6];
-  [self doTestUpdateSelectionForPickerExpectedRow:16 forAlphaAcid:1.56 newAlphaAcid:1.6];
+  [self doTestUpdateSelectionForPickerExpectedRow:15 forAlphaAcid:1.54];
+  [self doTestUpdateSelectionForPickerExpectedRow:16 forAlphaAcid:1.55];
+  [self doTestUpdateSelectionForPickerExpectedRow:16 forAlphaAcid:1.56];
 
     // Test the max value
-  [self doTestUpdateSelectionForPickerExpectedRow:200 forAlphaAcid:20.0 newAlphaAcid:20.0];
+  [self doTestUpdateSelectionForPickerExpectedRow:200 forAlphaAcid:20.0];
 
   // Test beyond the max value
-  [self doTestUpdateSelectionForPickerExpectedRow:200 forAlphaAcid:25 newAlphaAcid:20.0];
+  [self doTestUpdateSelectionForPickerExpectedRow:200 forAlphaAcid:25];
 }
 
 - (void)doTestUpdateSelectionForPickerExpectedRow:(NSInteger)row
                                      forAlphaAcid:(float)alphaAcid
-                                     newAlphaAcid:(float)newAlphaAcid
 {
   OBHopAddition *hops = [self addHops:@"Citra" quantity:1.0 aaPercent:alphaAcid boilTime:60];
   OBAlphaAcidPickerDelegate *delegate = [[OBAlphaAcidPickerDelegate alloc] initWithHopAddition:hops];
@@ -65,8 +64,6 @@
 
   [mockPicker verify];
   [mockPicker stopMocking];
-
-  XCTAssertEqualWithAccuracy([hops.alphaAcidPercent floatValue], newAlphaAcid, 0.00001);
 }
 
 - (void)testNumberOfComponentsInPickerView
