@@ -39,11 +39,6 @@
   [picker selectRow:row inComponent:0 animated:NO];
 }
 
-- (float)valueForRow:(NSInteger)row
-{
-  return [self.referenceBoilTimes[row] floatValue];
-}
-
 #pragma mark - UIPickerViewDataSource Methods
 
 // returns the number of 'columns' to display.
