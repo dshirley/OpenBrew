@@ -730,7 +730,7 @@
                                     <navigationItem title="Malts" id="Yck-cL-Uel">
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="efc-Vq-nfG">
                                             <connections>
-                                                <segue destination="K5j-g6-qw8" kind="unwind" identifier="dismissSettingsView" unwindAction="dismissSettingsView:" id="lwJ-jo-CwX"/>
+                                                <segue destination="K5j-g6-qw8" kind="unwind" identifier="dismissSettingsView" customClass="OBMaltAdditionSettingsUnwindSegue" unwindAction="dismissSettingsView:" id="lwJ-jo-CwX"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
