@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5099D5C8EA46E0FB4FB987B8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 412DB53DD8041549B2B7A537 /* libPods.a */; };
 		5F99B5AFA24E36FD9B1137A4 /* libPods-OpenBrew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55799051A80861BAACCF1C47 /* libPods-OpenBrew.a */; };
-		809F503BA3E57D057303B596 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 412DB53DD8041549B2B7A537 /* libPods.a */; };
 		9F0815371992655A00E5E575 /* OBDrawerTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815361992655A00E5E575 /* OBDrawerTableViewDelegate.m */; };
 		9F08153B1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F08153A1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m */; };
 		9F0815411996F69E00E5E575 /* OBMaltAdditionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815401996F69E00E5E575 /* OBMaltAdditionTableViewCell.m */; };
@@ -279,7 +277,6 @@
 				9F98D35F1880F8ED00469323 /* CoreData.framework in Frameworks */,
 				9F98D35D1880F8ED00469323 /* UIKit.framework in Frameworks */,
 				9F98D3591880F8ED00469323 /* Foundation.framework in Frameworks */,
-				5099D5C8EA46E0FB4FB987B8 /* libPods.a in Frameworks */,
 				5F99B5AFA24E36FD9B1137A4 /* libPods-OpenBrew.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,7 +289,6 @@
 				9F98D37A1880F8EE00469323 /* CoreData.framework in Frameworks */,
 				9F98D3791880F8EE00469323 /* UIKit.framework in Frameworks */,
 				9F98D3781880F8EE00469323 /* Foundation.framework in Frameworks */,
-				809F503BA3E57D057303B596 /* libPods.a in Frameworks */,
 				C7DEEBA650ECB85B24804E1A /* libPods-OpenBrewTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
