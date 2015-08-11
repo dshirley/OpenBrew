@@ -9,7 +9,11 @@
 #import "OBMaltColorPickerDelegate.h"
 #import "OBMaltAddition.h"
 
-#define MAX_DEGREES_LOVIBOND 600
+@interface OBMaltColorPickerDelegate()
+
+@property (nonatomic) NSMutableArray *values;
+
+@end
 
 @implementation OBMaltColorPickerDelegate
 
@@ -19,20 +23,50 @@
 
   if (self) {
     self.maltAddition = maltAddition;
+
+    self.values = [NSMutableArray arrayWithCapacity:71];
+
+    for (int i = 0; i < 30; i += 1) {
+      [self.values addObject:@(i)];
+    }
+
+    for (int i = 30; i < 100; i+= 5) {
+      [self.values addObject:@(i)];
+    }
+
+    for (int i = 100; i < 200; i+= 10) {
+      [self.values addObject:@(i)];
+    }
+
+    for (int i = 200; i <= 600; i+= 25) {
+      [self.values addObject:@(i)];
+    }
   }
 
   return self;
 }
 
-- (void)updateSelectionForPicker:(UIPickerView *)picker {
+- (void)updateSelectionForPicker:(UIPickerView *)picker
+{
+  NSUInteger row = 0;
+  NSUInteger closestRow = row;
   NSInteger colorInLovibond = [self.maltAddition.lovibond integerValue];
 
-  [picker selectRow:colorInLovibond inComponent:0 animated:NO];
+  for (; row < self.values.count; row++) {
+    float lovibondCurrentRow = [self.values[row] floatValue];
+    float lovibondClosestRow = [self.values[closestRow] floatValue];
+
+    if (ABS(colorInLovibond - lovibondCurrentRow) <= ABS(colorInLovibond - lovibondClosestRow)) {
+      closestRow = row;
+    }
+  }
+
+  [picker selectRow:closestRow inComponent:0 animated:NO];
 }
 
 - (NSInteger)lovibondForRow:(NSInteger)row
 {
-  return row;
+  return [self.values[row] integerValue];
 }
 
 #pragma mark - UIPickerViewDataSource Methods
@@ -46,7 +80,7 @@
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-  return MAX_DEGREES_LOVIBOND;
+  return self.values.count;
 }
 
 #pragma mark - UIPickerViewDelegate
