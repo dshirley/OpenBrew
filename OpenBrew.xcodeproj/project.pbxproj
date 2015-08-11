@@ -23,6 +23,7 @@
 		9F40C4C41B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */; };
 		9F40C4C61B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */; };
 		9F40C4CA1B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */; };
+		9F49A85F1B79086600D48E2C /* OBHopQuantityPickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49A85E1B79086600D48E2C /* OBHopQuantityPickerDelegateTest.m */; };
 		9F60CF2319B15CBA0076A600 /* YeastCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F60CF2219B15CBA0076A600 /* YeastCatalog.csv */; };
 		9F60CF2919B251D00076A600 /* OBIngredientTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */; };
 		9F60CF2C19B264A10076A600 /* OBMaltFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60CF2B19B264A10076A600 /* OBMaltFinderViewController.m */; };
@@ -146,6 +147,7 @@
 		9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSettingsSegmentedControllerTest.m; sourceTree = "<group>"; };
 		9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionSettingsViewControllerTest.m; sourceTree = "<group>"; };
 		9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionViewControllerTest.m; sourceTree = "<group>"; };
+		9F49A85E1B79086600D48E2C /* OBHopQuantityPickerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopQuantityPickerDelegateTest.m; sourceTree = "<group>"; };
 		9F4C5C5E199DC574008A6F1B /* OBKvoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBKvoUtils.h; sourceTree = "<group>"; };
 		9F60CF2219B15CBA0076A600 /* YeastCatalog.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = YeastCatalog.csv; path = data/YeastCatalog.csv; sourceTree = "<group>"; };
 		9F60CF2719B251D00076A600 /* OBIngredientTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientTableViewDataSource.h; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */,
 				9F0323301B786DC500E4B98B /* OBHopBoilTimePickerDelegateTest.m */,
 				9F0323321B78E4B300E4B98B /* OBAlphaAcidPickerDelegateTest.m */,
+				9F49A85E1B79086600D48E2C /* OBHopQuantityPickerDelegateTest.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -867,6 +870,7 @@
 				9FCC01F31B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m in Sources */,
 				9FF5100E1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m in Sources */,
 				9FC479701B7084C40053B996 /* OBHopAdditionViewControllerTest.m in Sources */,
+				9F49A85F1B79086600D48E2C /* OBHopQuantityPickerDelegateTest.m in Sources */,
 				9FC8A5B91B71CF43002FB807 /* OBIngredientGaugeTest.m in Sources */,
 				9FC8EE981B45BD0D00EEF14D /* OBYeastTest.m in Sources */,
 				9FC8EE9A1B45C3F300EEF14D /* OBSrmColorTableTest.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "OBHopQuantityPickerDelegate.h"
 #import "OBHopAddition.h"
+#import <math.h>
 
 #define NUM_DECIMALS 10
 #define MAX_QUANTITY 16
@@ -28,7 +29,11 @@
 - (void)updateSelectionForPicker:(UIPickerView *)picker
 {
   float quantityInOunces = [self.hopAddition.quantityInOunces floatValue];
-  NSInteger row = quantityInOunces * NUM_DECIMALS;
+  NSInteger row = roundf(quantityInOunces * NUM_DECIMALS);
+
+  if (row > [self pickerView:picker numberOfRowsInComponent:0]) {
+    row = [self pickerView:picker numberOfRowsInComponent:0];
+  }
 
   [picker selectRow:row inComponent:0 animated:NO];
 }

@@ -18,14 +18,6 @@
 
 @implementation OBAlphaAcidPickerDelegateTest
 
-- (void)setUp {
-  [super setUp];
-}
-
-- (void)tearDown {
-  [super tearDown];
-}
-
 - (void)testInit
 {
   OBHopAddition *hops = [self addHops:@"Citra" quantity:1.0 aaPercent:8.0 boilTime:60];
