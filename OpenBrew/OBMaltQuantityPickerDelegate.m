@@ -11,6 +11,7 @@
 
 #define LEFT_PICKER_COMPONENT 0
 #define RIGHT_PICKER_COMPONENT 1
+#define NUM_CYCLES_FOR_OZ_PICKER 2000
 
 @implementation OBMaltQuantityPickerDelegate 
 
@@ -27,9 +28,9 @@
 
 - (void)updateSelectionForPicker:(UIPickerView *)picker
 {
-  NSInteger baseRow = 16 * 5000;
+  NSInteger baseRow = 16 * (NUM_CYCLES_FOR_OZ_PICKER / 2);
   float pounds = [[self.maltAddition quantityInPounds] floatValue];
-  float ounces = trunc((pounds - trunc(pounds)) * 16);
+  float ounces = round((pounds - trunc(pounds)) * 16);
 
   [picker selectRow:(baseRow + ounces) inComponent:RIGHT_PICKER_COMPONENT animated:NO];
   [picker selectRow:(trunc(pounds)) inComponent:LEFT_PICKER_COMPONENT animated:NO];
@@ -53,7 +54,7 @@
       numRows = 50;
       break;
     case RIGHT_PICKER_COMPONENT:
-      numRows = 16 * 10000;
+      numRows = 16 * NUM_CYCLES_FOR_OZ_PICKER;
       break;
     default:
       assert(component < 2);

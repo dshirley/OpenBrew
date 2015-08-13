@@ -95,6 +95,7 @@
 		9FE8643E198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8643D198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m */; };
 		9FE9745818883C8500FFAA56 /* OBMaltAdditionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745718883C8500FFAA56 /* OBMaltAdditionTest.m */; };
 		9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745A188975C700FFAA56 /* OpenBrew.xcdatamodeld */; };
+		9FF3B15D1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3B15C1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m */; };
 		9FF5100E1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5100D1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m */; };
 		9FF510181B6568E400970C22 /* OBMaltAdditionSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF510171B6568E400970C22 /* OBMaltAdditionSettingsViewController.m */; };
 		9FF68676189327B000B36486 /* OBMaltAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF68675189327B000B36486 /* OBMaltAdditionViewController.m */; };
@@ -257,6 +258,7 @@
 		9FE8643D198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopBoilTimePickerDelegate.m; sourceTree = "<group>"; };
 		9FE9745718883C8500FFAA56 /* OBMaltAdditionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionTest.m; sourceTree = "<group>"; };
 		9FE9745B188975C700FFAA56 /* OpenBrew.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OpenBrew.xcdatamodel; sourceTree = "<group>"; };
+		9FF3B15C1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltQuantityPickerDelegateTest.m; sourceTree = "<group>"; };
 		9FF5100D1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBDrawerTableViewDelegateTest.m; sourceTree = "<group>"; };
 		9FF510161B6568E400970C22 /* OBMaltAdditionSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltAdditionSettingsViewController.h; sourceTree = "<group>"; };
 		9FF510171B6568E400970C22 /* OBMaltAdditionSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionSettingsViewController.m; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 		9F40C4C71B6D9252008334F6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9FF3B15E1B7BE3B80067F228 /* Picker Delegates */,
 				9FF5100D1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m */,
 				9FC4796D1B7082BF0053B996 /* OBHopAdditionSettingsViewControllerTest.m */,
 				9FAA13161B73280200223569 /* OBHopAdditionTableViewDelegateTest.m */,
@@ -356,10 +359,6 @@
 				9FCC01F21B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m */,
 				9FE608F41B69DD99008D1D88 /* OBRecipeViewControllerTest.m */,
 				9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */,
-				9F0323301B786DC500E4B98B /* OBHopBoilTimePickerDelegateTest.m */,
-				9F0323321B78E4B300E4B98B /* OBAlphaAcidPickerDelegateTest.m */,
-				9F49A85E1B79086600D48E2C /* OBHopQuantityPickerDelegateTest.m */,
-				9FBAE0941B79900100D12FC8 /* OBMaltColorPickerDelegateTest.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -552,6 +551,18 @@
 				9F0815431996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m */,
 				9FFE13131B27EF6E00D3F76A /* OBVolumePickerDelegate.h */,
 				9FFE13141B27EF6E00D3F76A /* OBVolumePickerDelegate.m */,
+			);
+			name = "Picker Delegates";
+			sourceTree = "<group>";
+		};
+		9FF3B15E1B7BE3B80067F228 /* Picker Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				9F0323321B78E4B300E4B98B /* OBAlphaAcidPickerDelegateTest.m */,
+				9F0323301B786DC500E4B98B /* OBHopBoilTimePickerDelegateTest.m */,
+				9F49A85E1B79086600D48E2C /* OBHopQuantityPickerDelegateTest.m */,
+				9FBAE0941B79900100D12FC8 /* OBMaltColorPickerDelegateTest.m */,
+				9FF3B15C1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m */,
 			);
 			name = "Picker Delegates";
 			sourceTree = "<group>";
@@ -872,6 +883,7 @@
 				9F40C4C41B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m in Sources */,
 				9FBAE0951B79900100D12FC8 /* OBMaltColorPickerDelegateTest.m in Sources */,
 				9FCC01F31B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m in Sources */,
+				9FF3B15D1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m in Sources */,
 				9FF5100E1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m in Sources */,
 				9FC479701B7084C40053B996 /* OBHopAdditionViewControllerTest.m in Sources */,
 				9F49A85F1B79086600D48E2C /* OBHopQuantityPickerDelegateTest.m in Sources */,
