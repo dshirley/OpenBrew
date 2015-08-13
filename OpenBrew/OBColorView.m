@@ -54,6 +54,8 @@
   CGPoint center = { self.frame.size.width / 2, self.frame.size.height / 2 };
   CGContextDrawRadialGradient(context, gradient, center, 0, center, endRadius, kCGGradientDrawsAfterEndLocation);
 
+  CGGradientRelease(gradient);
+  CGColorSpaceRelease(myColorspace);
 }
 
 @end
