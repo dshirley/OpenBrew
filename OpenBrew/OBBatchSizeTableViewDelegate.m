@@ -92,15 +92,12 @@ NSString * const OBBatchSizeCellStrings[] = {
   [drawerCell.multiPickerView removeAllPickers];
 
   if (cellType == OBBatchSizeCellPreBoilVolume) {
-
     pickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
-                                                  andPropertyGetter:@selector(preBoilVolumeInGallons)
-                                                  andPropertySetter:@selector(setPreBoilVolumeInGallons:)];
+                                                 recipePropertyName:@"preBoilVolumeInGallons"];
+
   } else if (cellType == OBBatchSizeCellPostBoilVolume) {
-
     pickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
-                                                  andPropertyGetter:@selector(postBoilVolumeInGallons)
-                                                  andPropertySetter:@selector(setPostBoilVolumeInGallons:)];
+                                                 recipePropertyName:@"postBoilVolumeInGallons"];
 
   } else {
     [NSException raise:@"Invalid OBBatchSizeCell" format:@"Cell: %@", @(cellType)];

@@ -26,9 +26,24 @@
 @property (nonatomic, strong) OBRecipe *recipe;
 
 - (id)initWithRecipe:(OBRecipe *)recipe
-   andPropertyGetter:(SEL)propertyGetterSelector
-   andPropertySetter:(SEL)propertySetterSelector;
+  recipePropertyName:(NSString *)propertyName;
 
 - (void)updateSelectionForPicker:(UIPickerView *)picker;
+
+#pragma mark - UIPickerViewDataSource Methods
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView;
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
+
+#pragma mark - UIPickerViewDelegate
+
+- (NSString *)pickerView:(UIPickerView *)pickerView
+             titleForRow:(NSInteger)row
+            forComponent:(NSInteger)component;
+
+- (void)pickerView:(UIPickerView *)pickerView
+      didSelectRow:(NSInteger)row
+       inComponent:(NSInteger)component;
 
 @end

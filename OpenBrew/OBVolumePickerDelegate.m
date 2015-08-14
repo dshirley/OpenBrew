@@ -16,22 +16,19 @@
 #define NUM_PICKER_VALUES (MAX_GALLONS / INCREMENT)
 
 @interface OBVolumePickerDelegate()
-@property (nonatomic, assign) SEL propertyGetterSelector;
-@property (nonatomic, assign) SEL propertySetterSelector;
+@property (nonatomic) NSString *recipePropertyName;
 @end
 
 @implementation OBVolumePickerDelegate
 
 - (id)initWithRecipe:(OBRecipe *)recipe
-   andPropertyGetter:(SEL)propertyGetterSelector
-   andPropertySetter:(SEL)propertySetterSelector;
+  recipePropertyName:(NSString *)propertyName
 {
   self = [super init];
 
   if (self) {
     self.recipe = recipe;
-    self.propertyGetterSelector = propertyGetterSelector;
-    self.propertySetterSelector = propertySetterSelector;
+    self.recipePropertyName = propertyName;
   }
 
   return self;
@@ -39,13 +36,8 @@
 
 - (void)updateSelectionForPicker:(UIPickerView *)picker
 {
-  // The compiler complains about a potential memory leak since the selector is unknown
-  // http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
-  // The fix is making a cast
-  IMP imp = [self.recipe methodForSelector:self.propertyGetterSelector];
-  NSNumber *(*func)(id, SEL) = (void *)imp;
-  float volume = [func(self.recipe, self.propertyGetterSelector) floatValue];
-  int row = (int) (volume / INCREMENT);
+  float volume = [[self.recipe valueForKey:self.recipePropertyName] floatValue];
+  int row = (int) round(volume / INCREMENT);
 
   [picker selectRow:row inComponent:0 animated:NO];
 }
@@ -83,13 +75,7 @@
        inComponent:(NSInteger)component
 {
   NSNumber *gallons = @([self gallonsForRow:row]);
-
-  // The compiler complains about a potential memory leak since the selector is unknown
-  // http://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
-  // The fix is making a cast
-  IMP imp = [self.recipe methodForSelector:self.propertySetterSelector];
-  void (*func)(id, SEL, NSNumber *) = (void *)imp;
-  func(self.recipe, self.propertySetterSelector, gallons);
+  [self.recipe setValue:gallons forKey:self.recipePropertyName];
 }
 
 @end
