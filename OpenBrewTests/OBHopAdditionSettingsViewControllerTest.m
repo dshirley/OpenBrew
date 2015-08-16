@@ -27,10 +27,6 @@
   self.vc.brewery = self.brewery;
 }
 
-- (void)tearDown {
-  [super tearDown];
-}
-
 - (void)testWillAppear
 {
   self.brewery.hopGaugeDisplayMetric = @(OBMetricBuToGuRatio);

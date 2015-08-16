@@ -13,5 +13,16 @@
 @interface OBMaltFinderViewController : GAITrackedViewController
 
 @property (nonatomic, strong) OBRecipe *recipe;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl;
+
+- (void)viewDidLoad;
+
+- (void)viewWillAppear:(BOOL)animated;
+
+- (IBAction)applyMaltTypeFilter:(UISegmentedControl *)sender;
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+
 
 @end

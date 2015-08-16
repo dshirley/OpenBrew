@@ -25,7 +25,6 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
 #define SUGAR_SEGMENT_INDEX 2
 
 @interface OBMaltFinderViewController ()
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) OBIngredientTableViewDataSource *tableViewDataSource;
 
@@ -36,10 +35,9 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
 
 @implementation OBMaltFinderViewController
 
-- (void)loadView {
-  [super loadView];
-
-  self.screenName = @"Malt Finder Screen";
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
 
   self.tableViewDataSource = [[OBIngredientTableViewDataSource alloc]
                               initIngredientEntityName:@"Malt"
