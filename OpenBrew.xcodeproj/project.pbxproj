@@ -27,6 +27,7 @@
 		9F60CF2319B15CBA0076A600 /* YeastCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9F60CF2219B15CBA0076A600 /* YeastCatalog.csv */; };
 		9F60CF2919B251D00076A600 /* OBIngredientTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */; };
 		9F60CF2C19B264A10076A600 /* OBMaltFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60CF2B19B264A10076A600 /* OBMaltFinderViewController.m */; };
+		9F63099B1B7D95EE00A2924E /* OBIngredientTableViewDataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F63099A1B7D95EE00A2924E /* OBIngredientTableViewDataSourceTest.m */; };
 		9F63BD961B7CF82F0028EC84 /* OBVolumePickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F63BD951B7CF82F0028EC84 /* OBVolumePickerDelegateTest.m */; };
 		9F6570D11B3906ED0004EBE0 /* OBIngredientGauge.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F6570D01B3906ED0004EBE0 /* OBIngredientGauge.xib */; };
 		9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */; };
@@ -157,6 +158,7 @@
 		9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIngredientTableViewDataSource.m; sourceTree = "<group>"; };
 		9F60CF2A19B264A10076A600 /* OBMaltFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltFinderViewController.h; sourceTree = "<group>"; };
 		9F60CF2B19B264A10076A600 /* OBMaltFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltFinderViewController.m; sourceTree = "<group>"; };
+		9F63099A1B7D95EE00A2924E /* OBIngredientTableViewDataSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIngredientTableViewDataSourceTest.m; sourceTree = "<group>"; };
 		9F63BD951B7CF82F0028EC84 /* OBVolumePickerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBVolumePickerDelegateTest.m; sourceTree = "<group>"; };
 		9F6570D01B3906ED0004EBE0 /* OBIngredientGauge.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OBIngredientGauge.xib; sourceTree = "<group>"; };
 		9F77C612198CAECA0023EB3C /* OBMultiPickerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMultiPickerTableViewCell.h; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				9FCC01F21B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m */,
 				9FE608F41B69DD99008D1D88 /* OBRecipeViewControllerTest.m */,
 				9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */,
+				9F63099A1B7D95EE00A2924E /* OBIngredientTableViewDataSourceTest.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -887,6 +890,7 @@
 				9FBAE0951B79900100D12FC8 /* OBMaltColorPickerDelegateTest.m in Sources */,
 				9FCC01F31B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m in Sources */,
 				9FF3B15D1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m in Sources */,
+				9F63099B1B7D95EE00A2924E /* OBIngredientTableViewDataSourceTest.m in Sources */,
 				9FF5100E1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m in Sources */,
 				9FC479701B7084C40053B996 /* OBHopAdditionViewControllerTest.m in Sources */,
 				9F49A85F1B79086600D48E2C /* OBHopQuantityPickerDelegateTest.m in Sources */,
