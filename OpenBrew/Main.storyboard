@@ -506,7 +506,7 @@
         <!--Hop Selection-->
         <scene sceneID="owd-Qz-fkX">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="xMB-0f-Tz6" customClass="OBHopFinderViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="hopFinderView" automaticallyAdjustsScrollViewInsets="NO" id="xMB-0f-Tz6" customClass="OBHopFinderViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Rkq-Le-Xq0"/>
                         <viewControllerLayoutGuide type="bottom" id="HbT-1c-coj"/>

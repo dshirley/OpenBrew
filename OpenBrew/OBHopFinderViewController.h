@@ -13,5 +13,12 @@
 @interface OBHopFinderViewController : GAITrackedViewController
 
 @property (nonatomic, strong) OBRecipe *recipe;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+- (void)viewDidLoad;
+
+- (void)viewWillAppear:(BOOL)animated;
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 
 @end

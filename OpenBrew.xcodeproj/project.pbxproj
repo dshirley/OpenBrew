@@ -91,6 +91,7 @@
 		9FE2434E1B45FA7600D1EE25 /* OBSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE2434D1B45FA7600D1EE25 /* OBSettingsTest.m */; };
 		9FE243511B471D5800D1EE25 /* OBMultiPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE243501B471D5800D1EE25 /* OBMultiPickerView.m */; };
 		9FE525091B813461002612DD /* OBMaltFinderViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE525081B813461002612DD /* OBMaltFinderViewControllerTest.m */; };
+		9FE5250B1B814652002612DD /* OBHopFinderViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE5250A1B814652002612DD /* OBHopFinderViewControllerTest.m */; };
 		9FE608F51B69DD99008D1D88 /* OBRecipeViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE608F41B69DD99008D1D88 /* OBRecipeViewControllerTest.m */; };
 		9FE86433198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE86432198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m */; };
 		9FE86437198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE86436198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.m */; };
@@ -253,6 +254,7 @@
 		9FE2434F1B471D5800D1EE25 /* OBMultiPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMultiPickerView.h; sourceTree = "<group>"; };
 		9FE243501B471D5800D1EE25 /* OBMultiPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerView.m; sourceTree = "<group>"; };
 		9FE525081B813461002612DD /* OBMaltFinderViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltFinderViewControllerTest.m; sourceTree = "<group>"; };
+		9FE5250A1B814652002612DD /* OBHopFinderViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopFinderViewControllerTest.m; sourceTree = "<group>"; };
 		9FE608F41B69DD99008D1D88 /* OBRecipeViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeViewControllerTest.m; sourceTree = "<group>"; };
 		9FE86431198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionTableViewCell.h; sourceTree = "<group>"; };
 		9FE86432198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionTableViewCell.m; sourceTree = "<group>"; };
@@ -359,14 +361,15 @@
 				9FC4796D1B7082BF0053B996 /* OBHopAdditionSettingsViewControllerTest.m */,
 				9FAA13161B73280200223569 /* OBHopAdditionTableViewDelegateTest.m */,
 				9FC4796F1B7084C40053B996 /* OBHopAdditionViewControllerTest.m */,
+				9FE5250A1B814652002612DD /* OBHopFinderViewControllerTest.m */,
+				9F63099A1B7D95EE00A2924E /* OBIngredientTableViewDataSourceTest.m */,
 				9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */,
 				9FC89CBD1B4CCA4500E8EA2C /* OBMaltAdditionTableViewDelegateTest.m */,
 				9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */,
+				9FE525081B813461002612DD /* OBMaltFinderViewControllerTest.m */,
 				9FCC01F21B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m */,
 				9FE608F41B69DD99008D1D88 /* OBRecipeViewControllerTest.m */,
 				9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */,
-				9F63099A1B7D95EE00A2924E /* OBIngredientTableViewDataSourceTest.m */,
-				9FE525081B813461002612DD /* OBMaltFinderViewControllerTest.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -883,6 +886,7 @@
 			files = (
 				9F0323311B786DC500E4B98B /* OBHopBoilTimePickerDelegateTest.m in Sources */,
 				9F40C4C61B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m in Sources */,
+				9FE5250B1B814652002612DD /* OBHopFinderViewControllerTest.m in Sources */,
 				9FE9745818883C8500FFAA56 /* OBMaltAdditionTest.m in Sources */,
 				9F0323331B78E4B300E4B98B /* OBAlphaAcidPickerDelegateTest.m in Sources */,
 				9FE525091B813461002612DD /* OBMaltFinderViewControllerTest.m in Sources */,

@@ -19,7 +19,6 @@
 static NSString* const OBGAScreenName = @"Hop Finder Screen";
 
 @interface OBHopFinderViewController ()
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) OBIngredientTableViewDataSource *tableViewDataSource;
 
@@ -29,14 +28,16 @@ static NSString* const OBGAScreenName = @"Hop Finder Screen";
 
 @implementation OBHopFinderViewController
 
-- (void)loadView {
-  [super loadView];
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
 
   self.tableViewDataSource = [[OBIngredientTableViewDataSource alloc]
                               initIngredientEntityName:@"Hops"
                               andManagedObjectContext:self.recipe.managedObjectContext];
-  
+
   self.tableView.dataSource = self.tableViewDataSource;
+
   [self.tableView reloadData];
 }
 
