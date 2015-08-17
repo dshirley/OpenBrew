@@ -49,15 +49,16 @@ typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
 @property (nonatomic, assign) OBYeastGaugeMetric gaugeMetric;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
-@property (nonatomic, strong) NSArray *ingredientData;
+@property (nonatomic) NSFetchedResultsController *fetchedResults;
 @property (nonatomic, assign) OBYeastManufacturer selectedManufacturer;
 
 @end
 
 @implementation OBYeastAdditionViewController
 
-- (void)loadView {
-  [super loadView];
+- (void)viewDidLoad
+{
+  [super viewDidLoad];
 
   self.screenName = OBGAScreenName;
 
@@ -79,27 +80,21 @@ typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
 // Query the CoreData store to get all of the ingredient data
 - (void)reloadTable
 {
-  NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"Yeast"
-                                                       inManagedObjectContext:self.recipe.managedObjectContext];
-
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  [request setEntity:entityDescription];
 
-  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"identifier"
-                                                                 ascending:YES];
+  request.entity = [NSEntityDescription entityForName:@"Yeast" inManagedObjectContext:self.recipe.managedObjectContext];
+  request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"identifier" ascending:YES]];
+  request.predicate = [NSPredicate predicateWithFormat:@"manufacturer == %d", self.selectedManufacturer];
 
-  [request setSortDescriptors:@[sortDescriptor]];
+  self.fetchedResults = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                            managedObjectContext:self.recipe.managedObjectContext sectionNameKeyPath:nil
+                                                                       cacheName:@"FIXME"];
 
   NSError *error = nil;
-  NSArray *array = [self.recipe.managedObjectContext executeFetchRequest:request error:&error];
 
-  if (error) {
+  if (![self.fetchedResults performFetch:&error]) {
     CRITTERCISM_LOG_ERROR(error);
-    array = [NSArray array];
   }
-
-  NSPredicate *filter = [NSPredicate predicateWithFormat:@"manufacturer == %d", self.selectedManufacturer];
-  self.ingredientData = [array filteredArrayUsingPredicate:filter];
 
   [self.tableView reloadData];
 }
@@ -120,7 +115,7 @@ typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  OBYeast *yeast = self.ingredientData[indexPath.row];
+  OBYeast *yeast = [self.fetchedResults objectAtIndexPath:indexPath];
   OBYeastAddition *yeastAddition = [[OBYeastAddition alloc] initWithYeast:yeast andRecipe:self.recipe];
 
   self.recipe.yeast = yeastAddition;
@@ -136,7 +131,7 @@ typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return self.ingredientData.count;
+  return [[self.fetchedResults.sections objectAtIndex:section] numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -158,7 +153,7 @@ typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
   // Yeast cell... no pun intended
   OBYeastTableViewCell *yeastCell = (OBYeastTableViewCell *)cell;
 
-  OBYeast *yeast = self.ingredientData[indexPath.row];
+  OBYeast *yeast = [self.fetchedResults objectAtIndexPath:indexPath];
 
   yeastCell.yeastIdentifier.text = yeast.identifier;
   yeastCell.yeastName.text = yeast.name;
