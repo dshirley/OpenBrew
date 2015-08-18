@@ -14,6 +14,7 @@
 
 @interface OBIngredientTableViewDataSourceTest : OBBaseTestCase
 @property (nonatomic) NSArray *alphabet;
+@property (nonatomic) UITableView *dummyTableView;
 @end
 
 @implementation OBIngredientTableViewDataSourceTest
@@ -21,6 +22,7 @@
 - (void)setUp {
   [super setUp];
 
+  self.dummyTableView = [[UITableView alloc] initWithFrame:CGRectZero];
   self.alphabet = @[ @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z" ];
 }
 
@@ -45,11 +47,11 @@
   OBIngredientTableViewDataSource *dataSource = [[OBIngredientTableViewDataSource alloc] initIngredientEntityName:@"Malt" andManagedObjectContext:self.ctx];
 
   // Number of malts that start with the letter 'A'
-  XCTAssertEqual(3, [dataSource tableView:nil numberOfRowsInSection:0]);
-  XCTAssertEqual(8, [dataSource tableView:nil numberOfRowsInSection:1]);
+  XCTAssertEqual(3, [dataSource tableView:self.dummyTableView numberOfRowsInSection:0]);
+  XCTAssertEqual(8, [dataSource tableView:self.dummyTableView numberOfRowsInSection:1]);
 
   dataSource.predicate = [NSPredicate predicateWithFormat:@"name == 'Maris Otter'"];
-  XCTAssertEqual(1, [dataSource tableView:nil numberOfRowsInSection:0]);
+  XCTAssertEqual(1, [dataSource tableView:self.dummyTableView numberOfRowsInSection:0]);
 }
 
 - (void)testCellForRowAtIndexPath
@@ -71,10 +73,10 @@
 {
   OBIngredientTableViewDataSource *dataSource = [[OBIngredientTableViewDataSource alloc] initIngredientEntityName:@"Malt" andManagedObjectContext:self.ctx];
 
-  XCTAssertEqual(15, [dataSource numberOfSectionsInTableView:nil]);
+  XCTAssertEqual(15, [dataSource numberOfSectionsInTableView:self.dummyTableView]);
 
   dataSource.predicate = [NSPredicate predicateWithFormat:@"type == 1234"];
-  XCTAssertEqual(0, [dataSource numberOfSectionsInTableView:nil]);
+  XCTAssertEqual(0, [dataSource numberOfSectionsInTableView:self.dummyTableView]);
 }
 
 - (void)testTitleForHeaderInSection
@@ -82,13 +84,13 @@
   OBIngredientTableViewDataSource *dataSource = [[OBIngredientTableViewDataSource alloc] initIngredientEntityName:@"Malt" andManagedObjectContext:self.ctx];
 
   // Spot check a few
-  XCTAssertEqualObjects(@"A", [dataSource tableView:nil titleForHeaderInSection:0]);
-  XCTAssertEqualObjects(@"B", [dataSource tableView:nil titleForHeaderInSection:1]);
-  XCTAssertEqualObjects(@"C", [dataSource tableView:nil titleForHeaderInSection:2]);
-  XCTAssertEqualObjects(@"D", [dataSource tableView:nil titleForHeaderInSection:3]);
+  XCTAssertEqualObjects(@"A", [dataSource tableView:self.dummyTableView titleForHeaderInSection:0]);
+  XCTAssertEqualObjects(@"B", [dataSource tableView:self.dummyTableView titleForHeaderInSection:1]);
+  XCTAssertEqualObjects(@"C", [dataSource tableView:self.dummyTableView titleForHeaderInSection:2]);
+  XCTAssertEqualObjects(@"D", [dataSource tableView:self.dummyTableView titleForHeaderInSection:3]);
 
-  for (NSInteger i = 0; i < [dataSource numberOfSectionsInTableView:nil]; i++) {
-    NSString *title = [dataSource tableView:nil titleForHeaderInSection:i];
+  for (NSInteger i = 0; i < [dataSource numberOfSectionsInTableView:self.dummyTableView]; i++) {
+    NSString *title = [dataSource tableView:self.dummyTableView titleForHeaderInSection:i];
     XCTAssertEqual(1, title.length);
     XCTAssertNotEqual(NSNotFound, [self.alphabet indexOfObject:title]);
   }
@@ -99,32 +101,32 @@
   OBIngredientTableViewDataSource *dataSource = [[OBIngredientTableViewDataSource alloc] initIngredientEntityName:@"Malt" andManagedObjectContext:self.ctx];
   dataSource.predicate = [NSPredicate predicateWithFormat:@"name == 'Maris Otter'"];
 
-  XCTAssertEqualObjects(@"M", [dataSource tableView:nil titleForHeaderInSection:0]);
+  XCTAssertEqualObjects(@"M", [dataSource tableView:self.dummyTableView titleForHeaderInSection:0]);
 }
 
 - (void)testSectionIndexTitles
 {
   OBIngredientTableViewDataSource *dataSource = [[OBIngredientTableViewDataSource alloc] initIngredientEntityName:@"Malt" andManagedObjectContext:self.ctx];
 
-  XCTAssertEqualObjects((@[ @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z" ]), [dataSource sectionIndexTitlesForTableView:nil]);
+  XCTAssertEqualObjects((@[ @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z" ]), [dataSource sectionIndexTitlesForTableView:self.dummyTableView]);
 }
 
 - (void)testSectionForSectionIndexTitleAtIndex
 {
   OBIngredientTableViewDataSource *dataSource = [[OBIngredientTableViewDataSource alloc] initIngredientEntityName:@"Malt" andManagedObjectContext:self.ctx];
 
-  XCTAssertEqual(0, [dataSource tableView:nil sectionForSectionIndexTitle:@"A" atIndex:999]);
-  XCTAssertEqual(1, [dataSource tableView:nil sectionForSectionIndexTitle:@"B" atIndex:999]);
-  XCTAssertEqual(2, [dataSource tableView:nil sectionForSectionIndexTitle:@"C" atIndex:999]);
+  XCTAssertEqual(0, [dataSource tableView:self.dummyTableView sectionForSectionIndexTitle:@"A" atIndex:999]);
+  XCTAssertEqual(1, [dataSource tableView:self.dummyTableView sectionForSectionIndexTitle:@"B" atIndex:999]);
+  XCTAssertEqual(2, [dataSource tableView:self.dummyTableView sectionForSectionIndexTitle:@"C" atIndex:999]);
 
-  XCTAssertEqual(3, [dataSource tableView:nil sectionForSectionIndexTitle:@"D" atIndex:999]);
+  XCTAssertEqual(3, [dataSource tableView:self.dummyTableView sectionForSectionIndexTitle:@"D" atIndex:999]);
 
-  XCTAssertEqual(4, [dataSource tableView:nil sectionForSectionIndexTitle:@"E" atIndex:999]);
-  XCTAssertEqual(4, [dataSource tableView:nil sectionForSectionIndexTitle:@"F" atIndex:999]);
-  XCTAssertEqual(4, [dataSource tableView:nil sectionForSectionIndexTitle:@"G" atIndex:999]);
-  XCTAssertEqual(5, [dataSource tableView:nil sectionForSectionIndexTitle:@"H" atIndex:999]);
+  XCTAssertEqual(4, [dataSource tableView:self.dummyTableView sectionForSectionIndexTitle:@"E" atIndex:999]);
+  XCTAssertEqual(4, [dataSource tableView:self.dummyTableView sectionForSectionIndexTitle:@"F" atIndex:999]);
+  XCTAssertEqual(4, [dataSource tableView:self.dummyTableView sectionForSectionIndexTitle:@"G" atIndex:999]);
+  XCTAssertEqual(5, [dataSource tableView:self.dummyTableView sectionForSectionIndexTitle:@"H" atIndex:999]);
 
-  XCTAssertEqual(14, [dataSource tableView:nil sectionForSectionIndexTitle:@"Z" atIndex:999]);
+  XCTAssertEqual(14, [dataSource tableView:self.dummyTableView sectionForSectionIndexTitle:@"Z" atIndex:999]);
 }
 
 @end
