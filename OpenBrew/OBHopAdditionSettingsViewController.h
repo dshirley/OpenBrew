@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class OBBrewery, OBSettingsSegmentedController;
+@class OBBrewery, OBSegmentedController;
 
 @interface OBHopAdditionSettingsViewController : UIViewController
 
 @property (nonatomic, strong) OBBrewery *brewery;
 
-@property (nonatomic, readonly) OBSettingsSegmentedController *gaugeDisplaySettingController;
-@property (nonatomic, readonly) OBSettingsSegmentedController *ingredientDisplaySettingController;
+@property (nonatomic, readonly) OBSegmentedController *gaugeDisplaySettingController;
+@property (nonatomic, readonly) OBSegmentedController *ingredientDisplaySettingController;
 
 @property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
 @property (nonatomic, weak) IBOutlet UIView *settingsView;

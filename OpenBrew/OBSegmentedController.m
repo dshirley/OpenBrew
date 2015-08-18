@@ -1,23 +1,23 @@
 //
-//  OBSettingsSegmentedController.m
+//  OBSegmentedController.m
 //  OpenBrew
 //
 //  Created by David Shirley 2 on 7/31/15.
 //  Copyright © 2015 OpenBrew. All rights reserved.
 //
 
-#import "OBSettingsSegmentedController.h"
+#import "OBSegmentedController.h"
 #import "OBBrewery.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 
-@interface OBSettingsSegmentedController()
+@interface OBSegmentedController()
 @property (nonatomic, weak) UISegmentedControl *segmentedControl;
 @property (nonatomic) NSMutableArray *segmentActions;
 @property (nonatomic) NSString *googleAnalyticsAction;
 @end
 
-@implementation OBSettingsSegmentedController
+@implementation OBSegmentedController
 
 
 - (id)initWithSegmentedControl:(UISegmentedControl *)segmentedControl

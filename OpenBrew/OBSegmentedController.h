@@ -1,5 +1,5 @@
 //
-//  OBSettingsSegmentedController.h
+//  OBSegmentedController.h
 //  OpenBrew
 //
 //  Created by David Shirley 2 on 7/31/15.
@@ -12,7 +12,7 @@
 
 typedef void(^OBSegmentSelectedAction)(void);
 
-@interface OBSettingsSegmentedController : NSObject
+@interface OBSegmentedController : NSObject
 
 @property (nonatomic, readonly, weak) UISegmentedControl *segmentedControl;
 

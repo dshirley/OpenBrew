@@ -8,7 +8,7 @@
 
 #import "OBHopAdditionSettingsViewController.h"
 #import "OBBrewery.h"
-#import "OBSettingsSegmentedController.h"
+#import "OBSegmentedController.h"
 #import "OBKvoUtils.h"
 
 // Google Analytics constants
@@ -20,8 +20,8 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
 
-@property (nonatomic) OBSettingsSegmentedController *gaugeDisplaySettingController;
-@property (nonatomic) OBSettingsSegmentedController *ingredientDisplaySettingController;
+@property (nonatomic) OBSegmentedController *gaugeDisplaySettingController;
+@property (nonatomic) OBSegmentedController *ingredientDisplaySettingController;
 
 @end
 
@@ -36,7 +36,7 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
   OBBrewery *brewery = self.brewery;
 
   self.gaugeDisplaySettingController =
-    [[OBSettingsSegmentedController alloc] initWithSegmentedControl:self.gaugeDisplaySettingSegmentedControl
+    [[OBSegmentedController alloc] initWithSegmentedControl:self.gaugeDisplaySettingSegmentedControl
                                               googleAnalyticsAction:@"Hop Gauge Display"];
 
   [self.gaugeDisplaySettingController addSegment:@"IBU" actionWhenSelected:^(void) {
@@ -54,7 +54,7 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
   }
 
   self.ingredientDisplaySettingController =
-    [[OBSettingsSegmentedController alloc] initWithSegmentedControl:self.ingredientDisplaySettingSegmentedControl
+    [[OBSegmentedController alloc] initWithSegmentedControl:self.ingredientDisplaySettingSegmentedControl
                                               googleAnalyticsAction:@"Hop Primary Metric"];
 
   [self.ingredientDisplaySettingController addSegment:@"Weight" actionWhenSelected:^(void) {

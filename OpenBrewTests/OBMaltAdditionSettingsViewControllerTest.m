@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "OBMaltAdditionSettingsViewController.h"
-#import "OBSettingsSegmentedController.h"
+#import "OBSegmentedController.h"
 #import "OBBaseTestCase.h"
 #import <OCMock/OCMock.h>
 

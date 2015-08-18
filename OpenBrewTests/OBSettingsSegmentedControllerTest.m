@@ -1,5 +1,5 @@
 //
-//  OBSettingsSegmentedControllerTest.m
+//  OBSegmentedControllerTest.m
 //  OpenBrew
 //
 //  Created by David Shirley 2 on 8/1/15.
@@ -9,26 +9,26 @@
 #import <XCTest/XCTest.h>
 #import <OCMock/OCMock.h>
 #import "OBBaseTestCase.h"
-#import "OBSettingsSegmentedController.h"
+#import "OBSegmentedController.h"
 #import "OBKvoUtils.h"
 
-@interface OBSettingsSegmentedController(Testing)
+@interface OBSegmentedController(Testing)
 
 - (void)segmentChanged:(UISegmentedControl *)sender;
 - (NSArray *)segmentActions;
 
 @end
 
-@interface OBSettingsSegmentedControllerTest : OBBaseTestCase
+@interface OBSegmentedControllerTest : OBBaseTestCase
 
 @end
 
-@implementation OBSettingsSegmentedControllerTest
+@implementation OBSegmentedControllerTest
 
 - (void)testInit
 {
   UISegmentedControl *s = [[UISegmentedControl alloc] initWithItems:@[ @"these", @"will", @"be", @"removed"]];
-  OBSettingsSegmentedController *ctrl = [[OBSettingsSegmentedController alloc] initWithSegmentedControl:s
+  OBSegmentedController *ctrl = [[OBSegmentedController alloc] initWithSegmentedControl:s
                                                                                   googleAnalyticsAction:@"test"];
 
   id mockCtrl = [OCMockObject partialMockForObject:ctrl];
@@ -45,7 +45,7 @@
 - (void)testAddSegment
 {
   UISegmentedControl *s = [[UISegmentedControl alloc] initWithItems:@[ @"these", @"will", @"be", @"removed"]];
-  OBSettingsSegmentedController *ctrl = [[OBSettingsSegmentedController alloc] initWithSegmentedControl:s
+  OBSegmentedController *ctrl = [[OBSegmentedController alloc] initWithSegmentedControl:s
                                                                                   googleAnalyticsAction:@"test"];
 
   OBSegmentSelectedAction block1 = ^(void) {};
@@ -79,8 +79,8 @@
 
   OBBrewery *brewery = self.brewery;
 
-  OBSettingsSegmentedController *ctrl =
-    [[OBSettingsSegmentedController alloc] initWithSegmentedControl:s
+  OBSegmentedController *ctrl =
+    [[OBSegmentedController alloc] initWithSegmentedControl:s
                                               googleAnalyticsAction:@"test"];
 
   [ctrl addSegment:@"OG" actionWhenSelected:^(void) {
