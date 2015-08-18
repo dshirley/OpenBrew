@@ -15,7 +15,7 @@
 @interface OBSettingsSegmentedController(Testing)
 
 - (void)segmentChanged:(UISegmentedControl *)sender;
-- (NSArray *)valueMapping;
+- (NSArray *)segmentActions;
 
 @end
 
@@ -29,8 +29,7 @@
 {
   UISegmentedControl *s = [[UISegmentedControl alloc] initWithItems:@[ @"these", @"will", @"be", @"removed"]];
   OBSettingsSegmentedController *ctrl = [[OBSettingsSegmentedController alloc] initWithSegmentedControl:s
-                                                                                                brewery:self.brewery
-                                                                                             settingKey:@"fake"];
+                                                                                  googleAnalyticsAction:@"test"];
 
   id mockCtrl = [OCMockObject partialMockForObject:ctrl];
   [[mockCtrl expect] segmentChanged:s];
@@ -47,95 +46,54 @@
 {
   UISegmentedControl *s = [[UISegmentedControl alloc] initWithItems:@[ @"these", @"will", @"be", @"removed"]];
   OBSettingsSegmentedController *ctrl = [[OBSettingsSegmentedController alloc] initWithSegmentedControl:s
-                                                                                                brewery:self.brewery
-                                                                                             settingKey:@"fake"];
+                                                                                  googleAnalyticsAction:@"test"];
+
+  OBSegmentSelectedAction block1 = ^(void) {};
+  OBSegmentSelectedAction block2 = ^(void) {};
+  OBSegmentSelectedAction block3 = ^(void) {};
 
   XCTAssertEqual(0, s.numberOfSegments);
-  [ctrl addSegment:@"first" setsValue:@(100)];
+  [ctrl addSegment:@"first" actionWhenSelected:block1];
 
   XCTAssertEqual(1, s.numberOfSegments);
   XCTAssertEqual(@"first", [s titleForSegmentAtIndex:0]);
-  XCTAssertEqualObjects(@[ @(100)], [ctrl valueMapping]);
+  XCTAssertEqualObjects(@[ block1 ], [ctrl segmentActions]);
 
-  [ctrl addSegment:@"second" setsValue:@(200)];
+  [ctrl addSegment:@"second" actionWhenSelected:block2];
   XCTAssertEqual(2, s.numberOfSegments);
   XCTAssertEqual(@"first", [s titleForSegmentAtIndex:0]);
   XCTAssertEqual(@"second", [s titleForSegmentAtIndex:1]);
-  XCTAssertEqualObjects((@[ @(100), @(200)]), [ctrl valueMapping]);
+  XCTAssertEqualObjects((@[ block1, block2 ]), [ctrl segmentActions]);
 
-  [ctrl addSegment:@"third" setsValue:@"asdf"];
+  [ctrl addSegment:@"third" actionWhenSelected:block3];
   XCTAssertEqual(3, s.numberOfSegments);
   XCTAssertEqual(@"first", [s titleForSegmentAtIndex:0]);
   XCTAssertEqual(@"second", [s titleForSegmentAtIndex:1]);
   XCTAssertEqual(@"third", [s titleForSegmentAtIndex:2]);
-  XCTAssertEqualObjects((@[ @(100), @(200), @"asdf"]), [ctrl valueMapping]);
-}
-
-- (void)testUpdateSelectedSegment
-{
-  UISegmentedControl *s = [[UISegmentedControl alloc] initWithFrame:CGRectZero];
-  OBSettingsSegmentedController *ctrl =
-    [[OBSettingsSegmentedController alloc] initWithSegmentedControl:s
-                                                            brewery:self.brewery
-                                                         settingKey:KVO_KEY(maltAdditionDisplayMetric)];
-
-  [ctrl addSegment:@"OG" setsValue:@(OBMetricOriginalGravity)];
-  [ctrl addSegment:@"FG" setsValue:@(OBMetricFinalGravity)];
-  [ctrl addSegment:@"IBU" setsValue:@(OBMetricIbu)];
-
-  self.brewery.maltAdditionDisplayMetric = @(OBMetricIbu);
-  [ctrl updateSelectedSegment];
-  XCTAssertEqual(2, [s selectedSegmentIndex]);
-  XCTAssertEqualObjects(@(OBMetricIbu), self.brewery.maltAdditionDisplayMetric);
-
-  self.brewery.maltAdditionDisplayMetric = @(OBMetricFinalGravity);
-  [ctrl updateSelectedSegment];
-  XCTAssertEqual(1, [s selectedSegmentIndex]);
-  XCTAssertEqualObjects(@(OBMetricFinalGravity), self.brewery.maltAdditionDisplayMetric);
-
-  self.brewery.maltAdditionDisplayMetric = nil;
-  [ctrl updateSelectedSegment];
-  XCTAssertEqual(0, [s selectedSegmentIndex]);
-  XCTAssertEqualObjects(@(OBMetricOriginalGravity), self.brewery.maltAdditionDisplayMetric);
-}
-
-- (void)testUpdateSelectedSegment_noSegments
-{
-  UISegmentedControl *s = [[UISegmentedControl alloc] initWithFrame:CGRectZero];
-  OBSettingsSegmentedController *ctrl =
-  [[OBSettingsSegmentedController alloc] initWithSegmentedControl:s
-                                                          brewery:self.brewery
-                                                       settingKey:KVO_KEY(maltAdditionDisplayMetric)];
-
-  [ctrl updateSelectedSegment];
-
-  XCTAssertEqual(UISegmentedControlNoSegment, [s selectedSegmentIndex]);
-  XCTAssertEqual(0, [s numberOfSegments]);
-}
-
-- (void)testUpdateSelectedSegment_invalidKey
-{
-  UISegmentedControl *s = [[UISegmentedControl alloc] initWithItems:@[ @"these", @"will", @"be", @"removed"]];
-  OBSettingsSegmentedController *ctrl = [[OBSettingsSegmentedController alloc] initWithSegmentedControl:s
-                                                                                                brewery:self.brewery
-                                                                                             settingKey:@"fake"];
-
-  [ctrl addSegment:@"segment" setsValue:@(100)];
-  XCTAssertThrows([ctrl updateSelectedSegment]);
+  XCTAssertEqualObjects((@[ block1, block2, block3 ]), [ctrl segmentActions]);
 }
 
 - (void)testSegmentSelection
 {
   UISegmentedControl *s = [[UISegmentedControl alloc] initWithFrame:CGRectZero];
+
+  OBBrewery *brewery = self.brewery;
+
   OBSettingsSegmentedController *ctrl =
     [[OBSettingsSegmentedController alloc] initWithSegmentedControl:s
-                                                            brewery:self.brewery
-                                                         settingKey:KVO_KEY(maltAdditionDisplayMetric)];
+                                              googleAnalyticsAction:@"test"];
 
-  [ctrl addSegment:@"OG" setsValue:@(OBMetricOriginalGravity)];
-  [ctrl addSegment:@"FG" setsValue:@(OBMetricFinalGravity)];
-  [ctrl addSegment:@"IBU" setsValue:@(OBMetricIbu)];
+  [ctrl addSegment:@"OG" actionWhenSelected:^(void) {
+    brewery.maltAdditionDisplayMetric = @(OBMetricOriginalGravity);
+  }];
 
+  [ctrl addSegment:@"FG" actionWhenSelected:^(void) {
+    brewery.maltAdditionDisplayMetric = @(OBMetricFinalGravity);
+  }];
+
+  [ctrl addSegment:@"IBU" actionWhenSelected:^(void) {
+    brewery.maltAdditionDisplayMetric = @(OBMetricIbu);
+  }];
 
   // Select IBU
   [s setSelectedSegmentIndex:2];

@@ -13,25 +13,23 @@
 
 @interface OBSettingsSegmentedController()
 @property (nonatomic, weak) UISegmentedControl *segmentedControl;
-@property (nonatomic, strong) OBBrewery *brewery;
-@property (nonatomic, strong) NSString *settingKey;
-@property (nonatomic, strong) NSMutableArray *valueMapping;
+@property (nonatomic) NSMutableArray *segmentActions;
+@property (nonatomic) NSString *googleAnalyticsAction;
 @end
 
 @implementation OBSettingsSegmentedController
 
 
 - (id)initWithSegmentedControl:(UISegmentedControl *)segmentedControl
-                       brewery:(OBBrewery *)brewery
-                    settingKey:(NSString *)brewerySettingKey;
+         googleAnalyticsAction:(NSString *)action
 {
   self = [super init];
 
   if (self) {
-    self.brewery = brewery;
     self.segmentedControl = segmentedControl;
-    self.settingKey = brewerySettingKey;
-    self.valueMapping = [NSMutableArray array];
+    self.googleAnalyticsAction = action;
+
+    self.segmentActions = [NSMutableArray array];
 
     [self.segmentedControl removeAllSegments];
     [self.segmentedControl addTarget:self
@@ -42,48 +40,27 @@
   return self;
 }
 
-- (void)addSegment:(NSString *)text setsValue:(id)value;
+- (void)addSegment:(NSString *)text actionWhenSelected:(OBSegmentSelectedAction)action
 {
-  [self.valueMapping addObject:value];
+  [self.segmentActions addObject:action];
   [self.segmentedControl insertSegmentWithTitle:text
                                         atIndex:self.segmentedControl.numberOfSegments
                                        animated:NO];
 }
 
-- (void)updateSelectedSegment
-{
-  if (self.valueMapping.count == 0) {
-    // TODO: log an error
-    return;
-  }
-
-  id value = [self.brewery valueForKey:self.settingKey];
-  NSInteger index = [self.valueMapping indexOfObject:value];
-
-  if (index == NSNotFound) {
-    // Things somehow got off.  Lets recover from it, though.
-    // TODO: add some error logging here?
-    index = 0;
-    value = self.valueMapping[0];
-    [self.brewery setValue:value forKey:self.settingKey];
-  }
-
-  [self.segmentedControl setSelectedSegmentIndex:index];
-}
-
 - (void)segmentChanged:(UISegmentedControl *)sender
 {
   NSInteger index = sender.selectedSegmentIndex;
-  id value = self.valueMapping[index];
-  
-  [self.brewery setValue:value forKey:self.settingKey];
+  OBSegmentSelectedAction action = self.segmentActions[index];
 
+  action();
+
+  NSString *title = [sender titleForSegmentAtIndex:index];
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
   [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Brewery Settings"
-                                                        action:self.settingKey
-                                                         label:[value description]
+                                                        action:self.googleAnalyticsAction
+                                                         label:title
                                                          value:nil] build]];
 }
-
 
 @end

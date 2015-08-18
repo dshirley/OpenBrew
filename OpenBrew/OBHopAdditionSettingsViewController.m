@@ -33,23 +33,43 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
 {
   [super viewWillAppear:animated];
 
-  self.gaugeDisplaySettingController =
-  [[OBSettingsSegmentedController alloc] initWithSegmentedControl:self.gaugeDisplaySettingSegmentedControl
-                                                          brewery:self.brewery
-                                                       settingKey:KVO_KEY(hopGaugeDisplayMetric)];
+  OBBrewery *brewery = self.brewery;
 
-  [self.gaugeDisplaySettingController addSegment:@"IBU" setsValue:@(OBMetricIbu)];
-  [self.gaugeDisplaySettingController addSegment:@"Bitterness : Gravity" setsValue:@(OBMetricBuToGuRatio)];
-  [self.gaugeDisplaySettingController updateSelectedSegment];
+  self.gaugeDisplaySettingController =
+    [[OBSettingsSegmentedController alloc] initWithSegmentedControl:self.gaugeDisplaySettingSegmentedControl
+                                              googleAnalyticsAction:@"Hop Gauge Display"];
+
+  [self.gaugeDisplaySettingController addSegment:@"IBU" actionWhenSelected:^(void) {
+    brewery.hopGaugeDisplayMetric = @(OBMetricIbu);
+  }];
+
+  [self.gaugeDisplaySettingController addSegment:@"Bitterness : Gravity" actionWhenSelected:^(void) {
+    brewery.hopGaugeDisplayMetric = @(OBMetricBuToGuRatio);
+  }];
+
+  if (OBMetricBuToGuRatio == [brewery.hopGaugeDisplayMetric integerValue]) {
+    self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = 1;
+  } else {
+    self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = 0;
+  }
 
   self.ingredientDisplaySettingController =
-  [[OBSettingsSegmentedController alloc] initWithSegmentedControl:self.ingredientDisplaySettingSegmentedControl
-                                                          brewery:self.brewery
-                                                       settingKey:KVO_KEY(hopAdditionDisplayMetric)];
+    [[OBSettingsSegmentedController alloc] initWithSegmentedControl:self.ingredientDisplaySettingSegmentedControl
+                                              googleAnalyticsAction:@"Hop Primary Metric"];
 
-  [self.ingredientDisplaySettingController addSegment:@"Weight" setsValue:@(OBMaltAdditionMetricWeight)];
-  [self.ingredientDisplaySettingController addSegment:@"IBU" setsValue:@(OBMaltAdditionMetricPercentOfGravity)];
-  [self.ingredientDisplaySettingController updateSelectedSegment];
+  [self.ingredientDisplaySettingController addSegment:@"Weight" actionWhenSelected:^(void) {
+    brewery.hopAdditionDisplayMetric = @(OBHopAdditionMetricWeight);
+  }];
+
+  [self.ingredientDisplaySettingController addSegment:@"IBU" actionWhenSelected:^(void) {
+    brewery.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);
+  }];
+
+  if (OBHopAdditionMetricIbu == [brewery.hopAdditionDisplayMetric integerValue]) {
+    self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = 1;
+  } else {
+    self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = 0;
+  }
 }
 
 #pragma mark Actions

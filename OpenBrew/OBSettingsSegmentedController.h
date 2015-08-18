@@ -10,18 +10,15 @@
 
 @class OBBrewery;
 
+typedef void(^OBSegmentSelectedAction)(void);
+
 @interface OBSettingsSegmentedController : NSObject
 
 @property (nonatomic, readonly, weak) UISegmentedControl *segmentedControl;
 
 - (id)initWithSegmentedControl:(UISegmentedControl *)segmentedControl
-                       brewery:(OBBrewery *)brewery
-                    settingKey:(NSString *)brewerySettingKey;
+         googleAnalyticsAction:(NSString *)action;
 
-- (void)addSegment:(NSString *)text setsValue:(id)value;
-
-// Selects the segment that has a matching value to the current settings of
-// brewerySettingKey
-- (void)updateSelectedSegment;
+- (void)addSegment:(NSString *)text actionWhenSelected:(OBSegmentSelectedAction)action;
 
 @end
