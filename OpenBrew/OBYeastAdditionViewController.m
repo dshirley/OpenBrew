@@ -16,41 +16,19 @@
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "OBYeastTableViewCell.h"
-
+#import "OBSegmentedController.h"
+#import "OBBrewery.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Yeast Addition Screen";
 
-// Indices of the UISegmentControl of the OBMaltFinderViewController in storyboard
-#define WHITE_LABS_SEGMENT_INDEX 0
-#define WYEAST_SEGMENT_INDEX 1
-
-NSString * const filterLabels[] = {
-  [WHITE_LABS_SEGMENT_INDEX] = @"White Labs",
-  [WYEAST_SEGMENT_INDEX] = @"Wyeast"
-};
-
-OBYeastManufacturer const manufacturerToSegmentMapping[] = {
-  [WHITE_LABS_SEGMENT_INDEX] = OBYeastManufacturerWhiteLabs,
-  [WYEAST_SEGMENT_INDEX] = OBYeastManufacturerWyeast
-};
-
-#define NUMBER_OF_SEGMENTS (sizeof(filterLabels) / sizeof(NSString *))
-
-typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
-  OBYeastGaugeMetricFinalGravity,
-  OBYeastGaugeMetricABV
-};
-
 @interface OBYeastAdditionViewController ()
 
-@property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, assign) OBYeastGaugeMetric gaugeMetric;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (nonatomic) OBBrewery *brewery;
+
+@property (nonatomic) OBSegmentedController *segmentedController;
 
 @property (nonatomic) NSFetchedResultsController *fetchedResults;
-@property (nonatomic, assign) OBYeastManufacturer selectedManufacturer;
 
 @end
 
@@ -62,29 +40,51 @@ typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
 
   self.screenName = OBGAScreenName;
 
-  // Setup segments in filter
-  [self.segmentedControl removeAllSegments];
+ self.brewery = [OBBrewery breweryFromContext:self.recipe.managedObjectContext];
 
-  for (int i = 0; i < NUMBER_OF_SEGMENTS; i++) {
-    [self.segmentedControl insertSegmentWithTitle:filterLabels[i] atIndex:i animated:NO];
+  self.segmentedController = [[OBSegmentedController alloc] initWithSegmentedControl:self.segmentedControl
+                                                               googleAnalyticsAction:@"Yeast Filter"];
+
+  OBYeastAdditionViewController *weakSelf = self;
+
+  [self.segmentedController addSegment:@"White Labs" actionWhenSelected:^(void) {
+    weakSelf.brewery.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
+    [weakSelf reloadTableSelectedManufacturer:OBYeastManufacturerWhiteLabs
+                         scrollToSelectedItem:NO];
+  }];
+
+  [self.segmentedController addSegment:@"Wyeast" actionWhenSelected:^(void) {
+    weakSelf.brewery.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
+    [weakSelf reloadTableSelectedManufacturer:OBYeastManufacturerWyeast
+                         scrollToSelectedItem:NO];
+  }];
+
+  OBYeastManufacturer startingManufacturer = NSNotFound;
+  if (self.recipe.yeast) {
+    startingManufacturer = [self.recipe.yeast.yeast.manufacturer integerValue];
+  } else {
+    startingManufacturer = [self.brewery.selectedYeastManufacturer integerValue];
   }
 
-  [self.segmentedControl setSelectedSegmentIndex:WHITE_LABS_SEGMENT_INDEX];
+  // Selected segment index is in the order in which we add them above
+  if (OBYeastManufacturerWyeast == startingManufacturer) {
+    self.segmentedControl.selectedSegmentIndex = 1;
+  } else {
+    self.segmentedControl.selectedSegmentIndex = 0;
+  }
 
-  self.selectedManufacturer = OBYeastManufacturerWhiteLabs;
-
-  [self reloadTable];
+  [weakSelf reloadTableSelectedManufacturer:startingManufacturer scrollToSelectedItem:YES];
   [self.gauge refresh];
 }
 
 // Query the CoreData store to get all of the ingredient data
-- (void)reloadTable
+- (void)reloadTableSelectedManufacturer:(OBYeastManufacturer)yeastManufacturer scrollToSelectedItem:(BOOL)shouldScroll
 {
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
 
   request.entity = [NSEntityDescription entityForName:@"Yeast" inManagedObjectContext:self.recipe.managedObjectContext];
   request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"identifier" ascending:YES]];
-  request.predicate = [NSPredicate predicateWithFormat:@"manufacturer == %d", self.selectedManufacturer];
+  request.predicate = [NSPredicate predicateWithFormat:@"manufacturer == %d", (int) yeastManufacturer];
 
   self.fetchedResults = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                             managedObjectContext:self.recipe.managedObjectContext sectionNameKeyPath:nil
@@ -97,18 +97,15 @@ typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
   }
 
   [self.tableView reloadData];
-}
 
-- (IBAction)filterValueChanged:(UISegmentedControl *)sender {
-  self.selectedManufacturer = manufacturerToSegmentMapping[sender.selectedSegmentIndex];
+  NSIndexPath *selectedIndexPath = [self.fetchedResults indexPathForObject:self.recipe.yeast.yeast];
+  if (selectedIndexPath) {
+    [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 
-  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
-                                                        action:@"Filter"
-                                                         label:filterLabels[sender.selectedSegmentIndex]
-                                                         value:nil] build]];
-
-  [self reloadTable];
+    if (shouldScroll) {
+      [self.tableView scrollToRowAtIndexPath:selectedIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    }
+  }
 }
 
 #pragma mark UITableViewDelegate methods
@@ -139,12 +136,14 @@ typedef NS_ENUM(NSInteger, OBYeastGaugeMetric) {
   UITableViewCell *cell = nil;
   NSString *reuseIdentifier = nil;
 
-  if (self.selectedManufacturer == OBYeastManufacturerWhiteLabs) {
+  OBYeastManufacturer selectedYeastManufacturer = [self.brewery.selectedYeastManufacturer integerValue];
+
+  if (OBYeastManufacturerWhiteLabs == selectedYeastManufacturer) {
     reuseIdentifier = @"WhiteLabsCell";
-  } else if (self.selectedManufacturer == OBYeastManufacturerWyeast) {
+  } else if (OBYeastManufacturerWyeast == selectedYeastManufacturer) {
     reuseIdentifier = @"WyeastCell";
   } else {
-    [NSException raise:@"Invalid manufacturer" format:@"Manufacturer: %@", @(self.selectedManufacturer)];
+    [NSException raise:@"Invalid manufacturer" format:@"Manufacturer: %@", @(selectedYeastManufacturer)];
   }
 
   cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier

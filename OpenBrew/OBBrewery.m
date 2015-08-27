@@ -21,6 +21,7 @@
 @dynamic hopGaugeDisplayMetric;
 @dynamic maltAdditionDisplayMetric;
 @dynamic maltGaugeDisplayMetric;
+@dynamic selectedYeastManufacturer;
 
 + (OBBrewery *)breweryFromContext:(NSManagedObjectContext *)moc
 {

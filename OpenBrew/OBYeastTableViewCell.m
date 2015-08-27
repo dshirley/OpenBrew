@@ -10,4 +10,20 @@
 
 @implementation OBYeastTableViewCell
 
+- (void)setSelected:(BOOL)selected
+{
+  [self setSelected:selected animated:NO];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+  if (selected) {
+    [self setAccessoryType:UITableViewCellAccessoryCheckmark];
+  } else {
+    [self setAccessoryType:UITableViewCellAccessoryNone];
+  }
+}
+
+
+
 @end
