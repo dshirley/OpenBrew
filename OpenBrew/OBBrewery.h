@@ -11,6 +11,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "OBYeast.h"
 
 typedef NS_ENUM(NSInteger, OBGaugeMetric) {
   OBMetricOriginalGravity,
@@ -48,6 +49,9 @@ typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
 
 // OBGaugeMetric to display for the gauge of the OBHopAdditionViewController
 @property (nonatomic, strong) NSNumber *hopGaugeDisplayMetric;
+
+// OBYeastManufacturer selected in the OBYeastAdditionViewController
+@property (nonatomic, strong) NSNumber *selectedYeastManufacturer;
 
 @end
 

@@ -10,11 +10,14 @@
 #import "OBBrewController.h"
 #import "GAITrackedViewController.h"
 
-@class OBRecipe;
+@class OBRecipe, OBIngredientGauge;
 
 @interface OBYeastAdditionViewController : GAITrackedViewController <OBBrewController>
 
 @property (nonatomic, strong) OBRecipe *recipe;
+@property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl;
 
 - (void)viewDidLoad;
 
@@ -27,13 +30,5 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
-
-
-
-
-
-
-
-
 
 @end

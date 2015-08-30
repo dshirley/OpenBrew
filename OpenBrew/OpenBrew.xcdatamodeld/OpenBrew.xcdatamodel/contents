@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8166.2" systemVersion="14E46" minimumToolsVersion="Xcode 4.3">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8175.2" systemVersion="14E46" minimumToolsVersion="Xcode 4.3">
     <entity name="Brewery" representedClassName="OBBrewery" syncable="YES">
         <attribute name="defaultBatchSize" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="hopAdditionDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -7,6 +7,7 @@
         <attribute name="maltAdditionDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="maltGaugeDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="mashEfficiency" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="selectedYeastManufacturer" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="HopAddition" representedClassName="OBHopAddition" syncable="YES">
         <attribute name="alphaAcidPercent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -64,7 +65,7 @@
         <relationship name="yeast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Yeast" inverseName="yeastAddidions" inverseEntity="Yeast" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Brewery" positionX="-333" positionY="360" width="128" height="135"/>
+        <element name="Brewery" positionX="-333" positionY="360" width="128" height="150"/>
         <element name="HopAddition" positionX="-18" positionY="351" width="128" height="135"/>
         <element name="Hops" positionX="9" positionY="117" width="128" height="88"/>
         <element name="Malt" positionX="-252" positionY="-54" width="128" height="118"/>
