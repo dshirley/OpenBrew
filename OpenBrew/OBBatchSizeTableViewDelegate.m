@@ -52,8 +52,10 @@ NSString * const OBBatchSizeCellStrings[] = {
 #pragma mark OBDrawerTableViewDelegate template methods
 
 - (NSArray *)ingredientData {
-  return @[ @[ @(OBBatchSizeCellPreBoilVolume),
-               @(OBBatchSizeCellPostBoilVolume) ]];
+  return @[
+           @[ @(OBBatchSizeCellPreBoilVolume) ],
+           @[  @(OBBatchSizeCellPostBoilVolume) ]
+          ];
 }
 
 - (void)populateIngredientCell:(UITableViewCell *)cell
@@ -104,6 +106,23 @@ NSString * const OBBatchSizeCellStrings[] = {
   }
 
   [drawerCell.multiPickerView addPickerDelegate:pickerDelegate withTitle:@"unused"];
+}
+
+#pragma mark UITableViewDataSource methods
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+  NSString *title = nil;
+
+  if (OBBatchSizeCellPreBoilVolume == section) {
+    title = @"Changing this only affects hop utilization";
+  } else if (OBBatchSizeCellPostBoilVolume == section) {
+    title = @"Changing this affects gravity, IBUs, and ultimately the final volume of the beer. If you add water at the end of the boil, include the top up water in this number.";
+  } else {
+    [NSException raise:@"Invalid batch size section" format:@"Section %@", @(section)];
+  }
+
+  return title;
 }
 
 #pragma mark UITableViewDelegate override methods
