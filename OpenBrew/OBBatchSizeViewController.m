@@ -11,32 +11,23 @@
 #import "OBIngredientGauge.h"
 #import "OBBatchSizeTableViewDelegate.h"
 #import "OBKvoUtils.h"
-#import <math.h>
-
-#define MAX_GALLONS 20
-#define NUM_FRACTIONAL_GALLONS_PER_GALLON 4
-#define NUM_ROWS_IN_PICKER (MAX_GALLONS * NUM_FRACTIONAL_GALLONS_PER_GALLON)
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Batch Size Screen";
 
 @interface OBBatchSizeViewController ()
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, weak) IBOutlet OBIngredientGauge *gauge;
 @property (nonatomic, strong) OBBatchSizeTableViewDelegate *tableViewDelegate;
 @end
 
 @implementation OBBatchSizeViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)viewDidLoad
 {
-  return [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-}
+  [super viewDidLoad];
 
-- (void)loadView {
-  [super loadView];
   self.screenName = OBGAScreenName;
-  
+
   self.tableViewDelegate = [[OBBatchSizeTableViewDelegate alloc] initWithRecipe:self.recipe
                                                                    andTableView:self.tableView
                                                                   andGACategory:OBGAScreenName];
