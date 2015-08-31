@@ -1,5 +1,5 @@
 //
-//  OBHopAdditionSettingsSegue.h
+//  OBSettingsSegue.h
 //  OpenBrew
 //
 //  Created by David Shirley 2 on 8/3/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OBHopAdditionSettingsSegue : UIStoryboardSegue
+@interface OBSettingsSegue : UIStoryboardSegue
 
 - (void)perform;
 

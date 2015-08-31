@@ -1,42 +1,40 @@
 //
-//  OBHopAdditionSettingsSegue.m
+//  OBSettingsSegue.m
 //  OpenBrew
 //
 //  Created by David Shirley 2 on 8/3/15.
 //  Copyright © 2015 OpenBrew. All rights reserved.
 //
 
-#import "OBHopAdditionSettingsSegue.h"
-#import "OBHopAdditionViewController.h"
-#import "OBHopAdditionSettingsViewController.h"
+#import "OBSettingsSegue.h"
+#import "OBBaseSettingsViewController.h"
 
-@implementation OBHopAdditionSettingsSegue
+@implementation OBSettingsSegue
 
 - (void)perform
 {
-  OBHopAdditionSettingsViewController *settingsVc = (id)self.destinationViewController;
-  OBHopAdditionViewController *hopsVc = (id)self.sourceViewController;
+  OBBaseSettingsViewController *settingsVc = (OBBaseSettingsViewController *)self.destinationViewController;
 
   settingsVc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 
   // This line is required in order for the IBOutlets to get setup for the settingsVc
   // Wow - that was super painful to debug
-  [hopsVc.view addSubview:settingsVc.view];
+  [self.sourceViewController.view addSubview:settingsVc.view];
 
   // The unwind segue will add this back
-  [hopsVc.navigationItem setHidesBackButton:YES animated:YES];
+  [self.sourceViewController.navigationItem setHidesBackButton:YES animated:YES];
 
-  UIBarButtonItem *origItem = hopsVc.navigationItem.rightBarButtonItem;
+  UIBarButtonItem *origItem = self.sourceViewController.navigationItem.rightBarButtonItem;
   UIBarButtonItem *doneItem = settingsVc.navigationBar.topItem.rightBarButtonItem;
-  [hopsVc.navigationItem setRightBarButtonItem:doneItem animated:YES];
+  [self.sourceViewController.navigationItem setRightBarButtonItem:doneItem animated:YES];
 
   UIColor *originGreyoutColor = settingsVc.greyoutView.backgroundColor;
   settingsVc.greyoutView.backgroundColor = [UIColor clearColor];
-  [hopsVc.view bringSubviewToFront:settingsVc.greyoutView];
+  [self.sourceViewController.view bringSubviewToFront:settingsVc.greyoutView];
 
   CGRect origSettingsFrame = settingsVc.settingsView.frame;
   settingsVc.settingsView.frame = CGRectOffset(origSettingsFrame, 0, origSettingsFrame.size.height);
-  [hopsVc.view bringSubviewToFront:settingsVc.settingsView];
+  [self.sourceViewController.view bringSubviewToFront:settingsVc.settingsView];
 
   [UIView animateWithDuration:0.5
                         delay:0.0
@@ -46,8 +44,8 @@
                      settingsVc.greyoutView.backgroundColor = originGreyoutColor;
                    }
                    completion:^(BOOL finished) {
-                     [hopsVc presentViewController:settingsVc animated:NO completion:nil];
-                     [hopsVc.navigationItem setRightBarButtonItem:origItem animated:YES];
+                     [self.sourceViewController presentViewController:settingsVc animated:NO completion:nil];
+                     [self.sourceViewController.navigationItem setRightBarButtonItem:origItem animated:YES];
                    }];
 }
 

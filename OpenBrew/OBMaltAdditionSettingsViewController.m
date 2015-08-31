@@ -33,6 +33,8 @@ static NSString* const OBGAScreenName = @"Malt Addition Settings";
 {
   [super viewWillAppear:animated];
 
+  self.screenName = OBGAScreenName;
+
   OBBrewery *brewery = self.brewery;
 
   self.gaugeDisplaySettingController =

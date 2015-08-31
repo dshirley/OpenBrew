@@ -120,7 +120,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ZEW-Zg-Z2B"/>
                                     <barButtonItem title="Info" id="5Yk-uS-MSm">
                                         <connections>
-                                            <segue destination="fuN-sW-SMS" kind="custom" identifier="maltAdditionSettings" customClass="OBMaltAdditionSettingsSegue" id="VAp-0d-gw2"/>
+                                            <segue destination="fuN-sW-SMS" kind="custom" identifier="maltAdditionSettings" customClass="OBSettingsSegue" id="VAp-0d-gw2"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -298,7 +298,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ME5-pj-6yX"/>
                                     <barButtonItem title="Info" id="ZMz-cQ-Uy2">
                                         <connections>
-                                            <segue destination="Dwr-3F-K3N" kind="custom" identifier="hopAdditionSettings" customClass="OBHopAdditionSettingsSegue" id="C8a-4E-OFq"/>
+                                            <segue destination="Dwr-3F-K3N" kind="custom" identifier="hopAdditionSettings" customClass="OBSettingsSegue" id="C8a-4E-OFq"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -728,7 +728,7 @@
                                     <navigationItem title="Malts" id="Yck-cL-Uel">
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="efc-Vq-nfG">
                                             <connections>
-                                                <segue destination="K5j-g6-qw8" kind="unwind" identifier="dismissSettingsView" customClass="OBMaltAdditionSettingsUnwindSegue" unwindAction="dismissSettingsView:" id="lwJ-jo-CwX"/>
+                                                <segue destination="K5j-g6-qw8" kind="unwind" identifier="dismissSettingsView" customClass="OBSettingsUnwindSegue" unwindAction="dismissSettingsView:" id="lwJ-jo-CwX"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -852,7 +852,7 @@
                                     <navigationItem title="Hops" id="jt8-mU-VXk">
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="AyJ-46-DBQ">
                                             <connections>
-                                                <segue destination="WIa-dQ-uqY" kind="unwind" identifier="dismissSettingsView" customClass="OBHopAdditionSettingsUnwindSegue" unwindAction="dismissSettingsView:" id="bz7-Kp-mdQ"/>
+                                                <segue destination="WIa-dQ-uqY" kind="unwind" identifier="dismissSettingsView" customClass="OBSettingsUnwindSegue" unwindAction="dismissSettingsView:" id="bz7-Kp-mdQ"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

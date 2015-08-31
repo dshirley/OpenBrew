@@ -7,21 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OBBaseSettingsViewController.h"
 
 @class OBBrewery, OBSegmentedController;
 
-@interface OBMaltAdditionSettingsViewController : UIViewController
+@interface OBMaltAdditionSettingsViewController : OBBaseSettingsViewController
 
 @property (nonatomic, strong) OBBrewery *brewery;
 
 @property (nonatomic, readonly) OBSegmentedController *gaugeDisplaySettingController;
 @property (nonatomic, readonly) OBSegmentedController *ingredientDisplaySettingController;
-
-@property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
-@property (nonatomic, weak) IBOutlet UIView *settingsView;
-@property (weak, nonatomic) IBOutlet UIView *greyoutView;
-@property (nonatomic, weak) IBOutlet UIButton *greyoutButton;
-
-
 
 @end

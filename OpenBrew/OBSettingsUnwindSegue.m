@@ -1,31 +1,29 @@
 //
-//  OBHopAdditionSettingsUnwindSegue.m
+//  OBSettingsUnwindSegue.m
 //  OpenBrew
 //
 //  Created by David Shirley 2 on 7/26/15.
 //  Copyright © 2015 OpenBrew. All rights reserved.
 //
 
-#import "OBHopAdditionSettingsUnwindSegue.h"
-#import "OBHopAdditionViewController.h"
-#import "OBHopAdditionSettingsViewController.h"
+#import "OBSettingsUnwindSegue.h"
+#import "OBBaseSettingsViewController.h"
 
-@implementation OBHopAdditionSettingsUnwindSegue
+@implementation OBSettingsUnwindSegue
 
 - (void)perform
 {
-  OBHopAdditionSettingsViewController *settingsVc = (id)self.sourceViewController;
-  OBHopAdditionViewController *hopsVc = (id)self.destinationViewController;
+  OBBaseSettingsViewController *settingsVc = (id)self.sourceViewController;
 
-  UIBarButtonItem *savedAddButton = hopsVc.navigationItem.rightBarButtonItem;
-  hopsVc.navigationItem.rightBarButtonItem = settingsVc.navigationBar.topItem.rightBarButtonItem;
+  UIBarButtonItem *savedAddButton = self.destinationViewController.navigationItem.rightBarButtonItem;
+  self.destinationViewController.navigationItem.rightBarButtonItem = settingsVc.navigationBar.topItem.rightBarButtonItem;
 
   // Use hide rather than remove from superview. Removing the view causes the
   // settingsView to "jump up" due to some issues with the constraints.
   settingsVc.navigationBar.hidden = YES;
 
-  [hopsVc.navigationItem setHidesBackButton:NO animated:YES];
-  [hopsVc.navigationItem setRightBarButtonItem:savedAddButton animated:YES];
+  [self.destinationViewController.navigationItem setHidesBackButton:NO animated:YES];
+  [self.destinationViewController.navigationItem setRightBarButtonItem:savedAddButton animated:YES];
 
   [UIView animateWithDuration:0.5
                         delay:0.0
