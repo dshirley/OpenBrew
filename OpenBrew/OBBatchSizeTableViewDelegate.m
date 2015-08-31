@@ -24,13 +24,8 @@ NSString * const OBBatchSizeCellStrings[] = {
 };
 
 @interface OBBatchSizeTableViewDelegate()
-@property (nonatomic, strong) OBRecipe *recipe;
-@property (nonatomic, strong) UITableView *tableView;
-
-// Used for Google Analytics (GA) tracking. We track which metrics are being used, but
-// we only need to log one GA event per picker.
-@property (nonatomic, strong) NSMutableSet *pickersThatHaveChanged;
-
+@property (nonatomic) OBRecipe *recipe;
+@property (nonatomic) UITableView *tableView;
 @end
 
 @implementation OBBatchSizeTableViewDelegate
@@ -42,8 +37,6 @@ NSString * const OBBatchSizeCellStrings[] = {
   if (self) {
     self.recipe = recipe;
     self.tableView = tableView;
-
-    self.pickersThatHaveChanged = [NSMutableSet set];
   }
 
   return self;
@@ -77,7 +70,7 @@ NSString * const OBBatchSizeCellStrings[] = {
       volume = self.recipe.postBoilVolumeInGallons;
       break;
     default:
-      NSAssert(YES, @"Bad index: %d", idx);
+      [NSException raise:@"Batch size bad ingredient data" format:@"index: %d", idx];
   }
 
   cell.textLabel.text = description;

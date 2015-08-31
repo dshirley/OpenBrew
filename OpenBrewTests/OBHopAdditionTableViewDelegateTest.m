@@ -49,10 +49,6 @@
   XCTAssertEqual(self.tableView, self.delegate.tableView);
 }
 
-- (void)tearDown {
-  [super tearDown];
-}
-
 - (void)testIngredientData
 {
   XCTAssertEqualObjects((@[@[]]), [self.delegate ingredientData]);

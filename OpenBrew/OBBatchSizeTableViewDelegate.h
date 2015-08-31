@@ -10,6 +10,31 @@
 
 @interface OBBatchSizeTableViewDelegate : OBDrawerTableViewDelegate
 
+@property (nonatomic, readonly) OBRecipe *recipe;
+@property (nonatomic, readonly) UITableView *tableView;
+
 - (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView andGACategory:(NSString *)gaCategory;
+
+#pragma mark OBDrawerTableViewDelegate Methods
+
+- (NSArray *)ingredientData;
+
+- (void)populateIngredientCell:(UITableViewCell *)cell
+            withIngredientData:(id)ingredientData;
+
+- (void)populateDrawerCell:(UITableViewCell *)cell
+        withIngredientData:(id)ingredientData;
+
+#pragma mark UITableViewDataSource methods
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section;
+
+#pragma mark UITableViewDelegate override methods
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath;
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
