@@ -1162,7 +1162,7 @@
         <!--Batch Size Scene-->
         <scene sceneID="9w3-28-Ebi">
             <objects>
-                <viewController title="Batch Size Scene" automaticallyAdjustsScrollViewInsets="NO" id="ahh-Jm-DTH" customClass="OBBatchSizeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="batchSizeScene" title="Batch Size Scene" automaticallyAdjustsScrollViewInsets="NO" id="ahh-Jm-DTH" customClass="OBBatchSizeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uBO-IX-sdo"/>
                         <viewControllerLayoutGuide type="bottom" id="svI-Kd-HJP"/>

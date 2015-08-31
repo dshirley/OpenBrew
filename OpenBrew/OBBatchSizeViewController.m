@@ -16,7 +16,6 @@
 static NSString* const OBGAScreenName = @"Batch Size Screen";
 
 @interface OBBatchSizeViewController ()
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) OBBatchSizeTableViewDelegate *tableViewDelegate;
 @end
 
