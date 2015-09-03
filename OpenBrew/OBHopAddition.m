@@ -12,10 +12,10 @@
 
 @implementation OBHopAddition
 
+@dynamic name;
 @dynamic alphaAcidPercent;
 @dynamic boilTimeInMinutes;
 @dynamic quantityInOunces;
-@dynamic hops;
 @dynamic recipe;
 @dynamic displayOrder;
 
@@ -29,7 +29,7 @@
                                           inManagedObjectContext:ctx];
 
   if (self = [self initWithEntity:desc insertIntoManagedObjectContext:ctx]) {
-    self.hops = hopVariety;
+    self.name = hopVariety.name;
     self.quantityInOunces = @0;
     self.boilTimeInMinutes = @0;
     self.alphaAcidPercent = hopVariety.defaultAlphaAcidPercent;

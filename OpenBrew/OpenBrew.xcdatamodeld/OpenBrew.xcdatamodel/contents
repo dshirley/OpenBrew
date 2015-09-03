@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8175.2" systemVersion="14E46" minimumToolsVersion="Xcode 4.3">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8193.2" systemVersion="14F27" minimumToolsVersion="Xcode 4.3">
     <entity name="Brewery" representedClassName="OBBrewery" syncable="YES">
         <attribute name="defaultBatchSize" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="hopAdditionDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -13,14 +13,13 @@
         <attribute name="alphaAcidPercent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="boilTimeInMinutes" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="displayOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="quantityInOunces" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="hops" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Hops" inverseName="hopAdditions" inverseEntity="Hops" syncable="YES"/>
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="hopAdditions" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <entity name="Hops" representedClassName="OBHops" syncable="YES">
         <attribute name="defaultAlphaAcidPercent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="hopAdditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HopAddition" inverseName="hops" inverseEntity="HopAddition" syncable="YES"/>
     </entity>
     <entity name="Malt" representedClassName="OBMalt" syncable="YES">
         <attribute name="defaultExtractPotential" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -67,7 +66,7 @@
     <elements>
         <element name="Brewery" positionX="-333" positionY="360" width="128" height="150"/>
         <element name="HopAddition" positionX="-18" positionY="351" width="128" height="135"/>
-        <element name="Hops" positionX="9" positionY="117" width="128" height="88"/>
+        <element name="Hops" positionX="9" positionY="117" width="128" height="75"/>
         <element name="Malt" positionX="-252" positionY="-54" width="128" height="118"/>
         <element name="MaltAddition" positionX="-263" positionY="126" width="128" height="135"/>
         <element name="Recipe" positionX="36" positionY="162" width="128" height="148"/>

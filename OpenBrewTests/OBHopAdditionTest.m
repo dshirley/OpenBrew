@@ -27,6 +27,12 @@
   return [[OBHopAddition alloc] initWithHopVariety:hops andRecipe:nil];
 }
 
+- (void)testInit
+{
+  OBHopAddition *hopAddition = [self createTestHopAddition];
+  XCTAssertEqualObjects(@"test hops", hopAddition.name);
+  XCTAssertEqualWithAccuracy(5.0, [hopAddition.alphaAcidPercent floatValue], 0.000001);
+}
 
 - (void)testTinsethUtilizationForGravity
 {

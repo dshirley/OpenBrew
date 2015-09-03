@@ -127,7 +127,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   NSMutableSet *seenHops = [NSMutableSet set];
 
   for (OBHopAddition *hopAddition in self.recipe.hopAdditions) {
-    [seenHops addObject:hopAddition.hops.name];
+    [seenHops addObject:hopAddition.name];
   }
 
   return seenHops.count;

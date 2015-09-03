@@ -63,7 +63,7 @@
   OBHopAddition *hopAddition = (OBHopAddition *)ingredientData;
   OBHopAdditionTableViewCell *hopCell = (OBHopAdditionTableViewCell *)cell;
 
-  hopCell.hopVariety.text = hopAddition.hops.name;
+  hopCell.hopVariety.text = hopAddition.name;
 
   float alphaAcids = [hopAddition.alphaAcidPercent floatValue];
   hopCell.alphaAcid.text = [NSString stringWithFormat:@"%.1f%%", alphaAcids];

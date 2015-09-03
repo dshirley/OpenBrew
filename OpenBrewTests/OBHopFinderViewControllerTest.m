@@ -67,7 +67,7 @@
   XCTAssertEqual(1, self.recipe.hopAdditions.count);
 
   OBHopAddition *hopAddition = [self.recipe.hopAdditions anyObject];
-  XCTAssertEqualObjects(@"Bramling Cross", hopAddition.hops.name);
+  XCTAssertEqualObjects(@"Bramling Cross", hopAddition.name);
 }
 
 @end

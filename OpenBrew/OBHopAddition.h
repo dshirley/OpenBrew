@@ -20,12 +20,12 @@ typedef NS_ENUM(NSInteger, OBIbuFormula) {
 
 @interface OBHopAddition : NSManagedObject <OBIngredientAddition>;
 
-@property (nonatomic, retain) NSNumber * alphaAcidPercent;
-@property (nonatomic, retain) NSNumber * boilTimeInMinutes;
-@property (nonatomic, retain) NSNumber * quantityInOunces;
-@property (nonatomic, retain) NSNumber *displayOrder;
-@property (nonatomic, retain) OBHops *hops;
-@property (nonatomic, retain) OBRecipe *recipe;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSNumber *alphaAcidPercent;
+@property (nonatomic) NSNumber *boilTimeInMinutes;
+@property (nonatomic) NSNumber *quantityInOunces;
+@property (nonatomic) NSNumber *displayOrder;
+@property (nonatomic) OBRecipe *recipe;
 
 - (id)initWithHopVariety:(OBHops *)hopVariety andRecipe:(OBRecipe *)recipe;
 
