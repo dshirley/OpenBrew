@@ -138,7 +138,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   NSMutableSet *seenMalts = [NSMutableSet set];
 
   for (OBMaltAddition *maltAddition in self.recipe.maltAdditions) {
-    [seenMalts addObject:maltAddition.malt.name];
+    [seenMalts addObject:maltAddition.name];
   }
 
   return seenMalts.count;

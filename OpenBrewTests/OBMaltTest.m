@@ -69,46 +69,4 @@
   XCTAssertEqual(78.0, [malt.defaultLovibond floatValue]);
 }
 
-- (void)testIsGrain
-{
-  OBMalt *malt = [self createTestMalt];
-
-  malt.type = @(OBMaltTypeGrain);
-  XCTAssertTrue(malt.isGrain);
-
-  malt.type = @(OBMaltTypeExtract);
-  XCTAssertFalse(malt.isGrain);
-
-  malt.type = @(OBMaltTypeSugar);
-  XCTAssertFalse(malt.isGrain);
-}
-
-- (void)testIsSugar
-{
-  OBMalt *malt = [self createTestMalt];
-
-  malt.type = @(OBMaltTypeGrain);
-  XCTAssertFalse(malt.isSugar);
-
-  malt.type = @(OBMaltTypeExtract);
-  XCTAssertFalse(malt.isSugar);
-
-  malt.type = @(OBMaltTypeSugar);
-  XCTAssertTrue(malt.isSugar);
-}
-
-- (void)testIsExtract
-{
-  OBMalt *malt = [self createTestMalt];
-
-  malt.type = @(OBMaltTypeGrain);
-  XCTAssertFalse(malt.isExtract);
-
-  malt.type = @(OBMaltTypeExtract);
-  XCTAssertTrue(malt.isExtract);
-
-  malt.type = @(OBMaltTypeSugar);
-  XCTAssertFalse(malt.isExtract);
-}
-
 @end

@@ -33,6 +33,18 @@
   XCTAssertEqualObjects(@"test malt", maltAddition.name);
 }
 
+- (void)testType
+{
+  OBMaltAddition *maltAddition = [self createTestMaltAdditionWithMaltType:OBMaltTypeGrain];
+  XCTAssertEqualObjects(@(0), [maltAddition type]);
+
+  maltAddition = [self createTestMaltAdditionWithMaltType:OBMaltTypeSugar];
+  XCTAssertEqualObjects(@(1), [maltAddition type]);
+
+  maltAddition = [self createTestMaltAdditionWithMaltType:OBMaltTypeExtract];
+  XCTAssertEqualObjects(@(2), [maltAddition type]);
+}
+
 - (void)testQuantityText
 {
   OBMaltAddition *maltAddition = [self createTestMaltAdditionWithMaltType:OBMaltTypeGrain];
@@ -89,5 +101,48 @@
   XCTAssertEqualWithAccuracy(37.00, [maltAddition gravityUnitsWithEfficiency:1], .01, @"");
   XCTAssertEqualWithAccuracy(37.00, [maltAddition gravityUnitsWithEfficiency:.66], .01, @"");
 }
+
+- (void)testIsGrain
+{
+  OBMaltAddition *malt = [self createTestMaltAdditionWithMaltType:OBMaltTypeGrain];
+
+  malt.type = @(OBMaltTypeGrain);
+  XCTAssertTrue(malt.isGrain);
+
+  malt.type = @(OBMaltTypeExtract);
+  XCTAssertFalse(malt.isGrain);
+
+  malt.type = @(OBMaltTypeSugar);
+  XCTAssertFalse(malt.isGrain);
+}
+
+- (void)testIsSugar
+{
+  OBMaltAddition *malt = [self createTestMaltAdditionWithMaltType:OBMaltTypeGrain];
+
+  malt.type = @(OBMaltTypeGrain);
+  XCTAssertFalse(malt.isSugar);
+
+  malt.type = @(OBMaltTypeExtract);
+  XCTAssertFalse(malt.isSugar);
+
+  malt.type = @(OBMaltTypeSugar);
+  XCTAssertTrue(malt.isSugar);
+}
+
+- (void)testIsExtract
+{
+  OBMaltAddition *malt = [self createTestMaltAdditionWithMaltType:OBMaltTypeGrain];
+
+  malt.type = @(OBMaltTypeGrain);
+  XCTAssertFalse(malt.isExtract);
+
+  malt.type = @(OBMaltTypeExtract);
+  XCTAssertTrue(malt.isExtract);
+
+  malt.type = @(OBMaltTypeSugar);
+  XCTAssertFalse(malt.isExtract);
+}
+
 
 @end

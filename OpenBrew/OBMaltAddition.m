@@ -14,11 +14,12 @@
 
 @implementation OBMaltAddition
 
+@dynamic name;
+@dynamic type;
 @dynamic displayOrder;
 @dynamic lovibond;
 @dynamic extractPotential;
 @dynamic quantityInPounds;
-@dynamic malt;
 @dynamic recipe;
 
 - (id)initWithMalt:(OBMalt *)malt andRecipe:(OBRecipe *)recipe {
@@ -27,7 +28,8 @@
                                           inManagedObjectContext:ctx];
 
   if (self = [self initWithEntity:desc insertIntoManagedObjectContext:ctx]) {
-    self.malt = malt;
+    self.name = malt.name;
+    self.type = malt.type;
     self.quantityInPounds = @0;
     self.extractPotential = [malt defaultExtractPotential];
     self.lovibond = [malt defaultLovibond];
@@ -41,15 +43,11 @@
   float potential = [self.extractPotential floatValue];
   float pounds = [self.quantityInPounds floatValue];
 
-  if ([self.malt isExtract] || [self.malt isSugar]) {
+  if ([self isExtract] || [self isSugar]) {
     efficiency = 1.0;
   }
 
   return 1000 * (potential - 1) * pounds * efficiency;
-}
-
-- (NSString *)name {
-  return self.malt.name;
 }
 
 - (NSString *)quantityText {
@@ -87,7 +85,7 @@
   float lovibond = [[self lovibond] floatValue];
   float quantityInPounds = [[self quantityInPounds] floatValue];
 
-  if ([self.malt isExtract]) {
+  if ([self isExtract]) {
     // Extract is a concentrated form of grain.  We need to "reinflate" it in order
     // to get a realistic color reading.  0.7 is essentially the extract : grain
     // concentrate ratio. I noticed this was necessary when the Munich Dunkel
@@ -101,6 +99,21 @@
 - (NSInteger)percentOfGravity
 {
   return [self.recipe percentTotalGravityOfMaltAddition:self];
+}
+
+- (BOOL)isGrain
+{
+  return [self.type intValue] == OBMaltTypeGrain;
+}
+
+- (BOOL)isSugar
+{
+  return [self.type intValue] == OBMaltTypeSugar;
+}
+
+- (BOOL)isExtract
+{
+  return [self.type intValue] == OBMaltTypeExtract;
 }
 
 #pragma mark - OBIngredientAddition Protocol

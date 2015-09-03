@@ -133,7 +133,7 @@ NSString * const calculatedKVOKeys[] = {
   float finalGravityUnits = 0;
 
   for (OBMaltAddition *maltAddition in self.maltAdditions) {
-    if ([maltAddition.malt isSugar]) {
+    if ([maltAddition isSugar]) {
       // Sugars attenuate to zero.
       continue;
     }

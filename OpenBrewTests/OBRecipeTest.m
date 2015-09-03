@@ -224,7 +224,7 @@
   XCTAssertEqualWithAccuracy([self.recipe finalGravity], 1.010, 0.0000001, @"Orig gravity: %f", [self.recipe originalGravity]);
 
   // Sugars should attenuate to zero regardless of the yeast attenuation level
-  malt.type = @(OBMaltTypeSugar);
+  maltAddition.type = @(OBMaltTypeSugar);
   XCTAssertEqualWithAccuracy([self.recipe finalGravity], 1.000, 0.0000001);
 }
 

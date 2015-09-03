@@ -14,9 +14,12 @@
 
 @interface OBMaltAddition : NSManagedObject <OBIngredientAddition>
 
-@property (nonatomic, retain) OBMalt *malt;
+@property (nonatomic, retain) NSString *name;
+
 @property (nonatomic, retain) OBRecipe *recipe;
 
+// Malt, sugar, extract
+@property (nonatomic, retain) NSNumber *type;
 @property (nonatomic, retain) NSNumber *displayOrder;
 @property (nonatomic, retain) NSNumber *lovibond;
 @property (nonatomic, retain) NSNumber *extractPotential;
@@ -34,6 +37,10 @@
 - (float)maltColorUnitsForBoilSize:(float)boilSize;
 
 - (NSInteger)percentOfGravity;
+
+- (BOOL)isGrain;
+- (BOOL)isSugar;
+- (BOOL)isExtract;
 
 #pragma mark - OBIngredientAddition protocol
 

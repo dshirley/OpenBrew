@@ -60,7 +60,7 @@
   OBMaltAddition *maltAddition = (OBMaltAddition *)ingredientData;
   OBMaltAdditionTableViewCell *maltCell = (OBMaltAdditionTableViewCell *)cell;
 
-  maltCell.maltVariety.text = maltAddition.malt.name;
+  maltCell.maltVariety.text = maltAddition.name;
 
   switch (self.maltAdditionMetricToDisplay) {
     case OBMaltAdditionMetricWeight:

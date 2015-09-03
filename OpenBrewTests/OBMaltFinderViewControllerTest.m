@@ -112,7 +112,7 @@
   XCTAssertEqual(1, self.recipe.maltAdditions.count);
 
   OBMaltAddition *maltAddition = [self.recipe.maltAdditions anyObject];
-  XCTAssertEqualObjects(@"Biscuit", maltAddition.malt.name);
+  XCTAssertEqualObjects(@"Biscuit", maltAddition.name);
 }
 
 @end

@@ -20,7 +20,6 @@
 @dynamic defaultExtractPotential;
 @dynamic defaultLovibond;
 @dynamic name;
-@dynamic maltAdditions;
 @dynamic type;
 
 - (id)initWithContext:(NSManagedObjectContext *)moc
@@ -53,21 +52,6 @@
   }
 
   return self;
-}
-
-- (BOOL)isGrain
-{
-  return [self.type intValue] == OBMaltTypeGrain;
-}
-
-- (BOOL)isSugar
-{
-  return [self.type intValue] == OBMaltTypeSugar;
-}
-
-- (BOOL)isExtract
-{
-  return [self.type intValue] == OBMaltTypeExtract;
 }
 
 @end
