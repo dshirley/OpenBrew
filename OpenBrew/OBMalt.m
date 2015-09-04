@@ -8,7 +8,6 @@
 
 #import "OBMalt.h"
 #import "OBMaltAddition.h"
-#import "Crittercism+NSErrorLogging.h"
 
 #define MALT_NAME_IDX 0
 #define MALT_EXTRACT_IDX 1
