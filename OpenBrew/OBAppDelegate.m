@@ -14,6 +14,7 @@
 #import "Crittercism+NSErrorLogging.h"
 #import "GAI.h"
 #import "OBRecipeViewController.h"
+#import "OBCoreData.h"
 
 static NSString *const CRITTER_APP_ID_PRODUCTION = @"558d6dda9ccc10f6040881c2";
 static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
@@ -24,6 +25,15 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
 {
   [self initializeCrittercism];
   [self initializeGoogleAnalytics];
+
+  NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"OpenBrew.sqlite"];
+  NSError *error = nil;
+
+  self.managedObjectContext = createManagedObjectContext(storeURL, &error);
+  if (error) {
+    CRITTERCISM_LOG_ERROR(error);
+    // TODO: This is a super bad error. Something should be displayed to the user
+  }
 
   OBBrewery *brewery = [OBBrewery breweryFromContext:self.managedObjectContext];
   if (brewery) {
@@ -62,26 +72,6 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
   [[GAI sharedInstance] trackerWithTrackingId:@"UA-64333354-1"];
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-
-}
-
 - (void)applicationWillTerminate:(UIApplication *)application
 {
   [self saveContext];
@@ -99,64 +89,6 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
       abort();
     }
   }
-}
-
-#pragma mark - Core Data stack
-
-// Returns the managed object context for the application.
-// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
-- (NSManagedObjectContext *)managedObjectContext
-{
-  if (_managedObjectContext != nil) {
-    return _managedObjectContext;
-  }
-  
-  NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-  if (coordinator != nil) {
-    _managedObjectContext = [[NSManagedObjectContext alloc] init];
-    [_managedObjectContext setPersistentStoreCoordinator:coordinator];
-  }
-  
-  return _managedObjectContext;
-}
-
-// Returns the managed object model for the application.
-// If the model doesn't already exist, it is created from the application's model.
-- (NSManagedObjectModel *)managedObjectModel
-{
-  if (_managedObjectModel != nil) {
-    return _managedObjectModel;
-  }
-  
-  NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"OpenBrew"
-                                            withExtension:@"momd"];
-  
-  _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-  
-  return _managedObjectModel;
-}
-
-// Returns the persistent store coordinator for the application.
-// If the coordinator doesn't already exist, it is created and the application's store added to it.
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
-  if (_persistentStoreCoordinator != nil) {
-    return _persistentStoreCoordinator;
-  }
-  
-  NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"OpenBrew.sqlite"];
-  
-  NSError *error = nil;
-  _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-  if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                 configuration:nil
-                                                           URL:storeURL
-                                                       options:nil
-                                                         error:&error]) {
-    CRITTERCISM_LOG_ERROR(error);
-  }
-  
-  return _persistentStoreCoordinator;
 }
 
 #pragma mark - Application's Documents directory
