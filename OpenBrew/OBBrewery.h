@@ -34,24 +34,24 @@ typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
 
 @interface OBBrewery : NSManagedObject
 
-@property (nonatomic, retain) NSNumber *mashEfficiency;
-@property (nonatomic, retain) NSNumber *defaultBatchSize;
+@property (nonatomic) NSNumber *mashEfficiency;
+@property (nonatomic) NSNumber *defaultBatchSize;
 
 // OBMaltAdditionMetric which corresponds to what type of metric to display for
 // each malt addition on the right hand of the OBMaltAdditionViewController
-@property (nonatomic, strong) NSNumber *maltAdditionDisplayMetric;
+@property (nonatomic) NSNumber *maltAdditionDisplayMetric;
 
 // OBGaugeMetric to display for the gauge of the OBMaltAdditionViewController
-@property (nonatomic, strong) NSNumber *maltGaugeDisplayMetric;
+@property (nonatomic) NSNumber *maltGaugeDisplayMetric;
 
 // An OBHopAdditionMetric describes what to display for each cell of the OBHopAdditionViewController
-@property (nonatomic, strong) NSNumber *hopAdditionDisplayMetric;
+@property (nonatomic) NSNumber *hopAdditionDisplayMetric;
 
 // OBGaugeMetric to display for the gauge of the OBHopAdditionViewController
-@property (nonatomic, strong) NSNumber *hopGaugeDisplayMetric;
+@property (nonatomic) NSNumber *hopGaugeDisplayMetric;
 
 // OBYeastManufacturer selected in the OBYeastAdditionViewController
-@property (nonatomic, strong) NSNumber *selectedYeastManufacturer;
+@property (nonatomic) NSNumber *selectedYeastManufacturer;
 
 @end
 
