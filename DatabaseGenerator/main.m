@@ -22,8 +22,6 @@ int main(int argc, const char * argv[]) {
     return 1;
   }
 
-  BOOL dataLoaded = NO;
-
   @autoreleasepool {
     NSString *pathToSaveData = [NSString stringWithCString:argv[1] encoding:NSUTF8StringEncoding];
 
@@ -37,11 +35,24 @@ int main(int argc, const char * argv[]) {
     NSError *error = nil;
     NSManagedObjectContext *moc = createManagedObjectContext(url, &error);
 
+    if (error) {
+      NSLog(@"Error creating managed object context: %@", error);
+      return 1;
+    }
+
     OBDataLoader *loader = [[OBDataLoader alloc] initWithContext:moc];
 
-    dataLoaded = [loader loadData];
+    if (![loader loadData]) {
+      return 1;
+    }
+
+    [moc save:&error];
+    if (error) {
+      NSLog(@"Error saving data: %@", error);
+      return 1;
+    }
   }
 
-  return !dataLoaded;
+  return 0;
 }
 
