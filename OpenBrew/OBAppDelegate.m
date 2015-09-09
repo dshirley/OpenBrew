@@ -42,10 +42,7 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
 
   NSString *currentVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"];
   if (brewery && ![brewery.copiedStarterDataVersion isEqualToString:currentVersion]) {
-    NSURL *startUpDataURL = [[NSBundle mainBundle] URLForResource:@"OpenBrewStartupData.sqlite"
-                                                    withExtension:@""];
-
-    if (loadStartupDataIntoContext(self.managedObjectContext, startUpDataURL, &error)) {
+    if (loadStartupDataIntoContext(self.managedObjectContext, &error)) {
       brewery.copiedStarterDataVersion = currentVersion;
     }
   }

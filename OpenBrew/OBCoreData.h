@@ -11,4 +11,4 @@
 
 NSManagedObjectContext *createManagedObjectContext(NSURL *storeUrl, NSError **error);
 
-BOOL loadStartupDataIntoContext(NSManagedObjectContext *moc, NSURL *dbUrl, NSError **error);
+BOOL loadStartupDataIntoContext(NSManagedObjectContext *moc, NSError **error);

@@ -14,6 +14,7 @@
 #import "OBHopAddition.h"
 #import "OBYeast.h"
 #import "OBYeastAddition.h"
+#import "OBCoreData.h"
 
 @implementation OBBaseTestCase
 
@@ -35,6 +36,10 @@
   self.ctx.persistentStoreCoordinator = self.persistentStoreCoordinator;
 
   self.brewery = [OBBrewery breweryFromContext:self.ctx];
+
+  NSError *error = nil;
+  loadStartupDataIntoContext(self.ctx, &error);
+  XCTAssertNil(error);
 
   XCTAssertEqual(0, [self fetchAllEntity:@"Recipe"].count);
   self.recipe = [[OBRecipe alloc] initWithContext:self.ctx];
