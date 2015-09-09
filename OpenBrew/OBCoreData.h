@@ -10,3 +10,5 @@
 #import <CoreData/CoreData.h>
 
 NSManagedObjectContext *createManagedObjectContext(NSURL *storeUrl, NSError **error);
+
+BOOL loadStartupDataIntoContext(NSManagedObjectContext *moc, NSURL *dbUrl, NSError **error);

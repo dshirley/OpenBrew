@@ -34,6 +34,11 @@ typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
 
 @interface OBBrewery : NSManagedObject
 
+// Some starter data is provided with each app. The data is copied into the app at
+// the beginning of the first session for each version of the app. Once the data is
+// copied, this field is updated and the data is not copied again.
+@property (nonatomic) NSString *copiedStarterDataVersion;
+
 @property (nonatomic) NSNumber *mashEfficiency;
 @property (nonatomic) NSNumber *defaultBatchSize;
 

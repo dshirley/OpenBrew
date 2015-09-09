@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8193.2" systemVersion="14F27" minimumToolsVersion="Xcode 4.3">
     <entity name="Brewery" representedClassName="OBBrewery" syncable="YES">
+        <attribute name="copiedStarterDataVersion" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="defaultBatchSize" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="hopAdditionDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="hopGaugeDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -19,12 +20,12 @@
     </entity>
     <entity name="Hops" representedClassName="OBHops" syncable="YES">
         <attribute name="defaultAlphaAcidPercent" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
     </entity>
     <entity name="Malt" representedClassName="OBMalt" syncable="YES">
         <attribute name="defaultExtractPotential" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="defaultLovibond" optional="YES" attributeType="Integer 32" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" minValueString="1" indexed="YES" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="MaltAddition" representedClassName="OBMaltAddition" syncable="YES">
@@ -64,7 +65,7 @@
         <relationship name="yeast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Yeast" inverseName="yeastAddidions" inverseEntity="Yeast" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Brewery" positionX="-333" positionY="360" width="128" height="150"/>
+        <element name="Brewery" positionX="-333" positionY="360" width="128" height="165"/>
         <element name="HopAddition" positionX="-18" positionY="351" width="128" height="135"/>
         <element name="Hops" positionX="9" positionY="117" width="128" height="75"/>
         <element name="Malt" positionX="-252" positionY="-54" width="128" height="105"/>

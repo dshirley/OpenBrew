@@ -36,10 +36,22 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
   }
 
   OBBrewery *brewery = [OBBrewery breweryFromContext:self.managedObjectContext];
+  if (!brewery) {
+    [self.managedObjectContext reset];
+  }
+
+  NSString *currentVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"];
+  if (brewery && ![brewery.copiedStarterDataVersion isEqualToString:currentVersion]) {
+    NSURL *startUpDataURL = [[NSBundle mainBundle] URLForResource:@"OpenBrewStartupData.sqlite"
+                                                    withExtension:@""];
+
+    if (loadStartupDataIntoContext(self.managedObjectContext, startUpDataURL, &error)) {
+      brewery.copiedStarterDataVersion = currentVersion;
+    }
+  }
+
   if (brewery) {
     [self.managedObjectContext save:nil];
-  } else {
-    [self.managedObjectContext reset];
   }
 
   UINavigationController *nav = (UINavigationController *)[[self window] rootViewController];
