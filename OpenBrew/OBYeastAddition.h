@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "OBYeast.h"
 
-@class OBRecipe, OBYeast;
+@class OBRecipe;
 
-@interface OBYeastAddition : NSManagedObject
+@interface OBYeastAddition : OBYeast
 
 @property (nonatomic, retain) NSNumber * quantity;
 @property (nonatomic, retain) OBRecipe *recipe;
-@property (nonatomic, retain) OBYeast *yeast;
 
 - (id)initWithYeast:(OBYeast *)yeast andRecipe:(OBRecipe *)recipe;
 

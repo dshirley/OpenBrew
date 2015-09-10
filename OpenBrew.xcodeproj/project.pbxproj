@@ -16,6 +16,7 @@
 		9F0815441996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815431996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m */; };
 		9F08154719970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F08154619970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m */; };
 		9F08154A1997147C00E5E575 /* OBMaltColorPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815491997147C00E5E575 /* OBMaltColorPickerDelegate.m */; };
+		9F0820DF1BA0A0AF0026B296 /* OBYeastAdditionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0820DE1BA0A0AF0026B296 /* OBYeastAdditionTest.m */; settings = {ASSET_TAGS = (); }; };
 		9F33116A1B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3311691B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m */; };
 		9F33116D1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F33116C1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m */; };
 		9F3311701B35BF22008C0029 /* OBColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F33116F1B35BF22008C0029 /* OBColorView.m */; };
@@ -174,6 +175,7 @@
 		9F08154619970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionTableViewDelegate.m; sourceTree = "<group>"; };
 		9F0815481997147C00E5E575 /* OBMaltColorPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltColorPickerDelegate.h; sourceTree = "<group>"; };
 		9F0815491997147C00E5E575 /* OBMaltColorPickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltColorPickerDelegate.m; sourceTree = "<group>"; };
+		9F0820DE1BA0A0AF0026B296 /* OBYeastAdditionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBYeastAdditionTest.m; sourceTree = "<group>"; };
 		9F3311661B34581C008C0029 /* OBBrewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBrewController.h; sourceTree = "<group>"; };
 		9F3311681B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTextStatisticsCollectionViewCell.h; sourceTree = "<group>"; };
 		9F3311691B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTextStatisticsCollectionViewCell.m; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				9FC8EE911B45A87F00EEF14D /* OBMaltTest.m */,
 				9FE243451B45CD1B00D1EE25 /* OBRecipeTest.m */,
 				9FC8EE971B45BD0D00EEF14D /* OBYeastTest.m */,
+				9F0820DE1BA0A0AF0026B296 /* OBYeastAdditionTest.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -880,6 +883,13 @@
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/DefaultAppData/HopCatalog.csv",
+				"$(SRCROOT)/DefaultAppData/MaltCatalog.csv",
+				"$(SRCROOT)/DefaultAppData/YeastCatalog.csv",
+				"$(SRCROOT)/OpenBrew/OpenBrew.xcdatamodeld/OpenBrew.xcdatamodel/contents",
+				"$(SRCROOT)/DatabaseGenerator/OBDataLoader.h",
+				"$(SRCROOT)/DatabaseGenerator/OBDataLoader.m",
+				"$(SRCROOT)/main.m",
 			);
 			name = "Generate Starter Sqlite DB";
 			outputPaths = (
@@ -989,6 +999,7 @@
 				9FE5250B1B814652002612DD /* OBHopFinderViewControllerTest.m in Sources */,
 				9FE9745818883C8500FFAA56 /* OBMaltAdditionTest.m in Sources */,
 				9F0323331B78E4B300E4B98B /* OBAlphaAcidPickerDelegateTest.m in Sources */,
+				9F0820DF1BA0A0AF0026B296 /* OBYeastAdditionTest.m in Sources */,
 				9FE525091B813461002612DD /* OBMaltFinderViewControllerTest.m in Sources */,
 				9FC4796E1B7082BF0053B996 /* OBHopAdditionSettingsViewControllerTest.m in Sources */,
 				9F40C4CA1B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m in Sources */,

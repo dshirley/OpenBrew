@@ -15,7 +15,6 @@
 
 @dynamic quantity;
 @dynamic recipe;
-@dynamic yeast;
 
 - (id)initWithYeast:(OBYeast *)yeast andRecipe:(OBRecipe *)recipe;
 {
@@ -24,7 +23,19 @@
                                           inManagedObjectContext:ctx];
 
   if (self = [self initWithEntity:desc insertIntoManagedObjectContext:ctx]) {
-    self.yeast = yeast;
+
+    // Copy all properties from OBYeast
+    self.name = yeast.name;
+    self.identifier = yeast.identifier;
+    self.manufacturer = yeast.manufacturer;
+    self.alcoholTolerance = yeast.alcoholTolerance;
+    self.flocculation = yeast.flocculation;
+    self.maxAttenuation = yeast.maxAttenuation;
+    self.minAttenuation = yeast.minAttenuation;
+    self.maxTemperature = yeast.maxTemperature;
+    self.minTemperature = yeast.minTemperature;
+
+    // Initialize OBYeastAddition properties
     self.quantity = @0;
     self.recipe = recipe;
   }

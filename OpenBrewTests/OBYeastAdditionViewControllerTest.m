@@ -186,7 +186,7 @@
 
   [self.vc tableView:self.vc.tableView didSelectRowAtIndexPath:self.r0s0];
 
-  XCTAssertEqualObjects(@"WLP001", self.recipe.yeast.yeast.identifier);
+  XCTAssertEqualObjects(@"WLP001", self.recipe.yeast.identifier);
 
   [mockGauge verify];
 }

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class OBIngredientCatalog, OBYeastAddition;
+@class OBYeastAddition;
 
 typedef NS_ENUM(NSInteger, OBYeastFlocculationLevel) {
   OBYeastFlocculationLevelLow,
@@ -40,18 +40,16 @@ typedef NS_ENUM(NSInteger, OBYeastManufacturer) {
 
 @interface OBYeast : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * identifier;
-@property (nonatomic, retain) NSNumber * category;
-@property (nonatomic, retain) NSNumber * manufacturer;
-@property (nonatomic, retain) NSNumber * alcoholTolerance;
-@property (nonatomic, retain) NSNumber * flocculation;
-@property (nonatomic, retain) NSNumber * maxAttenuation;
-@property (nonatomic, retain) NSNumber * minAttenuation;
-@property (nonatomic, retain) NSNumber * maxTemperature;
-@property (nonatomic, retain) NSNumber * minTemperature;
-
-@property (nonatomic, retain) OBIngredientCatalog *catalog;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSString *identifier;
+@property (nonatomic) NSNumber *category;
+@property (nonatomic) NSNumber *manufacturer;
+@property (nonatomic) NSNumber *alcoholTolerance;
+@property (nonatomic) NSNumber *flocculation;
+@property (nonatomic) NSNumber *maxAttenuation;
+@property (nonatomic) NSNumber *minAttenuation;
+@property (nonatomic) NSNumber *maxTemperature;
+@property (nonatomic) NSNumber *minTemperature;
 
 - (float)estimatedAttenuationAsDecimal;
 

@@ -56,13 +56,11 @@
         <attribute name="maxTemperature" optional="YES" attributeType="Integer 16" minValueString="30" maxValueString="150" syncable="YES"/>
         <attribute name="minAttenuation" optional="YES" attributeType="Float" minValueString="50" maxValueString="100" syncable="YES"/>
         <attribute name="minTemperature" optional="YES" attributeType="Integer 16" minValueString="32" maxValueString="150" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="yeastAddidions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="YeastAddition" inverseName="yeast" inverseEntity="YeastAddition" syncable="YES"/>
+        <attribute name="name" attributeType="String" indexed="YES" syncable="YES"/>
     </entity>
-    <entity name="YeastAddition" representedClassName="OBYeastAddition" syncable="YES">
+    <entity name="YeastAddition" representedClassName="OBYeastAddition" parentEntity="Yeast" syncable="YES">
         <attribute name="quantity" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="yeast" inverseEntity="Recipe" syncable="YES"/>
-        <relationship name="yeast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Yeast" inverseName="yeastAddidions" inverseEntity="Yeast" syncable="YES"/>
     </entity>
     <elements>
         <element name="Brewery" positionX="-333" positionY="360" width="128" height="165"/>
@@ -71,7 +69,7 @@
         <element name="Malt" positionX="-252" positionY="-54" width="128" height="105"/>
         <element name="MaltAddition" positionX="-263" positionY="126" width="128" height="30"/>
         <element name="Recipe" positionX="36" positionY="162" width="128" height="148"/>
-        <element name="Yeast" positionX="340" positionY="9" width="128" height="208"/>
-        <element name="YeastAddition" positionX="142" positionY="495" width="128" height="90"/>
+        <element name="Yeast" positionX="340" positionY="9" width="128" height="195"/>
+        <element name="YeastAddition" positionX="142" positionY="495" width="128" height="75"/>
     </elements>
 </model>

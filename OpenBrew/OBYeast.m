@@ -34,7 +34,6 @@ typedef NS_ENUM(NSInteger, OBYeastCsvIndex) {
 @dynamic maxAttenuation;
 @dynamic maxTemperature;
 @dynamic minTemperature;
-@dynamic catalog;
 
 - (id)initWithContext:(NSManagedObjectContext *)moc
            andCsvData:(NSArray *)data;

@@ -181,7 +181,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
     case OBYeastCell:
       cell.textLabel.text = @"Yeast";
       if (self.recipe.yeast) {
-        cell.detailTextLabel.text = self.recipe.yeast.yeast.name;
+        cell.detailTextLabel.text = self.recipe.yeast.name;
       } else {
         cell.detailTextLabel.text = @"none";
       }

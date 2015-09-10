@@ -84,7 +84,8 @@
                                                        inManagedObjectContext:self.ctx];
 
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  [request setEntity:entityDescription];
+  request.entity = entityDescription;
+  request.includesSubentities = NO;
 
   NSString *query = [NSString stringWithFormat:@"(%@ == '%@')", property, value];
   NSPredicate *predicate = [NSPredicate predicateWithFormat:query];

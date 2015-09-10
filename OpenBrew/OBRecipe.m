@@ -128,7 +128,7 @@ NSString * const calculatedKVOKeys[] = {
 }
 
 - (float)finalGravity {
-  float attenuationLevel = [[[self yeast] yeast] estimatedAttenuationAsDecimal];
+  float attenuationLevel = [self.yeast estimatedAttenuationAsDecimal];
   float wortVolumeAfterBoil = [self.postBoilVolumeInGallons floatValue];
   float finalGravityUnits = 0;
 

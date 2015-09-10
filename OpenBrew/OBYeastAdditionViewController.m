@@ -61,7 +61,7 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
 
   OBYeastManufacturer startingManufacturer = NSNotFound;
   if (self.recipe.yeast) {
-    startingManufacturer = [self.recipe.yeast.yeast.manufacturer integerValue];
+    startingManufacturer = [self.recipe.yeast.manufacturer integerValue];
   } else {
     startingManufacturer = [self.brewery.selectedYeastManufacturer integerValue];
   }
@@ -89,6 +89,7 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
   request.entity = [NSEntityDescription entityForName:@"Yeast" inManagedObjectContext:self.recipe.managedObjectContext];
   request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"identifier" ascending:YES]];
   request.predicate = [NSPredicate predicateWithFormat:@"manufacturer == %d", (int) yeastManufacturer];
+  request.includesSubentities = NO;
 
   self.fetchedResults = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                             managedObjectContext:self.recipe.managedObjectContext sectionNameKeyPath:nil
@@ -102,7 +103,7 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
 
   [self.tableView reloadData];
 
-  NSIndexPath *selectedIndexPath = [self.fetchedResults indexPathForObject:self.recipe.yeast.yeast];
+  NSIndexPath *selectedIndexPath = [self.fetchedResults indexPathForObject:[self selectedYeast]];
   if (selectedIndexPath) {
     [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
 
@@ -110,6 +111,29 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
       [self.tableView scrollToRowAtIndexPath:selectedIndexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
     }
   }
+}
+
+- (OBYeast *)selectedYeast
+{
+  if (!self.recipe.yeast) {
+    return nil;
+  }
+
+  NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Yeast"];
+  fetchRequest.includesSubentities = NO;
+  fetchRequest.predicate = [NSPredicate predicateWithFormat:@"identifier == %@", self.recipe.yeast.identifier];
+
+  NSError *error = nil;
+  NSArray *selectedYeasts = [self.recipe.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+
+  if (selectedYeasts.count == 1) {
+    return selectedYeasts[0];
+  } else if (selectedYeasts.count > 1) {
+    // TODO: log an error
+    return selectedYeasts[0];
+  }
+
+  return nil;
 }
 
 #pragma mark UITableViewDelegate methods
