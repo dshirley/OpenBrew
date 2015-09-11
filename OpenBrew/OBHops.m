@@ -14,7 +14,7 @@
 
 @implementation OBHops
 
-@dynamic defaultAlphaAcidPercent;
+@dynamic alphaAcidPercent;
 @dynamic name;
 
 - (id)initWithContext:(NSManagedObjectContext *)moc
@@ -37,7 +37,7 @@
 
   if (self = [self initWithEntity:desc insertIntoManagedObjectContext:moc]) {
     self.name = name;
-    self.defaultAlphaAcidPercent = alphaAcidPercent;
+    self.alphaAcidPercent = alphaAcidPercent;
   }
 
   return self;

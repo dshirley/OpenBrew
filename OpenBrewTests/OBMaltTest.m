@@ -31,16 +31,16 @@
   OBMalt *malt = [[OBMalt alloc] initWithContext:self.ctx andCsvData:csvData];
 
   XCTAssertEqualObjects(@"Pilsner Malt", malt.name);
-  XCTAssertEqualWithAccuracy(1.036, [malt.defaultExtractPotential floatValue], 0.00001);
-  XCTAssertEqual(2, [malt.defaultLovibond integerValue]);
+  XCTAssertEqualWithAccuracy(1.036, [malt.extractPotential floatValue], 0.00001);
+  XCTAssertEqual(2, [malt.lovibond integerValue]);
   XCTAssertEqualObjects(@(OBMaltTypeGrain), malt.type);
 
   csvData = @[ @"Rye LME", @"1.035", @"4", @"2" ];
   malt = [[OBMalt alloc] initWithContext:self.ctx andCsvData:csvData];
 
   XCTAssertEqualObjects(@"Rye LME", malt.name);
-  XCTAssertEqualWithAccuracy(1.035, [malt.defaultExtractPotential floatValue], 0.00001);
-  XCTAssertEqual(4, [malt.defaultLovibond integerValue]);
+  XCTAssertEqualWithAccuracy(1.035, [malt.extractPotential floatValue], 0.00001);
+  XCTAssertEqual(4, [malt.lovibond integerValue]);
   XCTAssertEqualObjects(@(OBMaltTypeExtract), malt.type);
 
 
@@ -48,8 +48,8 @@
   malt = [[OBMalt alloc] initWithContext:self.ctx andCsvData:csvData];
 
   XCTAssertEqualObjects(@"Brown Sugar (Dark)", malt.name);
-  XCTAssertEqualWithAccuracy(1.046, [malt.defaultExtractPotential floatValue], 0.00001);
-  XCTAssertEqual(50, [malt.defaultLovibond integerValue]);
+  XCTAssertEqualWithAccuracy(1.046, [malt.extractPotential floatValue], 0.00001);
+  XCTAssertEqual(50, [malt.lovibond integerValue]);
   XCTAssertEqualObjects(@(OBMaltTypeSugar), malt.type);
 }
 
@@ -62,11 +62,55 @@
                                             type:@(OBMaltTypeSugar)];
 
   XCTAssertEqualObjects(@"Slim Shady", malt.name);
-  XCTAssertEqualWithAccuracy(123.456, [malt.defaultExtractPotential floatValue], 0.001);
+  XCTAssertEqualWithAccuracy(123.456, [malt.extractPotential floatValue], 0.001);
   XCTAssertEqualObjects(@(OBMaltTypeSugar), malt.type);
 
   // Note: Lovibond is stored as an integer, so 78.9 is truncated to 78 by CoreData
-  XCTAssertEqual(78.0, [malt.defaultLovibond floatValue]);
+  XCTAssertEqual(78.0, [malt.lovibond floatValue]);
 }
+
+
+- (void)testIsGrain
+{
+  OBMalt *malt = [self createTestMalt];
+
+  malt.type = @(OBMaltTypeGrain);
+  XCTAssertTrue(malt.isGrain);
+
+  malt.type = @(OBMaltTypeExtract);
+  XCTAssertFalse(malt.isGrain);
+
+  malt.type = @(OBMaltTypeSugar);
+  XCTAssertFalse(malt.isGrain);
+}
+
+- (void)testIsSugar
+{
+  OBMalt *malt = [self createTestMalt];
+
+  malt.type = @(OBMaltTypeGrain);
+  XCTAssertFalse(malt.isSugar);
+
+  malt.type = @(OBMaltTypeExtract);
+  XCTAssertFalse(malt.isSugar);
+
+  malt.type = @(OBMaltTypeSugar);
+  XCTAssertTrue(malt.isSugar);
+}
+
+- (void)testIsExtract
+{
+  OBMalt *malt = [self createTestMalt];
+
+  malt.type = @(OBMaltTypeGrain);
+  XCTAssertFalse(malt.isExtract);
+
+  malt.type = @(OBMaltTypeExtract);
+  XCTAssertTrue(malt.isExtract);
+
+  malt.type = @(OBMaltTypeSugar);
+  XCTAssertFalse(malt.isExtract);
+}
+
 
 @end

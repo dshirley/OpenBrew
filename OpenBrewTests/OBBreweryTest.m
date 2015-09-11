@@ -41,11 +41,11 @@
 
   OBHops *hops = [self fetchEntity:@"Hops" withProperty:@"name" equalTo:@"Admiral"];
   XCTAssertEqualObjects(@"Admiral", hops.name);
-  XCTAssertEqualWithAccuracy(15.0, [hops.defaultAlphaAcidPercent floatValue], 0.0001);
+  XCTAssertEqualWithAccuracy(15.0, [hops.alphaAcidPercent floatValue], 0.0001);
 
   hops = [self fetchEntity:@"Hops" withProperty:@"name" equalTo:@"Zythos"];
   XCTAssertEqualObjects(@"Zythos", hops.name);
-  XCTAssertEqualWithAccuracy(11.25, [hops.defaultAlphaAcidPercent floatValue], 0.0001);
+  XCTAssertEqualWithAccuracy(11.25, [hops.alphaAcidPercent floatValue], 0.0001);
 }
 
 - (void)testMaltsWereLoaded
@@ -55,15 +55,15 @@
   // Test the first one in the CSV
   OBMalt *malt = [self fetchEntity:@"Malt" withProperty:@"name" equalTo:@"Acid Malt"];
   XCTAssertEqualObjects(@"Acid Malt", malt.name);
-  XCTAssertEqualWithAccuracy(1.027, [malt.defaultExtractPotential floatValue], 0.00001);
-  XCTAssertEqual(3, [malt.defaultLovibond integerValue]);
+  XCTAssertEqualWithAccuracy(1.027, [malt.extractPotential floatValue], 0.00001);
+  XCTAssertEqual(3, [malt.lovibond integerValue]);
   XCTAssertEqual(OBMaltTypeGrain, [malt.type integerValue]);
 
   // Test the last one in the CSV
   malt = [self fetchEntity:@"Malt" withProperty:@"name" equalTo:@"Wheat LME"];
   XCTAssertEqualObjects(@"Wheat LME", malt.name);
-  XCTAssertEqualWithAccuracy(1.036, [malt.defaultExtractPotential floatValue], 0.00001);
-  XCTAssertEqual(2, [malt.defaultLovibond integerValue]);
+  XCTAssertEqualWithAccuracy(1.036, [malt.extractPotential floatValue], 0.00001);
+  XCTAssertEqual(2, [malt.lovibond integerValue]);
   XCTAssertEqual(OBMaltTypeExtract, [malt.type integerValue]);
 }
 

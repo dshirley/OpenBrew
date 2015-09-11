@@ -9,27 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "OBIngredientAddition.h"
+#import "OBMalt.h"
 
-@class OBMalt, OBRecipe;
+@class OBRecipe;
 
-@interface OBMaltAddition : NSManagedObject <OBIngredientAddition>
+@interface OBMaltAddition : OBMalt <OBIngredientAddition>
 
-@property (nonatomic, retain) NSString *name;
+@property (nonatomic) OBRecipe *recipe;
 
-@property (nonatomic, retain) OBRecipe *recipe;
-
-// Malt, sugar, extract
-@property (nonatomic, retain) NSNumber *type;
-@property (nonatomic, retain) NSNumber *displayOrder;
-@property (nonatomic, retain) NSNumber *lovibond;
-@property (nonatomic, retain) NSNumber *extractPotential;
-@property (nonatomic, retain) NSNumber *quantityInPounds;
+@property (nonatomic) NSNumber *displayOrder;
+@property (nonatomic) NSNumber *quantityInPounds;
 
 - (id)initWithMalt:(OBMalt *)malt andRecipe:(OBRecipe *)recipe;
 
 - (float)gravityUnitsWithEfficiency:(float)efficiency;
-
-- (NSString *)name;
 
 - (NSString *)quantityText;
 
@@ -37,10 +30,6 @@
 - (float)maltColorUnitsForBoilSize:(float)boilSize;
 
 - (NSInteger)percentOfGravity;
-
-- (BOOL)isGrain;
-- (BOOL)isSugar;
-- (BOOL)isExtract;
 
 #pragma mark - OBIngredientAddition protocol
 

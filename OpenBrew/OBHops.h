@@ -14,7 +14,7 @@
 @interface OBHops : NSManagedObject
 
 @property (nonatomic) NSString *name;
-@property (nonatomic) NSNumber *defaultAlphaAcidPercent;
+@property (nonatomic) NSNumber *alphaAcidPercent;
 
 - (id)initWithContext:(NSManagedObjectContext *)moc
            andCsvData:(NSArray *)csvData;

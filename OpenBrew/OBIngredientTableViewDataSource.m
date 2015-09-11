@@ -57,18 +57,15 @@
  */
 - (void)refreshDisplayedData
 {
-  NSEntityDescription *entityDescription = [NSEntityDescription
-                                            entityForName:self.entityName
-                                            inManagedObjectContext:self.managedObjectContext];
-
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  [request setEntity:entityDescription];
 
-  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name"
-                                                                 ascending:YES];
+  request.entity = [NSEntityDescription entityForName:self.entityName
+                               inManagedObjectContext:self.managedObjectContext];
 
-  request.sortDescriptors = @[sortDescriptor];
+  request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"name"
+                                                          ascending:YES]];
   request.predicate = self.predicate;
+  request.includesSubentities = NO;
 
   NSError *error = nil;
 

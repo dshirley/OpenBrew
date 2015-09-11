@@ -19,12 +19,12 @@ typedef NS_ENUM(NSInteger, OBMaltType) {
 
 @interface OBMalt : NSManagedObject
 
-@property (nonatomic, retain) NSString *name;
+@property (nonatomic) NSString *name;
 
 // Malt, sugar, extract
-@property (nonatomic, retain) NSNumber *type;
-@property (nonatomic, retain) NSNumber *defaultLovibond;
-@property (nonatomic, retain) NSNumber *defaultExtractPotential;
+@property (nonatomic) NSNumber *type;
+@property (nonatomic) NSNumber *lovibond;
+@property (nonatomic) NSNumber *extractPotential;
 
 - (id)initWithContext:(NSManagedObjectContext *)moc
            andCsvData:(NSArray *)data;
@@ -34,6 +34,10 @@ typedef NS_ENUM(NSInteger, OBMaltType) {
      extractPotential:(NSNumber *)extractPotential
              lovibond:(NSNumber *)lovibond
                  type:(NSNumber *)type;
+
+- (BOOL)isGrain;
+- (BOOL)isSugar;
+- (BOOL)isExtract;
 
 @end
 

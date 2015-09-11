@@ -34,6 +34,22 @@
   XCTAssertEqualWithAccuracy(5.0, [hopAddition.alphaAcidPercent floatValue], 0.000001);
 }
 
+- (void)testInitWithHops
+{
+  OBHops *hops = [self fetchEntity:@"Hops" withProperty:@"name" equalTo:@"Eroica"];
+  XCTAssertNotNil(hops);
+
+  OBHopAddition *hopAddition = [[OBHopAddition alloc] initWithHopVariety:hops andRecipe:self.recipe];
+
+  NSArray *hopAttributes = hops.entity.attributesByName.allKeys;
+  for (NSString *key in hopAttributes) {
+    XCTAssertEqualObjects([hops valueForKey:key], [hopAddition valueForKey:key], @"key: %@", key);
+  }
+
+  XCTAssertEqualWithAccuracy(0, [hopAddition.quantityInOunces floatValue], 0.00001);
+  XCTAssertEqual(self.recipe, hopAddition.recipe);
+}
+
 - (void)testTinsethUtilizationForGravity
 {
   OBHopAddition *hopAddition = [self createTestHopAddition];

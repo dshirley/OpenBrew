@@ -39,8 +39,28 @@
   XCTAssertNotNil(self.vc.tableView.dataSource);
   XCTAssertNil(self.vc.tableView.delegate);
 
+
+  NSArray *indexTitles = [self.vc.tableView.dataSource sectionIndexTitlesForTableView:self.vc.tableView];
+  XCTAssertEqualObjects(@"A", indexTitles[0]);
+
+  NSInteger sectionA = [self.vc.tableView.dataSource tableView:self.vc.tableView
+                                   sectionForSectionIndexTitle:@"A"
+                                                       atIndex:0];
+
+  XCTAssertEqual(0, sectionA);
+
+
   XCTAssertGreaterThan([self.vc.tableView numberOfSections], 0);
-  XCTAssertGreaterThan([self.vc.tableView numberOfRowsInSection:0], 0);
+
+  NSInteger numRows = [self.vc.tableView numberOfRowsInSection:0];
+  XCTAssertGreaterThan(numRows, 0);
+
+  // Check that HopAdditions do not show up in the hop finder view
+  // (HopAdditions inherit from Hops, which means a bug is liable to happen
+  // if code is not explicitly written to make HopAdditions not appear in the list)
+  [self addHops:@"Admiral" quantity:1.0 aaPercent:10.0 boilTime:60];
+
+  XCTAssertEqual(numRows, [self.vc.tableView numberOfRowsInSection:0]);
 }
 
 - (void)testViewWillAppear

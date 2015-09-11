@@ -14,11 +14,7 @@
 
 @implementation OBMaltAddition
 
-@dynamic name;
-@dynamic type;
 @dynamic displayOrder;
-@dynamic lovibond;
-@dynamic extractPotential;
 @dynamic quantityInPounds;
 @dynamic recipe;
 
@@ -31,8 +27,8 @@
     self.name = malt.name;
     self.type = malt.type;
     self.quantityInPounds = @0;
-    self.extractPotential = [malt defaultExtractPotential];
-    self.lovibond = [malt defaultLovibond];
+    self.extractPotential = malt.extractPotential;
+    self.lovibond = malt.lovibond;
     self.recipe = recipe;
   }
 
@@ -99,21 +95,6 @@
 - (NSInteger)percentOfGravity
 {
   return [self.recipe percentTotalGravityOfMaltAddition:self];
-}
-
-- (BOOL)isGrain
-{
-  return [self.type intValue] == OBMaltTypeGrain;
-}
-
-- (BOOL)isSugar
-{
-  return [self.type intValue] == OBMaltTypeSugar;
-}
-
-- (BOOL)isExtract
-{
-  return [self.type intValue] == OBMaltTypeExtract;
 }
 
 #pragma mark - OBIngredientAddition Protocol

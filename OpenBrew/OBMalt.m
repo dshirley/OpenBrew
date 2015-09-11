@@ -16,8 +16,8 @@
 
 @implementation OBMalt
 
-@dynamic defaultExtractPotential;
-@dynamic defaultLovibond;
+@dynamic extractPotential;
+@dynamic lovibond;
 @dynamic name;
 @dynamic type;
 
@@ -45,12 +45,27 @@
 
   if (self = [self initWithEntity:desc insertIntoManagedObjectContext:moc]) {
     self.name = name;
-    self.defaultExtractPotential = extractPotential;
-    self.defaultLovibond = lovibond;
+    self.extractPotential = extractPotential;
+    self.lovibond = lovibond;
     self.type = type;
   }
 
   return self;
+}
+
+- (BOOL)isGrain
+{
+  return [self.type intValue] == OBMaltTypeGrain;
+}
+
+- (BOOL)isSugar
+{
+  return [self.type intValue] == OBMaltTypeSugar;
+}
+
+- (BOOL)isExtract
+{
+  return [self.type intValue] == OBMaltTypeExtract;
 }
 
 @end

@@ -32,7 +32,7 @@
     self.name = hopVariety.name;
     self.quantityInOunces = @0;
     self.boilTimeInMinutes = @0;
-    self.alphaAcidPercent = hopVariety.defaultAlphaAcidPercent;
+    self.alphaAcidPercent = hopVariety.alphaAcidPercent;
     self.recipe = recipe;
   }
 

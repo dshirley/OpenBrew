@@ -9,19 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "OBIngredientAddition.h"
+#import "OBHops.h"
 
-@class OBHops, OBRecipe;
-
+@class OBRecipe;
 
 typedef NS_ENUM(NSInteger, OBIbuFormula) {
   OBIbuFormulaTinseth,
   OBIbuFormulaRager
 };
 
-@interface OBHopAddition : NSManagedObject <OBIngredientAddition>;
+@interface OBHopAddition : OBHops <OBIngredientAddition>;
 
-@property (nonatomic) NSString *name;
-@property (nonatomic) NSNumber *alphaAcidPercent;
 @property (nonatomic) NSNumber *boilTimeInMinutes;
 @property (nonatomic) NSNumber *quantityInOunces;
 @property (nonatomic) NSNumber *displayOrder;

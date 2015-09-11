@@ -27,6 +27,23 @@
   return [[OBMaltAddition alloc] initWithMalt:malt andRecipe:nil];
 }
 
+- (void)testInitWithMalt
+{
+  OBMalt *malt = [self fetchEntity:@"Malt" withProperty:@"name" equalTo:@"Maris Otter LME"];
+  XCTAssertNotNil(malt);
+
+  OBMaltAddition *maltAddition = [[OBMaltAddition alloc] initWithMalt:malt
+                                                            andRecipe:self.recipe];
+
+  NSArray *maltAttributes = malt.entity.attributesByName.allKeys;
+  for (NSString *key in maltAttributes) {
+    XCTAssertEqualObjects([malt valueForKey:key], [maltAddition valueForKey:key], @"key: %@", key);
+  }
+
+  XCTAssertEqualWithAccuracy(0, [maltAddition.quantityInPounds floatValue], 0.00001);
+  XCTAssertEqual(self.recipe, maltAddition.recipe);
+}
+
 - (void)testName
 {
   OBMaltAddition *maltAddition = [self createTestMaltAdditionWithMaltType:OBMaltTypeGrain];
@@ -101,48 +118,5 @@
   XCTAssertEqualWithAccuracy(37.00, [maltAddition gravityUnitsWithEfficiency:1], .01, @"");
   XCTAssertEqualWithAccuracy(37.00, [maltAddition gravityUnitsWithEfficiency:.66], .01, @"");
 }
-
-- (void)testIsGrain
-{
-  OBMaltAddition *malt = [self createTestMaltAdditionWithMaltType:OBMaltTypeGrain];
-
-  malt.type = @(OBMaltTypeGrain);
-  XCTAssertTrue(malt.isGrain);
-
-  malt.type = @(OBMaltTypeExtract);
-  XCTAssertFalse(malt.isGrain);
-
-  malt.type = @(OBMaltTypeSugar);
-  XCTAssertFalse(malt.isGrain);
-}
-
-- (void)testIsSugar
-{
-  OBMaltAddition *malt = [self createTestMaltAdditionWithMaltType:OBMaltTypeGrain];
-
-  malt.type = @(OBMaltTypeGrain);
-  XCTAssertFalse(malt.isSugar);
-
-  malt.type = @(OBMaltTypeExtract);
-  XCTAssertFalse(malt.isSugar);
-
-  malt.type = @(OBMaltTypeSugar);
-  XCTAssertTrue(malt.isSugar);
-}
-
-- (void)testIsExtract
-{
-  OBMaltAddition *malt = [self createTestMaltAdditionWithMaltType:OBMaltTypeGrain];
-
-  malt.type = @(OBMaltTypeGrain);
-  XCTAssertFalse(malt.isExtract);
-
-  malt.type = @(OBMaltTypeExtract);
-  XCTAssertTrue(malt.isExtract);
-
-  malt.type = @(OBMaltTypeSugar);
-  XCTAssertFalse(malt.isExtract);
-}
-
 
 @end

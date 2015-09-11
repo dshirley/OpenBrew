@@ -42,6 +42,31 @@
 
   OBIngredientTableViewDataSource *dataSource = self.vc.tableView.dataSource;
   XCTAssertEqualObjects(@"type == 0", dataSource.predicate.predicateFormat);
+
+
+
+
+  NSArray *indexTitles = [self.vc.tableView.dataSource sectionIndexTitlesForTableView:self.vc.tableView];
+  XCTAssertEqualObjects(@"A", indexTitles[0]);
+
+  NSInteger sectionA = [self.vc.tableView.dataSource tableView:self.vc.tableView
+                                   sectionForSectionIndexTitle:@"A"
+                                                       atIndex:0];
+
+  XCTAssertEqual(0, sectionA);
+
+
+  XCTAssertGreaterThan([self.vc.tableView numberOfSections], 0);
+
+  NSInteger numRows = [self.vc.tableView numberOfRowsInSection:0];
+  XCTAssertGreaterThan(numRows, 0);
+
+  // Check that MaltAdditions do not show up in the hop finder view
+  // (MaltAdditions inherit from Malt, which means a bug is liable to happen
+  // if code is not explicitly written to make MaltAdditions not appear in the list)
+  [self addMalt:@"Amber DME" quantity:8.0];
+
+  XCTAssertEqual(numRows, [self.vc.tableView numberOfRowsInSection:0]);
 }
 
 - (void)testViewWillAppear

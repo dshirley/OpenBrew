@@ -22,13 +22,13 @@
   OBHops *hops = [[OBHops alloc] initWithContext:self.ctx andCsvData:csvData];
 
   XCTAssertEqualObjects(@"Glacier", hops.name);
-  XCTAssertEqualWithAccuracy(5.6, [hops.defaultAlphaAcidPercent floatValue], 0.0001);
+  XCTAssertEqualWithAccuracy(5.6, [hops.alphaAcidPercent floatValue], 0.0001);
 
   csvData = @[ @"Cluster", @"7", @"US" ];
   hops = [[OBHops alloc] initWithContext:self.ctx andCsvData:csvData];
 
   XCTAssertEqualObjects(@"Cluster", hops.name);
-  XCTAssertEqualWithAccuracy(7, [hops.defaultAlphaAcidPercent floatValue], 0.0001);
+  XCTAssertEqualWithAccuracy(7, [hops.alphaAcidPercent floatValue], 0.0001);
 
 }
 
@@ -39,7 +39,7 @@
                                 alphaAcidPercent:@(5.85)];
 
   XCTAssertEqualObjects(@"Cascade", hops.name);
-  XCTAssertEqualWithAccuracy(5.85, [hops.defaultAlphaAcidPercent floatValue], 0.0001);
+  XCTAssertEqualWithAccuracy(5.85, [hops.alphaAcidPercent floatValue], 0.0001);
 }
 
 @end
