@@ -44,17 +44,8 @@ NSManagedObjectContext *createManagedObjectContext(NSURL *storeUrl, NSError **er
   if (error) return NO; \
 } while (0)
 
-BOOL loadStartupDataIntoContext(NSManagedObjectContext *moc, NSError **error)
+BOOL loadStartupDataIntoContext(NSManagedObjectContext *moc, NSManagedObjectContext *startupContext, NSError **error)
 {
-  NSDate *start = [NSDate date];
-
-  NSURL *startUpDbURL = [[NSBundle mainBundle] URLForResource:@"OpenBrewStartupData.sqlite"
-                                                  withExtension:@""];
-
-  NSManagedObjectContext *startupContext = createManagedObjectContext(startUpDbURL, error);
-  startupContext.undoManager = nil;
-  RETURN_FALSE_IF_ERROR(*error);
-
   _deleteAllObjectsForEntity(moc, @"Hops", error);
   _loadStartupEntity(moc, startupContext, @"Hops", error);
   RETURN_FALSE_IF_ERROR(*error);
@@ -66,8 +57,6 @@ BOOL loadStartupDataIntoContext(NSManagedObjectContext *moc, NSError **error)
   _deleteAllObjectsForEntity(moc, @"Yeast", error);
   _loadStartupEntity(moc, startupContext, @"Yeast", error);
   RETURN_FALSE_IF_ERROR(*error);
-
-  NSLog(@"Data load time: %f", [[NSDate date] timeIntervalSinceDate:start]);
 
   return YES;
 }

@@ -16,7 +16,21 @@
 #import "OBYeastAddition.h"
 #import "OBCoreData.h"
 
+NSManagedObjectContext *g_startupContext = nil;
+
 @implementation OBBaseTestCase
+
++ (void)load
+{
+  NSError *error = nil;
+  NSURL *startUpDbURL = [[NSBundle mainBundle] URLForResource:@"OpenBrewStartupData.sqlite"
+                                                withExtension:@""];
+
+  g_startupContext = createManagedObjectContext(startUpDbURL, &error);
+  NSCAssert(!error, @"An error occurred loading the startup DB: %@", error);
+
+  g_startupContext.undoManager = nil;
+}
 
 - (void)setUp {
   [super setUp];
@@ -38,7 +52,7 @@
   self.brewery = [OBBrewery breweryFromContext:self.ctx];
 
   NSError *error = nil;
-  loadStartupDataIntoContext(self.ctx, &error);
+  loadStartupDataIntoContext(self.ctx, g_startupContext, &error);
   XCTAssertNil(error);
 
   XCTAssertEqual(0, [self fetchAllEntity:@"Recipe"].count);
