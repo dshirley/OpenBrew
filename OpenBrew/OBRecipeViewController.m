@@ -22,7 +22,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
 @interface OBRecipeViewController ()
 
-@property (nonatomic, strong) UIView *placeholderText;
+@property (nonatomic) UIView *placeholderText;
 
 // Variables for tracking first interaction time with Google Analytics
 @property (nonatomic, assign) CFAbsoluteTime loadTime;

@@ -13,7 +13,7 @@
 @class OBRecipe;
 
 @interface OBBatchSizeViewController : GAITrackedViewController <OBBrewController>
-@property (nonatomic, strong) OBRecipe *recipe;
+@property (nonatomic) OBRecipe *recipe;
 @property (nonatomic) IBOutlet UITableView *tableView;
 
 - (void)viewDidLoad;

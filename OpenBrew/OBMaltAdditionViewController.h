@@ -14,13 +14,13 @@
 
 @interface OBMaltAdditionViewController : GAITrackedViewController <OBBrewController>
 
-@property (nonatomic, strong) OBRecipe *recipe;
-@property (nonatomic, strong) OBBrewery *brewery;
+@property (nonatomic) OBRecipe *recipe;
+@property (nonatomic) OBBrewery *brewery;
 
 @property (nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) OBTableViewPlaceholderLabel *placeholderText;
+@property (nonatomic) OBTableViewPlaceholderLabel *placeholderText;
 @property (nonatomic) IBOutlet OBIngredientGauge *gauge;
-@property (nonatomic, strong) OBMaltAdditionTableViewDelegate *tableViewDelegate;
+@property (nonatomic) OBMaltAdditionTableViewDelegate *tableViewDelegate;
 
 @property (nonatomic) IBOutlet UIBarButtonItem *infoButton;
 

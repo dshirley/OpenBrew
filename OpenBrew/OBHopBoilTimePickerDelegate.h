@@ -12,7 +12,7 @@
 @class OBHopAddition;
 
 @interface OBHopBoilTimePickerDelegate : NSObject <OBPickerDelegate>
-@property (nonatomic, strong) OBHopAddition *hopAddition;
+@property (nonatomic) OBHopAddition *hopAddition;
 
 - (id)initWithHopAddition:(OBHopAddition *)hopAddition;
 

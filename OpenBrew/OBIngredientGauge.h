@@ -19,7 +19,7 @@
 
 @interface OBIngredientGauge : UIView
 
-@property (nonatomic, strong) OBRecipe *recipe;
+@property (nonatomic) OBRecipe *recipe;
 @property (nonatomic, assign) OBGaugeMetric metricToDisplay;
 
 - (id)initWithFrame:(CGRect)frame;

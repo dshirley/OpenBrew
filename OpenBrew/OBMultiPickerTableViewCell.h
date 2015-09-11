@@ -15,6 +15,6 @@
 // the SegmentedControl is rotated.
 @interface OBMultiPickerTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) IBOutlet OBMultiPickerView *multiPickerView;
+@property (nonatomic) IBOutlet OBMultiPickerView *multiPickerView;
 
 @end

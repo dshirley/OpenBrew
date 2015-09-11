@@ -13,7 +13,7 @@
 @protocol OBPickerObserver;
 
 @interface OBAlphaAcidPickerDelegate : NSObject <OBPickerDelegate>
-@property (nonatomic, strong) OBHopAddition *hopAddition;
+@property (nonatomic) OBHopAddition *hopAddition;
 
 - (id)initWithHopAddition:(OBHopAddition *)hopAddition;
 

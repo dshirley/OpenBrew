@@ -13,8 +13,8 @@
 @interface OBHopAdditionTableViewDelegate : OBDrawerTableViewDelegate <OBMultiPickerViewDelegate>
 
 @property (nonatomic, assign) OBHopAdditionMetric hopAdditionMetricToDisplay;
-@property (nonatomic, strong) OBRecipe *recipe;
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic) OBRecipe *recipe;
+@property (nonatomic) UITableView *tableView;
 @property (nonatomic, assign) NSInteger selectedPickerIndex;
 
 - (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView andGACategory:(NSString *)gaCategory;

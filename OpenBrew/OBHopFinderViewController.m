@@ -20,7 +20,7 @@ static NSString* const OBGAScreenName = @"Hop Finder Screen";
 
 @interface OBHopFinderViewController ()
 
-@property (nonatomic, strong) OBIngredientTableViewDataSource *tableViewDataSource;
+@property (nonatomic) OBIngredientTableViewDataSource *tableViewDataSource;
 
 // This allows Google Analytics to track the amount of time taken to find an ingredient
 @property (nonatomic, assign) CFAbsoluteTime startTime;

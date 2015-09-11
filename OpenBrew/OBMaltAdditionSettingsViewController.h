@@ -13,7 +13,7 @@
 
 @interface OBMaltAdditionSettingsViewController : OBBaseSettingsViewController
 
-@property (nonatomic, strong) OBBrewery *brewery;
+@property (nonatomic) OBBrewery *brewery;
 
 @property (nonatomic, readonly) OBSegmentedController *gaugeDisplaySettingController;
 @property (nonatomic, readonly) OBSegmentedController *ingredientDisplaySettingController;

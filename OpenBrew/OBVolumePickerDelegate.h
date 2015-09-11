@@ -23,7 +23,7 @@
 
 @interface OBVolumePickerDelegate : NSObject <OBPickerDelegate>
 
-@property (nonatomic, strong) OBRecipe *recipe;
+@property (nonatomic) OBRecipe *recipe;
 
 - (id)initWithRecipe:(OBRecipe *)recipe
   recipePropertyName:(NSString *)propertyName;

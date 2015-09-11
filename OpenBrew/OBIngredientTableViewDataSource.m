@@ -20,8 +20,8 @@
 
 @interface OBIngredientTableViewDataSource()
 
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) NSString *entityName;
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic) NSString *entityName;
 @property (nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end

@@ -21,12 +21,12 @@
 @interface OBMultiPickerView()
 
 // The segmented control allows switching between different pickers
-@property (nonatomic, strong) UISegmentedControl* segmentedControl;
+@property (nonatomic) UISegmentedControl* segmentedControl;
 
-@property (nonatomic, strong) UIPickerView *picker;
+@property (nonatomic) UIPickerView *picker;
 
 // There's a delegate for each segment in the segmentedControl
-@property (nonatomic, strong) NSMutableArray *pickerDelegates;
+@property (nonatomic) NSMutableArray *pickerDelegates;
 
 @end
 

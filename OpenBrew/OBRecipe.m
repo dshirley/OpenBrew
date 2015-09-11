@@ -28,9 +28,9 @@ NSString * const calculatedKVOKeys[] = {
 #define NUM_CALCULATED_KVO_KEYS (sizeof(calculatedKVOKeys) / sizeof(NSString *))
 
 @interface OBRecipe()
-@property (nonatomic, strong) NSSet *observedHopVariables;
-@property (nonatomic, strong) NSSet *observedMaltVariables;
-@property (nonatomic, strong) NSSet *observedRecipeVariables;
+@property (nonatomic) NSSet *observedHopVariables;
+@property (nonatomic) NSSet *observedMaltVariables;
+@property (nonatomic) NSSet *observedRecipeVariables;
 @end
 
 @interface OBRecipe(PrimitiveAccessors)

@@ -13,7 +13,7 @@
 @protocol OBPickerObserver;
 
 @interface OBMaltQuantityPickerDelegate : NSObject <OBPickerDelegate>
-@property (nonatomic, strong) OBMaltAddition *maltAddition;
+@property (nonatomic) OBMaltAddition *maltAddition;
 
 - (id)initWithMaltAddition:(OBMaltAddition *)maltAddition;
 

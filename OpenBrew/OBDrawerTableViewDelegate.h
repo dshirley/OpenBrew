@@ -14,11 +14,11 @@
 
 @interface OBDrawerTableViewDelegate : NSObject <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSIndexPath *drawerIndexPath;
+@property (nonatomic) NSIndexPath *drawerIndexPath;
 
 // This is used for tracking delete and move events & potentially more if subclasses
 // do something with it.
-@property (nonatomic, strong) NSString *gaCategory;
+@property (nonatomic) NSString *gaCategory;
 
 - (id)initWithGACategory:(NSString *)gaCategory;
 

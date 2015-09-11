@@ -12,7 +12,7 @@
 
 @interface OBRecipeOverviewController : GAITrackedViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic, strong) OBRecipe *recipe;
+@property (nonatomic) OBRecipe *recipe;
 
 // Subviews are made visible for the purpose of unit testing
 @property (nonatomic) IBOutlet UITableView *tableView;
