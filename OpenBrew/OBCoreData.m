@@ -9,6 +9,8 @@
 #import "OBCoreData.h"
 #import "OBHops.h"
 
+BOOL _deleteAllObjectsForEntity(NSManagedObjectContext *context, NSString *entityName, NSError **error);
+
 BOOL _loadStartupEntity(NSManagedObjectContext *mainMoc,
                        NSManagedObjectContext *startupMoc,
                        NSString *entityName,
@@ -33,6 +35,7 @@ NSManagedObjectContext *createManagedObjectContext(NSURL *storeUrl, NSError **er
   }
 
   moc.persistentStoreCoordinator = coordinator;
+  moc.undoManager = nil;
 
   return moc;
 }
@@ -52,16 +55,35 @@ BOOL loadStartupDataIntoContext(NSManagedObjectContext *moc, NSError **error)
   startupContext.undoManager = nil;
   RETURN_FALSE_IF_ERROR(*error);
 
+  _deleteAllObjectsForEntity(moc, @"Hops", error);
   _loadStartupEntity(moc, startupContext, @"Hops", error);
   RETURN_FALSE_IF_ERROR(*error);
 
+  _deleteAllObjectsForEntity(moc, @"Malt", error);
   _loadStartupEntity(moc, startupContext, @"Malt", error);
   RETURN_FALSE_IF_ERROR(*error);
 
+  _deleteAllObjectsForEntity(moc, @"Yeast", error);
   _loadStartupEntity(moc, startupContext, @"Yeast", error);
   RETURN_FALSE_IF_ERROR(*error);
 
   NSLog(@"Data load time: %f", [[NSDate date] timeIntervalSinceDate:start]);
+
+  return YES;
+}
+
+BOOL _deleteAllObjectsForEntity(NSManagedObjectContext *context, NSString *entityName, NSError **error)
+{
+  NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
+  request.includesPropertyValues = NO;
+  request.includesSubentities = NO;
+
+  NSArray *objects = [context executeFetchRequest:request error:error];
+  RETURN_FALSE_IF_ERROR(*error);
+
+  for (NSManagedObject *object in objects) {
+    [context deleteObject:object];
+  }
 
   return YES;
 }
@@ -72,14 +94,7 @@ BOOL _loadStartupEntity(NSManagedObjectContext *mainMoc,
                        NSError **error)
 {
   NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
-  request.includesPropertyValues = NO;
-
-  NSArray *mainDbEntities = [mainMoc executeFetchRequest:request error:error];
-  RETURN_FALSE_IF_ERROR(*error);
-
-  for (NSManagedObject *object in mainDbEntities) {
-    [mainMoc deleteObject:object];
-  }
+  request.includesSubentities = NO;
 
   NSArray *startupEntities = [startupMoc executeFetchRequest:request error:error];
   RETURN_FALSE_IF_ERROR(*error);
