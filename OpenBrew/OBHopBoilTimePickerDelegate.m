@@ -14,7 +14,7 @@
 #define MAX_BOIL_TIME 91
 
 @interface OBHopBoilTimePickerDelegate()
-@property (nonatomic, retain) NSArray *referenceBoilTimes;
+@property (nonatomic) NSArray *referenceBoilTimes;
 @end
 
 @implementation OBHopBoilTimePickerDelegate

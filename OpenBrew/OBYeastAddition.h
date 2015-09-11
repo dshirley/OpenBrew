@@ -14,8 +14,8 @@
 
 @interface OBYeastAddition : OBYeast
 
-@property (nonatomic, retain) NSNumber * quantity;
-@property (nonatomic, retain) OBRecipe *recipe;
+@property (nonatomic) NSNumber *quantity;
+@property (nonatomic) OBRecipe *recipe;
 
 - (id)initWithYeast:(OBYeast *)yeast andRecipe:(OBRecipe *)recipe;
 

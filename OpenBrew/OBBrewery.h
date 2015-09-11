@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 OpenBrew. All rights reserved.
 //
 //  TODO: Change the name of this class to "OBSettings"
-//  TODO: Make all retain properties "strong"
 //  TODO: replace NSAsserts with CR_LOG_ERRORS
 
 #import <Foundation/Foundation.h>

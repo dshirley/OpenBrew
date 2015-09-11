@@ -13,17 +13,17 @@
 
 @interface OBRecipe : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) OBYeastAddition *yeast;
+@property (nonatomic) NSString *name;
+@property (nonatomic) OBYeastAddition *yeast;
 
-@property (nonatomic, retain) NSNumber *postBoilVolumeInGallons;
-@property (nonatomic, retain) NSNumber *preBoilVolumeInGallons;
+@property (nonatomic) NSNumber *postBoilVolumeInGallons;
+@property (nonatomic) NSNumber *preBoilVolumeInGallons;
 
-@property (nonatomic, retain) OBBrewery *brewery;
-@property (nonatomic, retain) NSSet *hopAdditions;
-@property (nonatomic, retain) NSSet *maltAdditions;
+@property (nonatomic) OBBrewery *brewery;
+@property (nonatomic) NSSet *hopAdditions;
+@property (nonatomic) NSSet *maltAdditions;
 
-@property (nonatomic, retain) NSNumber *efficiency;
+@property (nonatomic) NSNumber *efficiency;
 
 - (id)initWithContext:(NSManagedObjectContext *)context;
 
