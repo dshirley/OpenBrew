@@ -19,7 +19,7 @@ static NSString *const INGREDIENT_ADDITION_CELL = @"IngredientAddition";
 static NSString *const DRAWER_CELL = @"DrawerCell";
 
 @interface OBDrawerTableViewDelegate ()
-@property (assign) NSInteger drawerCellRowHeight;
+@property (nonatomic, assign) NSInteger drawerCellRowHeight;
 @end
 
 @implementation OBDrawerTableViewDelegate
