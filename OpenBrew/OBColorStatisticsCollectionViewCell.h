@@ -10,6 +10,6 @@
 #import "OBColorView.h"
 
 @interface OBColorStatisticsCollectionViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet OBColorView *colorView;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (nonatomic) IBOutlet OBColorView *colorView;
+@property (nonatomic) IBOutlet UILabel *descriptionLabel;
 @end

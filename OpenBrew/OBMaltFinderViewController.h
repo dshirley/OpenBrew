@@ -13,8 +13,8 @@
 @interface OBMaltFinderViewController : GAITrackedViewController
 
 @property (nonatomic, strong) OBRecipe *recipe;
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl;
+@property (nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 - (void)viewDidLoad;
 

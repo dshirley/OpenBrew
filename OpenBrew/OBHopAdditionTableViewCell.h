@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface OBHopAdditionTableViewCell : UITableViewCell
-@property (nonatomic, weak) IBOutlet UILabel *hopVariety;
-@property (nonatomic, weak) IBOutlet UILabel *alphaAcid;
-@property (nonatomic, weak) IBOutlet UILabel *primaryMetric;
-@property (nonatomic, weak) IBOutlet UILabel *boilTime;
-@property (nonatomic, weak) IBOutlet UILabel *boilUnits;
+@property (nonatomic) IBOutlet UILabel *hopVariety;
+@property (nonatomic) IBOutlet UILabel *alphaAcid;
+@property (nonatomic) IBOutlet UILabel *primaryMetric;
+@property (nonatomic) IBOutlet UILabel *boilTime;
+@property (nonatomic) IBOutlet UILabel *boilUnits;
 @end

@@ -13,7 +13,7 @@
 @interface OBHopFinderViewController : GAITrackedViewController
 
 @property (nonatomic, strong) OBRecipe *recipe;
-@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic) IBOutlet UITableView *tableView;
 
 - (void)viewDidLoad;
 

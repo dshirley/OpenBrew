@@ -12,7 +12,7 @@
 #import "GAIDictionaryBuilder.h"
 
 @interface OBSegmentedController()
-@property (nonatomic, weak) UISegmentedControl *segmentedControl;
+@property (nonatomic) UISegmentedControl *segmentedControl;
 @property (nonatomic) NSMutableArray *segmentActions;
 @property (nonatomic) NSString *googleAnalyticsAction;
 @end

@@ -16,9 +16,9 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
 
 @interface OBHopAdditionSettingsViewController ()
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *gaugeDisplaySettingSegmentedControl;
+@property (nonatomic) IBOutlet UISegmentedControl *gaugeDisplaySettingSegmentedControl;
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
+@property (nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
 
 @property (nonatomic) OBSegmentedController *gaugeDisplaySettingController;
 @property (nonatomic) OBSegmentedController *ingredientDisplaySettingController;

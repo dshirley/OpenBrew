@@ -15,9 +15,9 @@
 @property (nonatomic, strong) OBRecipe *recipe;
 
 // Subviews are made visible for the purpose of unit testing
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, weak) IBOutlet UITextField *recipeNameTextField;
+@property (nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic) IBOutlet UITextField *recipeNameTextField;
 
 // We log tabs to google analytics when the user taps on the collection view cell
 // The idea is that it will give us feedback on whether or not the user things

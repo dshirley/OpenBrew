@@ -19,9 +19,9 @@
 #define DESCRIPTION_HEIGHT 20
 
 @interface OBIngredientGauge()
-@property (weak, nonatomic) IBOutlet UILabel *valueLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (weak, nonatomic) IBOutlet OBColorView *colorView;
+@property (nonatomic) IBOutlet UILabel *valueLabel;
+@property (nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (nonatomic) IBOutlet OBColorView *colorView;
 @end
 
 

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface OBMaltAdditionTableViewCell : UITableViewCell
-@property (nonatomic, weak) IBOutlet UILabel *maltVariety;
-@property (nonatomic, weak) IBOutlet UILabel *primaryMetric;
-@property (nonatomic, weak) IBOutlet UILabel *color;
+@property (nonatomic) IBOutlet UILabel *maltVariety;
+@property (nonatomic) IBOutlet UILabel *primaryMetric;
+@property (nonatomic) IBOutlet UILabel *color;
 @end

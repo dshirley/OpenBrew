@@ -10,9 +10,9 @@
 
 @interface OBBaseSettingsViewController : GAITrackedViewController
 
-@property (nonatomic, weak) IBOutlet UINavigationBar *navigationBar;
-@property (nonatomic, weak) IBOutlet UIView *settingsView;
-@property (weak, nonatomic) IBOutlet UIView *greyoutView;
-@property (nonatomic, weak) IBOutlet UIButton *greyoutButton;
+@property (nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (nonatomic) IBOutlet UIView *settingsView;
+@property (nonatomic) IBOutlet UIView *greyoutView;
+@property (nonatomic) IBOutlet UIButton *greyoutButton;
 
 @end

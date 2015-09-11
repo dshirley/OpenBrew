@@ -16,9 +16,9 @@ static NSString* const OBGAScreenName = @"Malt Addition Settings";
 
 @interface OBMaltAdditionSettingsViewController ()
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *gaugeDisplaySettingSegmentedControl;
+@property (nonatomic) IBOutlet UISegmentedControl *gaugeDisplaySettingSegmentedControl;
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
+@property (nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
 
 @property (nonatomic) OBSegmentedController *gaugeDisplaySettingController;
 @property (nonatomic) OBSegmentedController *ingredientDisplaySettingController;

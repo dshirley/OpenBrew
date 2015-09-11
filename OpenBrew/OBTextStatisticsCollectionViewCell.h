@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface OBTextStatisticsCollectionViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UILabel *statisticLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (nonatomic) IBOutlet UILabel *statisticLabel;
+@property (nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @end

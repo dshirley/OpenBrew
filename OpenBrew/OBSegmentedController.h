@@ -14,7 +14,7 @@ typedef void(^OBSegmentSelectedAction)(void);
 
 @interface OBSegmentedController : NSObject
 
-@property (nonatomic, readonly, weak) UISegmentedControl *segmentedControl;
+@property (nonatomic, readonly) UISegmentedControl *segmentedControl;
 
 - (id)initWithSegmentedControl:(UISegmentedControl *)segmentedControl
          googleAnalyticsAction:(NSString *)action;
