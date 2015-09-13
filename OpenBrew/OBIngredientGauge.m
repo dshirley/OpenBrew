@@ -8,6 +8,7 @@
 
 #import "OBIngredientGauge.h"
 #import "OBColorView.h"
+#import "Crittercism+NSErrorLogging.h"
 
 // FIXME: decide if the view should be importing recipe
 #import "OBRecipe.h"
@@ -95,7 +96,9 @@
       description = [NSString stringWithFormat:@"%ld SRM", (long)srm];
       break;
     default:
-      NSAssert(YES, @"Bad recipe metric: %ld", (long)self.metricToDisplay);
+      CRITTERCISM_LOG_ERROR([NSError errorWithDomain:@"OBIngredientGauge"
+                                                code:1002
+                                            userInfo:@{ @"metric" : @(self.metricToDisplay) }]);
   }
 
   self.valueLabel.text = value;

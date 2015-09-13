@@ -37,7 +37,14 @@
 
   OBBrewery *brewery = nil;
   if (!error && array && array.count > 0) {
-    NSAssert(array.count == 1, @"Multiple breweries found: %d", (int)array.count);
+    if (array.count > 1) {
+      NSError *error = [NSError errorWithDomain:@"OBBrewery"
+                                           code:1000
+                                       userInfo:@{ @"count" : @(array.count)}];
+
+      CRITTERCISM_LOG_ERROR(error);
+    }
+
     brewery = array[0];
   } else {
     brewery = [NSEntityDescription insertNewObjectForEntityForName:@"Brewery"

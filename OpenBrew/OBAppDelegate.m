@@ -60,7 +60,8 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
 
   UINavigationController *nav = (UINavigationController *)[[self window] rootViewController];
   OBRecipeViewController *recipeVc = (OBRecipeViewController *)nav.topViewController;
-  NSAssert(recipeVc.class == OBRecipeViewController.class, @"Unexpected view controller: %@", recipeVc.class);
+  NSAssert(recipeVc.class == OBRecipeViewController.class,
+           @"Unexpected view controller: %@", recipeVc.class);
 
   recipeVc.moc = self.managedObjectContext;
   

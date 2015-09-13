@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 OpenBrew. All rights reserved.
 //
 //  TODO: Change the name of this class to "OBSettings"
-//  TODO: replace NSAsserts with CR_LOG_ERRORS
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
@@ -18,7 +17,7 @@ typedef NS_ENUM(NSInteger, OBGaugeMetric) {
   OBMetricAbv,
   OBMetricColor,
   OBMetricIbu,
-  OBMetricBuToGuRatio, // TODO: rename to BuToGravity (find all other places, too)
+  OBMetricBuToGuRatio,
 };
 
 typedef NS_ENUM(NSInteger, OBMaltAdditionMetric) {

@@ -35,7 +35,8 @@
   }];
 
   [Crittercism logHandledException:ex];
-  abort();
+
+  NSCAssert(NO, @"error: %@", error);
 }
 
 @end

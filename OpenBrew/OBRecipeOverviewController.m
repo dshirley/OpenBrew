@@ -187,7 +187,10 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
       }
       break;
     default:
-      NSAssert(YES, @"Invalid row: %@", @(indexPath.row));
+      CRITTERCISM_LOG_ERROR([NSError errorWithDomain:@"OBRecipeOverviewController"
+                                                code:1002
+                                            userInfo:(@{@"row" : @(indexPath.row),
+                                                        @"section" : @(indexPath.section)}) ]);
   }
 
   return cell;
@@ -226,7 +229,10 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
       [self performSegueWithIdentifier:@"selectedYeast" sender:self];
       break;
     default:
-      NSAssert(YES, @"Invalid row when cell was selected: %ld", (long)indexPath.row);
+      CRITTERCISM_LOG_ERROR([NSError errorWithDomain:@"OBRecipeOverviewController"
+                                                code:1000
+                                            userInfo:(@{ @"row" : @(indexPath.row),
+                                                         @"section" : @(indexPath.section)})]);
   }
 }
 
@@ -304,7 +310,9 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
       description = @"BU:GU";
       break;
     default:
-      NSAssert(YES, @"Bad index: %ld", (long)cellType);
+      CRITTERCISM_LOG_ERROR([NSError errorWithDomain:@"OBRecipeOverviewController"
+                                                code:1000
+                                            userInfo:@{@"cellType" : @(cellType)}]);
   }
 
   statsCell.statisticLabel.text = value;
@@ -332,9 +340,13 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
     id cell = [collectionView cellForItemAtIndexPath:indexPath];
     NSString *gaCellDescription = @"unknown";
 
-    NSAssert([cell respondsToSelector:@selector(descriptionLabel)], @"All cells should have a description label");
     if ([cell respondsToSelector:@selector(descriptionLabel)]) {
       gaCellDescription = [[cell descriptionLabel] text];
+    } else {
+      CRITTERCISM_LOG_ERROR([NSError
+                             errorWithDomain:@"OBRecipeOverviewController"
+                             code:1003
+                             userInfo:(@{ @"cellClass" : NSStringFromClass([cell class])})]);
     }
 
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
