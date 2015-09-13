@@ -47,9 +47,6 @@
 }
 
 - (NSString *)quantityText {
-  // TODO: this impacts UI formatting, which mixes up the model and the view
-  // consider putting this somewhere else
-
   double pounds = trunc([self.quantityInPounds doubleValue]);
   double ounces = ([self.quantityInPounds doubleValue] - pounds) * 16;
 

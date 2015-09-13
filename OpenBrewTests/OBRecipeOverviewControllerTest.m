@@ -298,8 +298,6 @@
   statsCell = (id)[self.vc collectionView:self.vc.collectionView cellForItemAtIndexPath:self.r5s0];
   XCTAssertEqualObjects(@"0.29", statsCell.statisticLabel.text);
   XCTAssertEqualObjects(@"BU:GU", statsCell.descriptionLabel.text);
-
-  // TODO: add color test
 }
 
 - (void)testTableViewHeightForRowAtIndexPath
@@ -328,22 +326,20 @@
 
   id vcMock = [OCMockObject partialMockForObject:self.vc];
 
-  // TODO: uncomment this when this bug is fixed in OCMock (I filed it)
-  // Alternatively delete it if the bug never gets fixed
   // https://github.com/erikdoe/ocmock/issues/214
-//  id viewMock = [OCMockObject partialMockForObject:self.vc.view];
+  id viewMock = [OCMockObject partialMockForObject:self.vc.view];
 
   @try {
     [[vcMock expect] performSegueWithIdentifier:segueId sender:self.vc];
-//    [[viewMock expect] endEditing:OCMOCK_VALUE(YES)];
+    [[viewMock expect] endEditing:YES];
 
     [self.vc tableView:self.vc.tableView didSelectRowAtIndexPath:indexPath];
 
     [vcMock verify];
-//    [viewMock verify];
+    [viewMock verify];
   } @finally {
     [vcMock stopMocking];
-//    [viewMock stopMocking];
+    [viewMock stopMocking];
   }
 }
 

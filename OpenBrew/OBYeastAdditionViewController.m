@@ -129,7 +129,15 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
   if (selectedYeasts.count == 1) {
     return selectedYeasts[0];
   } else if (selectedYeasts.count > 1) {
-    // TODO: log an error
+    NSString *list = nil;
+    for (OBYeast *yeast in selectedYeasts) {
+      list = [NSString stringWithFormat:@"%@ %@", list, yeast.name];
+    }
+
+    CRITTERCISM_LOG_ERROR([NSError errorWithDomain:@"OBYeastAdditionViewController"
+                                              code:1000
+                                          userInfo:(@{ @"yeasts" : list})]);
+
     return selectedYeasts[0];
   }
 
