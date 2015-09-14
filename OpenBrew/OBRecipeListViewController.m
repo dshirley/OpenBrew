@@ -7,7 +7,7 @@
 //
 
 #import "OBRecipeListViewController.h"
-#import "OBRecipeOverviewController.h"
+#import "OBRecipeViewController.h"
 #import "OBSettings.h"
 #import "Crittercism+NSErrorLogging.h"
 #import "OBTableViewPlaceholderLabel.h"

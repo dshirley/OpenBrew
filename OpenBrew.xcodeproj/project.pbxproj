@@ -114,7 +114,7 @@
 		9FF68676189327B000B36486 /* OBMaltAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF68675189327B000B36486 /* OBMaltAdditionViewController.m */; };
 		9FF686C21893E45F00B36486 /* OBRecipeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF686C11893E45F00B36486 /* OBRecipeListViewController.m */; };
 		9FF686C61893F00B00B36486 /* OBSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF686C51893F00B00B36486 /* OBSettings.m */; };
-		9FF686C91894099A00B36486 /* OBRecipeOverviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF686C81894099A00B36486 /* OBRecipeOverviewController.m */; };
+		9FF686C91894099A00B36486 /* OBRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF686C81894099A00B36486 /* OBRecipeViewController.m */; };
 		9FF747EA1B93E4B400ECDFE9 /* OBBaseSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF747E91B93E4B400ECDFE9 /* OBBaseSettingsViewController.m */; };
 		9FFE13151B27EF6E00D3F76A /* OBVolumePickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE13141B27EF6E00D3F76A /* OBVolumePickerDelegate.m */; };
 		C7DEEBA650ECB85B24804E1A /* libPods-OpenBrewTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B433F71B785657C53037ACAD /* libPods-OpenBrewTests.a */; };
@@ -312,8 +312,8 @@
 		9FF686C11893E45F00B36486 /* OBRecipeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeListViewController.m; sourceTree = "<group>"; };
 		9FF686C41893F00B00B36486 /* OBSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSettings.h; sourceTree = "<group>"; };
 		9FF686C51893F00B00B36486 /* OBSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSettings.m; sourceTree = "<group>"; };
-		9FF686C71894099A00B36486 /* OBRecipeOverviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBRecipeOverviewController.h; sourceTree = "<group>"; };
-		9FF686C81894099A00B36486 /* OBRecipeOverviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeOverviewController.m; sourceTree = "<group>"; };
+		9FF686C71894099A00B36486 /* OBRecipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBRecipeViewController.h; sourceTree = "<group>"; };
+		9FF686C81894099A00B36486 /* OBRecipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeViewController.m; sourceTree = "<group>"; };
 		9FF747E81B93E4B400ECDFE9 /* OBBaseSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBaseSettingsViewController.h; sourceTree = "<group>"; };
 		9FF747E91B93E4B400ECDFE9 /* OBBaseSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBaseSettingsViewController.m; sourceTree = "<group>"; };
 		9FFE13131B27EF6E00D3F76A /* OBVolumePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBVolumePickerDelegate.h; sourceTree = "<group>"; };
@@ -682,8 +682,8 @@
 				9F3311661B34581C008C0029 /* OBBrewController.h */,
 				9F60CF2719B251D00076A600 /* OBIngredientTableViewDataSource.h */,
 				9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */,
-				9FF686C71894099A00B36486 /* OBRecipeOverviewController.h */,
-				9FF686C81894099A00B36486 /* OBRecipeOverviewController.m */,
+				9FF686C71894099A00B36486 /* OBRecipeViewController.h */,
+				9FF686C81894099A00B36486 /* OBRecipeViewController.m */,
 				9FF686C01893E45F00B36486 /* OBRecipeListViewController.h */,
 				9FF686C11893E45F00B36486 /* OBRecipeListViewController.m */,
 				9F40C4C01B6BC54E008334F6 /* OBSegmentedController.h */,
@@ -937,7 +937,7 @@
 				9FF686C61893F00B00B36486 /* OBSettings.m in Sources */,
 				9FE8643E198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m in Sources */,
 				9FD66387198218220056EEEC /* OBHopAdditionViewController.m in Sources */,
-				9FF686C91894099A00B36486 /* OBRecipeOverviewController.m in Sources */,
+				9FF686C91894099A00B36486 /* OBRecipeViewController.m in Sources */,
 				9F33116D1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m in Sources */,
 				9FC4796C1B70811C0053B996 /* OBSettingsUnwindSegue.m in Sources */,
 				9FF686C21893E45F00B36486 /* OBRecipeListViewController.m in Sources */,

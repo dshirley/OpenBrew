@@ -10,7 +10,7 @@
 #import <XCTest/XCTest.h>
 #import "OBBaseTestCase.h"
 #import "OBRecipeListViewController.h"
-#import "OBRecipeOverviewController.h"
+#import "OBRecipeViewController.h"
 #import <OCMock/OCMock.h>
 #import "OBAppDelegate.h"
 
@@ -141,7 +141,7 @@
 
 - (void)testPrepareForSegue_AddRecipe
 {
-  OBRecipeOverviewController *dest = [[OBRecipeOverviewController alloc] init];
+  OBRecipeViewController *dest = [[OBRecipeViewController alloc] init];
 
   UIStoryboardSegue *segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"addRecipe" source:self.vc destination:dest];
   
@@ -167,7 +167,7 @@
 {
   [self.vc loadView];
 
-  OBRecipeOverviewController *dest = [[OBRecipeOverviewController alloc] init];
+  OBRecipeViewController *dest = [[OBRecipeViewController alloc] init];
   UIStoryboardSegue *segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"selectRecipe" source:self.vc destination:dest];
   NSObject *dummySender = [[NSObject alloc] init];
 

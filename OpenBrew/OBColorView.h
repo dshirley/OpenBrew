@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 OpenBrew. All rights reserved.
 //
 //  This class represents the beer color swatch that is located in the
-//  OBRecipeOverviewController. It's purpose in life is to display a color.
+//  OBRecipeViewController. It's purpose in life is to display a color.
 
 #import <UIKit/UIKit.h>
 

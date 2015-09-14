@@ -1,12 +1,12 @@
 //
-//  OBRecipeOverviewController.m
+//  OBRecipeViewController.m
 //  OpenBrew
 //
 //  Created by David Shirley 2 on 1/26/14.
 //  Copyright (c) 2014 OpenBrew. All rights reserved.
 //
 
-#import "OBRecipeOverviewController.h"
+#import "OBRecipeViewController.h"
 #import "OBMaltAdditionViewController.h"
 #import "OBYeastAddition.h"
 #import "OBYeast.h"
@@ -25,9 +25,9 @@
 #import "Crittercism+NSErrorLogging.h"
 
 // Google Analytics event category
-static NSString* const OBGAScreenName = @"Recipe Overview Screen";
+static NSString* const OBGAScreenName = @"Recipe Screen";
 
-typedef NS_ENUM(NSInteger, OBRecipeOverviewCellType) {
+typedef NS_ENUM(NSInteger, OBRecipeViewCellType) {
   OBBatchSizeCell,
   OBMaltsCell,
   OBHopsCell,
@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   OBNumberOfStatistics
 };
 
-@implementation OBRecipeOverviewController
+@implementation OBRecipeViewController
 
 - (void)viewDidLoad
 {
@@ -162,7 +162,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell"];
-  OBRecipeOverviewCellType cellType = (OBRecipeOverviewCellType) indexPath.row;
+  OBRecipeViewCellType cellType = (OBRecipeViewCellType) indexPath.row;
   NSUInteger count = 0;
 
   switch (cellType) {
@@ -189,7 +189,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
       }
       break;
     default:
-      CRITTERCISM_LOG_ERROR([NSError errorWithDomain:@"OBRecipeOverviewController"
+      CRITTERCISM_LOG_ERROR([NSError errorWithDomain:@"OBRecipeViewController"
                                                 code:1002
                                             userInfo:(@{@"row" : @(indexPath.row),
                                                         @"section" : @(indexPath.section)}) ]);
@@ -210,7 +210,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  OBRecipeOverviewCellType cellType = (OBRecipeOverviewCellType) indexPath.row;
+  OBRecipeViewCellType cellType = (OBRecipeViewCellType) indexPath.row;
 
   [self dismissKeyboard];
 
@@ -231,7 +231,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
       [self performSegueWithIdentifier:@"selectedYeast" sender:self];
       break;
     default:
-      CRITTERCISM_LOG_ERROR([NSError errorWithDomain:@"OBRecipeOverviewController"
+      CRITTERCISM_LOG_ERROR([NSError errorWithDomain:@"OBRecipeViewController"
                                                 code:1000
                                             userInfo:(@{ @"row" : @(indexPath.row),
                                                          @"section" : @(indexPath.section)})]);
@@ -314,7 +314,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
       description = @"BU:GU";
       break;
     default:
-      CRITTERCISM_LOG_ERROR([NSError errorWithDomain:@"OBRecipeOverviewController"
+      CRITTERCISM_LOG_ERROR([NSError errorWithDomain:@"OBRecipeViewController"
                                                 code:1000
                                             userInfo:@{@"cellType" : @(cellType)}]);
   }
@@ -348,7 +348,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
       gaCellDescription = [[cell descriptionLabel] text];
     } else {
       CRITTERCISM_LOG_ERROR([NSError
-                             errorWithDomain:@"OBRecipeOverviewController"
+                             errorWithDomain:@"OBRecipeViewController"
                              code:1003
                              userInfo:(@{ @"cellClass" : NSStringFromClass([cell class])})]);
     }

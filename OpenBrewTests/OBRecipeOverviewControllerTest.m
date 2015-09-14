@@ -1,5 +1,5 @@
 //
-//  OBRecipeOverviewControllerTest.m
+//  OBRecipeViewControllerTest.m
 //  OpenBrew
 //
 //  Created by David Shirley 2 on 7/23/15.
@@ -8,25 +8,25 @@
 
 #import <XCTest/XCTest.h>
 #import "OBBaseTestCase.h"
-#import "OBRecipeOverviewController.h"
+#import "OBRecipeViewController.h"
 #import "OBTextStatisticsCollectionViewCell.h"
 #import "OBColorStatisticsCollectionViewCell.h"
 #import "OCMock.h"
 #import "OBBrewController.h"
 #import "GAI.h"
 
-@interface OBRecipeOverviewControllerTest : OBBaseTestCase
-@property (nonatomic) OBRecipeOverviewController *vc;
+@interface OBRecipeViewControllerTest : OBBaseTestCase
+@property (nonatomic) OBRecipeViewController *vc;
 
 @end
 
-@implementation OBRecipeOverviewControllerTest
+@implementation OBRecipeViewControllerTest
 
 - (void)setUp {
   [super setUp];
 
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-  self.vc = [storyboard instantiateViewControllerWithIdentifier:@"recipeOverview"];
+  self.vc = [storyboard instantiateViewControllerWithIdentifier:@"recipe scene"];
   self.vc.recipe = self.recipe;
   self.vc.settings = self.settings;
 
@@ -57,7 +57,7 @@
   [mockVc verify];
   [mockCtx verify];
 
-  XCTAssertEqualObjects(self.vc.screenName, @"Recipe Overview Screen");
+  XCTAssertEqualObjects(self.vc.screenName, @"Recipe Screen");
 }
 
 - (void)testViewWillAppearPushingNavigationStack
@@ -76,7 +76,7 @@
   XCTAssertThrows([mockVc verify]);
   XCTAssertThrows([mockCtx verify]);
 
-  XCTAssertEqualObjects(self.vc.screenName, @"Recipe Overview Screen");
+  XCTAssertEqualObjects(self.vc.screenName, @"Recipe Screen");
 }
 
 - (void)testTextFieldDidEndEditing

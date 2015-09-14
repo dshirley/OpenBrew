@@ -1,5 +1,5 @@
 //
-//  OBRecipeOverviewController.h
+//  OBRecipeViewController.h
 //  OpenBrew
 //
 //  Created by David Shirley 2 on 1/26/14.
@@ -11,7 +11,7 @@
 #import "OBBrewController.h"
 #import "GAITrackedViewController.h"
 
-@interface OBRecipeOverviewController : GAITrackedViewController <OBBrewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource>
+@interface OBRecipeViewController : GAITrackedViewController <OBBrewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic) OBRecipe *recipe;
 @property (nonatomic) OBSettings *settings;
