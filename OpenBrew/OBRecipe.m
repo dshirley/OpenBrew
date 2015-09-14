@@ -13,7 +13,7 @@
 #import "OBYeastAddition.h"
 #import "OBYeast.h"
 #import "OBKvoUtils.h"
-#import "OBSettings.h"
+#import "OBGlobalSettings.h"
 #import "OBMalt.h"
 
 NSString * const calculatedKVOKeys[] = {
@@ -63,8 +63,8 @@ NSString * const calculatedKVOKeys[] = {
   self = [self initWithEntity:desc insertIntoManagedObjectContext:context];
 
   if (self) {
-    self.preBoilVolumeInGallons = [OBSettings defaultPreBoilSize];
-    self.postBoilVolumeInGallons = [OBSettings defaultPostBoilSize];
+    self.preBoilVolumeInGallons = [OBGlobalSettings defaultPreBoilSize];
+    self.postBoilVolumeInGallons = [OBGlobalSettings defaultPostBoilSize];
     [self startObserving];
   }
 
@@ -113,7 +113,7 @@ NSString * const calculatedKVOKeys[] = {
 
   float recipeVolume = [self.postBoilVolumeInGallons floatValue];
   float boilGravity = [self boilGravity];
-  OBIbuFormula formula = [OBSettings ibuFormula];
+  OBIbuFormula formula = [OBGlobalSettings ibuFormula];
 
   return [hopAddition ibusForRecipeVolume:recipeVolume
                               boilGravity:boilGravity
@@ -156,7 +156,7 @@ NSString * const calculatedKVOKeys[] = {
   float ibus = 0.0;
   float wortVolumeAfterBoil = [self.postBoilVolumeInGallons floatValue];
   float boilGravity = [self boilGravity];
-  OBIbuFormula formula = [OBSettings ibuFormula];
+  OBIbuFormula formula = [OBGlobalSettings ibuFormula];
 
   for (OBHopAddition *hops in [self hopAdditions]) {
     ibus += [hops ibusForRecipeVolume:wortVolumeAfterBoil

@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 OpenBrew. All rights reserved.
 //
 
-#import "OBSettings.h"
+#import "OBGlobalSettings.h"
 
 static NSString *const OBIbuFormulaKey = @"OBSettingsIbuFormula";
 static NSString *const OBPreBoilSizeKey = @"OBSettingsPreBoilSize";
 static NSString *const OBPostBoilSizeKey = @"OBSettingsPostBoilSize";
 
-@implementation OBSettings
+@implementation OBGlobalSettings
 
 + (NSNumber *)defaultPreBoilSize;
 {

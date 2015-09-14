@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "OBHopAddition.h"
 
-@interface OBSettings : NSObject
+@interface OBGlobalSettings : NSObject
 
 + (NSNumber *)defaultPreBoilSize;
 

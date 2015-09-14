@@ -86,7 +86,7 @@
 		9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */; };
 		9FD66387198218220056EEEC /* OBHopAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD66386198218220056EEEC /* OBHopAdditionViewController.m */; };
 		9FE243461B45CD1B00D1EE25 /* OBRecipeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE243451B45CD1B00D1EE25 /* OBRecipeTest.m */; };
-		9FE2434C1B45F99900D1EE25 /* OBSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE2434B1B45F99900D1EE25 /* OBSettings.m */; };
+		9FE2434C1B45F99900D1EE25 /* OBGlobalSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE2434B1B45F99900D1EE25 /* OBGlobalSettings.m */; };
 		9FE2434E1B45FA7600D1EE25 /* OBSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE2434D1B45FA7600D1EE25 /* OBSettingsTest.m */; };
 		9FE243511B471D5800D1EE25 /* OBMultiPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE243501B471D5800D1EE25 /* OBMultiPickerView.m */; };
 		9FE279BF1B9926910057BEFE /* OpenBrew.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745A188975C700FFAA56 /* OpenBrew.xcdatamodeld */; };
@@ -94,7 +94,7 @@
 		9FE279C11B9927590057BEFE /* OBMalt.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8C118A0CFF700118D76 /* OBMalt.m */; };
 		9FE279C21B9927590057BEFE /* OBRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8C418A0D0D000118D76 /* OBRecipe.m */; };
 		9FE279C31B9927590057BEFE /* OBYeast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8D018A0D6CF00118D76 /* OBYeast.m */; };
-		9FE279C41B9929630057BEFE /* OBSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE2434B1B45F99900D1EE25 /* OBSettings.m */; };
+		9FE279C41B9929630057BEFE /* OBGlobalSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE2434B1B45F99900D1EE25 /* OBGlobalSettings.m */; };
 		9FE279D11B9935EE0057BEFE /* OBCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE279D01B9935EE0057BEFE /* OBCoreData.m */; };
 		9FE279D21B9935EE0057BEFE /* OBCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE279D01B9935EE0057BEFE /* OBCoreData.m */; };
 		9FE279EC1B9952B40057BEFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE279E91B9952B40057BEFE /* main.m */; };
@@ -280,8 +280,8 @@
 		9FD66385198218220056EEEC /* OBHopAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionViewController.h; sourceTree = "<group>"; };
 		9FD66386198218220056EEEC /* OBHopAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionViewController.m; sourceTree = "<group>"; };
 		9FE243451B45CD1B00D1EE25 /* OBRecipeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeTest.m; sourceTree = "<group>"; };
-		9FE2434A1B45F99900D1EE25 /* OBSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSettings.h; sourceTree = "<group>"; };
-		9FE2434B1B45F99900D1EE25 /* OBSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSettings.m; sourceTree = "<group>"; };
+		9FE2434A1B45F99900D1EE25 /* OBGlobalSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBGlobalSettings.h; sourceTree = "<group>"; };
+		9FE2434B1B45F99900D1EE25 /* OBGlobalSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBGlobalSettings.m; sourceTree = "<group>"; };
 		9FE2434D1B45FA7600D1EE25 /* OBSettingsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSettingsTest.m; sourceTree = "<group>"; };
 		9FE2434F1B471D5800D1EE25 /* OBMultiPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMultiPickerView.h; sourceTree = "<group>"; };
 		9FE243501B471D5800D1EE25 /* OBMultiPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerView.m; sourceTree = "<group>"; };
@@ -574,8 +574,8 @@
 				9F92E8BE18A0CED100118D76 /* OBMaltAddition.m */,
 				9F92E8C318A0D0D000118D76 /* OBRecipe.h */,
 				9F92E8C418A0D0D000118D76 /* OBRecipe.m */,
-				9FE2434A1B45F99900D1EE25 /* OBSettings.h */,
-				9FE2434B1B45F99900D1EE25 /* OBSettings.m */,
+				9FE2434A1B45F99900D1EE25 /* OBGlobalSettings.h */,
+				9FE2434B1B45F99900D1EE25 /* OBGlobalSettings.m */,
 				9FA388FF19B27A0B0009DB07 /* OBSrmColorTable.h */,
 				9FA3890019B27A0B0009DB07 /* OBSrmColorTable.m */,
 				9F92E8CF18A0D6CF00118D76 /* OBYeast.h */,
@@ -976,7 +976,7 @@
 				9F92E8D118A0D6CF00118D76 /* OBYeast.m in Sources */,
 				9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */,
 				9F92E8A918A0910200118D76 /* OBHopFinderViewController.m in Sources */,
-				9FE2434C1B45F99900D1EE25 /* OBSettings.m in Sources */,
+				9FE2434C1B45F99900D1EE25 /* OBGlobalSettings.m in Sources */,
 				9F92E8E118A4536200118D76 /* OBIngredientGauge.m in Sources */,
 				9F0815441996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m in Sources */,
 				9F92E8BF18A0CED100118D76 /* OBMaltAddition.m in Sources */,
@@ -1037,7 +1037,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F7EFEF71BA6B8E500B71D64 /* OBBrewery.m in Sources */,
-				9FE279C41B9929630057BEFE /* OBSettings.m in Sources */,
+				9FE279C41B9929630057BEFE /* OBGlobalSettings.m in Sources */,
 				9FE279C01B9927590057BEFE /* OBHops.m in Sources */,
 				9FE279C11B9927590057BEFE /* OBMalt.m in Sources */,
 				9FE279D21B9935EE0057BEFE /* OBCoreData.m in Sources */,
