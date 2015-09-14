@@ -29,7 +29,7 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 {
   [super viewDidLoad];
 
-  self.settings = [OBSettings settingsForContext:self.recipe.managedObjectContext];
+  NSAssert(self.settings, @"Settings were nil");
 
   self.tableViewDelegate = [[OBHopAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
                                                                      andTableView:self.tableView

@@ -85,6 +85,7 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   id<OBBrewController> brewController = segue.destinationViewController;
   [brewController setRecipe:self.recipe];
+  [brewController setSettings:self.settings];
 }
 
 - (void)reloadData {

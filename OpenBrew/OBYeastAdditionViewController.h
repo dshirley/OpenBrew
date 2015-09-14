@@ -15,6 +15,8 @@
 @interface OBYeastAdditionViewController : GAITrackedViewController <OBBrewController>
 
 @property (nonatomic) OBRecipe *recipe;
+@property (nonatomic) OBSettings *settings;
+
 @property (nonatomic) IBOutlet OBIngredientGauge *gauge;
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) IBOutlet UISegmentedControl *segmentedControl;

@@ -29,7 +29,7 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
 {
   [super viewDidLoad];
 
-  self.settings = [OBSettings settingsForContext:self.recipe.managedObjectContext];
+  NSAssert(self.settings, @"Settings were nil");
 
   self.tableViewDelegate = [[OBMaltAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
                                                                       andTableView:self.tableView

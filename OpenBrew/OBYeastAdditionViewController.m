@@ -24,8 +24,6 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
 
 @interface OBYeastAdditionViewController ()
 
-@property (nonatomic) OBSettings *settings;
-
 @property (nonatomic) OBSegmentedController *segmentedController;
 
 @property (nonatomic) NSFetchedResultsController *fetchedResults;
@@ -40,7 +38,7 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
 
   self.screenName = OBGAScreenName;
 
- self.settings = [OBSettings settingsForContext:self.recipe.managedObjectContext];
+  NSAssert(self.settings, @"Settings were nil");
 
   self.segmentedController = [[OBSegmentedController alloc] initWithSegmentedControl:self.segmentedControl
                                                                googleAnalyticsAction:@"Yeast Filter"];

@@ -49,7 +49,8 @@ NSManagedObjectContext *g_startupContext = nil;
   self.ctx = [[NSManagedObjectContext alloc] init];
   self.ctx.persistentStoreCoordinator = self.persistentStoreCoordinator;
 
-  self.settings = [OBSettings settingsForContext:self.ctx];
+  self.settings = [NSEntityDescription insertNewObjectForEntityForName:@"Settings"
+                                                inManagedObjectContext:self.ctx];
 
   NSError *error = nil;
   loadStartupDataIntoContext(self.ctx, g_startupContext, &error);

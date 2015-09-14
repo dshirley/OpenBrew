@@ -57,9 +57,3 @@ typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
 @property (nonatomic) NSNumber *selectedYeastManufacturer;
 
 @end
-
-@interface OBSettings (CoreDataGeneratedAccessors)
-
-+ (OBSettings *)settingsForContext:(NSManagedObjectContext *)ctx;
-
-@end

@@ -12,10 +12,12 @@
 
 #import <Foundation/Foundation.h>
 
-@class OBRecipe;
+@class OBRecipe, OBSettings;
 
 @protocol OBBrewController <NSObject>
 
 - (void)setRecipe:(OBRecipe *)recipe;
+
+- (void)setSettings:(OBSettings *)settings;
 
 @end

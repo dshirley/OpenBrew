@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "OBRecipe.h"
+#import "OBBrewController.h"
 #import "GAITrackedViewController.h"
 
-@interface OBRecipeOverviewController : GAITrackedViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource>
+@interface OBRecipeOverviewController : GAITrackedViewController <OBBrewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic) OBRecipe *recipe;
+@property (nonatomic) OBSettings *settings;
 
 // Subviews are made visible for the purpose of unit testing
 @property (nonatomic) IBOutlet UITableView *tableView;

@@ -14,6 +14,7 @@
 #import "OCMock.h"
 #import "OBBrewController.h"
 #import "GAI.h"
+#import "OBGlobalSettings.h"
 
 @interface OBRecipeOverviewControllerTest : OBBaseTestCase
 @property (nonatomic) OBRecipeOverviewController *vc;
@@ -28,6 +29,9 @@
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   self.vc = [storyboard instantiateViewControllerWithIdentifier:@"recipeOverview"];
   self.vc.recipe = self.recipe;
+  self.vc.settings = self.settings;
+
+  [OBGlobalSettings setIbuFormula:OBIbuFormulaTinseth];
 }
 
 - (void)tearDown {
@@ -123,6 +127,7 @@
 {
   id mockDestVc = [OCMockObject mockForProtocol:@protocol(OBBrewController)];
   [[mockDestVc expect] setRecipe:self.recipe];
+  [[mockDestVc expect] setSettings:self.settings];
 
   UIStoryboardSegue *segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"testid"
                                                                     source:self.vc

@@ -5,6 +5,7 @@
 //  Created by David Shirley 2 on 1/25/14.
 //  Copyright (c) 2014 OpenBrew. All rights reserved.
 //
+//  TODO: rename to recipe list view controller
 
 #import <UIKit/UIKit.h>
 #import "OBSettings.h"
@@ -12,6 +13,7 @@
 
 @interface OBRecipeViewController : GAITrackedViewController <UITableViewDataSource>
 
+@property (nonatomic) OBSettings *settings;
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) NSManagedObjectContext *moc;
 @property (nonatomic, readonly, assign) BOOL firstInteractionComplete;

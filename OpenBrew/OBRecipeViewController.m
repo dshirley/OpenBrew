@@ -89,6 +89,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   assert(recipe);
   id nextController = [segue destinationViewController];
   [nextController setRecipe:recipe];
+  [nextController setSettings:self.settings];
 }
 
 

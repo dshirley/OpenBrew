@@ -10,10 +10,11 @@
 #import "OBBrewController.h"
 #import "GAITrackedViewController.h"
 
-@class OBRecipe;
+@class OBRecipe, OBSettings;
 
 @interface OBBatchSizeViewController : GAITrackedViewController <OBBrewController>
 @property (nonatomic) OBRecipe *recipe;
+@property (nonatomic) OBSettings *settings;
 @property (nonatomic) IBOutlet UITableView *tableView;
 
 - (void)viewDidLoad;

@@ -28,6 +28,7 @@
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   self.vc = [storyboard instantiateViewControllerWithIdentifier:@"yeastAdditionView"];
   self.vc.recipe = self.recipe;
+  self.vc.settings = self.settings;
 }
 
 - (void)tearDown {

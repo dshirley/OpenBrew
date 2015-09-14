@@ -35,7 +35,7 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
     // TODO: This is a super bad error. Something should be displayed to the user
   }
 
-  OBSettings *settings = [OBSettings settingsForContext:self.managedObjectContext];
+  OBSettings *settings = [self settingsForContext:self.managedObjectContext];
   if (!settings) {
     [self.managedObjectContext reset];
   }
@@ -64,8 +64,39 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
            @"Unexpected view controller: %@", recipeVc.class);
 
   recipeVc.moc = self.managedObjectContext;
+  recipeVc.settings = settings;
   
   return YES;
+}
+
+- (OBSettings *)settingsForContext:(NSManagedObjectContext *)moc;
+{
+  NSEntityDescription *entityDescription = [NSEntityDescription
+                                            entityForName:@"Settings"
+                                            inManagedObjectContext:moc];
+  NSFetchRequest *request = [[NSFetchRequest alloc] init];
+  [request setEntity:entityDescription];
+
+  NSError *error = nil;
+  NSArray *array = [moc executeFetchRequest:request error:&error];
+
+  OBSettings *settings = nil;
+  if (!error && array && array.count > 0) {
+    if (array.count > 1) {
+      NSError *error = [NSError errorWithDomain:@"OBSettings"
+                                           code:1000
+                                       userInfo:@{ @"count" : @(array.count)}];
+
+      CRITTERCISM_LOG_ERROR(error);
+    }
+
+    settings = array[0];
+  } else {
+    settings = [NSEntityDescription insertNewObjectForEntityForName:@"Settings"
+                                             inManagedObjectContext:moc];
+  }
+
+  return settings;
 }
 
 - (void)initializeCrittercism
