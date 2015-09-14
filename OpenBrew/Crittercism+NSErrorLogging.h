@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 OpenBrew. All rights reserved.
 //
 
+#ifdef OPEN_BREW
+
 #import "Crittercism.h"
 
 // Macro makes it less copy/pastish by pushing in lines and file names
@@ -23,3 +25,10 @@ do { \
    andLineNumber:(int)lineNumber;
 
 @end
+
+#elif DATABASE_GENERATOR
+
+#define CRITTERCISM_LOG_ERROR(err) NSCAssert(!err, @"Error: %@", error)
+
+#endif
+

@@ -8,6 +8,7 @@
 
 #import "Crittercism+NSErrorLogging.h"
 
+#ifdef OPEN_BREW
 
 @implementation Crittercism (NSErrorLogging)
 
@@ -40,3 +41,5 @@
 }
 
 @end
+
+#endif
