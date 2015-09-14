@@ -31,7 +31,7 @@
   self.vc.recipe = self.recipe;
   self.vc.settings = self.settings;
 
-  [OBGlobalSettings setIbuFormula:OBIbuFormulaTinseth];
+  self.vc.settings.ibuFormula = @(OBIbuFormulaTinseth);
 }
 
 - (void)tearDown {
@@ -302,6 +302,16 @@
 
   statsCell = (id)[self.vc collectionView:self.vc.collectionView cellForItemAtIndexPath:self.r5s0];
   XCTAssertEqualObjects(@"0.29", statsCell.statisticLabel.text);
+  XCTAssertEqualObjects(@"BU:GU", statsCell.descriptionLabel.text);
+
+  self.settings.ibuFormula = @(OBIbuFormulaRager);
+
+  statsCell = (id)[self.vc collectionView:self.vc.collectionView cellForItemAtIndexPath:self.r4s0];
+  XCTAssertEqualObjects(@"18", statsCell.statisticLabel.text);
+  XCTAssertEqualObjects(@"IBU", statsCell.descriptionLabel.text);
+
+  statsCell = (id)[self.vc collectionView:self.vc.collectionView cellForItemAtIndexPath:self.r5s0];
+  XCTAssertEqualObjects(@"0.35", statsCell.statisticLabel.text);
   XCTAssertEqualObjects(@"BU:GU", statsCell.descriptionLabel.text);
 }
 

@@ -35,6 +35,7 @@
         <attribute name="defaultBatchSize" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="hopAdditionDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="hopGaugeDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="ibuFormula" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="1" defaultValueString="0" syncable="YES"/>
         <attribute name="maltAdditionDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="maltGaugeDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="mashEfficiency" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -57,7 +58,7 @@
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="yeast" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Settings" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="Settings" positionX="0" positionY="0" width="128" height="180"/>
         <element name="HopAddition" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Hops" positionX="0" positionY="0" width="128" height="75"/>
         <element name="Malt" positionX="0" positionY="0" width="128" height="105"/>

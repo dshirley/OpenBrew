@@ -45,6 +45,19 @@
   XCTAssertNotNil(gauge.colorView);
 }
 
+- (void)testSetIbuFormula
+{
+  OBIngredientGauge *gauge = [[OBIngredientGauge alloc] initWithFrame:CGRectZero];
+  id mockGauge = [OCMockObject partialMockForObject:gauge];
+  [[mockGauge expect] refresh];
+
+  gauge.ibuFormula = OBIbuFormulaRager;
+
+  [mockGauge verify];
+
+  XCTAssertEqual(gauge.ibuFormula, OBIbuFormulaRager);
+}
+
 - (void)testSetRecipe
 {
   OBIngredientGauge *gauge = [[OBIngredientGauge alloc] initWithFrame:CGRectZero];
@@ -134,12 +147,13 @@
   XCTAssertFalse(gauge.colorView.hidden);
 }
 
-- (void)testRefresh_ibu
+- (void)testRefresh_ibu_rager
 {
   OBIngredientGauge *gauge = [[OBIngredientGauge alloc] initWithFrame:CGRectZero];
+  gauge.ibuFormula = OBIbuFormulaRager;
 
   id mockRecipe = [OCMockObject mockForClass:[OBRecipe class]];
-  [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float)9.123)] IBUs];
+  [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float)9.123)] IBUs:OBIbuFormulaRager];
   [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float)15.63)] colorInSRM];
 
   gauge.metricToDisplay = OBMetricIbu;
@@ -150,12 +164,47 @@
   XCTAssertTrue(gauge.colorView.hidden);
 }
 
-- (void)testRefresh_bitteringToGravity
+- (void)testRefresh_ibu_tinseth
 {
   OBIngredientGauge *gauge = [[OBIngredientGauge alloc] initWithFrame:CGRectZero];
+  gauge.ibuFormula = OBIbuFormulaTinseth;
 
   id mockRecipe = [OCMockObject mockForClass:[OBRecipe class]];
-  [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float)99.123)] bitternessToGravityRatio];
+  [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float)9.123)] IBUs:OBIbuFormulaTinseth];
+  [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float)15.63)] colorInSRM];
+
+  gauge.metricToDisplay = OBMetricIbu;
+  gauge.recipe = mockRecipe;
+
+  XCTAssertEqualObjects(@"9", gauge.valueLabel.text);
+  XCTAssertEqualObjects(@"IBU", gauge.descriptionLabel.text);
+  XCTAssertTrue(gauge.colorView.hidden);
+}
+
+- (void)testRefresh_bitteringToGravity_rager
+{
+  OBIngredientGauge *gauge = [[OBIngredientGauge alloc] initWithFrame:CGRectZero];
+  gauge.ibuFormula = OBIbuFormulaRager;
+
+  id mockRecipe = [OCMockObject mockForClass:[OBRecipe class]];
+  [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float)99.123)] bitternessToGravityRatio:OBIbuFormulaRager];
+  [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float)15.63)] colorInSRM];
+
+  gauge.metricToDisplay = OBMetricBuToGuRatio;
+  gauge.recipe = mockRecipe;
+
+  XCTAssertEqualObjects(@"99.12", gauge.valueLabel.text);
+  XCTAssertEqualObjects(@"BU:GU", gauge.descriptionLabel.text);
+  XCTAssertTrue(gauge.colorView.hidden);
+}
+
+- (void)testRefresh_bitteringToGravity_tinseth
+{
+  OBIngredientGauge *gauge = [[OBIngredientGauge alloc] initWithFrame:CGRectZero];
+  gauge.ibuFormula = OBIbuFormulaTinseth;
+
+  id mockRecipe = [OCMockObject mockForClass:[OBRecipe class]];
+  [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float)99.123)] bitternessToGravityRatio:OBIbuFormulaTinseth];
   [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float)15.63)] colorInSRM];
 
   gauge.metricToDisplay = OBMetricBuToGuRatio;

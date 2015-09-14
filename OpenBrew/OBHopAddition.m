@@ -77,9 +77,9 @@
   return (alphaAcidUnits * utilization * IMPERIAL_TO_METRIC_CONST) / gallons;
 }
 
-- (float)ibuContribution
+- (float)ibuContribution:(OBIbuFormula)ibuFormula;
 {
-  return [self.recipe ibusForHopAddition:self];
+  return [self.recipe ibusForHopAddition:self ibuFormula:ibuFormula];
 }
 
 - (float)alphaAcidUnits {

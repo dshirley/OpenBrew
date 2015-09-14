@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "OBHopAddition.h"
 
-@class OBSettings, OBHopAddition, OBMaltAddition, OBYeastAddition;
+@class OBSettings, OBMaltAddition, OBYeastAddition;
 
 @interface OBRecipe : NSManagedObject
 
@@ -31,11 +32,11 @@
 - (float)gravityUnits;
 - (float)originalGravity;
 - (float)finalGravity;
-- (float)IBUs;
+- (float)IBUs:(OBIbuFormula)ibuFormula;
 - (float)colorInSRM;
 - (float)alcoholByVolume;
-- (float)bitternessToGravityRatio;
-- (float)ibusForHopAddition:(OBHopAddition *)hopAddition;
+- (float)bitternessToGravityRatio:(OBIbuFormula)ibuFormula;
+- (float)ibusForHopAddition:(OBHopAddition *)hopAddition ibuFormula:(OBIbuFormula)ibuFormula;
 - (NSInteger)percentTotalGravityOfMaltAddition:(OBMaltAddition *)maltAddition;
 
 - (NSArray *)maltAdditionsSorted;

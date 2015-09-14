@@ -12,8 +12,8 @@
 
 #import <UIKit/UIKit.h>
 
-// FIXME: the view shouldn't be importing part of the model
 #import "OBSettings.h"
+#import "OBHopAddition.h"
 
 @class OBRecipe;
 
@@ -21,6 +21,7 @@
 
 @property (nonatomic) OBRecipe *recipe;
 @property (nonatomic, assign) OBGaugeMetric metricToDisplay;
+@property (nonatomic, assign) OBIbuFormula ibuFormula;
 
 - (id)initWithFrame:(CGRect)frame;
 

@@ -57,6 +57,13 @@
   [self.tableView reloadData];
 }
 
+- (void)setIbuFormula:(OBIbuFormula)ibuFormula
+{
+  _ibuFormula = ibuFormula;
+
+  [self.tableView reloadData];
+}
+
 - (void)populateIngredientCell:(UITableViewCell *)cell
             withIngredientData:(id)ingredientData
 {
@@ -76,7 +83,7 @@
   switch (self.hopAdditionMetricToDisplay) {
     case OBHopAdditionMetricIbu:
       hopCell.primaryMetric.text = [NSString stringWithFormat:@"%d IBUs",
-                                    (int)roundf([hopAddition ibuContribution])];
+                                    (int)roundf([hopAddition ibuContribution:self.ibuFormula])];
       break;
     case OBHopAdditionMetricWeight:
       hopCell.primaryMetric.text = [NSString stringWithFormat:@"%.1f oz",

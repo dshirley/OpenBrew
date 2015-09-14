@@ -28,7 +28,7 @@ typedef NS_ENUM(NSInteger, OBIbuFormula) {
 - (id)initWithHopVariety:(OBHops *)hopVariety andRecipe:(OBRecipe *)recipe;
 
 - (float)ibusForRecipeVolume:(float)gallons boilGravity:(float)gravity ibuFormula:(OBIbuFormula)formula;
-- (float)ibuContribution;
+- (float)ibuContribution:(OBIbuFormula)ibuFormula;
 - (float)tinsethUtilizationForGravity:(float)gravity;
 - (float)ragerUtilization;
 - (float)alphaAcidUnits;

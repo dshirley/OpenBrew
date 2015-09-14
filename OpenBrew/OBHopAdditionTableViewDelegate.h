@@ -9,6 +9,7 @@
 #import "OBDrawerTableViewDelegate.h"
 #import "OBSettings.h"
 #import "OBMultiPickerView.h"
+#import "OBHopAddition.h"
 
 @interface OBHopAdditionTableViewDelegate : OBDrawerTableViewDelegate <OBMultiPickerViewDelegate>
 
@@ -16,6 +17,7 @@
 @property (nonatomic) OBRecipe *recipe;
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic, assign) NSInteger selectedPickerIndex;
+@property (nonatomic, assign) OBIbuFormula ibuFormula;
 
 - (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView andGACategory:(NSString *)gaCategory;
 

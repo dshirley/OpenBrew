@@ -56,4 +56,6 @@ typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
 // OBYeastManufacturer selected in the OBYeastAdditionViewController
 @property (nonatomic) NSNumber *selectedYeastManufacturer;
 
+@property (nonatomic) NSNumber *ibuFormula;
+
 @end

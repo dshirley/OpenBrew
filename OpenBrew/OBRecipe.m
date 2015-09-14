@@ -107,17 +107,16 @@ NSString * const calculatedKVOKeys[] = {
   return percentOfTotal;
 }
 
-- (float)ibusForHopAddition:(OBHopAddition *)hopAddition
+- (float)ibusForHopAddition:(OBHopAddition *)hopAddition ibuFormula:(OBIbuFormula)ibuFormula;
 {
   assert([self.hopAdditions containsObject:hopAddition]);
 
   float recipeVolume = [self.postBoilVolumeInGallons floatValue];
   float boilGravity = [self boilGravity];
-  OBIbuFormula formula = [OBGlobalSettings ibuFormula];
 
   return [hopAddition ibusForRecipeVolume:recipeVolume
                               boilGravity:boilGravity
-                               ibuFormula:formula];
+                               ibuFormula:ibuFormula];
 }
 
 - (float)originalGravity {
@@ -152,16 +151,16 @@ NSString * const calculatedKVOKeys[] = {
   return 1 + (gravityUnits / boilSize / 1000);
 }
 
-- (float)IBUs {
+- (float)IBUs:(OBIbuFormula)ibuFormula;
+{
   float ibus = 0.0;
   float wortVolumeAfterBoil = [self.postBoilVolumeInGallons floatValue];
   float boilGravity = [self boilGravity];
-  OBIbuFormula formula = [OBGlobalSettings ibuFormula];
 
   for (OBHopAddition *hops in [self hopAdditions]) {
     ibus += [hops ibusForRecipeVolume:wortVolumeAfterBoil
                                    boilGravity:boilGravity
-                           ibuFormula:formula];
+                           ibuFormula:ibuFormula];
   }
 
   return ibus;
@@ -187,10 +186,10 @@ NSString * const calculatedKVOKeys[] = {
   return (76.08 * (og - fg) / (1.775 - og)) * (fg / 0.794);
 }
 
-- (float)bitternessToGravityRatio
+- (float)bitternessToGravityRatio:(OBIbuFormula)ibuFormula;
 {
   float nonDecimalGravity = 1000.0 * ([self originalGravity] - 1);
-  float ibu = [self IBUs];
+  float ibu = [self IBUs:ibuFormula];
 
   if (nonDecimalGravity == 0) {
     return INFINITY;

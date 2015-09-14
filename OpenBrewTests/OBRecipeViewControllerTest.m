@@ -27,6 +27,7 @@
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   self.vc = [storyboard instantiateViewControllerWithIdentifier:@"recipeList"];
   self.vc.moc = self.ctx;
+  self.vc.settings = self.settings;
 }
 
 - (void)tearDown {
@@ -155,6 +156,8 @@
 
   XCTAssertEqualObjects(@"New Recipe", dest.recipe.name);
   XCTAssertTrue(self.vc.firstInteractionComplete);
+
+  XCTAssertEqual(self.settings, dest.settings);
 }
 
 - (void)testPrepareForSegue_SelectRecipe
@@ -180,6 +183,8 @@
   XCTAssertTrue(self.vc.firstInteractionComplete);
 
   [mockTableView verify];
+
+  XCTAssertEqual(self.settings, dest.settings);
 }
 
 @end

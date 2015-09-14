@@ -23,5 +23,6 @@
 @dynamic maltAdditionDisplayMetric;
 @dynamic maltGaugeDisplayMetric;
 @dynamic selectedYeastManufacturer;
+@dynamic ibuFormula;
 
 @end

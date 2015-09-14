@@ -19,8 +19,4 @@
 
 + (void)setDefaultPostBoilSize:(NSNumber *)postBoilSize;
 
-+ (OBIbuFormula)ibuFormula;
-
-+ (void)setIbuFormula:(OBIbuFormula)formula;
-
 @end

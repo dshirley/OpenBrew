@@ -77,6 +77,20 @@
   [mockTableView stopMocking];
 }
 
+- (void)testSetIbuFormula
+{
+  id mockTableView = [OCMockObject partialMockForObject:self.tableView];
+  [[mockTableView expect] reloadData];
+
+  self.delegate.ibuFormula = 83;
+
+  [mockTableView verify];
+
+  XCTAssertEqual(83, self.delegate.ibuFormula)  ;
+
+  [mockTableView stopMocking];
+}
+
 - (void)testPopulateDrawerCell
 {
   OBMultiPickerTableViewCell *cell = [[OBMultiPickerTableViewCell alloc] initWithFrame:CGRectZero];
@@ -140,12 +154,17 @@
   XCTAssertEqualObjects(@"min", boilUnits.text);
 
   self.delegate.hopAdditionMetricToDisplay = OBHopAdditionMetricIbu;
+  self.delegate.ibuFormula = OBIbuFormulaTinseth;
   [self.delegate populateIngredientCell:cell withIngredientData:hops];
   XCTAssertEqualObjects(@"Admiral", hopVariety.text);
   XCTAssertEqualObjects(@"8.5%", alphaAcid.text);
   XCTAssertEqualObjects(@"38 IBUs", primaryMetric.text);
   XCTAssertEqualObjects(@"60", boilTime.text);
   XCTAssertEqualObjects(@"min", boilUnits.text);
+
+  self.delegate.ibuFormula = OBIbuFormulaRager;
+  [self.delegate populateIngredientCell:cell withIngredientData:hops];
+  XCTAssertEqualObjects(@"33 IBUs", primaryMetric.text);
 
   self.delegate.hopAdditionMetricToDisplay = 2;
   XCTAssertThrows([self.delegate populateIngredientCell:cell withIngredientData:hops]);

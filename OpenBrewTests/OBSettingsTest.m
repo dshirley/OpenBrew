@@ -15,6 +15,9 @@
 #import "OBHops.h"
 #import "OBYeast.h"
 
+#import "OBSettings.h"
+#import "OBHopAddition.h"
+
 @interface OBSettingsTest : OBBaseTestCase
 
 @end
@@ -67,5 +70,22 @@
   XCTAssertEqual(2, [malt.lovibond integerValue]);
   XCTAssertEqual(OBMaltTypeExtract, [malt.type integerValue]);
 }
+
+
+- (void)testIbuFormula
+{
+  XCTAssertEqual([self.settings.ibuFormula integerValue], OBIbuFormulaTinseth, @"The default formula is tinseth");
+
+  self.settings.ibuFormula = @(OBIbuFormulaTinseth);
+  XCTAssertEqual([self.settings.ibuFormula integerValue], OBIbuFormulaTinseth);
+
+  self.settings.ibuFormula = @(OBIbuFormulaRager);
+  XCTAssertEqual([self.settings.ibuFormula integerValue], OBIbuFormulaRager);
+
+  self.settings.ibuFormula = @(OBIbuFormulaTinseth);
+  XCTAssertEqual([self.settings.ibuFormula integerValue], OBIbuFormulaTinseth);
+
+}
+
 
 @end

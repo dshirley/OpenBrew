@@ -21,6 +21,7 @@
 #import "OBHopAddition.h"
 #import "OBMalt.h"
 #import "OBHops.h"
+#import "OBSettings.h"
 #import "Crittercism+NSErrorLogging.h"
 
 // Google Analytics event category
@@ -289,6 +290,8 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   NSString *value = nil;
   NSString *description = nil;
 
+  OBIbuFormula ibuFormula = [self.settings.ibuFormula integerValue];
+
   switch (cellType) {
     case OBOriginalGravity:
       value = [NSString stringWithFormat:@"%.3f", [self.recipe originalGravity]];
@@ -303,11 +306,11 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
       description = @"ABV";
       break;
     case OBIbu:
-      value = [NSString stringWithFormat:@"%d", (int) roundf([self.recipe IBUs])];
+      value = [NSString stringWithFormat:@"%d", (int) roundf([self.recipe IBUs:ibuFormula])];
       description = @"IBU";
       break;
     case OBBuToGuRatio:
-      value = [NSString stringWithFormat:@"%.2f", [self.recipe bitternessToGravityRatio]];
+      value = [NSString stringWithFormat:@"%.2f", [self.recipe bitternessToGravityRatio:ibuFormula]];
       description = @"BU:GU";
       break;
     default:

@@ -84,11 +84,11 @@
       description = @"ABV";
       break;
     case OBMetricIbu:
-      value = [NSString stringWithFormat:@"%d", (int) roundf([self.recipe IBUs])];
+      value = [NSString stringWithFormat:@"%d", (int) roundf([self.recipe IBUs:self.ibuFormula])];
       description = @"IBU";
       break;
     case OBMetricBuToGuRatio:
-      value = [NSString stringWithFormat:@"%.2f", [self.recipe bitternessToGravityRatio]];
+      value = [NSString stringWithFormat:@"%.2f", [self.recipe bitternessToGravityRatio:self.ibuFormula]];
       description = @"BU:GU";
       break;
     case OBMetricColor:
@@ -103,6 +103,12 @@
 
   self.valueLabel.text = value;
   self.descriptionLabel.text = description;
+}
+
+- (void)setIbuFormula:(OBIbuFormula)ibuFormula
+{
+  _ibuFormula = ibuFormula;
+  [self refresh];
 }
 
 - (void)setRecipe:(OBRecipe *)recipe

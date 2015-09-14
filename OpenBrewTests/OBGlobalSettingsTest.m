@@ -21,20 +21,6 @@
   [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
 }
 
-- (void)testIbuFormula
-{
-  XCTAssertEqual([OBGlobalSettings ibuFormula], OBIbuFormulaTinseth, @"The default formula is tinseth");
-
-  [OBGlobalSettings setIbuFormula:OBIbuFormulaTinseth];
-  XCTAssertEqual([OBGlobalSettings ibuFormula], OBIbuFormulaTinseth);
-
-  [OBGlobalSettings setIbuFormula:OBIbuFormulaRager];
-  XCTAssertEqual([OBGlobalSettings ibuFormula], OBIbuFormulaRager);
-
-  [OBGlobalSettings setIbuFormula:OBIbuFormulaTinseth];
-  XCTAssertEqual([OBGlobalSettings ibuFormula], OBIbuFormulaTinseth);
-}
-
 - (void)testDefaultPreBoilSize
 {
   XCTAssertEqual([[OBGlobalSettings defaultPreBoilSize] floatValue], 7.0, @"The default value is 7.0");
@@ -61,13 +47,9 @@
 // between two different settings
 - (void)testForCarelessErrors
 {
-  [OBGlobalSettings setIbuFormula:OBIbuFormulaRager];
   [OBGlobalSettings setDefaultPreBoilSize:@(54)];
   [OBGlobalSettings setDefaultPostBoilSize:@(98)];
 
-  XCTAssertEqual([OBGlobalSettings ibuFormula], OBIbuFormulaRager);
-
-  [OBGlobalSettings setIbuFormula:OBIbuFormulaTinseth];
   XCTAssertEqual([[OBGlobalSettings defaultPreBoilSize] integerValue], 54);
 
   [OBGlobalSettings setDefaultPreBoilSize:@(44)];
