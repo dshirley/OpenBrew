@@ -81,7 +81,7 @@
 		9FC8EE941B45AFA500EEF14D /* OBHopsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8EE931B45AFA500EEF14D /* OBHopsTest.m */; };
 		9FC8EE981B45BD0D00EEF14D /* OBYeastTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8EE971B45BD0D00EEF14D /* OBYeastTest.m */; };
 		9FC8EE9A1B45C3F300EEF14D /* OBSrmColorTableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8EE991B45C3F300EEF14D /* OBSrmColorTableTest.m */; };
-		9FCC01F31B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCC01F21B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m */; };
+		9FCC01F31B612C4E006E30D3 /* OBRecipeViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCC01F21B612C4E006E30D3 /* OBRecipeViewControllerTest.m */; };
 		9FCECC5B18879B430045FADD /* OBHopAdditionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCECC5A18879B430045FADD /* OBHopAdditionTest.m */; };
 		9FCECC60188831320045FADD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3761880F8EE00469323 /* XCTest.framework */; };
 		9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */; };
@@ -271,7 +271,7 @@
 		9FC8EE931B45AFA500EEF14D /* OBHopsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopsTest.m; sourceTree = "<group>"; };
 		9FC8EE971B45BD0D00EEF14D /* OBYeastTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBYeastTest.m; sourceTree = "<group>"; };
 		9FC8EE991B45C3F300EEF14D /* OBSrmColorTableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSrmColorTableTest.m; sourceTree = "<group>"; };
-		9FCC01F21B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeOverviewControllerTest.m; sourceTree = "<group>"; };
+		9FCC01F21B612C4E006E30D3 /* OBRecipeViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeViewControllerTest.m; sourceTree = "<group>"; };
 		9FCECC5A18879B430045FADD /* OBHopAdditionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionTest.m; sourceTree = "<group>"; };
 		9FCECC5C1887A1150045FADD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9FD14131197CC7CE005220BC /* OBBatchSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBatchSizeViewController.h; sourceTree = "<group>"; };
@@ -416,7 +416,7 @@
 				9FC89CBD1B4CCA4500E8EA2C /* OBMaltAdditionTableViewDelegateTest.m */,
 				9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */,
 				9FE525081B813461002612DD /* OBMaltFinderViewControllerTest.m */,
-				9FCC01F21B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m */,
+				9FCC01F21B612C4E006E30D3 /* OBRecipeViewControllerTest.m */,
 				9FE608F41B69DD99008D1D88 /* OBRecipeListViewControllerTest.m */,
 				9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */,
 				9F8D88851B8434A600FA4277 /* OBYeastAdditionViewControllerTest.m */,
@@ -1000,7 +1000,7 @@
 				9FAA13151B72F2E100223569 /* OBMultiPickerViewTest.m in Sources */,
 				9F40C4C41B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m in Sources */,
 				9FBAE0951B79900100D12FC8 /* OBMaltColorPickerDelegateTest.m in Sources */,
-				9FCC01F31B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m in Sources */,
+				9FCC01F31B612C4E006E30D3 /* OBRecipeViewControllerTest.m in Sources */,
 				9F5F6F101B93C1A000F010E5 /* OBBatchSizeTableViewDelegateTest.m in Sources */,
 				9F5F6F121B93D82600F010E5 /* OBBatchSizeViewControllerTest.m in Sources */,
 				9F7EFEFA1BA6BDA300B71D64 /* OBSettingsTest.m in Sources */,
