@@ -174,6 +174,7 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   } else if ([[segue identifier] isEqualToString:@"maltAdditionSettings"]) {
     OBMaltAdditionSettingsViewController *next = [segue destinationViewController];
     next.settings = self.settings;
+    next.recipe = self.recipe;
   }
 }
 

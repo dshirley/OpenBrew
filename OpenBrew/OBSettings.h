@@ -36,7 +36,7 @@ typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
 // copied, this field is updated and the data is not copied again.
 @property (nonatomic) NSString *copiedStarterDataVersion;
 
-@property (nonatomic) NSNumber *mashEfficiency;
+@property (nonatomic) NSNumber *defaultMashEfficiency;
 
 @property (nonatomic) NSNumber *defaultPostBoilSize;
 

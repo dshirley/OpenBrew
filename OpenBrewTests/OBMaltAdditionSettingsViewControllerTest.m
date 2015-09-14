@@ -25,6 +25,7 @@
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   self.vc = [storyboard instantiateViewControllerWithIdentifier:@"maltSettings"];
   self.vc.settings = self.settings;
+  self.vc.recipe = self.recipe;
 }
 
 - (void)tearDown {
@@ -66,6 +67,32 @@
   [ingredientSegmentedControl setSelectedSegmentIndex:0];
   [ingredientSegmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
   XCTAssertEqualObjects(@(OBMaltAdditionMetricWeight), self.settings.maltAdditionDisplayMetric);
+}
+
+- (void)testViewWillAppearShowsCorrectMashEfficiency
+{
+  self.recipe.mashEfficiency = @(0.53);
+
+  [self.vc loadView];
+  [self.vc viewWillAppear:NO];
+
+  XCTAssertEqualObjects(@"Efficiency: 53%", self.vc.mashEfficiencyLabel.text);
+  XCTAssertEqualWithAccuracy(0.53, self.vc.mashEfficiencySlider.value, 0.00001);
+}
+
+- (void)testSliderValueChanging
+{
+  [self.vc loadView];
+  [self.vc viewWillAppear:NO];
+
+  XCTAssertNotEqualWithAccuracy(0.08, [self.recipe.mashEfficiency floatValue], 0.01);
+  XCTAssertNotEqualObjects(@"Efficiency: 8%", self.vc.mashEfficiencyLabel.text);
+
+  self.vc.mashEfficiencySlider.value = 0.08;
+  [self.vc.mashEfficiencySlider sendActionsForControlEvents:UIControlEventValueChanged];
+
+  XCTAssertEqualWithAccuracy(0.08, [self.recipe.mashEfficiency floatValue], 0.005);
+  XCTAssertEqualObjects(@"Efficiency: 8%", self.vc.mashEfficiencyLabel.text);
 }
 
 - (void)testGreyAreaTouchDown {

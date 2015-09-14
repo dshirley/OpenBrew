@@ -183,10 +183,10 @@
 {
   [self addMalt:@"Pilsner Malt" quantity:10.0];
 
-  self.recipe.efficiency = @(1.0);
+  self.recipe.mashEfficiency = @(1.0);
 
   float og = [self.recipe originalGravity];
-  self.recipe.efficiency = @(.75);
+  self.recipe.mashEfficiency = @(.75);
 
   XCTAssertEqualWithAccuracy([self.recipe originalGravity], 1 + ((og - 1) * 0.75), 0.0000001);
 }
@@ -211,7 +211,7 @@
   yeast.maxAttenuation = @(100);
 
   self.recipe.yeast = [[OBYeastAddition alloc] initWithYeast:yeast andRecipe:self.recipe];
-  self.recipe.efficiency = @(1.0);
+  self.recipe.mashEfficiency = @(1.0);
 
   XCTAssertEqualWithAccuracy([self.recipe finalGravity], 1.000, 0.0000001);
 

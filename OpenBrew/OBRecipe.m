@@ -52,7 +52,7 @@ NSString * const calculatedKVOKeys[] = {
 @dynamic hopAdditions;
 @dynamic maltAdditions;
 @dynamic yeast;
-@dynamic efficiency;
+@dynamic mashEfficiency;
 
 - (id)initWithContext:(NSManagedObjectContext *)context
 {
@@ -80,7 +80,7 @@ NSString * const calculatedKVOKeys[] = {
 
 - (float)gravityUnits {
   float gravityUnits = 0.0;
-  float efficiency = [[self efficiency] floatValue];
+  float efficiency = [self.mashEfficiency floatValue];
 
   for (OBMaltAddition *malt in [self maltAdditions]) {
     gravityUnits += [malt gravityUnitsWithEfficiency:efficiency];
@@ -94,7 +94,7 @@ NSString * const calculatedKVOKeys[] = {
   assert([self.maltAdditions containsObject:maltAddition]);
 
   float gravityUnits = [self gravityUnits];
-  float maltGravityUnits = [maltAddition gravityUnitsWithEfficiency:[self.efficiency floatValue]];
+  float maltGravityUnits = [maltAddition gravityUnitsWithEfficiency:[self.mashEfficiency floatValue]];
 
   NSInteger percentOfTotal = 0;
   if (gravityUnits > 0) {
@@ -134,7 +134,7 @@ NSString * const calculatedKVOKeys[] = {
       continue;
     }
 
-    float gravityUnits = [maltAddition gravityUnitsWithEfficiency:[self.efficiency floatValue]];
+    float gravityUnits = [maltAddition gravityUnitsWithEfficiency:[self.mashEfficiency floatValue]];
     finalGravityUnits += gravityUnits * (1 - attenuationLevel);
   }
 
@@ -231,6 +231,7 @@ NSString * const calculatedKVOKeys[] = {
                                 KVO_KEY(lovibond), nil];
 
   self.observedRecipeVariables = [NSSet setWithObjects:
+                                  KVO_KEY(mashEfficiency),
                                   KVO_KEY(preBoilVolumeInGallons),
                                   KVO_KEY(postBoilVolumeInGallons),
                                   KVO_KEY(yeast), nil];

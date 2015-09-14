@@ -11,7 +11,7 @@
 @implementation OBSettings
 
 @dynamic copiedStarterDataVersion;
-@dynamic mashEfficiency;
+@dynamic defaultMashEfficiency;
 @dynamic defaultPostBoilSize;
 @dynamic defaultPreBoilSize;
 @dynamic hopAdditionDisplayMetric;

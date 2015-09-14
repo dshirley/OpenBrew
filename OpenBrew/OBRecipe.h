@@ -24,7 +24,7 @@
 @property (nonatomic) NSSet *hopAdditions;
 @property (nonatomic) NSSet *maltAdditions;
 
-@property (nonatomic) NSNumber *efficiency;
+@property (nonatomic) NSNumber *mashEfficiency;
 
 - (id)initWithContext:(NSManagedObjectContext *)context;
 

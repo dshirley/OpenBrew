@@ -327,6 +327,7 @@
 
   XCTAssertNotNil(settingsVc.settings);
   XCTAssertEqual(self.vc.settings, settingsVc.settings);
+  XCTAssertEqual(self.vc.recipe, settingsVc.recipe);
 }
 
 - (void)testViewWillDissappear
