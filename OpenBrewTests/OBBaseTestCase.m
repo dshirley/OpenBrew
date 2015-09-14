@@ -49,7 +49,7 @@ NSManagedObjectContext *g_startupContext = nil;
   self.ctx = [[NSManagedObjectContext alloc] init];
   self.ctx.persistentStoreCoordinator = self.persistentStoreCoordinator;
 
-  self.brewery = [OBBrewery breweryFromContext:self.ctx];
+  self.settings = [OBSettings settingsForContext:self.ctx];
 
   NSError *error = nil;
   loadStartupDataIntoContext(self.ctx, g_startupContext, &error);

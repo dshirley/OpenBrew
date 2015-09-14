@@ -17,14 +17,14 @@
 #import "GAIDictionaryBuilder.h"
 #import "OBYeastTableViewCell.h"
 #import "OBSegmentedController.h"
-#import "OBBrewery.h"
+#import "OBSettings.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Yeast Addition Screen";
 
 @interface OBYeastAdditionViewController ()
 
-@property (nonatomic) OBBrewery *brewery;
+@property (nonatomic) OBSettings *settings;
 
 @property (nonatomic) OBSegmentedController *segmentedController;
 
@@ -40,7 +40,7 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
 
   self.screenName = OBGAScreenName;
 
- self.brewery = [OBBrewery breweryFromContext:self.recipe.managedObjectContext];
+ self.settings = [OBSettings settingsForContext:self.recipe.managedObjectContext];
 
   self.segmentedController = [[OBSegmentedController alloc] initWithSegmentedControl:self.segmentedControl
                                                                googleAnalyticsAction:@"Yeast Filter"];
@@ -48,13 +48,13 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
   OBYeastAdditionViewController *weakSelf = self;
 
   [self.segmentedController addSegment:@"White Labs" actionWhenSelected:^(void) {
-    weakSelf.brewery.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
+    weakSelf.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
     [weakSelf reloadTableSelectedManufacturer:OBYeastManufacturerWhiteLabs
                          scrollToSelectedItem:NO];
   }];
 
   [self.segmentedController addSegment:@"Wyeast" actionWhenSelected:^(void) {
-    weakSelf.brewery.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
+    weakSelf.settings.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
     [weakSelf reloadTableSelectedManufacturer:OBYeastManufacturerWyeast
                          scrollToSelectedItem:NO];
   }];
@@ -63,7 +63,7 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
   if (self.recipe.yeast) {
     startingManufacturer = [self.recipe.yeast.manufacturer integerValue];
   } else {
-    startingManufacturer = [self.brewery.selectedYeastManufacturer integerValue];
+    startingManufacturer = [self.settings.selectedYeastManufacturer integerValue];
   }
 
   // Selected segment index is in the order in which we add them above
@@ -172,7 +172,7 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
   UITableViewCell *cell = nil;
   NSString *reuseIdentifier = nil;
 
-  OBYeastManufacturer selectedYeastManufacturer = [self.brewery.selectedYeastManufacturer integerValue];
+  OBYeastManufacturer selectedYeastManufacturer = [self.settings.selectedYeastManufacturer integerValue];
 
   if (OBYeastManufacturerWhiteLabs == selectedYeastManufacturer) {
     reuseIdentifier = @"WhiteLabsCell";

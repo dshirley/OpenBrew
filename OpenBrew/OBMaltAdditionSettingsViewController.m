@@ -7,7 +7,7 @@
 //
 
 #import "OBMaltAdditionSettingsViewController.h"
-#import "OBBrewery.h"
+#import "OBSettings.h"
 #import "OBSegmentedController.h"
 #import "OBKvoUtils.h"
 
@@ -35,21 +35,21 @@ static NSString* const OBGAScreenName = @"Malt Addition Settings";
 
   self.screenName = OBGAScreenName;
 
-  OBBrewery *brewery = self.brewery;
+  OBSettings *settings = self.settings;
 
   self.gaugeDisplaySettingController =
     [[OBSegmentedController alloc] initWithSegmentedControl:self.gaugeDisplaySettingSegmentedControl
                                               googleAnalyticsAction:@"Malt Gauge Display"];
 
   [self.gaugeDisplaySettingController addSegment:@"Gravity" actionWhenSelected:^(void) {
-    brewery.maltGaugeDisplayMetric = @(OBMetricOriginalGravity);
+    settings.maltGaugeDisplayMetric = @(OBMetricOriginalGravity);
   }];
 
   [self.gaugeDisplaySettingController addSegment:@"Color" actionWhenSelected:^(void) {
-    brewery.maltGaugeDisplayMetric = @(OBMetricColor);
+    settings.maltGaugeDisplayMetric = @(OBMetricColor);
   }];
 
-  if (OBMetricColor == [brewery.maltGaugeDisplayMetric integerValue]) {
+  if (OBMetricColor == [settings.maltGaugeDisplayMetric integerValue]) {
     self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = 1;
   } else {
     self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = 0;
@@ -60,14 +60,14 @@ static NSString* const OBGAScreenName = @"Malt Addition Settings";
                                               googleAnalyticsAction:@"Malt Primary Metric"];
 
   [self.ingredientDisplaySettingController addSegment:@"Weight" actionWhenSelected:^(void) {
-    brewery.maltAdditionDisplayMetric = @(OBMaltAdditionMetricWeight);
+    settings.maltAdditionDisplayMetric = @(OBMaltAdditionMetricWeight);
   }];
 
   [self.ingredientDisplaySettingController addSegment:@"% Gravity" actionWhenSelected:^(void) {
-    brewery.maltAdditionDisplayMetric = @(OBMaltAdditionMetricPercentOfGravity);
+    settings.maltAdditionDisplayMetric = @(OBMaltAdditionMetricPercentOfGravity);
   }];
 
-  if (OBMaltAdditionMetricPercentOfGravity == [brewery.maltAdditionDisplayMetric integerValue]) {
+  if (OBMaltAdditionMetricPercentOfGravity == [settings.maltAdditionDisplayMetric integerValue]) {
     self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = 1;
   } else {
     self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = 0;

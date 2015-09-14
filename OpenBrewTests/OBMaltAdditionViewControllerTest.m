@@ -29,7 +29,7 @@
 
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   self.vc = [storyboard instantiateViewControllerWithIdentifier:@"maltAdditions"];
-  self.vc.brewery = self.brewery;
+  self.vc.settings = self.settings;
   self.vc.recipe = self.recipe;
 }
 
@@ -39,12 +39,12 @@
   [super tearDown];
 }
 
-- (void)testViewDidLoad_breweryIsSet
+- (void)testViewDidLoad_settingsIsSet
 {
   [self.vc loadView];
   [self.vc viewDidLoad];
 
-  XCTAssertEqual(self.brewery, self.vc.brewery);
+  XCTAssertEqual(self.settings, self.vc.settings);
 }
 
 - (void)testViewDidLoad_tableViewDelegateIsSetup
@@ -62,26 +62,26 @@
 
 - (void)testViewDidLoad_gaugeIsSetupWithStoredSettings
 {
-  self.brewery.maltGaugeDisplayMetric = @(OBMetricColor);
+  self.settings.maltGaugeDisplayMetric = @(OBMetricColor);
 
   [self.vc loadView];
   [self.vc viewDidLoad];
   XCTAssertEqual(OBMetricColor, self.vc.gauge.metricToDisplay);
 
-  self.brewery.maltGaugeDisplayMetric = @(OBMetricOriginalGravity);
+  self.settings.maltGaugeDisplayMetric = @(OBMetricOriginalGravity);
   [self.vc viewDidLoad];
   XCTAssertEqual(OBMetricOriginalGravity, self.vc.gauge.metricToDisplay);
 }
 
 - (void)testViewDidLoad_maltAdditionMetricUsesStoredSettings
 {
-  self.brewery.maltAdditionDisplayMetric = @(OBMaltAdditionMetricPercentOfGravity);
+  self.settings.maltAdditionDisplayMetric = @(OBMaltAdditionMetricPercentOfGravity);
 
   [self.vc loadView];
   [self.vc viewDidLoad];
   XCTAssertEqual(OBMaltAdditionMetricPercentOfGravity, self.vc.tableViewDelegate.maltAdditionMetricToDisplay);
 
-  self.brewery.maltAdditionDisplayMetric = @(OBMaltAdditionMetricWeight);
+  self.settings.maltAdditionDisplayMetric = @(OBMaltAdditionMetricWeight);
   [self.vc viewDidLoad];
   XCTAssertEqual(OBMaltAdditionMetricWeight, self.vc.tableViewDelegate.maltAdditionMetricToDisplay);
 }
@@ -129,7 +129,7 @@
 {
   [self.vc loadView];
 
-  self.brewery.maltGaugeDisplayMetric = @(OBMetricColor);
+  self.settings.maltGaugeDisplayMetric = @(OBMetricColor);
 
   id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
 
@@ -251,7 +251,7 @@
   id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
   [[mockGauge expect] setMetricToDisplay:OBMetricIbu];
 
-  self.brewery.maltGaugeDisplayMetric = @(OBMetricIbu);
+  self.settings.maltGaugeDisplayMetric = @(OBMetricIbu);
 
   [mockGauge verify];
 }
@@ -264,7 +264,7 @@
   id mockDelegate = [OCMockObject partialMockForObject:self.vc.tableViewDelegate];
   [[mockDelegate expect] setMaltAdditionMetricToDisplay:OBMaltAdditionMetricPercentOfGravity];
 
-  self.brewery.maltAdditionDisplayMetric = @(OBMaltAdditionMetricPercentOfGravity);
+  self.settings.maltAdditionDisplayMetric = @(OBMaltAdditionMetricPercentOfGravity);
 
   [mockDelegate verify];
 }
@@ -317,7 +317,7 @@
   [self.vc viewDidLoad];
 
   OBMaltAdditionSettingsViewController *settingsVc = [[OBMaltAdditionSettingsViewController alloc] init];
-  settingsVc.brewery = nil;
+  settingsVc.settings = nil;
 
   UIStoryboardSegue *segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"maltAdditionSettings"
                                                                     source:self.vc
@@ -325,8 +325,8 @@
 
   [self.vc prepareForSegue:segue sender:nil];
 
-  XCTAssertNotNil(settingsVc.brewery);
-  XCTAssertEqual(self.vc.brewery, settingsVc.brewery);
+  XCTAssertNotNil(settingsVc.settings);
+  XCTAssertEqual(self.vc.settings, settingsVc.settings);
 }
 
 // TODO:  test observe value for key path

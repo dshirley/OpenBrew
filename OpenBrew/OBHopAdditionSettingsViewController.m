@@ -7,7 +7,7 @@
 //
 
 #import "OBHopAdditionSettingsViewController.h"
-#import "OBBrewery.h"
+#import "OBSettings.h"
 #import "OBSegmentedController.h"
 #import "OBKvoUtils.h"
 
@@ -35,21 +35,21 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
 
   self.screenName = OBGAScreenName;
 
-  OBBrewery *brewery = self.brewery;
+  OBSettings *settings = self.settings;
 
   self.gaugeDisplaySettingController =
     [[OBSegmentedController alloc] initWithSegmentedControl:self.gaugeDisplaySettingSegmentedControl
                                               googleAnalyticsAction:@"Hop Gauge Display"];
 
   [self.gaugeDisplaySettingController addSegment:@"IBU" actionWhenSelected:^(void) {
-    brewery.hopGaugeDisplayMetric = @(OBMetricIbu);
+    settings.hopGaugeDisplayMetric = @(OBMetricIbu);
   }];
 
   [self.gaugeDisplaySettingController addSegment:@"Bitterness : Gravity" actionWhenSelected:^(void) {
-    brewery.hopGaugeDisplayMetric = @(OBMetricBuToGuRatio);
+    settings.hopGaugeDisplayMetric = @(OBMetricBuToGuRatio);
   }];
 
-  if (OBMetricBuToGuRatio == [brewery.hopGaugeDisplayMetric integerValue]) {
+  if (OBMetricBuToGuRatio == [settings.hopGaugeDisplayMetric integerValue]) {
     self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = 1;
   } else {
     self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = 0;
@@ -60,14 +60,14 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
                                               googleAnalyticsAction:@"Hop Primary Metric"];
 
   [self.ingredientDisplaySettingController addSegment:@"Weight" actionWhenSelected:^(void) {
-    brewery.hopAdditionDisplayMetric = @(OBHopAdditionMetricWeight);
+    settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricWeight);
   }];
 
   [self.ingredientDisplaySettingController addSegment:@"IBU" actionWhenSelected:^(void) {
-    brewery.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);
+    settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);
   }];
 
-  if (OBHopAdditionMetricIbu == [brewery.hopAdditionDisplayMetric integerValue]) {
+  if (OBHopAdditionMetricIbu == [settings.hopAdditionDisplayMetric integerValue]) {
     self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = 1;
   } else {
     self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = 0;

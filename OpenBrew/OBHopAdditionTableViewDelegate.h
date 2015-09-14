@@ -7,7 +7,7 @@
 //
 
 #import "OBDrawerTableViewDelegate.h"
-#import "OBBrewery.h"
+#import "OBSettings.h"
 #import "OBMultiPickerView.h"
 
 @interface OBHopAdditionTableViewDelegate : OBDrawerTableViewDelegate <OBMultiPickerViewDelegate>

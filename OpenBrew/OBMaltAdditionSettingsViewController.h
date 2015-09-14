@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "OBBaseSettingsViewController.h"
 
-@class OBBrewery, OBSegmentedController;
+@class OBSettings, OBSegmentedController;
 
 @interface OBMaltAdditionSettingsViewController : OBBaseSettingsViewController
 
-@property (nonatomic) OBBrewery *brewery;
+@property (nonatomic) OBSettings *settings;
 
 @property (nonatomic, readonly) OBSegmentedController *gaugeDisplaySettingController;
 @property (nonatomic, readonly) OBSegmentedController *ingredientDisplaySettingController;

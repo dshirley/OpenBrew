@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OBBrewery.h"
+#import "OBSettings.h"
 #import "GAITrackedViewController.h"
 
 @interface OBRecipeViewController : GAITrackedViewController <UITableViewDataSource>

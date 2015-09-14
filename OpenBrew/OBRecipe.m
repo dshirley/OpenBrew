@@ -7,7 +7,7 @@
 //
 
 #import "OBRecipe.h"
-#import "OBBrewery.h"
+#import "OBSettings.h"
 #import "OBHopAddition.h"
 #import "OBMaltAddition.h"
 #import "OBYeastAddition.h"
@@ -49,7 +49,7 @@ NSString * const calculatedKVOKeys[] = {
 @dynamic preBoilVolumeInGallons;
 @dynamic postBoilVolumeInGallons;
 @dynamic name;
-@dynamic brewery;
+@dynamic settings;
 @dynamic hopAdditions;
 @dynamic maltAdditions;
 @dynamic yeast;

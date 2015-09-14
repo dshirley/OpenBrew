@@ -15,7 +15,7 @@
 #import "OBHopAddition.h"
 #import "OBYeast.h"
 #import "OBYeastAddition.h"
-#import "OBSettings.h"
+#import "OBGlobalSettings.h"
 #import "OBKvoUtils.h"
 
 #define OBAssertOriginalGravity(og) XCTAssertEqualWithAccuracy([self.recipe originalGravity], og, 0.002);
@@ -44,7 +44,7 @@
 
   // Most of the tests in this suite are based on recipes in Brewing Classic Styles.
   // The recipes in that book use the Rager formula.
-  [OBSettings setIbuFormula:OBIbuFormulaRager];
+  [OBGlobalSettings setIbuFormula:OBIbuFormulaRager];
 }
 
 #pragma mark Property Tests

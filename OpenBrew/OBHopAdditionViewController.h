@@ -10,12 +10,12 @@
 #import "OBBrewController.h"
 #import "GAITrackedViewController.h"
 
-@class OBRecipe, OBBrewery, OBTableViewPlaceholderLabel, OBIngredientGauge, OBHopAdditionTableViewDelegate;
+@class OBRecipe, OBSettings, OBTableViewPlaceholderLabel, OBIngredientGauge, OBHopAdditionTableViewDelegate;
 
 @interface OBHopAdditionViewController : GAITrackedViewController <OBBrewController>
 
 @property (nonatomic) OBRecipe *recipe;
-@property (nonatomic) OBBrewery *brewery;
+@property (nonatomic) OBSettings *settings;
 
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) OBTableViewPlaceholderLabel *placeholderText;

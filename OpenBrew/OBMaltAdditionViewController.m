@@ -9,7 +9,7 @@
 #import "OBMaltAdditionViewController.h"
 #import "OBIngredientGauge.h"
 #import "OBMaltFinderViewController.h"
-#import "OBBrewery.h"
+#import "OBSettings.h"
 #import "OBRecipe.h"
 #import "OBMalt.h"
 #import "OBMaltAddition.h"
@@ -29,7 +29,7 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
 {
   [super viewDidLoad];
 
-  self.brewery = [OBBrewery breweryFromContext:self.recipe.managedObjectContext];
+  self.settings = [OBSettings settingsForContext:self.recipe.managedObjectContext];
 
   self.tableViewDelegate = [[OBMaltAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
                                                                       andTableView:self.tableView
@@ -39,8 +39,8 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   self.tableView.dataSource = self.tableViewDelegate;
 
   self.gauge.recipe = self.recipe;
-  self.gauge.metricToDisplay = (OBGaugeMetric) [self.brewery.maltGaugeDisplayMetric integerValue];
-  self.tableViewDelegate.maltAdditionMetricToDisplay = (OBMaltAdditionMetric) [self.brewery.maltAdditionDisplayMetric integerValue];
+  self.gauge.metricToDisplay = (OBGaugeMetric) [self.settings.maltGaugeDisplayMetric integerValue];
+  self.tableViewDelegate.maltAdditionMetricToDisplay = (OBMaltAdditionMetric) [self.settings.maltAdditionDisplayMetric integerValue];
 
   UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
   [button addTarget:self action:@selector(showSettingsView:) forControlEvents:UIControlEventTouchUpInside];
@@ -113,21 +113,21 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   [_recipe addObserver:self forKeyPath:KVO_KEY(maltAdditions) options:0 context:nil];
 }
 
-- (void)setBrewery:(OBBrewery *)brewery
+- (void)setSettings:(OBSettings *)settings
 {
-  [_brewery removeObserver:self forKeyPath:KVO_KEY(maltAdditionDisplayMetric)];
-  [_brewery removeObserver:self forKeyPath:KVO_KEY(maltGaugeDisplayMetric)];
+  [_settings removeObserver:self forKeyPath:KVO_KEY(maltAdditionDisplayMetric)];
+  [_settings removeObserver:self forKeyPath:KVO_KEY(maltGaugeDisplayMetric)];
 
-  _brewery = brewery;
+  _settings = settings;
 
-  [_brewery addObserver:self forKeyPath:KVO_KEY(maltAdditionDisplayMetric) options:0 context:nil];
-  [_brewery addObserver:self forKeyPath:KVO_KEY(maltGaugeDisplayMetric) options:0 context:nil];
+  [_settings addObserver:self forKeyPath:KVO_KEY(maltAdditionDisplayMetric) options:0 context:nil];
+  [_settings addObserver:self forKeyPath:KVO_KEY(maltGaugeDisplayMetric) options:0 context:nil];
 }
 
 - (void)dealloc
 {
   self.recipe = nil;
-  self.brewery = nil;
+  self.settings = nil;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -148,11 +148,11 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   }
   else if ([keyPath isEqualToString:KVO_KEY(maltAdditionDisplayMetric)])
   {
-    self.tableViewDelegate.maltAdditionMetricToDisplay = [self.brewery.maltAdditionDisplayMetric integerValue];
+    self.tableViewDelegate.maltAdditionMetricToDisplay = [self.settings.maltAdditionDisplayMetric integerValue];
   }
   else if ([keyPath isEqualToString:KVO_KEY(maltGaugeDisplayMetric)])
   {
-    self.gauge.metricToDisplay = [self.brewery.maltGaugeDisplayMetric integerValue];
+    self.gauge.metricToDisplay = [self.settings.maltGaugeDisplayMetric integerValue];
   }
   else if ([keyPath isEqualToString:KVO_KEY(maltAdditions)])
   {
@@ -173,7 +173,7 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
     next.recipe = self.recipe;
   } else if ([[segue identifier] isEqualToString:@"maltAdditionSettings"]) {
     OBMaltAdditionSettingsViewController *next = [segue destinationViewController];
-    next.brewery = self.brewery;
+    next.settings = self.settings;
   }
 }
 

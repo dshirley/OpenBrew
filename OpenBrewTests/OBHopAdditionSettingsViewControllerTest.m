@@ -24,13 +24,13 @@
 
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   self.vc = [storyboard instantiateViewControllerWithIdentifier:@"hopSettings"];
-  self.vc.brewery = self.brewery;
+  self.vc.settings = self.settings;
 }
 
 - (void)testWillAppear
 {
-  self.brewery.hopGaugeDisplayMetric = @(OBMetricBuToGuRatio);
-  self.brewery.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);
+  self.settings.hopGaugeDisplayMetric = @(OBMetricBuToGuRatio);
+  self.settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);
 
   [self.vc loadView];
   [self.vc viewWillAppear:NO];
@@ -54,14 +54,14 @@
   XCTAssertEqualObjects(@"IBU", [ingredientSegmentedControl titleForSegmentAtIndex:1]);
   XCTAssertEqual(1, [ingredientSegmentedControl selectedSegmentIndex]);
 
-  // Make sure both segmented controllers are wired up to change our brewery settings
+  // Make sure both segmented controllers are wired up to change our settings settings
   [gaugeSegmentedControl setSelectedSegmentIndex:0];
   [gaugeSegmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
-  XCTAssertEqualObjects(@(OBMetricIbu), self.brewery.hopGaugeDisplayMetric);
+  XCTAssertEqualObjects(@(OBMetricIbu), self.settings.hopGaugeDisplayMetric);
 
   [ingredientSegmentedControl setSelectedSegmentIndex:0];
   [ingredientSegmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
-  XCTAssertEqualObjects(@(OBHopAdditionMetricWeight), self.brewery.hopAdditionDisplayMetric);
+  XCTAssertEqualObjects(@(OBHopAdditionMetricWeight), self.settings.hopAdditionDisplayMetric);
 }
 
 - (void)testGreyAreaTouchDown {

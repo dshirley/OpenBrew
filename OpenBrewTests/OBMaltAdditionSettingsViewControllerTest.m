@@ -24,7 +24,7 @@
 
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   self.vc = [storyboard instantiateViewControllerWithIdentifier:@"maltSettings"];
-  self.vc.brewery = self.brewery;
+  self.vc.settings = self.settings;
 }
 
 - (void)tearDown {
@@ -33,8 +33,8 @@
 
 - (void)testWillAppear
 {
-  self.brewery.maltGaugeDisplayMetric = @(OBMetricColor);
-  self.brewery.maltAdditionDisplayMetric = @(OBMaltAdditionMetricPercentOfGravity);
+  self.settings.maltGaugeDisplayMetric = @(OBMetricColor);
+  self.settings.maltAdditionDisplayMetric = @(OBMaltAdditionMetricPercentOfGravity);
 
   [self.vc loadView];
   [self.vc viewWillAppear:NO];
@@ -58,14 +58,14 @@
   XCTAssertEqualObjects(@"% Gravity", [ingredientSegmentedControl titleForSegmentAtIndex:1]);
   XCTAssertEqual(1, [ingredientSegmentedControl selectedSegmentIndex]);
 
-  // Make sure both segmented controllers are wired up to change our brewery settings
+  // Make sure both segmented controllers are wired up to change our settings settings
   [gaugeSegmentedControl setSelectedSegmentIndex:0];
   [gaugeSegmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
-  XCTAssertEqualObjects(@(OBMetricOriginalGravity), self.brewery.maltGaugeDisplayMetric);
+  XCTAssertEqualObjects(@(OBMetricOriginalGravity), self.settings.maltGaugeDisplayMetric);
 
   [ingredientSegmentedControl setSelectedSegmentIndex:0];
   [ingredientSegmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
-  XCTAssertEqualObjects(@(OBMaltAdditionMetricWeight), self.brewery.maltAdditionDisplayMetric);
+  XCTAssertEqualObjects(@(OBMaltAdditionMetricWeight), self.settings.maltAdditionDisplayMetric);
 }
 
 - (void)testGreyAreaTouchDown {

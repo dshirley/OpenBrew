@@ -5,73 +5,67 @@
 //  Created by David Shirley 2 on 7/2/15.
 //  Copyright (c) 2015 OpenBrew. All rights reserved.
 //
+// A lot of data gets loaded.  We'll do some basic sanity tests in this TestCase
+//
+// TODO: rename this or move the tests into some other location. Perhapse CoreData tests?
 
 #import <XCTest/XCTest.h>
-#import "OBSettings.h"
+#import "OBBaseTestCase.h"
+#import "OBMalt.h"
+#import "OBHops.h"
+#import "OBYeast.h"
 
-@interface OBSettingsTest : XCTestCase
+@interface OBSettingsTest : OBBaseTestCase
 
 @end
 
 @implementation OBSettingsTest
 
-- (void)tearDown
+- (void)testYeastsWereLoaded
 {
-  NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
-  [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+  XCTAssertEqual(91, [self fetchAllEntity:@"Yeast"].count);
+
+  OBYeast *yeast = [self fetchEntity:@"Yeast" withProperty:@"identifier" equalTo:@"1007"];
+  XCTAssertEqualObjects(@"German Ale", yeast.name);
+  XCTAssertEqualObjects(@"1007", yeast.identifier);
+  XCTAssertEqual(OBYeastManufacturerWyeast, [yeast.manufacturer integerValue]);
+
+  yeast = [self fetchEntity:@"Yeast" withProperty:@"identifier" equalTo:@"WLP940"];
+  XCTAssertEqualObjects(@"Mexican Lager", yeast.name);
+  XCTAssertEqualObjects(@"WLP940", yeast.identifier);
+  XCTAssertEqual(OBYeastManufacturerWhiteLabs, [yeast.manufacturer integerValue]);
 }
 
-- (void)testIbuFormula
+- (void)testHopsWereLoaded
 {
-  XCTAssertEqual([OBSettings ibuFormula], OBIbuFormulaTinseth, @"The default formula is tinseth");
+  XCTAssertEqual(64, [self fetchAllEntity:@"Hops"].count);
 
-  [OBSettings setIbuFormula:OBIbuFormulaTinseth];
-  XCTAssertEqual([OBSettings ibuFormula], OBIbuFormulaTinseth);
+  OBHops *hops = [self fetchEntity:@"Hops" withProperty:@"name" equalTo:@"Admiral"];
+  XCTAssertEqualObjects(@"Admiral", hops.name);
+  XCTAssertEqualWithAccuracy(15.0, [hops.alphaAcidPercent floatValue], 0.0001);
 
-  [OBSettings setIbuFormula:OBIbuFormulaRager];
-  XCTAssertEqual([OBSettings ibuFormula], OBIbuFormulaRager);
-
-  [OBSettings setIbuFormula:OBIbuFormulaTinseth];
-  XCTAssertEqual([OBSettings ibuFormula], OBIbuFormulaTinseth);
+  hops = [self fetchEntity:@"Hops" withProperty:@"name" equalTo:@"Zythos"];
+  XCTAssertEqualObjects(@"Zythos", hops.name);
+  XCTAssertEqualWithAccuracy(11.25, [hops.alphaAcidPercent floatValue], 0.0001);
 }
 
-- (void)testDefaultPreBoilSize
+- (void)testMaltsWereLoaded
 {
-  XCTAssertEqual([[OBSettings defaultPreBoilSize] floatValue], 7.0, @"The default value is 7.0");
+  XCTAssertEqual(83, [self fetchAllEntity:@"Malt"].count);
 
-  [OBSettings setDefaultPreBoilSize:@(54321)];
-  XCTAssertEqual([[OBSettings defaultPreBoilSize] integerValue], 54321);
+  // Test the first one in the CSV
+  OBMalt *malt = [self fetchEntity:@"Malt" withProperty:@"name" equalTo:@"Acid Malt"];
+  XCTAssertEqualObjects(@"Acid Malt", malt.name);
+  XCTAssertEqualWithAccuracy(1.027, [malt.extractPotential floatValue], 0.00001);
+  XCTAssertEqual(3, [malt.lovibond integerValue]);
+  XCTAssertEqual(OBMaltTypeGrain, [malt.type integerValue]);
 
-  [OBSettings setDefaultPreBoilSize:@(12345)];
-  XCTAssertEqual([[OBSettings defaultPreBoilSize] integerValue], 12345);
-}
-
-- (void)testDefaultPostBoilSize
-{
-  XCTAssertEqual([[OBSettings defaultPostBoilSize] floatValue], 6.0, @"The default value is 6.0");
-
-  [OBSettings setDefaultPostBoilSize:@(8888)];
-  XCTAssertEqual([[OBSettings defaultPostBoilSize] integerValue], 8888);
-
-  [OBSettings setDefaultPostBoilSize:@(3333)];
-  XCTAssertEqual([[OBSettings defaultPostBoilSize] integerValue], 3333);
-}
-
-// This class lends itself to copy/paste errors.  Lets make sure a key wasn't copy pasted
-// between two different settings
-- (void)testForCarelessErrors
-{
-  [OBSettings setIbuFormula:OBIbuFormulaRager];
-  [OBSettings setDefaultPreBoilSize:@(54)];
-  [OBSettings setDefaultPostBoilSize:@(98)];
-
-  XCTAssertEqual([OBSettings ibuFormula], OBIbuFormulaRager);
-
-  [OBSettings setIbuFormula:OBIbuFormulaTinseth];
-  XCTAssertEqual([[OBSettings defaultPreBoilSize] integerValue], 54);
-
-  [OBSettings setDefaultPreBoilSize:@(44)];
-  XCTAssertEqual([[OBSettings defaultPostBoilSize] integerValue], 98);
+  // Test the last one in the CSV
+  malt = [self fetchEntity:@"Malt" withProperty:@"name" equalTo:@"Wheat LME"];
+  XCTAssertEqualObjects(@"Wheat LME", malt.name);
+  XCTAssertEqualWithAccuracy(1.036, [malt.extractPotential floatValue], 0.00001);
+  XCTAssertEqual(2, [malt.lovibond integerValue]);
+  XCTAssertEqual(OBMaltTypeExtract, [malt.type integerValue]);
 }
 
 @end

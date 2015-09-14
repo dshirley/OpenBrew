@@ -9,7 +9,7 @@
 #import "OBAppDelegate.h"
 #import "OBMalt.h"
 #import "OBHops.h"
-#import "OBBrewery.h"
+#import "OBSettings.h"
 #import "Crittercism.h"
 #import "Crittercism+NSErrorLogging.h"
 #import "GAI.h"
@@ -35,13 +35,13 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
     // TODO: This is a super bad error. Something should be displayed to the user
   }
 
-  OBBrewery *brewery = [OBBrewery breweryFromContext:self.managedObjectContext];
-  if (!brewery) {
+  OBSettings *settings = [OBSettings settingsForContext:self.managedObjectContext];
+  if (!settings) {
     [self.managedObjectContext reset];
   }
 
   NSString *currentVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"];
-  if (brewery && ![brewery.copiedStarterDataVersion isEqualToString:currentVersion]) {
+  if (settings && ![settings.copiedStarterDataVersion isEqualToString:currentVersion]) {
     NSURL *startUpDbURL = [[NSBundle mainBundle] URLForResource:@"OpenBrewStartupData.sqlite"
                                                   withExtension:@""];
 
@@ -50,11 +50,11 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
     startupContext.undoManager = nil;
 
     if (loadStartupDataIntoContext(self.managedObjectContext, startupContext, &error)) {
-      brewery.copiedStarterDataVersion = currentVersion;
+      settings.copiedStarterDataVersion = currentVersion;
     }
   }
 
-  if (brewery) {
+  if (settings) {
     [self.managedObjectContext save:nil];
   }
 

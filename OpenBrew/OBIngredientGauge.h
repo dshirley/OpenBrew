@@ -13,7 +13,7 @@
 #import <UIKit/UIKit.h>
 
 // FIXME: the view shouldn't be importing part of the model
-#import "OBBrewery.h"
+#import "OBSettings.h"
 
 @class OBRecipe;
 

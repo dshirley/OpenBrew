@@ -77,33 +77,33 @@
 {
   UISegmentedControl *s = [[UISegmentedControl alloc] initWithFrame:CGRectZero];
 
-  OBBrewery *brewery = self.brewery;
+  OBSettings *settings = self.settings;
 
   OBSegmentedController *ctrl =
     [[OBSegmentedController alloc] initWithSegmentedControl:s
                                               googleAnalyticsAction:@"test"];
 
   [ctrl addSegment:@"OG" actionWhenSelected:^(void) {
-    brewery.maltAdditionDisplayMetric = @(OBMetricOriginalGravity);
+    settings.maltAdditionDisplayMetric = @(OBMetricOriginalGravity);
   }];
 
   [ctrl addSegment:@"FG" actionWhenSelected:^(void) {
-    brewery.maltAdditionDisplayMetric = @(OBMetricFinalGravity);
+    settings.maltAdditionDisplayMetric = @(OBMetricFinalGravity);
   }];
 
   [ctrl addSegment:@"IBU" actionWhenSelected:^(void) {
-    brewery.maltAdditionDisplayMetric = @(OBMetricIbu);
+    settings.maltAdditionDisplayMetric = @(OBMetricIbu);
   }];
 
   // Select IBU
   [s setSelectedSegmentIndex:2];
-  self.brewery.maltAdditionDisplayMetric = @(-1);
+  self.settings.maltAdditionDisplayMetric = @(-1);
   [s sendActionsForControlEvents:UIControlEventValueChanged];
-  XCTAssertEqualObjects(@(OBMetricIbu), self.brewery.maltAdditionDisplayMetric);
+  XCTAssertEqualObjects(@(OBMetricIbu), self.settings.maltAdditionDisplayMetric);
 
   [s setSelectedSegmentIndex:0];
   [s sendActionsForControlEvents:UIControlEventValueChanged];
-  XCTAssertEqualObjects(@(OBMetricOriginalGravity), self.brewery.maltAdditionDisplayMetric);
+  XCTAssertEqualObjects(@(OBMetricOriginalGravity), self.settings.maltAdditionDisplayMetric);
 }
 
 

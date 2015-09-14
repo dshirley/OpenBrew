@@ -1,19 +1,19 @@
 //
-//  OBBrewery.m
+//  OBSettings.m
 //  OpenBrew
 //
 //  Created by David Shirley 2 on 1/25/14.
 //  Copyright (c) 2014 OpenBrew. All rights reserved.
 //
 
-#import "OBBrewery.h"
+#import "OBSettings.h"
 #import "OBRecipe.h"
 #import "OBMalt.h"
 #import "OBHops.h"
 #import "OBYeast.h"
 #import "Crittercism+NSErrorLogging.h"
 
-@implementation OBBrewery
+@implementation OBSettings
 
 @dynamic copiedStarterDataVersion;
 @dynamic mashEfficiency;
@@ -24,10 +24,10 @@
 @dynamic maltGaugeDisplayMetric;
 @dynamic selectedYeastManufacturer;
 
-+ (OBBrewery *)breweryFromContext:(NSManagedObjectContext *)moc
++ (OBSettings *)settingsForContext:(NSManagedObjectContext *)moc;
 {
   NSEntityDescription *entityDescription = [NSEntityDescription
-                                            entityForName:@"Brewery"
+                                            entityForName:@"Settings"
                                             inManagedObjectContext:moc];
   NSFetchRequest *request = [[NSFetchRequest alloc] init];
   [request setEntity:entityDescription];
@@ -35,23 +35,23 @@
   NSError *error = nil;
   NSArray *array = [moc executeFetchRequest:request error:&error];
 
-  OBBrewery *brewery = nil;
+  OBSettings *settings = nil;
   if (!error && array && array.count > 0) {
     if (array.count > 1) {
-      NSError *error = [NSError errorWithDomain:@"OBBrewery"
+      NSError *error = [NSError errorWithDomain:@"OBSettings"
                                            code:1000
                                        userInfo:@{ @"count" : @(array.count)}];
 
       CRITTERCISM_LOG_ERROR(error);
     }
 
-    brewery = array[0];
+    settings = array[0];
   } else {
-    brewery = [NSEntityDescription insertNewObjectForEntityForName:@"Brewery"
+    settings = [NSEntityDescription insertNewObjectForEntityForName:@"Settings"
                                             inManagedObjectContext:moc];
   }
 
-  return brewery;
+  return settings;
 }
 
 

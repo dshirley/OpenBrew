@@ -8,7 +8,7 @@
 
 #import "OBRecipeViewController.h"
 #import "OBRecipeOverviewController.h"
-#import "OBBrewery.h"
+#import "OBSettings.h"
 #import "Crittercism+NSErrorLogging.h"
 #import "OBTableViewPlaceholderLabel.h"
 #import "GAI.h"

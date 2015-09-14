@@ -9,7 +9,7 @@
 #import "OBHopAdditionViewController.h"
 #import "OBIngredientGauge.h"
 #import "OBHopFinderViewController.h"
-#import "OBBrewery.h"
+#import "OBSettings.h"
 #import "OBRecipe.h"
 #import "OBHops.h"
 #import "OBHopAddition.h"
@@ -29,7 +29,7 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 {
   [super viewDidLoad];
 
-  self.brewery = [OBBrewery breweryFromContext:self.recipe.managedObjectContext];
+  self.settings = [OBSettings settingsForContext:self.recipe.managedObjectContext];
 
   self.tableViewDelegate = [[OBHopAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
                                                                      andTableView:self.tableView
@@ -39,8 +39,8 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   self.tableView.dataSource = self.tableViewDelegate;
 
   self.gauge.recipe = self.recipe;
-  self.gauge.metricToDisplay = (OBGaugeMetric) [self.brewery.hopGaugeDisplayMetric integerValue];
-  self.tableViewDelegate.hopAdditionMetricToDisplay = (OBHopAdditionMetric)[self.brewery.hopAdditionDisplayMetric integerValue];
+  self.gauge.metricToDisplay = (OBGaugeMetric) [self.settings.hopGaugeDisplayMetric integerValue];
+  self.tableViewDelegate.hopAdditionMetricToDisplay = (OBHopAdditionMetric)[self.settings.hopAdditionDisplayMetric integerValue];
 
   UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
   [button addTarget:self action:@selector(showSettingsView:) forControlEvents:UIControlEventTouchUpInside];
@@ -113,21 +113,21 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   [_recipe addObserver:self forKeyPath:KVO_KEY(hopAdditions) options:0 context:nil];
 }
 
-- (void)setBrewery:(OBBrewery *)brewery
+- (void)setSettings:(OBSettings *)settings
 {
-  [_brewery removeObserver:self forKeyPath:KVO_KEY(hopAdditionDisplayMetric)];
-  [_brewery removeObserver:self forKeyPath:KVO_KEY(hopGaugeDisplayMetric)];
+  [_settings removeObserver:self forKeyPath:KVO_KEY(hopAdditionDisplayMetric)];
+  [_settings removeObserver:self forKeyPath:KVO_KEY(hopGaugeDisplayMetric)];
 
-  _brewery = brewery;
+  _settings = settings;
 
-  [_brewery addObserver:self forKeyPath:KVO_KEY(hopAdditionDisplayMetric) options:0 context:nil];
-  [_brewery addObserver:self forKeyPath:KVO_KEY(hopGaugeDisplayMetric) options:0 context:nil];
+  [_settings addObserver:self forKeyPath:KVO_KEY(hopAdditionDisplayMetric) options:0 context:nil];
+  [_settings addObserver:self forKeyPath:KVO_KEY(hopGaugeDisplayMetric) options:0 context:nil];
 }
 
 - (void)dealloc
 {
   self.recipe = nil;
-  self.brewery = nil;
+  self.settings = nil;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -148,11 +148,11 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   }
   else if ([keyPath isEqualToString:KVO_KEY(hopAdditionDisplayMetric)])
   {
-    self.tableViewDelegate.hopAdditionMetricToDisplay = [self.brewery.hopAdditionDisplayMetric integerValue];
+    self.tableViewDelegate.hopAdditionMetricToDisplay = [self.settings.hopAdditionDisplayMetric integerValue];
   }
   else if ([keyPath isEqualToString:KVO_KEY(hopGaugeDisplayMetric)])
   {
-    self.gauge.metricToDisplay = [self.brewery.hopGaugeDisplayMetric integerValue];
+    self.gauge.metricToDisplay = [self.settings.hopGaugeDisplayMetric integerValue];
   }
   else if ([keyPath isEqualToString:KVO_KEY(hopAdditions)])
   {
@@ -173,7 +173,7 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
     next.recipe = self.recipe;
   } else if ([[segue identifier] isEqualToString:@"hopAdditionSettings"]) {
     OBHopAdditionSettingsViewController *next = [segue destinationViewController];
-    next.brewery = self.brewery;
+    next.settings = self.settings;
   }
 }
 

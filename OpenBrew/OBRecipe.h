@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class OBBrewery, OBHopAddition, OBMaltAddition, OBYeastAddition;
+@class OBSettings, OBHopAddition, OBMaltAddition, OBYeastAddition;
 
 @interface OBRecipe : NSManagedObject
 
@@ -19,7 +19,7 @@
 @property (nonatomic) NSNumber *postBoilVolumeInGallons;
 @property (nonatomic) NSNumber *preBoilVolumeInGallons;
 
-@property (nonatomic) OBBrewery *brewery;
+@property (nonatomic) OBSettings *settings;
 @property (nonatomic) NSSet *hopAdditions;
 @property (nonatomic) NSSet *maltAdditions;
 

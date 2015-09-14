@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8193.2" systemVersion="14F27" minimumToolsVersion="Xcode 4.3">
-    <entity name="Brewery" representedClassName="OBBrewery" syncable="YES">
-        <attribute name="copiedStarterDataVersion" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="defaultBatchSize" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
-        <attribute name="hopAdditionDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="hopGaugeDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="maltAdditionDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="maltGaugeDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="mashEfficiency" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="selectedYeastManufacturer" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
-    </entity>
     <entity name="HopAddition" representedClassName="OBHopAddition" parentEntity="Hops" syncable="YES">
         <attribute name="boilTimeInMinutes" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="displayOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -40,6 +30,16 @@
         <relationship name="maltAdditions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MaltAddition" inverseName="recipe" inverseEntity="MaltAddition" syncable="YES"/>
         <relationship name="yeast" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="YeastAddition" inverseName="recipe" inverseEntity="YeastAddition" syncable="YES"/>
     </entity>
+    <entity name="Settings" representedClassName="OBSettings" syncable="YES">
+        <attribute name="copiedStarterDataVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="defaultBatchSize" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
+        <attribute name="hopAdditionDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="hopGaugeDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="maltAdditionDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="maltGaugeDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="mashEfficiency" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="selectedYeastManufacturer" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="Yeast" representedClassName="OBYeast" syncable="YES">
         <attribute name="alcoholTolerance" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="3" syncable="YES"/>
         <attribute name="category" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="3" syncable="YES"/>
@@ -57,13 +57,13 @@
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="yeast" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Brewery" positionX="-333" positionY="360" width="128" height="165"/>
-        <element name="HopAddition" positionX="-18" positionY="351" width="128" height="105"/>
-        <element name="Hops" positionX="9" positionY="117" width="128" height="75"/>
-        <element name="Malt" positionX="-252" positionY="-54" width="128" height="105"/>
-        <element name="MaltAddition" positionX="-263" positionY="126" width="128" height="90"/>
-        <element name="Recipe" positionX="36" positionY="162" width="128" height="148"/>
-        <element name="Yeast" positionX="340" positionY="9" width="128" height="195"/>
-        <element name="YeastAddition" positionX="142" positionY="495" width="128" height="75"/>
+        <element name="Settings" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="HopAddition" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="Hops" positionX="0" positionY="0" width="128" height="75"/>
+        <element name="Malt" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="MaltAddition" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Recipe" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="Yeast" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="YeastAddition" positionX="0" positionY="0" width="128" height="75"/>
     </elements>
 </model>

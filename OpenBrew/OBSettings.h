@@ -1,5 +1,5 @@
 //
-//  OBBrewery.h
+//  OBSettings.h
 //  OpenBrew
 //
 //  Created by David Shirley 2 on 1/25/14.
@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
   OBHopAdditionMetricIbu
 };
 
-@interface OBBrewery : NSManagedObject
+@interface OBSettings : NSManagedObject
 
 // Some starter data is provided with each app. The data is copied into the app at
 // the beginning of the first session for each version of the app. Once the data is
@@ -58,8 +58,8 @@ typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
 
 @end
 
-@interface OBBrewery (CoreDataGeneratedAccessors)
+@interface OBSettings (CoreDataGeneratedAccessors)
 
-+ (OBBrewery *)breweryFromContext:(NSManagedObjectContext *)ctx;
++ (OBSettings *)settingsForContext:(NSManagedObjectContext *)ctx;
 
 @end

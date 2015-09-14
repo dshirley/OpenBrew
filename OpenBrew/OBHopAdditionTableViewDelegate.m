@@ -11,7 +11,7 @@
 #import "OBHopAddition.h"
 #import "OBRecipe.h"
 #import "OBHops.h"
-#import "OBBrewery.h"
+#import "OBSettings.h"
 
 #import "OBMultiPickerTableViewCell.h"
 #import "OBHopAdditionTableViewCell.h"

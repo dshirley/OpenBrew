@@ -29,7 +29,7 @@
 
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   self.vc = [storyboard instantiateViewControllerWithIdentifier:@"hopAdditions"];
-  self.vc.brewery = self.brewery;
+  self.vc.settings = self.settings;
   self.vc.recipe = self.recipe;
 }
 
@@ -39,12 +39,12 @@
   [super tearDown];
 }
 
-- (void)testViewDidLoad_breweryIsSet
+- (void)testViewDidLoad_settingsIsSet
 {
   [self.vc loadView];
   [self.vc viewDidLoad];
 
-  XCTAssertEqual(self.brewery, self.vc.brewery);
+  XCTAssertEqual(self.settings, self.vc.settings);
 }
 
 - (void)testViewDidLoad_tableViewDelegateIsSetup
@@ -62,26 +62,26 @@
 
 - (void)testViewDidLoad_gaugeIsSetupWithStoredSettings
 {
-  self.brewery.hopGaugeDisplayMetric = @(OBMetricBuToGuRatio);
+  self.settings.hopGaugeDisplayMetric = @(OBMetricBuToGuRatio);
 
   [self.vc loadView];
   [self.vc viewDidLoad];
   XCTAssertEqual(OBMetricBuToGuRatio, self.vc.gauge.metricToDisplay);
 
-  self.brewery.hopGaugeDisplayMetric = @(OBMetricIbu);
+  self.settings.hopGaugeDisplayMetric = @(OBMetricIbu);
   [self.vc viewDidLoad];
   XCTAssertEqual(OBMetricIbu, self.vc.gauge.metricToDisplay);
 }
 
 - (void)testViewDidLoad_hopAdditionMetricUsesStoredSettings
 {
-  self.brewery.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);
+  self.settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);
 
   [self.vc loadView];
   [self.vc viewDidLoad];
   XCTAssertEqual(OBHopAdditionMetricIbu, self.vc.tableViewDelegate.hopAdditionMetricToDisplay);
 
-  self.brewery.hopAdditionDisplayMetric = @(OBHopAdditionMetricWeight);
+  self.settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricWeight);
   [self.vc viewDidLoad];
   XCTAssertEqual(OBHopAdditionMetricWeight, self.vc.tableViewDelegate.hopAdditionMetricToDisplay);
 }
@@ -134,7 +134,7 @@
 {
   [self.vc loadView];
 
-  self.brewery.hopGaugeDisplayMetric = @(OBMetricBuToGuRatio);
+  self.settings.hopGaugeDisplayMetric = @(OBMetricBuToGuRatio);
 
   id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
 
@@ -268,7 +268,7 @@
   id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
   [[mockGauge expect] setMetricToDisplay:OBMetricColor];
 
-  self.brewery.hopGaugeDisplayMetric = @(OBMetricColor);
+  self.settings.hopGaugeDisplayMetric = @(OBMetricColor);
 
   [mockGauge verify];
 }
@@ -281,7 +281,7 @@
   id mockDelegate = [OCMockObject partialMockForObject:self.vc.tableViewDelegate];
   [[mockDelegate expect] setHopAdditionMetricToDisplay:OBHopAdditionMetricIbu];
 
-  self.brewery.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);
+  self.settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);
 
   [mockDelegate verify];
 }
@@ -334,7 +334,7 @@
   [self.vc viewDidLoad];
 
   OBHopAdditionSettingsViewController *settingsVc = [[OBHopAdditionSettingsViewController alloc] init];
-  settingsVc.brewery = nil;
+  settingsVc.settings = nil;
 
   UIStoryboardSegue *segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"hopAdditionSettings"
                                                                     source:self.vc
@@ -342,8 +342,8 @@
 
   [self.vc prepareForSegue:segue sender:nil];
 
-  XCTAssertNotNil(settingsVc.brewery);
-  XCTAssertEqual(self.vc.brewery, settingsVc.brewery);
+  XCTAssertNotNil(settingsVc.settings);
+  XCTAssertEqual(self.vc.settings, settingsVc.settings);
 }
 
 // TODO:  test observe value for key path

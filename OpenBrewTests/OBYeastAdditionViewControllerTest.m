@@ -56,7 +56,7 @@
 {
   [self.vc loadView];
 
-  self.brewery.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
+  self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
 
   [self.vc viewDidLoad];
 
@@ -75,7 +75,7 @@
 {
   [self.vc loadView];
 
-  self.brewery.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
+  self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
 
   [self.vc viewDidLoad];
 
@@ -110,7 +110,7 @@
 
   [self addYeast:@"WLP001"];
 
-  self.brewery.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
+  self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
 
   [self.vc viewDidLoad];
 
@@ -133,7 +133,7 @@
   [self.vc loadView];
 
   // A manufaturer is selected that is not the manufacturer of the selected yeast
-  self.brewery.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
+  self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
 
   [self.vc viewDidLoad];
 
@@ -147,7 +147,7 @@
 {
   [self.vc loadView];
 
-  self.brewery.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
+  self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
 
   [self.vc viewDidLoad];
 
@@ -161,7 +161,7 @@
   cell = (id)[self.vc.tableView cellForRowAtIndexPath:self.r0s0];
   XCTAssertEqualObjects(@"1007", cell.yeastIdentifier.text);
   XCTAssertEqual(49, [self.vc.tableView numberOfRowsInSection:0]);
-  XCTAssertEqual(OBYeastManufacturerWyeast, [self.brewery.selectedYeastManufacturer integerValue]);
+  XCTAssertEqual(OBYeastManufacturerWyeast, [self.settings.selectedYeastManufacturer integerValue]);
 
   self.vc.segmentedControl.selectedSegmentIndex = 0;
   [self.vc.segmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
@@ -175,7 +175,7 @@
 {
   [self.vc loadView];
 
-  self.brewery.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
+  self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
 
   [self.vc viewDidLoad];
 
@@ -195,7 +195,7 @@
 {
   [self.vc loadView];
 
-  self.brewery.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
+  self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
 
   [self.vc viewDidLoad];
 
@@ -205,12 +205,12 @@
   XCTAssertEqualObjects(@"WLP001", cell.yeastIdentifier.text);
   XCTAssertEqualObjects(@"California Ale", cell.yeastName.text);
 
-  self.brewery.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
+  self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
 
   cell = (id)[self.vc tableView:self.vc.tableView cellForRowAtIndexPath:self.r0s0];
   XCTAssertEqualObjects(@"WyeastCell", cell.reuseIdentifier);
 
-  self.brewery.selectedYeastManufacturer = @(2);
+  self.settings.selectedYeastManufacturer = @(2);
   XCTAssertThrows([self.vc tableView:self.vc.tableView cellForRowAtIndexPath:self.r0s0]);
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import "OBSegmentedController.h"
-#import "OBBrewery.h"
+#import "OBSettings.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 
@@ -57,7 +57,7 @@
 
   NSString *title = [sender titleForSegmentAtIndex:index];
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Brewery Settings"
+  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Settings Settings"
                                                         action:self.googleAnalyticsAction
                                                          label:title
                                                          value:nil] build]];

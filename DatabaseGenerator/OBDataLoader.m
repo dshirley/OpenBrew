@@ -8,7 +8,7 @@
 
 #import <CoreData/CoreData.h>
 #import "OBDataLoader.h"
-#import "OBBrewery.h"
+#import "OBSettings.h"
 #import "OBMalt.h"
 #import "OBHops.h"
 #import "OBYeast.h"

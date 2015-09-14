@@ -6,17 +6,17 @@
 //  Copyright (c) 2015 OpenBrew. All rights reserved.
 //
 //  This base test case is all about making other tests more convenient.
-//  Almost every test will require a brewery and a recipe in order to do anything.
+//  Almost every test will require a settings and a recipe in order to do anything.
 //  This test sets up the scaffolding to make testing easier.
 
-#import "OBBrewery.h"
+#import "OBSettings.h"
 #import "OBRecipe.h"
 
 @interface OBBaseTestCase : XCTestCase
 @property (nonatomic, strong) NSManagedObjectModel *model;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong) NSManagedObjectContext *ctx;
-@property (nonatomic, strong) OBBrewery *brewery;
+@property (nonatomic, strong) OBSettings *settings;
 @property (nonatomic, strong) OBRecipe *recipe;
 
 // Some index paths that are used throughout many controller tests
