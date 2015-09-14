@@ -53,8 +53,6 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 
   self.hasTriedTapping = NO;
 
-  // TODO: reload data should be placed outside the if statement in viewWillAppear
-  [self reloadData];
   self.recipeNameTextField.text = self.recipe.name;
   [self addSeparatorToTopOfTableView];
 }
@@ -72,15 +70,11 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 
   self.screenName = OBGAScreenName;
 
-  if (![self isMovingToParentViewController]) {
-    // A sub-view controller is being popped
-    [self reloadData];
+  [self reloadData];
 
-    // TODO: recipe saving should probably be done in the controller that edited the data
-    NSError *error = nil;
-    [self.recipe.managedObjectContext save:&error];
-    CRITTERCISM_LOG_ERROR(error);
-  }
+  NSError *error = nil;
+  [self.recipe.managedObjectContext save:&error];
+  CRITTERCISM_LOG_ERROR(error);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -200,9 +194,6 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 
 - (void)dismissKeyboard
 {
-  // This is pretty annoying: dismiss the keyboard if the user was editing the recipe title.
-  // TODO: is there a more efficient way to do this?  Surely if there were 10 different components, this
-  // code wouldn't need to be added to each of them.
   [self.view endEditing:YES];
 }
 

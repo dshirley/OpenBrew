@@ -41,7 +41,7 @@
   [self.vc performSelectorOnMainThread:@selector(loadView) withObject:nil waitUntilDone:YES];
 }
 
-- (void)testViewWillAppearPoppingNavigationStack
+- (void)testViewWillAppear
 {
   id mockVc = [OCMockObject partialMockForObject:self.vc];
   id mockCtx = [OCMockObject partialMockForObject:self.recipe.managedObjectContext];
@@ -56,25 +56,6 @@
 
   [mockVc verify];
   [mockCtx verify];
-
-  XCTAssertEqualObjects(self.vc.screenName, @"Recipe Screen");
-}
-
-- (void)testViewWillAppearPushingNavigationStack
-{
-  id mockVc = [OCMockObject partialMockForObject:self.vc];
-  id mockCtx = [OCMockObject partialMockForObject:self.recipe.managedObjectContext];
-
-  [[[mockVc stub] andReturnValue:OCMOCK_VALUE(YES)] isMovingToParentViewController];
-
-  [[mockVc expect] reloadData];
-
-  [[mockCtx expect] save:(id __autoreleasing *)[OCMArg anyPointer]];
-
-  [self.vc viewWillAppear:YES];
-
-  XCTAssertThrows([mockVc verify]);
-  XCTAssertThrows([mockCtx verify]);
 
   XCTAssertEqualObjects(self.vc.screenName, @"Recipe Screen");
 }
