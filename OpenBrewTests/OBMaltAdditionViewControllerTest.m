@@ -329,8 +329,6 @@
   XCTAssertEqual(self.vc.settings, settingsVc.settings);
 }
 
-// TODO:  test observe value for key path
-
 - (void)testViewWillDissappear
 {
   [self.vc loadView];
