@@ -1,5 +1,5 @@
 //
-//  OBRecipeViewControllerTest.m
+//  OBRecipeListViewControllerTest.m
 //  OpenBrew
 //
 //  Created by David Shirley 2 on 7/29/15.
@@ -9,17 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "OBBaseTestCase.h"
-#import "OBRecipeViewController.h"
+#import "OBRecipeListViewController.h"
 #import "OBRecipeOverviewController.h"
 #import <OCMock/OCMock.h>
 #import "OBAppDelegate.h"
 
-@interface OBRecipeViewControllerTest : OBBaseTestCase
-@property (nonatomic) OBRecipeViewController *vc;
+@interface OBRecipeListViewControllerTest : OBBaseTestCase
+@property (nonatomic) OBRecipeListViewController *vc;
 @property (nonatomic) id mockVc;
 @end
 
-@implementation OBRecipeViewControllerTest
+@implementation OBRecipeListViewControllerTest
 
 - (void)setUp {
   [super setUp];

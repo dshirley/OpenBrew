@@ -1,12 +1,12 @@
 //
-//  OBRecipeViewController.m
+//  OBRecipeListViewController.m
 //  OpenBrew
 //
 //  Created by David Shirley 2 on 1/25/14.
 //  Copyright (c) 2014 OpenBrew. All rights reserved.
 //
 
-#import "OBRecipeViewController.h"
+#import "OBRecipeListViewController.h"
 #import "OBRecipeOverviewController.h"
 #import "OBSettings.h"
 #import "Crittercism+NSErrorLogging.h"
@@ -20,7 +20,7 @@ static NSString *const OBGAScreenName = @"Recipe List Screen";
 static NSString *const ADD_RECIPE_SEGUE = @"addRecipe";
 static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
-@interface OBRecipeViewController ()
+@interface OBRecipeListViewController ()
 
 @property (nonatomic) UIView *placeholderText;
 
@@ -31,7 +31,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
 @end
 
-@implementation OBRecipeViewController
+@implementation OBRecipeListViewController
 
 #pragma mark UIViewController Override Methods
 
