@@ -34,7 +34,6 @@
 		9F6570D11B3906ED0004EBE0 /* OBIngredientGauge.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F6570D01B3906ED0004EBE0 /* OBIngredientGauge.xib */; };
 		9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */; };
 		9F7EFEF71BA6B8E500B71D64 /* OBSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF686C51893F00B00B36486 /* OBSettings.m */; };
-		9F7EFEF81BA6BD6800B71D64 /* OBGlobalSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8EE951B45B19900EEF14D /* OBGlobalSettingsTest.m */; };
 		9F7EFEFA1BA6BDA300B71D64 /* OBSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EFEF91BA6BDA300B71D64 /* OBSettingsTest.m */; settings = {ASSET_TAGS = (); }; };
 		9F8D88861B8434A600FA4277 /* OBYeastAdditionViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8D88851B8434A600FA4277 /* OBYeastAdditionViewControllerTest.m */; };
 		9F92E8A918A0910200118D76 /* OBHopFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8A818A0910200118D76 /* OBHopFinderViewController.m */; };
@@ -87,14 +86,12 @@
 		9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */; };
 		9FD66387198218220056EEEC /* OBHopAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD66386198218220056EEEC /* OBHopAdditionViewController.m */; };
 		9FE243461B45CD1B00D1EE25 /* OBRecipeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE243451B45CD1B00D1EE25 /* OBRecipeTest.m */; };
-		9FE2434C1B45F99900D1EE25 /* OBGlobalSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE2434B1B45F99900D1EE25 /* OBGlobalSettings.m */; };
 		9FE243511B471D5800D1EE25 /* OBMultiPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE243501B471D5800D1EE25 /* OBMultiPickerView.m */; };
 		9FE279BF1B9926910057BEFE /* OpenBrew.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745A188975C700FFAA56 /* OpenBrew.xcdatamodeld */; };
 		9FE279C01B9927590057BEFE /* OBHops.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8CA18A0D53E00118D76 /* OBHops.m */; };
 		9FE279C11B9927590057BEFE /* OBMalt.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8C118A0CFF700118D76 /* OBMalt.m */; };
 		9FE279C21B9927590057BEFE /* OBRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8C418A0D0D000118D76 /* OBRecipe.m */; };
 		9FE279C31B9927590057BEFE /* OBYeast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8D018A0D6CF00118D76 /* OBYeast.m */; };
-		9FE279C41B9929630057BEFE /* OBGlobalSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE2434B1B45F99900D1EE25 /* OBGlobalSettings.m */; };
 		9FE279D11B9935EE0057BEFE /* OBCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE279D01B9935EE0057BEFE /* OBCoreData.m */; };
 		9FE279D21B9935EE0057BEFE /* OBCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE279D01B9935EE0057BEFE /* OBCoreData.m */; };
 		9FE279EC1B9952B40057BEFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE279E91B9952B40057BEFE /* main.m */; };
@@ -270,7 +267,6 @@
 		9FC8EE901B45A39900EEF14D /* OBBaseTestCase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBBaseTestCase.h; sourceTree = "<group>"; };
 		9FC8EE911B45A87F00EEF14D /* OBMaltTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltTest.m; sourceTree = "<group>"; };
 		9FC8EE931B45AFA500EEF14D /* OBHopsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopsTest.m; sourceTree = "<group>"; };
-		9FC8EE951B45B19900EEF14D /* OBGlobalSettingsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBGlobalSettingsTest.m; sourceTree = "<group>"; };
 		9FC8EE971B45BD0D00EEF14D /* OBYeastTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBYeastTest.m; sourceTree = "<group>"; };
 		9FC8EE991B45C3F300EEF14D /* OBSrmColorTableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSrmColorTableTest.m; sourceTree = "<group>"; };
 		9FCC01F21B612C4E006E30D3 /* OBRecipeOverviewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeOverviewControllerTest.m; sourceTree = "<group>"; };
@@ -281,8 +277,6 @@
 		9FD66385198218220056EEEC /* OBHopAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionViewController.h; sourceTree = "<group>"; };
 		9FD66386198218220056EEEC /* OBHopAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionViewController.m; sourceTree = "<group>"; };
 		9FE243451B45CD1B00D1EE25 /* OBRecipeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeTest.m; sourceTree = "<group>"; };
-		9FE2434A1B45F99900D1EE25 /* OBGlobalSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBGlobalSettings.h; sourceTree = "<group>"; };
-		9FE2434B1B45F99900D1EE25 /* OBGlobalSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBGlobalSettings.m; sourceTree = "<group>"; };
 		9FE2434F1B471D5800D1EE25 /* OBMultiPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMultiPickerView.h; sourceTree = "<group>"; };
 		9FE243501B471D5800D1EE25 /* OBMultiPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerView.m; sourceTree = "<group>"; };
 		9FE279B81B9924540057BEFE /* DatabaseGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DatabaseGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -432,7 +426,6 @@
 			isa = PBXGroup;
 			children = (
 				9F7EFEF91BA6BDA300B71D64 /* OBSettingsTest.m */,
-				9FC8EE951B45B19900EEF14D /* OBGlobalSettingsTest.m */,
 				9FCECC5A18879B430045FADD /* OBHopAdditionTest.m */,
 				9FC8EE931B45AFA500EEF14D /* OBHopsTest.m */,
 				9FE9745718883C8500FFAA56 /* OBMaltAdditionTest.m */,
@@ -561,8 +554,6 @@
 			children = (
 				9FE279CF1B9935EE0057BEFE /* OBCoreData.h */,
 				9FE279D01B9935EE0057BEFE /* OBCoreData.m */,
-				9FE2434A1B45F99900D1EE25 /* OBGlobalSettings.h */,
-				9FE2434B1B45F99900D1EE25 /* OBGlobalSettings.m */,
 				9F92E8C618A0D45F00118D76 /* OBHopAddition.h */,
 				9F92E8C718A0D45F00118D76 /* OBHopAddition.m */,
 				9F92E8C918A0D53E00118D76 /* OBHops.h */,
@@ -976,7 +967,6 @@
 				9F92E8D118A0D6CF00118D76 /* OBYeast.m in Sources */,
 				9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */,
 				9F92E8A918A0910200118D76 /* OBHopFinderViewController.m in Sources */,
-				9FE2434C1B45F99900D1EE25 /* OBGlobalSettings.m in Sources */,
 				9F92E8E118A4536200118D76 /* OBIngredientGauge.m in Sources */,
 				9F0815441996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m in Sources */,
 				9F92E8BF18A0CED100118D76 /* OBMaltAddition.m in Sources */,
@@ -994,7 +984,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F7EFEF81BA6BD6800B71D64 /* OBGlobalSettingsTest.m in Sources */,
 				9F8D88861B8434A600FA4277 /* OBYeastAdditionViewControllerTest.m in Sources */,
 				9F0323311B786DC500E4B98B /* OBHopBoilTimePickerDelegateTest.m in Sources */,
 				9F40C4C61B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m in Sources */,
@@ -1037,7 +1026,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F7EFEF71BA6B8E500B71D64 /* OBSettings.m in Sources */,
-				9FE279C41B9929630057BEFE /* OBGlobalSettings.m in Sources */,
 				9FE279C01B9927590057BEFE /* OBHops.m in Sources */,
 				9FE279C11B9927590057BEFE /* OBMalt.m in Sources */,
 				9FE279D21B9935EE0057BEFE /* OBCoreData.m in Sources */,

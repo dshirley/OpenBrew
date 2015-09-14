@@ -75,7 +75,10 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
   if ([segueId isEqualToString:ADD_RECIPE_SEGUE]) {
     recipe = [[OBRecipe alloc] initWithContext:self.moc];
+
     recipe.name = @"New Recipe";
+    recipe.preBoilVolumeInGallons = self.settings.defaultPreBoilSize;
+    recipe.postBoilVolumeInGallons = self.settings.defaultPostBoilSize;
 
     NSError *err = nil;
     [self.moc save:&err];

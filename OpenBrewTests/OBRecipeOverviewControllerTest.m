@@ -14,7 +14,6 @@
 #import "OCMock.h"
 #import "OBBrewController.h"
 #import "GAI.h"
-#import "OBGlobalSettings.h"
 
 @interface OBRecipeOverviewControllerTest : OBBaseTestCase
 @property (nonatomic) OBRecipeOverviewController *vc;

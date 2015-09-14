@@ -155,6 +155,9 @@
   XCTAssertTrue([recipes containsObject:dest.recipe]);
 
   XCTAssertEqualObjects(@"New Recipe", dest.recipe.name);
+  XCTAssertEqualObjects(self.settings.defaultPreBoilSize, self.recipe.preBoilVolumeInGallons);
+  XCTAssertEqualObjects(self.settings.defaultPostBoilSize, self.recipe.postBoilVolumeInGallons);
+
   XCTAssertTrue(self.vc.firstInteractionComplete);
 
   XCTAssertEqual(self.settings, dest.settings);

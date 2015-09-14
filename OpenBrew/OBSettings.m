@@ -7,17 +7,13 @@
 //
 
 #import "OBSettings.h"
-#import "OBRecipe.h"
-#import "OBMalt.h"
-#import "OBHops.h"
-#import "OBYeast.h"
-#import "Crittercism+NSErrorLogging.h"
 
 @implementation OBSettings
 
 @dynamic copiedStarterDataVersion;
 @dynamic mashEfficiency;
-@dynamic defaultBatchSize;
+@dynamic defaultPostBoilSize;
+@dynamic defaultPreBoilSize;
 @dynamic hopAdditionDisplayMetric;
 @dynamic hopGaugeDisplayMetric;
 @dynamic maltAdditionDisplayMetric;

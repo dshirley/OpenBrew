@@ -60,6 +60,9 @@ NSManagedObjectContext *g_startupContext = nil;
   self.recipe = [[OBRecipe alloc] initWithContext:self.ctx];
   XCTAssertEqual(1, [self fetchAllEntity:@"Recipe"].count);
 
+  self.recipe.preBoilVolumeInGallons = self.settings.defaultPreBoilSize;
+  self.recipe.postBoilVolumeInGallons = self.settings.defaultPostBoilSize;
+
   self.r0s0 = [NSIndexPath indexPathForRow:0 inSection:0];
   self.r1s0 = [NSIndexPath indexPathForRow:1 inSection:0];
   self.r2s0 = [NSIndexPath indexPathForRow:2 inSection:0];

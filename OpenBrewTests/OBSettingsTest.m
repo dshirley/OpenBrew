@@ -71,7 +71,6 @@
   XCTAssertEqual(OBMaltTypeExtract, [malt.type integerValue]);
 }
 
-
 - (void)testIbuFormula
 {
   XCTAssertEqual([self.settings.ibuFormula integerValue], OBIbuFormulaTinseth, @"The default formula is tinseth");
@@ -87,5 +86,20 @@
 
 }
 
+- (void)testDefaultPreBoilVolumeInGallons
+{
+  XCTAssertEqualWithAccuracy(7.0, [self.settings.defaultPreBoilSize floatValue], 0.001);
+
+  self.settings.defaultPreBoilSize = @(8.12);
+  XCTAssertEqualWithAccuracy(8.12, [self.settings.defaultPreBoilSize floatValue], 0.000001);
+}
+
+- (void)testDefaultPostBoilVolumeInGallons
+{
+  XCTAssertEqualWithAccuracy(6.0, [self.settings.defaultPostBoilSize floatValue], 0.001);
+
+  self.settings.defaultPostBoilSize = @(9.93);
+  XCTAssertEqualWithAccuracy(9.93, [self.settings.defaultPostBoilSize floatValue], 0.000001);
+}
 
 @end

@@ -13,7 +13,6 @@
 #import "OBYeastAddition.h"
 #import "OBYeast.h"
 #import "OBKvoUtils.h"
-#import "OBGlobalSettings.h"
 #import "OBMalt.h"
 
 NSString * const calculatedKVOKeys[] = {
@@ -63,8 +62,6 @@ NSString * const calculatedKVOKeys[] = {
   self = [self initWithEntity:desc insertIntoManagedObjectContext:context];
 
   if (self) {
-    self.preBoilVolumeInGallons = [OBGlobalSettings defaultPreBoilSize];
-    self.postBoilVolumeInGallons = [OBGlobalSettings defaultPostBoilSize];
     [self startObserving];
   }
 
