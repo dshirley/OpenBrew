@@ -9,8 +9,6 @@
 #import "OBIngredientGauge.h"
 #import "OBColorView.h"
 #import "Crittercism+NSErrorLogging.h"
-
-// FIXME: decide if the view should be importing recipe
 #import "OBRecipe.h"
 
 #define VALUE_HEIGHT 90
