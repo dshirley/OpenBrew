@@ -18,11 +18,8 @@ static NSString* const OBGAScreenName = @"Malt Addition Settings";
 
 @interface OBMaltAdditionSettingsViewController ()
 
-@property (nonatomic) IBOutlet UISegmentedControl *gaugeDisplaySettingSegmentedControl;
-
 @property (nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
 
-@property (nonatomic) OBSegmentedController *gaugeDisplaySettingController;
 @property (nonatomic) OBSegmentedController *ingredientDisplaySettingController;
 
 @end
@@ -51,24 +48,6 @@ static NSString* const OBGAScreenName = @"Malt Addition Settings";
                       forControlEvents:UIControlEventValueChanged];
 
   [self updateMashEfficiencyLabel];
-
-  self.gaugeDisplaySettingController =
-    [[OBSegmentedController alloc] initWithSegmentedControl:self.gaugeDisplaySettingSegmentedControl
-                                              googleAnalyticsAction:@"Malt Gauge Display"];
-
-  [self.gaugeDisplaySettingController addSegment:@"Gravity" actionWhenSelected:^(void) {
-    settings.maltGaugeDisplayMetric = @(OBMetricOriginalGravity);
-  }];
-
-  [self.gaugeDisplaySettingController addSegment:@"Color" actionWhenSelected:^(void) {
-    settings.maltGaugeDisplayMetric = @(OBMetricColor);
-  }];
-
-  if (OBMetricColor == [settings.maltGaugeDisplayMetric integerValue]) {
-    self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = 1;
-  } else {
-    self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = 0;
-  }
 
   self.ingredientDisplaySettingController =
     [[OBSegmentedController alloc] initWithSegmentedControl:self.ingredientDisplaySettingSegmentedControl

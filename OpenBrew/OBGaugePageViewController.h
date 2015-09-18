@@ -7,26 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OBSettings.h"
+#import "OBGaugePageViewControllerDataSource.h"
 
-@class OBRecipe;
+@interface OBGaugePageViewController : UIPageViewController
 
-@interface OBGaugePageViewController : UIPageViewController <UIPageViewControllerDataSource>
-
-@property (nonatomic) OBRecipe *recipe;
-
-- (void)addGaugeMetrics:(NSArray *)gaugeMetrics;
-
-- (void)refresh;
-
-#pragma mark UIPageViewControllerDataSource methods
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController;
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController;
-
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController;
-
-- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController;
+- (void)setDataSource:(OBGaugePageViewControllerDataSource *)dataSource;
 
 @end

@@ -18,7 +18,7 @@
 #import "OBSrmColorTable.h"
 #import "OBTableViewPlaceholderLabel.h"
 #import "OBMaltAdditionSettingsViewController.h"
-#import "OBGaugePageViewController.h"
+#import "OBGaugePageViewControllerDataSource.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Malt Addition Screen";
@@ -31,9 +31,13 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
 
   NSAssert(self.settings, @"Settings were nil");
 
-  self.gaugePageViewController = (id)self.childViewControllers[0];
-  self.gaugePageViewController.recipe = self.recipe;
-  [self.gaugePageViewController addGaugeMetrics:@[ @(OBMetricOriginalGravity), @(OBMetricColor) ]];
+  UIPageViewController *pageViewController = (id)self.childViewControllers[0];
+  self.pageViewControllerDataSource =
+    [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe
+                                                displayMetrics:@[ @(OBMetricOriginalGravity), @(OBMetricColor) ]];
+
+  pageViewController.dataSource = self.pageViewControllerDataSource;
+
 
   self.tableViewDelegate = [[OBMaltAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
                                                                       andTableView:self.tableView
@@ -118,12 +122,10 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
 - (void)setSettings:(OBSettings *)settings
 {
   [_settings removeObserver:self forKeyPath:KVO_KEY(maltAdditionDisplayMetric)];
-  [_settings removeObserver:self forKeyPath:KVO_KEY(maltGaugeDisplayMetric)];
 
   _settings = settings;
 
   [_settings addObserver:self forKeyPath:KVO_KEY(maltAdditionDisplayMetric) options:0 context:nil];
-  [_settings addObserver:self forKeyPath:KVO_KEY(maltGaugeDisplayMetric) options:0 context:nil];
 }
 
 - (void)dealloc
@@ -141,8 +143,6 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
 
   if ([keyPath isEqualToString:KVO_KEY(originalGravity)])
   {
-    [self.gaugePageViewController refresh];
-
     if (NSKeyValueChangeSetting == changeType) {
       // If the table is reloaded during a delete, a crash results.
       [self.tableView reloadData];
@@ -151,10 +151,6 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   else if ([keyPath isEqualToString:KVO_KEY(maltAdditionDisplayMetric)])
   {
     self.tableViewDelegate.maltAdditionMetricToDisplay = [self.settings.maltAdditionDisplayMetric integerValue];
-  }
-  else if ([keyPath isEqualToString:KVO_KEY(maltGaugeDisplayMetric)])
-  {
-//    self.gauge.metricToDisplay = [self.settings.maltGaugeDisplayMetric integerValue];
   }
   else if ([keyPath isEqualToString:KVO_KEY(maltAdditions)])
   {

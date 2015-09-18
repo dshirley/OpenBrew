@@ -10,16 +10,13 @@
 #import "OBColorView.h"
 #import "Crittercism+NSErrorLogging.h"
 #import "OBRecipe.h"
+#import "OBKvoUtils.h"
 
 @interface OBGaugeViewController ()
 
 @end
 
 @implementation OBGaugeViewController
-
-- (void)viewDidLoad {
-  [super viewDidLoad];
-}
 
 - (void)refresh
 {
@@ -77,7 +74,18 @@
 
 - (void)setRecipe:(OBRecipe *)recipe
 {
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(originalGravity)];
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(IBUs)];
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(postBoilVolumeInGallons)];
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(preBoilVolumeInGallons)];
+
   _recipe = recipe;
+
+  [_recipe addObserver:self forKeyPath:KVO_KEY(originalGravity) options:0 context:nil];
+  [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs) options:0 context:nil];
+  [_recipe addObserver:self forKeyPath:KVO_KEY(postBoilVolumeInGallons) options:0 context:nil];
+  [_recipe addObserver:self forKeyPath:KVO_KEY(preBoilVolumeInGallons) options:0 context:nil];
+
   [self refresh];
 }
 
@@ -95,6 +103,14 @@
 - (uint32_t)colorInSrm
 {
   return self.colorView.colorInSrm;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+  [self refresh];
 }
 
 
