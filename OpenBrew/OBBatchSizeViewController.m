@@ -8,7 +8,6 @@
 
 #import "OBBatchSizeViewController.h"
 #import "OBRecipe.h"
-#import "OBIngredientGauge.h"
 #import "OBBatchSizeTableViewDelegate.h"
 #import "OBKvoUtils.h"
 

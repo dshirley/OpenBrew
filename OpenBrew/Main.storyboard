@@ -20,22 +20,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOa-7I-0kp" customClass="OBIngredientGauge">
-                                <rect key="frame" x="0.0" y="64" width="600" height="110"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="110" id="ng0-Ze-0Ys"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fp1-zt-7N2" userLabel="Separator">
-                                <rect key="frame" x="0.0" y="173" width="600" height="1"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="g5x-wi-osl"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="19" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="UdS-iz-4Sc">
-                                <rect key="frame" x="0.0" y="174" width="600" height="338"/>
+                                <rect key="frame" x="0.0" y="200" width="600" height="312"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IngredientAddition" rowHeight="60" id="EDW-mH-5Fs" customClass="OBMaltAdditionTableViewCell">
@@ -114,6 +100,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rXB-KE-h6k" userLabel="Separator View">
+                                <rect key="frame" x="0.0" y="199" width="600" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="RoK-8P-JId"/>
+                                </constraints>
+                            </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyc-2V-TX0">
                                 <rect key="frame" x="0.0" y="512" width="600" height="44"/>
                                 <items>
@@ -125,22 +118,31 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVl-il-cOT">
+                                <rect key="frame" x="0.0" y="64" width="600" height="135"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="135" id="dve-AW-B5o"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="ibi-Gi-taz" kind="embed" id="YN7-4v-Sze"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UdS-iz-4Sc" firstAttribute="bottom" secondItem="vyc-2V-TX0" secondAttribute="top" id="0ZE-x6-suj"/>
-                            <constraint firstItem="kOa-7I-0kp" firstAttribute="top" secondItem="7GB-IU-zZD" secondAttribute="bottom" id="9Dv-1q-PM5"/>
+                            <constraint firstItem="fVl-il-cOT" firstAttribute="top" secondItem="7GB-IU-zZD" secondAttribute="bottom" id="BOg-jS-9Wu"/>
+                            <constraint firstAttribute="trailing" secondItem="rXB-KE-h6k" secondAttribute="trailing" id="DwA-f9-rDf"/>
                             <constraint firstItem="UdS-iz-4Sc" firstAttribute="leading" secondItem="w92-Dv-4BG" secondAttribute="leading" id="GKV-To-DbS"/>
-                            <constraint firstAttribute="trailing" secondItem="kOa-7I-0kp" secondAttribute="trailing" id="PpK-tE-8w0"/>
-                            <constraint firstItem="kOa-7I-0kp" firstAttribute="leading" secondItem="w92-Dv-4BG" secondAttribute="leading" id="U8S-eE-iuC"/>
-                            <constraint firstAttribute="trailing" secondItem="fp1-zt-7N2" secondAttribute="trailing" id="VyR-CP-ECv"/>
+                            <constraint firstItem="rXB-KE-h6k" firstAttribute="leading" secondItem="w92-Dv-4BG" secondAttribute="leading" id="TwS-as-2B1"/>
+                            <constraint firstAttribute="trailing" secondItem="fVl-il-cOT" secondAttribute="trailing" id="YQZ-B4-IAK"/>
                             <constraint firstItem="vyc-2V-TX0" firstAttribute="bottom" secondItem="oWk-JD-d7Z" secondAttribute="bottom" id="cWt-LC-b9p"/>
-                            <constraint firstItem="fp1-zt-7N2" firstAttribute="leading" secondItem="w92-Dv-4BG" secondAttribute="leading" id="fcK-0B-F8Y"/>
+                            <constraint firstItem="rXB-KE-h6k" firstAttribute="bottom" secondItem="UdS-iz-4Sc" secondAttribute="top" id="eqg-6m-4Ti"/>
                             <constraint firstItem="vyc-2V-TX0" firstAttribute="leading" secondItem="w92-Dv-4BG" secondAttribute="leading" id="iDd-7h-kGM"/>
+                            <constraint firstItem="rXB-KE-h6k" firstAttribute="top" secondItem="fVl-il-cOT" secondAttribute="bottom" id="iaw-3C-ehs"/>
                             <constraint firstAttribute="trailing" secondItem="UdS-iz-4Sc" secondAttribute="trailing" id="qDQ-Eb-afA"/>
                             <constraint firstAttribute="trailing" secondItem="vyc-2V-TX0" secondAttribute="trailing" id="uzJ-Wh-Q6g"/>
-                            <constraint firstItem="fp1-zt-7N2" firstAttribute="bottom" secondItem="kOa-7I-0kp" secondAttribute="bottom" id="wl9-6f-7W5"/>
-                            <constraint firstItem="fp1-zt-7N2" firstAttribute="bottom" secondItem="UdS-iz-4Sc" secondAttribute="top" id="yUE-4D-wxr"/>
+                            <constraint firstItem="fVl-il-cOT" firstAttribute="leading" secondItem="w92-Dv-4BG" secondAttribute="leading" id="yMg-uu-k4V"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -153,7 +155,6 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="gauge" destination="kOa-7I-0kp" id="toB-W6-q80"/>
                         <outlet property="infoButton" destination="5Yk-uS-MSm" id="53u-DD-uI4"/>
                         <outlet property="tableView" destination="UdS-iz-4Sc" id="gEw-F7-HPk"/>
                     </connections>
@@ -555,7 +556,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Twi-WN-JCG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ina-W0-BOQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4267" y="1427"/>
+            <point key="canvasLocation" x="4267" y="1735"/>
         </scene>
         <!--Malt Selection-->
         <scene sceneID="cNo-1L-LHJ">
@@ -642,6 +643,77 @@
                 <exit id="o3p-xl-Rl5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4267" y="-48"/>
+        </scene>
+        <!--Gauge View Controller-->
+        <scene sceneID="DtE-Db-bgx">
+            <objects>
+                <viewController storyboardIdentifier="gaugeViewController" id="OrG-kA-Uos" customClass="OBGaugeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YtC-I6-PKV"/>
+                        <viewControllerLayoutGuide type="bottom" id="OPu-ev-WA3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5Ab-ks-9G9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37M-J5-ZE8" userLabel="Color View" customClass="OBColorView">
+                                <rect key="frame" x="0.0" y="30" width="600" height="65"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="yao-3u-D72"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OeX-zp-mcO">
+                                <rect key="frame" x="0.0" y="93" width="600" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="4W0-S0-mg4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcY-6s-7Bx">
+                                <rect key="frame" x="0.0" y="29" width="600" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="zLw-Jl-knl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="64"/>
+                                <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OcY-6s-7Bx" firstAttribute="bottom" secondItem="5Ab-ks-9G9" secondAttribute="centerY" constant="30" id="3UT-p5-Paz"/>
+                            <constraint firstItem="37M-J5-ZE8" firstAttribute="leading" secondItem="5Ab-ks-9G9" secondAttribute="leading" id="7ND-78-HxT"/>
+                            <constraint firstItem="OcY-6s-7Bx" firstAttribute="leading" secondItem="5Ab-ks-9G9" secondAttribute="leading" id="8cA-NS-wnK"/>
+                            <constraint firstAttribute="trailing" secondItem="OcY-6s-7Bx" secondAttribute="trailing" id="QLt-U0-G90"/>
+                            <constraint firstItem="37M-J5-ZE8" firstAttribute="bottom" secondItem="5Ab-ks-9G9" secondAttribute="centerY" constant="30" id="bAR-ni-kdx"/>
+                            <constraint firstAttribute="trailing" secondItem="OeX-zp-mcO" secondAttribute="trailing" id="l55-D0-bPK"/>
+                            <constraint firstItem="OeX-zp-mcO" firstAttribute="top" secondItem="5Ab-ks-9G9" secondAttribute="centerY" constant="28" id="oIn-nW-UtO"/>
+                            <constraint firstAttribute="trailing" secondItem="37M-J5-ZE8" secondAttribute="trailing" id="qWK-Eb-hOE"/>
+                            <constraint firstItem="OeX-zp-mcO" firstAttribute="leading" secondItem="5Ab-ks-9G9" secondAttribute="leading" id="xUr-rk-AC2"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="130"/>
+                    <connections>
+                        <outlet property="colorView" destination="37M-J5-ZE8" id="aSM-Gx-P8N"/>
+                        <outlet property="descriptionLabel" destination="OeX-zp-mcO" id="VYi-Sn-y7S"/>
+                        <outlet property="valueLabel" destination="OcY-6s-7Bx" id="uh4-ES-TzH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2SQ-V7-tTb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4267" y="-993"/>
+        </scene>
+        <!--Gauge Page View Controller-->
+        <scene sceneID="mcJ-xu-tSR">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ibi-Gi-taz" customClass="OBGaugePageViewController" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yhh-dC-BWW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4267" y="-484"/>
         </scene>
         <!--Malt Addition View Settings-->
         <scene sceneID="BnS-Pc-mrL">
@@ -782,7 +854,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1FX-Lw-Wu0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="K5j-g6-qw8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4267" y="689"/>
+            <point key="canvasLocation" x="4267" y="693"/>
         </scene>
         <!--Hop Addition View Settings-->
         <scene sceneID="lSj-wF-gbG">
@@ -906,7 +978,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uT3-d9-Psj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="WIa-dQ-uqY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4267" y="2175"/>
+            <point key="canvasLocation" x="4267" y="2483"/>
         </scene>
         <!--Recipes-->
         <scene sceneID="pOQ-kK-BHW">

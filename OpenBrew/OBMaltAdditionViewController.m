@@ -7,7 +7,6 @@
 //
 
 #import "OBMaltAdditionViewController.h"
-#import "OBIngredientGauge.h"
 #import "OBMaltFinderViewController.h"
 #import "OBSettings.h"
 #import "OBRecipe.h"
@@ -19,6 +18,7 @@
 #import "OBSrmColorTable.h"
 #import "OBTableViewPlaceholderLabel.h"
 #import "OBMaltAdditionSettingsViewController.h"
+#import "OBGaugePageViewController.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Malt Addition Screen";
@@ -31,6 +31,10 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
 
   NSAssert(self.settings, @"Settings were nil");
 
+  self.gaugePageViewController = (id)self.childViewControllers[0];
+  self.gaugePageViewController.recipe = self.recipe;
+  [self.gaugePageViewController addGaugeMetrics:@[ @(OBMetricOriginalGravity), @(OBMetricColor) ]];
+
   self.tableViewDelegate = [[OBMaltAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
                                                                       andTableView:self.tableView
                                                                      andGACategory:OBGAScreenName];
@@ -38,8 +42,6 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   self.tableView.delegate = self.tableViewDelegate;
   self.tableView.dataSource = self.tableViewDelegate;
 
-  self.gauge.recipe = self.recipe;
-  self.gauge.metricToDisplay = (OBGaugeMetric) [self.settings.maltGaugeDisplayMetric integerValue];
   self.tableViewDelegate.maltAdditionMetricToDisplay = (OBMaltAdditionMetric) [self.settings.maltAdditionDisplayMetric integerValue];
 
   UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
@@ -139,7 +141,7 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
 
   if ([keyPath isEqualToString:KVO_KEY(originalGravity)])
   {
-    [self.gauge refresh];
+    [self.gaugePageViewController refresh];
 
     if (NSKeyValueChangeSetting == changeType) {
       // If the table is reloaded during a delete, a crash results.
@@ -152,7 +154,7 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   }
   else if ([keyPath isEqualToString:KVO_KEY(maltGaugeDisplayMetric)])
   {
-    self.gauge.metricToDisplay = [self.settings.maltGaugeDisplayMetric integerValue];
+//    self.gauge.metricToDisplay = [self.settings.maltGaugeDisplayMetric integerValue];
   }
   else if ([keyPath isEqualToString:KVO_KEY(maltAdditions)])
   {

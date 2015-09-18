@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "OBYeast.h"
 
+// TODO: should this be moved to the gauge controller?
 typedef NS_ENUM(NSInteger, OBGaugeMetric) {
   OBMetricOriginalGravity,
   OBMetricFinalGravity,

@@ -7,7 +7,6 @@
 //
 
 #import "OBHopAdditionViewController.h"
-#import "OBIngredientGauge.h"
 #import "OBHopFinderViewController.h"
 #import "OBSettings.h"
 #import "OBRecipe.h"
@@ -38,8 +37,8 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   self.tableView.delegate = self.tableViewDelegate;
   self.tableView.dataSource = self.tableViewDelegate;
 
-  self.gauge.recipe = self.recipe;
-  self.gauge.metricToDisplay = (OBGaugeMetric) [self.settings.hopGaugeDisplayMetric integerValue];
+//  self.gauge.recipe = self.recipe;
+//  self.gauge.metricToDisplay = (OBGaugeMetric) [self.settings.hopGaugeDisplayMetric integerValue];
   self.tableViewDelegate.hopAdditionMetricToDisplay = (OBHopAdditionMetric)[self.settings.hopAdditionDisplayMetric integerValue];
 
   UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
@@ -139,7 +138,7 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 
   if ([keyPath isEqualToString:KVO_KEY(IBUs)]) 
   {
-    [self.gauge refresh];
+//    [self.gauge refresh];
 
     if (NSKeyValueChangeSetting == changeType) {
       // If the table is reloaded during a delete, a crash results.
@@ -152,7 +151,7 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   }
   else if ([keyPath isEqualToString:KVO_KEY(hopGaugeDisplayMetric)])
   {
-    self.gauge.metricToDisplay = [self.settings.hopGaugeDisplayMetric integerValue];
+//    self.gauge.metricToDisplay = [self.settings.hopGaugeDisplayMetric integerValue];
   }
   else if ([keyPath isEqualToString:KVO_KEY(hopAdditions)])
   {
