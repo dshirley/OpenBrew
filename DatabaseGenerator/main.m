@@ -33,7 +33,7 @@ int main(int argc, const char * argv[]) {
     NSURL *url = [[NSURL alloc] initFileURLWithPath:pathToSaveData];
 
     NSError *error = nil;
-    NSManagedObjectContext *moc = createManagedObjectContext(url, &error);
+    NSManagedObjectContext *moc = createManagedObjectContext(url, nil, &error);
 
     if (error) {
       NSLog(@"Error creating managed object context: %@", error);

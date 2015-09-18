@@ -29,7 +29,7 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
   NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"OpenBrew.sqlite"];
   NSError *error = nil;
 
-  self.managedObjectContext = createManagedObjectContext(storeURL, &error);
+  self.managedObjectContext = createManagedObjectContext(storeURL, nil, &error);
   if (error) {
     CRITTERCISM_LOG_ERROR(error);
     // TODO: This is a super bad error. Something should be displayed to the user
@@ -45,7 +45,8 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
     NSURL *startUpDbURL = [[NSBundle mainBundle] URLForResource:@"OpenBrewStartupData.sqlite"
                                                   withExtension:@""];
 
-    NSManagedObjectContext *startupContext = createManagedObjectContext(startUpDbURL, &error);
+    NSDictionary *startupDbOptions = @{ NSReadOnlyPersistentStoreOption: @(true) };
+    NSManagedObjectContext *startupContext = createManagedObjectContext(startUpDbURL, startupDbOptions, &error);
     CRITTERCISM_LOG_ERROR(error);
     startupContext.undoManager = nil;
 

@@ -16,7 +16,7 @@ BOOL _loadStartupEntity(NSManagedObjectContext *mainMoc,
                        NSString *entityName,
                        NSError **error);
 
-NSManagedObjectContext *createManagedObjectContext(NSURL *storeUrl, NSError **error)
+NSManagedObjectContext *createManagedObjectContext(NSURL *storeUrl, NSDictionary *storeOptions, NSError **error)
 {
   NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] init];
 
@@ -29,7 +29,7 @@ NSManagedObjectContext *createManagedObjectContext(NSURL *storeUrl, NSError **er
   if (![coordinator addPersistentStoreWithType:NSSQLiteStoreType
                                  configuration:nil
                                            URL:storeUrl
-                                       options:nil
+                                       options:storeOptions
                                          error:error]) {
     return nil;
   }
