@@ -17,6 +17,7 @@
 #import "OBYeastTableViewCell.h"
 #import "OBSegmentedController.h"
 #import "OBSettings.h"
+#import "OBGaugePageViewControllerDataSource.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Yeast Addition Screen";
@@ -37,7 +38,12 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
 
   self.screenName = OBGAScreenName;
 
-//  self.gaugePageViewController = [self.childViewControllers[0]];
+  UIPageViewController *pageViewController = (id)self.childViewControllers[0];
+  self.pageViewControllerDataSource =
+    [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe
+                                                 displayMetrics:@[ @(OBMetricAbv), @(OBMetricFinalGravity) ]];
+
+  pageViewController.dataSource = self.pageViewControllerDataSource;
 
   NSAssert(self.settings, @"Settings were nil");
 
@@ -73,11 +79,6 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
   }
 
   [weakSelf reloadTableSelectedManufacturer:startingManufacturer scrollToSelectedItem:YES];
-
-//  self.gauge.metricToDisplay = OBMetricFinalGravity;
-//  self.gauge.recipe = self.recipe;
-//
-//  [self.gauge refresh];
 }
 
 // Query the CoreData store to get all of the ingredient data

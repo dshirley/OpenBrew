@@ -175,22 +175,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0q9-E7-rrC" customClass="OBIngredientGauge">
-                                <rect key="frame" x="0.0" y="64" width="600" height="110"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="110" id="IfC-Bz-6Ha"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="klD-In-wen" userLabel="Separator">
-                                <rect key="frame" x="0.0" y="174" width="600" height="1"/>
+                                <rect key="frame" x="0.0" y="199" width="600" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="JUS-N7-7cO"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0DW-GT-hvd">
-                                <rect key="frame" x="0.0" y="175" width="600" height="381"/>
+                                <rect key="frame" x="0.0" y="200" width="600" height="356"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IngredientAddition" rowHeight="54" id="GSC-XE-v0C" customClass="OBHopAdditionTableViewCell">
@@ -304,21 +297,30 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y9a-M1-tvg" userLabel="Gauge View">
+                                <rect key="frame" x="0.0" y="64" width="600" height="135"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="135" id="nkY-PR-Hqq"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="GpT-Df-GWn" kind="embed" id="rJa-Zm-uHn"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="y9a-M1-tvg" firstAttribute="top" secondItem="dwb-v3-NGI" secondAttribute="bottom" id="BsO-wn-F1b"/>
                             <constraint firstItem="NP1-UJ-zmH" firstAttribute="top" secondItem="txg-L1-5Qg" secondAttribute="bottom" id="JAD-Gw-BOy"/>
-                            <constraint firstItem="0q9-E7-rrC" firstAttribute="leading" secondItem="uls-iJ-NcC" secondAttribute="leading" id="ObO-Hc-eqc"/>
+                            <constraint firstAttribute="trailing" secondItem="y9a-M1-tvg" secondAttribute="trailing" id="PW6-Su-5hT"/>
+                            <constraint firstItem="y9a-M1-tvg" firstAttribute="leading" secondItem="uls-iJ-NcC" secondAttribute="leading" id="Utn-2k-PiV"/>
                             <constraint firstAttribute="trailing" secondItem="0DW-GT-hvd" secondAttribute="trailing" id="YbD-Kq-o2h"/>
                             <constraint firstAttribute="trailing" secondItem="txg-L1-5Qg" secondAttribute="trailing" id="ZAe-fS-OD4"/>
+                            <constraint firstItem="y9a-M1-tvg" firstAttribute="bottom" secondItem="klD-In-wen" secondAttribute="top" id="c9u-Vi-u1n"/>
                             <constraint firstItem="klD-In-wen" firstAttribute="leading" secondItem="uls-iJ-NcC" secondAttribute="leading" id="ctX-bZ-M9Q"/>
-                            <constraint firstItem="0q9-E7-rrC" firstAttribute="bottom" secondItem="klD-In-wen" secondAttribute="top" id="imp-cn-U6R"/>
-                            <constraint firstItem="0q9-E7-rrC" firstAttribute="top" secondItem="dwb-v3-NGI" secondAttribute="bottom" id="j5M-z0-tsJ"/>
                             <constraint firstItem="0DW-GT-hvd" firstAttribute="leading" secondItem="uls-iJ-NcC" secondAttribute="leading" id="kan-Jl-lve"/>
                             <constraint firstItem="klD-In-wen" firstAttribute="bottom" secondItem="0DW-GT-hvd" secondAttribute="top" id="qJM-rr-5NL"/>
                             <constraint firstItem="txg-L1-5Qg" firstAttribute="leading" secondItem="uls-iJ-NcC" secondAttribute="leading" id="tC5-JJ-hX6"/>
                             <constraint firstItem="txg-L1-5Qg" firstAttribute="top" secondItem="0DW-GT-hvd" secondAttribute="bottom" id="vt6-oe-23w"/>
-                            <constraint firstAttribute="trailing" secondItem="0q9-E7-rrC" secondAttribute="trailing" id="xqL-b8-hUr"/>
                             <constraint firstAttribute="trailing" secondItem="klD-In-wen" secondAttribute="trailing" id="zHF-Vn-QO6"/>
                         </constraints>
                     </view>
@@ -330,7 +332,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="gauge" destination="0q9-E7-rrC" id="MG1-xR-sU6"/>
                         <outlet property="infoButton" destination="ZMz-cQ-Uy2" id="z48-u4-cDT"/>
                         <outlet property="tableView" destination="0DW-GT-hvd" id="bg7-lx-hYq"/>
                     </connections>
@@ -351,22 +352,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95d-gg-xSE" customClass="OBIngredientGauge">
-                                <rect key="frame" x="0.0" y="64" width="600" height="110"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="110" id="Jwu-lu-sMu"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y7s-2t-c5h" userLabel="Separator">
-                                <rect key="frame" x="0.0" y="174" width="600" height="1"/>
+                                <rect key="frame" x="0.0" y="199" width="600" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="jRQ-h4-Hzq"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zja-WO-28t">
-                                <rect key="frame" x="0.0" y="175" width="600" height="381"/>
+                                <rect key="frame" x="0.0" y="200" width="600" height="356"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WhiteLabsCell" id="g9M-Vb-PDo" customClass="OBYeastTableViewCell">
@@ -472,34 +466,58 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="5fk-kA-Ryg"/>
                                 </items>
                             </toolbar>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rE4-GK-nKg" userLabel="Gauge View">
+                                <rect key="frame" x="0.0" y="64" width="600" height="135"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="135" id="QgU-Fh-Lhj"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="l1J-ys-RcI" kind="embed" id="saJ-oq-42G"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="95d-gg-xSE" firstAttribute="leading" secondItem="eIe-Wx-OUG" secondAttribute="leading" id="3Yz-EW-5c5"/>
+                            <constraint firstItem="rE4-GK-nKg" firstAttribute="top" secondItem="Sig-HD-Uck" secondAttribute="bottom" id="7Xk-PW-Bt5"/>
                             <constraint firstAttribute="trailing" secondItem="AJl-57-IFL" secondAttribute="trailing" id="BDn-wb-uDD"/>
-                            <constraint firstItem="y7s-2t-c5h" firstAttribute="top" secondItem="95d-gg-xSE" secondAttribute="bottom" id="CWq-Fo-bZJ"/>
                             <constraint firstItem="y7s-2t-c5h" firstAttribute="leading" secondItem="eIe-Wx-OUG" secondAttribute="leading" id="E8H-mg-zZS"/>
                             <constraint firstItem="zja-WO-28t" firstAttribute="leading" secondItem="eIe-Wx-OUG" secondAttribute="leading" id="L47-ZH-oqf"/>
-                            <constraint firstAttribute="trailing" secondItem="95d-gg-xSE" secondAttribute="trailing" id="Lu4-9C-q5y"/>
                             <constraint firstItem="0LN-yN-sel" firstAttribute="top" secondItem="AJl-57-IFL" secondAttribute="bottom" id="M0f-z2-rpA"/>
                             <constraint firstAttribute="trailing" secondItem="y7s-2t-c5h" secondAttribute="trailing" id="R6W-HV-Rxd"/>
                             <constraint firstItem="AJl-57-IFL" firstAttribute="top" secondItem="zja-WO-28t" secondAttribute="bottom" id="aR2-G6-skg"/>
                             <constraint firstAttribute="trailing" secondItem="zja-WO-28t" secondAttribute="trailing" id="ptB-cN-N7l"/>
-                            <constraint firstItem="95d-gg-xSE" firstAttribute="top" secondItem="Sig-HD-Uck" secondAttribute="bottom" id="qjt-Mz-ZrM"/>
+                            <constraint firstItem="rE4-GK-nKg" firstAttribute="leading" secondItem="eIe-Wx-OUG" secondAttribute="leading" id="sRu-OC-ilN"/>
+                            <constraint firstAttribute="trailing" secondItem="rE4-GK-nKg" secondAttribute="trailing" id="u09-0V-k6w"/>
                             <constraint firstItem="AJl-57-IFL" firstAttribute="leading" secondItem="eIe-Wx-OUG" secondAttribute="leading" id="u1f-PS-qo4"/>
+                            <constraint firstItem="y7s-2t-c5h" firstAttribute="top" secondItem="rE4-GK-nKg" secondAttribute="bottom" id="vCu-MB-u7k"/>
                             <constraint firstItem="y7s-2t-c5h" firstAttribute="bottom" secondItem="zja-WO-28t" secondAttribute="top" id="zfZ-p8-kbl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Yeast Selection" id="9Vn-1C-acM"/>
                     <connections>
-                        <outlet property="gauge" destination="95d-gg-xSE" id="rtu-7p-9W6"/>
                         <outlet property="segmentedControl" destination="gg0-jU-5pC" id="76b-hn-hab"/>
                         <outlet property="tableView" destination="zja-WO-28t" id="D8U-y7-ZhR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6qe-s3-oxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2286" y="1427"/>
+            <point key="canvasLocation" x="3255" y="3209"/>
+        </scene>
+        <!--Gauge Page View Controller-->
+        <scene sceneID="mhK-PF-MyW">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="l1J-ys-RcI" customClass="OBGaugePageViewController" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Qg-BH-I2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4033" y="3040.5"/>
+        </scene>
+        <!--Gauge Page View Controller-->
+        <scene sceneID="zI9-Zv-Jsm">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="GpT-Df-GWn" customClass="OBGaugePageViewController" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ti7-tH-VIh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4267" y="1194.5"/>
         </scene>
         <!--Hop Selection-->
         <scene sceneID="owd-Qz-fkX">
@@ -556,7 +574,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Twi-WN-JCG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ina-W0-BOQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4267" y="1735"/>
+            <point key="canvasLocation" x="4267" y="1665"/>
         </scene>
         <!--Malt Selection-->
         <scene sceneID="cNo-1L-LHJ">
@@ -961,7 +979,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uT3-d9-Psj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="WIa-dQ-uqY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4267" y="2483"/>
+            <point key="canvasLocation" x="4267" y="2451"/>
         </scene>
         <!--Recipes-->
         <scene sceneID="pOQ-kK-BHW">
