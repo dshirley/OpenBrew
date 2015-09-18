@@ -18,7 +18,6 @@
 #import "OBIngredientTableViewDataSource.h"
 #import "OBTableViewPlaceholderLabel.h"
 #import "OBHopAdditionSettingsViewController.h"
-#import "OBGaugePageViewControllerDataSource.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Hop Addition Screen";

@@ -10,13 +10,13 @@
 #import "OBMaltAdditionViewController.h"
 #import "OBMaltAdditionTableViewDelegate.h"
 #import "OBBaseTestCase.h"
-#import "OBIngredientGauge.h"
 #import <OCMock/OCMock.h>
 #import "OBMaltAdditionTableViewCell.h"
 #import "OBMaltAddition.h"
 #import "OBMaltFinderViewController.h"
 #import "OBMaltAdditionSettingsViewController.h"
 #import "OBTableViewPlaceholderLabel.h"
+#import "OBGaugePageViewController.h"
 
 @interface OBMaltAdditionViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBMaltAdditionViewController *vc;
@@ -60,17 +60,22 @@
   XCTAssertEqual(self.vc.recipe, self.recipe);
 }
 
-- (void)testViewDidLoad_gaugeIsSetupWithStoredSettings
+- (void)testViewDidLoad_gaugeIsSetup
 {
   self.settings.maltGaugeDisplayMetric = @(OBMetricColor);
 
   [self.vc loadView];
   [self.vc viewDidLoad];
-  XCTAssertEqual(OBMetricColor, self.vc.gauge.metricToDisplay);
 
-  self.settings.maltGaugeDisplayMetric = @(OBMetricOriginalGravity);
-  [self.vc viewDidLoad];
-  XCTAssertEqual(OBMetricOriginalGravity, self.vc.gauge.metricToDisplay);
+  XCTAssertEqual(self.recipe, self.vc.pageViewControllerDataSource.recipe);
+  XCTAssertEqualObjects((@[@(OBMetricOriginalGravity), @(OBMetricColor)]),
+                        self.vc.pageViewControllerDataSource.metrics);
+
+  XCTAssertEqual(1, self.vc.childViewControllers.count);
+
+  OBGaugePageViewController *pageViewController = (id)self.vc.childViewControllers[0];
+  XCTAssertEqual(OBGaugePageViewController.class, pageViewController.class);
+  XCTAssertEqual(self.vc.pageViewControllerDataSource, pageViewController.dataSource);
 }
 
 - (void)testViewDidLoad_maltAdditionMetricUsesStoredSettings
@@ -123,22 +128,6 @@
   XCTAssertEqualObjects(@"Two-Row", cell.maltVariety.text);
   XCTAssertEqualObjects(@"10lb", cell.primaryMetric.text);
   XCTAssertEqualObjects(@"2 Lovibond", cell.color.text);
-}
-
-- (void)testViewDidLoad_gaugeRefreshes
-{
-  [self.vc loadView];
-
-  self.settings.maltGaugeDisplayMetric = @(OBMetricColor);
-
-  id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
-
-  [[mockGauge expect] setRecipe:self.recipe];
-  [[mockGauge expect] setMetricToDisplay:OBMetricColor];
-
-  [self.vc viewDidLoad];
-
-  [mockGauge verify];
 }
 
 - (void)testViewUpdatesWhenMaltAdditionsChange

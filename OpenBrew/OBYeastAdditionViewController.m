@@ -17,7 +17,6 @@
 #import "OBYeastTableViewCell.h"
 #import "OBSegmentedController.h"
 #import "OBSettings.h"
-#import "OBGaugePageViewControllerDataSource.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Yeast Addition Screen";

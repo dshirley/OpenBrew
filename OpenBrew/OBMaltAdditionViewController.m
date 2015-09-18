@@ -18,7 +18,6 @@
 #import "OBSrmColorTable.h"
 #import "OBTableViewPlaceholderLabel.h"
 #import "OBMaltAdditionSettingsViewController.h"
-#import "OBGaugePageViewControllerDataSource.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Malt Addition Screen";

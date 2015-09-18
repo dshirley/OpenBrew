@@ -506,7 +506,7 @@
         <!--Gauge Page View Controller-->
         <scene sceneID="mhK-PF-MyW">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="l1J-ys-RcI" customClass="OBGaugePageViewController" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="yeastGauge" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="l1J-ys-RcI" customClass="OBGaugePageViewController" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Qg-BH-I2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4033" y="3040.5"/>
@@ -514,7 +514,7 @@
         <!--Gauge Page View Controller-->
         <scene sceneID="zI9-Zv-Jsm">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="GpT-Df-GWn" customClass="OBGaugePageViewController" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="hopsGauge" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="GpT-Df-GWn" customClass="OBGaugePageViewController" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ti7-tH-VIh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4267" y="1194.5"/>
@@ -728,7 +728,7 @@
         <!--Gauge Page View Controller-->
         <scene sceneID="mcJ-xu-tSR">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ibi-Gi-taz" customClass="OBGaugePageViewController" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="maltGauge" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ibi-Gi-taz" customClass="OBGaugePageViewController" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yhh-dC-BWW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4267" y="-484"/>

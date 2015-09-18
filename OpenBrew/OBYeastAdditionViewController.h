@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "OBBrewController.h"
 #import "GAITrackedViewController.h"
+#import "OBGaugePageViewControllerDataSource.h"
 
-@class OBRecipe, OBGaugePageViewControllerDataSource;
+@class OBRecipe;
 
 @interface OBYeastAdditionViewController : GAITrackedViewController <OBBrewController>
 
