@@ -41,7 +41,7 @@
 
 - (BOOL)loadData
 {
-  return [self loadYeast] && [self loadMalts] && [self loadHops];
+  return [self loadYeast] && [self loadMalts] && [self loadHops] && [self loadRecipes];
 }
 
 - (BOOL)loadYeast
@@ -81,8 +81,8 @@
 {
   OBRecipe *recipe = [[OBRecipe alloc] initWithContext:self.moc];
   recipe.name = @"Bro Light";
-  recipe.preBoilVolumeInGallons = @(6.0);
-  recipe.postBoilVolumeInGallons = @(7.0);
+  recipe.preBoilVolumeInGallons = @(7.0);
+  recipe.postBoilVolumeInGallons = @(6.0);
   [self addMalt:@"Light LME" quantity:5.0 toRecipe:recipe];
   [self addMalt:@"Rice Syrup" quantity:1.3 toRecipe:recipe];
   [self addHops:@"Hallertau" quantity:0.61 aaPercent:4.0 boilTime:60 toRecipe:recipe];
@@ -90,8 +90,8 @@
 
   recipe = [[OBRecipe alloc] initWithContext:self.moc];
   recipe.name = @"Classic IPA";
-  recipe.preBoilVolumeInGallons = @(6.0);
-  recipe.postBoilVolumeInGallons = @(7.0);
+  recipe.preBoilVolumeInGallons = @(7.0);
+  recipe.postBoilVolumeInGallons = @(6.0);
   [self addMalt:@"Two-Row" quantity:12.75 toRecipe:recipe];
   [self addMalt:@"Munich 10" quantity:0.75 toRecipe:recipe];
   [self addMalt:@"Crystal 10" quantity:1.0 toRecipe:recipe];
@@ -104,8 +104,8 @@
 
   recipe = [[OBRecipe alloc] initWithContext:self.moc];
   recipe.name = @"Janet's Brown Ale";
-  recipe.preBoilVolumeInGallons = @(6.0);
-  recipe.postBoilVolumeInGallons = @(7.0);
+  recipe.preBoilVolumeInGallons = @(7.0);
+  recipe.postBoilVolumeInGallons = @(6.0);
   [self addMalt:@"Two-Row" quantity:12.0 toRecipe:recipe];
   [self addMalt:@"Wheat Light" quantity:1.0 toRecipe:recipe];
   [self addMalt:@"Dextrin Malt" quantity:1.25 toRecipe:recipe];

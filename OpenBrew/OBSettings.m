@@ -14,6 +14,7 @@
 @dynamic defaultMashEfficiency;
 @dynamic defaultPostBoilSize;
 @dynamic defaultPreBoilSize;
+@dynamic hasCopiedSampleRecipes;
 @dynamic hopAdditionDisplayMetric;
 @dynamic hopGaugeDisplayMetric;
 @dynamic maltAdditionDisplayMetric;

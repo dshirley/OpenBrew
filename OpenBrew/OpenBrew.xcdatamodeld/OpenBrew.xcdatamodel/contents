@@ -35,6 +35,7 @@
         <attribute name="defaultMashEfficiency" attributeType="Float" minValueString="0" maxValueString="1" defaultValueString="0.7" syncable="YES"/>
         <attribute name="defaultPostBoilSize" optional="YES" attributeType="Float" minValueString="0" defaultValueString="6" syncable="YES"/>
         <attribute name="defaultPreBoilSize" optional="YES" attributeType="Float" minValueString="0" defaultValueString="7" syncable="YES"/>
+        <attribute name="hasCopiedSampleRecipes" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="hopAdditionDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="hopGaugeDisplayMetric" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="ibuFormula" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="1" defaultValueString="0" syncable="YES"/>
@@ -64,7 +65,7 @@
         <element name="Malt" positionX="0" positionY="0" width="128" height="105"/>
         <element name="MaltAddition" positionX="0" positionY="0" width="128" height="90"/>
         <element name="Recipe" positionX="0" positionY="0" width="128" height="150"/>
-        <element name="Settings" positionX="0" positionY="0" width="128" height="195"/>
+        <element name="Settings" positionX="0" positionY="0" width="128" height="210"/>
         <element name="Yeast" positionX="0" positionY="0" width="128" height="195"/>
         <element name="YeastAddition" positionX="0" positionY="0" width="128" height="75"/>
     </elements>

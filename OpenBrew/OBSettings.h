@@ -44,6 +44,8 @@ typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
 
 @property (nonatomic) NSNumber *defaultPreBoilSize;
 
+@property (nonatomic) NSNumber *hasCopiedSampleRecipes;
+
 // OBMaltAdditionMetric which corresponds to what type of metric to display for
 // each malt addition on the right hand of the OBMaltAdditionViewController
 @property (nonatomic) NSNumber *maltAdditionDisplayMetric;

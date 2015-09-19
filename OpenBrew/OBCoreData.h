@@ -12,3 +12,5 @@
 NSManagedObjectContext *createManagedObjectContext(NSURL *storeUrl, NSDictionary *storeOptions, NSError **error);
 
 BOOL loadStartupDataIntoContext(NSManagedObjectContext *moc, NSManagedObjectContext *startupContext, NSError **error);
+
+BOOL loadSampleRecipesIntoContext(NSManagedObjectContext *moc, NSManagedObjectContext *startupContext, NSError **error);

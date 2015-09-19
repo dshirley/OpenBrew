@@ -11,6 +11,11 @@
 #import "OBMalt.h"
 #import "OBHops.h"
 #import "OBYeast.h"
+#import "OBYeastAddition.h"
+#import "OBRecipe.h"
+#import "OBHopAddition.h"
+#import "OBMaltAddition.h"
+#import "OBCoreData.h"
 
 @interface OBCoreDataTest : OBBaseTestCase
 
@@ -63,6 +68,56 @@
   XCTAssertEqualWithAccuracy(1.036, [malt.extractPotential floatValue], 0.00001);
   XCTAssertEqual(2, [malt.lovibond integerValue]);
   XCTAssertEqual(OBMaltTypeExtract, [malt.type integerValue]);
+}
+
+- (void)testSampleRecipeLoading
+{
+  NSError *error = nil;
+  NSArray *recipes = nil;
+
+  recipes = [self fetchAllEntity:@"Recipe"];
+  for (OBRecipe *recipe in recipes) {
+    [self.ctx deleteObject:recipe];
+  }
+
+  loadSampleRecipesIntoContext(self.ctx, g_startupContext, &error);
+
+  XCTAssertNil(error);
+
+  recipes = [self fetchAllEntity:@"Recipe"];
+  XCTAssertEqual(3, recipes.count);
+
+  OBRecipe *broLight = [self fetchEntity:@"Recipe" withProperty:@"name" equalTo:@"Bro Light"];
+  [self validateRecipe:broLight maltCount:2 hopCount:1 yeastId:@"WLP840"];
+
+  OBRecipe *classicIpa = [self fetchEntity:@"Recipe" withProperty:@"name" equalTo:@"Classic IPA"];
+  [self validateRecipe:classicIpa maltCount:4 hopCount:4 yeastId:@"WLP001"];
+
+  OBRecipe *janetsBrown = [self fetchEntity:@"Recipe" withProperty:@"name" equalTo:@"Janet\\'s Brown Ale"];
+  [self validateRecipe:janetsBrown maltCount:5 hopCount:5 yeastId:@"WLP001"];
+}
+
+- (void)validateRecipe:(OBRecipe *)recipe
+             maltCount:(NSInteger)maltCount
+              hopCount:(NSInteger)hopCount
+               yeastId:(NSString *)yeastId
+{
+  XCTAssertNotNil(recipe);
+  XCTAssertEqualObjects(@(6.0), recipe.postBoilVolumeInGallons, @"%@", recipe.name);
+  XCTAssertEqualObjects(@(7.0), recipe.preBoilVolumeInGallons, @"%@", recipe.name);
+
+  XCTAssertEqual(maltCount, recipe.maltAdditions.count);
+  XCTAssertEqual(hopCount, recipe.hopAdditions.count);
+  XCTAssertEqualObjects(yeastId, recipe.yeast.identifier);
+  XCTAssertEqual(recipe, recipe.yeast.recipe);
+
+  for (OBHopAddition *hops in recipe.hopAdditions) {
+    XCTAssertEqual(recipe, hops.recipe);
+  }
+
+  for (OBMaltAddition *malt in recipe.maltAdditions) {
+    XCTAssertEqual(recipe, malt.recipe);
+  }
 }
 
 @end

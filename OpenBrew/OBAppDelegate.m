@@ -50,6 +50,12 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
     CRITTERCISM_LOG_ERROR(error);
     startupContext.undoManager = nil;
 
+    if (![settings.hasCopiedSampleRecipes boolValue]) {
+      loadSampleRecipesIntoContext(self.managedObjectContext, startupContext, &error);
+      CRITTERCISM_LOG_ERROR(error);
+      settings.hasCopiedSampleRecipes = @(YES);
+    }
+
     if (loadStartupDataIntoContext(self.managedObjectContext, startupContext, &error)) {
       settings.copiedStarterDataVersion = currentVersion;
     }
