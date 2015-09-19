@@ -36,9 +36,6 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
   }
 
   OBSettings *settings = [self settingsForContext:self.managedObjectContext];
-  if (!settings) {
-    [self.managedObjectContext reset];
-  }
 
   NSString *currentVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"];
   if (settings && ![settings.copiedStarterDataVersion isEqualToString:currentVersion]) {
@@ -61,9 +58,7 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
     }
   }
 
-  if (settings) {
-    [self.managedObjectContext save:nil];
-  }
+  [self.managedObjectContext save:nil];
 
   UINavigationController *nav = (UINavigationController *)[[self window] rootViewController];
   OBRecipeListViewController *recipeVc = (OBRecipeListViewController *)nav.topViewController;
