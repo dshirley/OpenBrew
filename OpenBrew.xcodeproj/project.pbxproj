@@ -29,6 +29,7 @@
 		9F41C28E1BAD6BA100A072E9 /* OBHopAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8C718A0D45F00118D76 /* OBHopAddition.m */; };
 		9F41C28F1BAD6BA100A072E9 /* OBMaltAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8BE18A0CED100118D76 /* OBMaltAddition.m */; };
 		9F41C2901BAD6BA100A072E9 /* OBYeastAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8CD18A0D63300118D76 /* OBYeastAddition.m */; };
+		9F41C2921BADB7BE00A072E9 /* OBPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F41C2911BADB7BE00A072E9 /* OBPlaceholderView.xib */; settings = {ASSET_TAGS = (); }; };
 		9F49A85F1B79086600D48E2C /* OBHopQuantityPickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49A85E1B79086600D48E2C /* OBHopQuantityPickerDelegateTest.m */; };
 		9F5F6F101B93C1A000F010E5 /* OBBatchSizeTableViewDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5F6F0F1B93C1A000F010E5 /* OBBatchSizeTableViewDelegateTest.m */; };
 		9F5F6F121B93D82600F010E5 /* OBBatchSizeViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5F6F111B93D82600F010E5 /* OBBatchSizeViewControllerTest.m */; };
@@ -76,7 +77,7 @@
 		9FC479701B7084C40053B996 /* OBHopAdditionViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4796F1B7084C40053B996 /* OBHopAdditionViewControllerTest.m */; };
 		9FC73F4F19BB683400AD964A /* Crittercism+NSErrorLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC73F4E19BB683400AD964A /* Crittercism+NSErrorLogging.m */; };
 		9FC73F5119BB6DCB00AD964A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */; };
-		9FC73F5719BD128200AD964A /* OBTableViewPlaceholderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC73F5619BD128200AD964A /* OBTableViewPlaceholderLabel.m */; };
+		9FC73F5719BD128200AD964A /* OBPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC73F5619BD128200AD964A /* OBPlaceholderView.m */; };
 		9FC89CBE1B4CCA4500E8EA2C /* OBMaltAdditionTableViewDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC89CBD1B4CCA4500E8EA2C /* OBMaltAdditionTableViewDelegateTest.m */; };
 		9FC8EE8F1B45A31600EEF14D /* OBBaseTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8EE8E1B45A31600EEF14D /* OBBaseTestCase.m */; };
 		9FC8EE921B45A87F00EEF14D /* OBMaltTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC8EE911B45A87F00EEF14D /* OBMaltTest.m */; };
@@ -198,6 +199,7 @@
 		9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSettingsSegmentedControllerTest.m; sourceTree = "<group>"; };
 		9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionSettingsViewControllerTest.m; sourceTree = "<group>"; };
 		9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionViewControllerTest.m; sourceTree = "<group>"; };
+		9F41C2911BADB7BE00A072E9 /* OBPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OBPlaceholderView.xib; sourceTree = "<group>"; };
 		9F49A85E1B79086600D48E2C /* OBHopQuantityPickerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopQuantityPickerDelegateTest.m; sourceTree = "<group>"; };
 		9F4C5C5E199DC574008A6F1B /* OBKvoUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBKvoUtils.h; sourceTree = "<group>"; };
 		9F5F6F0F1B93C1A000F010E5 /* OBBatchSizeTableViewDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBatchSizeTableViewDelegateTest.m; sourceTree = "<group>"; };
@@ -268,8 +270,8 @@
 		9FC73F4D19BB683400AD964A /* Crittercism+NSErrorLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Crittercism+NSErrorLogging.h"; sourceTree = "<group>"; };
 		9FC73F4E19BB683400AD964A /* Crittercism+NSErrorLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Crittercism+NSErrorLogging.m"; sourceTree = "<group>"; };
 		9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		9FC73F5519BD128200AD964A /* OBTableViewPlaceholderLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTableViewPlaceholderLabel.h; sourceTree = "<group>"; };
-		9FC73F5619BD128200AD964A /* OBTableViewPlaceholderLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTableViewPlaceholderLabel.m; sourceTree = "<group>"; };
+		9FC73F5519BD128200AD964A /* OBPlaceholderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPlaceholderView.h; sourceTree = "<group>"; };
+		9FC73F5619BD128200AD964A /* OBPlaceholderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPlaceholderView.m; sourceTree = "<group>"; };
 		9FC73F5819BDFF9D00AD964A /* OBIngredientAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIngredientAddition.h; sourceTree = "<group>"; };
 		9FC89CBD1B4CCA4500E8EA2C /* OBMaltAdditionTableViewDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionTableViewDelegateTest.m; sourceTree = "<group>"; };
 		9FC8EE8E1B45A31600EEF14D /* OBBaseTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBaseTestCase.m; sourceTree = "<group>"; };
@@ -748,8 +750,9 @@
 				9F33116F1B35BF22008C0029 /* OBColorView.m */,
 				9FE2434F1B471D5800D1EE25 /* OBMultiPickerView.h */,
 				9FE243501B471D5800D1EE25 /* OBMultiPickerView.m */,
-				9FC73F5519BD128200AD964A /* OBTableViewPlaceholderLabel.h */,
-				9FC73F5619BD128200AD964A /* OBTableViewPlaceholderLabel.m */,
+				9F41C2911BADB7BE00A072E9 /* OBPlaceholderView.xib */,
+				9FC73F5519BD128200AD964A /* OBPlaceholderView.h */,
+				9FC73F5619BD128200AD964A /* OBPlaceholderView.m */,
 				9F5033BF198B55E800C302C1 /* TableViewCells */,
 			);
 			name = View;
@@ -859,6 +862,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F98D3651880F8ED00469323 /* InfoPlist.strings in Resources */,
+				9F41C2921BADB7BE00A072E9 /* OBPlaceholderView.xib in Resources */,
 				9F98D3701880F8ED00469323 /* Images.xcassets in Resources */,
 				9F98D3921880FB7600469323 /* Main.storyboard in Resources */,
 			);
@@ -1000,7 +1004,7 @@
 				9FE279D11B9935EE0057BEFE /* OBCoreData.m in Sources */,
 				9F08154719970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m in Sources */,
 				9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */,
-				9FC73F5719BD128200AD964A /* OBTableViewPlaceholderLabel.m in Sources */,
+				9FC73F5719BD128200AD964A /* OBPlaceholderView.m in Sources */,
 				9F08153B1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m in Sources */,
 				9F92E8D118A0D6CF00118D76 /* OBYeast.m in Sources */,
 				9F0185D11BAC06F30026BC0C /* OBGaugeViewController.m in Sources */,

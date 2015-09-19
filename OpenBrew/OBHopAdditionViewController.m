@@ -16,7 +16,6 @@
 #import <math.h>
 #import "OBKvoUtils.h"
 #import "OBIngredientTableViewDataSource.h"
-#import "OBTableViewPlaceholderLabel.h"
 #import "OBHopAdditionSettingsViewController.h"
 
 // Google Analytics constants
@@ -29,6 +28,9 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   [super viewDidLoad];
 
   NSAssert(self.settings, @"Settings were nil");
+
+  self.placeholderView.messageLabel.text = @"No Hops";
+  self.placeholderView.instructionsLabel.text = @"Tap the '+' button to add hops.";
 
   UIPageViewController *pageViewController = (id)self.childViewControllers[0];
   self.pageViewControllerDataSource =
@@ -85,18 +87,14 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 // to eliminate confusion.
 - (void)switchToEmptyTableViewMode
 {
-  if (!self.placeholderText) {
-    self.placeholderText = [[OBTableViewPlaceholderLabel alloc]
-                            initWithFrame:self.tableView.frame
-                            andText:@"No Hops"];
-  }
-
-  self.tableView.tableFooterView = self.placeholderText;
+  self.placeholderView.hidden = NO;
+  self.tableView.hidden = YES;
 }
 
 - (void)switchToNonEmptyTableViewMode
 {
-  self.tableView.tableFooterView = nil;
+  self.placeholderView.hidden = YES;
+  self.tableView.hidden = NO;
 }
 
 #pragma mark Display Settings View Logic

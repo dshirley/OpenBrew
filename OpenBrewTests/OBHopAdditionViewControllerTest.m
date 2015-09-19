@@ -15,7 +15,6 @@
 #import "OBHopAddition.h"
 #import "OBHopFinderViewController.h"
 #import "OBHopAdditionSettingsViewController.h"
-#import "OBTableViewPlaceholderLabel.h"
 #import "OBGaugePageViewController.h"
 #import "OBGaugeViewController.h"
 
@@ -201,8 +200,8 @@
                     commitEditingStyle:UITableViewCellEditingStyleDelete
                      forRowAtIndexPath:self.r0s0];
 
-  OBTableViewPlaceholderLabel *placeHolderLabel = (id)self.vc.tableView.tableFooterView;
-  XCTAssertEqualObjects(@"No Hops", placeHolderLabel.text);
+  XCTAssertFalse(self.vc.placeholderView.hidden);
+  XCTAssertEqualObjects(@"No Hops", self.vc.placeholderView.messageLabel.text);
 }
 
 // Hops should be added via KVO
@@ -212,11 +211,13 @@
   [self.vc viewWillAppear:YES];
 
   XCTAssertEqual(0, [self.vc.tableView numberOfRowsInSection:0]);
-  XCTAssertNotNil(self.vc.tableView.tableFooterView);
+  XCTAssertFalse(self.vc.placeholderView.hidden);
+  XCTAssertTrue(self.vc.tableView.hidden);
 
   [self addHops:@"Cascade" quantity:1.3 aaPercent:8.5 boilTime:60];
   XCTAssertEqual(1, [self.vc.tableView numberOfRowsInSection:0]);
-  XCTAssertNil(self.vc.tableView.tableFooterView, @"Placeholder view should have been removed");
+  XCTAssertTrue(self.vc.placeholderView.hidden);
+  XCTAssertFalse(self.vc.tableView.hidden);
 
   OBHopAdditionTableViewCell *cell = (id)[self.vc.tableView cellForRowAtIndexPath:self.r0s0];
   XCTAssertEqualObjects(@"Cascade", cell.hopVariety.text);
@@ -264,8 +265,8 @@
 
   XCTAssertEqualObjects(@"Hop Addition Screen", self.vc.screenName);
 
-  OBTableViewPlaceholderLabel *placeHolderLabel = (id)self.vc.tableView.tableFooterView;
-  XCTAssertEqualObjects(@"No Hops", placeHolderLabel.text);
+  XCTAssertFalse(self.vc.placeholderView.hidden);
+  XCTAssertEqualObjects(@"No Hops", self.vc.placeholderView.messageLabel.text);
 }
 
 - (void)testViewWillAppear_WhenThereAreHops

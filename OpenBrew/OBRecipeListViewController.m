@@ -10,7 +10,6 @@
 #import "OBRecipeViewController.h"
 #import "OBSettings.h"
 #import "Crittercism+NSErrorLogging.h"
-#import "OBTableViewPlaceholderLabel.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 
@@ -21,8 +20,6 @@ static NSString *const ADD_RECIPE_SEGUE = @"addRecipe";
 static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
 @interface OBRecipeListViewController ()
-
-@property (nonatomic) UIView *placeholderText;
 
 // Variables for tracking first interaction time with Google Analytics
 @property (nonatomic, assign) CFAbsoluteTime loadTime;
@@ -38,6 +35,10 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+
+  self.placeholderView.messageLabel.text = @"No Recipes";
+  self.placeholderView.instructionsLabel.text = @"Tap the '+' button to create a recipe.";
+
   self.firstInteractionComplete = NO;
   self.loadTime = CFAbsoluteTimeGetCurrent();
 }
@@ -108,18 +109,14 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 // to eliminate confusion.
 - (void)switchToEmptyTableViewMode
 {
-  if (!self.placeholderText) {
-    self.placeholderText = [[OBTableViewPlaceholderLabel alloc]
-                            initWithFrame:self.tableView.frame
-                            andText:@"No Recipes"];
-  }
-
-  self.tableView.tableFooterView = self.placeholderText;
+  self.placeholderView.hidden = NO;
+  self.tableView.hidden = YES;
 }
 
 - (void)switchToNonEmptyTableViewMode
 {
-  self.tableView.tableFooterView = nil;
+  self.placeholderView.hidden = YES;
+  self.tableView.hidden = NO;
 }
 
 - (NSArray *)recipeData

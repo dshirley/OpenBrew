@@ -10,8 +10,13 @@
 
 // This class provides a standard look and feel for the label that is used
 // to let users know that no data exists for the current table view.
-@interface OBTableViewPlaceholderLabel : UILabel
+@interface OBPlaceholderView : UIView
 
-- (id)initWithFrame:(CGRect)frame andText:(NSString *)text;
+@property (nonatomic) IBOutlet UILabel *messageLabel;
+@property (strong, nonatomic) IBOutlet UILabel *instructionsLabel;
+
+- (id)initWithFrame:(CGRect)frame;
+
+- (id)initWithCoder:(NSCoder *)aDecoder;
 
 @end

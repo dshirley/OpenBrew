@@ -10,8 +10,9 @@
 #import "OBBrewController.h"
 #import "GAITrackedViewController.h"
 #import "OBGaugePageViewControllerDataSource.h"
+#import "OBPlaceholderView.h"
 
-@class OBRecipe, OBSettings, OBTableViewPlaceholderLabel, OBHopAdditionTableViewDelegate;
+@class OBRecipe, OBSettings, OBHopAdditionTableViewDelegate;
 
 @interface OBHopAdditionViewController : GAITrackedViewController <OBBrewController>
 
@@ -19,7 +20,7 @@
 @property (nonatomic) OBSettings *settings;
 
 @property (nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) OBTableViewPlaceholderLabel *placeholderText;
+@property (nonatomic) IBOutlet OBPlaceholderView *placeholderView;
 @property (nonatomic) OBGaugePageViewControllerDataSource *pageViewControllerDataSource;
 @property (nonatomic) OBHopAdditionTableViewDelegate *tableViewDelegate;
 

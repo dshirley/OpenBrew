@@ -15,7 +15,6 @@
 #import "OBMaltAddition.h"
 #import "OBMaltFinderViewController.h"
 #import "OBMaltAdditionSettingsViewController.h"
-#import "OBTableViewPlaceholderLabel.h"
 #import "OBGaugePageViewController.h"
 
 @interface OBMaltAdditionViewControllerTest : OBBaseTestCase
@@ -179,8 +178,9 @@
                     commitEditingStyle:UITableViewCellEditingStyleDelete
                      forRowAtIndexPath:self.r0s0];
 
-  OBTableViewPlaceholderLabel *placeHolderLabel = (id)self.vc.tableView.tableFooterView;
-  XCTAssertEqualObjects(@"No Malts", placeHolderLabel.text);
+  OBPlaceholderView *placeholderView = self.vc.placeholderView;
+  XCTAssertFalse(placeholderView.hidden);
+  XCTAssertEqualObjects(@"No Malts", placeholderView.messageLabel.text);
 }
 
 // Malts should be added via KVO
@@ -190,11 +190,13 @@
   [self.vc viewWillAppear:YES];
 
   XCTAssertEqual(0, [self.vc.tableView numberOfRowsInSection:0]);
-  XCTAssertNotNil(self.vc.tableView.tableFooterView);
+  XCTAssertFalse(self.vc.placeholderView.hidden);
+  XCTAssertTrue(self.vc.tableView.hidden);
 
   [self addMalt:@"Two-Row" quantity:10.0 color:2];
   XCTAssertEqual(1, [self.vc.tableView numberOfRowsInSection:0]);
-  XCTAssertNil(self.vc.tableView.tableFooterView, @"Placeholder view should have been removed");
+  XCTAssertTrue(self.vc.placeholderView.hidden);
+  XCTAssertFalse(self.vc.tableView.hidden);
 
   OBMaltAdditionTableViewCell *cell = (id)[self.vc.tableView cellForRowAtIndexPath:self.r0s0];
   XCTAssertEqualObjects(@"Two-Row", cell.maltVariety.text);
@@ -234,8 +236,8 @@
 
   XCTAssertEqualObjects(@"Malt Addition Screen", self.vc.screenName);
 
-  OBTableViewPlaceholderLabel *placeHolderLabel = (id)self.vc.tableView.tableFooterView;
-  XCTAssertEqualObjects(@"No Malts", placeHolderLabel.text);
+  XCTAssertFalse(self.vc.placeholderView.hidden);
+  XCTAssertEqualObjects(@"No Malts", self.vc.placeholderView.messageLabel.text);
 }
 
 - (void)testViewWillAppear_WhenThereAreMalts

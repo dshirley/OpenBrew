@@ -59,6 +59,31 @@
   [mockTableView verify];
 }
 
+- (void)testShowAndRemovePlaceholderView
+{
+  [self.vc loadView];
+
+  NSArray *recipes = [self fetchAllEntity:@"Recipe"];
+  XCTAssertEqual(1, recipes.count);
+
+  XCTAssertNotNil(self.vc.placeholderView);
+  XCTAssertTrue(self.vc.placeholderView.hidden);
+  XCTAssertFalse(self.vc.tableView.hidden);
+
+  [self.vc tableView:self.vc.tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:self.r0s0];
+
+  XCTAssertNotNil(self.vc.placeholderView);
+  XCTAssertFalse(self.vc.placeholderView.hidden);
+  XCTAssertTrue(self.vc.tableView.hidden);
+
+  (void)[[OBRecipe alloc] initWithContext:self.ctx];
+  [self.vc viewWillAppear:NO];
+
+  XCTAssertNotNil(self.vc.placeholderView);
+  XCTAssertTrue(self.vc.placeholderView.hidden);
+  XCTAssertFalse(self.vc.tableView.hidden);
+}
+
 - (void)testTableViewNumberOfRowsInSection
 {
   [self.vc loadView];
