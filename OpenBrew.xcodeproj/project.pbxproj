@@ -26,6 +26,9 @@
 		9F40C4C41B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */; };
 		9F40C4C61B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */; };
 		9F40C4CA1B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */; };
+		9F41C28E1BAD6BA100A072E9 /* OBHopAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8C718A0D45F00118D76 /* OBHopAddition.m */; };
+		9F41C28F1BAD6BA100A072E9 /* OBMaltAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8BE18A0CED100118D76 /* OBMaltAddition.m */; };
+		9F41C2901BAD6BA100A072E9 /* OBYeastAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8CD18A0D63300118D76 /* OBYeastAddition.m */; };
 		9F49A85F1B79086600D48E2C /* OBHopQuantityPickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49A85E1B79086600D48E2C /* OBHopQuantityPickerDelegateTest.m */; };
 		9F5F6F101B93C1A000F010E5 /* OBBatchSizeTableViewDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5F6F0F1B93C1A000F010E5 /* OBBatchSizeTableViewDelegateTest.m */; };
 		9F5F6F121B93D82600F010E5 /* OBBatchSizeViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5F6F111B93D82600F010E5 /* OBBatchSizeViewControllerTest.m */; };
@@ -1063,6 +1066,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F41C28E1BAD6BA100A072E9 /* OBHopAddition.m in Sources */,
+				9F41C28F1BAD6BA100A072E9 /* OBMaltAddition.m in Sources */,
+				9F41C2901BAD6BA100A072E9 /* OBYeastAddition.m in Sources */,
 				9F7EFEF71BA6B8E500B71D64 /* OBSettings.m in Sources */,
 				9FE279C01B9927590057BEFE /* OBHops.m in Sources */,
 				9FE279C11B9927590057BEFE /* OBMalt.m in Sources */,
