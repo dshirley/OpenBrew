@@ -15,7 +15,6 @@
 
 @property (nonatomic) OBSettings *settings;
 
-@property (nonatomic, readonly) OBSegmentedController *gaugeDisplaySettingController;
 @property (nonatomic, readonly) OBSegmentedController *ingredientDisplaySettingController;
 
 @end

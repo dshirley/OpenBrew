@@ -10,13 +10,14 @@
 #import "OBHopAdditionViewController.h"
 #import "OBHopAdditionTableViewDelegate.h"
 #import "OBBaseTestCase.h"
-#import "OBIngredientGauge.h"
 #import <OCMock/OCMock.h>
 #import "OBHopAdditionTableViewCell.h"
 #import "OBHopAddition.h"
 #import "OBHopFinderViewController.h"
 #import "OBHopAdditionSettingsViewController.h"
 #import "OBTableViewPlaceholderLabel.h"
+#import "OBGaugePageViewController.h"
+#import "OBGaugeViewController.h"
 
 @interface OBHopAdditionViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBHopAdditionViewController *vc;
@@ -41,16 +42,14 @@
 
 - (void)testViewDidLoad_settingsIsSet
 {
-  [self.vc loadView];
-  [self.vc viewDidLoad];
+  [self.vc loadViewIfNeeded];
 
   XCTAssertEqual(self.settings, self.vc.settings);
 }
 
 - (void)testViewDidLoad_tableViewDelegateIsSetup
 {
-  [self.vc loadView];
-  [self.vc viewDidLoad];
+  [self.vc loadViewIfNeeded];
 
   XCTAssertNotNil(self.vc.tableViewDelegate);
   XCTAssertEqual(self.vc.tableViewDelegate, self.vc.tableView.delegate);
@@ -60,25 +59,32 @@
   XCTAssertEqual(self.vc.recipe, self.recipe);
 }
 
-- (void)testViewDidLoad_gaugeIsSetupWithStoredSettings
+- (void)testViewDidLoad_gaugeIsSetup
 {
-  self.settings.hopGaugeDisplayMetric = @(OBMetricBuToGuRatio);
+  [self.vc loadViewIfNeeded];
 
-  [self.vc loadView];
-  [self.vc viewDidLoad];
-  XCTAssertEqual(OBMetricBuToGuRatio, self.vc.gauge.metricToDisplay);
+  XCTAssertEqual(self.recipe, self.vc.pageViewControllerDataSource.recipe);
+  XCTAssertEqualObjects((@[@(OBMetricIbu), @(OBMetricBuToGuRatio)]),
+                        self.vc.pageViewControllerDataSource.metrics);
 
-  self.settings.hopGaugeDisplayMetric = @(OBMetricIbu);
-  [self.vc viewDidLoad];
-  XCTAssertEqual(OBMetricIbu, self.vc.gauge.metricToDisplay);
+  XCTAssertEqual(1, self.vc.childViewControllers.count);
+
+  OBGaugePageViewController *pageViewController = (id)self.vc.childViewControllers[0];
+  XCTAssertEqual(OBGaugePageViewController.class, pageViewController.class);
+  XCTAssertEqual(self.vc.pageViewControllerDataSource, pageViewController.dataSource);
+
+  OBGaugeViewController *gaugeVc = pageViewController.viewControllers[0];
+
+  XCTAssertEqualObjects(@"0", gaugeVc.valueLabel.text);
+  [self addHops:@"Cascade" quantity:1.0 aaPercent:7.0 boilTime:60];
+  XCTAssertNotEqualObjects(@"0", gaugeVc.valueLabel.text);
 }
 
 - (void)testViewDidLoad_hopAdditionMetricUsesStoredSettings
 {
   self.settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);
 
-  [self.vc loadView];
-  [self.vc viewDidLoad];
+  [self.vc loadViewIfNeeded];
   XCTAssertEqual(OBHopAdditionMetricIbu, self.vc.tableViewDelegate.hopAdditionMetricToDisplay);
 
   self.settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricWeight);
@@ -90,7 +96,7 @@
 {
   id mockVc = [OCMockObject partialMockForObject:self.vc];
 
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
   [self.vc viewDidLoad];
 
   UIButton *button = (UIButton *)self.vc.infoButton.customView;
@@ -109,7 +115,7 @@
   [self addHops:@"Cascade" quantity:1.3 aaPercent:8.5 boilTime:60];
   [self addHops:@"Zeus" quantity:2.0 aaPercent:13.0 boilTime:60];
 
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
   [self.vc viewDidLoad];
 
   XCTAssertEqual(2, [self.vc.tableView numberOfRowsInSection:0]);
@@ -130,27 +136,11 @@
   XCTAssertEqualObjects(@"min", cell.boilUnits.text);
 }
 
-- (void)testViewDidLoad_gaugeRefreshes
-{
-  [self.vc loadView];
-
-  self.settings.hopGaugeDisplayMetric = @(OBMetricBuToGuRatio);
-
-  id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
-
-  [[mockGauge expect] setRecipe:self.recipe];
-  [[mockGauge expect] setMetricToDisplay:OBMetricBuToGuRatio];
-
-  [self.vc viewDidLoad];
-
-  [mockGauge verify];
-}
-
 - (void)testViewUpdatesWhenHopAdditionsChange
 {
   OBHopAddition *hopAddition = [self addHops:@"Cascade" quantity:1.3 aaPercent:8.5 boilTime:60];
 
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
   [self.vc viewDidLoad];
 
   XCTAssertEqual(1, [self.vc.tableView numberOfRowsInSection:0]);
@@ -177,19 +167,14 @@
   [self addHops:@"Cascade" quantity:1.3 aaPercent:8.5 boilTime:60];
   OBHopAddition *hopAddition2 = [self addHops:@"Centennial" quantity:0.5 aaPercent:10 boilTime:60];
 
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
   [self.vc viewDidLoad];
-
-  id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
-  [[mockGauge expect] refresh];
 
   XCTAssertEqual(2, [self.vc.tableView numberOfRowsInSection:0]);
 
   [self.vc.tableViewDelegate tableView:self.vc.tableView
                     commitEditingStyle:UITableViewCellEditingStyleDelete
                      forRowAtIndexPath:self.r0s0];
-
-  [mockGauge verify];
 
   XCTAssertEqualObjects((@[ hopAddition2 ]), [self.recipe hopAdditionsSorted]);
   XCTAssertEqual(1, [self.vc.tableView numberOfRowsInSection:0]);
@@ -207,8 +192,7 @@
 {
   [self addHops:@"Cascade" quantity:1.3 aaPercent:8.5 boilTime:60];
 
-  [self.vc loadView];
-  [self.vc viewDidLoad];
+  [self.vc loadViewIfNeeded];
   [self.vc viewWillAppear:NO];
 
   XCTAssertNil(self.vc.tableView.tableFooterView);
@@ -224,8 +208,7 @@
 // Hops should be added via KVO
 - (void)testAddHop
 {
-  [self.vc loadView];
-  [self.vc viewDidLoad];
+  [self.vc loadViewIfNeeded];
   [self.vc viewWillAppear:YES];
 
   XCTAssertEqual(0, [self.vc.tableView numberOfRowsInSection:0]);
@@ -260,22 +243,9 @@
   XCTAssertEqualObjects(@"min", cell.boilUnits.text);
 }
 
-- (void)testGaugeDisplaySettingsChanged
-{
-  [self.vc loadView];
-  [self.vc viewDidLoad];
-
-  id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
-  [[mockGauge expect] setMetricToDisplay:OBMetricColor];
-
-  self.settings.hopGaugeDisplayMetric = @(OBMetricColor);
-
-  [mockGauge verify];
-}
-
 - (void)testHopAdditionDisplaySettingChanged
 {
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
   [self.vc viewDidLoad];
 
   id mockDelegate = [OCMockObject partialMockForObject:self.vc.tableViewDelegate];
@@ -288,7 +258,7 @@
 
 - (void)testViewWillAppear_WhenEmpty
 {
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
   [self.vc viewDidLoad];
   [self.vc viewWillAppear:NO];
 
@@ -302,7 +272,7 @@
 {
   [self addHops:@"Cascade" quantity:1.3 aaPercent:8.5 boilTime:60];
 
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
   [self.vc viewDidLoad];
   [self.vc viewWillAppear:NO];
 
@@ -312,7 +282,7 @@
 
 - (void)testPrepareForSegue_HopFinder
 {
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
   [self.vc viewDidLoad];
 
   OBHopFinderViewController *hopFinder = [[OBHopFinderViewController alloc] init];
@@ -330,7 +300,7 @@
 
 - (void)testPrepareForSegue_HopSettings
 {
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
   [self.vc viewDidLoad];
 
   OBHopAdditionSettingsViewController *settingsVc = [[OBHopAdditionSettingsViewController alloc] init];

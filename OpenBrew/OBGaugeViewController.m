@@ -1,59 +1,22 @@
 //
-//  OBInstrumentGauge.m
+//  OBGaugeViewController.m
 //  OpenBrew
 //
-//  Created by David Shirley 2 on 2/7/14.
-//  Copyright (c) 2014 OpenBrew. All rights reserved.
+//  Created by David Shirley 2 on 9/16/15.
+//  Copyright © 2015 OpenBrew. All rights reserved.
 //
 
-#import "OBIngredientGauge.h"
+#import "OBGaugeViewController.h"
 #import "OBColorView.h"
 #import "Crittercism+NSErrorLogging.h"
 #import "OBRecipe.h"
+#import "OBKvoUtils.h"
 
-#define VALUE_HEIGHT 90
-#define VALUE_FONT_SIZE 64
+@interface OBGaugeViewController ()
 
-#define DESCRIPTION_Y (VALUE_HEIGHT - 10)
-#define DESCRIPTION_HEIGHT 20
-
-@interface OBIngredientGauge()
-@property (nonatomic) IBOutlet UILabel *valueLabel;
-@property (nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (nonatomic) IBOutlet OBColorView *colorView;
 @end
 
-
-@implementation OBIngredientGauge
-
-- (id)initWithFrame:(CGRect)frame
-{
-  self = [super initWithFrame:frame];
-
-  if (self) {
-    [self doInit];
-  }
-
-  return self;
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-  self = [super initWithCoder:aDecoder];
-  
-  if (self) {
-    [self doInit];
-  }
-  
-  return self;
-}
-
-- (void)doInit
-{
-  UIView *view = [[NSBundle mainBundle] loadNibNamed:@"OBIngredientGauge" owner:self options:nil][0];
-  view.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-  [self addSubview:view];
-}
+@implementation OBGaugeViewController
 
 - (void)refresh
 {
@@ -109,9 +72,25 @@
   [self refresh];
 }
 
+- (void)dealloc
+{
+  self.recipe = nil;
+}
+
 - (void)setRecipe:(OBRecipe *)recipe
 {
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(originalGravity)];
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(IBUs)];
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(postBoilVolumeInGallons)];
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(preBoilVolumeInGallons)];
+
   _recipe = recipe;
+
+  [_recipe addObserver:self forKeyPath:KVO_KEY(originalGravity) options:0 context:nil];
+  [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs) options:0 context:nil];
+  [_recipe addObserver:self forKeyPath:KVO_KEY(postBoilVolumeInGallons) options:0 context:nil];
+  [_recipe addObserver:self forKeyPath:KVO_KEY(preBoilVolumeInGallons) options:0 context:nil];
+
   [self refresh];
 }
 
@@ -130,5 +109,14 @@
 {
   return self.colorView.colorInSrm;
 }
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+  [self refresh];
+}
+
 
 @end

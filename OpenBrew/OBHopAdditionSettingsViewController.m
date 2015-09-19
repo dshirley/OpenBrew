@@ -37,18 +37,6 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
 
   OBSettings *settings = self.settings;
 
-  self.gaugeDisplaySettingController =
-    [[OBSegmentedController alloc] initWithSegmentedControl:self.gaugeDisplaySettingSegmentedControl
-                                              googleAnalyticsAction:@"Hop Gauge Display"];
-
-  [self.gaugeDisplaySettingController addSegment:@"IBU" actionWhenSelected:^(void) {
-    settings.hopGaugeDisplayMetric = @(OBMetricIbu);
-  }];
-
-  [self.gaugeDisplaySettingController addSegment:@"Bitterness : Gravity" actionWhenSelected:^(void) {
-    settings.hopGaugeDisplayMetric = @(OBMetricBuToGuRatio);
-  }];
-
   if (OBMetricBuToGuRatio == [settings.hopGaugeDisplayMetric integerValue]) {
     self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = 1;
   } else {

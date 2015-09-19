@@ -10,11 +10,11 @@
 #import "OBBaseTestCase.h"
 #import "OBYeastAdditionViewController.h"
 #import <OCMock/OCMock.h>
-#import "OBIngredientGauge.h"
 #import "OBRecipe.h"
 #import "OBYeast.h"
 #import "OBYeastAddition.h"
 #import "OBYeastTableViewCell.h"
+#import "OBGaugePageViewController.h"
 
 @interface OBYeastAdditionViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBYeastAdditionViewController *vc;
@@ -37,25 +37,25 @@
 
 - (void)testViewDidLoadSetsUpGauge
 {
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
 
   [self addMalt:@"Maris Otter" quantity:10.0];
   [self addYeast:@"WLP001"];
 
-  id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
-  [[mockGauge expect] refresh];
+  XCTAssertEqual(self.recipe, self.vc.pageViewControllerDataSource.recipe);
+  XCTAssertEqualObjects((@[@(OBMetricAbv), @(OBMetricFinalGravity)]),
+                        self.vc.pageViewControllerDataSource.metrics);
 
-  [self.vc viewDidLoad];
+  XCTAssertEqual(1, self.vc.childViewControllers.count);
 
-  XCTAssertEqual(OBMetricFinalGravity, self.vc.gauge.metricToDisplay);
-  XCTAssertEqual(self.recipe, self.vc.gauge.recipe);
-
-  [mockGauge verify];
+  OBGaugePageViewController *pageViewController = (id)self.vc.childViewControllers[0];
+  XCTAssertEqual(OBGaugePageViewController.class, pageViewController.class);
+  XCTAssertEqual(self.vc.pageViewControllerDataSource, pageViewController.dataSource);
 }
 
 - (void)testViewDidLoad_noYeastSelected_wyeastManufacturer
 {
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
 
   self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
 
@@ -74,7 +74,7 @@
 
 - (void)testViewDidLoad_noYeastSelected_whiteLabsManufacturer
 {
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
 
   self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
 
@@ -107,7 +107,7 @@
 
 - (void)testViewDidLoad_whiteLabsYeastSelected
 {
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
 
   [self addYeast:@"WLP001"];
 
@@ -131,7 +131,7 @@
 
 - (void)testViewDidLoad_segmentedControlSetup
 {
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
 
   // A manufaturer is selected that is not the manufacturer of the selected yeast
   self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
@@ -146,7 +146,7 @@
 
 - (void)testSelectSegment
 {
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
 
   self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
 
@@ -174,7 +174,7 @@
 
 - (void)testDidSelectRowAtIndexPath
 {
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
 
   self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
 
@@ -182,19 +182,14 @@
 
   XCTAssertNil(self.recipe.yeast);
 
-  id mockGauge = [OCMockObject partialMockForObject:self.vc.gauge];
-  [[mockGauge expect] refresh];
-
   [self.vc tableView:self.vc.tableView didSelectRowAtIndexPath:self.r0s0];
 
   XCTAssertEqualObjects(@"WLP001", self.recipe.yeast.identifier);
-
-  [mockGauge verify];
 }
 
 - (void)testCellForRowAtIndexPath
 {
-  [self.vc loadView];
+  [self.vc loadViewIfNeeded];
 
   self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
 

@@ -35,16 +35,7 @@
   [self.vc loadView];
   [self.vc viewWillAppear:NO];
 
-  XCTAssertNotNil(self.vc.gaugeDisplaySettingController);
   XCTAssertNotNil(self.vc.ingredientDisplaySettingController);
-
-  // Make sure the gauge display setting is setup properly
-  UISegmentedControl *gaugeSegmentedControl = self.vc.gaugeDisplaySettingController.segmentedControl;
-  XCTAssertNotNil(gaugeSegmentedControl);
-  XCTAssertEqual(2, [gaugeSegmentedControl numberOfSegments]);
-  XCTAssertEqualObjects(@"IBU", [gaugeSegmentedControl titleForSegmentAtIndex:0]);
-  XCTAssertEqualObjects(@"Bitterness : Gravity", [gaugeSegmentedControl titleForSegmentAtIndex:1]);
-  XCTAssertEqual(1, [gaugeSegmentedControl selectedSegmentIndex]);
 
   // Make sure the ingredient display setting is setup properly
   UISegmentedControl *ingredientSegmentedControl = self.vc.ingredientDisplaySettingController.segmentedControl;
@@ -53,11 +44,6 @@
   XCTAssertEqualObjects(@"Weight", [ingredientSegmentedControl titleForSegmentAtIndex:0]);
   XCTAssertEqualObjects(@"IBU", [ingredientSegmentedControl titleForSegmentAtIndex:1]);
   XCTAssertEqual(1, [ingredientSegmentedControl selectedSegmentIndex]);
-
-  // Make sure both segmented controllers are wired up to change our settings settings
-  [gaugeSegmentedControl setSelectedSegmentIndex:0];
-  [gaugeSegmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
-  XCTAssertEqualObjects(@(OBMetricIbu), self.settings.hopGaugeDisplayMetric);
 
   [ingredientSegmentedControl setSelectedSegmentIndex:0];
   [ingredientSegmentedControl sendActionsForControlEvents:UIControlEventValueChanged];

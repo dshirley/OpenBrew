@@ -9,15 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "OBBrewController.h"
 #import "GAITrackedViewController.h"
+#import "OBGaugePageViewControllerDataSource.h"
 
-@class OBRecipe, OBIngredientGauge;
+@class OBRecipe;
 
 @interface OBYeastAdditionViewController : GAITrackedViewController <OBBrewController>
 
 @property (nonatomic) OBRecipe *recipe;
 @property (nonatomic) OBSettings *settings;
 
-@property (nonatomic) IBOutlet OBIngredientGauge *gauge;
+@property (nonatomic) OBGaugePageViewControllerDataSource *pageViewControllerDataSource;
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 

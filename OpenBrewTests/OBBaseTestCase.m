@@ -26,7 +26,7 @@ NSManagedObjectContext *g_startupContext = nil;
   NSURL *startUpDbURL = [[NSBundle mainBundle] URLForResource:@"OpenBrewStartupData.sqlite"
                                                 withExtension:@""];
 
-  g_startupContext = createManagedObjectContext(startUpDbURL, &error);
+  g_startupContext = createManagedObjectContext(startUpDbURL, nil, &error);
   NSCAssert(!error, @"An error occurred loading the startup DB: %@", error);
 
   g_startupContext.undoManager = nil;

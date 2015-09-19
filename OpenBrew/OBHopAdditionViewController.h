@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "OBBrewController.h"
 #import "GAITrackedViewController.h"
+#import "OBGaugePageViewControllerDataSource.h"
 
-@class OBRecipe, OBSettings, OBTableViewPlaceholderLabel, OBIngredientGauge, OBHopAdditionTableViewDelegate;
+@class OBRecipe, OBSettings, OBTableViewPlaceholderLabel, OBHopAdditionTableViewDelegate;
 
 @interface OBHopAdditionViewController : GAITrackedViewController <OBBrewController>
 
@@ -19,7 +20,7 @@
 
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) OBTableViewPlaceholderLabel *placeholderText;
-@property (nonatomic) IBOutlet OBIngredientGauge *gauge;
+@property (nonatomic) OBGaugePageViewControllerDataSource *pageViewControllerDataSource;
 @property (nonatomic) OBHopAdditionTableViewDelegate *tableViewDelegate;
 
 @property (nonatomic) IBOutlet UIBarButtonItem *infoButton;

@@ -7,7 +7,6 @@
 //
 
 #import "OBHopAdditionViewController.h"
-#import "OBIngredientGauge.h"
 #import "OBHopFinderViewController.h"
 #import "OBSettings.h"
 #import "OBRecipe.h"
@@ -31,6 +30,13 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 
   NSAssert(self.settings, @"Settings were nil");
 
+  UIPageViewController *pageViewController = (id)self.childViewControllers[0];
+  self.pageViewControllerDataSource =
+    [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe
+                                                 displayMetrics:@[ @(OBMetricIbu), @(OBMetricBuToGuRatio) ]];
+
+  pageViewController.dataSource = self.pageViewControllerDataSource;
+
   self.tableViewDelegate = [[OBHopAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
                                                                      andTableView:self.tableView
                                                                     andGACategory:OBGAScreenName];
@@ -38,8 +44,6 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   self.tableView.delegate = self.tableViewDelegate;
   self.tableView.dataSource = self.tableViewDelegate;
 
-  self.gauge.recipe = self.recipe;
-  self.gauge.metricToDisplay = (OBGaugeMetric) [self.settings.hopGaugeDisplayMetric integerValue];
   self.tableViewDelegate.hopAdditionMetricToDisplay = (OBHopAdditionMetric)[self.settings.hopAdditionDisplayMetric integerValue];
 
   UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
@@ -116,12 +120,10 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 - (void)setSettings:(OBSettings *)settings
 {
   [_settings removeObserver:self forKeyPath:KVO_KEY(hopAdditionDisplayMetric)];
-  [_settings removeObserver:self forKeyPath:KVO_KEY(hopGaugeDisplayMetric)];
 
   _settings = settings;
 
   [_settings addObserver:self forKeyPath:KVO_KEY(hopAdditionDisplayMetric) options:0 context:nil];
-  [_settings addObserver:self forKeyPath:KVO_KEY(hopGaugeDisplayMetric) options:0 context:nil];
 }
 
 - (void)dealloc
@@ -139,8 +141,6 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 
   if ([keyPath isEqualToString:KVO_KEY(IBUs)]) 
   {
-    [self.gauge refresh];
-
     if (NSKeyValueChangeSetting == changeType) {
       // If the table is reloaded during a delete, a crash results.
       [self.tableView reloadData];
@@ -149,10 +149,6 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   else if ([keyPath isEqualToString:KVO_KEY(hopAdditionDisplayMetric)])
   {
     self.tableViewDelegate.hopAdditionMetricToDisplay = [self.settings.hopAdditionDisplayMetric integerValue];
-  }
-  else if ([keyPath isEqualToString:KVO_KEY(hopGaugeDisplayMetric)])
-  {
-    self.gauge.metricToDisplay = [self.settings.hopGaugeDisplayMetric integerValue];
   }
   else if ([keyPath isEqualToString:KVO_KEY(hopAdditions)])
   {

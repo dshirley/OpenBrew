@@ -8,7 +8,6 @@
 
 #import "OBYeastAdditionViewController.h"
 #import "OBIngredientTableViewDataSource.h"
-#import "OBIngredientGauge.h"
 #import "OBRecipe.h"
 #import "OBYeast.h"
 #import "OBYeastAddition.h"
@@ -37,6 +36,13 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
   [super viewDidLoad];
 
   self.screenName = OBGAScreenName;
+
+  UIPageViewController *pageViewController = (id)self.childViewControllers[0];
+  self.pageViewControllerDataSource =
+    [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe
+                                                 displayMetrics:@[ @(OBMetricAbv), @(OBMetricFinalGravity) ]];
+
+  pageViewController.dataSource = self.pageViewControllerDataSource;
 
   NSAssert(self.settings, @"Settings were nil");
 
@@ -72,11 +78,6 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
   }
 
   [weakSelf reloadTableSelectedManufacturer:startingManufacturer scrollToSelectedItem:YES];
-
-  self.gauge.metricToDisplay = OBMetricFinalGravity;
-  self.gauge.recipe = self.recipe;
-
-  [self.gauge refresh];
 }
 
 // Query the CoreData store to get all of the ingredient data
@@ -155,7 +156,7 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
   [self.recipe.managedObjectContext save:&error];
   CRITTERCISM_LOG_ERROR(error);
 
-  [self.gauge refresh];
+//  [self.gauge refresh];
 }
 
 #pragma mark UITableViewDataSource methods
