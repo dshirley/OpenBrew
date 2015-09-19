@@ -9,6 +9,7 @@
 #import "OBHopAddition.h"
 #import "OBHops.h"
 #import "OBRecipe.h"
+#import "OBUnitConversion.h"
 
 @implementation OBHopAddition
 
@@ -94,6 +95,17 @@
   float timeFactor = (1 - powf(M_E, -.04 * [[self boilTimeInMinutes] floatValue])) / 4.15;
   
   return gravityFactor * timeFactor;
+}
+
+- (NSNumber *)quantityInGrams
+{
+  float quantityInOunces = [self.quantityInOunces floatValue];
+  return @(ouncesToGrams(quantityInOunces));
+}
+
+- (void)setQuantityInGrams:(NSNumber *)quantityInGrams;
+{
+  self.quantityInOunces = @(gramsToOunces([quantityInGrams floatValue]));
 }
 
 #pragma mark - OBIngredientAddition Protocol

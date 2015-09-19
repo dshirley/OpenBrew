@@ -33,6 +33,9 @@ typedef NS_ENUM(NSInteger, OBIbuFormula) {
 - (float)ragerUtilization;
 - (float)alphaAcidUnits;
 
+- (NSNumber *)quantityInGrams;
+- (void)setQuantityInGrams:(NSNumber *)quantityInGrams;
+
 #pragma mark - OBIngredientAddition Protocol
 
 - (void)removeFromRecipe;

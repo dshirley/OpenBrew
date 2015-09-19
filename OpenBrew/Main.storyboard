@@ -911,8 +911,8 @@
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lcz-vx-eif">
                                         <rect key="frame" x="20" y="40" width="560" height="29"/>
                                         <segments>
-                                            <segment title="IBU"/>
-                                            <segment title="Bittering : Gravity"/>
+                                            <segment title="Ounces"/>
+                                            <segment title="Grams"/>
                                         </segments>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ptg-BQ-8Iw">
@@ -928,7 +928,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gauge Display" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7h-z1-oRL">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Units" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7h-z1-oRL">
                                         <rect key="frame" x="20" y="12" width="560" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
@@ -986,12 +986,12 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="gaugeDisplaySettingSegmentedControl" destination="lcz-vx-eif" id="oXu-ii-UzG"/>
                         <outlet property="greyoutButton" destination="GYN-Vf-xEN" id="H0V-io-3FY"/>
                         <outlet property="greyoutView" destination="wj0-RG-CCH" id="tOe-Zs-Ueg"/>
                         <outlet property="ingredientDisplaySettingSegmentedControl" destination="Ptg-BQ-8Iw" id="gX7-hG-Cj8"/>
                         <outlet property="navigationBar" destination="2kH-5J-sft" id="FZk-pw-YTH"/>
                         <outlet property="settingsView" destination="asE-vv-kcg" id="s81-ZE-wab"/>
+                        <outlet property="unitsSegmentedControl" destination="lcz-vx-eif" id="hqJ-zK-1z1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uT3-d9-Psj" userLabel="First Responder" sceneMemberID="firstResponder"/>

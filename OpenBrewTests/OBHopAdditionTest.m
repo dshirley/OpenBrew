@@ -174,4 +174,26 @@
   XCTAssertEqualWithAccuracy([hopAddition ibusForRecipeVolume:6 boilGravity:1.087 ibuFormula:OBIbuFormulaRager], 31.4, 0.5);
 }
 
+- (void)testQuantityInGrams
+{
+  OBHopAddition *hopAddition = [self createTestHopAddition];
+
+  hopAddition.quantityInOunces = @(1.0);
+  XCTAssertEqualWithAccuracy(28.0, [hopAddition.quantityInGrams floatValue], 0.000001);
+
+  hopAddition.quantityInOunces = @(1.5);
+  XCTAssertEqualWithAccuracy(42.0, [hopAddition.quantityInGrams floatValue], 0.000001);
+}
+
+- (void)testSetQuantityInGrams
+{
+  OBHopAddition *hopAddition = [self createTestHopAddition];
+
+  hopAddition.quantityInGrams = @(28.0);
+  XCTAssertEqualWithAccuracy(1.0, [hopAddition.quantityInOunces floatValue], 0.000001);
+
+  hopAddition.quantityInGrams = @(42.0);
+  XCTAssertEqualWithAccuracy(1.5, [hopAddition.quantityInOunces floatValue], 0.000001);
+}
+
 @end

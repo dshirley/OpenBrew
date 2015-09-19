@@ -16,7 +16,8 @@
 #import "OBMultiPickerView.h"
 #import "OBHopBoilTimePickerDelegate.h"
 #import "OBAlphaAcidPickerDelegate.h"
-#import "OBHopQuantityPickerDelegate.h"
+#import "OBHopOuncesPickerDelegate.h"
+#import "OBHopGramsPickerDelegate.h"
 
 @interface OBMultiPickerView(Test)
 
@@ -77,6 +78,20 @@
   [mockTableView stopMocking];
 }
 
+- (void)testSetHopQuantityUnits
+{
+  id mockTableView = [OCMockObject partialMockForObject:self.tableView];
+  [[mockTableView expect] reloadData];
+
+  self.delegate.hopQuantityUnits = 50;
+
+  [mockTableView verify];
+
+  XCTAssertEqual(50, self.delegate.hopQuantityUnits);
+
+  [mockTableView stopMocking];
+}
+
 - (void)testSetIbuFormula
 {
   id mockTableView = [OCMockObject partialMockForObject:self.tableView];
@@ -106,7 +121,7 @@
 
   [self.delegate populateDrawerCell:cell withIngredientData:hops];
   XCTAssertEqual(3, [[view pickerDelegates] count]);
-  XCTAssertTrue([[view pickerDelegates][0] isKindOfClass:[OBHopQuantityPickerDelegate class]]);
+  XCTAssertTrue([[view pickerDelegates][0] isKindOfClass:[OBHopOuncesPickerDelegate class]]);
   XCTAssertTrue([[view pickerDelegates][1] isKindOfClass:[OBAlphaAcidPickerDelegate class]]);
   XCTAssertTrue([[view pickerDelegates][2] isKindOfClass:[OBHopBoilTimePickerDelegate class]]);
   XCTAssertEqual(0, view.segmentedControl.selectedSegmentIndex);
@@ -117,7 +132,7 @@
 
   [self.delegate populateDrawerCell:cell withIngredientData:hops];
   XCTAssertEqual(3, [[view pickerDelegates] count]);
-  XCTAssertTrue([[view pickerDelegates][0] isKindOfClass:[OBHopQuantityPickerDelegate class]]);
+  XCTAssertTrue([[view pickerDelegates][0] isKindOfClass:[OBHopOuncesPickerDelegate class]]);
   XCTAssertTrue([[view pickerDelegates][1] isKindOfClass:[OBAlphaAcidPickerDelegate class]]);
   XCTAssertTrue([[view pickerDelegates][2] isKindOfClass:[OBHopBoilTimePickerDelegate class]]);
   XCTAssertEqual(2, view.segmentedControl.selectedSegmentIndex);
@@ -127,6 +142,21 @@
   [cell.multiPickerView.segmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
 
   XCTAssertEqual(1, self.delegate.selectedPickerIndex);
+
+  self.delegate.hopQuantityUnits = OBHopQuantityUnitsMetric;
+  [self.delegate populateDrawerCell:cell withIngredientData:hops];
+  XCTAssertEqual(3, [[view pickerDelegates] count]);
+  XCTAssertTrue([[view pickerDelegates][0] isKindOfClass:[OBHopGramsPickerDelegate class]]);
+  XCTAssertTrue([[view pickerDelegates][1] isKindOfClass:[OBAlphaAcidPickerDelegate class]]);
+  XCTAssertTrue([[view pickerDelegates][2] isKindOfClass:[OBHopBoilTimePickerDelegate class]]);
+}
+
+- (void)testPopulateDrawerCell_invalidHopQuantityUnits
+{
+  OBMultiPickerTableViewCell *cell = [[OBMultiPickerTableViewCell alloc] initWithFrame:CGRectZero];
+  OBHopAddition *hops = [self addHops:@"Admiral" quantity:1.0 aaPercent:8.5 boilTime:60];
+  self.delegate.hopQuantityUnits = 50;
+  XCTAssertThrows([self.delegate populateDrawerCell:cell withIngredientData:hops]);
 }
 
 - (void)testPopulateIngredientCell
@@ -204,6 +234,35 @@
   hops.alphaAcidPercent = @(99.99);
   [self.delegate populateIngredientCell:cell withIngredientData:hops];
   XCTAssertEqualObjects(@"100.0%", alphaAcid.text);
+}
+
+- (void)testPopulateIngredientCell_metricHopQuantities
+{
+  OBHopAdditionTableViewCell *cell = [[OBHopAdditionTableViewCell alloc] initWithFrame:CGRectZero];
+  UILabel *quantity = [[UILabel alloc] initWithFrame:CGRectZero];
+
+  cell.primaryMetric = quantity;
+
+  OBHopAddition *hops = [self addHops:@"Admiral" quantity:1.0 aaPercent:8.53103 boilTime:300];
+  hops.quantityInGrams = @(53);
+
+  self.delegate.hopQuantityUnits = OBHopQuantityUnitsMetric;
+  [self.delegate populateIngredientCell:cell withIngredientData:hops];
+  XCTAssertEqualObjects(@"53 g", quantity.text);
+
+  self.delegate.hopQuantityUnits = OBHopQuantityUnitsMetric;
+  hops.quantityInGrams = @(99.99);
+  [self.delegate populateIngredientCell:cell withIngredientData:hops];
+  XCTAssertEqualObjects(@"100 g", quantity.text);
+}
+
+- (void)testPopulateIngredientCell_invalidHopQuantity
+{
+  OBHopAdditionTableViewCell *cell = [[OBHopAdditionTableViewCell alloc] initWithFrame:CGRectZero];
+  OBHopAddition *hops = [self addHops:@"Admiral" quantity:1.0 aaPercent:8.53103 boilTime:300];
+
+  self.delegate.hopQuantityUnits = 50;
+  XCTAssertThrows([self.delegate populateIngredientCell:cell withIngredientData:hops]);
 }
 
 @end

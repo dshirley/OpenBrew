@@ -31,6 +31,11 @@ typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
   OBHopAdditionMetricIbu
 };
 
+typedef NS_ENUM(NSInteger, OBHopQuantityUnits) {
+  OBHopQuantityUnitsImperial,
+  OBHopQuantityUnitsMetric
+};
+
 @interface OBSettings : NSManagedObject
 
 // Some starter data is provided with each app. The data is copied into the app at
@@ -45,6 +50,9 @@ typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
 @property (nonatomic) NSNumber *defaultPreBoilSize;
 
 @property (nonatomic) NSNumber *hasCopiedSampleRecipes;
+
+// OBHopQuantityUnits which determines whether to display hop quantities in grams or ounces
+@property (nonatomic) NSNumber *hopQuantityUnits;
 
 // OBMaltAdditionMetric which corresponds to what type of metric to display for
 // each malt addition on the right hand of the OBMaltAdditionViewController

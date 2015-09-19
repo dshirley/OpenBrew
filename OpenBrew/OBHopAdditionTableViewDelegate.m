@@ -17,7 +17,8 @@
 #import "OBHopAdditionTableViewCell.h"
 
 #import "OBAlphaAcidPickerDelegate.h"
-#import "OBHopQuantityPickerDelegate.h"
+#import "OBHopOuncesPickerDelegate.h"
+#import "OBHopGramsPickerDelegate.h"
 #import "OBHopBoilTimePickerDelegate.h"
 
 @implementation OBHopAdditionTableViewDelegate
@@ -57,6 +58,13 @@
   [self.tableView reloadData];
 }
 
+- (void)setHopQuantityUnits:(OBHopQuantityUnits)hopQuantityUnits
+{
+  _hopQuantityUnits = hopQuantityUnits;
+
+  [self.tableView reloadData];
+}
+
 - (void)setIbuFormula:(OBIbuFormula)ibuFormula
 {
   _ibuFormula = ibuFormula;
@@ -86,8 +94,16 @@
                                     (int)roundf([hopAddition ibuContribution:self.ibuFormula])];
       break;
     case OBHopAdditionMetricWeight:
-      hopCell.primaryMetric.text = [NSString stringWithFormat:@"%.1f oz",
-                                    [hopAddition.quantityInOunces floatValue]];
+      if (OBHopQuantityUnitsImperial == self.hopQuantityUnits) {
+        hopCell.primaryMetric.text = [NSString stringWithFormat:@"%.1f oz",
+                                      [hopAddition.quantityInOunces floatValue]];
+      } else if (OBHopQuantityUnitsMetric == self.hopQuantityUnits) {
+        hopCell.primaryMetric.text = [NSString stringWithFormat:@"%d g",
+                                      (int)roundf([hopAddition.quantityInGrams floatValue])];
+      } else {
+        NSAssert(NO, @"Unrecognized units: %@", @(self.hopQuantityUnits));
+      }
+      
       break;
     default:
       [NSException raise:@"Invalid hop addition metric"
@@ -101,9 +117,17 @@
   OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
   OBHopAddition *hopAddition = (OBHopAddition *)ingredientData;
 
-  OBAlphaAcidPickerDelegate *alphaAcidPickerDelegate = [[OBAlphaAcidPickerDelegate alloc] initWithHopAddition:hopAddition];
-  OBHopQuantityPickerDelegate *hopQuantityPickerDelegate = [[OBHopQuantityPickerDelegate alloc] initWithHopAddition:hopAddition];
-  OBHopBoilTimePickerDelegate *hopBoilTimeDelegate = [[OBHopBoilTimePickerDelegate alloc] initWithHopAddition:hopAddition];
+  id<OBPickerDelegate> alphaAcidPickerDelegate = [[OBAlphaAcidPickerDelegate alloc] initWithHopAddition:hopAddition];
+  id<OBPickerDelegate> hopBoilTimeDelegate = [[OBHopBoilTimePickerDelegate alloc] initWithHopAddition:hopAddition];
+  id<OBPickerDelegate> hopQuantityPickerDelegate = nil;
+
+  if (OBHopQuantityUnitsImperial == self.hopQuantityUnits) {
+    hopQuantityPickerDelegate = [[OBHopOuncesPickerDelegate alloc] initWithHopAddition:hopAddition];
+  } else if (OBHopQuantityUnitsMetric == self.hopQuantityUnits) {
+    hopQuantityPickerDelegate = [[OBHopGramsPickerDelegate alloc] initWithHopAddition:hopAddition];
+  } else {
+    NSAssert(NO, @"Invalid hop quantity units: %@", @(self.hopQuantityUnits));
+  }
 
   [drawerCell.multiPickerView removeAllPickers];
   [drawerCell.multiPickerView addPickerDelegate:hopQuantityPickerDelegate withTitle:@"Quantity"];

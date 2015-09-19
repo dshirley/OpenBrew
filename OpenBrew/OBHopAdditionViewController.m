@@ -118,10 +118,12 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 - (void)setSettings:(OBSettings *)settings
 {
   [_settings removeObserver:self forKeyPath:KVO_KEY(hopAdditionDisplayMetric)];
+  [_settings removeObserver:self forKeyPath:KVO_KEY(hopQuantityUnits)];
 
   _settings = settings;
 
   [_settings addObserver:self forKeyPath:KVO_KEY(hopAdditionDisplayMetric) options:0 context:nil];
+  [_settings addObserver:self forKeyPath:KVO_KEY(hopQuantityUnits) options:0 context:nil];
 }
 
 - (void)dealloc
@@ -147,6 +149,10 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   else if ([keyPath isEqualToString:KVO_KEY(hopAdditionDisplayMetric)])
   {
     self.tableViewDelegate.hopAdditionMetricToDisplay = [self.settings.hopAdditionDisplayMetric integerValue];
+  }
+  else if ([keyPath isEqualToString:KVO_KEY(hopQuantityUnits)])
+  {
+    self.tableViewDelegate.hopQuantityUnits = [self.settings.hopQuantityUnits integerValue];
   }
   else if ([keyPath isEqualToString:KVO_KEY(hopAdditions)])
   {

@@ -1,16 +1,17 @@
 //
-//  OBHopQuantityPickerDelegate.h
+//  OBHopGramsPickerDelegate.h
 //  OpenBrew
 //
-//  Created by David Shirley 2 on 8/4/14.
-//  Copyright (c) 2014 OpenBrew. All rights reserved.
+//  Created by David Shirley 2 on 9/19/15.
+//  Copyright © 2015 OpenBrew. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "OBMultiPickerView.h"
-@class OBHopAddition;
+#import "OBHopAddition.h"
 
-@interface OBHopQuantityPickerDelegate : NSObject <OBPickerDelegate>
+@interface OBHopGramsPickerDelegate : NSObject <OBPickerDelegate>
+
 @property (nonatomic) OBHopAddition *hopAddition;
 
 - (id)initWithHopAddition:(OBHopAddition *)hopAddition;
@@ -32,5 +33,6 @@
 - (void)pickerView:(UIPickerView *)pickerView
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component;
+
 
 @end

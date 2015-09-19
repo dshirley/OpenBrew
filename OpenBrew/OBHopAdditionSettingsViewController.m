@@ -16,11 +16,11 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
 
 @interface OBHopAdditionSettingsViewController ()
 
-@property (nonatomic) IBOutlet UISegmentedControl *gaugeDisplaySettingSegmentedControl;
+@property (nonatomic) IBOutlet UISegmentedControl *unitsSegmentedControl;
 
 @property (nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
 
-@property (nonatomic) OBSegmentedController *gaugeDisplaySettingController;
+@property (nonatomic) OBSegmentedController *unitsSettingController;
 @property (nonatomic) OBSegmentedController *ingredientDisplaySettingController;
 
 @end
@@ -37,10 +37,22 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
 
   OBSettings *settings = self.settings;
 
-  if (OBMetricBuToGuRatio == [settings.hopGaugeDisplayMetric integerValue]) {
-    self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = 1;
+  self.unitsSettingController = [[OBSegmentedController alloc]
+                                 initWithSegmentedControl:self.unitsSegmentedControl
+                                 googleAnalyticsAction:@"Hop Units"];
+
+  [self.unitsSettingController addSegment:@"Ounces" actionWhenSelected:^(void) {
+    settings.hopQuantityUnits = @(OBHopQuantityUnitsImperial);
+  }];
+
+  [self.unitsSettingController addSegment:@"Grams" actionWhenSelected:^(void) {
+    settings.hopQuantityUnits = @(OBHopQuantityUnitsMetric);
+  }];
+
+  if (OBHopQuantityUnitsImperial == [settings.hopQuantityUnits integerValue]) {
+    self.unitsSegmentedControl.selectedSegmentIndex = 0;
   } else {
-    self.gaugeDisplaySettingSegmentedControl.selectedSegmentIndex = 0;
+    self.unitsSegmentedControl.selectedSegmentIndex = 1;
   }
 
   self.ingredientDisplaySettingController =

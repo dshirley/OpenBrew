@@ -1,19 +1,16 @@
 //
-//  OBHopQuantityPickerDelegate.m
+//  OBHopGramsPickerDelegate.m
 //  OpenBrew
 //
-//  Created by David Shirley 2 on 8/4/14.
-//  Copyright (c) 2014 OpenBrew. All rights reserved.
+//  Created by David Shirley 2 on 9/19/15.
+//  Copyright © 2015 OpenBrew. All rights reserved.
 //
 
-#import "OBHopQuantityPickerDelegate.h"
-#import "OBHopAddition.h"
-#import <math.h>
+#import "OBHopGramsPickerDelegate.h"
 
-#define NUM_DECIMALS 10
-#define MAX_QUANTITY 16
+#define MAX_QUANTITY 500
 
-@implementation OBHopQuantityPickerDelegate
+@implementation OBHopGramsPickerDelegate
 
 - (id)initWithHopAddition:(OBHopAddition *)hopAddition
 {
@@ -28,8 +25,8 @@
 
 - (void)updateSelectionForPicker:(UIPickerView *)picker
 {
-  float quantityInOunces = [self.hopAddition.quantityInOunces floatValue];
-  NSInteger row = roundf(quantityInOunces * NUM_DECIMALS);
+  float quantityInGrams = [self.hopAddition.quantityInGrams floatValue];
+  NSInteger row = roundf(quantityInGrams);
 
   if (row > [self pickerView:picker numberOfRowsInComponent:0]) {
     row = [self pickerView:picker numberOfRowsInComponent:0];
@@ -38,10 +35,9 @@
   [picker selectRow:row inComponent:0 animated:NO];
 }
 
-- (float)quantityInOuncesForRow:(NSInteger)row
+- (float)quantityInGramsForRow:(NSInteger)row
 {
-  // Example:  row 2 -> 0.2% ounces
-  return (float) row * (1.0 / NUM_DECIMALS);
+  return row;
 }
 
 #pragma mark - UIPickerViewDataSource Methods
@@ -55,8 +51,7 @@
 // returns the # of rows in each component..
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-  // 1 pound is the max
-  return MAX_QUANTITY * NUM_DECIMALS;
+  return MAX_QUANTITY;
 }
 
 #pragma mark - UIPickerViewDelegate
@@ -65,16 +60,17 @@
              titleForRow:(NSInteger)row
             forComponent:(NSInteger)component
 {
-  float ounces = [self quantityInOuncesForRow:row];
-  return [NSString stringWithFormat:@"%.1f oz", ounces];
+  float grams = [self quantityInGramsForRow:row];
+  return [NSString stringWithFormat:@"%.0f g", grams];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component
 {
-  float quantity = [self quantityInOuncesForRow:row];
-  self.hopAddition.quantityInOunces = [NSNumber numberWithFloat:quantity];
+  float quantity = [self quantityInGramsForRow:row];
+  self.hopAddition.quantityInGrams = @(quantity);
 }
+
 
 @end

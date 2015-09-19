@@ -8,8 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "OBBaseTestCase.h"
-#import "OBHopQuantityPickerDelegate.h"
-#import "OBHopAddition.h"
+#import "OBHopOuncesPickerDelegate.h"
 #import <OCMock/OCMock.h>
 
 @interface OBHopQuantityPickerDelegateTest : OBBaseTestCase
@@ -21,17 +20,9 @@
 - (void)testInit
 {
   OBHopAddition *hops = [self addHops:@"Citra" quantity:1.0 aaPercent:8.0 boilTime:60];
-  OBHopQuantityPickerDelegate *delegate = [[OBHopQuantityPickerDelegate alloc] initWithHopAddition:hops];
+  OBHopOuncesPickerDelegate *delegate = [[OBHopOuncesPickerDelegate alloc] initWithHopAddition:hops];
   XCTAssertEqual(hops, delegate.hopAddition);
 }
-
-//- (void)updateSelectionForPicker:(UIPickerView *)picker
-//{
-//  float quantityInOunces = [self.hopAddition.quantityInOunces floatValue];
-//  NSInteger row = quantityInOunces * NUM_DECIMALS;
-//
-//  [picker selectRow:row inComponent:0 animated:NO];
-//}
 
 - (void)testUpdateSelectionForPicker
 {
@@ -55,7 +46,7 @@
                                      forQuantity:(float)quantity
 {
   OBHopAddition *hops = [self addHops:@"Citra" quantity:quantity aaPercent:8.5 boilTime:60];
-  OBHopQuantityPickerDelegate *delegate = [[OBHopQuantityPickerDelegate alloc] initWithHopAddition:hops];
+  OBHopOuncesPickerDelegate *delegate = [[OBHopOuncesPickerDelegate alloc] initWithHopAddition:hops];
 
   id mockPicker = [OCMockObject mockForClass:UIPickerView.class];
   [[mockPicker expect] selectRow:row inComponent:0 animated:NO];
@@ -68,20 +59,20 @@
 
 - (void)testNumberOfComponentsInPickerView
 {
-  OBHopQuantityPickerDelegate *delegate = [[OBHopQuantityPickerDelegate alloc] initWithHopAddition:nil];
+  OBHopOuncesPickerDelegate *delegate = [[OBHopOuncesPickerDelegate alloc] initWithHopAddition:nil];
   XCTAssertEqual(1, [delegate numberOfComponentsInPickerView:nil]);
 }
 
 - (void)testNumberOfRowsInComponent
 {
-  OBHopQuantityPickerDelegate *delegate = [[OBHopQuantityPickerDelegate alloc] initWithHopAddition:nil];
+  OBHopOuncesPickerDelegate *delegate = [[OBHopOuncesPickerDelegate alloc] initWithHopAddition:nil];
   XCTAssertEqual(160, [delegate pickerView:nil numberOfRowsInComponent:0]);
   XCTAssertEqual(160, [delegate pickerView:nil numberOfRowsInComponent:50]);
 }
 
 - (void)testTitleForRowForComponent
 {
-  OBHopQuantityPickerDelegate *delegate = [[OBHopQuantityPickerDelegate alloc] initWithHopAddition:nil];
+  OBHopOuncesPickerDelegate *delegate = [[OBHopOuncesPickerDelegate alloc] initWithHopAddition:nil];
   XCTAssertEqualObjects(@"0.0 oz", [delegate pickerView:nil titleForRow:0 forComponent:0]);
   XCTAssertEqualObjects(@"0.1 oz", [delegate pickerView:nil titleForRow:1 forComponent:0]);
   XCTAssertEqualObjects(@"1.6 oz", [delegate pickerView:nil titleForRow:16 forComponent:0]);
@@ -91,7 +82,7 @@
 - (void)testDidSelectRowInComponent
 {
   OBHopAddition *hops = [self addHops:@"Citra" quantity:1.0 aaPercent:0.0 boilTime:60];
-  OBHopQuantityPickerDelegate *delegate = [[OBHopQuantityPickerDelegate alloc] initWithHopAddition:hops];
+  OBHopOuncesPickerDelegate *delegate = [[OBHopOuncesPickerDelegate alloc] initWithHopAddition:hops];
 
   [delegate pickerView:nil didSelectRow:160 inComponent:0];
   XCTAssertEqualWithAccuracy(16.0, [hops.quantityInOunces floatValue], 0.0001);

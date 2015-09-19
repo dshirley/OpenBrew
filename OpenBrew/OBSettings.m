@@ -15,6 +15,7 @@
 @dynamic defaultPostBoilSize;
 @dynamic defaultPreBoilSize;
 @dynamic hasCopiedSampleRecipes;
+@dynamic hopQuantityUnits;
 @dynamic hopAdditionDisplayMetric;
 @dynamic hopGaugeDisplayMetric;
 @dynamic maltAdditionDisplayMetric;
