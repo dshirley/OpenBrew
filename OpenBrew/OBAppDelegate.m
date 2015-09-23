@@ -16,9 +16,6 @@
 #import "OBRecipeListViewController.h"
 #import "OBCoreData.h"
 
-static NSString *const CRITTER_APP_ID_PRODUCTION = @"558d6dda9ccc10f6040881c2";
-static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
-
 @implementation OBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -103,11 +100,9 @@ static NSString *const CRITTER_APP_ID_DEVELOPMENT = @"558d6dcb9ccc10f6040881c1";
 
 - (void)initializeCrittercism
 {
-//  if (DEBUG) {
-//    [Crittercism enableWithAppID:CRITTER_APP_ID_DEVELOPMENT];
-//  } else {
-//    [Crittercism enableWithAppID:CRITTER_APP_ID_PRODUCTION];
-//  }
+#ifndef DEBUG
+  [Crittercism enableWithAppID:@"558d6dda9ccc10f6040881c2"];
+#endif
 }
 
 - (void)initializeGoogleAnalytics

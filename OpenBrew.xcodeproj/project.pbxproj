@@ -790,6 +790,7 @@
 				9FE27A0B1BA027640057BEFE /* Generate Starter Sqlite DB */,
 				9F98D3531880F8ED00469323 /* Resources */,
 				256161998A953F0954ACB554 /* Copy Pods Resources */,
+				9FE6F3391BB2F49F006A13A2 /* Upload dSYM to Crittercism */,
 			);
 			buildRules = (
 			);
@@ -949,6 +950,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${BUILD_SCRIPTS}/generate_starter_sqlite_db.sh";
+		};
+		9FE6F3391BB2F49F006A13A2 /* Upload dSYM to Crittercism */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload dSYM to Crittercism";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$CONFIGURATION\" == \"Release\" ]; then\n    APP_ID=\"558d6dda9ccc10f6040881c2\"\n    API_KEY=\"QpSbTBqOf3OURnwszMJymTz0fJOgcmEB\"\n    source \"${BUILD_SCRIPTS}\"/dsym_upload.sh\nfi";
 		};
 		C0AD2084356259E424B867BF /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
