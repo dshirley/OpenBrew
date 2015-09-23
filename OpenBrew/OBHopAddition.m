@@ -19,9 +19,14 @@
 @dynamic quantityInOunces;
 @dynamic recipe;
 @dynamic displayOrder;
+@dynamic type;
 
 // Used to convert oz/gallon to gram/liter
 #define IMPERIAL_TO_METRIC_CONST 74.891
+
+// Excerpt From: Stan Hieronymus. “For the Love of Hops.” iBooks. https://itun.es/us/F5TRQ.l
+// "“Hop pellets are approximately 10 to 15 percent more efficient than cones”
+#define WHOLE_CONE_EFFICIENCY_AS_PERCENT_OF_PELLETS 0.90
 
 - (id)initWithHopVariety:(OBHops *)hopVariety andRecipe:(OBRecipe *)recipe
 {
@@ -41,11 +46,19 @@
 }
 
 - (float)ibusForRecipeVolume:(float)gallons boilGravity:(float)gravity ibuFormula:(OBIbuFormula)formula {
+  float ibus = 0.0;
+
   if (formula == OBIbuFormulaTinseth) {
-    return [self tinsethIbusForRecipeVolume:gallons boilGravity:gravity];
+    ibus = [self tinsethIbusForRecipeVolume:gallons boilGravity:gravity];
   } else {
-    return [self ragerIbusForRecipeVolume:gallons boilGravity:gravity];
+    ibus = [self ragerIbusForRecipeVolume:gallons boilGravity:gravity];
   }
+
+  if (OBHopTypeWhole == [self.type integerValue]) {
+    ibus *= WHOLE_CONE_EFFICIENCY_AS_PERCENT_OF_PELLETS;
+  }
+
+  return ibus;
 }
 
 - (float)ragerIbusForRecipeVolume:(float)gallons boilGravity:(float)gravity

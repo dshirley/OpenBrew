@@ -65,7 +65,7 @@
   OBGaugeMetric metric = [self.metrics[index] integerValue];
 
   OBGaugeViewController *gaugeViewController = [pageViewController.storyboard instantiateViewControllerWithIdentifier:@"gaugeViewController"];
-  [gaugeViewController loadViewIfNeeded];
+  [gaugeViewController loadView];
 
   gaugeViewController.metricToDisplay = metric;
   gaugeViewController.recipe = self.recipe;

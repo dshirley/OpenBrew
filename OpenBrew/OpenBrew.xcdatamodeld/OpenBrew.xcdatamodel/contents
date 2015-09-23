@@ -4,6 +4,7 @@
         <attribute name="boilTimeInMinutes" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="displayOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="quantityInOunces" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="hopAdditions" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <entity name="Hops" representedClassName="OBHops" syncable="YES">
@@ -61,7 +62,7 @@
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recipe" inverseName="yeast" inverseEntity="Recipe" syncable="YES"/>
     </entity>
     <elements>
-        <element name="HopAddition" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="HopAddition" positionX="0" positionY="0" width="128" height="120"/>
         <element name="Hops" positionX="0" positionY="0" width="128" height="75"/>
         <element name="Malt" positionX="0" positionY="0" width="128" height="105"/>
         <element name="MaltAddition" positionX="0" positionY="0" width="128" height="90"/>

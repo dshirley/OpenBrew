@@ -18,11 +18,20 @@ typedef NS_ENUM(NSInteger, OBIbuFormula) {
   OBIbuFormulaRager
 };
 
+typedef NS_ENUM(NSInteger, OBHopType) {
+  OBHopTypePellet,
+  OBHopTypeWhole
+};
+
 @interface OBHopAddition : OBHops <OBIngredientAddition>;
 
 @property (nonatomic) NSNumber *boilTimeInMinutes;
 @property (nonatomic) NSNumber *quantityInOunces;
 @property (nonatomic) NSNumber *displayOrder;
+
+// OBHopType describing the form factor of the hop. This affects the IBU contribution.
+@property (nonatomic) NSNumber *type;
+
 @property (nonatomic) OBRecipe *recipe;
 
 - (id)initWithHopVariety:(OBHops *)hopVariety andRecipe:(OBRecipe *)recipe;

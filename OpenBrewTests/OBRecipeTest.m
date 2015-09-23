@@ -503,6 +503,27 @@
   [self checkAllCalculatedKeysSeen];
 }
 
+- (void)testCalculatedKvo_ChangingHopType
+{
+  [self addHops:@"Hallertau" quantity:1.2 aaPercent:4.0 boilTime:60];
+
+  OBHopAddition *hopAddition = [self.recipe.hopAdditions anyObject];
+
+  [self startObservingAllCalculatedKeys];
+  hopAddition.type = @(OBHopTypeWhole);
+  [self checkAllCalculatedKeysSeen];
+}
+
+- (void)testCalculatedKvo_ChangingHopTypeToSameValue
+{
+  OBHopAddition *hopAddition =[self addHops:@"Hallertau" quantity:1.2 aaPercent:4.0 boilTime:60];
+
+  hopAddition.type = @(OBHopTypeWhole);
+  [self startObservingAllCalculatedKeys];
+  hopAddition.type = @(OBHopTypeWhole);
+  [self checkAllCalculatedKeysSeen];
+}
+
 - (void)testCalculatedKvo_SetPreBoilVolume
 {
   [self startObservingAllCalculatedKeys];

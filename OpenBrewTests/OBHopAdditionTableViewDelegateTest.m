@@ -18,6 +18,7 @@
 #import "OBAlphaAcidPickerDelegate.h"
 #import "OBHopOuncesPickerDelegate.h"
 #import "OBHopGramsPickerDelegate.h"
+#import "OBHopTypePickerDelegate.h"
 
 @interface OBMultiPickerView(Test)
 
@@ -120,10 +121,11 @@
   [view addPickerDelegate:pickerDelegate withTitle:@"This should be removed"];
 
   [self.delegate populateDrawerCell:cell withIngredientData:hops];
-  XCTAssertEqual(3, [[view pickerDelegates] count]);
+  XCTAssertEqual(4, [[view pickerDelegates] count]);
   XCTAssertTrue([[view pickerDelegates][0] isKindOfClass:[OBHopOuncesPickerDelegate class]]);
   XCTAssertTrue([[view pickerDelegates][1] isKindOfClass:[OBAlphaAcidPickerDelegate class]]);
   XCTAssertTrue([[view pickerDelegates][2] isKindOfClass:[OBHopBoilTimePickerDelegate class]]);
+  XCTAssertTrue([[view pickerDelegates][3] isKindOfClass:[OBHopTypePickerDelegate class]]);
   XCTAssertEqual(0, view.segmentedControl.selectedSegmentIndex);
   XCTAssertEqual(self.delegate, view.delegate);
   XCTAssertEqual(NSNotFound, [[view pickerDelegates] indexOfObject:pickerDelegate], @"Old one should have been removed");
@@ -131,10 +133,11 @@
   self.delegate.selectedPickerIndex = 2;
 
   [self.delegate populateDrawerCell:cell withIngredientData:hops];
-  XCTAssertEqual(3, [[view pickerDelegates] count]);
+  XCTAssertEqual(4, [[view pickerDelegates] count]);
   XCTAssertTrue([[view pickerDelegates][0] isKindOfClass:[OBHopOuncesPickerDelegate class]]);
   XCTAssertTrue([[view pickerDelegates][1] isKindOfClass:[OBAlphaAcidPickerDelegate class]]);
   XCTAssertTrue([[view pickerDelegates][2] isKindOfClass:[OBHopBoilTimePickerDelegate class]]);
+  XCTAssertTrue([[view pickerDelegates][3] isKindOfClass:[OBHopTypePickerDelegate class]]);
   XCTAssertEqual(2, view.segmentedControl.selectedSegmentIndex);
   XCTAssertEqual(self.delegate, view.delegate);
 
@@ -145,10 +148,11 @@
 
   self.delegate.hopQuantityUnits = OBHopQuantityUnitsMetric;
   [self.delegate populateDrawerCell:cell withIngredientData:hops];
-  XCTAssertEqual(3, [[view pickerDelegates] count]);
+  XCTAssertEqual(4, [[view pickerDelegates] count]);
   XCTAssertTrue([[view pickerDelegates][0] isKindOfClass:[OBHopGramsPickerDelegate class]]);
   XCTAssertTrue([[view pickerDelegates][1] isKindOfClass:[OBAlphaAcidPickerDelegate class]]);
   XCTAssertTrue([[view pickerDelegates][2] isKindOfClass:[OBHopBoilTimePickerDelegate class]]);
+  XCTAssertTrue([[view pickerDelegates][3] isKindOfClass:[OBHopTypePickerDelegate class]]);
 }
 
 - (void)testPopulateDrawerCell_invalidHopQuantityUnits

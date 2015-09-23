@@ -156,7 +156,7 @@ NSString * const calculatedKVOKeys[] = {
 
   for (OBHopAddition *hops in [self hopAdditions]) {
     ibus += [hops ibusForRecipeVolume:wortVolumeAfterBoil
-                                   boilGravity:boilGravity
+                          boilGravity:boilGravity
                            ibuFormula:ibuFormula];
   }
 
@@ -224,7 +224,8 @@ NSString * const calculatedKVOKeys[] = {
   self.observedHopVariables = [NSSet setWithObjects:
                                KVO_KEY(alphaAcidPercent),
                                KVO_KEY(boilTimeInMinutes),
-                               KVO_KEY(quantityInOunces), nil];
+                               KVO_KEY(quantityInOunces),
+                               KVO_KEY(type), nil];
 
   self.observedMaltVariables = [NSSet setWithObjects:
                                 KVO_KEY(quantityInPounds),

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RpZ-4Y-4oi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RpZ-4Y-4oi">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -219,42 +219,50 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7.2%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3bV-8Q-Ias">
-                                                    <rect key="frame" x="53" y="32" width="446" height="21"/>
+                                                    <rect key="frame" x="76" y="30.5" width="412" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="x5K-wm-Vrq"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22.0 oz" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEy-2O-ul8">
-                                                    <rect key="frame" x="499" y="16" width="60" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="228 IBUs" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fEy-2O-ul8">
+                                                    <rect key="frame" x="488" y="16" width="71" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="OWy-o3-Kuw"/>
+                                                        <constraint firstAttribute="width" constant="71" id="OWy-o3-Kuw"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cascade" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff7-yV-REU">
-                                                    <rect key="frame" x="53" y="0.0" width="506" height="33"/>
+                                                    <rect key="frame" x="53" y="0.0" width="435" height="33"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ifc-L3-lsQ">
+                                                    <rect key="frame" x="53" y="29" width="13.5" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="Q58-a6-fvA"/>
+                                                        <constraint firstAttribute="width" constant="13.67" id="WaG-ax-i7q"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="P5J-Yv-BrX" secondAttribute="bottom" constant="9.5" id="0eu-Uj-AGb"/>
-                                                <constraint firstItem="ff7-yV-REU" firstAttribute="trailing" secondItem="fEy-2O-ul8" secondAttribute="trailing" id="39k-RP-afD"/>
+                                                <constraint firstItem="ff7-yV-REU" firstAttribute="trailing" secondItem="fEy-2O-ul8" secondAttribute="leading" id="39k-RP-afD"/>
                                                 <constraint firstItem="P5J-Yv-BrX" firstAttribute="leading" secondItem="SKK-N6-LLg" secondAttribute="leading" id="5Tr-77-gTU"/>
                                                 <constraint firstItem="rg4-ZK-6Bw" firstAttribute="centerX" secondItem="P5J-Yv-BrX" secondAttribute="centerX" id="6F6-Hl-Dot"/>
-                                                <constraint firstItem="3bV-8Q-Ias" firstAttribute="leading" secondItem="ff7-yV-REU" secondAttribute="leading" id="DP3-zX-a5a"/>
+                                                <constraint firstItem="ifc-L3-lsQ" firstAttribute="top" secondItem="ff7-yV-REU" secondAttribute="bottom" constant="-4" id="APl-AL-SD8"/>
                                                 <constraint firstItem="ff7-yV-REU" firstAttribute="leading" secondItem="P5J-Yv-BrX" secondAttribute="trailing" constant="8" symbolic="YES" id="FWV-hp-sGK"/>
                                                 <constraint firstItem="fEy-2O-ul8" firstAttribute="leading" secondItem="3bV-8Q-Ias" secondAttribute="trailing" id="MZF-z0-7En"/>
                                                 <constraint firstItem="fEy-2O-ul8" firstAttribute="centerY" secondItem="SKK-N6-LLg" secondAttribute="centerY" id="NMF-Po-RlO"/>
-                                                <constraint firstItem="3bV-8Q-Ias" firstAttribute="centerY" secondItem="rg4-ZK-6Bw" secondAttribute="centerY" id="T37-zc-aNW"/>
+                                                <constraint firstItem="ifc-L3-lsQ" firstAttribute="leading" secondItem="ff7-yV-REU" secondAttribute="leading" id="UCt-Ex-D7q"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="fEy-2O-ul8" secondAttribute="trailing" id="eJV-7g-xwO"/>
-                                                <constraint firstItem="3bV-8Q-Ias" firstAttribute="leading" secondItem="ff7-yV-REU" secondAttribute="leading" id="fb4-jq-52e"/>
                                                 <constraint firstItem="P5J-Yv-BrX" firstAttribute="top" secondItem="SKK-N6-LLg" secondAttribute="topMargin" constant="-5" id="jJN-a3-8sp"/>
                                                 <constraint firstItem="ff7-yV-REU" firstAttribute="top" secondItem="SKK-N6-LLg" secondAttribute="top" id="rJJ-2I-KrC"/>
                                                 <constraint firstItem="fEy-2O-ul8" firstAttribute="top" secondItem="SKK-N6-LLg" secondAttribute="topMargin" constant="8" id="raD-Lj-Sbj"/>
+                                                <constraint firstItem="3bV-8Q-Ias" firstAttribute="leading" secondItem="ifc-L3-lsQ" secondAttribute="trailing" constant="10" id="tZa-Oc-mBF"/>
+                                                <constraint firstItem="3bV-8Q-Ias" firstAttribute="centerY" secondItem="ifc-L3-lsQ" secondAttribute="centerY" constant="2" id="v3F-0a-g4A"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ff7-yV-REU" secondAttribute="bottom" constant="12.5" id="vbL-d2-wTW"/>
                                                 <constraint firstItem="rg4-ZK-6Bw" firstAttribute="top" secondItem="SKK-N6-LLg" secondAttribute="topMargin" constant="23" id="wgK-H7-XMW"/>
                                             </constraints>
@@ -263,6 +271,7 @@
                                             <outlet property="alphaAcid" destination="3bV-8Q-Ias" id="emo-19-krc"/>
                                             <outlet property="boilTime" destination="P5J-Yv-BrX" id="orK-PQ-Llg"/>
                                             <outlet property="boilUnits" destination="rg4-ZK-6Bw" id="kus-ak-PZa"/>
+                                            <outlet property="hopTypeImageView" destination="ifc-L3-lsQ" id="gqp-O3-mRw"/>
                                             <outlet property="hopVariety" destination="ff7-yV-REU" id="Aw8-EA-WUk"/>
                                             <outlet property="primaryMetric" destination="fEy-2O-ul8" id="Vg7-92-Biy"/>
                                         </connections>
