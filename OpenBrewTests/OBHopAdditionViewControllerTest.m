@@ -39,16 +39,23 @@
   [super tearDown];
 }
 
+- (void)loadViewController
+{
+  // This has the side effect of calling loadView and also loading
+  // the child view controllers
+  (void)self.vc.view;
+}
+
 - (void)testViewDidLoad_settingsIsSet
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   XCTAssertEqual(self.settings, self.vc.settings);
 }
 
 - (void)testViewDidLoad_tableViewDelegateIsSetup
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   XCTAssertNotNil(self.vc.tableViewDelegate);
   XCTAssertEqual(self.vc.tableViewDelegate, self.vc.tableView.delegate);
@@ -60,7 +67,7 @@
 
 - (void)testViewDidLoad_gaugeIsSetup
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   XCTAssertEqual(self.recipe, self.vc.pageViewControllerDataSource.recipe);
   XCTAssertEqualObjects((@[@(OBMetricIbu), @(OBMetricBuToGuRatio)]),
@@ -83,7 +90,7 @@
 {
   self.settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);
 
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   XCTAssertEqual(OBHopAdditionMetricIbu, self.vc.tableViewDelegate.hopAdditionMetricToDisplay);
 
   self.settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricWeight);
@@ -95,7 +102,7 @@
 {
   id mockVc = [OCMockObject partialMockForObject:self.vc];
 
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   [self.vc viewDidLoad];
 
   UIButton *button = (UIButton *)self.vc.infoButton.customView;
@@ -114,7 +121,7 @@
   [self addHops:@"Cascade" quantity:1.3 aaPercent:8.5 boilTime:60];
   [self addHops:@"Zeus" quantity:2.0 aaPercent:13.0 boilTime:60];
 
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   [self.vc viewDidLoad];
 
   XCTAssertEqual(2, [self.vc.tableView numberOfRowsInSection:0]);
@@ -139,7 +146,7 @@
 {
   OBHopAddition *hopAddition = [self addHops:@"Cascade" quantity:1.3 aaPercent:8.5 boilTime:60];
 
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   [self.vc viewDidLoad];
 
   XCTAssertEqual(1, [self.vc.tableView numberOfRowsInSection:0]);
@@ -166,7 +173,7 @@
   [self addHops:@"Cascade" quantity:1.3 aaPercent:8.5 boilTime:60];
   OBHopAddition *hopAddition2 = [self addHops:@"Centennial" quantity:0.5 aaPercent:10 boilTime:60];
 
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   [self.vc viewDidLoad];
 
   XCTAssertEqual(2, [self.vc.tableView numberOfRowsInSection:0]);
@@ -191,7 +198,7 @@
 {
   [self addHops:@"Cascade" quantity:1.3 aaPercent:8.5 boilTime:60];
 
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   [self.vc viewWillAppear:NO];
 
   XCTAssertNil(self.vc.tableView.tableFooterView);
@@ -207,7 +214,7 @@
 // Hops should be added via KVO
 - (void)testAddHop
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   [self.vc viewWillAppear:YES];
 
   XCTAssertEqual(0, [self.vc.tableView numberOfRowsInSection:0]);
@@ -246,7 +253,7 @@
 
 - (void)testHopAdditionDisplaySettingChanged
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   [self.vc viewDidLoad];
 
   id mockDelegate = [OCMockObject partialMockForObject:self.vc.tableViewDelegate];
@@ -259,7 +266,7 @@
 
 - (void)testViewWillAppear_WhenEmpty
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   [self.vc viewDidLoad];
   [self.vc viewWillAppear:NO];
 
@@ -273,7 +280,7 @@
 {
   [self addHops:@"Cascade" quantity:1.3 aaPercent:8.5 boilTime:60];
 
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   [self.vc viewDidLoad];
   [self.vc viewWillAppear:NO];
 
@@ -283,7 +290,7 @@
 
 - (void)testPrepareForSegue_HopFinder
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   [self.vc viewDidLoad];
 
   OBHopFinderViewController *hopFinder = [[OBHopFinderViewController alloc] init];
@@ -301,7 +308,7 @@
 
 - (void)testPrepareForSegue_HopSettings
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   [self.vc viewDidLoad];
 
   OBHopAdditionSettingsViewController *settingsVc = [[OBHopAdditionSettingsViewController alloc] init];
@@ -319,7 +326,7 @@
 
 - (void)testViewWillDissappear
 {
-  [self.vc loadView];
+  [self loadViewController];
 
   self.vc.tableView.editing = YES;
   [self.vc viewWillDisappear:NO];

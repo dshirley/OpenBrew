@@ -38,16 +38,21 @@
   [super tearDown];
 }
 
+- (void)loadViewController
+{
+  (void)self.vc.view;
+}
+
 - (void)testViewDidLoad_settingsIsSet
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   XCTAssertEqual(self.settings, self.vc.settings);
 }
 
 - (void)testViewDidLoad_tableViewDelegateIsSetup
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   XCTAssertNotNil(self.vc.tableViewDelegate);
   XCTAssertEqual(self.vc.tableViewDelegate, self.vc.tableView.delegate);
@@ -59,7 +64,7 @@
 
 - (void)testViewDidLoad_gaugeIsSetup
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   XCTAssertEqual(self.recipe, self.vc.pageViewControllerDataSource.recipe);
   XCTAssertEqualObjects((@[@(OBMetricOriginalGravity), @(OBMetricColor)]),
@@ -76,7 +81,7 @@
 {
   self.settings.maltAdditionDisplayMetric = @(OBMaltAdditionMetricPercentOfGravity);
 
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   XCTAssertEqual(OBMaltAdditionMetricPercentOfGravity, self.vc.tableViewDelegate.maltAdditionMetricToDisplay);
 
   self.settings.maltAdditionDisplayMetric = @(OBMaltAdditionMetricWeight);
@@ -88,7 +93,7 @@
 {
   id mockVc = [OCMockObject partialMockForObject:self.vc];
 
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   UIButton *button = (UIButton *)self.vc.infoButton.customView;
   XCTAssertNotNil(button);
@@ -106,7 +111,7 @@
   [self addMalt:@"Acid Malt" quantity:1.0 color:4];
   [self addMalt:@"Two-Row" quantity:10.0 color:2];
 
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   XCTAssertEqual(2, [self.vc.tableView numberOfRowsInSection:0]);
 
@@ -125,7 +130,7 @@
 {
   OBMaltAddition *maltAddition = [self addMalt:@"Two-Row" quantity:10.0 color:2];
 
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   XCTAssertEqual(1, [self.vc.tableView numberOfRowsInSection:0]);
 
@@ -147,7 +152,7 @@
   [self addMalt:@"Two-Row" quantity:10.0 color:2];
   OBMaltAddition *maltAddition2 = [self addMalt:@"Pilsner Malt" quantity:3.0 color:1];
 
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   XCTAssertEqual(2, [self.vc.tableView numberOfRowsInSection:0]);
 
@@ -169,7 +174,7 @@
 {
   [self addMalt:@"Pilsner Malt" quantity:3.0 color:1];
 
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   [self.vc viewWillAppear:NO];
 
   XCTAssertNil(self.vc.tableView.tableFooterView);
@@ -186,7 +191,7 @@
 // Malts should be added via KVO
 - (void)testAddMalt
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   [self.vc viewWillAppear:YES];
 
   XCTAssertEqual(0, [self.vc.tableView numberOfRowsInSection:0]);
@@ -219,7 +224,7 @@
 
 - (void)testMaltAdditionDisplaySettingChanged
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   id mockDelegate = [OCMockObject partialMockForObject:self.vc.tableViewDelegate];
   [[mockDelegate expect] setMaltAdditionMetricToDisplay:OBMaltAdditionMetricPercentOfGravity];
@@ -231,7 +236,7 @@
 
 - (void)testViewWillAppear_WhenEmpty
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   [self.vc viewWillAppear:NO];
 
   XCTAssertEqualObjects(@"Malt Addition Screen", self.vc.screenName);
@@ -244,7 +249,7 @@
 {
  [self addMalt:@"Two-Row" quantity:10.0 color:2];
 
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
   [self.vc viewWillAppear:NO];
 
   XCTAssertEqualObjects(@"Malt Addition Screen", self.vc.screenName);
@@ -253,7 +258,7 @@
 
 - (void)testPrepareForSegue_MaltFinder
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   OBMaltFinderViewController *maltFinder = [[OBMaltFinderViewController alloc] init];
   maltFinder.recipe = nil;
@@ -270,7 +275,7 @@
 
 - (void)testPrepareForSegue_MaltSettings
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   OBMaltAdditionSettingsViewController *settingsVc = [[OBMaltAdditionSettingsViewController alloc] init];
   settingsVc.settings = nil;

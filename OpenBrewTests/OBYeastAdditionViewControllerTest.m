@@ -35,9 +35,14 @@
   [super tearDown];
 }
 
+- (void)loadViewController
+{
+  (void)self.vc.view;
+}
+
 - (void)testViewDidLoadSetsUpGauge
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   [self addMalt:@"Maris Otter" quantity:10.0];
   [self addYeast:@"WLP001"];
@@ -55,7 +60,7 @@
 
 - (void)testViewDidLoad_noYeastSelected_wyeastManufacturer
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
 
@@ -74,7 +79,7 @@
 
 - (void)testViewDidLoad_noYeastSelected_whiteLabsManufacturer
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
 
@@ -107,7 +112,7 @@
 
 - (void)testViewDidLoad_whiteLabsYeastSelected
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   [self addYeast:@"WLP001"];
 
@@ -131,7 +136,7 @@
 
 - (void)testViewDidLoad_segmentedControlSetup
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   // A manufaturer is selected that is not the manufacturer of the selected yeast
   self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
@@ -146,7 +151,7 @@
 
 - (void)testSelectSegment
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
 
@@ -174,7 +179,7 @@
 
 - (void)testDidSelectRowAtIndexPath
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
 
@@ -189,7 +194,7 @@
 
 - (void)testCellForRowAtIndexPath
 {
-  [self.vc loadViewIfNeeded];
+  [self loadViewController];
 
   self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
 
