@@ -29,7 +29,7 @@
 {
   UISegmentedControl *s = [[UISegmentedControl alloc] initWithItems:@[ @"these", @"will", @"be", @"removed"]];
   OBSegmentedController *ctrl = [[OBSegmentedController alloc] initWithSegmentedControl:s
-                                                                                  googleAnalyticsAction:@"test"];
+                                                                  googleAnalyticsAction:@"test"];
 
   id mockCtrl = [OCMockObject partialMockForObject:ctrl];
   [[mockCtrl expect] segmentChanged:s];
@@ -40,6 +40,18 @@
   [s sendActionsForControlEvents:UIControlEventValueChanged];
 
   [mockCtrl verify];
+}
+
+- (void)testDeallocUnregistersTarget
+{
+  UISegmentedControl *s = [[UISegmentedControl alloc] initWithItems:@[ @"these", @"will", @"be", @"removed"]];
+
+  // This object will be immediately deallocated
+  (void)[[OBSegmentedController alloc] initWithSegmentedControl:s
+                                          googleAnalyticsAction:@"test"];
+
+  // If dealloc didn't unregister the target/action, then this will send a message to a deallocated instance
+  [s sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
 - (void)testAddSegment

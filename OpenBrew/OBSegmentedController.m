@@ -40,6 +40,13 @@
   return self;
 }
 
+- (void)dealloc
+{
+  [self.segmentedControl removeTarget:self
+                               action:@selector(segmentChanged:)
+                     forControlEvents:UIControlEventValueChanged];
+}
+
 - (void)addSegment:(NSString *)text actionWhenSelected:(OBSegmentSelectedAction)action
 {
   [self.segmentActions addObject:action];
