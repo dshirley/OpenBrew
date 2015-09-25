@@ -80,14 +80,14 @@
 - (void)setRecipe:(OBRecipe *)recipe
 {
   [_recipe removeObserver:self forKeyPath:KVO_KEY(originalGravity)];
-  [_recipe removeObserver:self forKeyPath:KVO_KEY(IBUs)];
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(IBUs:)];
   [_recipe removeObserver:self forKeyPath:KVO_KEY(postBoilVolumeInGallons)];
   [_recipe removeObserver:self forKeyPath:KVO_KEY(preBoilVolumeInGallons)];
 
   _recipe = recipe;
 
   [_recipe addObserver:self forKeyPath:KVO_KEY(originalGravity) options:0 context:nil];
-  [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs) options:0 context:nil];
+  [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs:) options:0 context:nil];
   [_recipe addObserver:self forKeyPath:KVO_KEY(postBoilVolumeInGallons) options:0 context:nil];
   [_recipe addObserver:self forKeyPath:KVO_KEY(preBoilVolumeInGallons) options:0 context:nil];
 

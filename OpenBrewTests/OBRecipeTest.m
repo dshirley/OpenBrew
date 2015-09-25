@@ -312,7 +312,7 @@
 - (void)checkAllCalculatedKeysSeen
 {
   XCTAssertEqual(self.keysObserved[KVO_KEY(originalGravity)], self.recipe);
-  XCTAssertEqual(self.keysObserved[KVO_KEY(IBUs)], self.recipe);
+  XCTAssertEqual(self.keysObserved[KVO_KEY(IBUs:)], self.recipe);
   XCTAssertEqual(self.keysObserved[KVO_KEY(boilGravity)], self.recipe);
   XCTAssertEqual(self.keysObserved[KVO_KEY(colorInSRM)], self.recipe);
   XCTAssertEqual(self.keysObserved[KVO_KEY(finalGravity)], self.recipe);
@@ -322,7 +322,7 @@
 - (void)startObservingAllCalculatedKeys
 {
   [self.recipe addObserver:self forKeyPath:KVO_KEY(originalGravity) options:0 context:nil];
-  [self.recipe addObserver:self forKeyPath:KVO_KEY(IBUs) options:0 context:nil];
+  [self.recipe addObserver:self forKeyPath:KVO_KEY(IBUs:) options:0 context:nil];
   [self.recipe addObserver:self forKeyPath:KVO_KEY(boilGravity) options:0 context:nil];
   [self.recipe addObserver:self forKeyPath:KVO_KEY(colorInSRM) options:0 context:nil];
   [self.recipe addObserver:self forKeyPath:KVO_KEY(finalGravity) options:0 context:nil];

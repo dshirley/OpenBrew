@@ -16,7 +16,7 @@
 #import "OBMalt.h"
 
 NSString * const calculatedKVOKeys[] = {
-  @"IBUs",
+  @"IBUs:",
   @"originalGravity",
   @"boilGravity",
   @"colorInSRM",

@@ -106,12 +106,12 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 
 - (void)setRecipe:(OBRecipe *)recipe
 {
-  [_recipe removeObserver:self forKeyPath:KVO_KEY(IBUs)];
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(IBUs:)];
   [_recipe removeObserver:self forKeyPath:KVO_KEY(hopAdditions)];
 
   _recipe = recipe;
 
-  [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs) options:0 context:nil];
+  [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs:) options:0 context:nil];
   [_recipe addObserver:self forKeyPath:KVO_KEY(hopAdditions) options:0 context:nil];
 }
 
@@ -139,7 +139,7 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 {
   NSKeyValueChange changeType = [change[NSKeyValueChangeKindKey] integerValue];
 
-  if ([keyPath isEqualToString:KVO_KEY(IBUs)]) 
+  if ([keyPath isEqualToString:KVO_KEY(IBUs:)])
   {
     if (NSKeyValueChangeSetting == changeType) {
       // If the table is reloaded during a delete, a crash results.
