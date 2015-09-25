@@ -39,9 +39,9 @@
 
 #pragma mark - Data Loading
 
-- (BOOL)loadData
+- (BOOL)loadIngredients
 {
-  return [self loadYeast] && [self loadMalts] && [self loadHops] && [self loadRecipes];
+  return [self loadYeast] && [self loadMalts] && [self loadHops];
 }
 
 - (BOOL)loadYeast
@@ -77,7 +77,7 @@
           }];
 }
 
-- (BOOL)loadRecipes
+- (BOOL)loadSampleRecipes
 {
   OBRecipe *recipe = [[OBRecipe alloc] initWithContext:self.moc];
   recipe.name = @"Bro Light";

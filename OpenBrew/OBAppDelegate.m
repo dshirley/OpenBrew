@@ -15,6 +15,7 @@
 #import "GAI.h"
 #import "OBRecipeListViewController.h"
 #import "OBCoreData.h"
+#import "OBDataLoader.h"
 
 @implementation OBAppDelegate
 
@@ -36,22 +37,15 @@
 
   NSString *currentVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"];
   if (settings && ![settings.copiedStarterDataVersion isEqualToString:currentVersion]) {
-    NSURL *startUpDbURL = [[NSBundle mainBundle] URLForResource:@"OpenBrewStartupData.sqlite"
-                                                  withExtension:@""];
+    OBDataLoader *dataLoader = [[OBDataLoader alloc] initWithContext:self.managedObjectContext];
 
-    NSDictionary *startupDbOptions = @{ NSReadOnlyPersistentStoreOption: @(true) };
-    NSManagedObjectContext *startupContext = createManagedObjectContext(startUpDbURL, startupDbOptions, &error);
-    CRITTERCISM_LOG_ERROR(error);
-    startupContext.undoManager = nil;
+    if ([dataLoader loadIngredients]) {
+      settings.copiedStarterDataVersion = currentVersion;
+    } // TODO: else handle error with a good message
 
     if (![settings.hasCopiedSampleRecipes boolValue]) {
-      loadSampleRecipesIntoContext(self.managedObjectContext, startupContext, &error);
-      CRITTERCISM_LOG_ERROR(error);
+      [dataLoader loadSampleRecipes];
       settings.hasCopiedSampleRecipes = @(YES);
-    }
-
-    if (loadStartupDataIntoContext(self.managedObjectContext, startupContext, &error)) {
-      settings.copiedStarterDataVersion = currentVersion;
     }
   }
 

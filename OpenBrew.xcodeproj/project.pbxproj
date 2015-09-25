@@ -26,9 +26,6 @@
 		9F40C4C41B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */; };
 		9F40C4C61B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */; };
 		9F40C4CA1B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */; };
-		9F41C28E1BAD6BA100A072E9 /* OBHopAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8C718A0D45F00118D76 /* OBHopAddition.m */; };
-		9F41C28F1BAD6BA100A072E9 /* OBMaltAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8BE18A0CED100118D76 /* OBMaltAddition.m */; };
-		9F41C2901BAD6BA100A072E9 /* OBYeastAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8CD18A0D63300118D76 /* OBYeastAddition.m */; };
 		9F41C2921BADB7BE00A072E9 /* OBPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F41C2911BADB7BE00A072E9 /* OBPlaceholderView.xib */; settings = {ASSET_TAGS = (); }; };
 		9F49A85F1B79086600D48E2C /* OBHopOuncesPickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F49A85E1B79086600D48E2C /* OBHopOuncesPickerDelegateTest.m */; };
 		9F5F6F101B93C1A000F010E5 /* OBBatchSizeTableViewDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5F6F0F1B93C1A000F010E5 /* OBBatchSizeTableViewDelegateTest.m */; };
@@ -39,11 +36,9 @@
 		9F63BD961B7CF82F0028EC84 /* OBVolumePickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F63BD951B7CF82F0028EC84 /* OBVolumePickerDelegateTest.m */; };
 		9F6EB02D1BADEE8800F2739E /* OBUnitConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6EB02C1BADEE8800F2739E /* OBUnitConversion.m */; settings = {ASSET_TAGS = (); }; };
 		9F6EB0301BADF66D00F2739E /* OBHopGramsPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6EB02F1BADF66D00F2739E /* OBHopGramsPickerDelegate.m */; settings = {ASSET_TAGS = (); }; };
-		9F6EB0311BADF94100F2739E /* OBUnitConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6EB02C1BADEE8800F2739E /* OBUnitConversion.m */; };
 		9F6EB0331BADFDC400F2739E /* OBHopGramsPickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6EB0321BADFDC400F2739E /* OBHopGramsPickerDelegateTest.m */; settings = {ASSET_TAGS = (); }; };
 		9F6EB0361BAE26E500F2739E /* OBHopTypePickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6EB0351BAE26E500F2739E /* OBHopTypePickerDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */; };
-		9F7EFEF71BA6B8E500B71D64 /* OBSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF686C51893F00B00B36486 /* OBSettings.m */; };
 		9F7EFEFA1BA6BDA300B71D64 /* OBSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EFEF91BA6BDA300B71D64 /* OBSettingsTest.m */; settings = {ASSET_TAGS = (); }; };
 		9F7EFEFC1BA7294F00B71D64 /* OBCoreDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EFEFB1BA7294F00B71D64 /* OBCoreDataTest.m */; settings = {ASSET_TAGS = (); }; };
 		9F8D88861B8434A600FA4277 /* OBYeastAdditionViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8D88851B8434A600FA4277 /* OBYeastAdditionViewControllerTest.m */; };
@@ -94,21 +89,14 @@
 		9FCECC5B18879B430045FADD /* OBHopAdditionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCECC5A18879B430045FADD /* OBHopAdditionTest.m */; };
 		9FCECC60188831320045FADD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3761880F8EE00469323 /* XCTest.framework */; };
 		9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */; };
+		9FD2B8FA1BB58B2E009018FD /* OBDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD2B8F91BB58B2E009018FD /* OBDataLoader.m */; settings = {ASSET_TAGS = (); }; };
+		9FD2B8FB1BB58D16009018FD /* HopCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9FE279F01B9953450057BEFE /* HopCatalog.csv */; };
+		9FD2B8FC1BB58D16009018FD /* MaltCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9FE279F11B9953450057BEFE /* MaltCatalog.csv */; };
+		9FD2B8FD1BB58D16009018FD /* YeastCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9FE279F21B9953450057BEFE /* YeastCatalog.csv */; };
 		9FD66387198218220056EEEC /* OBHopAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD66386198218220056EEEC /* OBHopAdditionViewController.m */; };
 		9FE243461B45CD1B00D1EE25 /* OBRecipeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE243451B45CD1B00D1EE25 /* OBRecipeTest.m */; };
 		9FE243511B471D5800D1EE25 /* OBMultiPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE243501B471D5800D1EE25 /* OBMultiPickerView.m */; };
-		9FE279BF1B9926910057BEFE /* OpenBrew.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745A188975C700FFAA56 /* OpenBrew.xcdatamodeld */; };
-		9FE279C01B9927590057BEFE /* OBHops.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8CA18A0D53E00118D76 /* OBHops.m */; };
-		9FE279C11B9927590057BEFE /* OBMalt.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8C118A0CFF700118D76 /* OBMalt.m */; };
-		9FE279C21B9927590057BEFE /* OBRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8C418A0D0D000118D76 /* OBRecipe.m */; };
-		9FE279C31B9927590057BEFE /* OBYeast.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F92E8D018A0D6CF00118D76 /* OBYeast.m */; };
 		9FE279D11B9935EE0057BEFE /* OBCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE279D01B9935EE0057BEFE /* OBCoreData.m */; };
-		9FE279D21B9935EE0057BEFE /* OBCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE279D01B9935EE0057BEFE /* OBCoreData.m */; };
-		9FE279EC1B9952B40057BEFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE279E91B9952B40057BEFE /* main.m */; };
-		9FE279ED1B9952B40057BEFE /* OBDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE279EB1B9952B40057BEFE /* OBDataLoader.m */; };
-		9FE279F41B9953830057BEFE /* HopCatalog.csv in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9FE279F01B9953450057BEFE /* HopCatalog.csv */; };
-		9FE279F51B9953830057BEFE /* MaltCatalog.csv in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9FE279F11B9953450057BEFE /* MaltCatalog.csv */; };
-		9FE279F61B9953830057BEFE /* YeastCatalog.csv in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9FE279F21B9953450057BEFE /* YeastCatalog.csv */; };
 		9FE525091B813461002612DD /* OBMaltFinderViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE525081B813461002612DD /* OBMaltFinderViewControllerTest.m */; };
 		9FE5250B1B814652002612DD /* OBHopFinderViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE5250A1B814652002612DD /* OBHopFinderViewControllerTest.m */; };
 		9FE608F51B69DD99008D1D88 /* OBRecipeListViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE608F41B69DD99008D1D88 /* OBRecipeListViewControllerTest.m */; };
@@ -141,29 +129,7 @@
 			remoteGlobalIDString = 9F98D3541880F8ED00469323;
 			remoteInfo = OpenBrew;
 		};
-		9FE27A0C1BA028800057BEFE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9F98D34D1880F8ED00469323 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9FE279B71B9924540057BEFE;
-			remoteInfo = DatabaseGenerator;
-		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9FE279D41B994E2D0057BEFE /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 16;
-			files = (
-				9FE279F41B9953830057BEFE /* HopCatalog.csv in CopyFiles */,
-				9FE279F51B9953830057BEFE /* MaltCatalog.csv in CopyFiles */,
-				9FE279F61B9953830057BEFE /* YeastCatalog.csv in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		10A81B88499DA6D2322BBA7E /* Pods-OpenBrew.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenBrew.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenBrew/Pods-OpenBrew.debug.xcconfig"; sourceTree = "<group>"; };
@@ -299,17 +265,15 @@
 		9FCECC5C1887A1150045FADD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9FD14131197CC7CE005220BC /* OBBatchSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBatchSizeViewController.h; sourceTree = "<group>"; };
 		9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBatchSizeViewController.m; sourceTree = "<group>"; };
+		9FD2B8F81BB58B2E009018FD /* OBDataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBDataLoader.h; sourceTree = "<group>"; };
+		9FD2B8F91BB58B2E009018FD /* OBDataLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBDataLoader.m; sourceTree = "<group>"; };
 		9FD66385198218220056EEEC /* OBHopAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionViewController.h; sourceTree = "<group>"; };
 		9FD66386198218220056EEEC /* OBHopAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionViewController.m; sourceTree = "<group>"; };
 		9FE243451B45CD1B00D1EE25 /* OBRecipeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeTest.m; sourceTree = "<group>"; };
 		9FE2434F1B471D5800D1EE25 /* OBMultiPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMultiPickerView.h; sourceTree = "<group>"; };
 		9FE243501B471D5800D1EE25 /* OBMultiPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerView.m; sourceTree = "<group>"; };
-		9FE279B81B9924540057BEFE /* DatabaseGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DatabaseGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FE279CF1B9935EE0057BEFE /* OBCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBCoreData.h; sourceTree = "<group>"; };
 		9FE279D01B9935EE0057BEFE /* OBCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBCoreData.m; sourceTree = "<group>"; };
-		9FE279E91B9952B40057BEFE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = DatabaseGenerator/main.m; sourceTree = SOURCE_ROOT; };
-		9FE279EA1B9952B40057BEFE /* OBDataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBDataLoader.h; path = DatabaseGenerator/OBDataLoader.h; sourceTree = SOURCE_ROOT; };
-		9FE279EB1B9952B40057BEFE /* OBDataLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OBDataLoader.m; path = DatabaseGenerator/OBDataLoader.m; sourceTree = SOURCE_ROOT; };
 		9FE279F01B9953450057BEFE /* HopCatalog.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HopCatalog.csv; sourceTree = "<group>"; };
 		9FE279F11B9953450057BEFE /* MaltCatalog.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MaltCatalog.csv; sourceTree = "<group>"; };
 		9FE279F21B9953450057BEFE /* YeastCatalog.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YeastCatalog.csv; sourceTree = "<group>"; };
@@ -374,13 +338,6 @@
 				9F98D3791880F8EE00469323 /* UIKit.framework in Frameworks */,
 				9F98D3781880F8EE00469323 /* Foundation.framework in Frameworks */,
 				C7DEEBA650ECB85B24804E1A /* libPods-OpenBrewTests.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9FE279B51B9924540057BEFE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +477,6 @@
 			children = (
 				9F98D3601880F8ED00469323 /* OpenBrew */,
 				9F98D37D1880F8EE00469323 /* OpenBrewTests */,
-				9FE279B91B9924540057BEFE /* DatabaseGenerator */,
 				9FE279EF1B9953450057BEFE /* DefaultAppData */,
 				9F0185C91BAC03C90026BC0C /* BuildScripts */,
 				9F98D3571880F8ED00469323 /* Frameworks */,
@@ -534,7 +490,6 @@
 			children = (
 				9F98D3551880F8ED00469323 /* OpenBrew.app */,
 				9F98D3751880F8EE00469323 /* OpenBrewTests.xctest */,
-				9FE279B81B9924540057BEFE /* DatabaseGenerator */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -608,6 +563,8 @@
 			children = (
 				9FE279CF1B9935EE0057BEFE /* OBCoreData.h */,
 				9FE279D01B9935EE0057BEFE /* OBCoreData.m */,
+				9FD2B8F81BB58B2E009018FD /* OBDataLoader.h */,
+				9FD2B8F91BB58B2E009018FD /* OBDataLoader.m */,
 				9F92E8C618A0D45F00118D76 /* OBHopAddition.h */,
 				9F92E8C718A0D45F00118D76 /* OBHopAddition.m */,
 				9F92E8C918A0D53E00118D76 /* OBHops.h */,
@@ -640,17 +597,6 @@
 				9FAA13141B72F2E100223569 /* OBMultiPickerViewTest.m */,
 			);
 			name = View;
-			sourceTree = "<group>";
-		};
-		9FE279B91B9924540057BEFE /* DatabaseGenerator */ = {
-			isa = PBXGroup;
-			children = (
-				9FE279E91B9952B40057BEFE /* main.m */,
-				9FE279EA1B9952B40057BEFE /* OBDataLoader.h */,
-				9FE279EB1B9952B40057BEFE /* OBDataLoader.m */,
-			);
-			name = DatabaseGenerator;
-			path = BrewData;
 			sourceTree = "<group>";
 		};
 		9FE279EF1B9953450057BEFE /* DefaultAppData */ = {
@@ -787,15 +733,13 @@
 				C0AD2084356259E424B867BF /* Check Pods Manifest.lock */,
 				9F98D3511880F8ED00469323 /* Sources */,
 				9F98D3521880F8ED00469323 /* Frameworks */,
-				9FE27A0B1BA027640057BEFE /* Generate Starter Sqlite DB */,
+				9FE6F3391BB2F49F006A13A2 /* Upload dSYM to Crittercism */,
 				9F98D3531880F8ED00469323 /* Resources */,
 				256161998A953F0954ACB554 /* Copy Pods Resources */,
-				9FE6F3391BB2F49F006A13A2 /* Upload dSYM to Crittercism */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9FE27A0D1BA028800057BEFE /* PBXTargetDependency */,
 			);
 			name = OpenBrew;
 			productName = OpenBrew;
@@ -822,23 +766,6 @@
 			productReference = 9F98D3751880F8EE00469323 /* OpenBrewTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9FE279B71B9924540057BEFE /* DatabaseGenerator */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9FE279BE1B9924540057BEFE /* Build configuration list for PBXNativeTarget "DatabaseGenerator" */;
-			buildPhases = (
-				9FE279B41B9924540057BEFE /* Sources */,
-				9FE279B51B9924540057BEFE /* Frameworks */,
-				9FE279D41B994E2D0057BEFE /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DatabaseGenerator;
-			productName = BrewData;
-			productReference = 9FE279B81B9924540057BEFE /* DatabaseGenerator */;
-			productType = "com.apple.product-type.tool";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -851,9 +778,6 @@
 				TargetAttributes = {
 					9F98D3741880F8EE00469323 = {
 						TestTargetID = 9F98D3541880F8ED00469323;
-					};
-					9FE279B71B9924540057BEFE = {
-						CreatedOnToolsVersion = 7.0;
 					};
 				};
 			};
@@ -871,7 +795,6 @@
 			targets = (
 				9F98D3541880F8ED00469323 /* OpenBrew */,
 				9F98D3741880F8EE00469323 /* OpenBrewTests */,
-				9FE279B71B9924540057BEFE /* DatabaseGenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -881,6 +804,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FD2B8FB1BB58D16009018FD /* HopCatalog.csv in Resources */,
+				9FD2B8FC1BB58D16009018FD /* MaltCatalog.csv in Resources */,
+				9FD2B8FD1BB58D16009018FD /* YeastCatalog.csv in Resources */,
 				9F98D3651880F8ED00469323 /* InfoPlist.strings in Resources */,
 				9F41C2921BADB7BE00A072E9 /* OBPlaceholderView.xib in Resources */,
 				9F98D3701880F8ED00469323 /* Images.xcassets in Resources */,
@@ -928,28 +854,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
-		};
-		9FE27A0B1BA027640057BEFE /* Generate Starter Sqlite DB */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/DefaultAppData/HopCatalog.csv",
-				"$(SRCROOT)/DefaultAppData/MaltCatalog.csv",
-				"$(SRCROOT)/DefaultAppData/YeastCatalog.csv",
-				"$(SRCROOT)/OpenBrew/OpenBrew.xcdatamodeld/OpenBrew.xcdatamodel/contents",
-				"$(SRCROOT)/DatabaseGenerator/OBDataLoader.h",
-				"$(SRCROOT)/DatabaseGenerator/OBDataLoader.m",
-				"$(SRCROOT)/main.m",
-			);
-			name = "Generate Starter Sqlite DB";
-			outputPaths = (
-				"${GENERATED_DATABASE}",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${BUILD_SCRIPTS}/generate_starter_sqlite_db.sh";
 		};
 		9FE6F3391BB2F49F006A13A2 /* Upload dSYM to Crittercism */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1005,6 +909,7 @@
 				9FE8643B198FBCE0007AD9E7 /* OBHopOuncesPickerDelegate.m in Sources */,
 				9FF510181B6568E400970C22 /* OBMaltAdditionSettingsViewController.m in Sources */,
 				9F98D3671880F8ED00469323 /* main.m in Sources */,
+				9FD2B8FA1BB58B2E009018FD /* OBDataLoader.m in Sources */,
 				9FFE13151B27EF6E00D3F76A /* OBVolumePickerDelegate.m in Sources */,
 				9F60CF2C19B264A10076A600 /* OBMaltFinderViewController.m in Sources */,
 				9FC4796B1B70811C0053B996 /* OBSettingsSegue.m in Sources */,
@@ -1104,26 +1009,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9FE279B41B9924540057BEFE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9F6EB0311BADF94100F2739E /* OBUnitConversion.m in Sources */,
-				9F41C28E1BAD6BA100A072E9 /* OBHopAddition.m in Sources */,
-				9F41C28F1BAD6BA100A072E9 /* OBMaltAddition.m in Sources */,
-				9F41C2901BAD6BA100A072E9 /* OBYeastAddition.m in Sources */,
-				9F7EFEF71BA6B8E500B71D64 /* OBSettings.m in Sources */,
-				9FE279C01B9927590057BEFE /* OBHops.m in Sources */,
-				9FE279C11B9927590057BEFE /* OBMalt.m in Sources */,
-				9FE279D21B9935EE0057BEFE /* OBCoreData.m in Sources */,
-				9FE279C21B9927590057BEFE /* OBRecipe.m in Sources */,
-				9FE279C31B9927590057BEFE /* OBYeast.m in Sources */,
-				9FE279EC1B9952B40057BEFE /* main.m in Sources */,
-				9FE279BF1B9926910057BEFE /* OpenBrew.xcdatamodeld in Sources */,
-				9FE279ED1B9952B40057BEFE /* OBDataLoader.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1131,11 +1016,6 @@
 			isa = PBXTargetDependency;
 			target = 9F98D3541880F8ED00469323 /* OpenBrew */;
 			targetProxy = 9F98D37B1880F8EE00469323 /* PBXContainerItemProxy */;
-		};
-		9FE27A0D1BA028800057BEFE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9FE279B71B9924540057BEFE /* DatabaseGenerator */;
-			targetProxy = 9FE27A0C1BA028800057BEFE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1364,42 +1244,6 @@
 			};
 			name = Release;
 		};
-		9FE279BC1B9924540057BEFE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DATABASE_GENERATOR=1",
-					"DEBUG=1",
-				);
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "${DATABASE_GENERATOR}";
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		9FE279BD1B9924540057BEFE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "DATABASE_GENERATOR=1";
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "${DATABASE_GENERATOR}";
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1426,15 +1270,6 @@
 			buildConfigurations = (
 				9F98D38B1880F8EE00469323 /* Debug */,
 				9F98D38C1880F8EE00469323 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9FE279BE1B9924540057BEFE /* Build configuration list for PBXNativeTarget "DatabaseGenerator" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9FE279BC1B9924540057BEFE /* Debug */,
-				9FE279BD1B9924540057BEFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -12,6 +12,8 @@
 
 - (instancetype)initWithContext:(NSManagedObjectContext *)moc;
 
-- (BOOL)loadData;
+- (BOOL)loadIngredients;
+
+- (BOOL)loadSampleRecipes;
 
 @end
