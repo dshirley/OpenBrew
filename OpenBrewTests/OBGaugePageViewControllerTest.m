@@ -33,7 +33,10 @@
   OBGaugePageViewController *vc = [[OBGaugePageViewController alloc] init];
 
   id mockVc = [OCMockObject partialMockForObject:vc];
-  [[mockVc reject] setViewControllers:OCMOCK_ANY direction:OCMOCK_ANY animated:OCMOCK_ANY completion:OCMOCK_ANY];
+  [[mockVc reject] setViewControllers:OCMOCK_ANY
+                            direction:UIPageViewControllerNavigationDirectionForward
+                             animated:NO
+                           completion:OCMOCK_ANY];
 
   [vc setDataSource:nil];
 
