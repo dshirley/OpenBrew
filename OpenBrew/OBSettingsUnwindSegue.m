@@ -14,16 +14,17 @@
 - (void)perform
 {
   OBBaseSettingsViewController *settingsVc = (id)self.sourceViewController;
+  UIViewController *destinationVc = (id)self.destinationViewController;
 
-  UIBarButtonItem *savedAddButton = self.destinationViewController.navigationItem.rightBarButtonItem;
-  self.destinationViewController.navigationItem.rightBarButtonItem = settingsVc.navigationBar.topItem.rightBarButtonItem;
+  UIBarButtonItem *savedAddButton = destinationVc.navigationItem.rightBarButtonItem;
+  destinationVc.navigationItem.rightBarButtonItem = settingsVc.navigationBar.topItem.rightBarButtonItem;
 
   // Use hide rather than remove from superview. Removing the view causes the
   // settingsView to "jump up" due to some issues with the constraints.
   settingsVc.navigationBar.hidden = YES;
 
-  [self.destinationViewController.navigationItem setHidesBackButton:NO animated:YES];
-  [self.destinationViewController.navigationItem setRightBarButtonItem:savedAddButton animated:YES];
+  [destinationVc.navigationItem setHidesBackButton:NO animated:YES];
+  [destinationVc.navigationItem setRightBarButtonItem:savedAddButton animated:YES];
 
   [UIView animateWithDuration:0.5
                         delay:0.0
@@ -37,8 +38,8 @@
                      settingsVc.greyoutView.backgroundColor = [UIColor clearColor];
                    }
                    completion:^(BOOL finished) {
-                     [self.sourceViewController dismissViewControllerAnimated:NO
-                                                                   completion:NULL];
+                     [settingsVc dismissViewControllerAnimated:NO
+                                                    completion:NULL];
                    }];
 }
 

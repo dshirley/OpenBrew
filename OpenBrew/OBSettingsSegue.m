@@ -14,27 +14,28 @@
 - (void)perform
 {
   OBBaseSettingsViewController *settingsVc = (OBBaseSettingsViewController *)self.destinationViewController;
+  UIViewController *sourceVc = self.sourceViewController;
 
   settingsVc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
 
   // This line is required in order for the IBOutlets to get setup for the settingsVc
   // Wow - that was super painful to debug
-  [self.sourceViewController.view addSubview:settingsVc.view];
+  [sourceVc.view addSubview:settingsVc.view];
 
   // The unwind segue will add this back
-  [self.sourceViewController.navigationItem setHidesBackButton:YES animated:YES];
+  [sourceVc.navigationItem setHidesBackButton:YES animated:YES];
 
-  UIBarButtonItem *origItem = self.sourceViewController.navigationItem.rightBarButtonItem;
+  UIBarButtonItem *origItem = sourceVc.navigationItem.rightBarButtonItem;
   UIBarButtonItem *doneItem = settingsVc.navigationBar.topItem.rightBarButtonItem;
-  [self.sourceViewController.navigationItem setRightBarButtonItem:doneItem animated:YES];
+  [sourceVc.navigationItem setRightBarButtonItem:doneItem animated:YES];
 
   UIColor *originGreyoutColor = settingsVc.greyoutView.backgroundColor;
   settingsVc.greyoutView.backgroundColor = [UIColor clearColor];
-  [self.sourceViewController.view bringSubviewToFront:settingsVc.greyoutView];
+  [sourceVc.view bringSubviewToFront:settingsVc.greyoutView];
 
   CGRect origSettingsFrame = settingsVc.settingsView.frame;
   settingsVc.settingsView.frame = CGRectOffset(origSettingsFrame, 0, origSettingsFrame.size.height);
-  [self.sourceViewController.view bringSubviewToFront:settingsVc.settingsView];
+  [sourceVc.view bringSubviewToFront:settingsVc.settingsView];
 
   [UIView animateWithDuration:0.5
                         delay:0.0
@@ -44,8 +45,8 @@
                      settingsVc.greyoutView.backgroundColor = originGreyoutColor;
                    }
                    completion:^(BOOL finished) {
-                     [self.sourceViewController presentViewController:settingsVc animated:NO completion:nil];
-                     [self.sourceViewController.navigationItem setRightBarButtonItem:origItem animated:YES];
+                     [sourceVc presentViewController:settingsVc animated:NO completion:nil];
+                     [sourceVc.navigationItem setRightBarButtonItem:origItem animated:YES];
                    }];
 }
 
