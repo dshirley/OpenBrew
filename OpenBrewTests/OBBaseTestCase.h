@@ -12,8 +12,6 @@
 #import "OBSettings.h"
 #import "OBRecipe.h"
 
-extern NSManagedObjectContext *g_startupContext;
-
 @interface OBBaseTestCase : XCTestCase
 @property (nonatomic, strong) NSManagedObjectModel *model;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;

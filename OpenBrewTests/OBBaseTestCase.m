@@ -15,23 +15,9 @@
 #import "OBYeast.h"
 #import "OBYeastAddition.h"
 #import "OBCoreData.h"
-
-NSManagedObjectContext *g_startupContext = nil;
+#import "OBDataLoader.h"
 
 @implementation OBBaseTestCase
-
-+ (void)load
-{
-  NSError *error = nil;
-  NSURL *startUpDbURL = [[NSBundle mainBundle] URLForResource:@"OpenBrewStartupData.sqlite"
-                                                withExtension:@""];
-
-  NSDictionary *startupOptions = @{ NSReadOnlyPersistentStoreOption: @(true) };
-  g_startupContext = createManagedObjectContext(startUpDbURL, startupOptions, &error);
-  NSCAssert(!error, @"An error occurred loading the startup DB: %@", error);
-
-  g_startupContext.undoManager = nil;
-}
 
 - (void)setUp {
   [super setUp];
@@ -53,9 +39,8 @@ NSManagedObjectContext *g_startupContext = nil;
   self.settings = [NSEntityDescription insertNewObjectForEntityForName:@"Settings"
                                                 inManagedObjectContext:self.ctx];
 
-  NSError *error = nil;
-  loadStartupDataIntoContext(self.ctx, g_startupContext, &error);
-  XCTAssertNil(error);
+  OBDataLoader *dataLoader = [[OBDataLoader alloc] initWithContext:self.ctx];
+  [dataLoader loadIngredients];
 
   XCTAssertEqual(0, [self fetchAllEntity:@"Recipe"].count);
   self.recipe = [[OBRecipe alloc] initWithContext:self.ctx];

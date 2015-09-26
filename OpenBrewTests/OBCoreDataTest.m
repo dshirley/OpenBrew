@@ -16,6 +16,7 @@
 #import "OBHopAddition.h"
 #import "OBMaltAddition.h"
 #import "OBCoreData.h"
+#import "OBDataLoader.h"
 
 @interface OBCoreDataTest : OBBaseTestCase
 
@@ -80,7 +81,8 @@
     [self.ctx deleteObject:recipe];
   }
 
-  loadSampleRecipesIntoContext(self.ctx, g_startupContext, &error);
+  OBDataLoader *dataLoader = [[OBDataLoader alloc] initWithContext:self.ctx];
+  [dataLoader loadSampleRecipes];
 
   XCTAssertNil(error);
 
