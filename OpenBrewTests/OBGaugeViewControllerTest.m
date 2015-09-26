@@ -77,14 +77,14 @@
   XCTAssertEqual(self.vc.metricToDisplay, OBMetricFinalGravity);
 }
 
-- (void)testRefresh_onMaltAddition
+- (void)testKvo_onMaltAddition
 {
   for (int i = 0; i < OBMetricNumberOfMetrics; i++) {
-    [self doTestRefresh_onMaltAddition:(OBGaugeMetric)i];
+    [self doTestKvo_onMaltAddition:(OBGaugeMetric)i];
   }
 }
 
-- (void)doTestRefresh_onMaltAddition:(OBGaugeMetric)metric
+- (void)doTestKvo_onMaltAddition:(OBGaugeMetric)metric
 {
   self.vc.metricToDisplay = metric;
 
@@ -97,14 +97,14 @@
   [mockVc stopMocking];
 }
 
-- (void)testRefresh_onMaltDelete
+- (void)testKvo_onMaltDelete
 {
   for (int i = 0; i < OBMetricNumberOfMetrics; i++) {
-    [self doTestRefresh_onMaltAddition:(OBGaugeMetric)i];
+    [self doTestKvo_onMaltAddition:(OBGaugeMetric)i];
   }
 }
 
-- (void)doTestRefresh_onMaltDeletion:(OBGaugeMetric)metric
+- (void)doTestKvo_onMaltDeletion:(OBGaugeMetric)metric
 {
   self.vc.metricToDisplay = metric;
   OBMaltAddition *malt = [self addMalt:@"Maris Otter" quantity:1.0];
@@ -118,14 +118,14 @@
   [mockVc stopMocking];
 }
 
-- (void)testRefresh_onMaltValueChange
+- (void)testKvo_onMaltValueChange
 {
   for (int i = 0; i < OBMetricNumberOfMetrics; i++) {
-    [self doTestRefresh_onMaltAddition:(OBGaugeMetric)i];
+    [self doTestKvo_onMaltAddition:(OBGaugeMetric)i];
   }
 }
 
-- (void)doTestRefresh_onMaltValueChange:(OBGaugeMetric)metric
+- (void)doTestKvo_onMaltValueChange:(OBGaugeMetric)metric
 {
   self.vc.metricToDisplay = metric;
   OBMaltAddition *malt = [self addMalt:@"Maris Otter" quantity:1.0];
@@ -139,13 +139,13 @@
   [mockVc stopMocking];
 }
 
-- (void)testRefresh_onHopAddition
+- (void)testKvo_onHopAddition
 {
-  [self doTestRefresh_onHopAddition:OBMetricIbu];
-  [self doTestRefresh_onHopAddition:OBMetricBuToGuRatio];
+  [self doTestKvo_onHopAddition:OBMetricIbu];
+  [self doTestKvo_onHopAddition:OBMetricBuToGuRatio];
 }
 
-- (void)doTestRefresh_onHopAddition:(OBGaugeMetric)metric
+- (void)doTestKvo_onHopAddition:(OBGaugeMetric)metric
 {
   self.vc.metricToDisplay = metric;
 
@@ -158,13 +158,13 @@
   [mockVc stopMocking];
 }
 
-- (void)testRefresh_onHopDeletion
+- (void)testKvo_onHopDeletion
 {
-  [self doTestRefresh_onHopDeletion:OBMetricIbu];
-  [self doTestRefresh_onHopDeletion:OBMetricBuToGuRatio];
+  [self doTestKvo_onHopDeletion:OBMetricIbu];
+  [self doTestKvo_onHopDeletion:OBMetricBuToGuRatio];
 }
 
-- (void)doTestRefresh_onHopDeletion:(OBGaugeMetric)metric
+- (void)doTestKvo_onHopDeletion:(OBGaugeMetric)metric
 {
   self.vc.metricToDisplay = metric;
 
@@ -179,13 +179,13 @@
   [mockVc stopMocking];
 }
 
-- (void)testRefresh_onHopValueChange
+- (void)testKvo_onHopValueChange
 {
-  [self doTestRefresh_onHopValueChange:OBMetricIbu];
-  [self doTestRefresh_onHopValueChange:OBMetricBuToGuRatio];
+  [self doTestKvo_onHopValueChange:OBMetricIbu];
+  [self doTestKvo_onHopValueChange:OBMetricBuToGuRatio];
 }
 
-- (void)doTestRefresh_onHopValueChange:(OBGaugeMetric)metric
+- (void)doTestKvo_onHopValueChange:(OBGaugeMetric)metric
 {
   self.vc.metricToDisplay = metric;
 
@@ -204,13 +204,13 @@
   [mockVc stopMocking];
 }
 
-- (void)testRefresh_onYeastAddition
+- (void)testKvo_onYeastAddition
 {
-  [self doTestRefresh_onYeastAddition:OBMetricFinalGravity];
-  [self doTestRefresh_onYeastAddition:OBMetricAbv];
+  [self doTestKvo_onYeastAddition:OBMetricFinalGravity];
+  [self doTestKvo_onYeastAddition:OBMetricAbv];
 }
 
-- (void)doTestRefresh_onYeastAddition:(OBGaugeMetric)metric
+- (void)doTestKvo_onYeastAddition:(OBGaugeMetric)metric
 {
   self.vc.metricToDisplay = metric;
 
@@ -223,13 +223,13 @@
   [mockVc stopMocking];
 }
 
-- (void)testRefresh_onYeastDeletion
+- (void)testKvo_onYeastDeletion
 {
-  [self doTestRefresh_onYeastDeletion:OBMetricFinalGravity];
-  [self doTestRefresh_onYeastDeletion:OBMetricAbv];
+  [self doTestKvo_onYeastDeletion:OBMetricFinalGravity];
+  [self doTestKvo_onYeastDeletion:OBMetricAbv];
 }
 
-- (void)doTestRefresh_onYeastDeletion:(OBGaugeMetric)metric
+- (void)doTestKvo_onYeastDeletion:(OBGaugeMetric)metric
 {
   self.vc.metricToDisplay = metric;
 
@@ -244,13 +244,13 @@
   [mockVc stopMocking];
 }
 
-- (void)testRefresh_onYeastValueChange
+- (void)testKvo_onYeastValueChange
 {
-  [self doTestRefresh_onYeastValueChange:OBMetricFinalGravity];
-  [self doTestRefresh_onYeastValueChange:OBMetricAbv];
+  [self doTestKvo_onYeastValueChange:OBMetricFinalGravity];
+  [self doTestKvo_onYeastValueChange:OBMetricAbv];
 }
 
-- (void)doTestRefresh_onYeastValueChange:(OBGaugeMetric)metric
+- (void)doTestKvo_onYeastValueChange:(OBGaugeMetric)metric
 {
   self.vc.metricToDisplay = metric;
 
@@ -265,14 +265,14 @@
   [mockVc stopMocking];
 }
 
-- (void)testRefresh_onPreBoilSizeChange
+- (void)testKvo_onPreBoilSizeChange
 {
   for (int i = 0; i < OBMetricNumberOfMetrics; i++) {
-    [self doTestRefresh_onPreBoilSizeChange:(OBGaugeMetric)i];
+    [self doTestKvo_onPreBoilSizeChange:(OBGaugeMetric)i];
   }
 }
 
-- (void)doTestRefresh_onPreBoilSizeChange:(OBGaugeMetric)metric
+- (void)doTestKvo_onPreBoilSizeChange:(OBGaugeMetric)metric
 {
   self.vc.metricToDisplay = metric;
 
@@ -285,14 +285,14 @@
   [mockVc stopMocking];
 }
 
-- (void)testRefresh_onPostBoilSizeChange
+- (void)testKvo_onPostBoilSizeChange
 {
   for (int i = 0; i < OBMetricNumberOfMetrics; i++) {
-    [self doTestRefresh_onPostBoilSizeChange:(OBGaugeMetric)i];
+    [self doTestKvo_onPostBoilSizeChange:(OBGaugeMetric)i];
   }
 }
 
-- (void)doTestRefresh_onPostBoilSizeChange:(OBGaugeMetric)metric
+- (void)doTestKvo_onPostBoilSizeChange:(OBGaugeMetric)metric
 {
   self.vc.metricToDisplay = metric;
 
@@ -304,5 +304,182 @@
   [mockVc verify];
   [mockVc stopMocking];
 }
+
+// Returns a mock recipe that can be set as the recipe of the view controller.
+// The view controller registers observers and the mock has to be prepared to
+// handle that.
+- (id)mockRecipe
+{
+  id mockRecipe = [OCMockObject mockForClass:OBRecipe.class];
+  [[mockRecipe expect] addObserver:self.vc forKeyPath:@"originalGravity" options:0 context:nil];
+  [[mockRecipe expect] addObserver:self.vc forKeyPath:@"IBUs:" options:0 context:nil];
+  [[mockRecipe expect] addObserver:self.vc forKeyPath:@"postBoilVolumeInGallons" options:0 context:nil];
+  [[mockRecipe expect] addObserver:self.vc forKeyPath:@"preBoilVolumeInGallons" options:0 context:nil];
+  return mockRecipe;
+}
+
+- (void)testRefresh_originalGravity_noAnimate
+{
+  self.vc.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+  self.vc.valueLabel = [[UICountingLabel alloc] initWithFrame:CGRectZero];
+  self.vc.metricToDisplay = OBMetricOriginalGravity;
+  self.vc.willAnimateNextRefresh = NO;
+  
+  id mockRecipe = [self mockRecipe];
+  [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float) 1.050)] originalGravity];
+
+  id mockValueLabel = [OCMockObject partialMockForObject:self.vc.valueLabel];
+  [[mockValueLabel expect] setText:@"1.050"];
+
+  // This should call refresh
+  self.vc.recipe = mockRecipe;
+
+  [mockRecipe verify];
+  [mockValueLabel verify];
+  XCTAssertTrue(self.vc.willAnimateNextRefresh);
+  XCTAssertEqualObjects(@"Original gravity", self.vc.descriptionLabel.text);
+}
+
+- (void)testRefresh_originalGravity_animate
+{
+  self.vc.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+  self.vc.valueLabel = [[UICountingLabel alloc] initWithFrame:CGRectZero];
+  self.vc.metricToDisplay = OBMetricOriginalGravity;
+  self.vc.willAnimateNextRefresh = YES;
+
+  id mockRecipe = [self mockRecipe];
+  [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float) 1.060)] originalGravity];
+
+  id mockValueLabel = [OCMockObject partialMockForObject:self.vc.valueLabel];
+  [[[mockValueLabel stub] andReturnValue:OCMOCK_VALUE((float) 1.050)] currentValue];
+  [[mockValueLabel expect] countFrom:1.050 to:1.060 withDuration:0.25];
+
+  // This will call refresh
+  self.vc.recipe = mockRecipe;
+
+  [mockRecipe verify];
+  [mockValueLabel verify];
+  XCTAssertTrue(self.vc.willAnimateNextRefresh);
+  XCTAssertEqualObjects(@"Original gravity", self.vc.descriptionLabel.text);
+  XCTAssertEqualObjects(@"%.3f", self.vc.valueLabel.format);
+}
+
+- (void)testRefresh_finalGravity_noAnimate
+{
+  self.vc.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+  self.vc.valueLabel = [[UICountingLabel alloc] initWithFrame:CGRectZero];
+  self.vc.metricToDisplay = OBMetricFinalGravity;
+  self.vc.willAnimateNextRefresh = NO;
+
+  id mockRecipe = [self mockRecipe];
+  [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float) 1.005)] finalGravity];
+
+  id mockValueLabel = [OCMockObject partialMockForObject:self.vc.valueLabel];
+  [[mockValueLabel expect] setText:@"1.005"];
+
+  // This should call refresh
+  self.vc.recipe = mockRecipe;
+
+  [mockRecipe verify];
+  [mockValueLabel verify];
+  XCTAssertTrue(self.vc.willAnimateNextRefresh);
+  XCTAssertEqualObjects(@"Final gravity", self.vc.descriptionLabel.text);
+}
+
+- (void)testRefresh_finalGravity_animate
+{
+  self.vc.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+  self.vc.valueLabel = [[UICountingLabel alloc] initWithFrame:CGRectZero];
+  self.vc.metricToDisplay = OBMetricFinalGravity;
+  self.vc.willAnimateNextRefresh = YES;
+
+  id mockRecipe = [self mockRecipe];
+  [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float) 1.005)] finalGravity];
+
+  id mockValueLabel = [OCMockObject partialMockForObject:self.vc.valueLabel];
+  [[[mockValueLabel stub] andReturnValue:OCMOCK_VALUE((float) 1.010)] currentValue];
+  [[mockValueLabel expect] countFrom:1.010 to:1.005 withDuration:0.25];
+
+  // This will call refresh
+  self.vc.recipe = mockRecipe;
+
+  [mockRecipe verify];
+  [mockValueLabel verify];
+  XCTAssertTrue(self.vc.willAnimateNextRefresh);
+  XCTAssertEqualObjects(@"Final gravity", self.vc.descriptionLabel.text);
+  XCTAssertEqualObjects(@"%.3f", self.vc.valueLabel.format);
+}
+
+- (void)testRefresh_abv_noAnimate
+{
+  self.vc.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+  self.vc.valueLabel = [[UICountingLabel alloc] initWithFrame:CGRectZero];
+  self.vc.metricToDisplay = OBMetricAbv;
+  self.vc.willAnimateNextRefresh = NO;
+
+  id mockRecipe = [self mockRecipe];
+  [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float) 5.3)] alcoholByVolume];
+
+  id mockValueLabel = [OCMockObject partialMockForObject:self.vc.valueLabel];
+
+  // TODO: ABV should be displayed with a %
+  [[mockValueLabel expect] setText:@"5.3"];
+
+  // This should call refresh
+  self.vc.recipe = mockRecipe;
+
+  [mockRecipe verify];
+  [mockValueLabel verify];
+  XCTAssertTrue(self.vc.willAnimateNextRefresh);
+  XCTAssertEqualObjects(@"ABV", self.vc.descriptionLabel.text);
+}
+
+- (void)testRefresh_abv_animate
+{
+  self.vc.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+  self.vc.valueLabel = [[UICountingLabel alloc] initWithFrame:CGRectZero];
+  self.vc.metricToDisplay = OBMetricAbv;
+  self.vc.willAnimateNextRefresh = YES;
+
+  id mockRecipe = [self mockRecipe];
+  [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float) 5.3)] alcoholByVolume];
+
+  id mockValueLabel = [OCMockObject partialMockForObject:self.vc.valueLabel];
+  [[[mockValueLabel stub] andReturnValue:OCMOCK_VALUE((float) 6.89)] currentValue];
+  [[mockValueLabel expect] countFrom:6.89 to:5.3 withDuration:0.25];
+
+  // This will call refresh
+  self.vc.recipe = mockRecipe;
+
+  [mockRecipe verify];
+  [mockValueLabel verify];
+  XCTAssertTrue(self.vc.willAnimateNextRefresh);
+  XCTAssertEqualObjects(@"ABV", self.vc.descriptionLabel.text);
+  XCTAssertEqualObjects(@"%.1f", self.vc.valueLabel.format);
+}
+
+- (void)testRefresh_color_noAnimate
+{
+  self.vc.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+  self.vc.valueLabel = [[UICountingLabel alloc] initWithFrame:CGRectZero];
+  self.vc.colorView = [[OBColorView alloc] initWithFrame:CGRectZero];
+  self.vc.metricToDisplay = OBMetricColor;
+
+  // TODO: there's a selector called colorInSrm -> SRM should be all caps
+  id mockRecipe = [self mockRecipe];
+  [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float) 15)] colorInSRM];
+
+  // This should call refresh
+  self.vc.recipe = mockRecipe;
+
+  [mockRecipe verify];
+
+  XCTAssertTrue(self.vc.willAnimateNextRefresh);
+  XCTAssertTrue(self.vc.valueLabel.hidden);
+  XCTAssertFalse(self.vc.colorView.hidden);
+  XCTAssertEqualObjects(@"15 SRM", self.vc.descriptionLabel.text);
+  XCTAssertEqual(15, self.vc.colorView.colorInSrm);
+}
+
 
 @end

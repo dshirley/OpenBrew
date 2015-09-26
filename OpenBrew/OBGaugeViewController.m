@@ -12,44 +12,51 @@
 #import "OBRecipe.h"
 #import "OBKvoUtils.h"
 
-@interface OBGaugeViewController ()
-
-@end
-
 @implementation OBGaugeViewController
 
 - (void)refresh
 {
   NSString *value = nil;
   NSString *description = nil;
-  uint32_t srm = roundf([self.recipe colorInSRM]);
+  uint32_t srm = 0;
 
-  [self setColorInSrm:srm];
   if (self.metricToDisplay == OBMetricColor) {
     self.colorView.hidden = NO;
+    self.valueLabel.hidden = YES;
+    srm = roundf([self.recipe colorInSRM]);
+    [self setColorInSrm:srm];
   } else {
     self.colorView.hidden = YES;
+    self.valueLabel.hidden = NO;
   }
+
+  float startValue = self.valueLabel.currentValue;
+  float endValue = 0;
 
   switch (self.metricToDisplay) {
     case OBMetricOriginalGravity:
-      value = [NSString stringWithFormat:@"%.3f", [self.recipe originalGravity]];
+      endValue = [self.recipe originalGravity];
+      self.valueLabel.format = @"%.3f";
       description = @"Original gravity";
       break;
     case OBMetricFinalGravity:
-      value = [NSString stringWithFormat:@"%.3f", [self.recipe finalGravity]];
+      endValue = [self.recipe finalGravity];
+      self.valueLabel.format = @"%.3f";
       description = @"Final gravity";
       break;
     case OBMetricAbv:
-      value = [NSString stringWithFormat:@"%.1f%%", [self.recipe alcoholByVolume]];
+      endValue = [self.recipe alcoholByVolume];
+      self.valueLabel.format = @"%.1f";
       description = @"ABV";
       break;
     case OBMetricIbu:
-      value = [NSString stringWithFormat:@"%d", (int) roundf([self.recipe IBUs:self.ibuFormula])];
+      endValue = roundf([self.recipe IBUs:self.ibuFormula]);
+      self.valueLabel.format = @"%d";
       description = @"IBU";
       break;
     case OBMetricBuToGuRatio:
-      value = [NSString stringWithFormat:@"%.2f", [self.recipe bitternessToGravityRatio:self.ibuFormula]];
+      endValue = [self.recipe bitternessToGravityRatio:self.ibuFormula];
+      self.valueLabel.format = @"%.2f";
       description = @"BU:GU";
       break;
     case OBMetricColor:
@@ -62,8 +69,16 @@
                                             userInfo:@{ @"metric" : @(self.metricToDisplay) }]);
   }
 
-  self.valueLabel.text = value;
   self.descriptionLabel.text = description;
+
+  if (OBMetricColor != self.metricToDisplay) {
+    NSTimeInterval duration = self.willAnimateNextRefresh ? 0.25 : 0;
+
+    self.valueLabel.method = UILabelCountingMethodEaseOut;
+    [self.valueLabel countFrom:startValue to:endValue withDuration:duration];
+  }
+
+  self.willAnimateNextRefresh = YES;
 }
 
 - (void)setIbuFormula:(OBIbuFormula)ibuFormula
