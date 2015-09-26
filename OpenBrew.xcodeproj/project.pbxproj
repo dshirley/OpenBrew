@@ -733,8 +733,8 @@
 				C0AD2084356259E424B867BF /* Check Pods Manifest.lock */,
 				9F98D3511880F8ED00469323 /* Sources */,
 				9F98D3521880F8ED00469323 /* Frameworks */,
-				9FE6F3391BB2F49F006A13A2 /* Upload dSYM to Crittercism */,
 				9F98D3531880F8ED00469323 /* Resources */,
+				9FE6F3391BB2F49F006A13A2 /* Upload dSYM to Crittercism */,
 				256161998A953F0954ACB554 /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -776,6 +776,9 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = OpenBrew;
 				TargetAttributes = {
+					9F98D3541880F8ED00469323 = {
+						DevelopmentTeam = VEHZDQFN5M;
+					};
 					9F98D3741880F8EE00469323 = {
 						TestTargetID = 9F98D3541880F8ED00469323;
 					};
@@ -1152,6 +1155,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenBrew/OpenBrew-Prefix.pch";
@@ -1167,6 +1172,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobilebrewlab.mobilebrewlab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1178,6 +1184,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenBrew/OpenBrew-Prefix.pch";
@@ -1193,6 +1201,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobilebrewlab.mobilebrewlab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
