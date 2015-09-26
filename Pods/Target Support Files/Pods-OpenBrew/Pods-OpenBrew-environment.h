@@ -18,3 +18,9 @@
 #define COCOAPODS_VERSION_MINOR_GoogleAnalytics 12
 #define COCOAPODS_VERSION_PATCH_GoogleAnalytics 0
 
+// UICountingLabel
+#define COCOAPODS_POD_AVAILABLE_UICountingLabel
+#define COCOAPODS_VERSION_MAJOR_UICountingLabel 1
+#define COCOAPODS_VERSION_MINOR_UICountingLabel 2
+#define COCOAPODS_VERSION_PATCH_UICountingLabel 0
+
