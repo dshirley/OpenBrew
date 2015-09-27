@@ -13,6 +13,12 @@
 #import "OBRecipeViewController.h"
 #import <OCMock/OCMock.h>
 #import "OBAppDelegate.h"
+#import "OBRecipeListTableViewDataSource.h"
+
+// It's easier to test this
+@interface OBRecipeListViewController(Test)
+- (void)recipeWasDeleted;
+@end
 
 @interface OBRecipeListViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBRecipeListViewController *vc;
@@ -42,6 +48,12 @@
 
   XCTAssertFalse(self.vc.firstInteractionComplete);
   XCTAssertEqualWithAccuracy(CFAbsoluteTimeGetCurrent(), self.vc.loadTime, 0.5);
+
+
+  OBRecipeListTableViewDataSource *dataSource = self.vc.tableView.dataSource;
+  XCTAssertNotNil(dataSource);
+  XCTAssertEqual(OBRecipeListTableViewDataSource.class, dataSource.class);
+  XCTAssertNotNil(dataSource.rowDeletedCallback);
 }
 
 - (void)testViewWillAppear
@@ -61,107 +73,35 @@
 
 - (void)testShowAndRemovePlaceholderView
 {
-  [self.vc loadView];
+  (void)self.vc.view;
 
   NSArray *recipes = [self fetchAllEntity:@"Recipe"];
+
   XCTAssertEqual(1, recipes.count);
+  XCTAssertEqual(1, [self.vc.tableView numberOfRowsInSection:0]);
 
   XCTAssertNotNil(self.vc.placeholderView);
   XCTAssertTrue(self.vc.placeholderView.hidden);
   XCTAssertFalse(self.vc.tableView.hidden);
 
-  [self.vc tableView:self.vc.tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:self.r0s0];
+  OBRecipeListTableViewDataSource *dataSource = (id)self.vc.tableView.dataSource;
+  [dataSource tableView:self.vc.tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:self.r0s0];
 
   XCTAssertNotNil(self.vc.placeholderView);
   XCTAssertFalse(self.vc.placeholderView.hidden);
   XCTAssertTrue(self.vc.tableView.hidden);
 
   (void)[[OBRecipe alloc] initWithContext:self.ctx];
+
+  NSError *error = nil;
+  [self.ctx save:&error];
+  XCTAssertNil(error);
+  
   [self.vc viewWillAppear:NO];
 
   XCTAssertNotNil(self.vc.placeholderView);
   XCTAssertTrue(self.vc.placeholderView.hidden);
   XCTAssertFalse(self.vc.tableView.hidden);
-}
-
-- (void)testTableViewNumberOfRowsInSection
-{
-  [self.vc loadView];
-
-  // One recipe is created by the OBBaseTestCase
-  XCTAssertEqual(1, [self.vc tableView:nil numberOfRowsInSection:0]);
-
-  [[OBRecipe alloc] initWithContext:self.ctx].name = @"A";
-  [[OBRecipe alloc] initWithContext:self.ctx].name = @"B";
-
-  XCTAssertEqual(3, [self.vc tableView:nil numberOfRowsInSection:0]);
-}
-
-- (void)testDeleteRecipe
-{
-  id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] switchToEmptyTableViewMode];
-
-  [self.vc loadView];
-
-  // Set up some keys to be observed
-  [self addMalt:@"Crystal 60" quantity:5.0];
-  [self addHops:@"Admiral" quantity:1.0 aaPercent:8.0 boilTime:60];
-  [self addYeast:@"WLP001"];
-
-  [self.vc tableView:self.vc.tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:self.r0s0];
-  
-  XCTAssertEqual(0, [self.vc tableView:nil numberOfRowsInSection:0]);
-  XCTAssertEqual(0, [self fetchAllEntity:@"Recipe"].count);
-  XCTAssertNil(self.recipe.managedObjectContext);
-
-  [mockVc verify];
-}
-
-// Make sure the "no recipes" view does not get displayed
-- (void)testDeleteOneOfTwoRecipes
-{
-  OBRecipe *testRecipe = [[OBRecipe alloc] initWithContext:self.ctx];
-  testRecipe.name = @"testDeleteOneOfTwoRecipes Recipe";
-
-  id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] switchToEmptyTableViewMode];
-
-  [self.vc loadView];
-
-  [self.vc tableView:self.vc.tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:self.r1s0];
-
-  XCTAssertEqual(1, [self.vc tableView:nil numberOfRowsInSection:0]);
-  XCTAssertEqual(1, [self fetchAllEntity:@"Recipe"].count);
-  XCTAssertEqual(self.ctx, self.recipe.managedObjectContext);
-  XCTAssertNil(testRecipe.managedObjectContext);
-
-  XCTAssertThrows([mockVc verify]);
-}
-
-- (void)testCellForRowAtIndexPath
-{
-  // Deliberately generate the recipes in an odd order.
-  // They should be in sorted order when we look at the rows
-  [[OBRecipe alloc] initWithContext:self.ctx].name = @"B";
-  [[OBRecipe alloc] initWithContext:self.ctx].name = @"C";
-  [[OBRecipe alloc] initWithContext:self.ctx].name = @"A";
-  self.recipe.name = @"D";
-
-  [self.vc loadView];
-
-  UITableViewCell *cell = nil;
-  cell = [self.vc tableView:self.vc.tableView cellForRowAtIndexPath:self.r0s0];
-  XCTAssertEqualObjects(cell.textLabel.text, @"A");
-
-  cell = [self.vc tableView:self.vc.tableView cellForRowAtIndexPath:self.r1s0];
-  XCTAssertEqualObjects(cell.textLabel.text, @"B");
-
-  cell = [self.vc tableView:self.vc.tableView cellForRowAtIndexPath:self.r2s0];
-  XCTAssertEqualObjects(cell.textLabel.text, @"C");
-
-  cell = [self.vc tableView:self.vc.tableView cellForRowAtIndexPath:self.r3s0];
-  XCTAssertEqualObjects(cell.textLabel.text, @"D");
 }
 
 - (void)testPrepareForSegue_AddRecipe
@@ -190,7 +130,7 @@
 
 - (void)testPrepareForSegue_SelectRecipe
 {
-  [self.vc loadView];
+  (void)self.vc.view;
 
   OBRecipeViewController *dest = [[OBRecipeViewController alloc] init];
   UIStoryboardSegue *segue = [[UIStoryboardSegue alloc] initWithIdentifier:@"selectRecipe" source:self.vc destination:dest];

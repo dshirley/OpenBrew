@@ -11,7 +11,7 @@
 #import "GAITrackedViewController.h"
 #import "OBPlaceholderView.h"
 
-@interface OBRecipeListViewController : GAITrackedViewController <UITableViewDataSource>
+@interface OBRecipeListViewController : GAITrackedViewController
 
 @property (nonatomic) OBSettings *settings;
 
@@ -21,12 +21,6 @@
 @property (nonatomic) NSManagedObjectContext *moc;
 @property (nonatomic, readonly, assign) BOOL firstInteractionComplete;
 @property (nonatomic, readonly, assign) CFAbsoluteTime loadTime;
-
-#pragma mark - UITableViewDataSource methods
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 - (void)switchToEmptyTableViewMode;
 

@@ -12,6 +12,7 @@
 #import "Crittercism+NSErrorLogging.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
+#import "OBRecipeListTableViewDataSource.h"
 
 // Google Analytics constants
 static NSString *const OBGAScreenName = @"Recipe List Screen";
@@ -20,6 +21,8 @@ static NSString *const ADD_RECIPE_SEGUE = @"addRecipe";
 static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
 @interface OBRecipeListViewController ()
+
+@property (nonatomic) OBRecipeListTableViewDataSource *recipeListDataSource;
 
 // Variables for tracking first interaction time with Google Analytics
 @property (nonatomic, assign) CFAbsoluteTime loadTime;
@@ -35,6 +38,16 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+
+  id weakself = self;
+
+  self.recipeListDataSource = [[OBRecipeListTableViewDataSource alloc] initWithTableView:self.tableView
+                                                                    managedObjectContext:self.moc];
+  self.recipeListDataSource.rowDeletedCallback = ^() {
+    [weakself recipeWasDeleted];
+  };
+
+  self.tableView.dataSource = self.recipeListDataSource;
 
   self.placeholderView.messageLabel.text = @"No Recipes";
   self.placeholderView.instructionsLabel.text = @"Tap the '+' button to create a recipe.";
@@ -85,12 +98,14 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
     [self.moc save:&err];
     CRITTERCISM_LOG_ERROR(err);
 
+    NSAssert(recipe, @"Unable to create recipe");
+
   } else if ([segueId isEqualToString:SELECT_RECIPE_SEGUE]) {
     NSIndexPath *cellIndex = [self.tableView indexPathForCell:sender];
-    recipe = [self recipeData][cellIndex.row];
+    recipe = [self.recipeListDataSource.fetchedResultsController objectAtIndexPath:cellIndex];
+    NSAssert(recipe, @"Recipe was nil for cell %@", cellIndex);
   }
 
-  assert(recipe);
   id nextController = [segue destinationViewController];
   [nextController setRecipe:recipe];
   [nextController setSettings:self.settings];
@@ -101,7 +116,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
 - (BOOL)tableViewIsEmpty
 {
-  return ([self recipeData].count == 0);
+  return 0 == [self.recipeListDataSource.fetchedResultsController.sections[0] numberOfObjects];
 }
 
 // Changes the look and feel to have placeholder text that makes it clear
@@ -119,74 +134,17 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   self.tableView.hidden = NO;
 }
 
-- (NSArray *)recipeData
+- (void)recipeWasDeleted
 {
-  NSEntityDescription *entityDescription = [NSEntityDescription
-                                            entityForName:@"Recipe"
-                                            inManagedObjectContext:self.moc];
-
-  NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  [request setEntity:entityDescription];
-
-  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name"
-                                                                 ascending:YES];
-
-  [request setSortDescriptors:@[sortDescriptor]];
-
-  NSError *error = nil;
-  NSArray *array = [self.moc executeFetchRequest:request error:&error];
-
-  if (error) {
-    CRITTERCISM_LOG_ERROR(error);
-    array = [NSArray array];
+  if ([self tableViewIsEmpty]) {
+    [self switchToEmptyTableViewMode];
   }
 
-  return array;
-}
-
-#pragma mark - UITableViewDataSource Methods
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-  return [[self recipeData] count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OBRecipeCell"
-                                                          forIndexPath:indexPath];
-
-  NSArray *recipes = [self recipeData];
-  OBRecipe *recipe = recipes[indexPath.row];
-
-  cell.textLabel.text = [NSString stringWithFormat:@"%@", recipe.name];
-  
-  return cell;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  if (editingStyle == UITableViewCellEditingStyleDelete) {
-    OBRecipe *recipeToRemove = [self recipeData][indexPath.row];
-    [self.moc deleteObject:recipeToRemove];
-
-    [tableView deleteRowsAtIndexPaths:@[indexPath]
-                     withRowAnimation:UITableViewRowAnimationAutomatic];
-
-    NSError *error = nil;
-    [self.moc save:&error];
-    CRITTERCISM_LOG_ERROR(error);
-
-    if ([self tableViewIsEmpty]) {
-      [self switchToEmptyTableViewMode];
-    }
-
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
-                                                          action:@"Delete"
-                                                           label:nil
-                                                           value:nil] build]];
-  }
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
+                                                        action:@"Delete"
+                                                         label:nil
+                                                         value:nil] build]];
 }
 
 @end
