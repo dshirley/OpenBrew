@@ -70,7 +70,7 @@
   XCTAssertEqual(OBMetricAbv, vc.metricToDisplay);
   XCTAssertEqual(self.recipe, vc.recipe);
 
-  XCTAssertEqualObjects(@"0.0%", vc.valueLabel.text);
+  XCTAssertEqualObjects(@"0.0", vc.valueLabel.text);
   XCTAssertEqualObjects(@"ABV", vc.descriptionLabel.text);
 }
 

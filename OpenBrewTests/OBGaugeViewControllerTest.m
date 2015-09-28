@@ -41,42 +41,6 @@
   XCTAssertEqual(self.recipe, self.vc.recipe);
 }
 
-- (void)testSetIbuFormula
-{
-  id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] refresh];
-
-  self.vc.ibuFormula = OBIbuFormulaRager;
-
-  [mockVc verify];
-
-  XCTAssertEqual(self.vc.ibuFormula, OBIbuFormulaRager);
-}
-
-- (void)testSetRecipe
-{
-  id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] refresh];
-
-  self.vc.recipe = self.recipe;
-
-  [mockVc verify];
-
-  XCTAssertEqual(self.vc.recipe, self.recipe);
-}
-
-- (void)testSetMetricToDisplay
-{
-  id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] refresh];
-
-  self.vc.metricToDisplay = OBMetricFinalGravity;
-
-  [mockVc verify];
-
-  XCTAssertEqual(self.vc.metricToDisplay, OBMetricFinalGravity);
-}
-
 - (void)testKvo_onMaltAddition
 {
   for (int i = 0; i < OBMetricNumberOfMetrics; i++) {
@@ -331,8 +295,8 @@
   id mockValueLabel = [OCMockObject partialMockForObject:self.vc.valueLabel];
   [[mockValueLabel expect] setText:@"1.050"];
 
-  // This should call refresh
   self.vc.recipe = mockRecipe;
+  [self.vc refresh];
 
   [mockRecipe verify];
   [mockValueLabel verify];
@@ -354,8 +318,8 @@
   [[[mockValueLabel stub] andReturnValue:OCMOCK_VALUE((float) 1.050)] currentValue];
   [[mockValueLabel expect] countFrom:1.050 to:1.060 withDuration:0.25];
 
-  // This will call refresh
   self.vc.recipe = mockRecipe;
+  [self.vc refresh];
 
   [mockRecipe verify];
   [mockValueLabel verify];
@@ -377,8 +341,8 @@
   id mockValueLabel = [OCMockObject partialMockForObject:self.vc.valueLabel];
   [[mockValueLabel expect] setText:@"1.005"];
 
-  // This should call refresh
   self.vc.recipe = mockRecipe;
+  [self.vc refresh];
 
   [mockRecipe verify];
   [mockValueLabel verify];
@@ -400,8 +364,8 @@
   [[[mockValueLabel stub] andReturnValue:OCMOCK_VALUE((float) 1.010)] currentValue];
   [[mockValueLabel expect] countFrom:1.010 to:1.005 withDuration:0.25];
 
-  // This will call refresh
   self.vc.recipe = mockRecipe;
+  [self.vc refresh];
 
   [mockRecipe verify];
   [mockValueLabel verify];
@@ -425,8 +389,8 @@
   // TODO: ABV should be displayed with a %
   [[mockValueLabel expect] setText:@"5.3"];
 
-  // This should call refresh
   self.vc.recipe = mockRecipe;
+  [self.vc refresh];
 
   [mockRecipe verify];
   [mockValueLabel verify];
@@ -448,8 +412,8 @@
   [[[mockValueLabel stub] andReturnValue:OCMOCK_VALUE((float) 6.89)] currentValue];
   [[mockValueLabel expect] countFrom:6.89 to:5.3 withDuration:0.25];
 
-  // This will call refresh
   self.vc.recipe = mockRecipe;
+  [self.vc refresh];
 
   [mockRecipe verify];
   [mockValueLabel verify];
@@ -469,8 +433,8 @@
   id mockRecipe = [self mockRecipe];
   [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float) 15)] colorInSRM];
 
-  // This should call refresh
   self.vc.recipe = mockRecipe;
+  [self.vc refresh];
 
   [mockRecipe verify];
 

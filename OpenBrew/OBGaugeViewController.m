@@ -81,12 +81,6 @@
   self.willAnimateNextRefresh = YES;
 }
 
-- (void)setIbuFormula:(OBIbuFormula)ibuFormula
-{
-  _ibuFormula = ibuFormula;
-  [self refresh];
-}
-
 - (void)dealloc
 {
   self.recipe = nil;
@@ -105,14 +99,6 @@
   [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs:) options:0 context:nil];
   [_recipe addObserver:self forKeyPath:KVO_KEY(postBoilVolumeInGallons) options:0 context:nil];
   [_recipe addObserver:self forKeyPath:KVO_KEY(preBoilVolumeInGallons) options:0 context:nil];
-
-  [self refresh];
-}
-
-- (void)setMetricToDisplay:(OBGaugeMetric)metricToDisplay
-{
-  _metricToDisplay = metricToDisplay;
-  [self refresh];
 }
 
 - (void)setColorInSrm:(uint32_t)srm
