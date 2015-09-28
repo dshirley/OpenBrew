@@ -21,6 +21,11 @@
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Malt Addition Screen";
 
+@interface OBMaltAdditionViewController()
+@property (strong, nonatomic) IBOutlet UISegmentedControl *ingredientMetricSegmentedControl;
+@end
+
+
 @implementation OBMaltAdditionViewController
 
 - (void)viewDidLoad
@@ -35,6 +40,7 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   UIPageViewController *pageViewController = (id)self.childViewControllers[0];
   self.pageViewControllerDataSource =
     [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe
+                                                       settings:self.settings
                                                 displayMetrics:@[ @(OBMetricOriginalGravity), @(OBMetricColor) ]];
 
   pageViewController.dataSource = self.pageViewControllerDataSource;
@@ -52,6 +58,25 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
   [button addTarget:self action:@selector(showSettingsView:) forControlEvents:UIControlEventTouchUpInside];
   [self.infoButton setCustomView:button];
+
+  OBSettings *settings = self.settings;
+  self.ingredientMetricSettingController =
+    [[OBSegmentedController alloc] initWithSegmentedControl:self.ingredientMetricSegmentedControl
+                                      googleAnalyticsAction:@"Malt Primary Metric"];
+
+  [self.ingredientMetricSettingController addSegment:@"Weight" actionWhenSelected:^(void) {
+    settings.maltAdditionDisplayMetric = @(OBMaltAdditionMetricWeight);
+  }];
+
+  [self.ingredientMetricSettingController addSegment:@"%" actionWhenSelected:^(void) {
+    settings.maltAdditionDisplayMetric = @(OBMaltAdditionMetricPercentOfGravity);
+  }];
+
+  if (OBMaltAdditionMetricPercentOfGravity == [self.settings.maltAdditionDisplayMetric integerValue]) {
+    self.ingredientMetricSegmentedControl.selectedSegmentIndex = 1;
+  } else {
+    self.ingredientMetricSegmentedControl.selectedSegmentIndex = 0;
+  }
 }
 
 - (void)viewWillAppear:(BOOL)animated

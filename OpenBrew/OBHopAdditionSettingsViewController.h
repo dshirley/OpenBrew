@@ -15,6 +15,6 @@
 
 @property (nonatomic) OBSettings *settings;
 
-@property (nonatomic, readonly) OBSegmentedController *ingredientDisplaySettingController;
+@property (nonatomic, readonly) OBSegmentedController *ibuFormulaSettingController;
 
 @end

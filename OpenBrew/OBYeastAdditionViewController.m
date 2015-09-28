@@ -40,6 +40,7 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
   UIPageViewController *pageViewController = (id)self.childViewControllers[0];
   self.pageViewControllerDataSource =
     [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe
+                                                       settings:self.settings
                                                  displayMetrics:@[ @(OBMetricAbv), @(OBMetricFinalGravity) ]];
 
   pageViewController.dataSource = self.pageViewControllerDataSource;

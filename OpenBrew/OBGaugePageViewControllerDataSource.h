@@ -7,15 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OBRecipe.h"
+#import "OBSettings.h"
 
-@class OBRecipe, OBGaugeViewController;
+@class OBGaugeViewController;
 
 @interface OBGaugePageViewControllerDataSource : NSObject <UIPageViewControllerDataSource>
 
+@property (nonatomic, readonly) OBSettings *settings;
 @property (nonatomic, readonly) OBRecipe *recipe;
 @property (nonatomic, readonly) NSArray *metrics;
 
-- (instancetype)initWithRecipe:(OBRecipe *)recipe displayMetrics:(NSArray *)metrics;
+- (instancetype)initWithRecipe:(OBRecipe *)recipe settings:(OBSettings *)settings displayMetrics:(NSArray *)metrics;
 
 - (OBGaugeViewController *)pageViewController:(UIPageViewController *)pageViewController
                         viewControllerAtIndex:(NSInteger)index;

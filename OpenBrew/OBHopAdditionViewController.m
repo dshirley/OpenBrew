@@ -21,6 +21,12 @@
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Hop Addition Screen";
 
+@interface OBHopAdditionViewController()
+
+@property (nonatomic) IBOutlet UISegmentedControl *ingredientMetricSegmentedControl;
+
+@end
+
 @implementation OBHopAdditionViewController
 
 - (void)viewDidLoad
@@ -35,6 +41,7 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   UIPageViewController *pageViewController = (id)self.childViewControllers[0];
   self.pageViewControllerDataSource =
     [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe
+                                                       settings:self.settings
                                                  displayMetrics:@[ @(OBMetricIbu), @(OBMetricBuToGuRatio) ]];
 
   pageViewController.dataSource = self.pageViewControllerDataSource;
@@ -47,10 +54,30 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   self.tableView.dataSource = self.tableViewDelegate;
 
   self.tableViewDelegate.hopAdditionMetricToDisplay = (OBHopAdditionMetric)[self.settings.hopAdditionDisplayMetric integerValue];
+  self.tableViewDelegate.ibuFormula = (OBIbuFormula)[self.settings.ibuFormula integerValue];
 
   UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
   [button addTarget:self action:@selector(showSettingsView:) forControlEvents:UIControlEventTouchUpInside];
   [self.infoButton setCustomView:button];
+
+  OBSettings *settings = self.settings;
+  self.ingredientDisplaySettingController =
+  [[OBSegmentedController alloc] initWithSegmentedControl:self.ingredientMetricSegmentedControl
+                                    googleAnalyticsAction:@"Hop Primary Metric"];
+
+  [self.ingredientDisplaySettingController addSegment:@"Weight" actionWhenSelected:^(void) {
+    settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricWeight);
+  }];
+
+  [self.ingredientDisplaySettingController addSegment:@"IBU" actionWhenSelected:^(void) {
+    settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);
+  }];
+
+  if (OBHopAdditionMetricIbu == [settings.hopAdditionDisplayMetric integerValue]) {
+    self.ingredientMetricSegmentedControl.selectedSegmentIndex = 1;
+  } else {
+    self.ingredientMetricSegmentedControl.selectedSegmentIndex = 0;
+  }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -119,11 +146,13 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 {
   [_settings removeObserver:self forKeyPath:KVO_KEY(hopAdditionDisplayMetric)];
   [_settings removeObserver:self forKeyPath:KVO_KEY(hopQuantityUnits)];
+  [_settings removeObserver:self forKeyPath:KVO_KEY(ibuFormula)];
 
   _settings = settings;
 
   [_settings addObserver:self forKeyPath:KVO_KEY(hopAdditionDisplayMetric) options:0 context:nil];
   [_settings addObserver:self forKeyPath:KVO_KEY(hopQuantityUnits) options:0 context:nil];
+  [_settings addObserver:self forKeyPath:KVO_KEY(ibuFormula) options:0 context:nil];
 }
 
 - (void)dealloc
@@ -149,6 +178,10 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   else if ([keyPath isEqualToString:KVO_KEY(hopAdditionDisplayMetric)])
   {
     self.tableViewDelegate.hopAdditionMetricToDisplay = [self.settings.hopAdditionDisplayMetric integerValue];
+  }
+  else if ([keyPath isEqualToString:KVO_KEY(ibuFormula)])
+  {
+    self.tableViewDelegate.ibuFormula = [self.settings.ibuFormula integerValue];
   }
   else if ([keyPath isEqualToString:KVO_KEY(hopQuantityUnits)])
   {

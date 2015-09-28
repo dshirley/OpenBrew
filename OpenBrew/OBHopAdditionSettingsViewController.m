@@ -10,6 +10,7 @@
 #import "OBSettings.h"
 #import "OBSegmentedController.h"
 #import "OBKvoUtils.h"
+#import "OBHopAddition.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Hop Addition Settings";
@@ -18,10 +19,10 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
 
 @property (nonatomic) IBOutlet UISegmentedControl *unitsSegmentedControl;
 
-@property (nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
+@property (nonatomic) IBOutlet UISegmentedControl *ibuFormulaSegmentedControl;
 
 @property (nonatomic) OBSegmentedController *unitsSettingController;
-@property (nonatomic) OBSegmentedController *ingredientDisplaySettingController;
+@property (nonatomic) OBSegmentedController *ibuFormulaSettingController;
 
 @end
 
@@ -55,22 +56,22 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
     self.unitsSegmentedControl.selectedSegmentIndex = 1;
   }
 
-  self.ingredientDisplaySettingController =
-    [[OBSegmentedController alloc] initWithSegmentedControl:self.ingredientDisplaySettingSegmentedControl
-                                              googleAnalyticsAction:@"Hop Primary Metric"];
+  self.ibuFormulaSettingController =
+    [[OBSegmentedController alloc] initWithSegmentedControl:self.ibuFormulaSegmentedControl
+                                      googleAnalyticsAction:@"IBU Formula"];
 
-  [self.ingredientDisplaySettingController addSegment:@"Weight" actionWhenSelected:^(void) {
-    settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricWeight);
+  [self.ibuFormulaSettingController addSegment:@"Tinseth" actionWhenSelected:^(void) {
+    settings.ibuFormula = @(OBIbuFormulaTinseth);
   }];
 
-  [self.ingredientDisplaySettingController addSegment:@"IBU" actionWhenSelected:^(void) {
-    settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);
+  [self.ibuFormulaSettingController addSegment:@"Rager" actionWhenSelected:^(void) {
+    settings.ibuFormula = @(OBIbuFormulaRager);
   }];
 
-  if (OBHopAdditionMetricIbu == [settings.hopAdditionDisplayMetric integerValue]) {
-    self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = 1;
+  if (OBIbuFormulaRager == [settings.ibuFormula integerValue]) {
+    self.ibuFormulaSegmentedControl.selectedSegmentIndex = 1;
   } else {
-    self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = 0;
+    self.ibuFormulaSegmentedControl.selectedSegmentIndex = 0;
   }
 }
 

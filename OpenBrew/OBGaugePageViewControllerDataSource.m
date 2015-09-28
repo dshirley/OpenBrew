@@ -8,21 +8,22 @@
 
 #import "OBGaugePageViewControllerDataSource.h"
 #import "OBGaugeViewController.h"
-#import "OBRecipe.h"
 
 @interface OBGaugePageViewControllerDataSource ()
 @property (nonatomic) OBRecipe *recipe;
+@property (nonatomic) OBSettings *settings;
 @property (nonatomic) NSArray *metrics;
 @end
 
 @implementation OBGaugePageViewControllerDataSource
 
-- (instancetype)initWithRecipe:(OBRecipe *)recipe displayMetrics:(NSArray *)metrics
+- (instancetype)initWithRecipe:(OBRecipe *)recipe settings:(OBSettings *)settings displayMetrics:(NSArray *)metrics;
 {
   self = [super init];
 
   if (self) {
     self.recipe = recipe;
+    self.settings = settings;
     self.metrics = metrics;
   }
 
@@ -70,6 +71,7 @@
 
   gaugeViewController.metricToDisplay = metric;
   gaugeViewController.recipe = self.recipe;
+  gaugeViewController.settings = self.settings;
   [gaugeViewController refresh];
 
   return gaugeViewController;
