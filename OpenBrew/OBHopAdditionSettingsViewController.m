@@ -8,21 +8,21 @@
 
 #import "OBHopAdditionSettingsViewController.h"
 #import "OBSettings.h"
-#import "OBSegmentedController.h"
 #import "OBKvoUtils.h"
 #import "OBHopAddition.h"
+#import "OBHopWeightSegmentedControlDelegate.h"
+#import "OBIbuFormulaSegmentedControlDelegate.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Hop Addition Settings";
 
 @interface OBHopAdditionSettingsViewController ()
 
-@property (nonatomic) IBOutlet UISegmentedControl *unitsSegmentedControl;
+@property (nonatomic) IBOutlet OBSegmentedControl *unitsSegmentedControl;
+@property (nonatomic) OBHopWeightSegmentedControlDelegate *unitsSegmentedControlDelegate;
 
-@property (nonatomic) IBOutlet UISegmentedControl *ibuFormulaSegmentedControl;
-
-@property (nonatomic) OBSegmentedController *unitsSettingController;
-@property (nonatomic) OBSegmentedController *ibuFormulaSettingController;
+@property (nonatomic) IBOutlet OBSegmentedControl *ibuFormulaSegmentedControl;
+@property (nonatomic) OBIbuFormulaSegmentedControlDelegate *ibuFormulatSegmentedControlDelegate;
 
 @end
 
@@ -30,49 +30,19 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
 
 #pragma mark UIViewController overrides
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidLoad
 {
-  [super viewWillAppear:animated];
+  [super viewDidLoad];
+
+  self.unitsSegmentedControlDelegate = [[OBHopWeightSegmentedControlDelegate alloc] initWithSettings:self.settings];
+  self.unitsSegmentedControl.gaCategory = OBGAScreenName;
+  self.unitsSegmentedControl.delegate = self.unitsSegmentedControlDelegate;
+
+  self.ibuFormulatSegmentedControlDelegate = [[OBIbuFormulaSegmentedControlDelegate alloc] initWithSettings:self.settings];
+  self.ibuFormulaSegmentedControl.gaCategory = OBGAScreenName;
+  self.ibuFormulaSegmentedControl.delegate = self.ibuFormulatSegmentedControlDelegate;
 
   self.screenName = OBGAScreenName;
-
-  OBSettings *settings = self.settings;
-
-  self.unitsSettingController = [[OBSegmentedController alloc]
-                                 initWithSegmentedControl:self.unitsSegmentedControl
-                                 googleAnalyticsAction:@"Hop Units"];
-
-  [self.unitsSettingController addSegment:@"Ounces" actionWhenSelected:^(void) {
-    settings.hopQuantityUnits = @(OBHopQuantityUnitsImperial);
-  }];
-
-  [self.unitsSettingController addSegment:@"Grams" actionWhenSelected:^(void) {
-    settings.hopQuantityUnits = @(OBHopQuantityUnitsMetric);
-  }];
-
-  if (OBHopQuantityUnitsImperial == [settings.hopQuantityUnits integerValue]) {
-    self.unitsSegmentedControl.selectedSegmentIndex = 0;
-  } else {
-    self.unitsSegmentedControl.selectedSegmentIndex = 1;
-  }
-
-  self.ibuFormulaSettingController =
-    [[OBSegmentedController alloc] initWithSegmentedControl:self.ibuFormulaSegmentedControl
-                                      googleAnalyticsAction:@"IBU Formula"];
-
-  [self.ibuFormulaSettingController addSegment:@"Tinseth" actionWhenSelected:^(void) {
-    settings.ibuFormula = @(OBIbuFormulaTinseth);
-  }];
-
-  [self.ibuFormulaSettingController addSegment:@"Rager" actionWhenSelected:^(void) {
-    settings.ibuFormula = @(OBIbuFormulaRager);
-  }];
-
-  if (OBIbuFormulaRager == [settings.ibuFormula integerValue]) {
-    self.ibuFormulaSegmentedControl.selectedSegmentIndex = 1;
-  } else {
-    self.ibuFormulaSegmentedControl.selectedSegmentIndex = 0;
-  }
 }
 
 #pragma mark Actions

@@ -27,7 +27,7 @@
   self.vc.settings = self.settings;
 }
 
-- (void)testWillAppear
+- (void)testViewWillAppear
 {
   self.settings.hopGaugeDisplayMetric = @(OBMetricBuToGuRatio);
   self.settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);

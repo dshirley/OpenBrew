@@ -15,17 +15,16 @@
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "OBYeastTableViewCell.h"
-#import "OBSegmentedController.h"
 #import "OBSettings.h"
+#import "OBYeastManufacturerSegmentedControlDelegate.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Yeast Addition Screen";
 
 @interface OBYeastAdditionViewController ()
 
-@property (nonatomic) OBSegmentedController *segmentedController;
-
 @property (nonatomic) NSFetchedResultsController *fetchedResults;
+@property (nonatomic) OBYeastManufacturerSegmentedControlDelegate *segmentedControlDelegate;
 
 @end
 
@@ -47,22 +46,9 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
 
   NSAssert(self.settings, @"Settings were nil");
 
-  self.segmentedController = [[OBSegmentedController alloc] initWithSegmentedControl:self.segmentedControl
-                                                               googleAnalyticsAction:@"Yeast Filter"];
-
-  OBYeastAdditionViewController *weakSelf = self;
-
-  [self.segmentedController addSegment:@"White Labs" actionWhenSelected:^(void) {
-    weakSelf.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
-    [weakSelf reloadTableSelectedManufacturer:OBYeastManufacturerWhiteLabs
-                         scrollToSelectedItem:NO];
-  }];
-
-  [self.segmentedController addSegment:@"Wyeast" actionWhenSelected:^(void) {
-    weakSelf.settings.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
-    [weakSelf reloadTableSelectedManufacturer:OBYeastManufacturerWyeast
-                         scrollToSelectedItem:NO];
-  }];
+  self.segmentedControlDelegate = [[OBYeastManufacturerSegmentedControlDelegate alloc] initWithSettings:self.settings];
+  self.segmentedControl.gaCategory = OBGAScreenName;
+  self.segmentedControl.delegate = self.segmentedControlDelegate;
 
   OBYeastManufacturer startingManufacturer = NSNotFound;
   if (self.recipe.yeast) {
@@ -72,13 +58,14 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
   }
 
   // Selected segment index is in the order in which we add them above
+  // FIXME FIXME FIXME
   if (OBYeastManufacturerWyeast == startingManufacturer) {
     self.segmentedControl.selectedSegmentIndex = 1;
   } else {
     self.segmentedControl.selectedSegmentIndex = 0;
   }
 
-  [weakSelf reloadTableSelectedManufacturer:startingManufacturer scrollToSelectedItem:YES];
+  [self reloadTableSelectedManufacturer:startingManufacturer scrollToSelectedItem:YES];
 }
 
 // Query the CoreData store to get all of the ingredient data

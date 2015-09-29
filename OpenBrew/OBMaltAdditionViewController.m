@@ -17,12 +17,13 @@
 #import "OBIngredientTableViewDataSource.h"
 #import "OBSrmColorTable.h"
 #import "OBMaltAdditionSettingsViewController.h"
+#import "OBMaltDisplayMetricSegmentedControlDelegate.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Malt Addition Screen";
 
 @interface OBMaltAdditionViewController()
-@property (strong, nonatomic) IBOutlet UISegmentedControl *ingredientMetricSegmentedControl;
+@property (nonatomic) OBMaltDisplayMetricSegmentedControlDelegate *ingredientMetricSegmentedControlDelegate;
 @end
 
 
@@ -59,24 +60,9 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   [button addTarget:self action:@selector(showSettingsView:) forControlEvents:UIControlEventTouchUpInside];
   [self.infoButton setCustomView:button];
 
-  OBSettings *settings = self.settings;
-  self.ingredientMetricSettingController =
-    [[OBSegmentedController alloc] initWithSegmentedControl:self.ingredientMetricSegmentedControl
-                                      googleAnalyticsAction:@"Malt Primary Metric"];
-
-  [self.ingredientMetricSettingController addSegment:@"Weight" actionWhenSelected:^(void) {
-    settings.maltAdditionDisplayMetric = @(OBMaltAdditionMetricWeight);
-  }];
-
-  [self.ingredientMetricSettingController addSegment:@"%" actionWhenSelected:^(void) {
-    settings.maltAdditionDisplayMetric = @(OBMaltAdditionMetricPercentOfGravity);
-  }];
-
-  if (OBMaltAdditionMetricPercentOfGravity == [self.settings.maltAdditionDisplayMetric integerValue]) {
-    self.ingredientMetricSegmentedControl.selectedSegmentIndex = 1;
-  } else {
-    self.ingredientMetricSegmentedControl.selectedSegmentIndex = 0;
-  }
+  self.ingredientMetricSegmentedControlDelegate = [[OBMaltDisplayMetricSegmentedControlDelegate alloc] initWithSettings:self.settings];
+  self.ingredientMetricSegmentedControl.gaCategory = OBGAScreenName;
+  self.ingredientMetricSegmentedControl.delegate = self.ingredientMetricSegmentedControlDelegate;
 }
 
 - (void)viewWillAppear:(BOOL)animated

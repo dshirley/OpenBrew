@@ -19,10 +19,16 @@
 		9F08154719970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F08154619970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m */; };
 		9F08154A1997147C00E5E575 /* OBMaltColorPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0815491997147C00E5E575 /* OBMaltColorPickerDelegate.m */; };
 		9F0820DF1BA0A0AF0026B296 /* OBYeastAdditionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0820DE1BA0A0AF0026B296 /* OBYeastAdditionTest.m */; settings = {ASSET_TAGS = (); }; };
+		9F107DF01BBA1D5200364A32 /* OBSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F107DEF1BBA1D5200364A32 /* OBSegmentedControl.m */; settings = {ASSET_TAGS = (); }; };
+		9F107DF41BBAD03300364A32 /* OBHopWeightSegmentedControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F107DF31BBAD03300364A32 /* OBHopWeightSegmentedControlDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		9F107DF71BBAD34100364A32 /* OBIbuFormulaSegmentedControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F107DF61BBAD34100364A32 /* OBIbuFormulaSegmentedControlDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		9F107DFA1BBAD6B400364A32 /* OBSettingsSegmentedControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F107DF91BBAD6B400364A32 /* OBSettingsSegmentedControlDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		9F1A9C231BBADF4A0090D7C9 /* OBYeastManufacturerSegmentedControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A9C221BBADF4A0090D7C9 /* OBYeastManufacturerSegmentedControlDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		9F1A9C261BBAE2010090D7C9 /* OBMaltDisplayMetricSegmentedControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A9C251BBAE2010090D7C9 /* OBMaltDisplayMetricSegmentedControlDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		9F1A9C291BBAE3830090D7C9 /* OBHopDisplayMetricSegmentedControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A9C281BBAE3830090D7C9 /* OBHopDisplayMetricSegmentedControlDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		9F33116A1B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3311691B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m */; };
 		9F33116D1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F33116C1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m */; };
 		9F3311701B35BF22008C0029 /* OBColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F33116F1B35BF22008C0029 /* OBColorView.m */; };
-		9F40C4C21B6BC54E008334F6 /* OBSegmentedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C11B6BC54E008334F6 /* OBSegmentedController.m */; };
 		9F40C4C41B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */; };
 		9F40C4C61B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */; };
 		9F40C4CA1B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */; };
@@ -160,6 +166,20 @@
 		9F0815481997147C00E5E575 /* OBMaltColorPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltColorPickerDelegate.h; sourceTree = "<group>"; };
 		9F0815491997147C00E5E575 /* OBMaltColorPickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltColorPickerDelegate.m; sourceTree = "<group>"; };
 		9F0820DE1BA0A0AF0026B296 /* OBYeastAdditionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBYeastAdditionTest.m; sourceTree = "<group>"; };
+		9F107DEE1BBA1D5200364A32 /* OBSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSegmentedControl.h; sourceTree = "<group>"; };
+		9F107DEF1BBA1D5200364A32 /* OBSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSegmentedControl.m; sourceTree = "<group>"; };
+		9F107DF21BBAD03300364A32 /* OBHopWeightSegmentedControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopWeightSegmentedControlDelegate.h; sourceTree = "<group>"; };
+		9F107DF31BBAD03300364A32 /* OBHopWeightSegmentedControlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopWeightSegmentedControlDelegate.m; sourceTree = "<group>"; };
+		9F107DF51BBAD34100364A32 /* OBIbuFormulaSegmentedControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBIbuFormulaSegmentedControlDelegate.h; sourceTree = "<group>"; };
+		9F107DF61BBAD34100364A32 /* OBIbuFormulaSegmentedControlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIbuFormulaSegmentedControlDelegate.m; sourceTree = "<group>"; };
+		9F107DF81BBAD6B400364A32 /* OBSettingsSegmentedControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSettingsSegmentedControlDelegate.h; sourceTree = "<group>"; };
+		9F107DF91BBAD6B400364A32 /* OBSettingsSegmentedControlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSettingsSegmentedControlDelegate.m; sourceTree = "<group>"; };
+		9F1A9C211BBADF4A0090D7C9 /* OBYeastManufacturerSegmentedControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBYeastManufacturerSegmentedControlDelegate.h; sourceTree = "<group>"; };
+		9F1A9C221BBADF4A0090D7C9 /* OBYeastManufacturerSegmentedControlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBYeastManufacturerSegmentedControlDelegate.m; sourceTree = "<group>"; };
+		9F1A9C241BBAE2010090D7C9 /* OBMaltDisplayMetricSegmentedControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltDisplayMetricSegmentedControlDelegate.h; sourceTree = "<group>"; };
+		9F1A9C251BBAE2010090D7C9 /* OBMaltDisplayMetricSegmentedControlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltDisplayMetricSegmentedControlDelegate.m; sourceTree = "<group>"; };
+		9F1A9C271BBAE3830090D7C9 /* OBHopDisplayMetricSegmentedControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopDisplayMetricSegmentedControlDelegate.h; sourceTree = "<group>"; };
+		9F1A9C281BBAE3830090D7C9 /* OBHopDisplayMetricSegmentedControlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopDisplayMetricSegmentedControlDelegate.m; sourceTree = "<group>"; };
 		9F3311661B34581C008C0029 /* OBBrewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBrewController.h; sourceTree = "<group>"; };
 		9F3311681B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTextStatisticsCollectionViewCell.h; sourceTree = "<group>"; };
 		9F3311691B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTextStatisticsCollectionViewCell.m; sourceTree = "<group>"; };
@@ -167,8 +187,6 @@
 		9F33116C1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBColorStatisticsCollectionViewCell.m; sourceTree = "<group>"; };
 		9F33116E1B35BF22008C0029 /* OBColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBColorView.h; sourceTree = "<group>"; };
 		9F33116F1B35BF22008C0029 /* OBColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBColorView.m; sourceTree = "<group>"; };
-		9F40C4C01B6BC54E008334F6 /* OBSegmentedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSegmentedController.h; sourceTree = "<group>"; };
-		9F40C4C11B6BC54E008334F6 /* OBSegmentedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSegmentedController.m; sourceTree = "<group>"; };
 		9F40C4C31B6D0FE7008334F6 /* OBSettingsSegmentedControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSettingsSegmentedControllerTest.m; sourceTree = "<group>"; };
 		9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionSettingsViewControllerTest.m; sourceTree = "<group>"; };
 		9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionViewControllerTest.m; sourceTree = "<group>"; };
@@ -396,6 +414,25 @@
 				9F08154619970A0400E5E575 /* OBMaltAdditionTableViewDelegate.m */,
 			);
 			name = DrawerTableView;
+			sourceTree = "<group>";
+		};
+		9F107DF11BBACFE500364A32 /* SegmentedControlDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				9F107DF21BBAD03300364A32 /* OBHopWeightSegmentedControlDelegate.h */,
+				9F107DF31BBAD03300364A32 /* OBHopWeightSegmentedControlDelegate.m */,
+				9F107DF51BBAD34100364A32 /* OBIbuFormulaSegmentedControlDelegate.h */,
+				9F107DF61BBAD34100364A32 /* OBIbuFormulaSegmentedControlDelegate.m */,
+				9F1A9C241BBAE2010090D7C9 /* OBMaltDisplayMetricSegmentedControlDelegate.h */,
+				9F1A9C251BBAE2010090D7C9 /* OBMaltDisplayMetricSegmentedControlDelegate.m */,
+				9F107DF81BBAD6B400364A32 /* OBSettingsSegmentedControlDelegate.h */,
+				9F107DF91BBAD6B400364A32 /* OBSettingsSegmentedControlDelegate.m */,
+				9F1A9C211BBADF4A0090D7C9 /* OBYeastManufacturerSegmentedControlDelegate.h */,
+				9F1A9C221BBADF4A0090D7C9 /* OBYeastManufacturerSegmentedControlDelegate.m */,
+				9F1A9C271BBAE3830090D7C9 /* OBHopDisplayMetricSegmentedControlDelegate.h */,
+				9F1A9C281BBAE3830090D7C9 /* OBHopDisplayMetricSegmentedControlDelegate.m */,
+			);
+			name = SegmentedControlDelegates;
 			sourceTree = "<group>";
 		};
 		9F3311671B345E7D008C0029 /* CollectionViewCells */ = {
@@ -687,6 +724,7 @@
 				9FF510141B65687E00970C22 /* MaltConfiguration */,
 				9F0185CB1BAC06D60026BC0C /* Gauge */,
 				9FE86434198DBE9F007AD9E7 /* Picker Delegates */,
+				9F107DF11BBACFE500364A32 /* SegmentedControlDelegates */,
 				9F98D3691880F8ED00469323 /* OBAppDelegate.h */,
 				9F98D36A1880F8ED00469323 /* OBAppDelegate.m */,
 				9FF747E81B93E4B400ECDFE9 /* OBBaseSettingsViewController.h */,
@@ -700,8 +738,6 @@
 				9FF686C81894099A00B36486 /* OBRecipeViewController.m */,
 				9FF686C01893E45F00B36486 /* OBRecipeListViewController.h */,
 				9FF686C11893E45F00B36486 /* OBRecipeListViewController.m */,
-				9F40C4C01B6BC54E008334F6 /* OBSegmentedController.h */,
-				9F40C4C11B6BC54E008334F6 /* OBSegmentedController.m */,
 				9FC479671B70811C0053B996 /* OBSettingsSegue.h */,
 				9FC479681B70811C0053B996 /* OBSettingsSegue.m */,
 				9FC479691B70811C0053B996 /* OBSettingsUnwindSegue.h */,
@@ -727,6 +763,8 @@
 				9FC73F5519BD128200AD964A /* OBPlaceholderView.h */,
 				9FC73F5619BD128200AD964A /* OBPlaceholderView.m */,
 				9F5033BF198B55E800C302C1 /* TableViewCells */,
+				9F107DEE1BBA1D5200364A32 /* OBSegmentedControl.h */,
+				9F107DEF1BBA1D5200364A32 /* OBSegmentedControl.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -921,6 +959,7 @@
 				9FF510181B6568E400970C22 /* OBMaltAdditionSettingsViewController.m in Sources */,
 				9F98D3671880F8ED00469323 /* main.m in Sources */,
 				9FD2B8FA1BB58B2E009018FD /* OBDataLoader.m in Sources */,
+				9F1A9C261BBAE2010090D7C9 /* OBMaltDisplayMetricSegmentedControlDelegate.m in Sources */,
 				9FFE13151B27EF6E00D3F76A /* OBVolumePickerDelegate.m in Sources */,
 				9F60CF2C19B264A10076A600 /* OBMaltFinderViewController.m in Sources */,
 				9FC4796B1B70811C0053B996 /* OBSettingsSegue.m in Sources */,
@@ -931,23 +970,25 @@
 				9F33116D1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m in Sources */,
 				9FC4796C1B70811C0053B996 /* OBSettingsUnwindSegue.m in Sources */,
 				9FF686C21893E45F00B36486 /* OBRecipeListViewController.m in Sources */,
-				9F40C4C21B6BC54E008334F6 /* OBSegmentedController.m in Sources */,
 				9FA031E61B3CCF18006C855D /* OBYeastAdditionViewController.m in Sources */,
 				9F6EB0301BADF66D00F2739E /* OBHopGramsPickerDelegate.m in Sources */,
 				9FE86433198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m in Sources */,
 				9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */,
 				9FE243511B471D5800D1EE25 /* OBMultiPickerView.m in Sources */,
+				9F107DFA1BBAD6B400364A32 /* OBSettingsSegmentedControlDelegate.m in Sources */,
 				9FC8FF0F1BAC1B0400BBF56C /* OBGaugePageViewControllerDataSource.m in Sources */,
 				9FE63D611BB71F33002C15AB /* OBRecipeListTableViewDataSource.m in Sources */,
 				9FA031EC1B3CD22D006C855D /* OBYeastTableViewCell.m in Sources */,
 				9FF68676189327B000B36486 /* OBMaltAdditionViewController.m in Sources */,
 				9F3311701B35BF22008C0029 /* OBColorView.m in Sources */,
+				9F107DF71BBAD34100364A32 /* OBIbuFormulaSegmentedControlDelegate.m in Sources */,
 				9FC73F4F19BB683400AD964A /* Crittercism+NSErrorLogging.m in Sources */,
 				9F33116A1B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m in Sources */,
 				9F60CF2919B251D00076A600 /* OBIngredientTableViewDataSource.m in Sources */,
 				9F92E8C518A0D0D000118D76 /* OBRecipe.m in Sources */,
 				9F92E8C818A0D45F00118D76 /* OBHopAddition.m in Sources */,
 				9F0185D01BAC06F30026BC0C /* OBGaugePageViewController.m in Sources */,
+				9F1A9C231BBADF4A0090D7C9 /* OBYeastManufacturerSegmentedControlDelegate.m in Sources */,
 				9F6EB0361BAE26E500F2739E /* OBHopTypePickerDelegate.m in Sources */,
 				9FE86437198DBEB1007AD9E7 /* OBAlphaAcidPickerDelegate.m in Sources */,
 				9F92E8CB18A0D53E00118D76 /* OBHops.m in Sources */,
@@ -959,14 +1000,17 @@
 				9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */,
 				9FC73F5719BD128200AD964A /* OBPlaceholderView.m in Sources */,
 				9F08153B1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m in Sources */,
+				9F107DF41BBAD03300364A32 /* OBHopWeightSegmentedControlDelegate.m in Sources */,
 				9F92E8D118A0D6CF00118D76 /* OBYeast.m in Sources */,
 				9F0185D11BAC06F30026BC0C /* OBGaugeViewController.m in Sources */,
 				9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */,
 				9F92E8A918A0910200118D76 /* OBHopFinderViewController.m in Sources */,
+				9F107DF01BBA1D5200364A32 /* OBSegmentedControl.m in Sources */,
 				9F0815441996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m in Sources */,
 				9F92E8BF18A0CED100118D76 /* OBMaltAddition.m in Sources */,
 				9F6EB02D1BADEE8800F2739E /* OBUnitConversion.m in Sources */,
 				9FA3890119B27A0B0009DB07 /* OBSrmColorTable.m in Sources */,
+				9F1A9C291BBAE3830090D7C9 /* OBHopDisplayMetricSegmentedControlDelegate.m in Sources */,
 				9F95B23C1B2677C6009DC9D9 /* OBBatchSizeTableViewDelegate.m in Sources */,
 				9FC479661B7070A50053B996 /* OBHopAdditionSettingsViewController.m in Sources */,
 				9F98D36B1880F8ED00469323 /* OBAppDelegate.m in Sources */,

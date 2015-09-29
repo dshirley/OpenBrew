@@ -17,14 +17,13 @@
 #import "OBKvoUtils.h"
 #import "OBIngredientTableViewDataSource.h"
 #import "OBHopAdditionSettingsViewController.h"
+#import "OBHopDisplayMetricSegmentedControlDelegate.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Hop Addition Screen";
 
 @interface OBHopAdditionViewController()
-
-@property (nonatomic) IBOutlet UISegmentedControl *ingredientMetricSegmentedControl;
-
+@property (nonatomic) OBHopDisplayMetricSegmentedControlDelegate *ingredientDisplaySettingControllerDelegate;
 @end
 
 @implementation OBHopAdditionViewController
@@ -60,24 +59,9 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   [button addTarget:self action:@selector(showSettingsView:) forControlEvents:UIControlEventTouchUpInside];
   [self.infoButton setCustomView:button];
 
-  OBSettings *settings = self.settings;
-  self.ingredientDisplaySettingController =
-  [[OBSegmentedController alloc] initWithSegmentedControl:self.ingredientMetricSegmentedControl
-                                    googleAnalyticsAction:@"Hop Primary Metric"];
-
-  [self.ingredientDisplaySettingController addSegment:@"Weight" actionWhenSelected:^(void) {
-    settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricWeight);
-  }];
-
-  [self.ingredientDisplaySettingController addSegment:@"IBU" actionWhenSelected:^(void) {
-    settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);
-  }];
-
-  if (OBHopAdditionMetricIbu == [settings.hopAdditionDisplayMetric integerValue]) {
-    self.ingredientMetricSegmentedControl.selectedSegmentIndex = 1;
-  } else {
-    self.ingredientMetricSegmentedControl.selectedSegmentIndex = 0;
-  }
+  self.ingredientDisplaySettingControllerDelegate = [[OBHopDisplayMetricSegmentedControlDelegate alloc] initWithSettings:self.settings];
+  self.ingredientMetricSegmentedControl.gaCategory = OBGAScreenName;
+  self.ingredientMetricSegmentedControl.delegate = self.ingredientDisplaySettingControllerDelegate;
 }
 
 - (void)viewWillAppear:(BOOL)animated

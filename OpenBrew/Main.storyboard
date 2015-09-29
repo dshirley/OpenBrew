@@ -116,7 +116,7 @@
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="SyM-tT-kLt"/>
                                     <barButtonItem style="plain" id="oDQ-82-srq">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="emA-za-frN">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="emA-za-frN" customClass="OBSegmentedControl">
                                             <rect key="frame" x="227" y="6.5" width="145" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
@@ -325,7 +325,7 @@
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="FfZ-kd-fHq"/>
                                     <barButtonItem style="plain" id="i19-JW-8Xu">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Igk-Rd-FLj">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Igk-Rd-FLj" customClass="OBSegmentedControl">
                                             <rect key="frame" x="227" y="6.5" width="145" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
@@ -505,7 +505,7 @@
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="mCb-aO-JqD"/>
                                     <barButtonItem style="plain" id="lsm-Rk-KAI">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="gg0-jU-5pC">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="gg0-jU-5pC" customClass="OBSegmentedControl">
                                             <rect key="frame" x="196" y="7" width="207" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
@@ -918,14 +918,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asE-vv-kcg" userLabel="Settings View">
                                 <rect key="frame" x="0.0" y="442" width="600" height="158"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lcz-vx-eif">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lcz-vx-eif" customClass="OBSegmentedControl">
                                         <rect key="frame" x="20" y="40" width="560" height="29"/>
                                         <segments>
                                             <segment title="Ounces"/>
                                             <segment title="Grams"/>
                                         </segments>
                                     </segmentedControl>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ptg-BQ-8Iw">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ptg-BQ-8Iw" customClass="OBSegmentedControl">
                                         <rect key="frame" x="20" y="109" width="560" height="29"/>
                                         <segments>
                                             <segment title="Tinseth"/>
