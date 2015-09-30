@@ -17,9 +17,15 @@
 #import "OBIngredientTableViewDataSource.h"
 #import "OBSrmColorTable.h"
 #import "OBMaltAdditionSettingsViewController.h"
+#import "OBMaltDisplayMetricSegmentedControlDelegate.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Malt Addition Screen";
+
+@interface OBMaltAdditionViewController()
+@property (nonatomic) OBMaltDisplayMetricSegmentedControlDelegate *ingredientMetricSegmentedControlDelegate;
+@end
+
 
 @implementation OBMaltAdditionViewController
 
@@ -35,6 +41,7 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   UIPageViewController *pageViewController = (id)self.childViewControllers[0];
   self.pageViewControllerDataSource =
     [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe
+                                                       settings:self.settings
                                                 displayMetrics:@[ @(OBMetricOriginalGravity), @(OBMetricColor) ]];
 
   pageViewController.dataSource = self.pageViewControllerDataSource;
@@ -52,6 +59,10 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
   [button addTarget:self action:@selector(showSettingsView:) forControlEvents:UIControlEventTouchUpInside];
   [self.infoButton setCustomView:button];
+
+  self.ingredientMetricSegmentedControlDelegate = [[OBMaltDisplayMetricSegmentedControlDelegate alloc] initWithSettings:self.settings];
+  self.ingredientMetricSegmentedControl.gaCategory = OBGAScreenName;
+  self.ingredientMetricSegmentedControl.delegate = self.ingredientMetricSegmentedControlDelegate;
 }
 
 - (void)viewWillAppear:(BOOL)animated

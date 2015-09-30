@@ -17,9 +17,14 @@
 #import "OBKvoUtils.h"
 #import "OBIngredientTableViewDataSource.h"
 #import "OBHopAdditionSettingsViewController.h"
+#import "OBHopDisplayMetricSegmentedControlDelegate.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Hop Addition Screen";
+
+@interface OBHopAdditionViewController()
+@property (nonatomic) OBHopDisplayMetricSegmentedControlDelegate *ingredientDisplaySettingControllerDelegate;
+@end
 
 @implementation OBHopAdditionViewController
 
@@ -35,6 +40,7 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   UIPageViewController *pageViewController = (id)self.childViewControllers[0];
   self.pageViewControllerDataSource =
     [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe
+                                                       settings:self.settings
                                                  displayMetrics:@[ @(OBMetricIbu), @(OBMetricBuToGuRatio) ]];
 
   pageViewController.dataSource = self.pageViewControllerDataSource;
@@ -47,10 +53,15 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   self.tableView.dataSource = self.tableViewDelegate;
 
   self.tableViewDelegate.hopAdditionMetricToDisplay = (OBHopAdditionMetric)[self.settings.hopAdditionDisplayMetric integerValue];
+  self.tableViewDelegate.ibuFormula = (OBIbuFormula)[self.settings.ibuFormula integerValue];
 
   UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
   [button addTarget:self action:@selector(showSettingsView:) forControlEvents:UIControlEventTouchUpInside];
   [self.infoButton setCustomView:button];
+
+  self.ingredientDisplaySettingControllerDelegate = [[OBHopDisplayMetricSegmentedControlDelegate alloc] initWithSettings:self.settings];
+  self.ingredientMetricSegmentedControl.gaCategory = OBGAScreenName;
+  self.ingredientMetricSegmentedControl.delegate = self.ingredientDisplaySettingControllerDelegate;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -119,11 +130,13 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 {
   [_settings removeObserver:self forKeyPath:KVO_KEY(hopAdditionDisplayMetric)];
   [_settings removeObserver:self forKeyPath:KVO_KEY(hopQuantityUnits)];
+  [_settings removeObserver:self forKeyPath:KVO_KEY(ibuFormula)];
 
   _settings = settings;
 
   [_settings addObserver:self forKeyPath:KVO_KEY(hopAdditionDisplayMetric) options:0 context:nil];
   [_settings addObserver:self forKeyPath:KVO_KEY(hopQuantityUnits) options:0 context:nil];
+  [_settings addObserver:self forKeyPath:KVO_KEY(ibuFormula) options:0 context:nil];
 }
 
 - (void)dealloc
@@ -149,6 +162,10 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   else if ([keyPath isEqualToString:KVO_KEY(hopAdditionDisplayMetric)])
   {
     self.tableViewDelegate.hopAdditionMetricToDisplay = [self.settings.hopAdditionDisplayMetric integerValue];
+  }
+  else if ([keyPath isEqualToString:KVO_KEY(ibuFormula)])
+  {
+    self.tableViewDelegate.ibuFormula = [self.settings.ibuFormula integerValue];
   }
   else if ([keyPath isEqualToString:KVO_KEY(hopQuantityUnits)])
   {

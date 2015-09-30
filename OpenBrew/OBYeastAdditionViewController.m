@@ -15,7 +15,6 @@
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "OBYeastTableViewCell.h"
-#import "OBSegmentedController.h"
 #import "OBSettings.h"
 
 // Google Analytics constants
@@ -23,9 +22,10 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
 
 @interface OBYeastAdditionViewController ()
 
-@property (nonatomic) OBSegmentedController *segmentedController;
-
 @property (nonatomic) NSFetchedResultsController *fetchedResults;
+
+@property (nonatomic) NSArray *segmentedControlDelegateTitles;
+@property (nonatomic) NSArray *segmentedControlDelegateValues;
 
 @end
 
@@ -40,44 +40,28 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
   UIPageViewController *pageViewController = (id)self.childViewControllers[0];
   self.pageViewControllerDataSource =
     [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe
+                                                       settings:self.settings
                                                  displayMetrics:@[ @(OBMetricAbv), @(OBMetricFinalGravity) ]];
 
   pageViewController.dataSource = self.pageViewControllerDataSource;
 
   NSAssert(self.settings, @"Settings were nil");
 
-  self.segmentedController = [[OBSegmentedController alloc] initWithSegmentedControl:self.segmentedControl
-                                                               googleAnalyticsAction:@"Yeast Filter"];
+  self.segmentedControlDelegateTitles = @[ @"White Labs", @"Wyeast" ];
+  self.segmentedControlDelegateValues = @[ @(OBYeastManufacturerWhiteLabs), @(OBYeastManufacturerWyeast)];
+  self.segmentedControl.gaCategory = OBGAScreenName;
+  self.segmentedControl.delegate = (id)self;
 
-  OBYeastAdditionViewController *weakSelf = self;
+  [self reloadTableSelectedManufacturer:[self initiallySelectedManufacturer] scrollToSelectedItem:YES];
+}
 
-  [self.segmentedController addSegment:@"White Labs" actionWhenSelected:^(void) {
-    weakSelf.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
-    [weakSelf reloadTableSelectedManufacturer:OBYeastManufacturerWhiteLabs
-                         scrollToSelectedItem:NO];
-  }];
-
-  [self.segmentedController addSegment:@"Wyeast" actionWhenSelected:^(void) {
-    weakSelf.settings.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
-    [weakSelf reloadTableSelectedManufacturer:OBYeastManufacturerWyeast
-                         scrollToSelectedItem:NO];
-  }];
-
-  OBYeastManufacturer startingManufacturer = NSNotFound;
+- (NSInteger)initiallySelectedManufacturer
+{
   if (self.recipe.yeast) {
-    startingManufacturer = [self.recipe.yeast.manufacturer integerValue];
+    return [self.recipe.yeast.manufacturer integerValue];
   } else {
-    startingManufacturer = [self.settings.selectedYeastManufacturer integerValue];
+    return [self.settings.selectedYeastManufacturer integerValue];
   }
-
-  // Selected segment index is in the order in which we add them above
-  if (OBYeastManufacturerWyeast == startingManufacturer) {
-    self.segmentedControl.selectedSegmentIndex = 1;
-  } else {
-    self.segmentedControl.selectedSegmentIndex = 0;
-  }
-
-  [weakSelf reloadTableSelectedManufacturer:startingManufacturer scrollToSelectedItem:YES];
 }
 
 // Query the CoreData store to get all of the ingredient data
@@ -193,6 +177,26 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
   yeastCell.yeastName.text = yeast.name;
 
   return yeastCell;
+}
+
+#pragma mark OBSegmentedControlDelegate methods
+
+- (NSArray *)segmentTitlesForSegmentedControl:(UISegmentedControl *)segmentedControl
+{
+  return self.segmentedControlDelegateTitles;
+}
+
+- (void)segmentedControl:(UISegmentedControl *)segmentedControl segmentSelected:(NSInteger)index
+{
+  NSArray *values = self.segmentedControlDelegateValues;
+  self.settings.selectedYeastManufacturer = values[index];
+  [self reloadTableSelectedManufacturer:[values[index] integerValue] scrollToSelectedItem:NO];
+}
+
+- (NSInteger)initiallySelectedSegmentForSegmentedControl:(UISegmentedControl *)segmentedControl
+{
+  OBYeastManufacturer initialManufacturer = [self initiallySelectedManufacturer];
+  return [self.segmentedControlDelegateValues indexOfObject:@(initialManufacturer)];
 }
 
 

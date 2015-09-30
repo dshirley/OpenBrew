@@ -49,8 +49,7 @@
   XCTAssertFalse(self.vc.firstInteractionComplete);
   XCTAssertEqualWithAccuracy(CFAbsoluteTimeGetCurrent(), self.vc.loadTime, 0.5);
 
-
-  OBRecipeListTableViewDataSource *dataSource = self.vc.tableView.dataSource;
+  OBRecipeListTableViewDataSource *dataSource = (id)self.vc.tableView.dataSource;
   XCTAssertNotNil(dataSource);
   XCTAssertEqual(OBRecipeListTableViewDataSource.class, dataSource.class);
   XCTAssertNotNil(dataSource.rowDeletedCallback);

@@ -215,4 +215,55 @@
   XCTAssertThrows([self.vc tableView:self.vc.tableView cellForRowAtIndexPath:self.r0s0]);
 }
 
+#pragma mark OBSegmentedControlDelegate tests
+
+- (void)testSegmentTitles
+{
+  (void)self.vc.view;
+
+  XCTAssertEqualObjects((@[ @"White Labs", @"Wyeast" ]), [self.vc.segmentedControl.delegate segmentTitlesForSegmentedControl:nil]);
+}
+
+- (void)testSegmentSelected
+{
+  (void)self.vc.view;
+
+  self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
+
+  [self.vc.segmentedControl.delegate segmentedControl:nil segmentSelected:0];
+  XCTAssertEqualObjects(@(OBYeastManufacturerWhiteLabs), self.settings.selectedYeastManufacturer);
+
+  [self.vc.segmentedControl.delegate segmentedControl:nil segmentSelected:1];
+  XCTAssertEqualObjects(@(OBYeastManufacturerWyeast), self.settings.selectedYeastManufacturer);
+}
+
+- (void)testInitiallySelectedSegment_noYeastSelected
+{
+  (void)self.vc.view;
+
+  self.recipe.yeast = nil;
+
+  self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
+  XCTAssertEqual(1, [self.vc.segmentedControl.delegate initiallySelectedSegmentForSegmentedControl:nil]);
+
+  self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
+  XCTAssertEqual(0, [self.vc.segmentedControl.delegate initiallySelectedSegmentForSegmentedControl:nil]);
+}
+
+// When a yeast has been added to the recipe, the selectedYeastManufacturere should be ignored
+- (void)testInitiallySelectedSegment_yeastSelected
+{
+  (void)self.vc.view;
+  
+  [self addYeast:@"WLP001"];
+  self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWyeast);
+  XCTAssertEqual(0, [self.vc.segmentedControl.delegate initiallySelectedSegmentForSegmentedControl:nil]);
+
+  [self addYeast:@"1007"];
+  self.settings.selectedYeastManufacturer = @(OBYeastManufacturerWhiteLabs);
+  XCTAssertEqual(1, [self.vc.segmentedControl.delegate initiallySelectedSegmentForSegmentedControl:nil]);
+}
+
+
+
 @end

@@ -9,7 +9,6 @@
 #import "OBGaugeViewController.h"
 #import "OBColorView.h"
 #import "Crittercism+NSErrorLogging.h"
-#import "OBRecipe.h"
 #import "OBKvoUtils.h"
 
 @implementation OBGaugeViewController
@@ -50,12 +49,12 @@
       description = @"ABV";
       break;
     case OBMetricIbu:
-      endValue = roundf([self.recipe IBUs:self.ibuFormula]);
+      endValue = roundf([self.recipe IBUs:[self.settings.ibuFormula integerValue]]);
       self.valueLabel.format = @"%d";
       description = @"IBU";
       break;
     case OBMetricBuToGuRatio:
-      endValue = [self.recipe bitternessToGravityRatio:self.ibuFormula];
+      endValue = [self.recipe bitternessToGravityRatio:[self.settings.ibuFormula integerValue]];
       self.valueLabel.format = @"%.2f";
       description = @"BU:GU";
       break;
@@ -84,6 +83,7 @@
 - (void)dealloc
 {
   self.recipe = nil;
+  self.settings = nil;
 }
 
 - (void)setRecipe:(OBRecipe *)recipe
@@ -99,6 +99,15 @@
   [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs:) options:0 context:nil];
   [_recipe addObserver:self forKeyPath:KVO_KEY(postBoilVolumeInGallons) options:0 context:nil];
   [_recipe addObserver:self forKeyPath:KVO_KEY(preBoilVolumeInGallons) options:0 context:nil];
+}
+
+- (void)setSettings:(OBSettings *)settings
+{
+  [_settings removeObserver:self forKeyPath:KVO_KEY(ibuFormula)];
+
+  _settings = settings;
+
+  [_settings addObserver:self forKeyPath:KVO_KEY(ibuFormula) options:0 context:nil];
 }
 
 - (void)setColorInSrm:(uint32_t)srm

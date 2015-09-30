@@ -11,6 +11,7 @@
 #import "GAITrackedViewController.h"
 #import "OBGaugePageViewControllerDataSource.h"
 #import "OBPlaceholderView.h"
+#import "OBSegmentedControl.h"
 
 @class OBRecipe, OBSettings, OBHopAdditionTableViewDelegate;
 
@@ -21,9 +22,10 @@
 
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) IBOutlet OBPlaceholderView *placeholderView;
+@property (nonatomic) IBOutlet OBSegmentedControl *ingredientMetricSegmentedControl;
+@property (nonatomic) IBOutlet UIBarButtonItem *infoButton;
+
 @property (nonatomic) OBGaugePageViewControllerDataSource *pageViewControllerDataSource;
 @property (nonatomic) OBHopAdditionTableViewDelegate *tableViewDelegate;
-
-@property (nonatomic) IBOutlet UIBarButtonItem *infoButton;
 
 @end

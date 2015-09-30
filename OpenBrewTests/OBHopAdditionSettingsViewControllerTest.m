@@ -8,9 +8,10 @@
 
 #import <XCTest/XCTest.h>
 #import "OBHopAdditionSettingsViewController.h"
-#import "OBSegmentedController.h"
 #import "OBBaseTestCase.h"
 #import <OCMock/OCMock.h>
+#import "OBHopWeightSegmentedControlDelegate.h"
+#import "OBIbuFormulaSegmentedControlDelegate.h"
 
 @interface OBHopAdditionSettingsViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBHopAdditionSettingsViewController *vc;
@@ -27,27 +28,24 @@
   self.vc.settings = self.settings;
 }
 
-- (void)testWillAppear
+- (void)testViewDidLoad
 {
   self.settings.hopGaugeDisplayMetric = @(OBMetricBuToGuRatio);
   self.settings.hopAdditionDisplayMetric = @(OBHopAdditionMetricIbu);
 
-  [self.vc loadView];
-  [self.vc viewWillAppear:NO];
+  (void)self.vc.view;
 
-  XCTAssertNotNil(self.vc.ingredientDisplaySettingController);
+  OBHopWeightSegmentedControlDelegate *weightDelegate = self.vc.unitsSegmentedControl.delegate;
+  XCTAssertNotNil(weightDelegate);
+  XCTAssertEqualObjects(NSStringFromClass(OBHopWeightSegmentedControlDelegate.class),
+                        NSStringFromClass(weightDelegate.class));
+  XCTAssertEqual(self.settings, weightDelegate.settings);
 
-  // Make sure the ingredient display setting is setup properly
-  UISegmentedControl *ingredientSegmentedControl = self.vc.ingredientDisplaySettingController.segmentedControl;
-  XCTAssertNotNil(ingredientSegmentedControl);
-  XCTAssertEqual(2, [ingredientSegmentedControl numberOfSegments]);
-  XCTAssertEqualObjects(@"Weight", [ingredientSegmentedControl titleForSegmentAtIndex:0]);
-  XCTAssertEqualObjects(@"IBU", [ingredientSegmentedControl titleForSegmentAtIndex:1]);
-  XCTAssertEqual(1, [ingredientSegmentedControl selectedSegmentIndex]);
-
-  [ingredientSegmentedControl setSelectedSegmentIndex:0];
-  [ingredientSegmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
-  XCTAssertEqualObjects(@(OBHopAdditionMetricWeight), self.settings.hopAdditionDisplayMetric);
+  OBIbuFormulaSegmentedControlDelegate *ibuDelegate = self.vc.ibuFormulaSegmentedControl.delegate;
+  XCTAssertNotNil(ibuDelegate);
+  XCTAssertEqualObjects(NSStringFromClass(OBIbuFormulaSegmentedControlDelegate.class),
+                        NSStringFromClass(ibuDelegate.class));
+  XCTAssertEqual(self.settings, ibuDelegate.settings);
 }
 
 - (void)testGreyAreaTouchDown {

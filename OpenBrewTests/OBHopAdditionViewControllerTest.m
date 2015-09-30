@@ -17,6 +17,7 @@
 #import "OBHopAdditionSettingsViewController.h"
 #import "OBGaugePageViewController.h"
 #import "OBGaugeViewController.h"
+#import "OBHopDisplayMetricSegmentedControlDelegate.h"
 
 @interface OBHopAdditionViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBHopAdditionViewController *vc;
@@ -143,6 +144,19 @@
   XCTAssertEqualObjects(@"13.0%", cell.alphaAcid.text);
   XCTAssertEqualObjects(@"60", cell.boilTime.text);
   XCTAssertEqualObjects(@"min", cell.boilUnits.text);
+}
+
+- (void)testViewDidLoad_segmentedControllerDelegateIsSet
+{
+  [self loadViewController];
+
+  OBHopDisplayMetricSegmentedControlDelegate *delegate = self.vc.ingredientMetricSegmentedControl.delegate;
+
+  XCTAssertNotNil(delegate);
+  XCTAssertEqualObjects(NSStringFromClass(OBHopDisplayMetricSegmentedControlDelegate.class),
+                        NSStringFromClass(delegate.class));
+
+  XCTAssertEqual(self.settings, delegate.settings);
 }
 
 - (void)testViewUpdatesWhenHopAdditionsChange

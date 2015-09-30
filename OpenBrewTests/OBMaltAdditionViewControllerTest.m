@@ -16,6 +16,7 @@
 #import "OBMaltFinderViewController.h"
 #import "OBMaltAdditionSettingsViewController.h"
 #import "OBGaugePageViewController.h"
+#import "OBMaltDisplayMetricSegmentedControlDelegate.h"
 
 @interface OBMaltAdditionViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBMaltAdditionViewController *vc;
@@ -124,6 +125,19 @@
   XCTAssertEqualObjects(@"Two-Row", cell.maltVariety.text);
   XCTAssertEqualObjects(@"10lb", cell.primaryMetric.text);
   XCTAssertEqualObjects(@"2 Lovibond", cell.color.text);
+}
+
+- (void)testViewDidLoad_segmentedControllerDelegateIsSet
+{
+  [self loadViewController];
+
+  OBMaltDisplayMetricSegmentedControlDelegate *delegate = self.vc.ingredientMetricSegmentedControl.delegate;
+
+  XCTAssertNotNil(delegate);
+  XCTAssertEqualObjects(NSStringFromClass(OBMaltDisplayMetricSegmentedControlDelegate.class),
+                        NSStringFromClass(delegate.class));
+
+  XCTAssertEqual(self.settings, delegate.settings);
 }
 
 - (void)testViewUpdatesWhenMaltAdditionsChange

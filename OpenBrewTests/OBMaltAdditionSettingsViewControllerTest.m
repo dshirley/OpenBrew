@@ -8,7 +8,6 @@
 
 #import <XCTest/XCTest.h>
 #import "OBMaltAdditionSettingsViewController.h"
-#import "OBSegmentedController.h"
 #import "OBBaseTestCase.h"
 #import <OCMock/OCMock.h>
 
@@ -39,20 +38,6 @@
 
   [self.vc loadView];
   [self.vc viewWillAppear:NO];
-
-  XCTAssertNotNil(self.vc.ingredientDisplaySettingController);
-
-  // Make sure the ingredient display setting is setup properly
-  UISegmentedControl *ingredientSegmentedControl = self.vc.ingredientDisplaySettingController.segmentedControl;
-  XCTAssertNotNil(ingredientSegmentedControl);
-  XCTAssertEqual(2, [ingredientSegmentedControl numberOfSegments]);
-  XCTAssertEqualObjects(@"Weight", [ingredientSegmentedControl titleForSegmentAtIndex:0]);
-  XCTAssertEqualObjects(@"% Gravity", [ingredientSegmentedControl titleForSegmentAtIndex:1]);
-  XCTAssertEqual(1, [ingredientSegmentedControl selectedSegmentIndex]);
-
-  [ingredientSegmentedControl setSelectedSegmentIndex:0];
-  [ingredientSegmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
-  XCTAssertEqualObjects(@(OBMaltAdditionMetricWeight), self.settings.maltAdditionDisplayMetric);
 }
 
 - (void)testViewWillAppearShowsCorrectMashEfficiency

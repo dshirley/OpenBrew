@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "OBBaseSettingsViewController.h"
+#import "OBSegmentedControl.h"
 
-@class OBSettings, OBSegmentedController;
+@class OBSettings;
 
 @interface OBHopAdditionSettingsViewController : OBBaseSettingsViewController
 
 @property (nonatomic) OBSettings *settings;
 
-@property (nonatomic, readonly) OBSegmentedController *ingredientDisplaySettingController;
+@property (nonatomic) IBOutlet OBSegmentedControl *unitsSegmentedControl;
+
+@property (nonatomic) IBOutlet OBSegmentedControl *ibuFormulaSegmentedControl;
 
 @end

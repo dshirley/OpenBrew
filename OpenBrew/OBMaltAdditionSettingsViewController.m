@@ -9,20 +9,11 @@
 #import "OBMaltAdditionSettingsViewController.h"
 #import "OBSettings.h"
 #import "OBRecipe.h"
-#import "OBSegmentedController.h"
 #import "OBKvoUtils.h"
 #import <math.h>
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Malt Addition Settings";
-
-@interface OBMaltAdditionSettingsViewController ()
-
-@property (nonatomic) IBOutlet UISegmentedControl *ingredientDisplaySettingSegmentedControl;
-
-@property (nonatomic) OBSegmentedController *ingredientDisplaySettingController;
-
-@end
 
 @implementation OBMaltAdditionSettingsViewController
 
@@ -37,8 +28,6 @@ static NSString* const OBGAScreenName = @"Malt Addition Settings";
 
   self.screenName = OBGAScreenName;
 
-  OBSettings *settings = self.settings;
-
   self.mashEfficiencySlider.minimumValue = 0.0;
   self.mashEfficiencySlider.maximumValue = 1.0;
   self.mashEfficiencySlider.value = [self.recipe.mashEfficiency floatValue];
@@ -48,24 +37,6 @@ static NSString* const OBGAScreenName = @"Malt Addition Settings";
                       forControlEvents:UIControlEventValueChanged];
 
   [self updateMashEfficiencyLabel];
-
-  self.ingredientDisplaySettingController =
-    [[OBSegmentedController alloc] initWithSegmentedControl:self.ingredientDisplaySettingSegmentedControl
-                                              googleAnalyticsAction:@"Malt Primary Metric"];
-
-  [self.ingredientDisplaySettingController addSegment:@"Weight" actionWhenSelected:^(void) {
-    settings.maltAdditionDisplayMetric = @(OBMaltAdditionMetricWeight);
-  }];
-
-  [self.ingredientDisplaySettingController addSegment:@"% Gravity" actionWhenSelected:^(void) {
-    settings.maltAdditionDisplayMetric = @(OBMaltAdditionMetricPercentOfGravity);
-  }];
-
-  if (OBMaltAdditionMetricPercentOfGravity == [settings.maltAdditionDisplayMetric integerValue]) {
-    self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = 1;
-  } else {
-    self.ingredientDisplaySettingSegmentedControl.selectedSegmentIndex = 0;
-  }
 }
 
 - (void)updateMashEfficiencyLabel

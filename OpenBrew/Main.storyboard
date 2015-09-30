@@ -114,6 +114,17 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyc-2V-TX0">
                                 <rect key="frame" x="0.0" y="512" width="600" height="44"/>
                                 <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="SyM-tT-kLt"/>
+                                    <barButtonItem style="plain" id="oDQ-82-srq">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="emA-za-frN" customClass="OBSegmentedControl">
+                                            <rect key="frame" x="227" y="6.5" width="145" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Weight"/>
+                                                <segment title="%"/>
+                                            </segments>
+                                        </segmentedControl>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ZEW-Zg-Z2B"/>
                                     <barButtonItem title="Info" id="5Yk-uS-MSm">
                                         <connections>
@@ -164,6 +175,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="infoButton" destination="5Yk-uS-MSm" id="53u-DD-uI4"/>
+                        <outlet property="ingredientMetricSegmentedControl" destination="emA-za-frN" id="eMh-8Q-SUV"/>
                         <outlet property="placeholderView" destination="aFw-0J-Vud" id="kfF-YI-68v"/>
                         <outlet property="tableView" destination="UdS-iz-4Sc" id="gEw-F7-HPk"/>
                     </connections>
@@ -311,6 +323,17 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="txg-L1-5Qg">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="FfZ-kd-fHq"/>
+                                    <barButtonItem style="plain" id="i19-JW-8Xu">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Igk-Rd-FLj" customClass="OBSegmentedControl">
+                                            <rect key="frame" x="227" y="6.5" width="145" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="Weight"/>
+                                                <segment title="IBUs"/>
+                                            </segments>
+                                        </segmentedControl>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ME5-pj-6yX"/>
                                     <barButtonItem title="Info" id="ZMz-cQ-Uy2">
                                         <connections>
@@ -359,6 +382,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="infoButton" destination="ZMz-cQ-Uy2" id="z48-u4-cDT"/>
+                        <outlet property="ingredientMetricSegmentedControl" destination="Igk-Rd-FLj" id="LGv-4V-sqK"/>
                         <outlet property="placeholderView" destination="yz0-ib-dKZ" id="GP3-yv-aLe"/>
                         <outlet property="tableView" destination="0DW-GT-hvd" id="bg7-lx-hYq"/>
                     </connections>
@@ -481,7 +505,7 @@
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="mCb-aO-JqD"/>
                                     <barButtonItem style="plain" id="lsm-Rk-KAI">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="gg0-jU-5pC">
+                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="gg0-jU-5pC" customClass="OBSegmentedControl">
                                             <rect key="frame" x="196" y="7" width="207" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
@@ -782,24 +806,8 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjS-QD-jMQ" userLabel="Settings View">
-                                        <rect key="frame" x="0.0" y="353" width="600" height="183"/>
+                                        <rect key="frame" x="0.0" y="431" width="600" height="105"/>
                                         <subviews>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7Lz-kA-Eih">
-                                                <rect key="frame" x="20" y="135" width="560" height="29"/>
-                                                <segments>
-                                                    <segment title="Weight"/>
-                                                    <segment title="% Gravity"/>
-                                                </segments>
-                                            </segmentedControl>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient Units" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7dg-5d-aJv">
-                                                <rect key="frame" x="20" y="105" width="560" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="21" id="zqt-0B-5am"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.75" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="JnJ-y8-rLI">
                                                 <rect key="frame" x="18" y="49.5" width="564" height="31"/>
                                             </slider>
@@ -813,17 +821,11 @@
                                         <constraints>
                                             <constraint firstItem="u8L-DI-GcT" firstAttribute="top" secondItem="vjS-QD-jMQ" secondAttribute="top" constant="20" id="4SP-fR-AwR"/>
                                             <constraint firstAttribute="trailing" secondItem="JnJ-y8-rLI" secondAttribute="trailing" constant="20" id="5fv-Xm-RDs"/>
-                                            <constraint firstAttribute="trailing" secondItem="7Lz-kA-Eih" secondAttribute="trailing" constant="20" id="B6U-bg-qn5"/>
-                                            <constraint firstItem="7dg-5d-aJv" firstAttribute="leading" secondItem="vjS-QD-jMQ" secondAttribute="leading" constant="20" id="FKQ-D3-C3e"/>
                                             <constraint firstItem="JnJ-y8-rLI" firstAttribute="top" secondItem="u8L-DI-GcT" secondAttribute="bottom" constant="9" id="Ifm-8O-iNM"/>
-                                            <constraint firstAttribute="height" constant="183" id="S36-5R-HWi"/>
+                                            <constraint firstAttribute="height" constant="105" id="S36-5R-HWi"/>
                                             <constraint firstAttribute="trailing" secondItem="u8L-DI-GcT" secondAttribute="trailing" constant="20" id="baT-SL-g9L"/>
-                                            <constraint firstItem="7Lz-kA-Eih" firstAttribute="leading" secondItem="vjS-QD-jMQ" secondAttribute="leading" constant="20" id="hKF-9k-QPG"/>
                                             <constraint firstItem="u8L-DI-GcT" firstAttribute="leading" secondItem="vjS-QD-jMQ" secondAttribute="leading" constant="20" id="jLx-jc-Sff"/>
-                                            <constraint firstAttribute="bottom" secondItem="7Lz-kA-Eih" secondAttribute="bottom" constant="20" id="lZ4-j5-DUg"/>
-                                            <constraint firstItem="7Lz-kA-Eih" firstAttribute="top" secondItem="7dg-5d-aJv" secondAttribute="bottom" constant="9" id="mAH-hJ-Vd2"/>
                                             <constraint firstItem="JnJ-y8-rLI" firstAttribute="leading" secondItem="vjS-QD-jMQ" secondAttribute="leading" constant="20" id="qZY-u4-bsT"/>
-                                            <constraint firstAttribute="trailing" secondItem="7dg-5d-aJv" secondAttribute="trailing" constant="20" id="zaC-yk-UsR"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -872,7 +874,6 @@
                     <connections>
                         <outlet property="greyoutButton" destination="pkL-xM-Vjh" id="XlL-6I-8Cg"/>
                         <outlet property="greyoutView" destination="dyK-MF-NEA" id="eHB-ID-Chx"/>
-                        <outlet property="ingredientDisplaySettingSegmentedControl" destination="7Lz-kA-Eih" id="ieT-IF-47j"/>
                         <outlet property="mashEfficiencyLabel" destination="u8L-DI-GcT" id="a5h-W6-5tn"/>
                         <outlet property="mashEfficiencySlider" destination="JnJ-y8-rLI" id="8Ms-NT-IT3"/>
                         <outlet property="navigationBar" destination="12S-LB-c4q" id="PU1-cB-YF4"/>
@@ -917,21 +918,21 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="asE-vv-kcg" userLabel="Settings View">
                                 <rect key="frame" x="0.0" y="442" width="600" height="158"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lcz-vx-eif">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lcz-vx-eif" customClass="OBSegmentedControl">
                                         <rect key="frame" x="20" y="40" width="560" height="29"/>
                                         <segments>
                                             <segment title="Ounces"/>
                                             <segment title="Grams"/>
                                         </segments>
                                     </segmentedControl>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ptg-BQ-8Iw">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ptg-BQ-8Iw" customClass="OBSegmentedControl">
                                         <rect key="frame" x="20" y="109" width="560" height="29"/>
                                         <segments>
-                                            <segment title="Weight"/>
-                                            <segment title="IBU"/>
+                                            <segment title="Tinseth"/>
+                                            <segment title="Rager"/>
                                         </segments>
                                     </segmentedControl>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredient Units" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RmH-Ep-vt9">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IBU formula" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RmH-Ep-vt9">
                                         <rect key="frame" x="20" y="80" width="560" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -997,7 +998,7 @@
                     <connections>
                         <outlet property="greyoutButton" destination="GYN-Vf-xEN" id="H0V-io-3FY"/>
                         <outlet property="greyoutView" destination="wj0-RG-CCH" id="tOe-Zs-Ueg"/>
-                        <outlet property="ingredientDisplaySettingSegmentedControl" destination="Ptg-BQ-8Iw" id="gX7-hG-Cj8"/>
+                        <outlet property="ibuFormulaSegmentedControl" destination="Ptg-BQ-8Iw" id="aFd-aF-H1w"/>
                         <outlet property="navigationBar" destination="2kH-5J-sft" id="FZk-pw-YTH"/>
                         <outlet property="settingsView" destination="asE-vv-kcg" id="s81-ZE-wab"/>
                         <outlet property="unitsSegmentedControl" destination="lcz-vx-eif" id="hqJ-zK-1z1"/>

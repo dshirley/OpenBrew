@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OBSettings.h"
+#import "OBRecipe.h"
 #import "OBHopAddition.h"
 #import <UICountingLabel/UICountingLabel.h>
 
@@ -20,8 +21,8 @@
 @property (nonatomic) IBOutlet OBColorView *colorView;
 
 @property (nonatomic) OBRecipe *recipe;
+@property (nonatomic) OBSettings *settings;
 @property (nonatomic, assign) OBGaugeMetric metricToDisplay;
-@property (nonatomic, assign) OBIbuFormula ibuFormula;
 
 // Determines if a refresh will animate changing valueLabel by counting from
 // the current value to the next value. This field starts off as false and
