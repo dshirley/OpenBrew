@@ -4,7 +4,7 @@ platform :ios, '7.0'
 #link_with 'OpenBrew', 'OpenBrewTests'
 
 target 'OpenBrew' do
-  pod 'CrittercismSDK', '5.2.0'
+  pod 'CrittercismSDK', '5.4.0'
   pod 'GoogleAnalytics', '3.12'
   pod 'UICountingLabel', '1.2.0'
 end

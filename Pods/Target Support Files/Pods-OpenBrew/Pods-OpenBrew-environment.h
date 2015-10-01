@@ -9,7 +9,7 @@
 // CrittercismSDK
 #define COCOAPODS_POD_AVAILABLE_CrittercismSDK
 #define COCOAPODS_VERSION_MAJOR_CrittercismSDK 5
-#define COCOAPODS_VERSION_MINOR_CrittercismSDK 2
+#define COCOAPODS_VERSION_MINOR_CrittercismSDK 4
 #define COCOAPODS_VERSION_PATCH_CrittercismSDK 0
 
 // GoogleAnalytics

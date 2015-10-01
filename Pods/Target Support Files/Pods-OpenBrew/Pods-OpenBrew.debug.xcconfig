@@ -2,6 +2,6 @@ GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CrittercismSDK" "${PODS_ROOT}/Headers/Public/GoogleAnalytics" "${PODS_ROOT}/Headers/Public/OCMock" "${PODS_ROOT}/Headers/Public/UICountingLabel"
 LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/CrittercismSDK/CrittercismSDK" "$(PODS_ROOT)/GoogleAnalytics/Libraries"
 OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/CrittercismSDK" -isystem "${PODS_ROOT}/Headers/Public/GoogleAnalytics" -isystem "${PODS_ROOT}/Headers/Public/OCMock" -isystem "${PODS_ROOT}/Headers/Public/UICountingLabel"
-OTHER_LDFLAGS = -ObjC -l"Crittercism_v5_2_0" -l"GoogleAnalytics" -l"Pods-OpenBrew-CrittercismSDK" -l"Pods-OpenBrew-GoogleAnalytics" -l"Pods-OpenBrew-UICountingLabel" -l"sqlite3" -l"z" -framework "CoreData" -framework "SystemConfiguration"
+OTHER_LDFLAGS = -ObjC -l"Crittercism_v5_4_0" -l"GoogleAnalytics" -l"Pods-OpenBrew-CrittercismSDK" -l"Pods-OpenBrew-GoogleAnalytics" -l"Pods-OpenBrew-UICountingLabel" -l"sqlite3" -l"z" -framework "CoreData" -framework "SystemConfiguration"
 OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
 PODS_ROOT = ${SRCROOT}/Pods
