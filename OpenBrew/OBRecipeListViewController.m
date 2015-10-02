@@ -13,6 +13,7 @@
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "OBRecipeListTableViewDataSource.h"
+#import "OBCalculationsTableViewDataSource.h"
 
 // Google Analytics constants
 static NSString *const OBGAScreenName = @"Recipe List Screen";
@@ -23,11 +24,14 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 @interface OBRecipeListViewController ()
 
 @property (nonatomic) OBRecipeListTableViewDataSource *recipeListDataSource;
+@property (nonatomic) OBCalculationsTableViewDataSource *calculationsDataSource;
 
 // Variables for tracking first interaction time with Google Analytics
 @property (nonatomic, assign) CFAbsoluteTime loadTime;
 
 @property (nonatomic, assign) BOOL firstInteractionComplete;
+
+@property (nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 @end
 
@@ -41,6 +45,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
   id weakself = self;
 
+  self.calculationsDataSource = [[OBCalculationsTableViewDataSource alloc] init];
   self.recipeListDataSource = [[OBRecipeListTableViewDataSource alloc] initWithTableView:self.tableView
                                                                     managedObjectContext:self.moc];
   self.recipeListDataSource.rowDeletedCallback = ^() {
@@ -54,6 +59,10 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
 
   self.firstInteractionComplete = NO;
   self.loadTime = CFAbsoluteTimeGetCurrent();
+
+  [self.segmentedControl addTarget:self
+                            action:@selector(switchTableViewDataSource)
+                  forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -66,6 +75,27 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
     [self switchToEmptyTableViewMode];
   } else {
     [self switchToNonEmptyTableViewMode];
+  }
+
+  [self.tableView reloadData];
+}
+
+- (void)switchTableViewDataSource
+{
+  NSInteger index = self.segmentedControl.selectedSegmentIndex;
+
+  switch (index) {
+    case 0:
+      self.tableView.dataSource = self.recipeListDataSource;
+      break;
+
+    case 1:
+      self.tableView.dataSource = self.calculationsDataSource;
+      break;
+
+    default:
+      NSAssert(NO, @"Unexpected segment index: %d", index);
+      break;
   }
 
   [self.tableView reloadData];
