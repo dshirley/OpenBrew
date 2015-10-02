@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9046" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RpZ-4Y-4oi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RpZ-4Y-4oi">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -1009,10 +1009,10 @@
             </objects>
             <point key="canvasLocation" x="4267" y="2451"/>
         </scene>
-        <!--Recipe List View Controller-->
+        <!--Recipes-->
         <scene sceneID="pOQ-kK-BHW">
             <objects>
-                <viewController storyboardIdentifier="recipeList" id="ZCu-KW-rz9" customClass="OBRecipeListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="recipeList" title="Recipes" id="ZCu-KW-rz9" customClass="OBRecipeListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sV5-TD-Iy0"/>
                         <viewControllerLayoutGuide type="bottom" id="fgx-oB-dFc"/>
@@ -1077,7 +1077,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="MEN-SV-0Qe"/>
                                     <barButtonItem style="plain" id="rcm-gI-wkZ">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="i1R-q5-PJ5">
-                                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                                            <rect key="frame" x="198" y="7" width="204" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Recipes"/>
@@ -1104,8 +1104,7 @@
                             <constraint firstItem="Q9b-JK-P6B" firstAttribute="leading" secondItem="XLK-j1-U3m" secondAttribute="leading" id="w55-s5-uCA" userLabel="TableView Left Edge"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="whR-0c-yd0">
-                        <nil key="title"/>
+                    <navigationItem key="navigationItem" title="Recipes" id="whR-0c-yd0">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="TY5-qd-20E">
                             <connections>
                                 <segue destination="EwC-Vl-NBE" kind="show" identifier="addRecipe" id="lPe-T7-yCx"/>

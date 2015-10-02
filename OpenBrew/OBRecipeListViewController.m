@@ -87,10 +87,12 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   switch (index) {
     case 0:
       self.tableView.dataSource = self.recipeListDataSource;
+      self.navigationItem.title = @"Recipes";
       break;
 
     case 1:
       self.tableView.dataSource = self.calculationsDataSource;
+      self.navigationItem.title = @"Calculations";
       break;
 
     default:
