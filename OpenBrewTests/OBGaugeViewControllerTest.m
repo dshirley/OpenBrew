@@ -23,17 +23,19 @@
 - (void)setUp {
   [super setUp];
 
-  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-  self.vc = [storyboard instantiateViewControllerWithIdentifier:@"gaugeViewController"];
-  self.vc.recipe = self.recipe;
+  self.vc = [[OBGaugeViewController alloc] initWithRecipe:self.recipe settings:self.settings metricToDisplay:-1];
 
   XCTAssertEqual(self.recipe, self.vc.recipe);
+  XCTAssertEqual(self.settings, self.vc.settings);
+  XCTAssertEqual(-1, self.vc.metricToDisplay);
 }
 
 // All IBOutlets should be populated
 - (void)testLoadView
 {
-  [self.vc loadView];
+  self.vc.metricToDisplay = OBMetricOriginalGravity;
+
+  (void)self.vc.view;
 
   XCTAssertNotNil(self.vc.valueLabel);
   XCTAssertNotNil(self.vc.descriptionLabel);
@@ -53,7 +55,7 @@
   self.vc.metricToDisplay = metric;
 
   id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] refresh];
+  [[mockVc expect] refresh:YES];
 
   [self addMalt:@"Maris Otter" quantity:1.0];
 
@@ -74,7 +76,7 @@
   OBMaltAddition *malt = [self addMalt:@"Maris Otter" quantity:1.0];
 
   id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] refresh];
+  [[mockVc expect] refresh:YES];
 
   [self.recipe.maltAdditions delete:malt];
 
@@ -95,7 +97,7 @@
   OBMaltAddition *malt = [self addMalt:@"Maris Otter" quantity:1.0];
 
   id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] refresh];
+  [[mockVc expect] refresh:YES];
 
   malt.quantityInPounds = @(99.987);
 
@@ -114,7 +116,7 @@
   self.vc.metricToDisplay = metric;
 
   id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] refresh];
+  [[mockVc expect] refresh:YES];
 
   [self addHops:@"Cascade" quantity:1.0 aaPercent:7.0 boilTime:60];
 
@@ -135,7 +137,7 @@
   OBHopAddition *hops = [self addHops:@"Cascade" quantity:1.0 aaPercent:7.0 boilTime:60];
 
   id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] refresh];
+  [[mockVc expect] refresh:YES];
 
   hops.recipe = nil;
 
@@ -156,9 +158,9 @@
   OBHopAddition *hops = [self addHops:@"Cascade" quantity:1.0 aaPercent:7.0 boilTime:60];
 
   id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] refresh];
-  [[mockVc expect] refresh];
-  [[mockVc expect] refresh];
+  [[mockVc expect] refresh:YES];
+  [[mockVc expect] refresh:YES];
+  [[mockVc expect] refresh:YES];
 
   hops.quantityInOunces = @(2.0);
   hops.alphaAcidPercent = @(5.0);
@@ -179,7 +181,7 @@
   self.vc.metricToDisplay = metric;
 
   id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] refresh];
+  [[mockVc expect] refresh:YES];
 
   [self addYeast:@"WLP001"];
 
@@ -200,7 +202,7 @@
   [self addYeast:@"WLP001"];
 
   id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] refresh];
+  [[mockVc expect] refresh:YES];
 
   self.recipe.yeast = nil;
 
@@ -221,7 +223,7 @@
   [self addYeast:@"WLP001"];
 
   id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] refresh];
+  [[mockVc expect] refresh:YES];
 
   [self addYeast:@"WLP002"];
 
@@ -241,7 +243,7 @@
   self.vc.metricToDisplay = metric;
 
   id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] refresh];
+  [[mockVc expect] refresh:YES];
 
   self.recipe.preBoilVolumeInGallons = @(999.0);
 
@@ -261,7 +263,7 @@
   self.vc.metricToDisplay = metric;
 
   id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] refresh];
+  [[mockVc expect] refresh:YES];
 
   self.recipe.postBoilVolumeInGallons = @(999.0);
 
@@ -287,20 +289,18 @@
   self.vc.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   self.vc.valueLabel = [[UICountingLabel alloc] initWithFrame:CGRectZero];
   self.vc.metricToDisplay = OBMetricOriginalGravity;
-  self.vc.willAnimateNextRefresh = NO;
   
   id mockRecipe = [self mockRecipe];
   [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float) 1.050)] originalGravity];
 
   id mockValueLabel = [OCMockObject partialMockForObject:self.vc.valueLabel];
-  [[mockValueLabel expect] setText:@"1.050"];
+  [[mockValueLabel expect] countFrom:0 to:1.050 withDuration:0];
 
   self.vc.recipe = mockRecipe;
-  [self.vc refresh];
+  [self.vc refresh:NO];
 
   [mockRecipe verify];
   [mockValueLabel verify];
-  XCTAssertTrue(self.vc.willAnimateNextRefresh);
   XCTAssertEqualObjects(@"Original gravity", self.vc.descriptionLabel.text);
 }
 
@@ -309,7 +309,6 @@
   self.vc.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   self.vc.valueLabel = [[UICountingLabel alloc] initWithFrame:CGRectZero];
   self.vc.metricToDisplay = OBMetricOriginalGravity;
-  self.vc.willAnimateNextRefresh = YES;
 
   id mockRecipe = [self mockRecipe];
   [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float) 1.060)] originalGravity];
@@ -319,11 +318,10 @@
   [[mockValueLabel expect] countFrom:1.050 to:1.060 withDuration:0.25];
 
   self.vc.recipe = mockRecipe;
-  [self.vc refresh];
+  [self.vc refresh:YES];
 
   [mockRecipe verify];
   [mockValueLabel verify];
-  XCTAssertTrue(self.vc.willAnimateNextRefresh);
   XCTAssertEqualObjects(@"Original gravity", self.vc.descriptionLabel.text);
   XCTAssertEqualObjects(@"%.3f", self.vc.valueLabel.format);
 }
@@ -333,20 +331,18 @@
   self.vc.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   self.vc.valueLabel = [[UICountingLabel alloc] initWithFrame:CGRectZero];
   self.vc.metricToDisplay = OBMetricFinalGravity;
-  self.vc.willAnimateNextRefresh = NO;
 
   id mockRecipe = [self mockRecipe];
   [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float) 1.005)] finalGravity];
 
   id mockValueLabel = [OCMockObject partialMockForObject:self.vc.valueLabel];
-  [[mockValueLabel expect] setText:@"1.005"];
+  [[mockValueLabel expect] countFrom:0 to:1.005 withDuration:0];
 
   self.vc.recipe = mockRecipe;
-  [self.vc refresh];
+  [self.vc refresh:NO];
 
   [mockRecipe verify];
   [mockValueLabel verify];
-  XCTAssertTrue(self.vc.willAnimateNextRefresh);
   XCTAssertEqualObjects(@"Final gravity", self.vc.descriptionLabel.text);
 }
 
@@ -355,7 +351,6 @@
   self.vc.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   self.vc.valueLabel = [[UICountingLabel alloc] initWithFrame:CGRectZero];
   self.vc.metricToDisplay = OBMetricFinalGravity;
-  self.vc.willAnimateNextRefresh = YES;
 
   id mockRecipe = [self mockRecipe];
   [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float) 1.005)] finalGravity];
@@ -365,11 +360,10 @@
   [[mockValueLabel expect] countFrom:1.010 to:1.005 withDuration:0.25];
 
   self.vc.recipe = mockRecipe;
-  [self.vc refresh];
+  [self.vc refresh:YES];
 
   [mockRecipe verify];
   [mockValueLabel verify];
-  XCTAssertTrue(self.vc.willAnimateNextRefresh);
   XCTAssertEqualObjects(@"Final gravity", self.vc.descriptionLabel.text);
   XCTAssertEqualObjects(@"%.3f", self.vc.valueLabel.format);
 }
@@ -379,7 +373,6 @@
   self.vc.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   self.vc.valueLabel = [[UICountingLabel alloc] initWithFrame:CGRectZero];
   self.vc.metricToDisplay = OBMetricAbv;
-  self.vc.willAnimateNextRefresh = NO;
 
   id mockRecipe = [self mockRecipe];
   [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float) 5.3)] alcoholByVolume];
@@ -387,14 +380,13 @@
   id mockValueLabel = [OCMockObject partialMockForObject:self.vc.valueLabel];
 
   // TODO: ABV should be displayed with a %
-  [[mockValueLabel expect] setText:@"5.3"];
+  [[mockValueLabel expect] countFrom:0 to:5.3 withDuration:0];
 
   self.vc.recipe = mockRecipe;
-  [self.vc refresh];
+  [self.vc refresh:NO];
 
   [mockRecipe verify];
   [mockValueLabel verify];
-  XCTAssertTrue(self.vc.willAnimateNextRefresh);
   XCTAssertEqualObjects(@"ABV", self.vc.descriptionLabel.text);
 }
 
@@ -403,7 +395,6 @@
   self.vc.descriptionLabel = [[UILabel alloc] initWithFrame:CGRectZero];
   self.vc.valueLabel = [[UICountingLabel alloc] initWithFrame:CGRectZero];
   self.vc.metricToDisplay = OBMetricAbv;
-  self.vc.willAnimateNextRefresh = YES;
 
   id mockRecipe = [self mockRecipe];
   [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float) 5.3)] alcoholByVolume];
@@ -413,11 +404,10 @@
   [[mockValueLabel expect] countFrom:6.89 to:5.3 withDuration:0.25];
 
   self.vc.recipe = mockRecipe;
-  [self.vc refresh];
+  [self.vc refresh:YES];
 
   [mockRecipe verify];
   [mockValueLabel verify];
-  XCTAssertTrue(self.vc.willAnimateNextRefresh);
   XCTAssertEqualObjects(@"ABV", self.vc.descriptionLabel.text);
   XCTAssertEqualObjects(@"%.1f", self.vc.valueLabel.format);
 }
@@ -434,11 +424,10 @@
   [[[mockRecipe stub] andReturnValue:OCMOCK_VALUE((float) 15)] colorInSRM];
 
   self.vc.recipe = mockRecipe;
-  [self.vc refresh];
+  [self.vc refresh:NO];
 
   [mockRecipe verify];
 
-  XCTAssertTrue(self.vc.willAnimateNextRefresh);
   XCTAssertTrue(self.vc.valueLabel.hidden);
   XCTAssertFalse(self.vc.colorView.hidden);
   XCTAssertEqualObjects(@"15 SRM", self.vc.descriptionLabel.text);

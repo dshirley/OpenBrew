@@ -13,7 +13,25 @@
 
 @implementation OBGaugeViewController
 
-- (void)refresh
+- (instancetype)initWithRecipe:(OBRecipe *)recipe settings:(OBSettings *)settings metricToDisplay:(OBGaugeMetric)metric
+{
+  self = [super initWithNibName:@"OBGaugeViewController" bundle:[NSBundle mainBundle]];
+
+  if (self) {
+    self.recipe = recipe;
+    self.settings = settings;
+    self.metricToDisplay = metric;
+  }
+
+  return self;
+}
+
+- (void)viewDidLoad
+{
+  [self refresh:NO];
+}
+
+- (void)refresh:(BOOL)animate;
 {
   NSString *value = nil;
   NSString *description = nil;
@@ -71,13 +89,11 @@
   self.descriptionLabel.text = description;
 
   if (OBMetricColor != self.metricToDisplay) {
-    NSTimeInterval duration = self.willAnimateNextRefresh ? 0.25 : 0;
+    NSTimeInterval duration = animate ? 0.25 : 0;
 
     self.valueLabel.method = UILabelCountingMethodEaseOut;
     [self.valueLabel countFrom:startValue to:endValue withDuration:duration];
   }
-
-  self.willAnimateNextRefresh = YES;
 }
 
 - (void)dealloc
@@ -125,7 +141,7 @@
                         change:(NSDictionary *)change
                        context:(void *)context
 {
-  [self refresh];
+  [self refresh:YES];
 }
 
 

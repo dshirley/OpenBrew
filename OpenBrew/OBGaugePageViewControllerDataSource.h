@@ -20,8 +20,7 @@
 
 - (instancetype)initWithRecipe:(OBRecipe *)recipe settings:(OBSettings *)settings displayMetrics:(NSArray *)metrics;
 
-- (OBGaugeViewController *)pageViewController:(UIPageViewController *)pageViewController
-                        viewControllerAtIndex:(NSInteger)index;
+- (OBGaugeViewController *)viewControllerAtIndex:(NSInteger)index;
 
 #pragma mark UIPageViewControllerDataSource methods
 

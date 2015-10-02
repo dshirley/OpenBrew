@@ -57,7 +57,7 @@
 
   OBGaugePageViewController *gaugeViewController = [[OBGaugePageViewController alloc] init];
   [[[mockDataSource stub] andReturn:@[ gaugeViewController ]] metrics];
-  [[[mockDataSource stub] andReturn:gaugeViewController] pageViewController:vc viewControllerAtIndex:0];
+  [[[mockDataSource stub] andReturn:gaugeViewController] viewControllerAtIndex:0];
 
   [vc setDataSource:mockDataSource];
 

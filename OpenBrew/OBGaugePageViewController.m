@@ -10,7 +10,6 @@
 #import "OBGaugeViewController.h"
 #import "OBRecipe.h"
 
-
 @implementation OBGaugePageViewController
 
 - (void)viewDidLoad
@@ -30,7 +29,7 @@
   NSMutableArray *viewControllers = [NSMutableArray array];
 
   if (dataSource.metrics.count > 0) {
-    [viewControllers addObject:[dataSource pageViewController:self viewControllerAtIndex:0]];
+    [viewControllers addObject:[dataSource viewControllerAtIndex:0]];
 
     [self setViewControllers:viewControllers
                    direction:UIPageViewControllerNavigationDirectionForward

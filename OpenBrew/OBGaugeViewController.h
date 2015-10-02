@@ -24,12 +24,8 @@
 @property (nonatomic) OBSettings *settings;
 @property (nonatomic, assign) OBGaugeMetric metricToDisplay;
 
-// Determines if a refresh will animate changing valueLabel by counting from
-// the current value to the next value. This field starts off as false and
-// becomes true after the first refresh. It can be manually set to false
-// (which could be desirable for testing).
-@property (nonatomic, assign) BOOL willAnimateNextRefresh;
+- (instancetype)initWithRecipe:(OBRecipe *)recipe settings:(OBSettings *)settings metricToDisplay:(OBGaugeMetric)metric;
 
-- (void)refresh;
+- (void)refresh:(BOOL)animate;
 
 @end

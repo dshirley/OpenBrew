@@ -43,7 +43,7 @@
   OBGaugePageViewControllerDataSource *dataSource = nil;
 
   dataSource = [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe settings:self.settings displayMetrics:@[]];
-  XCTAssertThrows([dataSource pageViewController:nil viewControllerAtIndex:0]);
+  XCTAssertThrows([dataSource viewControllerAtIndex:0]);
 }
 
 - (void)testViewControllerAtIndex
@@ -56,7 +56,8 @@
                                                                   settings:self.settings
                                                             displayMetrics:metrics];
 
-  vc = [dataSource pageViewController:self.pageViewController viewControllerAtIndex:0];
+  vc = [dataSource viewControllerAtIndex:0];
+  (void)vc.view;
   XCTAssertNotNil(vc);
   XCTAssertNotNil(vc.valueLabel);
   XCTAssertNotNil(vc.descriptionLabel);
@@ -68,7 +69,8 @@
   XCTAssertEqualObjects(@"1.000", vc.valueLabel.text);
   XCTAssertEqualObjects(@"Original gravity", vc.descriptionLabel.text);
 
-  vc = [dataSource pageViewController:self.pageViewController viewControllerAtIndex:1];
+  vc = [dataSource viewControllerAtIndex:1];
+  (void)vc.view;
   XCTAssertNotNil(vc);
   XCTAssertNotNil(vc.valueLabel);
   XCTAssertNotNil(vc.descriptionLabel);

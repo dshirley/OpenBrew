@@ -713,69 +713,6 @@
             </objects>
             <point key="canvasLocation" x="4267" y="-48"/>
         </scene>
-        <!--Gauge View Controller-->
-        <scene sceneID="DtE-Db-bgx">
-            <objects>
-                <viewController storyboardIdentifier="gaugeViewController" id="OrG-kA-Uos" customClass="OBGaugeViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="YtC-I6-PKV"/>
-                        <viewControllerLayoutGuide type="bottom" id="OPu-ev-WA3"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5Ab-ks-9G9">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37M-J5-ZE8" userLabel="Color View" customClass="OBColorView">
-                                <rect key="frame" x="0.0" y="30" width="600" height="65"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="65" id="yao-3u-D72"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OeX-zp-mcO">
-                                <rect key="frame" x="0.0" y="93" width="600" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="4W0-S0-mg4"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcY-6s-7Bx" customClass="UICountingLabel">
-                                <rect key="frame" x="0.0" y="29" width="600" height="66"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="66" id="zLw-Jl-knl"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="64"/>
-                                <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="OcY-6s-7Bx" firstAttribute="bottom" secondItem="5Ab-ks-9G9" secondAttribute="centerY" constant="30" id="3UT-p5-Paz"/>
-                            <constraint firstItem="37M-J5-ZE8" firstAttribute="leading" secondItem="5Ab-ks-9G9" secondAttribute="leading" id="7ND-78-HxT"/>
-                            <constraint firstItem="OcY-6s-7Bx" firstAttribute="leading" secondItem="5Ab-ks-9G9" secondAttribute="leading" id="8cA-NS-wnK"/>
-                            <constraint firstAttribute="trailing" secondItem="OcY-6s-7Bx" secondAttribute="trailing" id="QLt-U0-G90"/>
-                            <constraint firstItem="37M-J5-ZE8" firstAttribute="bottom" secondItem="5Ab-ks-9G9" secondAttribute="centerY" constant="30" id="bAR-ni-kdx"/>
-                            <constraint firstAttribute="trailing" secondItem="OeX-zp-mcO" secondAttribute="trailing" id="l55-D0-bPK"/>
-                            <constraint firstItem="OeX-zp-mcO" firstAttribute="top" secondItem="5Ab-ks-9G9" secondAttribute="centerY" constant="28" id="oIn-nW-UtO"/>
-                            <constraint firstAttribute="trailing" secondItem="37M-J5-ZE8" secondAttribute="trailing" id="qWK-Eb-hOE"/>
-                            <constraint firstItem="OeX-zp-mcO" firstAttribute="leading" secondItem="5Ab-ks-9G9" secondAttribute="leading" id="xUr-rk-AC2"/>
-                        </constraints>
-                    </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="130"/>
-                    <connections>
-                        <outlet property="colorView" destination="37M-J5-ZE8" id="aSM-Gx-P8N"/>
-                        <outlet property="descriptionLabel" destination="OeX-zp-mcO" id="VYi-Sn-y7S"/>
-                        <outlet property="valueLabel" destination="OcY-6s-7Bx" id="uh4-ES-TzH"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2SQ-V7-tTb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4267" y="-710"/>
-        </scene>
         <!--Gauge Page View Controller-->
         <scene sceneID="mcJ-xu-tSR">
             <objects>

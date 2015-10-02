@@ -10,6 +10,7 @@
 #import "OBBaseTestCase.h"
 #import "OBRecipeListViewController.h"
 #import "OBRecipeListTableViewDataSource.h"
+#import "OBRecipeTableViewCell.h"
 
 @interface OBRecipeListTableViewDataSourceTest : OBBaseTestCase
 @property (nonatomic) UITableView *tableView;
@@ -102,18 +103,18 @@
 
   [self.ctx save:&error]; XCTAssertNil(error);
 
-  UITableViewCell *cell = nil;
-  cell = [self.dataSource tableView:self.tableView cellForRowAtIndexPath:self.r0s0];
-  XCTAssertEqualObjects(cell.textLabel.text, @"A");
+  OBRecipeTableViewCell *cell = nil;
+  cell = (id)[self.dataSource tableView:self.tableView cellForRowAtIndexPath:self.r0s0];
+  XCTAssertEqualObjects(cell.recipeName.text, @"A");
 
-  cell = [self.dataSource tableView:self.tableView cellForRowAtIndexPath:self.r1s0];
-  XCTAssertEqualObjects(cell.textLabel.text, @"B");
+  cell = (id)[self.dataSource tableView:self.tableView cellForRowAtIndexPath:self.r1s0];
+  XCTAssertEqualObjects(cell.recipeName.text, @"B");
 
-  cell = [self.dataSource tableView:self.tableView cellForRowAtIndexPath:self.r2s0];
-  XCTAssertEqualObjects(cell.textLabel.text, @"C");
+  cell = (id)[self.dataSource tableView:self.tableView cellForRowAtIndexPath:self.r2s0];
+  XCTAssertEqualObjects(cell.recipeName.text, @"C");
 
-  cell = [self.dataSource tableView:self.tableView cellForRowAtIndexPath:self.r3s0];
-  XCTAssertEqualObjects(cell.textLabel.text, @"D");
+  cell = (id)[self.dataSource tableView:self.tableView cellForRowAtIndexPath:self.r3s0];
+  XCTAssertEqualObjects(cell.recipeName.text, @"D");
 }
 
 @end

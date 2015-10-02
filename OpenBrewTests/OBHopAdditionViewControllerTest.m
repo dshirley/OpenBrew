@@ -82,7 +82,7 @@
 
   OBGaugeViewController *gaugeVc = pageViewController.viewControllers[0];
   id mockGaugeVc = [OCMockObject partialMockForObject:gaugeVc];
-  [[mockGaugeVc expect] refresh];
+  [[mockGaugeVc expect] refresh:YES];
 
   XCTAssertEqualObjects(@"0", gaugeVc.valueLabel.text);
   [self addHops:@"Cascade" quantity:1.0 aaPercent:7.0 boilTime:60];

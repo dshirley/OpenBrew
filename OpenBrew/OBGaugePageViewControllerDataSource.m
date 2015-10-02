@@ -43,7 +43,7 @@
     return nil;
   }
 
-  return [self pageViewController:pageViewController viewControllerAtIndex:(index - 1)];
+  return [self viewControllerAtIndex:(index - 1)];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
@@ -57,24 +57,16 @@
     return nil;
   }
 
-  return [self pageViewController:pageViewController viewControllerAtIndex:(index + 1)];
+  return [self viewControllerAtIndex:(index + 1)];
 }
 
-- (OBGaugeViewController *)pageViewController:(UIPageViewController *)pageViewController
-                        viewControllerAtIndex:(NSInteger)index
+- (OBGaugeViewController *)viewControllerAtIndex:(NSInteger)index
 {
   OBGaugeMetric metric = [self.metrics[index] integerValue];
 
-  OBGaugeViewController *gaugeViewController = [pageViewController.storyboard instantiateViewControllerWithIdentifier:@"gaugeViewController"];
-
-  (void)gaugeViewController.view;
-
-  gaugeViewController.metricToDisplay = metric;
-  gaugeViewController.recipe = self.recipe;
-  gaugeViewController.settings = self.settings;
-  [gaugeViewController refresh];
-
-  return gaugeViewController;
+  return [[OBGaugeViewController alloc] initWithRecipe:self.recipe
+                                              settings:self.settings
+                                       metricToDisplay:metric];
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
