@@ -535,6 +535,19 @@
 			name = SegmentedControlDelegates;
 			sourceTree = "<group>";
 		};
+		9F9661CE1BBEC39100CC56A8 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9FF747E81B93E4B400ECDFE9 /* OBBaseSettingsViewController.h */,
+				9FF747E91B93E4B400ECDFE9 /* OBBaseSettingsViewController.m */,
+				9FC479671B70811C0053B996 /* OBSettingsSegue.h */,
+				9FC479681B70811C0053B996 /* OBSettingsSegue.m */,
+				9FC479691B70811C0053B996 /* OBSettingsUnwindSegue.h */,
+				9FC4796A1B70811C0053B996 /* OBSettingsUnwindSegue.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		9F98D34C1880F8ED00469323 = {
 			isa = PBXGroup;
 			children = (
@@ -739,35 +752,30 @@
 		9FF686731893209600B36486 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9F98D3691880F8ED00469323 /* OBAppDelegate.h */,
-				9FF747E81B93E4B400ECDFE9 /* OBBaseSettingsViewController.h */,
-				9FD14131197CC7CE005220BC /* OBBatchSizeViewController.h */,
-				9F3311661B34581C008C0029 /* OBBrewController.h */,
-				9F3ECEAF1BBE012A00D3F5AA /* OBCalculationsTableViewDataSource.h */,
-				9F60CF2719B251D00076A600 /* OBIngredientTableViewDataSource.h */,
-				9FE63D5F1BB71F33002C15AB /* OBRecipeListTableViewDataSource.h */,
-				9FF686C01893E45F00B36486 /* OBRecipeListViewController.h */,
-				9FF686C71894099A00B36486 /* OBRecipeViewController.h */,
-				9FC479671B70811C0053B996 /* OBSettingsSegue.h */,
-				9FC479691B70811C0053B996 /* OBSettingsUnwindSegue.h */,
-				9FA031E41B3CCF18006C855D /* OBYeastAdditionViewController.h */,
-				9F98D36A1880F8ED00469323 /* OBAppDelegate.m */,
-				9FF747E91B93E4B400ECDFE9 /* OBBaseSettingsViewController.m */,
-				9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */,
-				9F3ECEB01BBE012A00D3F5AA /* OBCalculationsTableViewDataSource.m */,
-				9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */,
-				9FE63D601BB71F33002C15AB /* OBRecipeListTableViewDataSource.m */,
-				9FF686C11893E45F00B36486 /* OBRecipeListViewController.m */,
-				9FF686C81894099A00B36486 /* OBRecipeViewController.m */,
-				9FC479681B70811C0053B996 /* OBSettingsSegue.m */,
-				9FC4796A1B70811C0053B996 /* OBSettingsUnwindSegue.m */,
-				9FA031E51B3CCF18006C855D /* OBYeastAdditionViewController.m */,
 				9F0815381996D5E700E5E575 /* DrawerTableView */,
 				9F0185CB1BAC06D60026BC0C /* Gauge */,
 				9FF510151B65689700970C22 /* HopConfiguration */,
 				9FF510141B65687E00970C22 /* MaltConfiguration */,
 				9FE86434198DBE9F007AD9E7 /* Picker Delegates */,
 				9F107DF11BBACFE500364A32 /* SegmentedControlDelegates */,
+				9F9661CE1BBEC39100CC56A8 /* Settings */,
+				9F98D3691880F8ED00469323 /* OBAppDelegate.h */,
+				9F98D36A1880F8ED00469323 /* OBAppDelegate.m */,
+				9FD14131197CC7CE005220BC /* OBBatchSizeViewController.h */,
+				9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */,
+				9F3311661B34581C008C0029 /* OBBrewController.h */,
+				9F3ECEAF1BBE012A00D3F5AA /* OBCalculationsTableViewDataSource.h */,
+				9F3ECEB01BBE012A00D3F5AA /* OBCalculationsTableViewDataSource.m */,
+				9F60CF2719B251D00076A600 /* OBIngredientTableViewDataSource.h */,
+				9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */,
+				9FE63D5F1BB71F33002C15AB /* OBRecipeListTableViewDataSource.h */,
+				9FE63D601BB71F33002C15AB /* OBRecipeListTableViewDataSource.m */,
+				9FF686C01893E45F00B36486 /* OBRecipeListViewController.h */,
+				9FF686C11893E45F00B36486 /* OBRecipeListViewController.m */,
+				9FF686C71894099A00B36486 /* OBRecipeViewController.h */,
+				9FF686C81894099A00B36486 /* OBRecipeViewController.m */,
+				9FA031E41B3CCF18006C855D /* OBYeastAdditionViewController.h */,
+				9FA031E51B3CCF18006C855D /* OBYeastAdditionViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
