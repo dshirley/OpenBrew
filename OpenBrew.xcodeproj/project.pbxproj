@@ -784,15 +784,15 @@
 			isa = PBXGroup;
 			children = (
 				9F3311671B345E7D008C0029 /* CollectionViewCells */,
+				9F5033BF198B55E800C302C1 /* TableViewCells */,
 				9F98D3911880FB7600469323 /* Main.storyboard */,
 				9F33116E1B35BF22008C0029 /* OBColorView.h */,
 				9F33116F1B35BF22008C0029 /* OBColorView.m */,
 				9FE2434F1B471D5800D1EE25 /* OBMultiPickerView.h */,
 				9FE243501B471D5800D1EE25 /* OBMultiPickerView.m */,
-				9F41C2911BADB7BE00A072E9 /* OBPlaceholderView.xib */,
 				9FC73F5519BD128200AD964A /* OBPlaceholderView.h */,
 				9FC73F5619BD128200AD964A /* OBPlaceholderView.m */,
-				9F5033BF198B55E800C302C1 /* TableViewCells */,
+				9F41C2911BADB7BE00A072E9 /* OBPlaceholderView.xib */,
 				9F107DEE1BBA1D5200364A32 /* OBSegmentedControl.h */,
 				9F107DEF1BBA1D5200364A32 /* OBSegmentedControl.m */,
 			);
