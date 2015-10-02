@@ -1029,23 +1029,42 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="OBRecipeCell" textLabel="YV4-4b-oYL" style="IBUITableViewCellStyleDefault" id="nWO-Dr-odo">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="OBRecipeCell" id="nWO-Dr-odo" customClass="OBRecipeTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nWO-Dr-odo" id="H65-7J-GI2">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Recipe Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YV4-4b-oYL">
-                                                    <rect key="frame" x="15" y="0.0" width="550" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DU-jt-x0e">
+                                                    <rect key="frame" x="44" y="6" width="515" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="t5w-sN-lUS"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yl-Fq-w56" customClass="OBColorView">
+                                                    <rect key="frame" x="16" y="17" width="10" height="10"/>
+                                                    <color key="backgroundColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="10" id="Y5J-8p-VKX"/>
+                                                        <constraint firstAttribute="width" constant="10" id="zHu-Kg-lY5"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5DU-jt-x0e" firstAttribute="centerY" secondItem="H65-7J-GI2" secondAttribute="centerY" id="0Qo-1y-fq7"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="5DU-jt-x0e" secondAttribute="trailing" id="JV4-Nr-pEF"/>
+                                                <constraint firstItem="9yl-Fq-w56" firstAttribute="centerY" secondItem="H65-7J-GI2" secondAttribute="centerY" id="UHC-Uv-bd0"/>
+                                                <constraint firstItem="5DU-jt-x0e" firstAttribute="leading" secondItem="9yl-Fq-w56" secondAttribute="trailing" constant="18" id="WVh-pd-min"/>
+                                                <constraint firstItem="9yl-Fq-w56" firstAttribute="leading" secondItem="H65-7J-GI2" secondAttribute="leadingMargin" constant="8" id="ail-s9-vcJ"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="colorView" destination="9yl-Fq-w56" id="Ae7-0N-U6p"/>
+                                            <outlet property="recipeName" destination="5DU-jt-x0e" id="XAq-wB-kO2"/>
                                             <segue destination="EwC-Vl-NBE" kind="show" identifier="selectRecipe" id="6et-Os-ZUX"/>
                                         </connections>
                                     </tableViewCell>

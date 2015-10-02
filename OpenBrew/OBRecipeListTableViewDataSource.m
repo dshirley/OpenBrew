@@ -9,6 +9,7 @@
 #import "OBRecipeListTableViewDataSource.h"
 #import "OBRecipe.h"
 #import "Crittercism+NSErrorLogging.h"
+#import "OBRecipeTableViewCell.h"
 
 @interface OBRecipeListTableViewDataSource()
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -50,11 +51,12 @@
 
 #pragma mark - Utility Methods
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(OBRecipeTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
   OBRecipe *recipe = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-  cell.textLabel.text = recipe.name;
+  cell.recipeName.text = recipe.name;
+  cell.colorView.colorInSrm = [recipe colorInSRM];
 }
 
 #pragma mark - UITableViewDataSource Methods
@@ -66,8 +68,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OBRecipeCell"
-                                                          forIndexPath:indexPath];
+  OBRecipeTableViewCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:@"OBRecipeCell"
+                                                                    forIndexPath:indexPath];
 
   [self configureCell:cell atIndexPath:indexPath];
 
