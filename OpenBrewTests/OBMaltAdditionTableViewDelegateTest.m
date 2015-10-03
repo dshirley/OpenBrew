@@ -430,7 +430,7 @@ typedef BOOL(^CanChangeRowAtIndexPath)(NSIndexPath *indexPath);
 
   OBMaltAddition *malt = [self addMalt:@"Maris Otter" quantity:9.0];
 
-  OBMaltQuantityPickerDelegate *pickerDelegate = [[OBMaltQuantityPickerDelegate alloc] initWithMaltAddition:malt];
+  OBMaltQuantityPickerDelegate *pickerDelegate = [OBMaltQuantityPickerDelegate maltQuantityPickerDelegateWith:malt];
   [view addPickerDelegate:pickerDelegate withTitle:@"This should be removed"];
 
   [self.delegate populateDrawerCell:cell withIngredientData:malt];

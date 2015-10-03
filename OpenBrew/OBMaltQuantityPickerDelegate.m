@@ -15,12 +15,13 @@
 
 @implementation OBMaltQuantityPickerDelegate 
 
-- (id)initWithMaltAddition:(OBMaltAddition *)maltAddition
+- (id)initWithTarget:(id)target key:(NSString *)propertyToSet;
 {
   self = [super init];
 
   if (self) {
-    self.maltAddition = maltAddition;
+    self.target = target;
+    self.key = propertyToSet;
   }
 
   return self;
@@ -29,7 +30,7 @@
 - (void)updateSelectionForPicker:(UIPickerView *)picker
 {
   NSInteger baseRow = 16 * (NUM_CYCLES_FOR_OZ_PICKER / 2);
-  float pounds = [[self.maltAddition quantityInPounds] floatValue];
+  float pounds = [[self.target valueForKey:self.key] floatValue];
   float ounces = round((pounds - trunc(pounds)) * 16);
 
   [picker selectRow:(baseRow + ounces) inComponent:RIGHT_PICKER_COMPONENT animated:NO];
@@ -94,21 +95,21 @@
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component
 {
-  float currentQuantity = [self.maltAddition.quantityInPounds floatValue];
+  float currentQuantity = [[self.target valueForKey:self.key] floatValue];
 
   if (component == LEFT_PICKER_COMPONENT) {
 
     float newPounds = (float) [self poundsForRow:row];
     float currentOunces = currentQuantity - trunc(currentQuantity);
 
-    self.maltAddition.quantityInPounds = [NSNumber numberWithFloat:newPounds + currentOunces];
+    [self.target setValue:@(newPounds + currentOunces) forKey:self.key];
 
   } else if (component == RIGHT_PICKER_COMPONENT) {
 
     float newOunces = ((float) [self ouncesForRow:row]) / 16;
     float currentPounds = trunc(currentQuantity);
 
-    self.maltAddition.quantityInPounds = [NSNumber numberWithFloat:currentPounds + newOunces];
+    [self.target setValue:@(currentPounds + newOunces) forKey:self.key];
   }
 }
 

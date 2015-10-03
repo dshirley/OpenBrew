@@ -17,6 +17,8 @@
 #import "OBMaltQuantityPickerDelegate.h"
 #import "OBMaltColorPickerDelegate.h"
 
+#import "OBKvoUtils.h"
+
 @implementation OBMaltAdditionTableViewDelegate
 
 - (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView andGACategory:(NSString *)gaCategory
@@ -81,7 +83,8 @@
   OBMultiPickerTableViewCell *drawerCell = (OBMultiPickerTableViewCell *)cell;
   OBMaltAddition *maltAddition = (OBMaltAddition *)ingredientData;
 
-  OBMaltQuantityPickerDelegate *quantityPickerDelegate = [[OBMaltQuantityPickerDelegate alloc] initWithMaltAddition:maltAddition];
+  OBMaltQuantityPickerDelegate *quantityPickerDelegate = [OBMaltQuantityPickerDelegate maltQuantityPickerDelegateWith:maltAddition];
+  
   OBMaltColorPickerDelegate *colorPickerDelegate = [[OBMaltColorPickerDelegate alloc] initWithMaltAddition:maltAddition];
 
   [drawerCell.multiPickerView removeAllPickers];

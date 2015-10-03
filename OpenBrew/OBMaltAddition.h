@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "OBIngredientAddition.h"
 #import "OBMalt.h"
+#import "OBMaltQuantityPickerDelegate.h"
 
 @class OBRecipe;
 
@@ -34,5 +35,11 @@
 #pragma mark - OBIngredientAddition protocol
 
 - (void)removeFromRecipe;
+
+@end
+
+@interface OBMaltQuantityPickerDelegate(OBMaltAddition)
+
++ (instancetype)maltQuantityPickerDelegateWith:(OBMaltAddition *)maltAddition;
 
 @end

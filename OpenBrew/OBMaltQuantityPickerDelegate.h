@@ -13,9 +13,10 @@
 @protocol OBPickerObserver;
 
 @interface OBMaltQuantityPickerDelegate : NSObject <OBPickerDelegate>
-@property (nonatomic) OBMaltAddition *maltAddition;
+@property (nonatomic) id target;
+@property (nonatomic) NSString *key;
 
-- (id)initWithMaltAddition:(OBMaltAddition *)maltAddition;
+- (id)initWithTarget:(id)target key:(NSString *)propertyToSet;
 
 - (void)updateSelectionForPicker:(UIPickerView *)picker;
 

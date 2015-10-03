@@ -9,6 +9,7 @@
 #import "OBMaltAddition.h"
 #import "OBMalt.h"
 #import "OBRecipe.h"
+#import "OBKvoUtils.h"
 
 #import <math.h>
 
@@ -100,6 +101,16 @@
 {
   [self.recipe removeMaltAdditionsObject:self];
   self.recipe = nil;
+}
+
+@end
+
+@implementation OBMaltQuantityPickerDelegate(OBMaltAddition)
+
++ (instancetype)maltQuantityPickerDelegateWith:(OBMaltAddition *)maltAddition
+{
+  return [[OBMaltQuantityPickerDelegate alloc] initWithTarget:maltAddition
+                                                          key:KVO_KEY(quantityInPounds)];
 }
 
 @end

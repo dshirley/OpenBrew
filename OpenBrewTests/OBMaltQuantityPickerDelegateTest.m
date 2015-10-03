@@ -22,8 +22,8 @@
 - (void)testInit
 {
   OBMaltAddition *malt = [self addMalt:@"Maris Otter" quantity:1.0];
-  OBMaltQuantityPickerDelegate *delegate = [[OBMaltQuantityPickerDelegate alloc] initWithMaltAddition:malt];
-  XCTAssertEqual(malt, delegate.maltAddition);
+  OBMaltQuantityPickerDelegate *delegate = [OBMaltQuantityPickerDelegate maltQuantityPickerDelegateWith:malt];
+  XCTAssertEqual(malt, delegate.target);
 }
 
 - (void)testUpdateSelectionForPicker
@@ -50,7 +50,7 @@
                                       forQuantity:(float)quantity
 {
   OBMaltAddition *malt = [self addMalt:@"Maris Otter" quantity:1.0];
-  OBMaltQuantityPickerDelegate *delegate = [[OBMaltQuantityPickerDelegate alloc] initWithMaltAddition:malt];
+  OBMaltQuantityPickerDelegate *delegate = [OBMaltQuantityPickerDelegate maltQuantityPickerDelegateWith:malt];
   malt.quantityInPounds = @(quantity);
 
   id mockPicker = [OCMockObject mockForClass:UIPickerView.class];
@@ -65,20 +65,20 @@
 
 - (void)testNumberOfComponentsInPickerView
 {
-  OBMaltQuantityPickerDelegate *delegate = [[OBMaltQuantityPickerDelegate alloc] initWithMaltAddition:nil];
+  OBMaltQuantityPickerDelegate *delegate = [OBMaltQuantityPickerDelegate maltQuantityPickerDelegateWith:nil];
   XCTAssertEqual(2, [delegate numberOfComponentsInPickerView:nil]);
 }
 
 - (void)testNumberOfRowsInComponent
 {
-  OBMaltQuantityPickerDelegate *delegate = [[OBMaltQuantityPickerDelegate alloc] initWithMaltAddition:nil];
+  OBMaltQuantityPickerDelegate *delegate = [OBMaltQuantityPickerDelegate maltQuantityPickerDelegateWith:nil];
   XCTAssertEqual(50, [delegate pickerView:nil numberOfRowsInComponent:0]);
   XCTAssertEqual(32000, [delegate pickerView:nil numberOfRowsInComponent:1]);
 }
 
 - (void)testTitleForRowForComponent
 {
-  OBMaltQuantityPickerDelegate *delegate = [[OBMaltQuantityPickerDelegate alloc] initWithMaltAddition:nil];
+  OBMaltQuantityPickerDelegate *delegate = [OBMaltQuantityPickerDelegate maltQuantityPickerDelegateWith:nil];
   XCTAssertEqualObjects(@"0 lb", [delegate pickerView:nil titleForRow:0 forComponent:0]);
   XCTAssertEqualObjects(@"5 lb", [delegate pickerView:nil titleForRow:5 forComponent:0]);
   XCTAssertEqualObjects(@"50 lb", [delegate pickerView:nil titleForRow:50 forComponent:0]);
@@ -94,7 +94,7 @@
 - (void)testDidSelectRowInComponent
 {
   OBMaltAddition *malt = [self addMalt:@"Maris Otter" quantity:1.0];
-  OBMaltQuantityPickerDelegate *delegate = [[OBMaltQuantityPickerDelegate alloc] initWithMaltAddition:malt];
+  OBMaltQuantityPickerDelegate *delegate = [OBMaltQuantityPickerDelegate maltQuantityPickerDelegateWith:malt];
 
   [delegate pickerView:nil didSelectRow:15 inComponent:0];
   XCTAssertEqualWithAccuracy(15.0, [malt.quantityInPounds floatValue], 0.000001);
