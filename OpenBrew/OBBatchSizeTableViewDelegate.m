@@ -9,9 +9,10 @@
 #import "OBBatchSizeTableViewDelegate.h"
 #import "OBRecipe.h"
 #import "OBMultiPickerTableViewCell.h"
-#import "OBVolumePickerDelegate.h"
+#import "OBPickerDelegate.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
+#import "OBKvoUtils.h"
 
 typedef NS_ENUM(NSInteger, OBBatchSizeCell) {
   OBBatchSizeCellPreBoilVolume,
@@ -87,13 +88,11 @@ NSString * const OBBatchSizeCellStrings[] = {
   [drawerCell.multiPickerView removeAllPickers];
 
   if (cellType == OBBatchSizeCellPreBoilVolume) {
-    pickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
-                                                 recipePropertyName:@"preBoilVolumeInGallons"];
-
+    pickerDelegate = [OBPickerDelegate volumePickerDelegate:self.recipe
+                                                        key:KVO_KEY(preBoilVolumeInGallons)];
   } else if (cellType == OBBatchSizeCellPostBoilVolume) {
-    pickerDelegate = [[OBVolumePickerDelegate alloc] initWithRecipe:self.recipe
-                                                 recipePropertyName:@"postBoilVolumeInGallons"];
-
+    pickerDelegate = [OBPickerDelegate volumePickerDelegate:self.recipe
+                                                        key:KVO_KEY(postBoilVolumeInGallons)];
   } else {
     [NSException raise:@"Invalid OBBatchSizeCell" format:@"Cell: %@", @(cellType)];
   }

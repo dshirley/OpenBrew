@@ -102,3 +102,45 @@ typedef struct _OBSequence {
 }
 
 @end
+
+#import "OBKvoUtils.h"
+
+@implementation OBPickerDelegate(OBHopAddition)
+
++ (OBPickerDelegate *)hopsQuantityInGramsPickerDelegate:(OBHopAddition *)hopAddition
+{
+  OBPickerDelegate *delegate = [[OBPickerDelegate alloc] initWithTarget:hopAddition key:KVO_KEY(quantityInGrams)];
+  delegate.format = @"%.0f g";
+  [delegate from:0 to:500 incrementBy:1];
+  return delegate;
+}
+
++ (OBPickerDelegate *)hopsQuantityInOuncesPickerDelegate:(OBHopAddition *)hopAddition
+{
+  OBPickerDelegate *delegate =  [[OBPickerDelegate alloc] initWithTarget:hopAddition key:KVO_KEY(quantityInOunces)];
+  delegate.format = @"%.1f oz";
+  [delegate from:0 to:16 incrementBy:.1];
+  return delegate;
+}
+
++ (OBPickerDelegate *)hopsAlphaAcidPickerDelegate:(OBHopAddition *)hopAddition
+{
+  OBPickerDelegate *delegate =  [[OBPickerDelegate alloc] initWithTarget:hopAddition key:KVO_KEY(alphaAcidPercent)];
+  delegate.format = @"%.1f%%";
+  [delegate from:0 to:20 incrementBy:.1];
+  return delegate;
+}
+
+@end
+
+@implementation OBPickerDelegate(OBRecipe)
+
++ (OBPickerDelegate *)volumePickerDelegate:(OBRecipe *)recipe key:(NSString *)key;
+{
+  OBPickerDelegate *delegate =  [[OBPickerDelegate alloc] initWithTarget:recipe key:key];
+  delegate.format = @"%.2f";
+  [delegate from:0 to:30 incrementBy:.25];
+  return delegate;
+}
+
+@end

@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OBMultiPickerView.h"
 
-@interface OBPickerDelegate : NSObject
+@interface OBPickerDelegate : NSObject <OBPickerDelegate>
 
 // The object whose 'key' is represented by this picker delegate
 @property (nonatomic, readonly) id target;
@@ -40,5 +41,25 @@
 - (void)pickerView:(UIPickerView *)pickerView
       didSelectRow:(NSInteger)row
        inComponent:(NSInteger)component;
+
+@end
+
+#import "OBHopAddition.h"
+
+@interface OBPickerDelegate(OBHopAddition)
+
++ (OBPickerDelegate *)hopsQuantityInGramsPickerDelegate:(OBHopAddition *)hopAddition;
+
++ (OBPickerDelegate *)hopsQuantityInOuncesPickerDelegate:(OBHopAddition *)hopAddition;
+
++ (OBPickerDelegate *)hopsAlphaAcidPickerDelegate:(OBHopAddition *)hopAddition;
+
+@end
+
+#import "OBRecipe.h"
+
+@interface OBPickerDelegate(OBRecipe)
+
++ (OBPickerDelegate *)volumePickerDelegate:(OBRecipe *)recipe key:(NSString *)key;
 
 @end
