@@ -105,6 +105,8 @@
 		9FD2B8FC1BB58D16009018FD /* MaltCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9FE279F11B9953450057BEFE /* MaltCatalog.csv */; };
 		9FD2B8FD1BB58D16009018FD /* YeastCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9FE279F21B9953450057BEFE /* YeastCatalog.csv */; };
 		9FD66387198218220056EEEC /* OBHopAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD66386198218220056EEEC /* OBHopAdditionViewController.m */; };
+		9FD671BE1BC2BED6003493FB /* OBPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD671BC1BC2BED6003493FB /* OBPickerDelegate.m */; settings = {ASSET_TAGS = (); }; };
+		9FD671C11BC2BF0F003493FB /* OBPickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD671C01BC2BF0F003493FB /* OBPickerDelegateTest.m */; settings = {ASSET_TAGS = (); }; };
 		9FE243461B45CD1B00D1EE25 /* OBRecipeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE243451B45CD1B00D1EE25 /* OBRecipeTest.m */; };
 		9FE243511B471D5800D1EE25 /* OBMultiPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE243501B471D5800D1EE25 /* OBMultiPickerView.m */; };
 		9FE279D11B9935EE0057BEFE /* OBCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE279D01B9935EE0057BEFE /* OBCoreData.m */; };
@@ -300,6 +302,9 @@
 		9FD2B8F91BB58B2E009018FD /* OBDataLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBDataLoader.m; sourceTree = "<group>"; };
 		9FD66385198218220056EEEC /* OBHopAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionViewController.h; sourceTree = "<group>"; };
 		9FD66386198218220056EEEC /* OBHopAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionViewController.m; sourceTree = "<group>"; };
+		9FD671BC1BC2BED6003493FB /* OBPickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPickerDelegate.m; sourceTree = "<group>"; };
+		9FD671BD1BC2BED6003493FB /* OBPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPickerDelegate.h; sourceTree = "<group>"; };
+		9FD671C01BC2BF0F003493FB /* OBPickerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPickerDelegateTest.m; sourceTree = "<group>"; };
 		9FE243451B45CD1B00D1EE25 /* OBRecipeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeTest.m; sourceTree = "<group>"; };
 		9FE2434F1B471D5800D1EE25 /* OBMultiPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMultiPickerView.h; sourceTree = "<group>"; };
 		9FE243501B471D5800D1EE25 /* OBMultiPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerView.m; sourceTree = "<group>"; };
@@ -705,6 +710,8 @@
 				9F0815491997147C00E5E575 /* OBMaltColorPickerDelegate.m */,
 				9F0815421996FF0400E5E575 /* OBMaltQuantityPickerDelegate.h */,
 				9F0815431996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m */,
+				9FD671BD1BC2BED6003493FB /* OBPickerDelegate.h */,
+				9FD671BC1BC2BED6003493FB /* OBPickerDelegate.m */,
 				9FFE13131B27EF6E00D3F76A /* OBVolumePickerDelegate.h */,
 				9FFE13141B27EF6E00D3F76A /* OBVolumePickerDelegate.m */,
 			);
@@ -716,11 +723,12 @@
 			children = (
 				9F0323321B78E4B300E4B98B /* OBAlphaAcidPickerDelegateTest.m */,
 				9F0323301B786DC500E4B98B /* OBHopBoilTimePickerDelegateTest.m */,
+				9F6EB0321BADFDC400F2739E /* OBHopGramsPickerDelegateTest.m */,
 				9F49A85E1B79086600D48E2C /* OBHopOuncesPickerDelegateTest.m */,
 				9FBAE0941B79900100D12FC8 /* OBMaltColorPickerDelegateTest.m */,
 				9FF3B15C1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m */,
+				9FD671C01BC2BF0F003493FB /* OBPickerDelegateTest.m */,
 				9F63BD951B7CF82F0028EC84 /* OBVolumePickerDelegateTest.m */,
-				9F6EB0321BADFDC400F2739E /* OBHopGramsPickerDelegateTest.m */,
 			);
 			name = "Picker Delegates";
 			sourceTree = "<group>";
@@ -1044,6 +1052,7 @@
 				9F0815441996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m in Sources */,
 				9F92E8BF18A0CED100118D76 /* OBMaltAddition.m in Sources */,
 				9F6EB02D1BADEE8800F2739E /* OBUnitConversion.m in Sources */,
+				9FD671BE1BC2BED6003493FB /* OBPickerDelegate.m in Sources */,
 				9FA3890119B27A0B0009DB07 /* OBSrmColorTable.m in Sources */,
 				9F1A9C291BBAE3830090D7C9 /* OBHopDisplayMetricSegmentedControlDelegate.m in Sources */,
 				9F95B23C1B2677C6009DC9D9 /* OBBatchSizeTableViewDelegate.m in Sources */,
@@ -1068,6 +1077,7 @@
 				9FE9745818883C8500FFAA56 /* OBMaltAdditionTest.m in Sources */,
 				9F0323331B78E4B300E4B98B /* OBAlphaAcidPickerDelegateTest.m in Sources */,
 				9F0820DF1BA0A0AF0026B296 /* OBYeastAdditionTest.m in Sources */,
+				9FD671C11BC2BF0F003493FB /* OBPickerDelegateTest.m in Sources */,
 				9FE525091B813461002612DD /* OBMaltFinderViewControllerTest.m in Sources */,
 				9FC4796E1B7082BF0053B996 /* OBHopAdditionSettingsViewControllerTest.m in Sources */,
 				9F40C4CA1B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m in Sources */,
