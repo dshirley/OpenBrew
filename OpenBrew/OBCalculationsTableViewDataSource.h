@@ -14,4 +14,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
+// Returns the view controller that should be transitioned to when the cell at the index path is selected
+- (UIViewController *)viewControllerForIndexPath:(NSIndexPath *)indexPath;
+
 @end

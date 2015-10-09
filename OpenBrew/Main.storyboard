@@ -979,7 +979,7 @@
                                                         <constraint firstAttribute="height" constant="32" id="t5w-sN-lUS"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yl-Fq-w56" customClass="OBColorView">
@@ -1002,7 +1002,6 @@
                                         <connections>
                                             <outlet property="colorView" destination="9yl-Fq-w56" id="Ae7-0N-U6p"/>
                                             <outlet property="recipeName" destination="5DU-jt-x0e" id="XAq-wB-kO2"/>
-                                            <segue destination="EwC-Vl-NBE" kind="show" identifier="selectRecipe" id="6et-Os-ZUX"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="calculationCell" textLabel="cns-z0-PyK" style="IBUITableViewCellStyleDefault" id="X82-Kb-aOI">
@@ -1023,9 +1022,6 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="ZCu-KW-rz9" id="ZxF-lO-RDq"/>
-                                </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cBy-Cw-9nl">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
@@ -1071,6 +1067,7 @@
                         <outlet property="placeholderView" destination="ujH-JC-ehI" id="pnB-8E-Rqt"/>
                         <outlet property="segmentedControl" destination="i1R-q5-PJ5" id="P1X-hN-I6e"/>
                         <outlet property="tableView" destination="Q9b-JK-P6B" id="cnh-Jq-elT"/>
+                        <segue destination="EwC-Vl-NBE" kind="show" identifier="selectRecipe" id="lw9-pF-fCk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kd2-dr-jsM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1084,6 +1081,7 @@
                     <navigationItem key="navigationItem" id="mXC-UK-jh2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="G1G-qE-Mun">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="weH-Tb-w9n">
                         <rect key="frame" x="0.0" y="524" width="320" height="44"/>
@@ -1367,6 +1365,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lPe-T7-yCx"/>
+        <segue reference="lw9-pF-fCk"/>
     </inferredMetricsTieBreakers>
 </document>

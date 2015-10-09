@@ -53,6 +53,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   };
 
   self.tableView.dataSource = self.recipeListDataSource;
+  self.tableView.delegate = self;
 
   self.placeholderView.messageLabel.text = @"No Recipes";
   self.placeholderView.instructionsLabel.text = @"Tap the '+' button to create a recipe.";
@@ -96,7 +97,7 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
       break;
 
     default:
-      NSAssert(NO, @"Unexpected segment index: %d", index);
+      NSAssert(NO, @"Unexpected segment index: %ld", (long) index);
       break;
   }
 
@@ -143,6 +144,22 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   [nextController setSettings:self.settings];
 }
 
+#pragma mark UITableViewDelegate Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  id<UITableViewDataSource> tableViewDataSource = self.tableView.dataSource;
+
+  if (tableViewDataSource == self.recipeListDataSource) {
+    id sender = [tableView cellForRowAtIndexPath:indexPath];
+    [self performSegueWithIdentifier:SELECT_RECIPE_SEGUE sender:sender];
+  } else if (tableViewDataSource == self.calculationsDataSource) {
+    UIViewController *vc = [self.calculationsDataSource viewControllerForIndexPath:indexPath];
+    [self.navigationController pushViewController:vc animated:YES];
+  } else {
+    NSAssert(NO, @"Unknown tableView data source: %@", tableViewDataSource);
+  }
+}
 
 #pragma mark UITableView Utility Methods
 

@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class OBMultiPickerView;
+#import "OBMultiPickerView.h"
 
 // This view represents the drawer that drops down in the hop and malt addition
 // view controllers.  It has to be layed out very manually due to the fact that

@@ -10,15 +10,14 @@
 #import "OBSettings.h"
 #import "OBRecipe.h"
 #import "OBHopAddition.h"
-#import <UICountingLabel/UICountingLabel.h>
+#import "OBGaugeView.h"
 
 @class OBRecipe, OBColorView;
 
 @interface OBGaugeViewController : UIViewController
 
-@property (nonatomic) IBOutlet UICountingLabel *valueLabel;
-@property (nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (nonatomic) IBOutlet OBColorView *colorView;
+// Same as self.view, but no casts are required with this one
+@property (nonatomic) IBOutlet OBGaugeView *gaugeView;
 
 @property (nonatomic) OBRecipe *recipe;
 @property (nonatomic) OBSettings *settings;

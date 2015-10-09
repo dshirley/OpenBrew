@@ -26,6 +26,12 @@
   return self;
 }
 
+- (void)awakeFromNib
+{
+  NSAssert(OBGaugeView.class == self.view.class, @"Unexpected view class: %@", self.view.class);
+  self.gaugeView = (OBGaugeView *)self.view;
+}
+
 - (void)viewDidLoad
 {
   [self refresh:NO];
@@ -38,42 +44,42 @@
   uint32_t srm = 0;
 
   if (self.metricToDisplay == OBMetricColor) {
-    self.colorView.hidden = NO;
-    self.valueLabel.hidden = YES;
+    self.gaugeView.colorView.hidden = NO;
+    self.gaugeView.valueLabel.hidden = YES;
     srm = roundf([self.recipe colorInSRM]);
     [self setColorInSrm:srm];
   } else {
-    self.colorView.hidden = YES;
-    self.valueLabel.hidden = NO;
+    self.gaugeView.colorView.hidden = YES;
+    self.gaugeView.valueLabel.hidden = NO;
   }
 
-  float startValue = self.valueLabel.currentValue;
+  float startValue = self.gaugeView.valueLabel.currentValue;
   float endValue = 0;
 
   switch (self.metricToDisplay) {
     case OBMetricOriginalGravity:
       endValue = [self.recipe originalGravity];
-      self.valueLabel.format = @"%.3f";
+      self.gaugeView.valueLabel.format = @"%.3f";
       description = @"Original gravity";
       break;
     case OBMetricFinalGravity:
       endValue = [self.recipe finalGravity];
-      self.valueLabel.format = @"%.3f";
+      self.gaugeView.valueLabel.format = @"%.3f";
       description = @"Final gravity";
       break;
     case OBMetricAbv:
       endValue = [self.recipe alcoholByVolume];
-      self.valueLabel.format = @"%.1f";
+      self.gaugeView.valueLabel.format = @"%.1f";
       description = @"ABV";
       break;
     case OBMetricIbu:
       endValue = roundf([self.recipe IBUs:[self.settings.ibuFormula integerValue]]);
-      self.valueLabel.format = @"%d";
+      self.gaugeView.valueLabel.format = @"%d";
       description = @"IBU";
       break;
     case OBMetricBuToGuRatio:
       endValue = [self.recipe bitternessToGravityRatio:[self.settings.ibuFormula integerValue]];
-      self.valueLabel.format = @"%.2f";
+      self.gaugeView.valueLabel.format = @"%.2f";
       description = @"BU:GU";
       break;
     case OBMetricColor:
@@ -86,13 +92,13 @@
                                             userInfo:@{ @"metric" : @(self.metricToDisplay) }]);
   }
 
-  self.descriptionLabel.text = description;
+  self.gaugeView.descriptionLabel.text = description;
 
   if (OBMetricColor != self.metricToDisplay) {
     NSTimeInterval duration = animate ? 0.25 : 0;
 
-    self.valueLabel.method = UILabelCountingMethodEaseOut;
-    [self.valueLabel countFrom:startValue to:endValue withDuration:duration];
+    self.gaugeView.valueLabel.method = UILabelCountingMethodEaseOut;
+    [self.gaugeView.valueLabel countFrom:startValue to:endValue withDuration:duration];
   }
 }
 
@@ -128,12 +134,12 @@
 
 - (void)setColorInSrm:(uint32_t)srm
 {
-  self.colorView.colorInSrm = srm;
+  self.gaugeView.colorView.colorInSrm = srm;
 }
 
 - (uint32_t)colorInSrm
 {
-  return self.colorView.colorInSrm;
+  return self.gaugeView.colorView.colorInSrm;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
