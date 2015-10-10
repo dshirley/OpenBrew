@@ -80,7 +80,6 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   id<OBBrewController> brewController = segue.destinationViewController;
   [brewController setRecipe:self.recipe];
-  [brewController setSettings:self.settings];
 }
 
 - (void)reloadData {
@@ -281,8 +280,6 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   NSString *value = nil;
   NSString *description = nil;
 
-  OBIbuFormula ibuFormula = [self.settings.ibuFormula integerValue];
-
   switch (cellType) {
     case OBOriginalGravity:
       value = [NSString stringWithFormat:@"%.3f", [self.recipe originalGravity]];
@@ -297,11 +294,11 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
       description = @"ABV";
       break;
     case OBIbu:
-      value = [NSString stringWithFormat:@"%d", (int) roundf([self.recipe IBUs:ibuFormula])];
+      value = [NSString stringWithFormat:@"%d", (int) roundf([self.recipe IBUs])];
       description = @"IBU";
       break;
     case OBBuToGuRatio:
-      value = [NSString stringWithFormat:@"%.2f", [self.recipe bitternessToGravityRatio:ibuFormula]];
+      value = [NSString stringWithFormat:@"%.2f", [self.recipe bitternessToGravityRatio]];
       description = @"BU:GU";
       break;
     default:

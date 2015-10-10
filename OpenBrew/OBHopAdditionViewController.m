@@ -40,7 +40,6 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   UIPageViewController *pageViewController = (id)self.childViewControllers[0];
   self.pageViewControllerDataSource =
     [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe
-                                                       settings:self.settings
                                                  displayMetrics:@[ @(OBMetricIbu), @(OBMetricBuToGuRatio) ]];
 
   pageViewController.dataSource = self.pageViewControllerDataSource;
@@ -53,7 +52,6 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   self.tableView.dataSource = self.tableViewDelegate;
 
   self.tableViewDelegate.hopAdditionMetricToDisplay = (OBHopAdditionMetric)[self.settings.hopAdditionDisplayMetric integerValue];
-  self.tableViewDelegate.ibuFormula = (OBIbuFormula)[self.settings.ibuFormula integerValue];
 
   UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoDark];
   [button addTarget:self action:@selector(showSettingsView:) forControlEvents:UIControlEventTouchUpInside];
@@ -117,12 +115,12 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 
 - (void)setRecipe:(OBRecipe *)recipe
 {
-  [_recipe removeObserver:self forKeyPath:KVO_KEY(IBUs:)];
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(IBUs)];
   [_recipe removeObserver:self forKeyPath:KVO_KEY(hopAdditions)];
 
   _recipe = recipe;
 
-  [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs:) options:0 context:nil];
+  [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs) options:0 context:nil];
   [_recipe addObserver:self forKeyPath:KVO_KEY(hopAdditions) options:0 context:nil];
 }
 
@@ -152,7 +150,7 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 {
   NSKeyValueChange changeType = [change[NSKeyValueChangeKindKey] integerValue];
 
-  if ([keyPath isEqualToString:KVO_KEY(IBUs:)])
+  if ([keyPath isEqualToString:KVO_KEY(IBUs)])
   {
     if (NSKeyValueChangeSetting == changeType) {
       // If the table is reloaded during a delete, a crash results.
@@ -162,10 +160,6 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   else if ([keyPath isEqualToString:KVO_KEY(hopAdditionDisplayMetric)])
   {
     self.tableViewDelegate.hopAdditionMetricToDisplay = [self.settings.hopAdditionDisplayMetric integerValue];
-  }
-  else if ([keyPath isEqualToString:KVO_KEY(ibuFormula)])
-  {
-    self.tableViewDelegate.ibuFormula = [self.settings.ibuFormula integerValue];
   }
   else if ([keyPath isEqualToString:KVO_KEY(hopQuantityUnits)])
   {

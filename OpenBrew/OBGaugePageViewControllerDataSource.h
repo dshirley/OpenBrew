@@ -14,11 +14,10 @@
 
 @interface OBGaugePageViewControllerDataSource : NSObject <UIPageViewControllerDataSource>
 
-@property (nonatomic, readonly) OBSettings *settings;
 @property (nonatomic, readonly) OBRecipe *recipe;
 @property (nonatomic, readonly) NSArray *metrics;
 
-- (instancetype)initWithRecipe:(OBRecipe *)recipe settings:(OBSettings *)settings displayMetrics:(NSArray *)metrics;
+- (instancetype)initWithRecipe:(OBRecipe *)recipe displayMetrics:(NSArray *)metrics;
 
 - (OBGaugeViewController *)viewControllerAtIndex:(NSInteger)index;
 

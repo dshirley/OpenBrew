@@ -33,7 +33,7 @@
     // TODO: This is a super bad error. Something should be displayed to the user
   }
 
-  OBSettings *settings = [self settingsForContext:self.managedObjectContext];
+  OBSettings *settings = [OBSettings settingsForContext:self.managedObjectContext];
 
   NSString *currentVersion = [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"];
   if (settings && ![settings.copiedStarterDataVersion isEqualToString:currentVersion]) {
@@ -60,36 +60,6 @@
   recipeVc.settings = settings;
   
   return YES;
-}
-
-- (OBSettings *)settingsForContext:(NSManagedObjectContext *)moc;
-{
-  NSEntityDescription *entityDescription = [NSEntityDescription
-                                            entityForName:@"Settings"
-                                            inManagedObjectContext:moc];
-  NSFetchRequest *request = [[NSFetchRequest alloc] init];
-  [request setEntity:entityDescription];
-
-  NSError *error = nil;
-  NSArray *array = [moc executeFetchRequest:request error:&error];
-
-  OBSettings *settings = nil;
-  if (!error && array && array.count > 0) {
-    if (array.count > 1) {
-      NSError *error = [NSError errorWithDomain:@"OBSettings"
-                                           code:1000
-                                       userInfo:@{ @"count" : @(array.count)}];
-
-      CRITTERCISM_LOG_ERROR(error);
-    }
-
-    settings = array[0];
-  } else {
-    settings = [NSEntityDescription insertNewObjectForEntityForName:@"Settings"
-                                             inManagedObjectContext:moc];
-  }
-
-  return settings;
 }
 
 - (void)initializeCrittercism

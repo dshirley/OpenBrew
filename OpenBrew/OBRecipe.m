@@ -16,7 +16,7 @@
 #import "OBMalt.h"
 
 NSString * const calculatedKVOKeys[] = {
-  @"IBUs:",
+  @"IBUs",
   @"originalGravity",
   @"boilGravity",
   @"colorInSRM",
@@ -104,12 +104,15 @@ NSString * const calculatedKVOKeys[] = {
   return percentOfTotal;
 }
 
-- (float)ibusForHopAddition:(OBHopAddition *)hopAddition ibuFormula:(OBIbuFormula)ibuFormula;
+- (float)ibusForHopAddition:(OBHopAddition *)hopAddition;
 {
   assert([self.hopAdditions containsObject:hopAddition]);
 
   float recipeVolume = [self.postBoilVolumeInGallons floatValue];
   float boilGravity = [self boilGravity];
+
+  OBSettings *settings = [OBSettings settingsForContext:self.managedObjectContext];
+  OBIbuFormula ibuFormula = [settings.ibuFormula integerValue];
 
   return [hopAddition ibusForRecipeVolume:recipeVolume
                               boilGravity:boilGravity
@@ -148,11 +151,15 @@ NSString * const calculatedKVOKeys[] = {
   return 1 + (gravityUnits / boilSize / 1000);
 }
 
-- (float)IBUs:(OBIbuFormula)ibuFormula;
+// TODO: need to start obsering IBU formula so that this class can update the IBUs key
+- (float)IBUs
 {
   float ibus = 0.0;
   float wortVolumeAfterBoil = [self.postBoilVolumeInGallons floatValue];
   float boilGravity = [self boilGravity];
+
+  OBSettings *settings = [OBSettings settingsForContext:self.managedObjectContext];
+  OBIbuFormula ibuFormula = [settings.ibuFormula integerValue];
 
   for (OBHopAddition *hops in [self hopAdditions]) {
     ibus += [hops ibusForRecipeVolume:wortVolumeAfterBoil
@@ -183,10 +190,10 @@ NSString * const calculatedKVOKeys[] = {
   return (76.08 * (og - fg) / (1.775 - og)) * (fg / 0.794);
 }
 
-- (float)bitternessToGravityRatio:(OBIbuFormula)ibuFormula;
+- (float)bitternessToGravityRatio
 {
   float nonDecimalGravity = 1000.0 * ([self originalGravity] - 1);
-  float ibu = [self IBUs:ibuFormula];
+  float ibu = [self IBUs];
 
   if (nonDecimalGravity == 0) {
     return INFINITY;

@@ -72,4 +72,6 @@ typedef NS_ENUM(NSInteger, OBHopQuantityUnits) {
 
 @property (nonatomic) NSNumber *ibuFormula;
 
++ (OBSettings *)settingsForContext:(NSManagedObjectContext *)moc;
+
 @end

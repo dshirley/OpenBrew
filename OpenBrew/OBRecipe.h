@@ -32,11 +32,11 @@
 - (float)gravityUnits;
 - (float)originalGravity;
 - (float)finalGravity;
-- (float)IBUs:(OBIbuFormula)ibuFormula;
+- (float)IBUs;
 - (float)colorInSRM;
 - (float)alcoholByVolume;
-- (float)bitternessToGravityRatio:(OBIbuFormula)ibuFormula;
-- (float)ibusForHopAddition:(OBHopAddition *)hopAddition ibuFormula:(OBIbuFormula)ibuFormula;
+- (float)bitternessToGravityRatio;
+- (float)ibusForHopAddition:(OBHopAddition *)hopAddition;
 - (NSInteger)percentTotalGravityOfMaltAddition:(OBMaltAddition *)maltAddition;
 
 - (NSArray *)maltAdditionsSorted;

@@ -13,13 +13,12 @@
 
 @implementation OBGaugeViewController
 
-- (instancetype)initWithRecipe:(OBRecipe *)recipe settings:(OBSettings *)settings metricToDisplay:(OBGaugeMetric)metric
+- (instancetype)initWithRecipe:(OBRecipe *)recipe metricToDisplay:(OBGaugeMetric)metric
 {
   self = [super initWithNibName:@"OBGaugeViewController" bundle:[NSBundle mainBundle]];
 
   if (self) {
     self.recipe = recipe;
-    self.settings = settings;
     self.metricToDisplay = metric;
   }
 
@@ -73,12 +72,12 @@
       description = @"ABV";
       break;
     case OBMetricIbu:
-      endValue = roundf([self.recipe IBUs:[self.settings.ibuFormula integerValue]]);
+      endValue = roundf([self.recipe IBUs]);
       self.gaugeView.valueLabel.format = @"%d";
       description = @"IBU";
       break;
     case OBMetricBuToGuRatio:
-      endValue = [self.recipe bitternessToGravityRatio:[self.settings.ibuFormula integerValue]];
+      endValue = [self.recipe bitternessToGravityRatio];
       self.gaugeView.valueLabel.format = @"%.2f";
       description = @"BU:GU";
       break;
@@ -105,31 +104,21 @@
 - (void)dealloc
 {
   self.recipe = nil;
-  self.settings = nil;
 }
 
 - (void)setRecipe:(OBRecipe *)recipe
 {
   [_recipe removeObserver:self forKeyPath:KVO_KEY(originalGravity)];
-  [_recipe removeObserver:self forKeyPath:KVO_KEY(IBUs:)];
+  [_recipe removeObserver:self forKeyPath:KVO_KEY(IBUs)];
   [_recipe removeObserver:self forKeyPath:KVO_KEY(postBoilVolumeInGallons)];
   [_recipe removeObserver:self forKeyPath:KVO_KEY(preBoilVolumeInGallons)];
 
   _recipe = recipe;
 
   [_recipe addObserver:self forKeyPath:KVO_KEY(originalGravity) options:0 context:nil];
-  [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs:) options:0 context:nil];
+  [_recipe addObserver:self forKeyPath:KVO_KEY(IBUs) options:0 context:nil];
   [_recipe addObserver:self forKeyPath:KVO_KEY(postBoilVolumeInGallons) options:0 context:nil];
   [_recipe addObserver:self forKeyPath:KVO_KEY(preBoilVolumeInGallons) options:0 context:nil];
-}
-
-- (void)setSettings:(OBSettings *)settings
-{
-  [_settings removeObserver:self forKeyPath:KVO_KEY(ibuFormula)];
-
-  _settings = settings;
-
-  [_settings addObserver:self forKeyPath:KVO_KEY(ibuFormula) options:0 context:nil];
 }
 
 - (void)setColorInSrm:(uint32_t)srm

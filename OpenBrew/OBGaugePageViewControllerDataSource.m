@@ -11,19 +11,17 @@
 
 @interface OBGaugePageViewControllerDataSource ()
 @property (nonatomic) OBRecipe *recipe;
-@property (nonatomic) OBSettings *settings;
 @property (nonatomic) NSArray *metrics;
 @end
 
 @implementation OBGaugePageViewControllerDataSource
 
-- (instancetype)initWithRecipe:(OBRecipe *)recipe settings:(OBSettings *)settings displayMetrics:(NSArray *)metrics;
+- (instancetype)initWithRecipe:(OBRecipe *)recipe displayMetrics:(NSArray *)metrics;
 {
   self = [super init];
 
   if (self) {
     self.recipe = recipe;
-    self.settings = settings;
     self.metrics = metrics;
   }
 
@@ -65,7 +63,6 @@
   OBGaugeMetric metric = [self.metrics[index] integerValue];
 
   return [[OBGaugeViewController alloc] initWithRecipe:self.recipe
-                                              settings:self.settings
                                        metricToDisplay:metric];
 }
 

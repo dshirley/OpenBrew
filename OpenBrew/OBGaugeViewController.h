@@ -20,10 +20,9 @@
 @property (nonatomic) IBOutlet OBGaugeView *gaugeView;
 
 @property (nonatomic) OBRecipe *recipe;
-@property (nonatomic) OBSettings *settings;
 @property (nonatomic, assign) OBGaugeMetric metricToDisplay;
 
-- (instancetype)initWithRecipe:(OBRecipe *)recipe settings:(OBSettings *)settings metricToDisplay:(OBGaugeMetric)metric;
+- (instancetype)initWithRecipe:(OBRecipe *)recipe metricToDisplay:(OBGaugeMetric)metric;
 
 - (void)refresh:(BOOL)animate;
 

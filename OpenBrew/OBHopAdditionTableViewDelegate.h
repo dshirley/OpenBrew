@@ -17,7 +17,6 @@
 @property (nonatomic) OBRecipe *recipe;
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic, assign) NSInteger selectedPickerIndex;
-@property (nonatomic, assign) OBIbuFormula ibuFormula;
 @property (nonatomic, assign) OBHopQuantityUnits hopQuantityUnits;
 
 - (id)initWithRecipe:(OBRecipe *)recipe andTableView:(UITableView *)tableView andGACategory:(NSString *)gaCategory;

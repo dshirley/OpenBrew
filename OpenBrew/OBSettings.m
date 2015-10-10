@@ -7,6 +7,7 @@
 //
 
 #import "OBSettings.h"
+#import "Crittercism+NSErrorLogging.h"
 
 @implementation OBSettings
 
@@ -22,5 +23,31 @@
 @dynamic maltGaugeDisplayMetric;
 @dynamic selectedYeastManufacturer;
 @dynamic ibuFormula;
+
++ (OBSettings *)settingsForContext:(NSManagedObjectContext *)moc
+{
+  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Settings"];
+
+  NSError *error = nil;
+  NSArray *array = [moc executeFetchRequest:request error:&error];
+
+  OBSettings *settings = nil;
+  if (!error && array && array.count > 0) {
+    if (array.count > 1) {
+      NSError *error = [NSError errorWithDomain:@"OBSettings"
+                                           code:1000
+                                       userInfo:@{ @"count" : @(array.count)}];
+
+      CRITTERCISM_LOG_ERROR(error);
+    }
+
+    settings = array[0];
+  } else {
+    settings = [NSEntityDescription insertNewObjectForEntityForName:@"Settings"
+                                             inManagedObjectContext:moc];
+  }
+
+  return settings;
+}
 
 @end

@@ -41,7 +41,6 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   UIPageViewController *pageViewController = (id)self.childViewControllers[0];
   self.pageViewControllerDataSource =
     [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe
-                                                       settings:self.settings
                                                 displayMetrics:@[ @(OBMetricOriginalGravity), @(OBMetricColor) ]];
 
   pageViewController.dataSource = self.pageViewControllerDataSource;
