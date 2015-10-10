@@ -36,12 +36,6 @@ static NSString* const OBGAScreenName = @"Mash Calculations";
   self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//  NSIndexPath *firstCell = [NSIndexPath indexPathForRow:0 inSection:0];
-//  [self selectTextInputAtIndexPath:firstCell];
-//}
-
 - (void)viewDidAppear:(BOOL)animated
 {
   NSIndexPath *firstCell = [NSIndexPath indexPathForRow:0 inSection:0];

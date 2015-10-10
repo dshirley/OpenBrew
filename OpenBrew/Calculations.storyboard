@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Mash Calculations View Controller-->
@@ -221,6 +222,108 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tP0-B7-Y1Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="283" y="312"/>
+        </scene>
+        <!--Abv Calculations View Controller-->
+        <scene sceneID="aVp-l1-ZoU">
+            <objects>
+                <viewController id="T6K-2v-bQi" customClass="OBAbvCalculationsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dD0-kG-bI3"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Zw-Ci-yPy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="skG-e5-9bd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="irh-Pv-way" userLabel="Separator">
+                                <rect key="frame" x="0.0" y="135" width="600" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="cQ2-4A-zud"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zKB-TF-4NZ">
+                                <rect key="frame" x="0.0" y="267" width="600" height="333"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pAD-nM-aly" userLabel="Left Picker">
+                                        <rect key="frame" x="0.0" y="58" width="300" height="216"/>
+                                    </pickerView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o57-Ss-7cz">
+                                        <rect key="frame" x="0.0" y="23" width="300" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Finishing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ET-aR-4Tk">
+                                        <rect key="frame" x="300" y="23" width="300" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrd-Lx-BrB" userLabel="Right Picker">
+                                        <rect key="frame" x="300" y="58" width="300" height="216"/>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="zrd-Lx-BrB" firstAttribute="width" secondItem="zKB-TF-4NZ" secondAttribute="width" multiplier="0.5" id="5pw-ek-jXh"/>
+                                    <constraint firstItem="o57-Ss-7cz" firstAttribute="width" secondItem="zKB-TF-4NZ" secondAttribute="width" multiplier="0.5" id="6Dq-z9-s8O"/>
+                                    <constraint firstItem="pAD-nM-aly" firstAttribute="leading" secondItem="zKB-TF-4NZ" secondAttribute="leading" id="8rg-IZ-FTv"/>
+                                    <constraint firstItem="o57-Ss-7cz" firstAttribute="leading" secondItem="zKB-TF-4NZ" secondAttribute="leading" id="CRt-ZA-fRq"/>
+                                    <constraint firstItem="zrd-Lx-BrB" firstAttribute="top" secondItem="pAD-nM-aly" secondAttribute="top" id="DGN-np-5df"/>
+                                    <constraint firstItem="4ET-aR-4Tk" firstAttribute="top" secondItem="zKB-TF-4NZ" secondAttribute="top" constant="23" id="E5l-Ad-A55"/>
+                                    <constraint firstItem="o57-Ss-7cz" firstAttribute="top" secondItem="zKB-TF-4NZ" secondAttribute="top" constant="23" id="YKs-ph-0BB"/>
+                                    <constraint firstItem="pAD-nM-aly" firstAttribute="centerY" secondItem="zKB-TF-4NZ" secondAttribute="centerY" id="bPV-JC-19d"/>
+                                    <constraint firstItem="4ET-aR-4Tk" firstAttribute="width" secondItem="zKB-TF-4NZ" secondAttribute="width" multiplier="0.5" id="dcm-By-JJr"/>
+                                    <constraint firstAttribute="trailing" secondItem="4ET-aR-4Tk" secondAttribute="trailing" id="kOp-wp-Flx"/>
+                                    <constraint firstItem="pAD-nM-aly" firstAttribute="width" secondItem="zKB-TF-4NZ" secondAttribute="width" multiplier="0.5" id="sGB-6a-GhQ"/>
+                                    <constraint firstItem="pAD-nM-aly" firstAttribute="top" secondItem="4ET-aR-4Tk" secondAttribute="bottom" constant="15" id="tuf-hv-okh"/>
+                                    <constraint firstAttribute="trailing" secondItem="zrd-Lx-BrB" secondAttribute="trailing" id="wi0-he-vE2"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wKg-3E-Ial">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="135"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="135" id="nTx-Xl-HFd"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="PtF-kG-4wx" kind="embed" id="kBu-dI-gfY"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="irh-Pv-way" secondAttribute="trailing" id="6eV-Pe-n98"/>
+                            <constraint firstAttribute="trailing" secondItem="zKB-TF-4NZ" secondAttribute="trailing" id="7oG-0I-8bz"/>
+                            <constraint firstItem="irh-Pv-way" firstAttribute="top" secondItem="wKg-3E-Ial" secondAttribute="bottom" id="WgX-Y9-UBX"/>
+                            <constraint firstItem="wKg-3E-Ial" firstAttribute="leading" secondItem="skG-e5-9bd" secondAttribute="leading" id="Wu7-PU-oVg"/>
+                            <constraint firstItem="2Zw-Ci-yPy" firstAttribute="top" secondItem="zKB-TF-4NZ" secondAttribute="bottom" id="b5W-EF-C2I"/>
+                            <constraint firstItem="zKB-TF-4NZ" firstAttribute="leading" secondItem="skG-e5-9bd" secondAttribute="leading" id="cug-AN-6Bh"/>
+                            <constraint firstAttribute="trailing" secondItem="wKg-3E-Ial" secondAttribute="trailing" id="dg6-kv-bwQ"/>
+                            <constraint firstItem="wKg-3E-Ial" firstAttribute="top" secondItem="skG-e5-9bd" secondAttribute="top" id="gZa-wU-Zer"/>
+                            <constraint firstItem="irh-Pv-way" firstAttribute="leading" secondItem="skG-e5-9bd" secondAttribute="leading" id="khy-Ad-hTv"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="finishingGravityPicker" destination="zrd-Lx-BrB" id="bzK-dG-EJg"/>
+                        <outlet property="startingGravityPicker" destination="pAD-nM-aly" id="lrt-c8-DhA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hKw-t9-IXn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="981" y="312"/>
+        </scene>
+        <!--Gauge Page View Controller-->
+        <scene sceneID="Vu9-yG-qRA">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="PtF-kG-4wx" customClass="OBGaugePageViewController" sceneMemberID="viewController">
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="135"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BU5-2H-bqZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1696" y="79.5"/>
         </scene>
     </scenes>
 </document>
