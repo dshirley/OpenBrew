@@ -58,7 +58,8 @@
 {
   NSString *cellText = self.calculations[indexPath.row];
   NSString *storyboardId = self.cellTextToStoryboardIdMapping[cellText];
-  UIStoryboard *calculationsStoryboard = [UIStoryboard storyboardWithName:@"Calculations" bundle:nil];
+  UIStoryboard *calculationsStoryboard = [UIStoryboard storyboardWithName:@"Calculations"
+                                                                   bundle:[NSBundle mainBundle]];
 
   return [calculationsStoryboard instantiateViewControllerWithIdentifier:storyboardId];
 }

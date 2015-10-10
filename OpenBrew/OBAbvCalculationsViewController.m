@@ -30,12 +30,16 @@
   [self addObserver:self forKeyPath:KVO_KEY(finishingGravity) options:0 context:nil];
 
   self.startingGravityPickerDelegate = [[OBPickerDelegate alloc] initWithTarget:self key:KVO_KEY(startingGravity)];
+  self.startingGravityPickerDelegate.format = @"%.3f";
   [self.startingGravityPickerDelegate from:1.000 to:1.500 incrementBy:0.001];
   self.startingGravityPicker.delegate = self.startingGravityPickerDelegate;
+  [self.startingGravityPickerDelegate updateSelectionForPicker:self.startingGravityPicker];
 
   self.finishingGravityPickerDelegate = [[OBPickerDelegate alloc] initWithTarget:self key:KVO_KEY(finishingGravity)];
+  self.finishingGravityPickerDelegate.format = @"%.3f";
   [self.finishingGravityPickerDelegate from:1.000 to:1.500 incrementBy:0.001];
   self.finishingGravityPicker.delegate = self.finishingGravityPickerDelegate;
+  [self.finishingGravityPickerDelegate updateSelectionForPicker:self.finishingGravityPicker];
 }
 
 - (void)dealloc
