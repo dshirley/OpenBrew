@@ -323,7 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hKw-t9-IXn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="981" y="312"/>
+            <point key="canvasLocation" x="987" y="312"/>
         </scene>
         <!--Gauge Page View Controller-->
         <scene sceneID="Vu9-yG-qRA">
@@ -334,7 +334,114 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BU5-2H-bqZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1696" y="79.5"/>
+            <point key="canvasLocation" x="1760" y="79.5"/>
+        </scene>
+        <!--Carbonation Calculations View Controller-->
+        <scene sceneID="TbF-gn-tSp">
+            <objects>
+                <viewController storyboardIdentifier="carbonation calculations" id="FM2-hX-C20" customClass="OBCarbonationCalculationsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HFb-je-UAX"/>
+                        <viewControllerLayoutGuide type="bottom" id="DVi-Oj-Jg2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bzQ-jQ-HJg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pZ7-HL-ww4">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="135"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="135" id="ACJ-wi-bOa"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="PtF-kG-4wx" kind="embed" id="v0P-7W-TLg"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wWt-1X-gND" userLabel="Separator">
+                                <rect key="frame" x="0.0" y="135" width="600" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="VyK-8N-uiM"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nbg-eN-ZzB" userLabel="Label Container">
+                                <rect key="frame" x="0.0" y="136" width="600" height="75"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature (°F)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75Z-C4-2Qx">
+                                        <rect key="frame" x="300" y="27" width="300" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8R-sU-6KC">
+                                        <rect key="frame" x="0.0" y="17" width="300" height="41"/>
+                                        <string key="text">Desired
+Carbonation</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="75Z-C4-2Qx" firstAttribute="centerY" secondItem="nbg-eN-ZzB" secondAttribute="centerY" id="24d-kM-07h"/>
+                                    <constraint firstItem="h8R-sU-6KC" firstAttribute="width" secondItem="nbg-eN-ZzB" secondAttribute="width" multiplier="0.5" id="907-vI-H0V"/>
+                                    <constraint firstAttribute="height" constant="75" id="FWG-5U-Aua"/>
+                                    <constraint firstItem="75Z-C4-2Qx" firstAttribute="width" secondItem="nbg-eN-ZzB" secondAttribute="width" multiplier="0.5" id="HuR-iN-llo"/>
+                                    <constraint firstAttribute="trailing" secondItem="75Z-C4-2Qx" secondAttribute="trailing" id="Kw7-ZR-RdS"/>
+                                    <constraint firstItem="h8R-sU-6KC" firstAttribute="leading" secondItem="nbg-eN-ZzB" secondAttribute="leading" id="v22-fc-bsx"/>
+                                    <constraint firstItem="h8R-sU-6KC" firstAttribute="centerY" secondItem="nbg-eN-ZzB" secondAttribute="centerY" id="ze1-qW-nS8"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bw7-Fz-Td0">
+                                <rect key="frame" x="0.0" y="211" width="600" height="389"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JhM-lD-CQe" userLabel="Final Gravity">
+                                        <rect key="frame" x="300" y="86" width="300" height="216"/>
+                                    </pickerView>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pQf-XU-b3Z" userLabel="Starting Gravity">
+                                        <rect key="frame" x="0.0" y="86" width="300" height="216"/>
+                                    </pickerView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="pQf-XU-b3Z" firstAttribute="leading" secondItem="bw7-Fz-Td0" secondAttribute="leading" id="9BJ-pH-rlF"/>
+                                    <constraint firstItem="JhM-lD-CQe" firstAttribute="width" secondItem="bw7-Fz-Td0" secondAttribute="width" multiplier="0.5" id="Ef6-hA-yix"/>
+                                    <constraint firstItem="pQf-XU-b3Z" firstAttribute="centerY" secondItem="bw7-Fz-Td0" secondAttribute="centerY" id="Ltg-kp-fGx"/>
+                                    <constraint firstItem="pQf-XU-b3Z" firstAttribute="width" secondItem="bw7-Fz-Td0" secondAttribute="width" multiplier="0.5" id="SHN-oH-iId"/>
+                                    <constraint firstAttribute="trailing" secondItem="JhM-lD-CQe" secondAttribute="trailing" id="dv5-Mm-CNX"/>
+                                    <constraint firstItem="JhM-lD-CQe" firstAttribute="centerY" secondItem="bw7-Fz-Td0" secondAttribute="centerY" id="gAW-LM-oUf"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wWt-1X-gND" firstAttribute="leading" secondItem="bzQ-jQ-HJg" secondAttribute="leading" id="1dE-XZ-jMh"/>
+                            <constraint firstItem="nbg-eN-ZzB" firstAttribute="top" secondItem="wWt-1X-gND" secondAttribute="bottom" id="6iC-35-zV9"/>
+                            <constraint firstItem="nbg-eN-ZzB" firstAttribute="leading" secondItem="bzQ-jQ-HJg" secondAttribute="leading" id="Alw-nO-uq9"/>
+                            <constraint firstItem="DVi-Oj-Jg2" firstAttribute="top" secondItem="bw7-Fz-Td0" secondAttribute="bottom" id="NgN-Bn-V4u"/>
+                            <constraint firstItem="wWt-1X-gND" firstAttribute="top" secondItem="pZ7-HL-ww4" secondAttribute="bottom" id="OYo-nc-6gO"/>
+                            <constraint firstAttribute="trailing" secondItem="wWt-1X-gND" secondAttribute="trailing" id="Pnq-cC-jls"/>
+                            <constraint firstItem="pZ7-HL-ww4" firstAttribute="top" secondItem="bzQ-jQ-HJg" secondAttribute="top" id="SI0-39-Ghl"/>
+                            <constraint firstAttribute="trailing" secondItem="nbg-eN-ZzB" secondAttribute="trailing" id="Yw9-Db-Dk7"/>
+                            <constraint firstItem="bw7-Fz-Td0" firstAttribute="top" secondItem="nbg-eN-ZzB" secondAttribute="bottom" id="buk-MO-rtQ"/>
+                            <constraint firstAttribute="trailing" secondItem="bw7-Fz-Td0" secondAttribute="trailing" id="cIM-II-ix4"/>
+                            <constraint firstAttribute="trailing" secondItem="pZ7-HL-ww4" secondAttribute="trailing" id="d4r-EW-R4J"/>
+                            <constraint firstItem="bw7-Fz-Td0" firstAttribute="leading" secondItem="bzQ-jQ-HJg" secondAttribute="leading" id="igB-CO-ZgG"/>
+                            <constraint firstItem="pZ7-HL-ww4" firstAttribute="leading" secondItem="bzQ-jQ-HJg" secondAttribute="leading" id="mhU-eI-Q6E"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="carbonationPicker" destination="pQf-XU-b3Z" id="KBL-Ab-D67"/>
+                        <outlet property="temperaturePicker" destination="JhM-lD-CQe" id="h5w-5y-FyT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E3O-tp-Pju" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="987" y="1104"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="v0P-7W-TLg"/>
+    </inferredMetricsTieBreakers>
 </document>

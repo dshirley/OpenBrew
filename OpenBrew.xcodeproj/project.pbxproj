@@ -81,6 +81,7 @@
 		9FA3890119B27A0B0009DB07 /* OBSrmColorTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA3890019B27A0B0009DB07 /* OBSrmColorTable.m */; };
 		9FAA13151B72F2E100223569 /* OBMultiPickerViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA13141B72F2E100223569 /* OBMultiPickerViewTest.m */; };
 		9FAA13171B73280200223569 /* OBHopAdditionTableViewDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA13161B73280200223569 /* OBHopAdditionTableViewDelegateTest.m */; };
+		9FB27D8F1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB27D8E1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		9FBAE0951B79900100D12FC8 /* OBMaltColorPickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBAE0941B79900100D12FC8 /* OBMaltColorPickerDelegateTest.m */; };
 		9FC479661B7070A50053B996 /* OBHopAdditionSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC479651B7070A50053B996 /* OBHopAdditionSettingsViewController.m */; };
 		9FC4796B1B70811C0053B996 /* OBSettingsSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC479681B70811C0053B996 /* OBSettingsSegue.m */; };
@@ -272,6 +273,8 @@
 		9FA3890019B27A0B0009DB07 /* OBSrmColorTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSrmColorTable.m; sourceTree = "<group>"; };
 		9FAA13141B72F2E100223569 /* OBMultiPickerViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerViewTest.m; sourceTree = "<group>"; };
 		9FAA13161B73280200223569 /* OBHopAdditionTableViewDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionTableViewDelegateTest.m; sourceTree = "<group>"; };
+		9FB27D8D1BCBF56900284B8E /* OBCarbonationCalculationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBCarbonationCalculationsViewController.h; sourceTree = "<group>"; };
+		9FB27D8E1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBCarbonationCalculationsViewController.m; sourceTree = "<group>"; };
 		9FBAE0941B79900100D12FC8 /* OBMaltColorPickerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltColorPickerDelegateTest.m; sourceTree = "<group>"; };
 		9FC479641B7070A50053B996 /* OBHopAdditionSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionSettingsViewController.h; sourceTree = "<group>"; };
 		9FC479651B7070A50053B996 /* OBHopAdditionSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionSettingsViewController.m; sourceTree = "<group>"; };
@@ -464,6 +467,8 @@
 		9F39560A1BC35F0F005AC3A4 /* Calculations */ = {
 			isa = PBXGroup;
 			children = (
+				9FB27D8D1BCBF56900284B8E /* OBCarbonationCalculationsViewController.h */,
+				9FB27D8E1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m */,
 				9F36BC1D1BC8A08900D675D8 /* OBAbvCalculationsViewController.h */,
 				9F36BC1E1BC8A08900D675D8 /* OBAbvCalculationsViewController.m */,
 				9F3956051BC35EDB005AC3A4 /* OBMashCalculationsViewController.h */,
@@ -1034,6 +1039,7 @@
 				9FF68676189327B000B36486 /* OBMaltAdditionViewController.m in Sources */,
 				9F3311701B35BF22008C0029 /* OBColorView.m in Sources */,
 				9F107DF71BBAD34100364A32 /* OBIbuFormulaSegmentedControlDelegate.m in Sources */,
+				9FB27D8F1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m in Sources */,
 				9FC73F4F19BB683400AD964A /* Crittercism+NSErrorLogging.m in Sources */,
 				9F33116A1B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m in Sources */,
 				9F3ECEB11BBE012A00D3F5AA /* OBCalculationsTableViewDataSource.m in Sources */,
