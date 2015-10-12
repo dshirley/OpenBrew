@@ -17,6 +17,7 @@
 #import "OBMaltAdditionSettingsViewController.h"
 #import "OBGaugePageViewController.h"
 #import "OBMaltDisplayMetricSegmentedControlDelegate.h"
+#import "OBKvoUtils.h"
 
 @interface OBMaltAdditionViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBMaltAdditionViewController *vc;
@@ -67,9 +68,15 @@
 {
   [self loadViewController];
 
-  XCTAssertEqual(self.recipe, self.vc.pageViewControllerDataSource.recipe);
-  XCTAssertEqualObjects((@[@(OBMetricOriginalGravity), @(OBMetricColor)]),
-                        self.vc.pageViewControllerDataSource.metrics);
+  XCTAssertNotNil(self.vc.pageViewControllerDataSource);
+  XCTAssertNotNil(self.vc.pageViewControllerDataSource.viewControllers);
+  XCTAssertEqual(2, self.vc.pageViewControllerDataSource.viewControllers.count);
+
+  XCTAssertEqual(self.recipe, [self.vc.pageViewControllerDataSource.viewControllers[0] target]);
+  XCTAssertEqualObjects(KVO_KEY(originalGravity), [self.vc.pageViewControllerDataSource.viewControllers[0] key]);
+
+  XCTAssertEqual(self.recipe, [self.vc.pageViewControllerDataSource.viewControllers[1] target]);
+  XCTAssertEqualObjects(KVO_KEY(colorInSRM), [self.vc.pageViewControllerDataSource.viewControllers[1] key]);
 
   XCTAssertEqual(1, self.vc.childViewControllers.count);
 

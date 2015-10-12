@@ -19,7 +19,7 @@
 
 #define OBAssertOriginalGravity(og) XCTAssertEqualWithAccuracy([self.recipe originalGravity], og, 0.002);
 #define OBAssertFinalGravity(fg) XCTAssertEqualWithAccuracy([self.recipe finalGravity], fg, 0.002);
-#define OBAssertIBU(ibus) XCTAssertEqualWithAccuracy([self.recipe IBUs:OBIbuFormulaRager], ibus, 1);
+#define OBAssertIBU(ibus) XCTAssertEqualWithAccuracy([self.recipe IBUs], ibus, 1);
 #define OBAssertColorInSrm(colorSrm) XCTAssertEqualWithAccuracy([self.recipe colorInSRM], colorSrm, 1);
 
 // Allow a greater degree of flexibility for ABV.  Brewing Classic Styles uses the
@@ -40,6 +40,7 @@
   [super setUp];
 
   self.keysObserved = [NSMutableDictionary dictionary];
+  self.settings.ibuFormula = @(OBIbuFormulaRager);
 }
 
 #pragma mark Property Tests
@@ -257,13 +258,13 @@
 
   [self addHops:@"Citra" quantity:1.0 aaPercent:13.0 boilTime:60];
 
-  float ibus = [self.recipe IBUs:OBIbuFormulaRager];
+  float ibus = [self.recipe IBUs];
 
   self.recipe.postBoilVolumeInGallons = @(3.0);
-  XCTAssertEqualWithAccuracy([self.recipe IBUs:OBIbuFormulaRager], ibus * 2, 0.0000001);
+  XCTAssertEqualWithAccuracy([self.recipe IBUs], ibus * 2, 0.0000001);
 
   self.recipe.postBoilVolumeInGallons = @(12.0);
-  XCTAssertEqualWithAccuracy([self.recipe IBUs:OBIbuFormulaRager], ibus / 2, 0.0000001);
+  XCTAssertEqualWithAccuracy([self.recipe IBUs], ibus / 2, 0.0000001);
 }
 
 - (void)testPreBoilVolumesImpactOnIbus
@@ -279,26 +280,26 @@
 
   [self.recipe addHopAdditionsObject:testHopAddition];
 
-  XCTAssertEqualWithAccuracy([self.recipe IBUs:OBIbuFormulaRager], ibus10gal, 0.0000001);
+  XCTAssertEqualWithAccuracy([self.recipe IBUs], ibus10gal, 0.0000001);
 
   self.recipe.preBoilVolumeInGallons = @(5.0);
-  XCTAssertEqualWithAccuracy([self.recipe IBUs:OBIbuFormulaRager], ibus5gal, 0.0000001);
+  XCTAssertEqualWithAccuracy([self.recipe IBUs], ibus5gal, 0.0000001);
 }
 
 - (void)testIbu
 {
-  XCTAssertEqualWithAccuracy([self.recipe IBUs:OBIbuFormulaRager], 0.0, 0.0000001);
+  XCTAssertEqualWithAccuracy([self.recipe IBUs], 0.0, 0.0000001);
 
   [self addHops:@"Citra" quantity:1.0 aaPercent:10.0 boilTime:60];
-  float ibuIncrement = [self.recipe IBUs:OBIbuFormulaRager];
+  float ibuIncrement = [self.recipe IBUs];
 
-  XCTAssertGreaterThan([self.recipe IBUs:OBIbuFormulaRager], 10);
-
-  [self addHops:@"Citra" quantity:1.0 aaPercent:10.0 boilTime:60];
-  XCTAssertEqualWithAccuracy([self.recipe IBUs:OBIbuFormulaRager], (ibuIncrement * 2), 0.000001);
+  XCTAssertGreaterThan([self.recipe IBUs], 10);
 
   [self addHops:@"Citra" quantity:1.0 aaPercent:10.0 boilTime:60];
-  XCTAssertEqualWithAccuracy([self.recipe IBUs:OBIbuFormulaRager], (ibuIncrement * 3), 0.000001);
+  XCTAssertEqualWithAccuracy([self.recipe IBUs], (ibuIncrement * 2), 0.000001);
+
+  [self addHops:@"Citra" quantity:1.0 aaPercent:10.0 boilTime:60];
+  XCTAssertEqualWithAccuracy([self.recipe IBUs], (ibuIncrement * 3), 0.000001);
 }
 
 #pragma mark KVO Tests
@@ -312,7 +313,7 @@
 - (void)checkAllCalculatedKeysSeen
 {
   XCTAssertEqual(self.keysObserved[KVO_KEY(originalGravity)], self.recipe);
-  XCTAssertEqual(self.keysObserved[KVO_KEY(IBUs:)], self.recipe);
+  XCTAssertEqual(self.keysObserved[KVO_KEY(IBUs)], self.recipe);
   XCTAssertEqual(self.keysObserved[KVO_KEY(boilGravity)], self.recipe);
   XCTAssertEqual(self.keysObserved[KVO_KEY(colorInSRM)], self.recipe);
   XCTAssertEqual(self.keysObserved[KVO_KEY(finalGravity)], self.recipe);
@@ -322,7 +323,7 @@
 - (void)startObservingAllCalculatedKeys
 {
   [self.recipe addObserver:self forKeyPath:KVO_KEY(originalGravity) options:0 context:nil];
-  [self.recipe addObserver:self forKeyPath:KVO_KEY(IBUs:) options:0 context:nil];
+  [self.recipe addObserver:self forKeyPath:KVO_KEY(IBUs) options:0 context:nil];
   [self.recipe addObserver:self forKeyPath:KVO_KEY(boilGravity) options:0 context:nil];
   [self.recipe addObserver:self forKeyPath:KVO_KEY(colorInSRM) options:0 context:nil];
   [self.recipe addObserver:self forKeyPath:KVO_KEY(finalGravity) options:0 context:nil];

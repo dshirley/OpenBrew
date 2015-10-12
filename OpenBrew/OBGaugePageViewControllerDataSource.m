@@ -7,22 +7,20 @@
 //
 
 #import "OBGaugePageViewControllerDataSource.h"
-#import "OBGaugeViewController.h"
+#import "OBNumericGaugeViewController.h"
 
 @interface OBGaugePageViewControllerDataSource ()
-@property (nonatomic) OBRecipe *recipe;
-@property (nonatomic) NSArray *metrics;
+@property (nonatomic) NSArray *viewControllers;
 @end
 
 @implementation OBGaugePageViewControllerDataSource
 
-- (instancetype)initWithRecipe:(OBRecipe *)recipe displayMetrics:(NSArray *)metrics;
+- (instancetype)initWithViewControllers:(NSArray *)viewControllers
 {
   self = [super init];
 
   if (self) {
-    self.recipe = recipe;
-    self.metrics = metrics;
+    self.viewControllers = viewControllers;
   }
 
   return self;
@@ -32,43 +30,31 @@
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-  OBGaugeViewController *gaugeViewController = (OBGaugeViewController *)viewController;
-
-  NSInteger index = [self.metrics indexOfObject:@(gaugeViewController.metricToDisplay)];
-  NSAssert(index != NSNotFound, @"Metric not found: %@", @(gaugeViewController.metricToDisplay));
+  NSInteger index = [self.viewControllers indexOfObject:viewController];
+  NSAssert(index != NSNotFound, @"View controller not found");
 
   if (index <= 0) {
     return nil;
   }
 
-  return [self viewControllerAtIndex:(index - 1)];
+  return self.viewControllers[index - 1];
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-  OBGaugeViewController *gaugeViewController = (OBGaugeViewController *)viewController;
+  NSInteger index = [self.viewControllers indexOfObject:viewController];
+  NSAssert(index != NSNotFound, @"View controller not found");
 
-  NSInteger index = [self.metrics indexOfObject:@(gaugeViewController.metricToDisplay)];
-  NSAssert(index != NSNotFound, @"Metric not found: %@", @(gaugeViewController.metricToDisplay));
-
-  if (index < 0 || index >= (self.metrics.count - 1)) {
+  if (index < 0 || index >= (self.viewControllers.count - 1)) {
     return nil;
   }
 
-  return [self viewControllerAtIndex:(index + 1)];
-}
-
-- (OBGaugeViewController *)viewControllerAtIndex:(NSInteger)index
-{
-  OBGaugeMetric metric = [self.metrics[index] integerValue];
-
-  return [[OBGaugeViewController alloc] initWithRecipe:self.recipe
-                                       metricToDisplay:metric];
+  return self.viewControllers[index + 1];
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
 {
-  return self.metrics.count;
+  return self.viewControllers.count;
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController

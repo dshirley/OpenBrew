@@ -16,6 +16,8 @@
 #import "GAIDictionaryBuilder.h"
 #import "OBYeastTableViewCell.h"
 #import "OBSettings.h"
+#import "OBNumericGaugeViewController.h"
+#import "OBKvoUtils.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Yeast Addition Screen";
@@ -37,12 +39,7 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
 
   self.screenName = OBGAScreenName;
 
-  UIPageViewController *pageViewController = (id)self.childViewControllers[0];
-  self.pageViewControllerDataSource =
-    [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe
-                                                 displayMetrics:@[ @(OBMetricAbv), @(OBMetricFinalGravity) ]];
-
-  pageViewController.dataSource = self.pageViewControllerDataSource;
+  [self initializeGaugePageViewController];
 
   NSAssert(self.settings, @"Settings were nil");
 
@@ -52,6 +49,26 @@ static NSString* const OBGAScreenName = @"Yeast Addition Screen";
   self.segmentedControl.delegate = (id)self;
 
   [self reloadTableSelectedManufacturer:[self initiallySelectedManufacturer] scrollToSelectedItem:YES];
+}
+
+- (void)initializeGaugePageViewController
+{
+  UIPageViewController *pageViewController = (id)self.childViewControllers[0];
+
+  OBNumericGaugeViewController *abvGauge = [[OBNumericGaugeViewController alloc] initWithTarget:self.recipe
+                                                                                   keyToDisplay:KVO_KEY(alcoholByVolume)
+                                                                                    valueFormat:@"%.1f%%"
+                                                                                descriptionText:@"ABV"];
+
+  OBNumericGaugeViewController *fgGauge = [[OBNumericGaugeViewController alloc] initWithTarget:self.recipe
+                                                                                  keyToDisplay:KVO_KEY(finalGravity)
+                                                                                   valueFormat:@"%.3f"
+                                                                               descriptionText:@"Final gravity"];
+
+  self.pageViewControllerDataSource =
+    [[OBGaugePageViewControllerDataSource alloc] initWithViewControllers:@[ abvGauge, fgGauge ]];
+
+  pageViewController.dataSource = self.pageViewControllerDataSource;
 }
 
 - (NSInteger)initiallySelectedManufacturer

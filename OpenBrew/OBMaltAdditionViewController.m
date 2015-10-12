@@ -18,6 +18,8 @@
 #import "OBSrmColorTable.h"
 #import "OBMaltAdditionSettingsViewController.h"
 #import "OBMaltDisplayMetricSegmentedControlDelegate.h"
+#import "OBNumericGaugeViewController.h"
+#import "OBColorGaugeViewController.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Malt Addition Screen";
@@ -38,13 +40,7 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   self.placeholderView.messageLabel.text = @"No Malts";
   self.placeholderView.instructionsLabel.text = @"Tap the '+' button to add malts.";
 
-  UIPageViewController *pageViewController = (id)self.childViewControllers[0];
-  self.pageViewControllerDataSource =
-    [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe
-                                                displayMetrics:@[ @(OBMetricOriginalGravity), @(OBMetricColor) ]];
-
-  pageViewController.dataSource = self.pageViewControllerDataSource;
-
+  [self initializeGaugePageViewController];
 
   self.tableViewDelegate = [[OBMaltAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
                                                                       andTableView:self.tableView
@@ -62,6 +58,23 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
   self.ingredientMetricSegmentedControlDelegate = [[OBMaltDisplayMetricSegmentedControlDelegate alloc] initWithSettings:self.settings];
   self.ingredientMetricSegmentedControl.gaCategory = OBGAScreenName;
   self.ingredientMetricSegmentedControl.delegate = self.ingredientMetricSegmentedControlDelegate;
+}
+
+- (void)initializeGaugePageViewController
+{
+  OBNumericGaugeViewController *ogGauge = [[OBNumericGaugeViewController alloc] initWithTarget:self.recipe
+                                                                                  keyToDisplay:KVO_KEY(originalGravity)
+                                                                                   valueFormat:@"%.3f"
+                                                                               descriptionText:@"Original gravity"];
+
+  OBColorGaugeViewController *colorGauge = [[OBColorGaugeViewController alloc] initWithTarget:self.recipe
+                                                                                 keyToDisplay:KVO_KEY(colorInSRM)];
+
+  UIPageViewController *pageViewController = (id)self.childViewControllers[0];
+  self.pageViewControllerDataSource =
+    [[OBGaugePageViewControllerDataSource alloc] initWithViewControllers:@[ ogGauge, colorGauge ]];
+
+  pageViewController.dataSource = self.pageViewControllerDataSource;
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -15,6 +15,7 @@
 #import "OBYeastAddition.h"
 #import "OBYeastTableViewCell.h"
 #import "OBGaugePageViewController.h"
+#import "OBKvoUtils.h"
 
 @interface OBYeastAdditionViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBYeastAdditionViewController *vc;
@@ -47,9 +48,15 @@
   [self addMalt:@"Maris Otter" quantity:10.0];
   [self addYeast:@"WLP001"];
 
-  XCTAssertEqual(self.recipe, self.vc.pageViewControllerDataSource.recipe);
-  XCTAssertEqualObjects((@[@(OBMetricAbv), @(OBMetricFinalGravity)]),
-                        self.vc.pageViewControllerDataSource.metrics);
+  XCTAssertNotNil(self.vc.pageViewControllerDataSource);
+  XCTAssertNotNil(self.vc.pageViewControllerDataSource.viewControllers);
+  XCTAssertEqual(2, self.vc.pageViewControllerDataSource.viewControllers.count);
+
+  XCTAssertEqual(self.recipe, [self.vc.pageViewControllerDataSource.viewControllers[0] target]);
+  XCTAssertEqualObjects(KVO_KEY(alcoholByVolume), [self.vc.pageViewControllerDataSource.viewControllers[0] key]);
+
+  XCTAssertEqual(self.recipe, [self.vc.pageViewControllerDataSource.viewControllers[1] target]);
+  XCTAssertEqualObjects(KVO_KEY(finalGravity), [self.vc.pageViewControllerDataSource.viewControllers[1] key]);
 
   XCTAssertEqual(1, self.vc.childViewControllers.count);
 

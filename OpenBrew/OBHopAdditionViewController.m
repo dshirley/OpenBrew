@@ -18,6 +18,7 @@
 #import "OBIngredientTableViewDataSource.h"
 #import "OBHopAdditionSettingsViewController.h"
 #import "OBHopDisplayMetricSegmentedControlDelegate.h"
+#import "OBNumericGaugeViewController.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Hop Addition Screen";
@@ -37,12 +38,7 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   self.placeholderView.messageLabel.text = @"No Hops";
   self.placeholderView.instructionsLabel.text = @"Tap the '+' button to add hops.";
 
-  UIPageViewController *pageViewController = (id)self.childViewControllers[0];
-  self.pageViewControllerDataSource =
-    [[OBGaugePageViewControllerDataSource alloc] initWithRecipe:self.recipe
-                                                 displayMetrics:@[ @(OBMetricIbu), @(OBMetricBuToGuRatio) ]];
-
-  pageViewController.dataSource = self.pageViewControllerDataSource;
+  [self initializeGaugePageViewController];
 
   self.tableViewDelegate = [[OBHopAdditionTableViewDelegate alloc] initWithRecipe:self.recipe
                                                                      andTableView:self.tableView
@@ -60,6 +56,25 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
   self.ingredientDisplaySettingControllerDelegate = [[OBHopDisplayMetricSegmentedControlDelegate alloc] initWithSettings:self.settings];
   self.ingredientMetricSegmentedControl.gaCategory = OBGAScreenName;
   self.ingredientMetricSegmentedControl.delegate = self.ingredientDisplaySettingControllerDelegate;
+}
+
+- (void)initializeGaugePageViewController
+{
+  UIPageViewController *pageViewController = (id)self.childViewControllers[0];
+
+  OBNumericGaugeViewController *ibuGauge = [[OBNumericGaugeViewController alloc] initWithTarget:self.recipe
+                                                                                   keyToDisplay:KVO_KEY(IBUs)
+                                                                                    valueFormat:@"%.0f"
+                                                                                descriptionText:@"IBUs"];
+
+  OBNumericGaugeViewController *buToGuGauge = [[OBNumericGaugeViewController alloc] initWithTarget:self.recipe
+                                                                                      keyToDisplay:KVO_KEY(bitternessToGravityRatio)
+                                                                                       valueFormat:@"%.2f"
+                                                                                   descriptionText:@"BU:GU"];
+  self.pageViewControllerDataSource =
+    [[OBGaugePageViewControllerDataSource alloc] initWithViewControllers:@[ ibuGauge, buToGuGauge ]];
+
+  pageViewController.dataSource = self.pageViewControllerDataSource;
 }
 
 - (void)viewWillAppear:(BOOL)animated

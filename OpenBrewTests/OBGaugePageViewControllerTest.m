@@ -10,7 +10,7 @@
 #import "OBGaugePageViewController.h"
 #import <OCMock/OCMock.h>
 #import "OBGaugePageViewControllerDataSource.h"
-#import "OBGaugeViewController.h"
+#import "OBNumericGaugeViewController.h"
 
 @interface OBGaugePageViewControllerTest : XCTestCase
 @end
@@ -56,8 +56,7 @@
                            completion:nil];
 
   OBGaugePageViewController *gaugeViewController = [[OBGaugePageViewController alloc] init];
-  [[[mockDataSource stub] andReturn:@[ gaugeViewController ]] metrics];
-  [[[mockDataSource stub] andReturn:gaugeViewController] viewControllerAtIndex:0];
+  [[[mockDataSource stub] andReturn:@[ gaugeViewController ]] viewControllers];
 
   [vc setDataSource:mockDataSource];
 

@@ -38,6 +38,8 @@ static NSString* const OBGAScreenName = @"Mash Calculations";
 
 - (void)viewDidAppear:(BOOL)animated
 {
+  [super viewDidAppear:animated];
+
   NSIndexPath *firstCell = [NSIndexPath indexPathForRow:0 inSection:0];
   [self selectTextInputAtIndexPath:firstCell];
 }

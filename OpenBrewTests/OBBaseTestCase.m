@@ -39,6 +39,11 @@
   self.settings = [NSEntityDescription insertNewObjectForEntityForName:@"Settings"
                                                 inManagedObjectContext:self.ctx];
 
+  NSError *error = nil;
+  [self.ctx save:&error];
+
+  XCTAssertNil(error);
+
   OBDataLoader *dataLoader = [[OBDataLoader alloc] initWithContext:self.ctx];
   [dataLoader loadIngredients];
 

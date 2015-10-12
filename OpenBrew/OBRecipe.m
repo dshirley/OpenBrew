@@ -70,11 +70,13 @@ NSString * const calculatedKVOKeys[] = {
 
 - (void)awakeFromFetch
 {
+  [super awakeFromFetch];
   [self startObserving];
 }
 
 - (void)willTurnIntoFault
 {
+  [super willTurnIntoFault];;
   [self stopObserving];
 }
 

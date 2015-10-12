@@ -16,8 +16,9 @@
 #import "OBHopFinderViewController.h"
 #import "OBHopAdditionSettingsViewController.h"
 #import "OBGaugePageViewController.h"
-#import "OBGaugeViewController.h"
+#import "OBNumericGaugeViewController.h"
 #import "OBHopDisplayMetricSegmentedControlDelegate.h"
+#import "OBKvoUtils.h"
 
 @interface OBHopAdditionViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBHopAdditionViewController *vc;
@@ -70,24 +71,21 @@
 {
   [self loadViewController];
 
-  XCTAssertEqual(self.recipe, self.vc.pageViewControllerDataSource.recipe);
-  XCTAssertEqualObjects((@[@(OBMetricIbu), @(OBMetricBuToGuRatio)]),
-                        self.vc.pageViewControllerDataSource.metrics);
+  XCTAssertNotNil(self.vc.pageViewControllerDataSource);
+  XCTAssertNotNil(self.vc.pageViewControllerDataSource.viewControllers);
+  XCTAssertEqual(2, self.vc.pageViewControllerDataSource.viewControllers.count);
+
+  XCTAssertEqual(self.recipe, [self.vc.pageViewControllerDataSource.viewControllers[0] target]);
+  XCTAssertEqualObjects(KVO_KEY(IBUs), [self.vc.pageViewControllerDataSource.viewControllers[0] key]);
+
+  XCTAssertEqual(self.recipe, [self.vc.pageViewControllerDataSource.viewControllers[1] target]);
+  XCTAssertEqualObjects(KVO_KEY(bitternessToGravityRatio), [self.vc.pageViewControllerDataSource.viewControllers[1] key]);
 
   XCTAssertEqual(1, self.vc.childViewControllers.count);
 
   OBGaugePageViewController *pageViewController = (id)self.vc.childViewControllers[0];
   XCTAssertEqual(OBGaugePageViewController.class, pageViewController.class);
   XCTAssertEqual(self.vc.pageViewControllerDataSource, pageViewController.dataSource);
-
-  OBGaugeViewController *gaugeVc = pageViewController.viewControllers[0];
-  id mockGaugeVc = [OCMockObject partialMockForObject:gaugeVc];
-  [[mockGaugeVc expect] refresh:YES];
-
-  XCTAssertEqualObjects(@"0", gaugeVc.valueLabel.text);
-  [self addHops:@"Cascade" quantity:1.0 aaPercent:7.0 boilTime:60];
-
-  [mockGaugeVc verify];
 }
 
 - (void)testViewDidLoad_hopAdditionMetricUsesStoredSettings
@@ -126,7 +124,6 @@
   [self addHops:@"Zeus" quantity:2.0 aaPercent:13.0 boilTime:60];
 
   [self loadViewController];
-  [self.vc viewDidLoad];
 
   XCTAssertEqual(2, [self.vc.tableView numberOfRowsInSection:0]);
 
