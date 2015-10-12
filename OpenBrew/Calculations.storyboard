@@ -328,7 +328,7 @@
         <!--Gauge Page View Controller-->
         <scene sceneID="Vu9-yG-qRA">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="PtF-kG-4wx" customClass="OBGaugePageViewController" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="PtF-kG-4wx" customClass="OBGaugePageViewController" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="135"/>
                 </pageViewController>

@@ -189,6 +189,12 @@ NSString * const calculatedKVOKeys[] = {
 {
   float og = [self originalGravity];
   float fg = [self finalGravity];
+  return [OBRecipe alcoholByVolumeForOriginalGravity:og finalGravity:fg];
+}
+
+// This is here for code reuse in OBAbvCalculationsViewController
++ (float)alcoholByVolumeForOriginalGravity:(float)og finalGravity:(float)fg
+{
   return (76.08 * (og - fg) / (1.775 - og)) * (fg / 0.794);
 }
 

@@ -14,4 +14,8 @@
 
 @property (strong, nonatomic) IBOutlet UIPickerView *finishingGravityPicker;
 
+- (float)alcoholByVolume;
+
+- (float)attenuation;
+
 @end
