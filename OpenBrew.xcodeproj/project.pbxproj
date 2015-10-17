@@ -101,6 +101,7 @@
 		9FCC01F31B612C4E006E30D3 /* OBRecipeViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCC01F21B612C4E006E30D3 /* OBRecipeViewControllerTest.m */; };
 		9FCECC5B18879B430045FADD /* OBHopAdditionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCECC5A18879B430045FADD /* OBHopAdditionTest.m */; };
 		9FCECC60188831320045FADD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3761880F8EE00469323 /* XCTest.framework */; };
+		9FD0526B1BD1D38B0080D19A /* OBBottlingCalculationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD0526A1BD1D38B0080D19A /* OBBottlingCalculationsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */; };
 		9FD2B8FA1BB58B2E009018FD /* OBDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD2B8F91BB58B2E009018FD /* OBDataLoader.m */; };
 		9FD2B8FB1BB58D16009018FD /* HopCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9FE279F01B9953450057BEFE /* HopCatalog.csv */; };
@@ -302,6 +303,8 @@
 		9FCC01F21B612C4E006E30D3 /* OBRecipeViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeViewControllerTest.m; sourceTree = "<group>"; };
 		9FCECC5A18879B430045FADD /* OBHopAdditionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionTest.m; sourceTree = "<group>"; };
 		9FCECC5C1887A1150045FADD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		9FD052691BD1D38B0080D19A /* OBBottlingCalculationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBottlingCalculationsViewController.h; sourceTree = "<group>"; };
+		9FD0526A1BD1D38B0080D19A /* OBBottlingCalculationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBottlingCalculationsViewController.m; sourceTree = "<group>"; };
 		9FD14131197CC7CE005220BC /* OBBatchSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBatchSizeViewController.h; sourceTree = "<group>"; };
 		9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBatchSizeViewController.m; sourceTree = "<group>"; };
 		9FD2B8F81BB58B2E009018FD /* OBDataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBDataLoader.h; sourceTree = "<group>"; };
@@ -467,6 +470,8 @@
 		9F39560A1BC35F0F005AC3A4 /* Calculations */ = {
 			isa = PBXGroup;
 			children = (
+				9FD052691BD1D38B0080D19A /* OBBottlingCalculationsViewController.h */,
+				9FD0526A1BD1D38B0080D19A /* OBBottlingCalculationsViewController.m */,
 				9FB27D8D1BCBF56900284B8E /* OBCarbonationCalculationsViewController.h */,
 				9FB27D8E1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m */,
 				9F36BC1D1BC8A08900D675D8 /* OBAbvCalculationsViewController.h */,
@@ -1065,6 +1070,7 @@
 				9F107DF01BBA1D5200364A32 /* OBSegmentedControl.m in Sources */,
 				9F0815441996FF0400E5E575 /* OBMaltQuantityPickerDelegate.m in Sources */,
 				9F92E8BF18A0CED100118D76 /* OBMaltAddition.m in Sources */,
+				9FD0526B1BD1D38B0080D19A /* OBBottlingCalculationsViewController.m in Sources */,
 				9FEBE8B61BC4DA3C0070240E /* OBGaugeView.m in Sources */,
 				9F36BC221BC966F800D675D8 /* OBColorGaugeViewController.m in Sources */,
 				9F6EB02D1BADEE8800F2739E /* OBUnitConversion.m in Sources */,

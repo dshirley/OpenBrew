@@ -23,7 +23,8 @@
   if (self) {
     [self addCellText:@"Strike temperature" mappingToStoryboardId:@"mash calculations"];
     [self addCellText:@"Alcohol & attenuation" mappingToStoryboardId:@"abv calculations"];
-    [self addCellText:@"Carbonation" mappingToStoryboardId:@"carbonation calculations"];
+    [self addCellText:@"Kegging" mappingToStoryboardId:@"carbonation calculations"];
+    [self addCellText:@"Bottling" mappingToStoryboardId:@"bottling calculations"];
   }
 
   return self;
