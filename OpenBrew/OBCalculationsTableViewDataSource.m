@@ -9,9 +9,35 @@
 #import "OBCalculationsTableViewDataSource.h"
 #import "OBMashCalculationsViewController.h"
 
+@interface OBCellInfo : NSObject
+@property (nonatomic) NSString *text;
+@property (nonatomic) UIImage *image;
+@property (nonatomic) NSString *mappingToStoryboardId;
+
+- (instancetype)initWithText:(NSString *)text image:(NSString *)imageName storyboardId:(NSString *)mappingToStoryboardId;
+
+@end
+
+@implementation OBCellInfo
+
+- (instancetype)initWithText:(NSString *)text image:(NSString *)imageName storyboardId:(NSString *)mappingToStoryboardId
+{
+  self = [super init];
+
+  if (self) {
+    self.text = text;
+    self.image = [UIImage imageNamed:imageName];
+    self.mappingToStoryboardId = mappingToStoryboardId;
+  }
+
+  return self;
+}
+
+@end
+
 @interface OBCalculationsTableViewDataSource()
-@property (nonatomic) NSMutableArray *calculations;
-@property (nonatomic) NSMutableDictionary *cellTextToStoryboardIdMapping;
+@property (nonatomic) NSArray *sections;
+@property (nonatomic) NSArray *cells;
 @end
 
 @implementation OBCalculationsTableViewDataSource
@@ -21,49 +47,74 @@
   self = [super init];
 
   if (self) {
-    [self addCellText:@"Strike temperature" mappingToStoryboardId:@"mash calculations"];
-    [self addCellText:@"Alcohol & attenuation" mappingToStoryboardId:@"abv calculations"];
-    [self addCellText:@"Kegging" mappingToStoryboardId:@"carbonation calculations"];
-    [self addCellText:@"Bottling" mappingToStoryboardId:@"bottling calculations"];
+    self.sections = @[ @"Mash",
+                       @"Fermentation",
+                       @"Carbonation"
+                       ];
+
+    self.cells = @[
+                   @[ // Mash section
+                     [[OBCellInfo alloc] initWithText:@"Strike temperature"
+                                                image:@"StrikeWater"
+                                         storyboardId:@"mash calculations"] ],
+                   @[ // Fermentaiton section
+                     [[OBCellInfo alloc] initWithText:@"Alcohol & attenuation"
+                                                image:@"StrikeWater"
+                                         storyboardId:@"abv calculations"] ],
+                   @[ // Carbonation section
+                     [[OBCellInfo alloc] initWithText:@"Kegging"
+                                                image:@"Regulator"
+                                         storyboardId:@"carbonation calculations"],
+                     [[OBCellInfo alloc] initWithText:@"Bottling"
+                                                image:@"Bottle"
+                                         storyboardId:@"bottling calculations"]
+                     ]
+                   ];
+
   }
 
   return self;
 }
 
-- (void)addCellText:(NSString *)cellText mappingToStoryboardId:(NSString *)storyboardId
+- (OBCellInfo *)cellInfoForIndexPath:(NSIndexPath *)indexPath
 {
-  if (!self.calculations) {
-    self.calculations = [NSMutableArray array];
-  }
+  return self.cells[indexPath.section][indexPath.row];
+}
 
-  if (!self.cellTextToStoryboardIdMapping) {
-    self.cellTextToStoryboardIdMapping = [NSMutableDictionary dictionary];
-  }
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+  return self.sections.count;
+}
 
-  [self.calculations addObject:cellText];
-  self.cellTextToStoryboardIdMapping[cellText] = storyboardId;
+- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+  return self.sections[section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return self.calculations.count;
+  return [self.cells[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"calculationCell"];
-  cell.textLabel.text = self.calculations[indexPath.row];
+  OBCellInfo *cellInfo = [self cellInfoForIndexPath:indexPath];
+
+  cell.textLabel.text = cellInfo.text;
+  cell.imageView.image = cellInfo.image;
+
   return cell;
 }
 
 - (UIViewController *)viewControllerForIndexPath:(NSIndexPath *)indexPath
 {
-  NSString *cellText = self.calculations[indexPath.row];
-  NSString *storyboardId = self.cellTextToStoryboardIdMapping[cellText];
+  OBCellInfo *cellInfo = [self cellInfoForIndexPath:indexPath];
+
   UIStoryboard *calculationsStoryboard = [UIStoryboard storyboardWithName:@"Calculations"
                                                                    bundle:[NSBundle mainBundle]];
 
-  return [calculationsStoryboard instantiateViewControllerWithIdentifier:storyboardId];
+  return [calculationsStoryboard instantiateViewControllerWithIdentifier:cellInfo.mappingToStoryboardId];
 }
 
 @end
