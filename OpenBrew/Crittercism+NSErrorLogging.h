@@ -13,9 +13,6 @@
 // Macro makes it less copy/pastish by pushing in lines and file names
 #define CRITTERCISM_LOG_ERROR(err) \
 do { \
-  NSLog(@"---------------"); \
-  NSLog(@"%@", err); \
-  NSLog(@"---------------"); \
   [Crittercism logError:(err) \
                 forFile:__FILE__ \
           andLineNumber:__LINE__]; \
