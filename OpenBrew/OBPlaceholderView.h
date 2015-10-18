@@ -13,7 +13,7 @@
 @interface OBPlaceholderView : UIView
 
 @property (nonatomic) IBOutlet UILabel *messageLabel;
-@property (strong, nonatomic) IBOutlet UILabel *instructionsLabel;
+@property (nonatomic) IBOutlet UILabel *instructionsLabel;
 
 - (id)initWithFrame:(CGRect)frame;
 

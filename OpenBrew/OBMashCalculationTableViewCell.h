@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface OBMashCalculationTableViewCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UILabel *label;
-@property (strong, nonatomic) IBOutlet UITextField *inputField;
+@property (nonatomic) IBOutlet UILabel *label;
+@property (nonatomic) IBOutlet UITextField *inputField;
 @end

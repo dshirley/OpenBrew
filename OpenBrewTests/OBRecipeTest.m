@@ -29,7 +29,7 @@
 @interface OBRecipeTest : OBBaseTestCase
 
 // For the KVO test
-@property (nonatomic, strong) NSMutableDictionary *keysObserved;
+@property (nonatomic) NSMutableDictionary *keysObserved;
 
 @end
 

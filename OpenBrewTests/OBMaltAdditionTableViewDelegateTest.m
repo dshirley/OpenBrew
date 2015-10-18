@@ -26,8 +26,8 @@
 @end
 
 @interface OBMaltAdditionTableViewDelegateTest : OBBaseTestCase
-@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) OBMaltAdditionTableViewDelegate *delegate;
+@property (nonatomic) UITableView *tableView;
+@property (nonatomic) OBMaltAdditionTableViewDelegate *delegate;
 @end
 
 @implementation OBMaltAdditionTableViewDelegateTest

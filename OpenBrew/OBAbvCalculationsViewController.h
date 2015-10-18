@@ -10,9 +10,9 @@
 
 @interface OBAbvCalculationsViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UIPickerView *startingGravityPicker;
+@property (nonatomic) IBOutlet UIPickerView *startingGravityPicker;
 
-@property (strong, nonatomic) IBOutlet UIPickerView *finishingGravityPicker;
+@property (nonatomic) IBOutlet UIPickerView *finishingGravityPicker;
 
 - (float)alcoholByVolume;
 

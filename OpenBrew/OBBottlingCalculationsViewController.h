@@ -14,7 +14,7 @@
 
 @property (nonatomic) IBOutlet UIPickerView *carbonationPicker;
 
-@property (strong, nonatomic) IBOutlet UIPickerView *temperaturePicker;
+@property (nonatomic) IBOutlet UIPickerView *temperaturePicker;
 
 @end
 

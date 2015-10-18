@@ -13,11 +13,11 @@
 #import "OBRecipe.h"
 
 @interface OBBaseTestCase : XCTestCase
-@property (nonatomic, strong) NSManagedObjectModel *model;
-@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, strong) NSManagedObjectContext *ctx;
-@property (nonatomic, strong) OBSettings *settings;
-@property (nonatomic, strong) OBRecipe *recipe;
+@property (nonatomic) NSManagedObjectModel *model;
+@property (nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic) NSManagedObjectContext *ctx;
+@property (nonatomic) OBSettings *settings;
+@property (nonatomic) OBRecipe *recipe;
 
 // Some index paths that are used throughout many controller tests
 @property (nonatomic) NSIndexPath *r0s0;
