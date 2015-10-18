@@ -14,6 +14,9 @@
 #import "OBRecipe.h"
 #import "OBUnitConversion.h"
 
+// Google Analytics constants
+static NSString* const OBGAScreenName = @"Bottling Calculations";
+
 @interface OBBottlingCalculationsViewController ()
 @property (nonatomic) OBPickerDelegate *beerQuantityPickerDelegate;
 @property (nonatomic) OBPickerDelegate *carbonationPickerDelegate;
@@ -30,6 +33,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
+  self.screenName = OBGAScreenName;
 
   [self initializeGaugePageViewController];
 

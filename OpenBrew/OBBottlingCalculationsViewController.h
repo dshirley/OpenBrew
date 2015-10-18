@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface OBBottlingCalculationsViewController : UIViewController
+@interface OBBottlingCalculationsViewController : GAITrackedViewController
 
 @property (nonatomic) IBOutlet UIPickerView *beerQuantityPicker;
 

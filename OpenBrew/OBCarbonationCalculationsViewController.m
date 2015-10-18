@@ -13,6 +13,9 @@
 #import "OBGaugePageViewControllerDataSource.h"
 #import "OBRecipe.h"
 
+// Google Analytics constants
+static NSString* const OBGAScreenName = @"Kegging Calculations";
+
 @interface OBCarbonationCalculationsViewController ()
 @property (nonatomic) OBPickerDelegate *temperaturePickerDelegate;
 @property (nonatomic) OBPickerDelegate *carbonationPickerDelegate;
@@ -27,6 +30,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
+  self.screenName = OBGAScreenName;
 
   [self initializeGaugePageViewController];
 

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface OBAbvCalculationsViewController : UIViewController
+@interface OBAbvCalculationsViewController : GAITrackedViewController
 
 @property (nonatomic) IBOutlet UIPickerView *startingGravityPicker;
 

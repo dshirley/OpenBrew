@@ -13,6 +13,9 @@
 #import "OBGaugePageViewControllerDataSource.h"
 #import "OBRecipe.h"
 
+// Google Analytics constants
+static NSString* const OBGAScreenName = @"ABV Calculations";
+
 @interface OBAbvCalculationsViewController ()
 @property (nonatomic) OBPickerDelegate *startingGravityPickerDelegate;
 @property (nonatomic) OBPickerDelegate *finishingGravityPickerDelegate;
@@ -28,6 +31,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
+  self.screenName = OBGAScreenName;
+  
   [self initializeGaugePageViewController];
 
   self.originalGravity = @(1.050);

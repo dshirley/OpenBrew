@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface OBCarbonationCalculationsViewController : UIViewController
+@interface OBCarbonationCalculationsViewController : GAITrackedViewController
 
 @property (nonatomic) IBOutlet UIPickerView *temperaturePicker;
 
