@@ -2,68 +2,45 @@
 //  OBRecipeListViewController.m
 //  OpenBrew
 //
-//  Created by David Shirley 2 on 1/25/14.
-//  Copyright (c) 2014 OpenBrew. All rights reserved.
+//  Created by David Shirley 2 on 10/17/15.
+//  Copyright © 2015 OpenBrew. All rights reserved.
 //
 
 #import "OBRecipeListViewController.h"
-#import "OBRecipeViewController.h"
-#import "OBSettings.h"
 #import "Crittercism+NSErrorLogging.h"
+#import "OBRecipeTableViewCell.h"
+#import "OBRecipe.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
-#import "OBRecipeListTableViewDataSource.h"
-#import "OBCalculationsTableViewDataSource.h"
 
-// Google Analytics constants
 static NSString *const OBGAScreenName = @"Recipe List Screen";
 
-static NSString *const ADD_RECIPE_SEGUE = @"addRecipe";
 static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
-
-@interface OBRecipeListViewController ()
-
-@property (nonatomic) OBRecipeListTableViewDataSource *recipeListDataSource;
-@property (nonatomic) OBCalculationsTableViewDataSource *calculationsDataSource;
-
-// Variables for tracking first interaction time with Google Analytics
-@property (nonatomic, assign) CFAbsoluteTime loadTime;
-
-@property (nonatomic, assign) BOOL firstInteractionComplete;
-
-@property (nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-
-@end
 
 @implementation OBRecipeListViewController
 
-#pragma mark UIViewController Override Methods
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
-
-  id weakself = self;
-
-  self.calculationsDataSource = [[OBCalculationsTableViewDataSource alloc] init];
-  self.recipeListDataSource = [[OBRecipeListTableViewDataSource alloc] initWithTableView:self.tableView
-                                                                    managedObjectContext:self.moc];
-  self.recipeListDataSource.rowDeletedCallback = ^() {
-    [weakself recipeWasDeleted];
-  };
-
-  self.tableView.dataSource = self.recipeListDataSource;
-  self.tableView.delegate = self;
 
   self.placeholderView.messageLabel.text = @"No Recipes";
   self.placeholderView.instructionsLabel.text = @"Tap the '+' button to create a recipe.";
 
-  self.firstInteractionComplete = NO;
-  self.loadTime = CFAbsoluteTimeGetCurrent();
+  NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Recipe"];
+  request.fetchBatchSize = 20;
+  request.sortDescriptors = @[[[NSSortDescriptor alloc] initWithKey:@"name"
+                                                          ascending:YES]];
 
-  [self.segmentedControl addTarget:self
-                            action:@selector(switchTableViewDataSource)
-                  forControlEvents:UIControlEventValueChanged];
+  self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                      managedObjectContext:self.managedObjectContext
+                                                                        sectionNameKeyPath:nil
+                                                                                 cacheName:@"recipes"];
+
+  self.fetchedResultsController.delegate = self;
+
+  NSError *error = nil;
+  if (![self.fetchedResultsController performFetch:&error]) {
+    CRITTERCISM_LOG_ERROR(error);
+  }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -81,62 +58,17 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   [self.tableView reloadData];
 }
 
-- (void)switchTableViewDataSource
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  NSInteger index = self.segmentedControl.selectedSegmentIndex;
-
-  switch (index) {
-    case 0:
-      self.tableView.dataSource = self.recipeListDataSource;
-      self.navigationItem.title = @"Recipes";
-      break;
-
-    case 1:
-      self.tableView.dataSource = self.calculationsDataSource;
-      self.navigationItem.title = @"Calculations";
-      break;
-
-    default:
-      NSAssert(NO, @"Unexpected segment index: %ld", (long) index);
-      break;
-  }
-
-  [self.tableView reloadData];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   NSString *segueId = [segue identifier];
   OBRecipe *recipe = nil;
 
-  if (!self.firstInteractionComplete) {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    CFTimeInterval timeDelta = CFAbsoluteTimeGetCurrent() - self.loadTime;
-
-    [tracker send:[[GAIDictionaryBuilder createTimingWithCategory:OBGAScreenName
-                                                         interval:@((NSUInteger)(timeDelta * 1000))
-                                                             name:@"First Interaction"
-                                                            label:segueId] build]];
-
-    self.firstInteractionComplete = YES;
-  }
-
-  if ([segueId isEqualToString:ADD_RECIPE_SEGUE]) {
-    recipe = [[OBRecipe alloc] initWithContext:self.moc];
-
-    recipe.name = @"New Recipe";
-    recipe.preBoilVolumeInGallons = self.settings.defaultPreBoilSize;
-    recipe.postBoilVolumeInGallons = self.settings.defaultPostBoilSize;
-
-    NSError *err = nil;
-    [self.moc save:&err];
-    CRITTERCISM_LOG_ERROR(err);
-
-    NSAssert(recipe, @"Unable to create recipe");
-
-  } else if ([segueId isEqualToString:SELECT_RECIPE_SEGUE]) {
+  if ([segueId isEqualToString:SELECT_RECIPE_SEGUE]) {
     NSIndexPath *cellIndex = [self.tableView indexPathForCell:sender];
-    recipe = [self.recipeListDataSource.fetchedResultsController objectAtIndexPath:cellIndex];
+    recipe = [self.fetchedResultsController objectAtIndexPath:cellIndex];
     NSAssert(recipe, @"Recipe was nil for cell %@", cellIndex);
+  } else {
+    NSAssert(NO, @"Unexpected segue: %@", segueId);
   }
 
   id nextController = [segue destinationViewController];
@@ -144,28 +76,20 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   [nextController setSettings:self.settings];
 }
 
-#pragma mark UITableViewDelegate Methods
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - Utility Methods
+
+- (void)configureCell:(OBRecipeTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-  id<UITableViewDataSource> tableViewDataSource = self.tableView.dataSource;
+  OBRecipe *recipe = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-  if (tableViewDataSource == self.recipeListDataSource) {
-    id sender = [tableView cellForRowAtIndexPath:indexPath];
-    [self performSegueWithIdentifier:SELECT_RECIPE_SEGUE sender:sender];
-  } else if (tableViewDataSource == self.calculationsDataSource) {
-    UIViewController *vc = [self.calculationsDataSource viewControllerForIndexPath:indexPath];
-    [self.navigationController pushViewController:vc animated:YES];
-  } else {
-    NSAssert(NO, @"Unknown tableView data source: %@", tableViewDataSource);
-  }
+  cell.recipeName.text = recipe.name;
+  cell.colorView.colorInSrm = [recipe colorInSRM];
 }
-
-#pragma mark UITableView Utility Methods
 
 - (BOOL)tableViewIsEmpty
 {
-  return 0 == [self.recipeListDataSource.fetchedResultsController.sections[0] numberOfObjects];
+  return 0 == [self.fetchedResultsController.sections[0] numberOfObjects];
 }
 
 // Changes the look and feel to have placeholder text that makes it clear
@@ -194,6 +118,96 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
                                                         action:@"Delete"
                                                          label:nil
                                                          value:nil] build]];
+}
+
+#pragma mark - UITableViewDataSource Methods
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+  return [[self.fetchedResultsController sections][section] numberOfObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  OBRecipeTableViewCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:@"OBRecipeCell"
+                                                                    forIndexPath:indexPath];
+
+  [self configureCell:cell atIndexPath:indexPath];
+
+  return cell;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+    OBRecipe *recipeToRemove = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self.managedObjectContext deleteObject:recipeToRemove];
+
+    NSError *error = nil;
+    [self.managedObjectContext save:&error];
+    CRITTERCISM_LOG_ERROR(error);
+  }
+}
+
+#pragma mark NSFetchedResultsControllerDelegate methods
+
+// These are all boiler plate from Apple
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+  [self.tableView beginUpdates];
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+  [self.tableView endUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+  UITableView *tableView = self.tableView;
+
+  switch(type) {
+
+    case NSFetchedResultsChangeInsert:
+      [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+      break;
+
+    case NSFetchedResultsChangeDelete:
+      [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+      [self recipeWasDeleted];
+      break;
+
+    case NSFetchedResultsChangeUpdate:
+      [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+      break;
+
+    case NSFetchedResultsChangeMove:
+      [tableView deleteRowsAtIndexPaths:[NSArray
+                                         arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+      [tableView insertRowsAtIndexPaths:[NSArray
+                                         arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+      break;
+  }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller
+  didChangeSection:(id)sectionInfo
+           atIndex:(NSUInteger)sectionIndex
+     forChangeType:(NSFetchedResultsChangeType)type
+{
+  switch(type) {
+    case NSFetchedResultsChangeInsert:
+      [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+      break;
+
+    case NSFetchedResultsChangeDelete:
+      [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+      break;
+      
+    default:
+      break;
+  }
 }
 
 @end
