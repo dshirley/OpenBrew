@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
-#import "OBGaugeView.h"
+#import "OBNumericGaugeViewController.h"
 
 @interface OBMashCalculationsViewController : GAITrackedViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) IBOutlet OBGaugeView *gaugeView;
+@property (nonatomic, readonly) OBNumericGaugeViewController *gaugeViewController;
 
 #pragma mark User Input Fields
 

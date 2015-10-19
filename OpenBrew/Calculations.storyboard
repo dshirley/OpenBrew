@@ -102,7 +102,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="DecoctionMash" id="JbC-6b-8Kc">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Attenuation" id="JbC-6b-8Kc">
                                                     <rect key="frame" x="15" y="7" width="29" height="29"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -188,13 +188,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RGX-RE-Yva" customClass="OBGaugeView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="95"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="95" id="GXx-zP-dtJ"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EjD-3X-tkU">
                                 <rect key="frame" x="0.0" y="111" width="600" height="489"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -207,7 +200,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grain weight (lbs)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qX-tS-ht6">
-                                                    <rect key="frame" x="17" y="4.5" width="140" height="35"/>
+                                                    <rect key="frame" x="17" y="4" width="140" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="I0F-GB-yi6"/>
                                                         <constraint firstAttribute="width" constant="140" id="ebh-wk-59q"/>
@@ -368,24 +361,30 @@
                                     <constraint firstAttribute="height" constant="1" id="Eh4-Wc-rMG"/>
                                 </constraints>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cm8-Kq-U7J">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="95"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95" id="3Kb-RZ-NHM"/>
+                                </constraints>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Equ-x5-LOR" secondAttribute="trailing" id="6e4-HS-cvk"/>
-                            <constraint firstItem="Equ-x5-LOR" firstAttribute="top" secondItem="RGX-RE-Yva" secondAttribute="bottom" constant="15" id="JLx-fa-B48"/>
+                            <constraint firstItem="Cm8-Kq-U7J" firstAttribute="leading" secondItem="zTF-dh-gyu" secondAttribute="leading" id="DvW-EJ-GS4"/>
+                            <constraint firstItem="Cm8-Kq-U7J" firstAttribute="top" secondItem="zTF-dh-gyu" secondAttribute="top" id="H6Z-ad-h3L"/>
+                            <constraint firstItem="Equ-x5-LOR" firstAttribute="top" secondItem="Cm8-Kq-U7J" secondAttribute="bottom" constant="15" id="Iev-Hr-lrY"/>
                             <constraint firstItem="Equ-x5-LOR" firstAttribute="leading" secondItem="zTF-dh-gyu" secondAttribute="leading" id="MBc-gA-5ZT"/>
-                            <constraint firstItem="RGX-RE-Yva" firstAttribute="top" secondItem="zTF-dh-gyu" secondAttribute="top" id="QBD-27-Wvo"/>
+                            <constraint firstAttribute="trailing" secondItem="Cm8-Kq-U7J" secondAttribute="trailing" id="d0d-ch-eCb"/>
                             <constraint firstItem="m40-CW-DrL" firstAttribute="top" secondItem="EjD-3X-tkU" secondAttribute="bottom" id="eqD-ac-3Ky"/>
                             <constraint firstAttribute="trailing" secondItem="EjD-3X-tkU" secondAttribute="trailing" id="esC-Sc-rGv"/>
                             <constraint firstItem="EjD-3X-tkU" firstAttribute="leading" secondItem="zTF-dh-gyu" secondAttribute="leading" id="hER-Yt-ZUC"/>
-                            <constraint firstItem="RGX-RE-Yva" firstAttribute="leading" secondItem="zTF-dh-gyu" secondAttribute="leading" id="jGO-yw-pQa"/>
-                            <constraint firstAttribute="trailing" secondItem="RGX-RE-Yva" secondAttribute="trailing" id="ncf-0r-O1f"/>
                             <constraint firstItem="EjD-3X-tkU" firstAttribute="top" secondItem="Equ-x5-LOR" secondAttribute="bottom" id="wj6-rp-bRy"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
-                        <outlet property="gaugeView" destination="RGX-RE-Yva" id="xar-Wj-Osp"/>
+                        <outlet property="gauge" destination="Cm8-Kq-U7J" id="jEE-pC-u0C"/>
                         <outlet property="tableView" destination="EjD-3X-tkU" id="3dr-4b-cE1"/>
                     </connections>
                 </viewController>
@@ -733,6 +732,7 @@ Carbonation</string>
         </scene>
     </scenes>
     <resources>
+        <image name="Attenuation" width="29" height="29"/>
         <image name="Bottle" width="29" height="29"/>
         <image name="DecoctionMash" width="29" height="29"/>
         <image name="Regulator" width="29" height="29"/>

@@ -21,6 +21,11 @@ typedef NS_ENUM(NSUInteger, OBMashCalculationCell) {
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Mash Calculations";
 
+@interface OBMashCalculationsViewController()
+@property (nonatomic) OBNumericGaugeViewController *gaugeViewController;
+@property (nonatomic) IBOutlet UIView *gauge;
+@end
+
 @implementation OBMashCalculationsViewController
 
 - (void)viewDidLoad
@@ -29,9 +34,19 @@ static NSString* const OBGAScreenName = @"Mash Calculations";
 
   self.screenName = OBGAScreenName;
 
-  self.gaugeView.valueLabel.text = @"--";
-  self.gaugeView.descriptionLabel.text = @"Strike water temperature";
-  self.gaugeView.colorView.hidden = YES;
+  self.gaugeViewController = [[OBNumericGaugeViewController alloc] initWithTarget:self
+                                                                     keyToDisplay:KVO_KEY(strikeWaterTemperature)
+                                                                      valueFormat:@"%.0f°"
+                                                                  descriptionText:@"Strike water temperature"];
+
+  [self addChildViewController:self.gaugeViewController];
+
+  self.gaugeViewController.view.frame = CGRectMake(0, 0, self.gauge.bounds.size.width, self.gauge.bounds.size.height);
+  [self.gauge addSubview:self.gaugeViewController.view];
+  [self.gaugeViewController didMoveToParentViewController:self];
+
+
+  [self.gaugeViewController refresh:NO];
 
   self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -67,9 +82,8 @@ static NSString* const OBGAScreenName = @"Mash Calculations";
     return;
   }
 
-  float strikeWaterTemperature = [self strikeWaterTemperature];
-
-  self.gaugeView.valueLabel.text = [NSString stringWithFormat:@"%.0f°", strikeWaterTemperature];
+  [self willChangeValueForKey:KVO_KEY(strikeWaterTemperature)];
+  [self didChangeValueForKey:KVO_KEY(strikeWaterTemperature)];
 }
 
 // http://www.howtobrew.com/section3/chapter16-3.html

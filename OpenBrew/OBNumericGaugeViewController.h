@@ -10,7 +10,6 @@
 #import "OBSettings.h"
 #import "OBRecipe.h"
 #import "OBHopAddition.h"
-#import "OBGaugeView.h"
 
 @class OBRecipe, OBColorView;
 

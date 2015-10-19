@@ -10,6 +10,7 @@
 #import "OBColorView.h"
 #import "Crittercism+NSErrorLogging.h"
 #import "OBKvoUtils.h"
+#import <UICountingLabel/UICountingLabel.h>
 
 @interface OBNumericGaugeViewController()
 @property (nonatomic) IBOutlet UICountingLabel *valueLabel;
