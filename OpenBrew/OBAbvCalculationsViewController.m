@@ -80,7 +80,7 @@ static NSString* const OBGAScreenName = @"ABV Calculations";
 {
   float sg = [self.originalGravity floatValue] - 1.0;
   float fg = [self.finalGravity floatValue] - 1.0;
-  return (sg - fg) / sg;
+  return 100 * ((sg - fg) / sg);
 }
 
 - (void)setOriginalGravity:(NSNumber *)originalGravity

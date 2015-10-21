@@ -108,6 +108,9 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="T6K-2v-bQi" kind="show" id="qaO-aI-6Dg"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="kegging" textLabel="hTw-Yt-7KF" imageView="dUx-Ex-o6G" style="IBUITableViewCellStyleDefault" id="PRd-Ao-4Ee">
                                         <rect key="frame" x="0.0" y="225.5" width="600" height="44"/>
@@ -160,6 +163,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="xy4-nU-BMB" id="oYy-5f-LnU"/>
+                                    <outlet property="delegate" destination="xy4-nU-BMB" id="kGW-aR-HQy"/>
                                 </connections>
                             </tableView>
                         </subviews>

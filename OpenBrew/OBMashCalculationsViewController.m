@@ -86,7 +86,7 @@ static NSString* const OBGAScreenName = @"Mash Calculations";
   [self didChangeValueForKey:KVO_KEY(strikeWaterTemperature)];
 }
 
-// http://www.howtobrew.com/section3/chapter16-3.html
+// http://howtobrew.com/book/section-3/the-methods-of-mashing/calculations-for-boiling-water-additions
 // Strike Water Temperature Tw = (.2/r)(T2 - T1) + T2
 - (float)strikeWaterTemperature
 {
