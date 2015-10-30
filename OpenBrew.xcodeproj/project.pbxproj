@@ -877,7 +877,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = OB;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = OpenBrew;
 				TargetAttributes = {
 					9F98D3541880F8ED00469323 = {
@@ -1293,7 +1293,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobilebrewlab.mobilebrewlab2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos8.4;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1323,7 +1323,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobilebrewlab.mobilebrewlab2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos8.4;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
