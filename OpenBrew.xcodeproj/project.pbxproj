@@ -27,19 +27,19 @@
 		9F33116A1B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3311691B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m */; };
 		9F33116D1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F33116C1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m */; };
 		9F3311701B35BF22008C0029 /* OBColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F33116F1B35BF22008C0029 /* OBColorView.m */; };
-		9F36BC1F1BC8A08900D675D8 /* OBAbvCalculationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F36BC1E1BC8A08900D675D8 /* OBAbvCalculationsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		9F36BC221BC966F800D675D8 /* OBColorGaugeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F36BC211BC966F800D675D8 /* OBColorGaugeViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9F36BC1F1BC8A08900D675D8 /* OBAbvCalculationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F36BC1E1BC8A08900D675D8 /* OBAbvCalculationsViewController.m */; };
+		9F36BC221BC966F800D675D8 /* OBColorGaugeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F36BC211BC966F800D675D8 /* OBColorGaugeViewController.m */; };
 		9F3956081BC35EDB005AC3A4 /* Calculations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3956041BC35EDB005AC3A4 /* Calculations.storyboard */; };
 		9F3956091BC35EDB005AC3A4 /* OBMashCalculationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3956061BC35EDB005AC3A4 /* OBMashCalculationsViewController.m */; };
 		9F40C4C61B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */; };
 		9F40C4CA1B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */; };
 		9F41C2921BADB7BE00A072E9 /* OBPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F41C2911BADB7BE00A072E9 /* OBPlaceholderView.xib */; };
-		9F58E84B1BC75E99007D7D03 /* OBColorGaugeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F58E84A1BC75E99007D7D03 /* OBColorGaugeViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		9F58E84B1BC75E99007D7D03 /* OBColorGaugeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F58E84A1BC75E99007D7D03 /* OBColorGaugeViewController.xib */; };
 		9F5F6F101B93C1A000F010E5 /* OBBatchSizeTableViewDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5F6F0F1B93C1A000F010E5 /* OBBatchSizeTableViewDelegateTest.m */; };
 		9F5F6F121B93D82600F010E5 /* OBBatchSizeViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F5F6F111B93D82600F010E5 /* OBBatchSizeViewControllerTest.m */; };
 		9F60CF2919B251D00076A600 /* OBIngredientTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */; };
 		9F60CF2C19B264A10076A600 /* OBMaltFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F60CF2B19B264A10076A600 /* OBMaltFinderViewController.m */; };
-		9F625D111BC8028800A282A1 /* OBMashCalculationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F625D101BC8028800A282A1 /* OBMashCalculationTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		9F625D111BC8028800A282A1 /* OBMashCalculationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F625D101BC8028800A282A1 /* OBMashCalculationTableViewCell.m */; };
 		9F63099B1B7D95EE00A2924E /* OBIngredientTableViewDataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F63099A1B7D95EE00A2924E /* OBIngredientTableViewDataSourceTest.m */; };
 		9F6EB02D1BADEE8800F2739E /* OBUnitConversion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6EB02C1BADEE8800F2739E /* OBUnitConversion.m */; };
 		9F6EB0361BAE26E500F2739E /* OBHopTypePickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6EB0351BAE26E500F2739E /* OBHopTypePickerDelegate.m */; };
@@ -75,15 +75,16 @@
 		9F98D37A1880F8EE00469323 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D35E1880F8ED00469323 /* CoreData.framework */; };
 		9F98D3821880F8EE00469323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F98D3801880F8EE00469323 /* InfoPlist.strings */; };
 		9F98D3921880FB7600469323 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F98D3911880FB7600469323 /* Main.storyboard */; };
-		9F99526A1BD2C0EA00BF6F82 /* OBCalculationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9952691BD2C0EA00BF6F82 /* OBCalculationsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		9F99526D1BD2C30C00BF6F82 /* OBRecipeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99526C1BD2C30C00BF6F82 /* OBRecipeListViewController.m */; settings = {ASSET_TAGS = (); }; };
-		9F99526F1BD31E4300BF6F82 /* OBMainViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99526E1BD31E4300BF6F82 /* OBMainViewControllerTest.m */; settings = {ASSET_TAGS = (); }; };
+		9F99526A1BD2C0EA00BF6F82 /* OBCalculationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9952691BD2C0EA00BF6F82 /* OBCalculationsViewController.m */; };
+		9F99526D1BD2C30C00BF6F82 /* OBRecipeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99526C1BD2C30C00BF6F82 /* OBRecipeListViewController.m */; };
+		9F99526F1BD31E4300BF6F82 /* OBMainViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99526E1BD31E4300BF6F82 /* OBMainViewControllerTest.m */; };
 		9FA031E61B3CCF18006C855D /* OBYeastAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA031E51B3CCF18006C855D /* OBYeastAdditionViewController.m */; };
 		9FA031EC1B3CD22D006C855D /* OBYeastTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA031EB1B3CD22D006C855D /* OBYeastTableViewCell.m */; };
 		9FA3890119B27A0B0009DB07 /* OBSrmColorTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA3890019B27A0B0009DB07 /* OBSrmColorTable.m */; };
 		9FAA13151B72F2E100223569 /* OBMultiPickerViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA13141B72F2E100223569 /* OBMultiPickerViewTest.m */; };
 		9FAA13171B73280200223569 /* OBHopAdditionTableViewDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA13161B73280200223569 /* OBHopAdditionTableViewDelegateTest.m */; };
-		9FB27D8F1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB27D8E1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9FB27D8F1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB27D8E1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m */; };
+		9FB557431BDF055A00D674D0 /* OBMashCalculationsTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB557421BDF055A00D674D0 /* OBMashCalculationsTableViewDelegate.m */; };
 		9FBAE0951B79900100D12FC8 /* OBMaltColorPickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBAE0941B79900100D12FC8 /* OBMaltColorPickerDelegateTest.m */; };
 		9FC479661B7070A50053B996 /* OBHopAdditionSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC479651B7070A50053B996 /* OBHopAdditionSettingsViewController.m */; };
 		9FC4796B1B70811C0053B996 /* OBSettingsSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC479681B70811C0053B996 /* OBSettingsSegue.m */; };
@@ -103,7 +104,7 @@
 		9FCC01F31B612C4E006E30D3 /* OBRecipeViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCC01F21B612C4E006E30D3 /* OBRecipeViewControllerTest.m */; };
 		9FCECC5B18879B430045FADD /* OBHopAdditionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FCECC5A18879B430045FADD /* OBHopAdditionTest.m */; };
 		9FCECC60188831320045FADD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D3761880F8EE00469323 /* XCTest.framework */; };
-		9FD0526B1BD1D38B0080D19A /* OBBottlingCalculationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD0526A1BD1D38B0080D19A /* OBBottlingCalculationsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		9FD0526B1BD1D38B0080D19A /* OBBottlingCalculationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD0526A1BD1D38B0080D19A /* OBBottlingCalculationsViewController.m */; };
 		9FD14133197CC7CE005220BC /* OBBatchSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD14132197CC7CE005220BC /* OBBatchSizeViewController.m */; };
 		9FD2B8FA1BB58B2E009018FD /* OBDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FD2B8F91BB58B2E009018FD /* OBDataLoader.m */; };
 		9FD2B8FB1BB58D16009018FD /* HopCatalog.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9FE279F01B9953450057BEFE /* HopCatalog.csv */; };
@@ -278,6 +279,8 @@
 		9FAA13161B73280200223569 /* OBHopAdditionTableViewDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionTableViewDelegateTest.m; sourceTree = "<group>"; };
 		9FB27D8D1BCBF56900284B8E /* OBCarbonationCalculationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBCarbonationCalculationsViewController.h; sourceTree = "<group>"; };
 		9FB27D8E1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBCarbonationCalculationsViewController.m; sourceTree = "<group>"; };
+		9FB557411BDF055A00D674D0 /* OBMashCalculationsTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMashCalculationsTableViewDelegate.h; sourceTree = "<group>"; };
+		9FB557421BDF055A00D674D0 /* OBMashCalculationsTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMashCalculationsTableViewDelegate.m; sourceTree = "<group>"; };
 		9FBAE0941B79900100D12FC8 /* OBMaltColorPickerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltColorPickerDelegateTest.m; sourceTree = "<group>"; };
 		9FC479641B7070A50053B996 /* OBHopAdditionSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionSettingsViewController.h; sourceTree = "<group>"; };
 		9FC479651B7070A50053B996 /* OBHopAdditionSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionSettingsViewController.m; sourceTree = "<group>"; };
@@ -467,16 +470,18 @@
 		9F39560A1BC35F0F005AC3A4 /* Calculations */ = {
 			isa = PBXGroup;
 			children = (
-				9FD052691BD1D38B0080D19A /* OBBottlingCalculationsViewController.h */,
-				9FD0526A1BD1D38B0080D19A /* OBBottlingCalculationsViewController.m */,
-				9FB27D8D1BCBF56900284B8E /* OBCarbonationCalculationsViewController.h */,
-				9FB27D8E1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m */,
 				9F36BC1D1BC8A08900D675D8 /* OBAbvCalculationsViewController.h */,
 				9F36BC1E1BC8A08900D675D8 /* OBAbvCalculationsViewController.m */,
-				9F3956051BC35EDB005AC3A4 /* OBMashCalculationsViewController.h */,
-				9F3956061BC35EDB005AC3A4 /* OBMashCalculationsViewController.m */,
+				9FD052691BD1D38B0080D19A /* OBBottlingCalculationsViewController.h */,
+				9FD0526A1BD1D38B0080D19A /* OBBottlingCalculationsViewController.m */,
 				9F9952681BD2C0EA00BF6F82 /* OBCalculationsViewController.h */,
 				9F9952691BD2C0EA00BF6F82 /* OBCalculationsViewController.m */,
+				9FB27D8D1BCBF56900284B8E /* OBCarbonationCalculationsViewController.h */,
+				9FB27D8E1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m */,
+				9FB557411BDF055A00D674D0 /* OBMashCalculationsTableViewDelegate.h */,
+				9FB557421BDF055A00D674D0 /* OBMashCalculationsTableViewDelegate.m */,
+				9F3956051BC35EDB005AC3A4 /* OBMashCalculationsViewController.h */,
+				9F3956061BC35EDB005AC3A4 /* OBMashCalculationsViewController.m */,
 			);
 			name = Calculations;
 			sourceTree = "<group>";
@@ -1057,6 +1062,7 @@
 				9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */,
 				9FC73F5719BD128200AD964A /* OBPlaceholderView.m in Sources */,
 				9F08153B1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m in Sources */,
+				9FB557431BDF055A00D674D0 /* OBMashCalculationsTableViewDelegate.m in Sources */,
 				9F107DF41BBAD03300364A32 /* OBHopWeightSegmentedControlDelegate.m in Sources */,
 				9F92E8D118A0D6CF00118D76 /* OBYeast.m in Sources */,
 				9F0185D11BAC06F30026BC0C /* OBNumericGaugeViewController.m in Sources */,
@@ -1284,7 +1290,7 @@
 				INFOPLIST_FILE = "OpenBrew/OpenBrew-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mobilebrewlab.mobilebrewlab;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mobilebrewlab.mobilebrewlab2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos8.4;
@@ -1314,7 +1320,7 @@
 				INFOPLIST_FILE = "OpenBrew/OpenBrew-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mobilebrewlab.mobilebrewlab;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mobilebrewlab.mobilebrewlab2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos8.4;

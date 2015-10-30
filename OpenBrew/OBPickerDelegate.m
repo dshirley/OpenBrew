@@ -67,7 +67,7 @@ typedef struct _OBSequence {
 - (void)updateSelectionForPicker:(UIPickerView *)picker
 {
   float value = [[self.target valueForKey:self.key] floatValue];
-  int row = [self rowForValue:value];
+  NSInteger row = [self rowForValue:value];
   [picker selectRow:row inComponent:0 animated:NO];
 }
 

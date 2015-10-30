@@ -10,31 +10,9 @@
 #import "GAITrackedViewController.h"
 #import "OBNumericGaugeViewController.h"
 
-@interface OBMashCalculationsViewController : GAITrackedViewController <UITableViewDataSource, UITableViewDelegate>
+@interface OBMashCalculationsViewController : GAITrackedViewController
 
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, readonly) OBNumericGaugeViewController *gaugeViewController;
-
-#pragma mark User Input Fields
-
-@property (nonatomic) NSString *grainWeight;
-@property (nonatomic) NSString *grainTemperature;
-@property (nonatomic) NSString *waterVolume;
-@property (nonatomic) NSString *targetTemperature;
-
-- (NSString *)inputForRow:(NSInteger)row;
-
-- (float)valueForRow:(NSInteger)row;
-
-#pragma mark UITableViewDataSourceMethods
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
-
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath;
-
-#pragma mark UITableViewDelegateMethods
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

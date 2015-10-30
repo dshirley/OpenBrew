@@ -9,19 +9,13 @@
 #import "OBMashCalculationsViewController.h"
 #import "OBKvoUtils.h"
 #import "OBMashCalculationTableViewCell.h"
-
-typedef NS_ENUM(NSUInteger, OBMashCalculationCell) {
-  OBGrainWeight,
-  OBGrainTemperature,
-  OBWaterVolume,
-  OBTargetTemerature,
-  OBNumberOfCells
-};
+#import "OBMashCalculationsTableViewDelegate.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Mash Calculations";
 
 @interface OBMashCalculationsViewController()
+@property (nonatomic) OBMashCalculationsTableViewDelegate *tableViewDelegate;
 @property (nonatomic) OBNumericGaugeViewController *gaugeViewController;
 @property (nonatomic) IBOutlet UIView *gauge;
 @end
@@ -34,6 +28,12 @@ static NSString* const OBGAScreenName = @"Mash Calculations";
 
   self.screenName = OBGAScreenName;
 
+  self.tableViewDelegate = [[OBMashCalculationsTableViewDelegate alloc] initWithCells:@[ @(OBGrainWeight),
+                                                                                         @(OBGrainTemperature),
+                                                                                         @(OBWaterVolume),
+                                                                                         @(OBTargetTemerature)]
+                                                                           gaCategory:OBGAScreenName];
+
   self.gaugeViewController = [[OBNumericGaugeViewController alloc] initWithTarget:self
                                                                      keyToDisplay:KVO_KEY(strikeWaterTemperature)
                                                                       valueFormat:@"%.0f°"
@@ -45,148 +45,55 @@ static NSString* const OBGAScreenName = @"Mash Calculations";
   [self.gauge addSubview:self.gaugeViewController.view];
   [self.gaugeViewController didMoveToParentViewController:self];
 
-
   [self.gaugeViewController refresh:NO];
 
   self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)dealloc
 {
-  [super viewDidAppear:animated];
-
-  NSIndexPath *firstCell = [NSIndexPath indexPathForRow:0 inSection:0];
-  [self selectTextInputAtIndexPath:firstCell];
+  self.tableViewDelegate = nil;
 }
 
-- (void)selectTextInputAtIndexPath:(NSIndexPath *)indexPath
+- (void)setTableViewDelegate:(OBMashCalculationsTableViewDelegate *)tableViewDelegate
 {
-  OBMashCalculationTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-  [cell.inputField becomeFirstResponder];
+  [_tableViewDelegate removeObserver:self forKeyPath:KVO_KEY(grainWeightInPounds)];
+  [_tableViewDelegate removeObserver:self forKeyPath:KVO_KEY(grainTemperatureInFahrenheit)];
+  [_tableViewDelegate removeObserver:self forKeyPath:KVO_KEY(waterVolumeInGallons)];
+  [_tableViewDelegate removeObserver:self forKeyPath:KVO_KEY(targetTemperatureInFahrenheit)];
+
+  _tableViewDelegate = tableViewDelegate;
+  self.tableView.dataSource = self.tableViewDelegate;
+  self.tableView.delegate = self.tableViewDelegate;
+
+  [_tableViewDelegate addObserver:self forKeyPath:KVO_KEY(grainWeightInPounds) options:0 context:nil];
+  [_tableViewDelegate addObserver:self forKeyPath:KVO_KEY(grainTemperatureInFahrenheit) options:0 context:nil];
+  [_tableViewDelegate addObserver:self forKeyPath:KVO_KEY(waterVolumeInGallons) options:0 context:nil];
+  [_tableViewDelegate addObserver:self forKeyPath:KVO_KEY(targetTemperatureInFahrenheit) options:0 context:nil];
 }
 
-- (void)textFieldDidChange:(UITextField *)textField
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSString *,id> *)change
+                       context:(void *)context
 {
-  NSString *text = textField.text;
-  NSRange range = [text rangeOfString:@"."];
-
-  if (range.location != NSNotFound &&
-      [text hasSuffix:@"."] &&
-      range.location != (text.length - 1))
-  {
-    // There's more than one decimal
-    textField.text = [text substringToIndex:text.length - 1];
-  }
-
-  if (![self allFieldsAreSet]) {
-    return;
-  }
-
   [self willChangeValueForKey:KVO_KEY(strikeWaterTemperature)];
   [self didChangeValueForKey:KVO_KEY(strikeWaterTemperature)];
+  [self.tableView reloadData];
 }
 
 // http://howtobrew.com/book/section-3/the-methods-of-mashing/calculations-for-boiling-water-additions
 // Strike Water Temperature Tw = (.2/r)(T2 - T1) + T2
 - (float)strikeWaterTemperature
 {
-  float grainWeight = [self valueForRow:OBGrainWeight];
-  float liquorVolumeInQuarts = [self valueForRow:OBWaterVolume] * 4;
+  float grainWeight = [self.tableViewDelegate.grainWeightInPounds floatValue];
+  float liquorVolumeInQuarts = [self.tableViewDelegate.waterVolumeInGallons floatValue] * 4;
 
-  float t1 = [self valueForRow:OBGrainTemperature];
-  float t2 = [self valueForRow:OBTargetTemerature];
+  float t1 = [self.tableViewDelegate.grainTemperatureInFahrenheit floatValue];
+  float t2 = [self.tableViewDelegate.targetTemperatureInFahrenheit floatValue];
   float r = liquorVolumeInQuarts / grainWeight;
 
   return ((.2 / r) * (t2 - t1)) + t2;
-}
-
-- (BOOL)allFieldsAreSet
-{
-  for (int i = 0; i < OBNumberOfCells; i++) {
-    NSString *input = [self inputForRow:i];
-    if (![self numberFromString:input]) {
-      return NO;
-    }
-  }
-
-  return YES;
-}
-
-- (NSString *)inputForRow:(NSInteger)row
-{
-  NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-  OBMashCalculationTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-  return cell.inputField.text;
-}
-
-- (float)valueForRow:(NSInteger)row
-{
-  NSString *stringValue = [self inputForRow:row];
-  return [[self numberFromString:stringValue] floatValue];
-}
-
-- (NSNumber *)numberFromString:(NSString *)string
-{
-  static NSNumberFormatter *formatter = nil;
-
-  if (!formatter) {
-    formatter = [[NSNumberFormatter alloc] init];
-    formatter.numberStyle = NSNumberFormatterDecimalStyle;
-  }
-
-  return [formatter numberFromString:string];
-}
-
-#pragma mark UITableViewDataSource Methods
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-  return OBNumberOfCells;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  OBMashCalculationTableViewCell *cell = nil;
-
-  switch (indexPath.row) {
-    case OBGrainWeight:
-      cell = (id)[tableView dequeueReusableCellWithIdentifier:@"grainWeight"];
-      cell.inputField.text = self.grainWeight;
-      break;
-
-    case OBGrainTemperature:
-      cell = (id)[tableView dequeueReusableCellWithIdentifier:@"grainTemperature"];
-      cell.inputField.text = self.grainTemperature;
-      break;
-
-    case OBWaterVolume:
-      cell = (id)[tableView dequeueReusableCellWithIdentifier:@"liquorVolume"];
-      cell.inputField.text = self.waterVolume;
-      break;
-
-    case OBTargetTemerature:
-      cell = (id)[tableView dequeueReusableCellWithIdentifier:@"targetTemperature"];
-      cell.inputField.text = self.targetTemperature;
-      break;
-
-    default:
-      break;
-  }
-
-  [cell.inputField addTarget:self
-                      action:@selector(textFieldDidChange:)
-            forControlEvents:UIControlEventEditingChanged];
-
-  return cell;
-}
-
-#pragma mark UITableViewDelegateMethods
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-  [tableView deselectRowAtIndexPath:indexPath animated:YES];
-  [self selectTextInputAtIndexPath:indexPath];
 }
 
 @end
