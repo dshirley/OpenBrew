@@ -58,10 +58,7 @@
   NSAssert(calculationsStoryboard, @"nil calculations storyboard");
 
   if ([identifier isEqualToString:@"recipes"]) {
-    OBRecipeListViewController *recipeListViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"recipeList"];
-    recipeListViewController.managedObjectContext = self.managedObjectContext;
-    recipeListViewController.settings = self.settings;
-    destinationViewController = recipeListViewController;
+    [self performSegueWithIdentifier:@"showRecipeList" sender:cell];
   } else if ([identifier isEqualToString:@"strikeWater"]) {
     destinationViewController = [calculationsStoryboard instantiateViewControllerWithIdentifier:@"mash calculations"];
   } else if ([identifier isEqualToString:@"abv"]) {
@@ -75,6 +72,17 @@
   }
 
   [self.navigationController pushViewController:destinationViewController animated:YES];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  if ([segue.identifier isEqualToString:@"showRecipeList"]) {
+    OBRecipeListViewController *recipeListViewController = segue.destinationViewController;
+    recipeListViewController.managedObjectContext = self.managedObjectContext;
+    recipeListViewController.settings = self.settings;
+  } else {
+    NSAssert(NO, @"Unrecognized segue: %@", segue.identifier);
+  }
 }
 
 #pragma mark UITableViewDataSource methods
