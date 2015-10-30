@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
+#import "OBSettings.h"
 
 @interface OBTableOfContentsViewController : GAITrackedViewController <UITableViewDataSource>
+
+@property (nonatomic) OBSettings *settings;
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 #pragma mark UITableViewDataSource methods
 

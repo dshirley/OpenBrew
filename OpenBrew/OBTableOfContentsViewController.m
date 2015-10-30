@@ -7,6 +7,7 @@
 //
 
 #import "OBTableOfContentsViewController.h"
+#import "OBRecipeListViewController.h"
 
 @interface OBTableOfContentsViewController ()
 @property (nonatomic) NSArray *sections;
@@ -20,12 +21,15 @@
 
   self.screenName = @"Calculations List";
 
-  self.sections = @[ @"Mash",
+  self.sections = @[ @"Recipe Design",
+                     @"Mash",
                      @"Fermentation",
                      @"Carbonation"
                      ];
 
   self.cells = @[
+                 @[ // Recipes section
+                   @"recipes"],
                  @[ // Mash section
                    @"strikeWater",
                    @"mashStep",
@@ -44,6 +48,33 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+  NSString *identifier = cell.reuseIdentifier;
+
+  UIViewController *destinationViewController = nil;
+
+  UIStoryboard *calculationsStoryboard = [UIStoryboard storyboardWithName:@"Calculations" bundle:[NSBundle mainBundle]];
+  NSAssert(calculationsStoryboard, @"nil calculations storyboard");
+
+  if ([identifier isEqualToString:@"recipes"]) {
+    OBRecipeListViewController *recipeListViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"recipeList"];
+    recipeListViewController.managedObjectContext = self.managedObjectContext;
+    recipeListViewController.settings = self.settings;
+    destinationViewController = recipeListViewController;
+  } else if ([identifier isEqualToString:@"strikeWater"]) {
+    destinationViewController = [calculationsStoryboard instantiateViewControllerWithIdentifier:@"mash calculations"];
+  } else if ([identifier isEqualToString:@"abv"]) {
+    destinationViewController = [calculationsStoryboard instantiateViewControllerWithIdentifier:@"abv calculations"];
+  } else if ([identifier isEqualToString:@"kegging"]) {
+    destinationViewController = [calculationsStoryboard instantiateViewControllerWithIdentifier:@"carbonation calculations"];
+  } else if ([identifier isEqualToString:@"bottling"]) {
+    destinationViewController = [calculationsStoryboard instantiateViewControllerWithIdentifier:@"bottling calculations"];
+  } else {
+    NSAssert(NO, @"Unrecognized identifier: %@", identifier);
+  }
+
+  [self.navigationController pushViewController:destinationViewController animated:YES];
 }
 
 #pragma mark UITableViewDataSource methods
