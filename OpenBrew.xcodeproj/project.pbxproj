@@ -75,7 +75,7 @@
 		9F98D37A1880F8EE00469323 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F98D35E1880F8ED00469323 /* CoreData.framework */; };
 		9F98D3821880F8EE00469323 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F98D3801880F8EE00469323 /* InfoPlist.strings */; };
 		9F98D3921880FB7600469323 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F98D3911880FB7600469323 /* Main.storyboard */; };
-		9F99526A1BD2C0EA00BF6F82 /* OBCalculationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9952691BD2C0EA00BF6F82 /* OBCalculationsViewController.m */; };
+		9F99526A1BD2C0EA00BF6F82 /* OBTableOfContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9952691BD2C0EA00BF6F82 /* OBTableOfContentsViewController.m */; };
 		9F99526D1BD2C30C00BF6F82 /* OBRecipeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99526C1BD2C30C00BF6F82 /* OBRecipeListViewController.m */; };
 		9F99526F1BD31E4300BF6F82 /* OBMainViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F99526E1BD31E4300BF6F82 /* OBMainViewControllerTest.m */; };
 		9FA031E61B3CCF18006C855D /* OBYeastAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA031E51B3CCF18006C855D /* OBYeastAdditionViewController.m */; };
@@ -263,8 +263,8 @@
 		9F98D37F1880F8EE00469323 /* OpenBrewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenBrewTests-Info.plist"; sourceTree = "<group>"; };
 		9F98D3811880F8EE00469323 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9F98D3911880FB7600469323 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		9F9952681BD2C0EA00BF6F82 /* OBCalculationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBCalculationsViewController.h; sourceTree = "<group>"; };
-		9F9952691BD2C0EA00BF6F82 /* OBCalculationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBCalculationsViewController.m; sourceTree = "<group>"; };
+		9F9952681BD2C0EA00BF6F82 /* OBTableOfContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTableOfContentsViewController.h; sourceTree = "<group>"; };
+		9F9952691BD2C0EA00BF6F82 /* OBTableOfContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTableOfContentsViewController.m; sourceTree = "<group>"; };
 		9F99526B1BD2C30C00BF6F82 /* OBRecipeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBRecipeListViewController.h; sourceTree = "<group>"; };
 		9F99526C1BD2C30C00BF6F82 /* OBRecipeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBRecipeListViewController.m; sourceTree = "<group>"; };
 		9F99526E1BD31E4300BF6F82 /* OBMainViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMainViewControllerTest.m; sourceTree = "<group>"; };
@@ -471,8 +471,6 @@
 				9F36BC1E1BC8A08900D675D8 /* OBAbvCalculationsViewController.m */,
 				9FD052691BD1D38B0080D19A /* OBBottlingCalculationsViewController.h */,
 				9FD0526A1BD1D38B0080D19A /* OBBottlingCalculationsViewController.m */,
-				9F9952681BD2C0EA00BF6F82 /* OBCalculationsViewController.h */,
-				9F9952691BD2C0EA00BF6F82 /* OBCalculationsViewController.m */,
 				9FB27D8D1BCBF56900284B8E /* OBCarbonationCalculationsViewController.h */,
 				9FB27D8E1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m */,
 				9FB557411BDF055A00D674D0 /* OBMashCalculationsTableViewDelegate.h */,
@@ -794,6 +792,8 @@
 				9F99526C1BD2C30C00BF6F82 /* OBRecipeListViewController.m */,
 				9FF686C71894099A00B36486 /* OBRecipeViewController.h */,
 				9FF686C81894099A00B36486 /* OBRecipeViewController.m */,
+				9F9952681BD2C0EA00BF6F82 /* OBTableOfContentsViewController.h */,
+				9F9952691BD2C0EA00BF6F82 /* OBTableOfContentsViewController.m */,
 				9FA031E41B3CCF18006C855D /* OBYeastAdditionViewController.h */,
 				9FA031E51B3CCF18006C855D /* OBYeastAdditionViewController.m */,
 			);
@@ -1033,7 +1033,7 @@
 				9F107DFA1BBAD6B400364A32 /* OBSettingsSegmentedControlDelegate.m in Sources */,
 				9FC8FF0F1BAC1B0400BBF56C /* OBGaugePageViewControllerDataSource.m in Sources */,
 				9F36BC1F1BC8A08900D675D8 /* OBAbvCalculationsViewController.m in Sources */,
-				9F99526A1BD2C0EA00BF6F82 /* OBCalculationsViewController.m in Sources */,
+				9F99526A1BD2C0EA00BF6F82 /* OBTableOfContentsViewController.m in Sources */,
 				9FA031EC1B3CD22D006C855D /* OBYeastTableViewCell.m in Sources */,
 				9F3956091BC35EDB005AC3A4 /* OBMashCalculationsViewController.m in Sources */,
 				9FF68676189327B000B36486 /* OBMaltAdditionViewController.m in Sources */,

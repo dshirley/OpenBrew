@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
 
-@interface OBCalculationsViewController : GAITrackedViewController <UITableViewDataSource>
+@interface OBTableOfContentsViewController : GAITrackedViewController <UITableViewDataSource>
 
 #pragma mark UITableViewDataSource methods
 

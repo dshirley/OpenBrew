@@ -6,10 +6,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--calculations list-->
+        <!--Table of Contents-->
         <scene sceneID="PMU-hl-qjY">
             <objects>
-                <viewController storyboardIdentifier="calculations list" title="calculations list" id="xy4-nU-BMB" customClass="OBCalculationsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tableOfContents" title="calculations list" id="xy4-nU-BMB" userLabel="Table of Contents" customClass="OBTableOfContentsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eAk-rg-hUU"/>
                         <viewControllerLayoutGuide type="bottom" id="EHa-Oh-0wk"/>

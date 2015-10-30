@@ -6,14 +6,14 @@
 //  Copyright © 2015 OpenBrew. All rights reserved.
 //
 
-#import "OBCalculationsViewController.h"
+#import "OBTableOfContentsViewController.h"
 
-@interface OBCalculationsViewController ()
+@interface OBTableOfContentsViewController ()
 @property (nonatomic) NSArray *sections;
 @property (nonatomic) NSArray *cells;
 @end
 
-@implementation OBCalculationsViewController
+@implementation OBTableOfContentsViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
