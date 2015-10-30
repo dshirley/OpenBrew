@@ -1359,7 +1359,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="StrikeWater" id="kko-sG-qU8">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Recipes" id="kko-sG-qU8">
                                                     <rect key="frame" x="15" y="7" width="29" height="29"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
@@ -1507,7 +1507,7 @@
                             <constraint firstItem="K5i-cF-XhP" firstAttribute="top" secondItem="wjm-VY-lof" secondAttribute="bottom" id="gJa-Vv-iJB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="hI5-8U-sBv"/>
+                    <navigationItem key="navigationItem" title="Brew Lab" id="hI5-8U-sBv"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Oe-En-0Kk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1518,6 +1518,7 @@
         <image name="Attenuation" width="29" height="29"/>
         <image name="Bottle" width="29" height="29"/>
         <image name="DecoctionMash" width="29" height="29"/>
+        <image name="Recipes" width="29" height="29"/>
         <image name="Regulator" width="29" height="29"/>
         <image name="StepMash" width="29" height="29"/>
         <image name="StrikeWater" width="29" height="29"/>
