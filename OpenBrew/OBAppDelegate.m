@@ -13,7 +13,7 @@
 #import "Crittercism.h"
 #import "Crittercism+NSErrorLogging.h"
 #import "GAI.h"
-#import "OBMainViewController.h"
+#import "OBRecipeListViewController.h"
 #import "OBCoreData.h"
 #import "OBDataLoader.h"
 
@@ -52,12 +52,12 @@
   [self.managedObjectContext save:nil];
 
   UINavigationController *nav = (UINavigationController *)[[self window] rootViewController];
-  OBMainViewController *mainVc = (OBMainViewController *)nav.topViewController;
-  NSAssert(mainVc.class == OBMainViewController.class,
-           @"Unexpected view controller: %@", mainVc.class);
+  OBRecipeListViewController *firstVc = (OBRecipeListViewController *)nav.topViewController;
+  NSAssert(firstVc.class == OBRecipeListViewController.class,
+           @"Unexpected view controller: %@", firstVc.class);
 
-  mainVc.moc = self.managedObjectContext;
-  mainVc.settings = settings;
+  firstVc.managedObjectContext = self.managedObjectContext;
+  firstVc.settings = settings;
   
   return YES;
 }

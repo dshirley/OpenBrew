@@ -15,8 +15,6 @@
 
 static NSString *const OBGAScreenName = @"Recipe List Screen";
 
-static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
-
 @implementation OBRecipeListViewController
 
 - (void)viewDidLoad {
@@ -63,10 +61,22 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   NSString *segueId = [segue identifier];
   OBRecipe *recipe = nil;
 
-  if ([segueId isEqualToString:SELECT_RECIPE_SEGUE]) {
+  if ([segueId isEqualToString:@"selectRecipe"]) {
     NSIndexPath *cellIndex = [self.tableView indexPathForCell:sender];
     recipe = [self.fetchedResultsController objectAtIndexPath:cellIndex];
     NSAssert(recipe, @"Recipe was nil for cell %@", cellIndex);
+  } else if ([segueId isEqualToString:@"addRecipe"]) {
+    recipe = [[OBRecipe alloc] initWithContext:self.managedObjectContext];
+
+    recipe.name = @"New Recipe";
+    recipe.preBoilVolumeInGallons = self.settings.defaultPreBoilSize;
+    recipe.postBoilVolumeInGallons = self.settings.defaultPostBoilSize;
+
+    NSError *err = nil;
+    [self.managedObjectContext save:&err];
+    CRITTERCISM_LOG_ERROR(err);
+
+    NSAssert(recipe, @"Unable to create recipe");
   } else {
     NSAssert(NO, @"Unexpected segue: %@", segueId);
   }
@@ -75,7 +85,6 @@ static NSString *const SELECT_RECIPE_SEGUE = @"selectRecipe";
   [nextController setRecipe:recipe];
   [nextController setSettings:self.settings];
 }
-
 
 #pragma mark - Utility Methods
 

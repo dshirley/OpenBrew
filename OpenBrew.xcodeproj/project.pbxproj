@@ -127,7 +127,6 @@
 		9FF5100E1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5100D1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m */; };
 		9FF510181B6568E400970C22 /* OBMaltAdditionSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF510171B6568E400970C22 /* OBMaltAdditionSettingsViewController.m */; };
 		9FF68676189327B000B36486 /* OBMaltAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF68675189327B000B36486 /* OBMaltAdditionViewController.m */; };
-		9FF686C21893E45F00B36486 /* OBMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF686C11893E45F00B36486 /* OBMainViewController.m */; };
 		9FF686C61893F00B00B36486 /* OBSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF686C51893F00B00B36486 /* OBSettings.m */; };
 		9FF686C91894099A00B36486 /* OBRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF686C81894099A00B36486 /* OBRecipeViewController.m */; };
 		9FF747EA1B93E4B400ECDFE9 /* OBBaseSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF747E91B93E4B400ECDFE9 /* OBBaseSettingsViewController.m */; };
@@ -343,8 +342,6 @@
 		9FF510171B6568E400970C22 /* OBMaltAdditionSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionSettingsViewController.m; sourceTree = "<group>"; };
 		9FF68674189327B000B36486 /* OBMaltAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltAdditionViewController.h; sourceTree = "<group>"; };
 		9FF68675189327B000B36486 /* OBMaltAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionViewController.m; sourceTree = "<group>"; };
-		9FF686C01893E45F00B36486 /* OBMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMainViewController.h; sourceTree = "<group>"; };
-		9FF686C11893E45F00B36486 /* OBMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMainViewController.m; sourceTree = "<group>"; };
 		9FF686C41893F00B00B36486 /* OBSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSettings.h; sourceTree = "<group>"; };
 		9FF686C51893F00B00B36486 /* OBSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSettings.m; sourceTree = "<group>"; };
 		9FF686C71894099A00B36486 /* OBRecipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBRecipeViewController.h; sourceTree = "<group>"; };
@@ -793,8 +790,6 @@
 				9F3311661B34581C008C0029 /* OBBrewController.h */,
 				9F60CF2719B251D00076A600 /* OBIngredientTableViewDataSource.h */,
 				9F60CF2819B251D00076A600 /* OBIngredientTableViewDataSource.m */,
-				9FF686C01893E45F00B36486 /* OBMainViewController.h */,
-				9FF686C11893E45F00B36486 /* OBMainViewController.m */,
 				9F99526B1BD2C30C00BF6F82 /* OBRecipeListViewController.h */,
 				9F99526C1BD2C30C00BF6F82 /* OBRecipeListViewController.m */,
 				9FF686C71894099A00B36486 /* OBRecipeViewController.h */,
@@ -1030,7 +1025,6 @@
 				9FF686C91894099A00B36486 /* OBRecipeViewController.m in Sources */,
 				9F33116D1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m in Sources */,
 				9FC4796C1B70811C0053B996 /* OBSettingsUnwindSegue.m in Sources */,
-				9FF686C21893E45F00B36486 /* OBMainViewController.m in Sources */,
 				9FA031E61B3CCF18006C855D /* OBYeastAdditionViewController.m in Sources */,
 				9FE86433198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m in Sources */,
 				9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */,
