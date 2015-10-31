@@ -851,27 +851,27 @@
                                 <rect key="frame" x="0.0" y="442" width="600" height="158"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lcz-vx-eif" customClass="OBSegmentedControl">
-                                        <rect key="frame" x="20" y="41" width="560" height="29"/>
+                                        <rect key="frame" x="20" y="40" width="560" height="29"/>
                                         <segments>
                                             <segment title="Ounces"/>
                                             <segment title="Grams"/>
                                         </segments>
                                     </segmentedControl>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ptg-BQ-8Iw" customClass="OBSegmentedControl">
-                                        <rect key="frame" x="20" y="110" width="560" height="29"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ptg-BQ-8Iw" customClass="OBSegmentedControl">
+                                        <rect key="frame" x="20" y="109" width="560" height="29"/>
                                         <segments>
                                             <segment title="Tinseth"/>
                                             <segment title="Rager"/>
                                         </segments>
                                     </segmentedControl>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IBU formula" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RmH-Ep-vt9">
-                                        <rect key="frame" x="20" y="81" width="560" height="21"/>
+                                        <rect key="frame" x="20" y="80" width="560" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Units" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7h-z1-oRL">
-                                        <rect key="frame" x="20" y="12" width="560" height="21"/>
+                                        <rect key="frame" x="20" y="12" width="560" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1077,8 +1077,8 @@
                                     <outlet property="delegate" destination="EwC-Vl-NBE" id="SEN-3e-gTY"/>
                                 </connections>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Kyl-Uf-hHQ">
-                                <rect key="frame" x="0.0" y="321" width="600" height="214"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Kyl-Uf-hHQ">
+                                <rect key="frame" x="0.0" y="322" width="600" height="214"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="basicCell" textLabel="bth-ex-3Eb" detailTextLabel="ljv-Hx-D8P" rowHeight="55" style="IBUITableViewCellStyleValue1" id="ANz-7W-Kqx">
