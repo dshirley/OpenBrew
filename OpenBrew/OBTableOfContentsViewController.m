@@ -57,9 +57,7 @@
   UIStoryboard *calculationsStoryboard = [UIStoryboard storyboardWithName:@"Calculations" bundle:[NSBundle mainBundle]];
   NSAssert(calculationsStoryboard, @"nil calculations storyboard");
 
-  if ([identifier isEqualToString:@"recipes"]) {
-    [self performSegueWithIdentifier:@"showRecipeList" sender:cell];
-  } else if ([identifier isEqualToString:@"strikeWater"]) {
+  if ([identifier isEqualToString:@"strikeWater"]) {
     destinationViewController = [calculationsStoryboard instantiateViewControllerWithIdentifier:@"mash calculations"];
   } else if ([identifier isEqualToString:@"abv"]) {
     destinationViewController = [calculationsStoryboard instantiateViewControllerWithIdentifier:@"abv calculations"];
@@ -67,11 +65,11 @@
     destinationViewController = [calculationsStoryboard instantiateViewControllerWithIdentifier:@"carbonation calculations"];
   } else if ([identifier isEqualToString:@"bottling"]) {
     destinationViewController = [calculationsStoryboard instantiateViewControllerWithIdentifier:@"bottling calculations"];
-  } else {
-    NSAssert(NO, @"Unrecognized identifier: %@", identifier);
   }
 
-  [self.navigationController pushViewController:destinationViewController animated:YES];
+  if (destinationViewController) {
+    [self.navigationController pushViewController:destinationViewController animated:YES];
+  }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
