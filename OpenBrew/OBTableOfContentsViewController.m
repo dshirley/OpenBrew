@@ -32,8 +32,7 @@
                    @"recipes"],
                  @[ // Mash section
                    @"strikeWater",
-                   @"mashStep",
-                   @"decoction" ],
+                   @"mashStep" ],
                  @[ // Fermentaiton section
                    @"abv" ],
                  @[ // Carbonation section

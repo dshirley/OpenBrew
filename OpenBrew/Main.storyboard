@@ -1406,29 +1406,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="decoction" textLabel="irf-Hu-7jw" imageView="abA-ON-vsX" style="IBUITableViewCellStyleDefault" id="Xps-JL-S77">
-                                        <rect key="frame" x="0.0" y="181.5" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xps-JL-S77" id="2WG-wv-agF">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Decoction step" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="irf-Hu-7jw">
-                                                    <rect key="frame" x="59" y="0.0" width="506" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="DecoctionMash" id="abA-ON-vsX">
-                                                    <rect key="frame" x="15" y="7" width="29" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="abv" textLabel="Jp6-pR-QRR" imageView="BLu-X5-Kym" style="IBUITableViewCellStyleDefault" id="2zh-P8-HTr">
-                                        <rect key="frame" x="0.0" y="225.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="181.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2zh-P8-HTr" id="ZBr-r0-mxy">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -1449,7 +1428,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="kegging" textLabel="qwm-xk-pEW" imageView="Be9-i6-qj6" style="IBUITableViewCellStyleDefault" id="lyM-o4-yIj">
-                                        <rect key="frame" x="0.0" y="269.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="225.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lyM-o4-yIj" id="dPs-qx-AXy">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -1470,7 +1449,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="bottling" textLabel="dWu-UT-lK1" imageView="yFd-fG-MtK" style="IBUITableViewCellStyleDefault" id="S17-Yb-Cdr">
-                                        <rect key="frame" x="0.0" y="313.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="269.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S17-Yb-Cdr" id="5LX-lO-8gr">
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -1515,7 +1494,6 @@
     <resources>
         <image name="Attenuation" width="29" height="29"/>
         <image name="Bottle" width="29" height="29"/>
-        <image name="DecoctionMash" width="29" height="29"/>
         <image name="Recipes" width="29" height="29"/>
         <image name="Regulator" width="29" height="29"/>
         <image name="StepMash" width="29" height="29"/>
