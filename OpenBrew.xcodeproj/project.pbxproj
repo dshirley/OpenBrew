@@ -30,7 +30,7 @@
 		9F36BC1F1BC8A08900D675D8 /* OBAbvCalculationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F36BC1E1BC8A08900D675D8 /* OBAbvCalculationsViewController.m */; };
 		9F36BC221BC966F800D675D8 /* OBColorGaugeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F36BC211BC966F800D675D8 /* OBColorGaugeViewController.m */; };
 		9F3956081BC35EDB005AC3A4 /* Calculations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3956041BC35EDB005AC3A4 /* Calculations.storyboard */; };
-		9F3956091BC35EDB005AC3A4 /* OBMashCalculationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3956061BC35EDB005AC3A4 /* OBMashCalculationsViewController.m */; };
+		9F3956091BC35EDB005AC3A4 /* OBStrikeWaterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3956061BC35EDB005AC3A4 /* OBStrikeWaterViewController.m */; };
 		9F40C4C61B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */; };
 		9F40C4CA1B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */; };
 		9F41C2921BADB7BE00A072E9 /* OBPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F41C2911BADB7BE00A072E9 /* OBPlaceholderView.xib */; };
@@ -84,7 +84,7 @@
 		9FAA13151B72F2E100223569 /* OBMultiPickerViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA13141B72F2E100223569 /* OBMultiPickerViewTest.m */; };
 		9FAA13171B73280200223569 /* OBHopAdditionTableViewDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FAA13161B73280200223569 /* OBHopAdditionTableViewDelegateTest.m */; };
 		9FB27D8F1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB27D8E1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m */; };
-		9FB557431BDF055A00D674D0 /* OBMashCalculationsTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB557421BDF055A00D674D0 /* OBMashCalculationsTableViewDelegate.m */; };
+		9FB557431BDF055A00D674D0 /* OBStrikeWaterTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB557421BDF055A00D674D0 /* OBStrikeWaterTableViewDelegate.m */; };
 		9FBAE0951B79900100D12FC8 /* OBMaltColorPickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FBAE0941B79900100D12FC8 /* OBMaltColorPickerDelegateTest.m */; };
 		9FC479661B7070A50053B996 /* OBHopAdditionSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC479651B7070A50053B996 /* OBHopAdditionSettingsViewController.m */; };
 		9FC4796B1B70811C0053B996 /* OBSettingsSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC479681B70811C0053B996 /* OBSettingsSegue.m */; };
@@ -196,8 +196,8 @@
 		9F36BC201BC966F800D675D8 /* OBColorGaugeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBColorGaugeViewController.h; sourceTree = "<group>"; };
 		9F36BC211BC966F800D675D8 /* OBColorGaugeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBColorGaugeViewController.m; sourceTree = "<group>"; };
 		9F3956041BC35EDB005AC3A4 /* Calculations.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calculations.storyboard; sourceTree = "<group>"; };
-		9F3956051BC35EDB005AC3A4 /* OBMashCalculationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMashCalculationsViewController.h; sourceTree = "<group>"; };
-		9F3956061BC35EDB005AC3A4 /* OBMashCalculationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMashCalculationsViewController.m; sourceTree = "<group>"; };
+		9F3956051BC35EDB005AC3A4 /* OBStrikeWaterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBStrikeWaterViewController.h; sourceTree = "<group>"; };
+		9F3956061BC35EDB005AC3A4 /* OBStrikeWaterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBStrikeWaterViewController.m; sourceTree = "<group>"; };
 		9F40C4C51B6D88D5008334F6 /* OBMaltAdditionSettingsViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionSettingsViewControllerTest.m; sourceTree = "<group>"; };
 		9F40C4C91B6D92D5008334F6 /* OBMaltAdditionViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionViewControllerTest.m; sourceTree = "<group>"; };
 		9F41C2911BADB7BE00A072E9 /* OBPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OBPlaceholderView.xib; sourceTree = "<group>"; };
@@ -278,8 +278,8 @@
 		9FAA13161B73280200223569 /* OBHopAdditionTableViewDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionTableViewDelegateTest.m; sourceTree = "<group>"; };
 		9FB27D8D1BCBF56900284B8E /* OBCarbonationCalculationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBCarbonationCalculationsViewController.h; sourceTree = "<group>"; };
 		9FB27D8E1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBCarbonationCalculationsViewController.m; sourceTree = "<group>"; };
-		9FB557411BDF055A00D674D0 /* OBMashCalculationsTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMashCalculationsTableViewDelegate.h; sourceTree = "<group>"; };
-		9FB557421BDF055A00D674D0 /* OBMashCalculationsTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMashCalculationsTableViewDelegate.m; sourceTree = "<group>"; };
+		9FB557411BDF055A00D674D0 /* OBStrikeWaterTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBStrikeWaterTableViewDelegate.h; sourceTree = "<group>"; };
+		9FB557421BDF055A00D674D0 /* OBStrikeWaterTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBStrikeWaterTableViewDelegate.m; sourceTree = "<group>"; };
 		9FBAE0941B79900100D12FC8 /* OBMaltColorPickerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltColorPickerDelegateTest.m; sourceTree = "<group>"; };
 		9FC479641B7070A50053B996 /* OBHopAdditionSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopAdditionSettingsViewController.h; sourceTree = "<group>"; };
 		9FC479651B7070A50053B996 /* OBHopAdditionSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopAdditionSettingsViewController.m; sourceTree = "<group>"; };
@@ -473,10 +473,10 @@
 				9FD0526A1BD1D38B0080D19A /* OBBottlingCalculationsViewController.m */,
 				9FB27D8D1BCBF56900284B8E /* OBCarbonationCalculationsViewController.h */,
 				9FB27D8E1BCBF56900284B8E /* OBCarbonationCalculationsViewController.m */,
-				9FB557411BDF055A00D674D0 /* OBMashCalculationsTableViewDelegate.h */,
-				9FB557421BDF055A00D674D0 /* OBMashCalculationsTableViewDelegate.m */,
-				9F3956051BC35EDB005AC3A4 /* OBMashCalculationsViewController.h */,
-				9F3956061BC35EDB005AC3A4 /* OBMashCalculationsViewController.m */,
+				9FB557411BDF055A00D674D0 /* OBStrikeWaterTableViewDelegate.h */,
+				9FB557421BDF055A00D674D0 /* OBStrikeWaterTableViewDelegate.m */,
+				9F3956051BC35EDB005AC3A4 /* OBStrikeWaterViewController.h */,
+				9F3956061BC35EDB005AC3A4 /* OBStrikeWaterViewController.m */,
 			);
 			name = Calculations;
 			sourceTree = "<group>";
@@ -1035,7 +1035,7 @@
 				9F36BC1F1BC8A08900D675D8 /* OBAbvCalculationsViewController.m in Sources */,
 				9F99526A1BD2C0EA00BF6F82 /* OBTableOfContentsViewController.m in Sources */,
 				9FA031EC1B3CD22D006C855D /* OBYeastTableViewCell.m in Sources */,
-				9F3956091BC35EDB005AC3A4 /* OBMashCalculationsViewController.m in Sources */,
+				9F3956091BC35EDB005AC3A4 /* OBStrikeWaterViewController.m in Sources */,
 				9FF68676189327B000B36486 /* OBMaltAdditionViewController.m in Sources */,
 				9F3311701B35BF22008C0029 /* OBColorView.m in Sources */,
 				9F107DF71BBAD34100364A32 /* OBIbuFormulaSegmentedControlDelegate.m in Sources */,
@@ -1056,7 +1056,7 @@
 				9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */,
 				9FC73F5719BD128200AD964A /* OBPlaceholderView.m in Sources */,
 				9F08153B1996D6CA00E5E575 /* OBHopAdditionTableViewDelegate.m in Sources */,
-				9FB557431BDF055A00D674D0 /* OBMashCalculationsTableViewDelegate.m in Sources */,
+				9FB557431BDF055A00D674D0 /* OBStrikeWaterTableViewDelegate.m in Sources */,
 				9F107DF41BBAD03300364A32 /* OBHopWeightSegmentedControlDelegate.m in Sources */,
 				9F92E8D118A0D6CF00118D76 /* OBYeast.m in Sources */,
 				9F0185D11BAC06F30026BC0C /* OBNumericGaugeViewController.m in Sources */,

@@ -6,23 +6,25 @@
 //  Copyright © 2015 OpenBrew. All rights reserved.
 //
 
-#import "OBMashCalculationsTableViewDelegate.h"
+#import "OBStrikeWaterTableViewDelegate.h"
 #import "OBMultiPickerTableViewCell.h"
 #import "OBPickerDelegate.h"
 #import "OBKvoUtils.h"
 
-@interface OBMashCalculationsTableViewDelegate()
-@property (nonatomic) NSArray *cells;
-@end
+typedef NS_ENUM(NSUInteger, OBMashCalculationCell) {
+  OBGrainWeight,
+  OBGrainTemperature,
+  OBWaterVolume,
+  OBTargetTemerature,
+};
 
-@implementation OBMashCalculationsTableViewDelegate
+@implementation OBStrikeWaterTableViewDelegate
 
-- (instancetype)initWithCells:(NSArray *)cells gaCategory:(NSString *)gaCategory
+- (instancetype)initWithGACategory:(NSString *)gaCategory
 {
   self = [super initWithGACategory:gaCategory];
 
   if (self) {
-    self.cells = cells;
     self.grainWeightInPounds = @(10.0);
     self.grainTemperatureInFahrenheit = @(70.0);
     self.waterVolumeInGallons = @(3.5);
@@ -36,7 +38,7 @@
 
 - (NSArray *)ingredientData
 {
-  return @[ self.cells ];
+  return @[ @[ @(OBGrainWeight), @(OBGrainTemperature), @(OBWaterVolume), @(OBTargetTemerature) ] ];
 }
 
 - (void)populateIngredientCell:(UITableViewCell *)cell
@@ -66,6 +68,7 @@
       break;
 
     default:
+      NSAssert(NO, @"Unexpected cell type: %d", cellType);
       break;
   }
 }
@@ -87,7 +90,7 @@
     case OBGrainTemperature:
       pickerDelegate = [[OBPickerDelegate alloc] initWithTarget:self key:KVO_KEY(grainTemperatureInFahrenheit)];
       pickerDelegate.format = @"%.0f°";
-      [pickerDelegate from:0 to:90 incrementBy:1];
+      [pickerDelegate from:0 to:90 incrementBy:2];
       break;
 
     case OBWaterVolume:
@@ -99,10 +102,11 @@
     case OBTargetTemerature:
       pickerDelegate = [[OBPickerDelegate alloc] initWithTarget:self key:KVO_KEY(targetTemperatureInFahrenheit)];
       pickerDelegate.format = @"%.0f°";
-      [pickerDelegate from:130 to:165 incrementBy:1];
+      [pickerDelegate from:100 to:165 incrementBy:1];
       break;
 
     default:
+      NSAssert(NO, @"Unexpected cell type: %d", cellType);
       break;
   }
 

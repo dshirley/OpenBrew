@@ -10,9 +10,16 @@
 #import "GAITrackedViewController.h"
 #import "OBNumericGaugeViewController.h"
 
-@interface OBMashCalculationsViewController : GAITrackedViewController
+typedef NS_ENUM(NSUInteger, OBMashCalculationType) {
+  OBMashStrikeWaterCalculation,
+  OBMashInfusionStepCalculation
+};
+
+@interface OBStrikeWaterViewController : GAITrackedViewController
 
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, readonly) OBNumericGaugeViewController *gaugeViewController;
+
+@property (nonatomic, assign) OBMashCalculationType calculationType;
 
 @end

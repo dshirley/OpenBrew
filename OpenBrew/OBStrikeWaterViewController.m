@@ -6,21 +6,21 @@
 //  Copyright © 2015 OpenBrew. All rights reserved.
 //
 
-#import "OBMashCalculationsViewController.h"
+#import "OBStrikeWaterViewController.h"
 #import "OBKvoUtils.h"
 #import "OBMashCalculationTableViewCell.h"
-#import "OBMashCalculationsTableViewDelegate.h"
+#import "OBStrikeWaterTableViewDelegate.h"
 
 // Google Analytics constants
-static NSString* const OBGAScreenName = @"Mash Calculations";
+static NSString* const OBGAScreenName = @"Strike water calculations";
 
-@interface OBMashCalculationsViewController()
-@property (nonatomic) OBMashCalculationsTableViewDelegate *tableViewDelegate;
+@interface OBStrikeWaterViewController()
+@property (nonatomic) OBStrikeWaterTableViewDelegate *tableViewDelegate;
 @property (nonatomic) OBNumericGaugeViewController *gaugeViewController;
 @property (nonatomic) IBOutlet UIView *gauge;
 @end
 
-@implementation OBMashCalculationsViewController
+@implementation OBStrikeWaterViewController
 
 - (void)viewDidLoad
 {
@@ -28,11 +28,7 @@ static NSString* const OBGAScreenName = @"Mash Calculations";
 
   self.screenName = OBGAScreenName;
 
-  self.tableViewDelegate = [[OBMashCalculationsTableViewDelegate alloc] initWithCells:@[ @(OBGrainWeight),
-                                                                                         @(OBGrainTemperature),
-                                                                                         @(OBWaterVolume),
-                                                                                         @(OBTargetTemerature)]
-                                                                           gaCategory:OBGAScreenName];
+  self.tableViewDelegate = [[OBStrikeWaterTableViewDelegate alloc] initWithGACategory:OBGAScreenName];
 
   self.gaugeViewController = [[OBNumericGaugeViewController alloc] initWithTarget:self
                                                                      keyToDisplay:KVO_KEY(strikeWaterTemperature)
@@ -55,7 +51,7 @@ static NSString* const OBGAScreenName = @"Mash Calculations";
   self.tableViewDelegate = nil;
 }
 
-- (void)setTableViewDelegate:(OBMashCalculationsTableViewDelegate *)tableViewDelegate
+- (void)setTableViewDelegate:(OBStrikeWaterTableViewDelegate *)tableViewDelegate
 {
   [_tableViewDelegate removeObserver:self forKeyPath:KVO_KEY(grainWeightInPounds)];
   [_tableViewDelegate removeObserver:self forKeyPath:KVO_KEY(grainTemperatureInFahrenheit)];

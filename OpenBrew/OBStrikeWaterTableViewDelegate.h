@@ -8,24 +8,14 @@
 
 #import "OBDrawerTableViewDelegate.h"
 
-typedef NS_ENUM(NSUInteger, OBMashCalculationCell) {
-  OBGrainWeight,
-  OBGrainTemperature,
-  OBWaterVolume,
-  OBTargetTemerature,
-  OBNumberOfCells
-};
-
-@interface OBMashCalculationsTableViewDelegate : OBDrawerTableViewDelegate
-
-@property (nonatomic, readonly) NSArray *cells;
+@interface OBStrikeWaterTableViewDelegate : OBDrawerTableViewDelegate
 
 @property (nonatomic) NSNumber *grainWeightInPounds;
 @property (nonatomic) NSNumber *grainTemperatureInFahrenheit;
 @property (nonatomic) NSNumber *waterVolumeInGallons;
 @property (nonatomic) NSNumber *targetTemperatureInFahrenheit;
 
-- (instancetype)initWithCells:(NSArray *)cells gaCategory:(NSString *)gaCategory;
+- (instancetype)initWithGACategory:(NSString *)gaCategory;
 
 #pragma mark Template Methods
 
