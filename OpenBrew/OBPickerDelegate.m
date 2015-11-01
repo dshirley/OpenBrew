@@ -53,7 +53,7 @@ typedef struct _OBSequence {
   if (value <= self.sequence.start) {
     return 0;
   } else if (value >= self.sequence.end) {
-    return [self pickerView:nil numberOfRowsInComponent:0];
+    return MAX(0, [self pickerView:nil numberOfRowsInComponent:0] - 1);
   }
 
   return roundf((value - self.sequence.start) / self.sequence.increment);
@@ -64,6 +64,8 @@ typedef struct _OBSequence {
   return self.sequence.start + (row * self.sequence.increment);
 }
 
+// TODO: add a unit test that updates the selection for the max value. Previously
+// the "to" value was not inclusive and resulted in the wrong picker value being chosen
 - (void)updateSelectionForPicker:(UIPickerView *)picker
 {
   float value = [[self.target valueForKey:self.key] floatValue];
@@ -80,7 +82,7 @@ typedef struct _OBSequence {
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-  return (self.sequence.end - self.sequence.start) / self.sequence.increment;
+  return ((self.sequence.end - self.sequence.start) / self.sequence.increment) + 1;
 }
 
 #pragma mark - UIPickerViewDelegate
