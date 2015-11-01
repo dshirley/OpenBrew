@@ -46,6 +46,8 @@
 		9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */; };
 		9F7EFEFA1BA6BDA300B71D64 /* OBSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EFEF91BA6BDA300B71D64 /* OBSettingsTest.m */; };
 		9F7EFEFC1BA7294F00B71D64 /* OBCoreDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EFEFB1BA7294F00B71D64 /* OBCoreDataTest.m */; };
+		9F8928361BE67B4C003A59FB /* OBInfusionStepTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8928331BE67B4C003A59FB /* OBInfusionStepTableViewDelegate.m */; };
+		9F8928371BE67B4C003A59FB /* OBInfusionStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8928351BE67B4C003A59FB /* OBInfusionStepViewController.m */; };
 		9F8BB7AB1BBB68EC0044769F /* OBHopWeightSegmentedControlDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BB7AA1BBB68EC0044769F /* OBHopWeightSegmentedControlDelegateTest.m */; };
 		9F8BB7AD1BBB6B930044769F /* OBIbuFormulaSegmentedControlDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BB7AC1BBB6B930044769F /* OBIbuFormulaSegmentedControlDelegateTest.m */; };
 		9F8BB7AF1BBB6C4D0044769F /* OBMaltDisplayMetricSegmentedControlDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BB7AE1BBB6C4D0044769F /* OBMaltDisplayMetricSegmentedControlDelegateTest.m */; };
@@ -220,6 +222,10 @@
 		9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerTableViewCell.m; sourceTree = "<group>"; tabWidth = 2; };
 		9F7EFEF91BA6BDA300B71D64 /* OBSettingsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSettingsTest.m; sourceTree = "<group>"; };
 		9F7EFEFB1BA7294F00B71D64 /* OBCoreDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBCoreDataTest.m; sourceTree = "<group>"; };
+		9F8928321BE67B4C003A59FB /* OBInfusionStepTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBInfusionStepTableViewDelegate.h; sourceTree = "<group>"; };
+		9F8928331BE67B4C003A59FB /* OBInfusionStepTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBInfusionStepTableViewDelegate.m; sourceTree = "<group>"; };
+		9F8928341BE67B4C003A59FB /* OBInfusionStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBInfusionStepViewController.h; sourceTree = "<group>"; };
+		9F8928351BE67B4C003A59FB /* OBInfusionStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBInfusionStepViewController.m; sourceTree = "<group>"; };
 		9F8BB7AA1BBB68EC0044769F /* OBHopWeightSegmentedControlDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopWeightSegmentedControlDelegateTest.m; sourceTree = "<group>"; };
 		9F8BB7AC1BBB6B930044769F /* OBIbuFormulaSegmentedControlDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBIbuFormulaSegmentedControlDelegateTest.m; sourceTree = "<group>"; };
 		9F8BB7AE1BBB6C4D0044769F /* OBMaltDisplayMetricSegmentedControlDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltDisplayMetricSegmentedControlDelegateTest.m; sourceTree = "<group>"; };
@@ -469,6 +475,7 @@
 			children = (
 				9F8928301BE679E8003A59FB /* ABV */,
 				9F89282F1BE679D0003A59FB /* Bottling */,
+				9F8928311BE67B23003A59FB /* Infusion Step */,
 				9F89282E1BE679B7003A59FB /* Kegging */,
 				9F89282D1BE67997003A59FB /* Strike Water */,
 			);
@@ -584,6 +591,17 @@
 				9F36BC1E1BC8A08900D675D8 /* OBAbvCalculationsViewController.m */,
 			);
 			name = ABV;
+			sourceTree = "<group>";
+		};
+		9F8928311BE67B23003A59FB /* Infusion Step */ = {
+			isa = PBXGroup;
+			children = (
+				9F8928321BE67B4C003A59FB /* OBInfusionStepTableViewDelegate.h */,
+				9F8928331BE67B4C003A59FB /* OBInfusionStepTableViewDelegate.m */,
+				9F8928341BE67B4C003A59FB /* OBInfusionStepViewController.h */,
+				9F8928351BE67B4C003A59FB /* OBInfusionStepViewController.m */,
+			);
+			name = "Infusion Step";
 			sourceTree = "<group>";
 		};
 		9F8BB7A91BBB688D0044769F /* SegmentedControlDelegates */ = {
@@ -1064,8 +1082,10 @@
 				9F625D111BC8028800A282A1 /* OBMashCalculationTableViewCell.m in Sources */,
 				9F107DFA1BBAD6B400364A32 /* OBSettingsSegmentedControlDelegate.m in Sources */,
 				9FC8FF0F1BAC1B0400BBF56C /* OBGaugePageViewControllerDataSource.m in Sources */,
+				9F8928361BE67B4C003A59FB /* OBInfusionStepTableViewDelegate.m in Sources */,
 				9F36BC1F1BC8A08900D675D8 /* OBAbvCalculationsViewController.m in Sources */,
 				9F99526A1BD2C0EA00BF6F82 /* OBTableOfContentsViewController.m in Sources */,
+				9F8928371BE67B4C003A59FB /* OBInfusionStepViewController.m in Sources */,
 				9FA031EC1B3CD22D006C855D /* OBYeastTableViewCell.m in Sources */,
 				9F3956091BC35EDB005AC3A4 /* OBStrikeWaterViewController.m in Sources */,
 				9FF68676189327B000B36486 /* OBMaltAdditionViewController.m in Sources */,

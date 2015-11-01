@@ -32,7 +32,7 @@
                    @"recipes"],
                  @[ // Mash section
                    @"strikeWater",
-                   @"mashStep" ],
+                   @"infusionStep" ],
                  @[ // Fermentaiton section
                    @"abv" ],
                  @[ // Carbonation section
@@ -57,7 +57,9 @@
   NSAssert(calculationsStoryboard, @"nil calculations storyboard");
 
   if ([identifier isEqualToString:@"strikeWater"]) {
-    destinationViewController = [calculationsStoryboard instantiateViewControllerWithIdentifier:@"mash calculations"];
+    destinationViewController = [calculationsStoryboard instantiateViewControllerWithIdentifier:@"strike water calculations"];
+  } else if ([identifier isEqualToString:@"infusionStep"]) {
+    destinationViewController = [calculationsStoryboard instantiateViewControllerWithIdentifier:@"infusion step calculations"];
   } else if ([identifier isEqualToString:@"abv"]) {
     destinationViewController = [calculationsStoryboard instantiateViewControllerWithIdentifier:@"abv calculations"];
   } else if ([identifier isEqualToString:@"kegging"]) {

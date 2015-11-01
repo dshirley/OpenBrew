@@ -10,7 +10,7 @@
 #import "GAITrackedViewController.h"
 #import "OBNumericGaugeViewController.h"
 
-@interface OBStrikeWaterViewController : GAITrackedViewController
+@interface OBInfusionStepViewController : GAITrackedViewController
 
 @property (nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, readonly) OBNumericGaugeViewController *gaugeViewController;
