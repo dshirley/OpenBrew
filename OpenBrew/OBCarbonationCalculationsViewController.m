@@ -32,6 +32,7 @@ static NSString* const OBGAScreenName = @"Kegging Calculations";
   [super viewDidLoad];
 
   self.screenName = OBGAScreenName;
+  self.navigationItem.title = @"Keg Carbonation";
 
   [self initializeGaugePageViewController];
 

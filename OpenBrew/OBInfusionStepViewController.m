@@ -12,7 +12,7 @@
 #import "OBInfusionStepTableViewDelegate.h"
 
 // Google Analytics constants
-static NSString* const OBGAScreenName = @"Infusion step calculations";
+static NSString* const OBGAScreenName = @"Mash Infusion";
 
 @interface OBInfusionStepViewController()
 @property (nonatomic) OBInfusionStepTableViewDelegate *tableViewDelegate;
@@ -27,6 +27,7 @@ static NSString* const OBGAScreenName = @"Infusion step calculations";
   [super viewDidLoad];
 
   self.screenName = OBGAScreenName;
+  self.navigationItem.title = @"Mash Infusion";
 
   self.tableViewDelegate = [[OBInfusionStepTableViewDelegate alloc] initWithGACategory:OBGAScreenName];
 

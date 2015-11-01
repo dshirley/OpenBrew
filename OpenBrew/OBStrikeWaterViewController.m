@@ -12,7 +12,7 @@
 #import "OBStrikeWaterTableViewDelegate.h"
 
 // Google Analytics constants
-static NSString* const OBGAScreenName = @"Strike water calculations";
+static NSString* const OBGAScreenName = @"Strike Water";
 
 @interface OBStrikeWaterViewController()
 @property (nonatomic) OBStrikeWaterTableViewDelegate *tableViewDelegate;
@@ -27,6 +27,8 @@ static NSString* const OBGAScreenName = @"Strike water calculations";
   [super viewDidLoad];
 
   self.screenName = OBGAScreenName;
+  self.navigationItem.title = @"Strike Water";
+
 
   self.tableViewDelegate = [[OBStrikeWaterTableViewDelegate alloc] initWithGACategory:OBGAScreenName];
 

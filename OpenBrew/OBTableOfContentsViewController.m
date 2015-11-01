@@ -69,6 +69,12 @@
   }
 
   if (destinationViewController) {
+    // Weird: http://stackoverflow.com/questions/1449339/how-do-i-change-the-title-of-the-back-button-on-a-navigation-bar
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                             style:UIBarButtonItemStyleBordered
+                                                                            target:nil
+                                                                            action:nil];
+
     [self.navigationController pushViewController:destinationViewController animated:YES];
   }
 }
