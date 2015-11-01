@@ -20,6 +20,9 @@
 // do something with it.
 @property (nonatomic) NSString *gaCategory;
 
+@property (nonatomic, assign) NSInteger drawerCellRowHeight;
+@property (nonatomic, assign) NSInteger ingredientCellRowHeight;
+
 - (id)initWithGACategory:(NSString *)gaCategory;
 
 #pragma mark Template Methods

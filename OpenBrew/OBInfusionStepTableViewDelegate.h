@@ -28,13 +28,7 @@
 - (void)populateDrawerCell:(UITableViewCell *)cell
         withIngredientData:(id)ingredientData;
 
-#pragma mark UITableViewDataSource methods
-
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section;
-
 #pragma mark - UITableViewDelegate Methods
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath;
 

@@ -18,10 +18,6 @@
 static NSString *const INGREDIENT_ADDITION_CELL = @"IngredientAddition";
 static NSString *const DRAWER_CELL = @"DrawerCell";
 
-@interface OBDrawerTableViewDelegate ()
-@property (nonatomic, assign) NSInteger drawerCellRowHeight;
-@end
-
 @implementation OBDrawerTableViewDelegate
 
 - (id)initWithGACategory:(NSString *)gaCategory;
@@ -36,6 +32,7 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
     // Interface Builder is wrong (it says 162.  For iOS 7 it is 216)
     UIPickerView *picker = [[UIPickerView alloc] init];
     self.drawerCellRowHeight = picker.frame.size.height;
+    self.ingredientCellRowHeight = self.drawerCellRowHeight / 4.0;
   }
 
   return self;
@@ -134,7 +131,7 @@ static NSString *const DRAWER_CELL = @"DrawerCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return ([self drawerIsAtIndex:indexPath] ? self.drawerCellRowHeight : self.drawerCellRowHeight / 4);
+  return [self drawerIsAtIndex:indexPath] ? self.drawerCellRowHeight : self.ingredientCellRowHeight;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

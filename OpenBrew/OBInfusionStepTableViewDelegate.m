@@ -26,6 +26,7 @@ typedef NS_ENUM(NSUInteger, OBMashCalculationCell) {
   self = [super initWithGACategory:gaCategory];
 
   if (self) {
+    self.ingredientCellRowHeight = self.drawerCellRowHeight / 5;
     self.grainWeightInPounds = @(10.0);
     self.waterVolumeInGallons = @(3.5);
     self.waterTemperatureInFahrenheit = @(212);
@@ -41,9 +42,8 @@ typedef NS_ENUM(NSUInteger, OBMashCalculationCell) {
 - (NSArray *)ingredientData
 {
 //  return @[ @[ @(OBGrainWeight), @(OBWaterVolume), @(OBCurrentTemperature), @(OBWaterTemperature), @(OBTargetTemerature) ] ];
-  return @[ @[ @(OBGrainWeight), @(OBWaterVolume) ] ,
-            @[ @(OBCurrentTemperature), @(OBWaterTemperature) ],
-            @[ @(OBTargetTemerature) ] ];
+  return @[ @[ @(OBGrainWeight), @(OBWaterVolume), @(OBCurrentTemperature), @(OBTargetTemerature) ],
+            @[ @(OBWaterTemperature) ] ];
 }
 
 - (void)populateIngredientCell:(UITableViewCell *)cell
@@ -130,28 +130,7 @@ typedef NS_ENUM(NSUInteger, OBMashCalculationCell) {
   [drawerCell.multiPickerView addPickerDelegate:pickerDelegate withTitle:@"unused title"];
 }
 
-#pragma mark UITableViewDataSource methods
-
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section;
-{
-  return @"";
-}
-
 #pragma mark - UITableViewDelegate Methods
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-  return 0;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-  if (section <= 1) {
-    return 22;
-  }
-
-  return 0;
-}
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
