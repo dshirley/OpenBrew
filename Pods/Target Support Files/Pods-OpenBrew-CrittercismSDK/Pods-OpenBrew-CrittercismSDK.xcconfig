@@ -1,2 +1,2 @@
 PODS_OPENBREW_CRITTERCISMSDK_LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/CrittercismSDK/CrittercismSDK"
-PODS_OPENBREW_CRITTERCISMSDK_OTHER_LDFLAGS = -l"Crittercism_v5_4_0" -framework "SystemConfiguration"
+PODS_OPENBREW_CRITTERCISMSDK_OTHER_LDFLAGS = -l"Crittercism_v5_4_5" -framework "SystemConfiguration"
