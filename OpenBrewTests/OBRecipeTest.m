@@ -318,6 +318,7 @@
   XCTAssertEqual(self.keysObserved[KVO_KEY(colorInSRM)], self.recipe);
   XCTAssertEqual(self.keysObserved[KVO_KEY(finalGravity)], self.recipe);
   XCTAssertEqual(self.keysObserved[KVO_KEY(alcoholByVolume)], self.recipe);
+  XCTAssertEqual(self.keysObserved[KVO_KEY(bitternessToGravityRatio)], self.recipe);
 }
 
 - (void)startObservingAllCalculatedKeys
@@ -328,6 +329,7 @@
   [self.recipe addObserver:self forKeyPath:KVO_KEY(colorInSRM) options:0 context:nil];
   [self.recipe addObserver:self forKeyPath:KVO_KEY(finalGravity) options:0 context:nil];
   [self.recipe addObserver:self forKeyPath:KVO_KEY(alcoholByVolume) options:0 context:nil];
+  [self.recipe addObserver:self forKeyPath:KVO_KEY(bitternessToGravityRatio) options:0 context:nil];
 }
 
 - (void)testMaltAdditionsKvo

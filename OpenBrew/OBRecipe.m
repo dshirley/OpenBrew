@@ -22,6 +22,7 @@ NSString * const calculatedKVOKeys[] = {
   @"colorInSRM",
   @"finalGravity",
   @"alcoholByVolume",
+  @"bitternessToGravityRatio"
 };
 
 #define NUM_CALCULATED_KVO_KEYS (sizeof(calculatedKVOKeys) / sizeof(NSString *))
