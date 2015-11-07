@@ -78,7 +78,7 @@ typedef NS_ENUM(NSUInteger, OBMashCalculationCell) {
       break;
 
     default:
-      NSAssert(NO, @"Unexpected cell type: %d", cellType);
+      NSAssert(NO, @"Unexpected cell type: %@", @(cellType));
       break;
   }
 }
@@ -122,7 +122,7 @@ typedef NS_ENUM(NSUInteger, OBMashCalculationCell) {
       break;
 
     default:
-      NSAssert(NO, @"Unexpected cell type: %d", cellType);
+      NSAssert(NO, @"Unexpected cell type: %@", @(cellType));
       break;
   }
 

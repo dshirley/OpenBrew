@@ -10,10 +10,14 @@
 #import "GAITrackedViewController.h"
 #import "OBSettings.h"
 
+
+
 @interface OBTableOfContentsViewController : GAITrackedViewController <UITableViewDataSource>
 
+NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) OBSettings *settings;
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
+NS_ASSUME_NONNULL_END
 
 #pragma mark UITableViewDataSource methods
 
@@ -22,7 +26,7 @@
 - (NSInteger)tableView:(nonnull UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section;
 
-- (UITableViewCell *)tableView:(nonnull UITableView *)tableView
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView
          cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath;
 
 //- (void)tableView:(nonnull UITableView *)tableView
