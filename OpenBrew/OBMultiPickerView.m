@@ -122,11 +122,9 @@
     [self.picker setFrame:pickerFrame];
   } else {
     [self.segmentedControl removeFromSuperview];
-
-    // Expand the width of the picker to encompass the X position of where we had
-    // planned to put the picker.
-    pickerFrame.size.width += pickerFrame.origin.x - selectorFrame.origin.x;
-    pickerFrame.origin.x = selectorFrame.origin.x;
+    pickerFrame.origin.x = 0;
+    pickerFrame.size.width = self.frame.size.width;
+    [self.picker setFrame:pickerFrame];
   }
 
   [self.segmentedControl setNeedsLayout];
