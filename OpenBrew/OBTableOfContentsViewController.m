@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  self.screenName = @"Calculations List";
+  self.screenName = @"Table of contents";
 
   self.sections = @[ @"Recipe Design",
                      @"Mash",
@@ -40,6 +40,17 @@
                    @"bottling"
                    ]
                  ];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  if ([segue.identifier isEqualToString:@"showRecipeList"]) {
+    OBRecipeListViewController *recipeListViewController = segue.destinationViewController;
+    recipeListViewController.managedObjectContext = self.managedObjectContext;
+    recipeListViewController.settings = self.settings;
+  } else {
+    NSAssert(NO, @"Unrecognized segue: %@", segue.identifier);
+  }
 }
 
 #pragma mark UITableViewDelegate methods
@@ -76,17 +87,6 @@
                                                                             action:nil];
 
     [self.navigationController pushViewController:destinationViewController animated:YES];
-  }
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-  if ([segue.identifier isEqualToString:@"showRecipeList"]) {
-    OBRecipeListViewController *recipeListViewController = segue.destinationViewController;
-    recipeListViewController.managedObjectContext = self.managedObjectContext;
-    recipeListViewController.settings = self.settings;
-  } else {
-    NSAssert(NO, @"Unrecognized segue: %@", segue.identifier);
   }
 }
 

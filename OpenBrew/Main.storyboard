@@ -1485,6 +1485,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Brew Lab" id="hI5-8U-sBv"/>
+                    <connections>
+                        <outlet property="tableView" destination="K5i-cF-XhP" id="1FR-tv-sMM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Oe-En-0Kk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

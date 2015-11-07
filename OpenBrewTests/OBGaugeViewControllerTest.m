@@ -13,6 +13,7 @@
 #import "OBMaltAddition.h"
 #import "OBHopAddition.h"
 #import "OBColorView.h"
+#import <UICountingLabel/UICountingLabel.h>
 
 @interface OBNumericGaugeViewController(Private)
 @property (nonatomic) IBOutlet UICountingLabel *valueLabel;

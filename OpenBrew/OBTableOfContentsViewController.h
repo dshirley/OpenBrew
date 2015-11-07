@@ -10,14 +10,18 @@
 #import "GAITrackedViewController.h"
 #import "OBSettings.h"
 
-
-
-@interface OBTableOfContentsViewController : GAITrackedViewController <UITableViewDataSource>
+@interface OBTableOfContentsViewController : GAITrackedViewController <UITableViewDataSource, UITableViewDelegate>
 
 NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) OBSettings *settings;
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
+
+@property (nonatomic) IBOutlet UITableView *tableView;
 NS_ASSUME_NONNULL_END
+
+#pragma mark UITableViewDelegate methods
+
+- (void)tableView:(nonnull UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath;
 
 #pragma mark UITableViewDataSource methods
 

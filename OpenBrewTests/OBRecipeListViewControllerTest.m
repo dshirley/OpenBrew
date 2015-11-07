@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "OBBaseTestCase.h"
-#import "OBMainViewController.h"
 #import "OBRecipeListViewController.h"
 #import "OBRecipeViewController.h"
 #import <OCMock/OCMock.h>
