@@ -100,12 +100,12 @@
   OBPickerDelegate *delegate = [[OBPickerDelegate alloc] initWithTarget:nil key:nil];
   [delegate from:0 to:500 incrementBy:1];
 
-  XCTAssertEqual(500, [delegate pickerView:nil numberOfRowsInComponent:0]);
-  XCTAssertEqual(500, [delegate pickerView:nil numberOfRowsInComponent:50]);
+  XCTAssertEqual(501, [delegate pickerView:nil numberOfRowsInComponent:0]);
+  XCTAssertEqual(501, [delegate pickerView:nil numberOfRowsInComponent:50]);
 
   [delegate from:20 to:25 incrementBy:0.1];
-  XCTAssertEqual(50, [delegate pickerView:nil numberOfRowsInComponent:0]);
-  XCTAssertEqual(50, [delegate pickerView:nil numberOfRowsInComponent:50]);
+  XCTAssertEqual(51, [delegate pickerView:nil numberOfRowsInComponent:0]);
+  XCTAssertEqual(51, [delegate pickerView:nil numberOfRowsInComponent:50]);
 }
 
 - (void)testTitleForRowForComponent
