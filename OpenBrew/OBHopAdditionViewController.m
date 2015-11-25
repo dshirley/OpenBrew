@@ -25,6 +25,7 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 
 @interface OBHopAdditionViewController()
 @property (nonatomic) OBHopDisplayMetricSegmentedControlDelegate *ingredientDisplaySettingControllerDelegate;
+@property (nonatomic) OBNumericGaugeViewController *ibuGauge;
 @end
 
 @implementation OBHopAdditionViewController
@@ -62,17 +63,17 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 {
   UIPageViewController *pageViewController = (id)self.childViewControllers[0];
 
-  OBNumericGaugeViewController *ibuGauge = [[OBNumericGaugeViewController alloc] initWithTarget:self.recipe
-                                                                                   keyToDisplay:KVO_KEY(IBUs)
-                                                                                    valueFormat:@"%.0f"
-                                                                                descriptionText:@"IBUs"];
+  self.ibuGauge = [[OBNumericGaugeViewController alloc] initWithTarget:self.recipe
+                                                          keyToDisplay:KVO_KEY(IBUs)
+                                                           valueFormat:@"%.0f"
+                                                       descriptionText:@"IBUs"];
 
   OBNumericGaugeViewController *buToGuGauge = [[OBNumericGaugeViewController alloc] initWithTarget:self.recipe
                                                                                       keyToDisplay:KVO_KEY(bitternessToGravityRatio)
                                                                                        valueFormat:@"%.2f"
                                                                                    descriptionText:@"BU:GU"];
   self.pageViewControllerDataSource =
-    [[OBGaugePageViewControllerDataSource alloc] initWithViewControllers:@[ ibuGauge, buToGuGauge ]];
+    [[OBGaugePageViewControllerDataSource alloc] initWithViewControllers:@[ self.ibuGauge, buToGuGauge ]];
 
   pageViewController.dataSource = self.pageViewControllerDataSource;
 }
@@ -171,6 +172,13 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
       // If the table is reloaded during a delete, a crash results.
       [self.tableView reloadData];
     }
+  }
+  else if ([keyPath isEqualToString:KVO_KEY(ibuFormula)])
+  {
+    // This kind of sucks. This is the only place where the gauge doesn't update itself
+    // However, it seems more complicated making OBRecipe observe OBSettings just so that it
+    // can update observers of "IBUs"... I can't think of a good answer here.
+    [self.ibuGauge refresh:YES];
   }
   else if ([keyPath isEqualToString:KVO_KEY(hopAdditionDisplayMetric)])
   {
