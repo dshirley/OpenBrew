@@ -24,6 +24,7 @@
 		9F107DFA1BBAD6B400364A32 /* OBSettingsSegmentedControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F107DF91BBAD6B400364A32 /* OBSettingsSegmentedControlDelegate.m */; };
 		9F1A9C261BBAE2010090D7C9 /* OBMaltDisplayMetricSegmentedControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A9C251BBAE2010090D7C9 /* OBMaltDisplayMetricSegmentedControlDelegate.m */; };
 		9F1A9C291BBAE3830090D7C9 /* OBHopDisplayMetricSegmentedControlDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A9C281BBAE3830090D7C9 /* OBHopDisplayMetricSegmentedControlDelegate.m */; };
+		9F3028581C055D180076BAE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F3028571C055D180076BAE7 /* LaunchScreen.storyboard */; };
 		9F33116A1B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3311691B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m */; };
 		9F33116D1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F33116C1B35BE46008C0029 /* OBColorStatisticsCollectionViewCell.m */; };
 		9F3311701B35BF22008C0029 /* OBColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F33116F1B35BF22008C0029 /* OBColorView.m */; };
@@ -186,6 +187,7 @@
 		9F1A9C251BBAE2010090D7C9 /* OBMaltDisplayMetricSegmentedControlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltDisplayMetricSegmentedControlDelegate.m; sourceTree = "<group>"; };
 		9F1A9C271BBAE3830090D7C9 /* OBHopDisplayMetricSegmentedControlDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBHopDisplayMetricSegmentedControlDelegate.h; sourceTree = "<group>"; };
 		9F1A9C281BBAE3830090D7C9 /* OBHopDisplayMetricSegmentedControlDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopDisplayMetricSegmentedControlDelegate.m; sourceTree = "<group>"; };
+		9F3028571C055D180076BAE7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ../LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F3311661B34581C008C0029 /* OBBrewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBrewController.h; sourceTree = "<group>"; };
 		9F3311681B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTextStatisticsCollectionViewCell.h; sourceTree = "<group>"; };
 		9F3311691B345ECE008C0029 /* OBTextStatisticsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTextStatisticsCollectionViewCell.m; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 		9F5033BF198B55E800C302C1 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				9F3956041BC35EDB005AC3A4 /* Calculations.storyboard */,
 				9FE86431198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.h */,
 				9FE86432198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m */,
 				9F08153F1996F69E00E5E575 /* OBMaltAdditionTableViewCell.h */,
@@ -856,7 +859,7 @@
 				9F3311671B345E7D008C0029 /* CollectionViewCells */,
 				9F5033BF198B55E800C302C1 /* TableViewCells */,
 				9F98D3911880FB7600469323 /* Main.storyboard */,
-				9F3956041BC35EDB005AC3A4 /* Calculations.storyboard */,
+				9F3028571C055D180076BAE7 /* LaunchScreen.storyboard */,
 				9F33116E1B35BF22008C0029 /* OBColorView.h */,
 				9F33116F1B35BF22008C0029 /* OBColorView.m */,
 				9F58E84A1BC75E99007D7D03 /* OBColorGaugeViewController.xib */,
@@ -965,6 +968,7 @@
 				9F41C2921BADB7BE00A072E9 /* OBPlaceholderView.xib in Resources */,
 				9F98D3701880F8ED00469323 /* Images.xcassets in Resources */,
 				9F9661D21BBEC7A700CC56A8 /* OBNumericGaugeViewController.xib in Resources */,
+				9F3028581C055D180076BAE7 /* LaunchScreen.storyboard in Resources */,
 				9F98D3921880FB7600469323 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
