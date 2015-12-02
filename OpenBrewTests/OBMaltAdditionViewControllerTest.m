@@ -18,6 +18,11 @@
 #import "OBGaugePageViewController.h"
 #import "OBMaltDisplayMetricSegmentedControlDelegate.h"
 #import "OBKvoUtils.h"
+#import "OBPopupDrawerViewController.h"
+
+@interface OBMaltAdditionViewController(Private)
+@property (nonatomic) OBPopupDrawerViewController *drawerViewController;
+@end
 
 @interface OBMaltAdditionViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBMaltAdditionViewController *vc;
@@ -99,19 +104,26 @@
 
 - (void)testViewDidLoad_infoButtonIsSetup
 {
-  id mockVc = [OCMockObject partialMockForObject:self.vc];
-
   [self loadViewController];
 
   UIButton *button = (UIButton *)self.vc.infoButton.customView;
   XCTAssertNotNil(button);
   XCTAssertEqual(UIButtonTypeInfoDark, button.buttonType);
-
-  [[mockVc expect] performSegueWithIdentifier:@"maltAdditionSettings" sender:self.vc];
+  XCTAssertNil(self.vc.drawerViewController);
 
   [button sendActionsForControlEvents:UIControlEventTouchUpInside];
+  XCTAssertNotNil(self.vc.drawerViewController);
 
-  [mockVc verify];
+  OBPopupDrawerViewController *savedDrawer = self.vc.drawerViewController;
+  id mockDrawer = [OCMockObject partialMockForObject:savedDrawer];
+  [[mockDrawer expect] showAnimate];
+
+  // The drawer view controller should not be replaced when the info button is clicked again
+  [self.vc.drawerViewController removeAnimate];
+  [button sendActionsForControlEvents:UIControlEventTouchUpInside];
+  XCTAssertEqual(savedDrawer, self.vc.drawerViewController);
+
+  [mockDrawer verify];
 }
 
 - (void)testViewDidLoad_tableViewHasCorrectData

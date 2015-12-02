@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OBBaseSettingsViewController.h"
+#import "GAITrackedViewController.h"
 #import "OBSegmentedControl.h"
 
 @class OBSettings;
 
-@interface OBHopAdditionSettingsViewController : OBBaseSettingsViewController
+@interface OBHopAdditionSettingsViewController : GAITrackedViewController
 
 @property (nonatomic) OBSettings *settings;
 
-@property (nonatomic) IBOutlet OBSegmentedControl *unitsSegmentedControl;
-
 @property (nonatomic) IBOutlet OBSegmentedControl *ibuFormulaSegmentedControl;
+
+- (instancetype)initWithSettings:(OBSettings *)settings;
 
 @end

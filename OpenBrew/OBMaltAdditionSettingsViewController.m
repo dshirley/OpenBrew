@@ -17,6 +17,19 @@ static NSString* const OBGAScreenName = @"Malt Addition Settings";
 
 @implementation OBMaltAdditionSettingsViewController
 
+- (instancetype)initWithRecipe:(OBRecipe *)recipe settings:(OBSettings *)settings
+{
+  self = [super initWithNibName:@"OBMaltAdditionSettingsViewController"
+                         bundle:[NSBundle mainBundle]];
+
+  if (self) {
+    self.recipe = recipe;
+    self.settings = settings;
+  }
+
+  return self;
+}
+
 #pragma mark UIViewController overrides
 
 - (void)viewWillAppear:(BOOL)animated

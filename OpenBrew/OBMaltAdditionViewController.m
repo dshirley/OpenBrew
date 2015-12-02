@@ -20,14 +20,15 @@
 #import "OBMaltDisplayMetricSegmentedControlDelegate.h"
 #import "OBNumericGaugeViewController.h"
 #import "OBColorGaugeViewController.h"
+#import "OBPopupDrawerViewController.h"
 
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Malt Addition Screen";
 
 @interface OBMaltAdditionViewController()
 @property (nonatomic) OBMaltDisplayMetricSegmentedControlDelegate *ingredientMetricSegmentedControlDelegate;
+@property (nonatomic) OBPopupDrawerViewController *drawerViewController;
 @end
-
 
 @implementation OBMaltAdditionViewController
 
@@ -125,7 +126,21 @@ static NSString* const OBGAScreenName = @"Malt Addition Screen";
 
 - (IBAction)showSettingsView:(UIBarButtonItem *)sender
 {
-  [self performSegueWithIdentifier:@"maltAdditionSettings" sender:self];
+  if (!self.drawerViewController) {
+    OBMaltAdditionSettingsViewController *settingsVc = [[OBMaltAdditionSettingsViewController alloc] initWithRecipe:self.recipe
+                                                                                                           settings:self.settings];
+
+    self.drawerViewController = [[OBPopupDrawerViewController alloc] initWithViewController:settingsVc];
+
+    [self addChildViewController:self.drawerViewController];
+
+    self.drawerViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+
+    [self.view addSubview:self.drawerViewController.view];
+    [self.drawerViewController didMoveToParentViewController:self];
+  }
+
+  [self.drawerViewController showAnimate];
 }
 
 - (void)setRecipe:(OBRecipe *)recipe

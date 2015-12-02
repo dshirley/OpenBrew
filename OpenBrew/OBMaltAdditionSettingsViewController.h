@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "OBBaseSettingsViewController.h"
+#import "GAITrackedViewController.h"
 
 @class OBSettings, OBRecipe;
 
-@interface OBMaltAdditionSettingsViewController : OBBaseSettingsViewController
+@interface OBMaltAdditionSettingsViewController : GAITrackedViewController
 
 @property (nonatomic) OBSettings *settings;
 @property (nonatomic) OBRecipe *recipe;
@@ -19,5 +19,7 @@
 @property (nonatomic) IBOutlet UISlider *mashEfficiencySlider;
 
 @property (nonatomic) IBOutlet UILabel *mashEfficiencyLabel;
+
+- (instancetype)initWithRecipe:(OBRecipe *)recipe settings:(OBSettings *)settings;
 
 @end

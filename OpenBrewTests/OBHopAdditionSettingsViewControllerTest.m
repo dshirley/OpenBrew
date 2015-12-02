@@ -23,9 +23,9 @@
 - (void)setUp {
   [super setUp];
 
-  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-  self.vc = [storyboard instantiateViewControllerWithIdentifier:@"hopSettings"];
-  self.vc.settings = self.settings;
+  self.vc = [[OBHopAdditionSettingsViewController alloc] initWithSettings:self.settings];
+
+  XCTAssertEqual(self.settings, self.vc.settings);
 }
 
 - (void)testViewDidLoad
@@ -35,28 +35,11 @@
 
   (void)self.vc.view;
 
-  OBHopWeightSegmentedControlDelegate *weightDelegate = self.vc.unitsSegmentedControl.delegate;
-  XCTAssertNotNil(weightDelegate);
-  XCTAssertEqualObjects(NSStringFromClass(OBHopWeightSegmentedControlDelegate.class),
-                        NSStringFromClass(weightDelegate.class));
-  XCTAssertEqual(self.settings, weightDelegate.settings);
-
   OBIbuFormulaSegmentedControlDelegate *ibuDelegate = self.vc.ibuFormulaSegmentedControl.delegate;
   XCTAssertNotNil(ibuDelegate);
   XCTAssertEqualObjects(NSStringFromClass(OBIbuFormulaSegmentedControlDelegate.class),
                         NSStringFromClass(ibuDelegate.class));
   XCTAssertEqual(self.settings, ibuDelegate.settings);
-}
-
-- (void)testGreyAreaTouchDown {
-  [self.vc loadView];
-
-  id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] performSegueWithIdentifier:@"dismissSettingsView" sender:self.vc];
-
-  [self.vc.greyoutButton sendActionsForControlEvents:UIControlEventTouchDown];
-
-  [mockVc verify];
 }
 
 @end

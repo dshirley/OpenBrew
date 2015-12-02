@@ -21,10 +21,9 @@
 - (void)setUp {
   [super setUp];
 
-  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-  self.vc = [storyboard instantiateViewControllerWithIdentifier:@"maltSettings"];
-  self.vc.settings = self.settings;
-  self.vc.recipe = self.recipe;
+  self.vc = [[OBMaltAdditionSettingsViewController alloc] initWithRecipe:self.recipe settings:self.settings];
+  XCTAssertEqual(self.recipe, self.vc.recipe);
+  XCTAssertEqual(self.settings, self.vc.settings);
 }
 
 - (void)tearDown {
@@ -64,17 +63,6 @@
 
   XCTAssertEqualWithAccuracy(0.08, [self.recipe.mashEfficiency floatValue], 0.005);
   XCTAssertEqualObjects(@"Efficiency: 8%", self.vc.mashEfficiencyLabel.text);
-}
-
-- (void)testGreyAreaTouchDown {
-  [self.vc loadView];
-
-  id mockVc = [OCMockObject partialMockForObject:self.vc];
-  [[mockVc expect] performSegueWithIdentifier:@"dismissSettingsView" sender:self.vc];
-
-  [self.vc.greyoutButton sendActionsForControlEvents:UIControlEventTouchDown];
-
-  [mockVc verify];
 }
 
 @end

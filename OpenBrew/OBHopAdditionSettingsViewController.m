@@ -17,11 +17,22 @@
 static NSString* const OBGAScreenName = @"Hop Addition Settings";
 
 @interface OBHopAdditionSettingsViewController ()
-@property (nonatomic) OBHopWeightSegmentedControlDelegate *unitsSegmentedControlDelegate;
 @property (nonatomic) OBIbuFormulaSegmentedControlDelegate *ibuFormulatSegmentedControlDelegate;
 @end
 
 @implementation OBHopAdditionSettingsViewController
+
+- (instancetype)initWithSettings:(OBSettings *)settings
+{
+  self = [super initWithNibName:@"OBHopAdditionSettingsViewController"
+                         bundle:[NSBundle mainBundle]];
+
+  if (self) {
+    self.settings = settings;
+  }
+
+  return self;
+}
 
 #pragma mark UIViewController overrides
 
@@ -29,21 +40,13 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
 {
   [super viewDidLoad];
 
-  self.unitsSegmentedControlDelegate = [[OBHopWeightSegmentedControlDelegate alloc] initWithSettings:self.settings];
-  self.unitsSegmentedControl.gaCategory = OBGAScreenName;
-  self.unitsSegmentedControl.delegate = self.unitsSegmentedControlDelegate;
+  // TODO: delete OBHopWeightSegmentedControlDelegate once its been consolidated into the main view segmented controller
 
   self.ibuFormulatSegmentedControlDelegate = [[OBIbuFormulaSegmentedControlDelegate alloc] initWithSettings:self.settings];
   self.ibuFormulaSegmentedControl.gaCategory = OBGAScreenName;
   self.ibuFormulaSegmentedControl.delegate = self.ibuFormulatSegmentedControlDelegate;
 
   self.screenName = OBGAScreenName;
-}
-
-#pragma mark Actions
-
-- (IBAction)greyAreaTouchDown:(id)sender {
-  [self performSegueWithIdentifier:@"dismissSettingsView" sender:self];
 }
 
 @end

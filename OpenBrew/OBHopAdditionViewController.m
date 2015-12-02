@@ -20,12 +20,15 @@
 #import "OBHopDisplayMetricSegmentedControlDelegate.h"
 #import "OBNumericGaugeViewController.h"
 
+#import "OBPopupDrawerViewController.h"
+
 // Google Analytics constants
 static NSString* const OBGAScreenName = @"Hop Addition Screen";
 
 @interface OBHopAdditionViewController()
 @property (nonatomic) OBHopDisplayMetricSegmentedControlDelegate *ingredientDisplaySettingControllerDelegate;
 @property (nonatomic) OBNumericGaugeViewController *ibuGauge;
+@property (nonatomic) OBPopupDrawerViewController *drawerViewController;
 @end
 
 @implementation OBHopAdditionViewController
@@ -126,7 +129,21 @@ static NSString* const OBGAScreenName = @"Hop Addition Screen";
 
 - (IBAction)showSettingsView:(UIBarButtonItem *)sender
 {
-  [self performSegueWithIdentifier:@"hopAdditionSettings" sender:self];
+  if (!self.drawerViewController) {
+    OBHopAdditionSettingsViewController *settingsVc = [[OBHopAdditionSettingsViewController alloc] initWithSettings:self.settings];
+
+    self.drawerViewController = [[OBPopupDrawerViewController alloc] initWithViewController:settingsVc];
+
+    [self addChildViewController:self.drawerViewController];
+
+    self.drawerViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+
+    [self.view addSubview:self.drawerViewController.view];
+    [self.drawerViewController didMoveToParentViewController:self];
+  }
+
+  [self.drawerViewController showAnimate];
+
 }
 
 - (void)setRecipe:(OBRecipe *)recipe
