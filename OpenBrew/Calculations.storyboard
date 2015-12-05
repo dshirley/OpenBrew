@@ -460,7 +460,7 @@ Carbonation</string>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="XLU-3O-6lz">
                                 <rect key="frame" x="0.0" y="111" width="600" height="489"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientAddition" textLabel="2vt-Bn-ZMo" detailTextLabel="icT-eP-HcO" style="IBUITableViewCellStyleValue1" id="bfJ-et-39v" customClass="OBMashCalculationTableViewCell">
                                         <rect key="frame" x="0.0" y="49.5" width="600" height="44"/>

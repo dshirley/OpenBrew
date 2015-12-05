@@ -541,7 +541,6 @@
 		9F5033BF198B55E800C302C1 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				9F3956041BC35EDB005AC3A4 /* Calculations.storyboard */,
 				9FE86431198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.h */,
 				9FE86432198DBD2C007AD9E7 /* OBHopAdditionTableViewCell.m */,
 				9F08153F1996F69E00E5E575 /* OBMaltAdditionTableViewCell.h */,
@@ -857,8 +856,9 @@
 			children = (
 				9F3311671B345E7D008C0029 /* CollectionViewCells */,
 				9F5033BF198B55E800C302C1 /* TableViewCells */,
-				9F98D3911880FB7600469323 /* Main.storyboard */,
+				9F3956041BC35EDB005AC3A4 /* Calculations.storyboard */,
 				9F3028571C055D180076BAE7 /* LaunchScreen.storyboard */,
+				9F98D3911880FB7600469323 /* Main.storyboard */,
 				9F33116E1B35BF22008C0029 /* OBColorView.h */,
 				9F33116F1B35BF22008C0029 /* OBColorView.m */,
 				9F58E84A1BC75E99007D7D03 /* OBColorGaugeViewController.xib */,
