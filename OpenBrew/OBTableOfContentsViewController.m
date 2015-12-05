@@ -9,6 +9,9 @@
 #import "OBTableOfContentsViewController.h"
 #import "OBRecipeListViewController.h"
 
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+
 @interface OBTableOfContentsViewController ()
 @property (nonatomic) NSArray *sections;
 @property (nonatomic) NSArray *cells;
@@ -24,7 +27,8 @@
   self.sections = @[ @"Recipe Design",
                      @"Mash",
                      @"Fermentation",
-                     @"Carbonation"
+                     @"Carbonation",
+                     @"Measurements"
                      ];
 
   self.cells = @[
@@ -34,10 +38,15 @@
                    @"strikeWater",
                    @"infusionStep" ],
                  @[ // Fermentaiton section
-                   @"abv" ],
+                   @"pitchingRate" ],
                  @[ // Carbonation section
                    @"kegging",
                    @"bottling"
+                   ],
+                 @[ // Measurements section
+                   @"abv",
+                   @"colors",
+                   @"hydrometerAdjustments"
                    ]
                  ];
 }
@@ -77,6 +86,20 @@
     destinationViewController = [calculationsStoryboard instantiateViewControllerWithIdentifier:@"carbonation calculations"];
   } else if ([identifier isEqualToString:@"bottling"]) {
     destinationViewController = [calculationsStoryboard instantiateViewControllerWithIdentifier:@"bottling calculations"];
+  } else if ([@[ @"pitchingRate", @"colors", @"hydrometerAdjustments" ] indexOfObject:identifier] != NSNotFound) {
+
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:self.screenName
+                                                          action:identifier
+                                                           label:nil
+                                                           value:nil] build]];
+
+    UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Coming Soon"
+                                                       message:@"Sorry. This feature is still being built.  The Mobile Brew Lab team has been notified of your interest in this feature."
+                                                      delegate:self
+                                             cancelButtonTitle:@"OK"
+                                             otherButtonTitles:nil];
+    [theAlert show];
   }
 
   if (destinationViewController) {
