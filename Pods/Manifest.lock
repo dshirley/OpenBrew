@@ -6,7 +6,7 @@ PODS:
 
 DEPENDENCIES:
   - CrittercismSDK (= 5.4.5)
-  - GoogleAnalytics (= 3.12)
+  - GoogleAnalytics (= 3.12.0)
   - OCMock (= 3.1.2)
   - UICountingLabel (= 1.2.0)
 
@@ -16,4 +16,4 @@ SPEC CHECKSUMS:
   OCMock: a10ea9f0a6e921651f96f78b6faee95ebc813b92
   UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.39.0

@@ -887,6 +887,7 @@
 				9F98D3531880F8ED00469323 /* Resources */,
 				9FE6F3391BB2F49F006A13A2 /* Upload dSYM to Crittercism */,
 				256161998A953F0954ACB554 /* Copy Pods Resources */,
+				379D99CE90F60177B64D86B7 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -906,6 +907,7 @@
 				9F98D3721880F8EE00469323 /* Frameworks */,
 				9F98D3731880F8EE00469323 /* Resources */,
 				D6D04A696B109B5FC187189E /* Copy Pods Resources */,
+				2D2C9DC625D3CCD4EBD8C062 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -999,6 +1001,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenBrew/Pods-OpenBrew-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D2C9DC625D3CCD4EBD8C062 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenBrewTests/Pods-OpenBrewTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		379D99CE90F60177B64D86B7 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenBrew/Pods-OpenBrew-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		67D0BF55B7FF828A400B1D00 /* Check Pods Manifest.lock */ = {
