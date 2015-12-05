@@ -27,7 +27,8 @@ typedef NS_ENUM(NSInteger, OBMaltAdditionMetric) {
 };
 
 typedef NS_ENUM(NSInteger, OBHopAdditionMetric) {
-  OBHopAdditionMetricWeight,
+  OBHopAdditionMetricOunces,
+  OBHopAdditionMetricGrams,
   OBHopAdditionMetricIbu
 };
 

@@ -14,12 +14,12 @@
 
 - (NSArray *)titles
 {
-  return @[ @"Weight", @"IBUs" ];
+  return @[ @"Ounces", @"Grams", @"IBUs" ];
 }
 
 - (NSArray *)values
 {
-  return @[ @(OBHopAdditionMetricWeight), @(OBHopAdditionMetricIbu) ];;
+  return @[ @(OBHopAdditionMetricOunces), @(OBHopAdditionMetricGrams), @(OBHopAdditionMetricIbu) ];
 }
 
 - (NSString *)settingsKey

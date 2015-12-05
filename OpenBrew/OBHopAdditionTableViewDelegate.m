@@ -87,18 +87,17 @@
       hopCell.primaryMetric.text = [NSString stringWithFormat:@"%d IBUs",
                                     (int)roundf([hopAddition ibuContribution])];
       break;
-    case OBHopAdditionMetricWeight:
-      if (OBHopQuantityUnitsImperial == self.hopQuantityUnits) {
-        hopCell.primaryMetric.text = [NSString stringWithFormat:@"%.1f oz",
-                                      [hopAddition.quantityInOunces floatValue]];
-      } else if (OBHopQuantityUnitsMetric == self.hopQuantityUnits) {
-        hopCell.primaryMetric.text = [NSString stringWithFormat:@"%d g",
-                                      (int)roundf([hopAddition.quantityInGrams floatValue])];
-      } else {
-        NSAssert(NO, @"Unrecognized units: %@", @(self.hopQuantityUnits));
-      }
-      
+
+    case OBHopAdditionMetricOunces:
+      hopCell.primaryMetric.text = [NSString stringWithFormat:@"%.1f oz",
+                                    [hopAddition.quantityInOunces floatValue]];
       break;
+
+    case OBHopAdditionMetricGrams:
+      hopCell.primaryMetric.text = [NSString stringWithFormat:@"%d g",
+                                    (int)roundf([hopAddition.quantityInGrams floatValue])];
+      break;
+
     default:
       [NSException raise:@"Invalid hop addition metric"
                   format:@"%d", (int) self.hopAdditionMetricToDisplay];
