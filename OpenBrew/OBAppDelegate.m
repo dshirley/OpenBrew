@@ -71,6 +71,7 @@
 
 - (void)initializeGoogleAnalytics
 {
+#ifndef DEBUG
   // Optional: automatically send uncaught exceptions to Google Analytics.
   [GAI sharedInstance].trackUncaughtExceptions = NO;
 
@@ -79,6 +80,7 @@
 
   // Initialize tracker. Replace with your tracking ID.
   [[GAI sharedInstance] trackerWithTrackingId:@"UA-64333354-1"];
+#endif
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
