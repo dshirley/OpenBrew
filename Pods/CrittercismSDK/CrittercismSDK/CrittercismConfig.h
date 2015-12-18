@@ -30,6 +30,8 @@
 // only page loads and page transitions are captured. Calls made via javascript
 // are currently not captured.
 //
+
+// UIWebView and WKWebView monitoring are disabled on tvOS
 // The default value is "disabled" because use of the UIWebView or WKWebView
 // class has the side effect of calling [UIWebView initialize] or
 // [WKWebView initialize], both of which create new threads to manage webviews.
@@ -42,6 +44,7 @@
 // Default value: NO
 @property (nonatomic, assign) BOOL monitorWKWebView;
 
+// Watch Connectivity Service Monitoring is disabled on tvOS
 // Determines whether Service Monitoring should monitor Watch Connectivity
 // two-way communications conduit between an iOS app and a WatchKit extension
 // on a paired Apple Watch.
@@ -53,6 +56,11 @@
 // the thread that sends service monitoring data will be disabled.
 // Default value: YES (enabled)
 @property (nonatomic, assign) BOOL enableServiceMonitoring;
+
+// Determines whether Crittercism should automatically send app load request or
+// the app will decide when app load request should be sent by calling sendAppLoadData.
+// Default value: NO (Crittercism will automatically send app load request)
+@property (nonatomic, assign) BOOL delaySendingAppLoad;
 
 // This flag determines the verbosity of Crittercism log messages
 @property (nonatomic, assign) CRLoggingLevel loggingLevel DEPRECATED_MSG_ATTRIBUTE("Use [Crittercism setLoggingLevel:] instead");

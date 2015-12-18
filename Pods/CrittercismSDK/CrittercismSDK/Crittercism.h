@@ -218,6 +218,10 @@
 
 + (void)beginTransaction:(NSString *)name withValue:(int)value;
 
+// Cancel a transaction as if it never existed.
+
++ (void)cancelTransaction:(NSString *)name;
+
 // End an already begun transaction successfully.
 
 + (void)endTransaction:(NSString *)name;
@@ -233,6 +237,13 @@
 // Set the currency cents value of a transaction.
 
 + (void)setValue:(int)value forTransaction:(NSString*)name;
+
+// Tell Crittercism to send app load event.
+// By default, Crittercism will send app load event automatically when your app is started
+// However, if you set delaySendingAppLoad flag to YES on config, you can call this method to
+// manually send app load event.
+
++ (void)sendAppLoadData;
 
 // Set the logging level to tune the verbosity of Crittercism log messages
 
