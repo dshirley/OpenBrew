@@ -80,43 +80,41 @@
 - (BOOL)loadSampleRecipes
 {
   OBRecipe *recipe = [[OBRecipe alloc] initWithContext:self.moc];
-  recipe.name = @"Bro Light";
+  recipe.name = @"Oatmeal Stout";
   recipe.preBoilVolumeInGallons = @(7.0);
   recipe.postBoilVolumeInGallons = @(6.0);
-  [self addMalt:@"Light LME" quantity:5.0 toRecipe:recipe];
-  [self addMalt:@"Rice Syrup" quantity:1.3 toRecipe:recipe];
-  [self addHops:@"Hallertau" quantity:0.61 aaPercent:4.0 boilTime:60 toRecipe:recipe];
-  [self addYeast:@"WLP840" toRecipe:recipe];
+  [self addMalt:@"Maris Otter" quantity:7.0 toRecipe:recipe];
+  [self addMalt:@"Oats" quantity:1.0 toRecipe:recipe];
+  [self addMalt:@"Victory" quantity:1.0 toRecipe:recipe];
+  [self addMalt:@"Crystal 80" quantity:0.5 toRecipe:recipe];
+  [self addMalt:@"Roasted Barley" quantity:0.5 toRecipe:recipe];
+  [self addHops:@"Cascade" quantity:0.75 aaPercent:5.8 boilTime:60 toRecipe:recipe];
+  [self addHops:@"Citra" quantity:0.4 aaPercent:13.9 boilTime:60 toRecipe:recipe];
+  [self addYeast:@"WLP002" toRecipe:recipe];
 
   recipe = [[OBRecipe alloc] initWithContext:self.moc];
-  recipe.name = @"Classic IPA";
+  recipe.name = @"Session IPA";
   recipe.preBoilVolumeInGallons = @(7.0);
   recipe.postBoilVolumeInGallons = @(6.0);
-  [self addMalt:@"Two-Row" quantity:12.75 toRecipe:recipe];
-  [self addMalt:@"Munich 10" quantity:0.75 toRecipe:recipe];
-  [self addMalt:@"Crystal 10" quantity:1.0 toRecipe:recipe];
-  [self addMalt:@"Crystal 40" quantity:0.25 toRecipe:recipe];
-  [self addHops:@"Horizon" quantity:1.0 aaPercent:13.0 boilTime:60 toRecipe:recipe];
-  [self addHops:@"Centennial" quantity:1.0 aaPercent:9.0 boilTime:10 toRecipe:recipe];
-  [self addHops:@"Simcoe" quantity:1.0 aaPercent:12.0 boilTime:5 toRecipe:recipe];
-  [self addHops:@"Amarillo" quantity:1.0 aaPercent:9.0 boilTime:0 toRecipe:recipe];
-  [self addYeast:@"WLP001" toRecipe:recipe];
-
-  recipe = [[OBRecipe alloc] initWithContext:self.moc];
-  recipe.name = @"Janet's Brown Ale";
-  recipe.preBoilVolumeInGallons = @(7.0);
-  recipe.postBoilVolumeInGallons = @(6.0);
-  [self addMalt:@"Two-Row" quantity:12.0 toRecipe:recipe];
+  [self addMalt:@"Two-Row" quantity:5.0 toRecipe:recipe];
+  [self addMalt:@"Vienna" quantity:4.0 toRecipe:recipe];
+  [self addMalt:@"Crystal 20" quantity:0.5 toRecipe:recipe];
   [self addMalt:@"Wheat Light" quantity:1.0 toRecipe:recipe];
-  [self addMalt:@"Dextrin Malt" quantity:1.25 toRecipe:recipe];
-  [self addMalt:@"Crystal 40" quantity:1.25 toRecipe:recipe];
-  [self addMalt:@"Chocolate" quantity:0.5 toRecipe:recipe];
-  [self addHops:@"Northern Brewer" quantity:2.0 aaPercent:6.5 boilTime:60 toRecipe:recipe];
-  [self addHops:@"Northern Brewer" quantity:1.0 aaPercent:6.5 boilTime:15 toRecipe:recipe];
-  [self addHops:@"Cascade" quantity:1.5 aaPercent:6.0 boilTime:10 toRecipe:recipe];
-  [self addHops:@"Cascade" quantity:1.5 aaPercent:6.0 boilTime:0 toRecipe:recipe];
-  [self addHops:@"Centennial" quantity:2.0 aaPercent:9.0 boilTime:0 toRecipe:recipe];
+  [self addHops:@"Columbus" quantity:0.7 aaPercent:14.3 boilTime:60 toRecipe:recipe];
+  [self addHops:@"Simcoe" quantity:0.5 aaPercent:11.8 boilTime:20 toRecipe:recipe];
+  [self addHops:@"Simcoe" quantity:0.6 aaPercent:11.8 boilTime:3 toRecipe:recipe];
+  [self addHops:@"Amarillo" quantity:1.0 aaPercent:8.2 boilTime:3 toRecipe:recipe];
+  [self addHops:@"Citra" quantity:0.4 aaPercent:14.0 boilTime:3 toRecipe:recipe];
   [self addYeast:@"WLP001" toRecipe:recipe];
+
+  recipe = [[OBRecipe alloc] initWithContext:self.moc];
+  recipe.name = @"SMaSH Hit";
+  recipe.preBoilVolumeInGallons = @(7.0);
+  recipe.postBoilVolumeInGallons = @(6.0);
+  [self addMalt:@"Vienna" quantity:15.0 toRecipe:recipe];
+  [self addHops:@"Saaz" quantity:2.0 aaPercent:4.0 boilTime:60 toRecipe:recipe];
+  [self addHops:@"Saaz" quantity:0.5 aaPercent:4.0 boilTime:20 toRecipe:recipe];
+  [self addYeast:@"WLP833" toRecipe:recipe];
   
   return YES;
 }
