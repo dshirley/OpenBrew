@@ -27,8 +27,7 @@
   self.sections = @[ @"Recipe Design",
                      @"Mash",
                      @"Fermentation",
-                     @"Carbonation",
-                     @"Measurements"
+                     @"Carbonation"
                      ];
 
   self.cells = @[
@@ -38,15 +37,10 @@
                    @"strikeWater",
                    @"infusionStep" ],
                  @[ // Fermentaiton section
-                   @"pitchingRate" ],
+                   @"abv" ],
                  @[ // Carbonation section
                    @"kegging",
                    @"bottling"
-                   ],
-                 @[ // Measurements section
-                   @"abv",
-                   @"colors",
-                   @"hydrometerAdjustments"
                    ]
                  ];
 }
