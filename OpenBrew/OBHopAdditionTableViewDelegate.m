@@ -18,7 +18,6 @@
 
 #import "OBPickerDelegate.h"
 #import "OBHopBoilTimePickerDelegate.h"
-#import "OBHopTypePickerDelegate.h"
 
 @implementation OBHopAdditionTableViewDelegate
 
@@ -75,8 +74,6 @@
   float alphaAcids = [hopAddition.alphaAcidPercent floatValue];
   hopCell.alphaAcid.text = [NSString stringWithFormat:@"%.1f%%", alphaAcids];
 
-  [hopCell setHopType:[hopAddition.type integerValue]];
-
   NSInteger boilMinutes = [hopAddition.boilTimeInMinutes integerValue];
   hopCell.boilTime.text = [NSString stringWithFormat:@"%ld", (long)boilMinutes];
 
@@ -112,7 +109,6 @@
 
   id<OBPickerDelegate> alphaAcidPickerDelegate = [OBPickerDelegate hopsAlphaAcidPickerDelegate:hopAddition];
   id<OBPickerDelegate> hopBoilTimeDelegate = [[OBHopBoilTimePickerDelegate alloc] initWithHopAddition:hopAddition];
-  id<OBPickerDelegate> hopTypePickerDelegate = [[OBHopTypePickerDelegate alloc] initWithHopAddition:hopAddition];
   id<OBPickerDelegate> hopQuantityPickerDelegate = nil;
 
   if (OBHopQuantityUnitsImperial == self.hopQuantityUnits) {
@@ -127,7 +123,6 @@
   [drawerCell.multiPickerView addPickerDelegate:hopQuantityPickerDelegate withTitle:@"Quantity"];
   [drawerCell.multiPickerView addPickerDelegate:alphaAcidPickerDelegate withTitle:@"Alpha Acid %"];
   [drawerCell.multiPickerView addPickerDelegate:hopBoilTimeDelegate withTitle:@"Boil Time"];
-  [drawerCell.multiPickerView addPickerDelegate:hopTypePickerDelegate withTitle:@"Type"];
   [drawerCell.multiPickerView setSelectedPicker:self.selectedPickerIndex];
   drawerCell.multiPickerView.delegate = self;
 }

@@ -10,15 +10,4 @@
 
 @implementation OBHopAdditionTableViewCell
 
-- (void)setHopType:(OBHopType)hopType
-{
-  if (OBHopTypePellet == hopType) {
-    self.hopTypeImageView.image = [UIImage imageNamed:@"HopPellet"];
-  } else if (OBHopTypeWhole == hopType) {
-    self.hopTypeImageView.image = [UIImage imageNamed:@"WholeConeHop"];
-  } else {
-    NSAssert(NO, @"Invalid hop type");
-  }
-}
-
 @end

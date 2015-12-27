@@ -16,8 +16,5 @@
 @property (nonatomic) IBOutlet UILabel *primaryMetric;
 @property (nonatomic) IBOutlet UILabel *boilTime;
 @property (nonatomic) IBOutlet UILabel *boilUnits;
-@property (nonatomic) IBOutlet UIImageView *hopTypeImageView;
-
-- (void)setHopType:(OBHopType)hopType;
 
 @end
