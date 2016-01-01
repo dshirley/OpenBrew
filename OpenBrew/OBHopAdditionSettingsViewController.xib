@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OBHopAdditionSettingsViewController">
             <connections>
                 <outlet property="ibuFormulaSegmentedControl" destination="k4N-aK-20U" id="Zs2-QN-dxa"/>
+                <outlet property="unitsSegmentedControl" destination="2HO-As-wvv" id="Pbk-va-Xip"/>
                 <outlet property="view" destination="iN0-l3-epB" id="WNX-gG-WLR"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="103"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="194"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IBU formula" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3RW-8c-7pF">
@@ -27,24 +28,48 @@
                 </label>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="k4N-aK-20U" customClass="OBSegmentedControl">
                     <rect key="frame" x="20" y="55" width="560" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="A5a-1r-5wJ"/>
+                    </constraints>
                     <segments>
                         <segment title="Tinseth"/>
                         <segment title="Rager"/>
+                    </segments>
+                </segmentedControl>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weight units" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGu-ZA-17x">
+                    <rect key="frame" x="20" y="103" width="95.5" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="5N0-dm-Bay"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2HO-As-wvv" customClass="OBSegmentedControl">
+                    <rect key="frame" x="20" y="138" width="560" height="29"/>
+                    <segments>
+                        <segment title="Ounces"/>
+                        <segment title="Grams"/>
                     </segments>
                 </segmentedControl>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="3RW-8c-7pF" secondAttribute="trailing" constant="20" id="5ii-YF-ncn"/>
+                <constraint firstItem="2HO-As-wvv" firstAttribute="top" secondItem="cGu-ZA-17x" secondAttribute="bottom" constant="14" id="8sx-JQ-d6m"/>
                 <constraint firstItem="k4N-aK-20U" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="9N8-fq-59W"/>
+                <constraint firstItem="2HO-As-wvv" firstAttribute="leading" secondItem="k4N-aK-20U" secondAttribute="leading" id="Eo4-az-f7h"/>
+                <constraint firstItem="2HO-As-wvv" firstAttribute="trailing" secondItem="k4N-aK-20U" secondAttribute="trailing" id="GXR-U8-C0s"/>
                 <constraint firstItem="k4N-aK-20U" firstAttribute="top" secondItem="3RW-8c-7pF" secondAttribute="bottom" constant="14.5" id="H9n-GN-wnI"/>
+                <constraint firstItem="cGu-ZA-17x" firstAttribute="top" secondItem="k4N-aK-20U" secondAttribute="bottom" constant="20" id="LOw-kl-H9a"/>
+                <constraint firstItem="cGu-ZA-17x" firstAttribute="leading" secondItem="3RW-8c-7pF" secondAttribute="leading" id="PtL-5q-H5C"/>
                 <constraint firstItem="3RW-8c-7pF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="RA2-T8-upU"/>
                 <constraint firstItem="3RW-8c-7pF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="aIz-3j-znf"/>
                 <constraint firstAttribute="trailing" secondItem="k4N-aK-20U" secondAttribute="trailing" constant="20" id="bsV-rE-UQ3"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="252" y="211.5"/>
+            <point key="canvasLocation" x="252" y="257"/>
         </view>
     </objects>
 </document>

@@ -16,6 +16,8 @@
 
 @property (nonatomic) OBSettings *settings;
 
+@property (nonatomic) IBOutlet OBSegmentedControl *unitsSegmentedControl;
+
 @property (nonatomic) IBOutlet OBSegmentedControl *ibuFormulaSegmentedControl;
 
 - (instancetype)initWithSettings:(OBSettings *)settings;

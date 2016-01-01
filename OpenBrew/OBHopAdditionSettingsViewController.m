@@ -17,6 +17,7 @@
 static NSString* const OBGAScreenName = @"Hop Addition Settings";
 
 @interface OBHopAdditionSettingsViewController ()
+@property (nonatomic) OBHopWeightSegmentedControlDelegate *unitsSegmentedControlDelegate;
 @property (nonatomic) OBIbuFormulaSegmentedControlDelegate *ibuFormulatSegmentedControlDelegate;
 @end
 
@@ -40,7 +41,9 @@ static NSString* const OBGAScreenName = @"Hop Addition Settings";
 {
   [super viewDidLoad];
 
-  // TODO: delete OBHopWeightSegmentedControlDelegate once its been consolidated into the main view segmented controller
+  self.unitsSegmentedControlDelegate = [[OBHopWeightSegmentedControlDelegate alloc] initWithSettings:self.settings];
+  self.unitsSegmentedControl.gaCategory = OBGAScreenName;
+  self.unitsSegmentedControl.delegate = self.unitsSegmentedControlDelegate;
 
   self.ibuFormulatSegmentedControlDelegate = [[OBIbuFormulaSegmentedControlDelegate alloc] initWithSettings:self.settings];
   self.ibuFormulaSegmentedControl.gaCategory = OBGAScreenName;
