@@ -311,11 +311,10 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="FfZ-kd-fHq"/>
                                     <barButtonItem style="plain" id="i19-JW-8Xu">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Igk-Rd-FLj" customClass="OBSegmentedControl">
-                                            <rect key="frame" x="198" y="7" width="203" height="30"/>
+                                            <rect key="frame" x="227" y="6.5" width="145" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
-                                                <segment title="Ounces"/>
-                                                <segment title="Grams"/>
+                                                <segment title="Weight"/>
                                                 <segment title="IBUs"/>
                                             </segments>
                                         </segmentedControl>
