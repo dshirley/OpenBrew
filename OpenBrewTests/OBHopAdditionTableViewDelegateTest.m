@@ -15,7 +15,6 @@
 #import "OBMultiPickerTableViewCell.h"
 #import "OBMultiPickerView.h"
 #import "OBHopBoilTimePickerDelegate.h"
-#import "OBHopTypePickerDelegate.h"
 #import "OBPickerDelegate.h"
 
 @interface OBMultiPickerView(Test)
@@ -105,14 +104,13 @@
   [view addPickerDelegate:pickerDelegate withTitle:@"This should be removed"];
 
   [self.delegate populateDrawerCell:cell withIngredientData:hops];
-  XCTAssertEqual(4, [[view pickerDelegates] count]);
+  XCTAssertEqual(3, [[view pickerDelegates] count]);
 
   XCTAssertEqualObjects([[view pickerDelegates][0] key], @"quantityInOunces");
   XCTAssertEqual([[view pickerDelegates][0] target], hops);
   XCTAssertEqualObjects([[view pickerDelegates][1] key], @"alphaAcidPercent");
   XCTAssertEqual([[view pickerDelegates][1] target], hops);
   XCTAssertTrue([[view pickerDelegates][2] isKindOfClass:[OBHopBoilTimePickerDelegate class]]);
-  XCTAssertTrue([[view pickerDelegates][3] isKindOfClass:[OBHopTypePickerDelegate class]]);
   XCTAssertEqual(0, view.segmentedControl.selectedSegmentIndex);
   XCTAssertEqual(self.delegate, view.delegate);
   XCTAssertEqual(NSNotFound, [[view pickerDelegates] indexOfObject:pickerDelegate], @"Old one should have been removed");
@@ -120,13 +118,12 @@
   self.delegate.selectedPickerIndex = 2;
 
   [self.delegate populateDrawerCell:cell withIngredientData:hops];
-  XCTAssertEqual(4, [[view pickerDelegates] count]);
+  XCTAssertEqual(3, [[view pickerDelegates] count]);
   XCTAssertEqualObjects([[view pickerDelegates][0] key], @"quantityInOunces");
   XCTAssertEqual([[view pickerDelegates][0] target], hops);
   XCTAssertEqualObjects([[view pickerDelegates][1] key], @"alphaAcidPercent");
   XCTAssertEqual([[view pickerDelegates][1] target], hops);
   XCTAssertTrue([[view pickerDelegates][2] isKindOfClass:[OBHopBoilTimePickerDelegate class]]);
-  XCTAssertTrue([[view pickerDelegates][3] isKindOfClass:[OBHopTypePickerDelegate class]]);
   XCTAssertEqual(2, view.segmentedControl.selectedSegmentIndex);
   XCTAssertEqual(self.delegate, view.delegate);
 
@@ -137,13 +134,12 @@
 
   self.delegate.hopQuantityUnits = OBHopQuantityUnitsMetric;
   [self.delegate populateDrawerCell:cell withIngredientData:hops];
-  XCTAssertEqual(4, [[view pickerDelegates] count]);
+  XCTAssertEqual(3, [[view pickerDelegates] count]);
   XCTAssertEqualObjects([[view pickerDelegates][0] key], @"quantityInGrams");
   XCTAssertEqual([[view pickerDelegates][0] target], hops);
   XCTAssertEqualObjects([[view pickerDelegates][1] key], @"alphaAcidPercent");
   XCTAssertEqual([[view pickerDelegates][1] target], hops);
   XCTAssertTrue([[view pickerDelegates][2] isKindOfClass:[OBHopBoilTimePickerDelegate class]]);
-  XCTAssertTrue([[view pickerDelegates][3] isKindOfClass:[OBHopTypePickerDelegate class]]);
 }
 
 - (void)testPopulateDrawerCell_invalidHopQuantityUnits

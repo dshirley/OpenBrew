@@ -26,6 +26,10 @@
 
 + (OBSettings *)settingsForContext:(NSManagedObjectContext *)moc
 {
+  if (!moc) {
+    return nil;
+  }
+  
   NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Settings"];
 
   NSError *error = nil;

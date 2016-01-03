@@ -20,6 +20,10 @@
 #import "OBHopDisplayMetricSegmentedControlDelegate.h"
 #import "OBKvoUtils.h"
 
+@interface OBHopAdditionSettingsViewController(Private)
+- (void)showSettingsView:(UIBarButtonItem *)sender;
+@end
+
 @interface OBHopAdditionViewControllerTest : OBBaseTestCase
 @property (nonatomic) OBHopAdditionViewController *vc;
 @end
@@ -111,7 +115,7 @@
   XCTAssertNotNil(button);
   XCTAssertEqual(UIButtonTypeInfoDark, button.buttonType);
 
-  [[mockVc expect] performSegueWithIdentifier:@"hopAdditionSettings" sender:self.vc];
+  [[mockVc expect] showSettingsView:OCMOCK_ANY];
 
   [button sendActionsForControlEvents:UIControlEventTouchUpInside];
 

@@ -89,14 +89,14 @@
   recipes = [self fetchAllEntity:@"Recipe"];
   XCTAssertEqual(3, recipes.count);
 
-  OBRecipe *broLight = [self fetchEntity:@"Recipe" withProperty:@"name" equalTo:@"Bro Light"];
-  [self validateRecipe:broLight maltCount:2 hopCount:1 yeastId:@"WLP840"];
+  OBRecipe *oatmealStout = [self fetchEntity:@"Recipe" withProperty:@"name" equalTo:@"Oatmeal Stout"];
+  [self validateRecipe:oatmealStout maltCount:5 hopCount:2 yeastId:@"WLP002"];
 
-  OBRecipe *classicIpa = [self fetchEntity:@"Recipe" withProperty:@"name" equalTo:@"Classic IPA"];
-  [self validateRecipe:classicIpa maltCount:4 hopCount:4 yeastId:@"WLP001"];
+  OBRecipe *smashHit = [self fetchEntity:@"Recipe" withProperty:@"name" equalTo:@"SMaSH Hit"];
+  [self validateRecipe:smashHit maltCount:1 hopCount:2 yeastId:@"WLP833"];
 
-  OBRecipe *janetsBrown = [self fetchEntity:@"Recipe" withProperty:@"name" equalTo:@"Janet\\'s Brown Ale"];
-  [self validateRecipe:janetsBrown maltCount:5 hopCount:5 yeastId:@"WLP001"];
+  OBRecipe *sessionIpa = [self fetchEntity:@"Recipe" withProperty:@"name" equalTo:@"Session IPA"];
+  [self validateRecipe:sessionIpa maltCount:4 hopCount:5 yeastId:@"WLP001"];
 }
 
 - (void)validateRecipe:(OBRecipe *)recipe
