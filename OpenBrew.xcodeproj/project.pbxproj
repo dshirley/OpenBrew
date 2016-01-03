@@ -877,6 +877,7 @@
 			buildConfigurationList = 9F98D3871880F8EE00469323 /* Build configuration list for PBXNativeTarget "OpenBrew" */;
 			buildPhases = (
 				C0AD2084356259E424B867BF /* Check Pods Manifest.lock */,
+				9F08A33B1C398968003EE9E5 /* Decrypt API Keys */,
 				9F98D3511880F8ED00469323 /* Sources */,
 				9F98D3521880F8ED00469323 /* Frameworks */,
 				9F98D3531880F8ED00469323 /* Resources */,
@@ -1042,6 +1043,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		9F08A33B1C398968003EE9E5 /* Decrypt API Keys */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Decrypt API Keys";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd ${BUILD_SCRIPTS}/ApiKeys\n${BUILD_SCRIPTS}/ApiKeys/decrypt.sh";
 		};
 		9FE6F3391BB2F49F006A13A2 /* Upload dSYM to Crittercism */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1362,7 +1377,11 @@
 					"OPEN_BREW=1",
 				);
 				GENERATED_DATABASE = "$(DERIVED_FILE_DIR)/OpenBrewStartupData.sqlite";
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				GENERATED_HEADERS = "$(CONFIGURATION_TEMP_DIR)/GeneratedHeaders";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(GENERATED_HEADERS)",
+				);
 				INFOPLIST_FILE = "OpenBrew/OpenBrew-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -1392,7 +1411,11 @@
 					"OPEN_BREW=1",
 				);
 				GENERATED_DATABASE = "$(DERIVED_FILE_DIR)/OpenBrewStartupData.sqlite";
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				GENERATED_HEADERS = "$(CONFIGURATION_TEMP_DIR)/GeneratedHeaders";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(GENERATED_HEADERS)",
+				);
 				INFOPLIST_FILE = "OpenBrew/OpenBrew-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";

@@ -17,6 +17,10 @@
 #import "OBCoreData.h"
 #import "OBDataLoader.h"
 
+// These header files are generated from encrypted headers stored in BuildScripts/ApiKeys
+#import "CrittercismApiKey.h"
+#import "GoogleAnalyticsApiKey.h"
+
 @implementation OBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -65,13 +69,16 @@
 - (void)initializeCrittercism
 {
 #ifndef DEBUG
-  [Crittercism enableWithAppID:@"558d6dda9ccc10f6040881c2"];
+#ifdef CRITTERCISM_API_KEY
+  [Crittercism enableWithAppID:CRITTERCISM_API_KEY];
+#endif
 #endif
 }
 
 - (void)initializeGoogleAnalytics
 {
 #ifndef DEBUG
+#ifdef GOOGLE_ANALYTICS_API_KEY
   // Optional: automatically send uncaught exceptions to Google Analytics.
   [GAI sharedInstance].trackUncaughtExceptions = NO;
 
@@ -79,7 +86,8 @@
   [GAI sharedInstance].dispatchInterval = 20;
 
   // Initialize tracker. Replace with your tracking ID.
-  [[GAI sharedInstance] trackerWithTrackingId:@"UA-64333354-1"];
+  [[GAI sharedInstance] trackerWithTrackingId:GOOGLE_ANALYTICS_API_KEY];
+#endif
 #endif
 }
 
