@@ -10,5 +10,5 @@ target 'OpenBrew' do
 end
 
 target 'OpenBrewTests' do
-  pod 'OCMock' , '3.1.2'
+  pod 'OCMock' , '3.2'
 end
