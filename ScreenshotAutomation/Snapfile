@@ -1,0 +1,21 @@
+# For more information about all available options run
+# snapshot --help
+
+devices([
+   "iPhone 6",
+   "iPhone 6 Plus",
+   "iPhone 5s",
+   "iPhone 4s"
+])
+
+languages([
+  "en-US"
+])
+
+scheme "ScreenshotAutomation"
+
+output_directory "../Images/Screenshots"
+
+clear_previous_screenshots
+
+workspace "../OpenBrew.xcworkspace"

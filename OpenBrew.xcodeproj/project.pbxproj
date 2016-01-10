@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		9F8108281C429A3100CCC248 /* MakeScreenshots */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 9F8108291C429A3100CCC248 /* Build configuration list for PBXAggregateTarget "MakeScreenshots" */;
+			buildPhases = (
+				9F81082C1C429A3700CCC248 /* Make Screenshots */,
+			);
+			dependencies = (
+			);
+			name = MakeScreenshots;
+			productName = MakeScreenshots;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		5F99B5AFA24E36FD9B1137A4 /* libPods-OpenBrew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55799051A80861BAACCF1C47 /* libPods-OpenBrew.a */; };
 		9F0185D01BAC06F30026BC0C /* OBGaugePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0185CD1BAC06F30026BC0C /* OBGaugePageViewController.m */; };
@@ -46,6 +60,8 @@
 		9F77C614198CAECA0023EB3C /* OBMultiPickerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */; };
 		9F7EFEFA1BA6BDA300B71D64 /* OBSettingsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EFEF91BA6BDA300B71D64 /* OBSettingsTest.m */; };
 		9F7EFEFC1BA7294F00B71D64 /* OBCoreDataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EFEFB1BA7294F00B71D64 /* OBCoreDataTest.m */; };
+		9F81081A1C42921D00CCC248 /* ScreenshotAutomation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8108191C42921D00CCC248 /* ScreenshotAutomation.swift */; };
+		9F8108221C42924E00CCC248 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8108211C42924E00CCC248 /* SnapshotHelper.swift */; };
 		9F8928361BE67B4C003A59FB /* OBInfusionStepTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8928331BE67B4C003A59FB /* OBInfusionStepTableViewDelegate.m */; };
 		9F8928371BE67B4C003A59FB /* OBInfusionStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8928351BE67B4C003A59FB /* OBInfusionStepViewController.m */; };
 		9F8BB7AB1BBB68EC0044769F /* OBHopWeightSegmentedControlDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BB7AA1BBB68EC0044769F /* OBHopWeightSegmentedControlDelegateTest.m */; };
@@ -140,6 +156,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9F81081C1C42921D00CCC248 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F98D34D1880F8ED00469323 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9F98D3541880F8ED00469323;
+			remoteInfo = OpenBrew;
+		};
 		9F98D37B1880F8EE00469323 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9F98D34D1880F8ED00469323 /* Project object */;
@@ -156,7 +179,6 @@
 		54E9861CC60E0387C64511C5 /* Pods-OpenBrew.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenBrew.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenBrew/Pods-OpenBrew.release.xcconfig"; sourceTree = "<group>"; };
 		55799051A80861BAACCF1C47 /* libPods-OpenBrew.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenBrew.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57AFB48A88221FA111EB993E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		9F0185CA1BAC03C90026BC0C /* generate_starter_sqlite_db.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate_starter_sqlite_db.sh; sourceTree = "<group>"; };
 		9F0185CC1BAC06F30026BC0C /* OBGaugePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBGaugePageViewController.h; sourceTree = "<group>"; };
 		9F0185CD1BAC06F30026BC0C /* OBGaugePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBGaugePageViewController.m; sourceTree = "<group>"; };
 		9F0185CE1BAC06F30026BC0C /* OBNumericGaugeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBNumericGaugeViewController.h; sourceTree = "<group>"; };
@@ -222,6 +244,12 @@
 		9F77C613198CAECA0023EB3C /* OBMultiPickerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMultiPickerTableViewCell.m; sourceTree = "<group>"; tabWidth = 2; };
 		9F7EFEF91BA6BDA300B71D64 /* OBSettingsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSettingsTest.m; sourceTree = "<group>"; };
 		9F7EFEFB1BA7294F00B71D64 /* OBCoreDataTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBCoreDataTest.m; sourceTree = "<group>"; };
+		9F8108171C42921D00CCC248 /* ScreenshotAutomation.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScreenshotAutomation.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F8108191C42921D00CCC248 /* ScreenshotAutomation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotAutomation.swift; sourceTree = "<group>"; };
+		9F81081B1C42921D00CCC248 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F8108211C42924E00CCC248 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		9F8108271C4299D200CCC248 /* Snapfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; path = Snapfile; sourceTree = "<group>"; };
+		9F81082D1C429C1D00CCC248 /* MakeScreenshots.sh */ = {isa = PBXFileReference; explicitFileType = text.script.sh; path = MakeScreenshots.sh; sourceTree = "<group>"; };
 		9F8928321BE67B4C003A59FB /* OBInfusionStepTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBInfusionStepTableViewDelegate.h; sourceTree = "<group>"; };
 		9F8928331BE67B4C003A59FB /* OBInfusionStepTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBInfusionStepTableViewDelegate.m; sourceTree = "<group>"; };
 		9F8928341BE67B4C003A59FB /* OBInfusionStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBInfusionStepViewController.h; sourceTree = "<group>"; };
@@ -362,6 +390,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9F8108141C42921D00CCC248 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9F98D3521880F8ED00469323 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -406,7 +441,7 @@
 		9F0185C91BAC03C90026BC0C /* BuildScripts */ = {
 			isa = PBXGroup;
 			children = (
-				9F0185CA1BAC03C90026BC0C /* generate_starter_sqlite_db.sh */,
+				9F81082D1C429C1D00CCC248 /* MakeScreenshots.sh */,
 			);
 			path = BuildScripts;
 			sourceTree = "<group>";
@@ -554,6 +589,17 @@
 			name = TableViewCells;
 			sourceTree = "<group>";
 		};
+		9F8108181C42921D00CCC248 /* ScreenshotAutomation */ = {
+			isa = PBXGroup;
+			children = (
+				9F8108271C4299D200CCC248 /* Snapfile */,
+				9F8108211C42924E00CCC248 /* SnapshotHelper.swift */,
+				9F8108191C42921D00CCC248 /* ScreenshotAutomation.swift */,
+				9F81081B1C42921D00CCC248 /* Info.plist */,
+			);
+			path = ScreenshotAutomation;
+			sourceTree = "<group>";
+		};
 		9F89282D1BE67997003A59FB /* Strike Water */ = {
 			isa = PBXGroup;
 			children = (
@@ -621,6 +667,7 @@
 				9F98D37D1880F8EE00469323 /* OpenBrewTests */,
 				9FE279EF1B9953450057BEFE /* DefaultAppData */,
 				9F0185C91BAC03C90026BC0C /* BuildScripts */,
+				9F8108181C42921D00CCC248 /* ScreenshotAutomation */,
 				9F98D3571880F8ED00469323 /* Frameworks */,
 				91870267D1FFE306912B02B6 /* Pods */,
 				9F98D3561880F8ED00469323 /* Products */,
@@ -632,6 +679,7 @@
 			children = (
 				9F98D3551880F8ED00469323 /* OpenBrew.app */,
 				9F98D3751880F8EE00469323 /* OpenBrewTests.xctest */,
+				9F8108171C42921D00CCC248 /* ScreenshotAutomation.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -872,6 +920,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9F8108161C42921D00CCC248 /* ScreenshotAutomation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F8108201C42921D00CCC248 /* Build configuration list for PBXNativeTarget "ScreenshotAutomation" */;
+			buildPhases = (
+				9F8108131C42921D00CCC248 /* Sources */,
+				9F8108141C42921D00CCC248 /* Frameworks */,
+				9F8108151C42921D00CCC248 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9F81081D1C42921D00CCC248 /* PBXTargetDependency */,
+			);
+			name = ScreenshotAutomation;
+			productName = ScreenshotAutomation;
+			productReference = 9F8108171C42921D00CCC248 /* ScreenshotAutomation.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		9F98D3541880F8ED00469323 /* OpenBrew */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F98D3871880F8EE00469323 /* Build configuration list for PBXNativeTarget "OpenBrew" */;
@@ -922,9 +988,17 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = OB;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = OpenBrew;
 				TargetAttributes = {
+					9F8108161C42921D00CCC248 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 9F98D3541880F8ED00469323;
+					};
+					9F8108281C429A3100CCC248 = {
+						CreatedOnToolsVersion = 7.2;
+					};
 					9F98D3541880F8ED00469323 = {
 						DevelopmentTeam = VEHZDQFN5M;
 					};
@@ -947,11 +1021,20 @@
 			targets = (
 				9F98D3541880F8ED00469323 /* OpenBrew */,
 				9F98D3741880F8EE00469323 /* OpenBrewTests */,
+				9F8108161C42921D00CCC248 /* ScreenshotAutomation */,
+				9F8108281C429A3100CCC248 /* MakeScreenshots */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9F8108151C42921D00CCC248 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9F98D3531880F8ED00469323 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1058,6 +1141,20 @@
 			shellPath = /bin/sh;
 			shellScript = "cd ${BUILD_SCRIPTS}/ApiKeys\n${BUILD_SCRIPTS}/ApiKeys/decrypt.sh";
 		};
+		9F81082C1C429A3700CCC248 /* Make Screenshots */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Make Screenshots";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${BUILD_SCRIPTS}/MakeScreenshots.sh";
+		};
 		9FE6F3391BB2F49F006A13A2 /* Upload dSYM to Crittercism */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1105,6 +1202,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9F8108131C42921D00CCC248 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F81081A1C42921D00CCC248 /* ScreenshotAutomation.swift in Sources */,
+				9F8108221C42924E00CCC248 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9F98D3511880F8ED00469323 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1226,6 +1332,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9F81081D1C42921D00CCC248 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9F98D3541880F8ED00469323 /* OpenBrew */;
+			targetProxy = 9F81081C1C42921D00CCC248 /* PBXContainerItemProxy */;
+		};
 		9F98D37C1880F8EE00469323 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9F98D3541880F8ED00469323 /* OpenBrew */;
@@ -1253,6 +1364,60 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9F81081E1C42921D00CCC248 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = ScreenshotAutomation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = OpenBrew.ScreenshotAutomation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_TARGET_NAME = OpenBrew;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		9F81081F1C42921D00CCC248 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = ScreenshotAutomation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = OpenBrew.ScreenshotAutomation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = OpenBrew;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+		9F81082A1C429A3100CCC248 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9F81082B1C429A3100CCC248 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		9F98D3851880F8EE00469323 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1475,6 +1640,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9F8108201C42921D00CCC248 /* Build configuration list for PBXNativeTarget "ScreenshotAutomation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F81081E1C42921D00CCC248 /* Debug */,
+				9F81081F1C42921D00CCC248 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9F8108291C429A3100CCC248 /* Build configuration list for PBXAggregateTarget "MakeScreenshots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F81082A1C429A3100CCC248 /* Debug */,
+				9F81082B1C429A3100CCC248 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		9F98D3501880F8ED00469323 /* Build configuration list for PBXProject "OpenBrew" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
