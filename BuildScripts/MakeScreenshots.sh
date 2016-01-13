@@ -10,11 +10,21 @@
 
 cd ${PROJECT_DIR}/ScreenshotAutomation
 
-if ! `which snapshot`; then
+if ! which -s snapshot; then
   echo "ERROR: The program 'snapshot' is not in your PATH."
   echo "Please install it with 'sudo gem install snapshot'"
-  echo "For mor information visit https://github.com/fastlane/snapshot"
+  echo "For more information visit https://github.com/fastlane/snapshot"
+  exit 1
+fi
+
+if ! which -s frameit; then
+  echo "ERROR: The program 'snapshot' is not in your PATH."
+  echo "Please install it with 'sudo gem install frameit'"
+  echo "For more information visit https://github.com/fastlane/frameit"
   exit 1
 fi
 
 snapshot
+
+cd ${PROJECT_DIR}/Images/ScreenShots/en-US/
+frameit space-gray
