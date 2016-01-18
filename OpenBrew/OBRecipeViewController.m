@@ -23,6 +23,7 @@
 #import "OBHops.h"
 #import "OBSettings.h"
 #import "Crittercism+NSErrorLogging.h"
+#import "UILabel+Autosize.h"
 
 // Google Analytics event category
 static NSString* const OBGAScreenName = @"Recipe Screen";
@@ -268,6 +269,11 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
   colorCell.colorView.colorInSrm = roundf([self.recipe colorInSRM]);
   colorCell.descriptionLabel.text = @"Color";
 
+  // There's a bug in iOS 8 where UICollectionViewCells do not update their constraints
+  // This seems to fix the issue
+  [colorCell layoutIfNeeded];
+  [colorCell.descriptionLabel resizeFontToMatchHeight];
+
   return colorCell;
 }
 
@@ -310,6 +316,13 @@ typedef NS_ENUM(NSInteger, OBRecipeStatistic) {
 
   statsCell.statisticLabel.text = value;
   statsCell.descriptionLabel.text = description;
+
+  // There's a bug in iOS 8 where UICollectionViewCells do not update their constraints
+  // This seems to fix the issue
+  [statsCell layoutIfNeeded];
+
+  [statsCell.statisticLabel resizeFontToMatchHeight];
+  [statsCell.descriptionLabel resizeFontToMatchHeight];
 
   return statsCell;
 }

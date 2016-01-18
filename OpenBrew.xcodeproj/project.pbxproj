@@ -143,6 +143,7 @@
 		9FE8643E198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8643D198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m */; };
 		9FE9745818883C8500FFAA56 /* OBMaltAdditionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745718883C8500FFAA56 /* OBMaltAdditionTest.m */; };
 		9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745A188975C700FFAA56 /* OpenBrew.xcdatamodeld */; };
+		9FF31E1D1C4CCBC4007EC70F /* UILabel+Autosize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF31E1C1C4CCBC4007EC70F /* UILabel+Autosize.m */; };
 		9FF3B15D1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3B15C1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m */; };
 		9FF5100E1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5100D1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m */; };
 		9FF510181B6568E400970C22 /* OBMaltAdditionSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF510171B6568E400970C22 /* OBMaltAdditionSettingsViewController.m */; };
@@ -371,6 +372,8 @@
 		9FE8643D198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopBoilTimePickerDelegate.m; sourceTree = "<group>"; };
 		9FE9745718883C8500FFAA56 /* OBMaltAdditionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionTest.m; sourceTree = "<group>"; };
 		9FE9745B188975C700FFAA56 /* OpenBrew.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OpenBrew.xcdatamodel; sourceTree = "<group>"; };
+		9FF31E1B1C4CCBC4007EC70F /* UILabel+Autosize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Autosize.h"; sourceTree = "<group>"; };
+		9FF31E1C1C4CCBC4007EC70F /* UILabel+Autosize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Autosize.m"; sourceTree = "<group>"; };
 		9FF3B15C1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltQuantityPickerDelegateTest.m; sourceTree = "<group>"; };
 		9FF5100D1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBDrawerTableViewDelegateTest.m; sourceTree = "<group>"; };
 		9FF510161B6568E400970C22 /* OBMaltAdditionSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMaltAdditionSettingsViewController.h; sourceTree = "<group>"; };
@@ -913,6 +916,8 @@
 				9F41C2911BADB7BE00A072E9 /* OBPlaceholderView.xib */,
 				9F107DEE1BBA1D5200364A32 /* OBSegmentedControl.h */,
 				9F107DEF1BBA1D5200364A32 /* OBSegmentedControl.m */,
+				9FF31E1B1C4CCBC4007EC70F /* UILabel+Autosize.h */,
+				9FF31E1C1C4CCBC4007EC70F /* UILabel+Autosize.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1223,6 +1228,7 @@
 				9F9661CD1BBE524F00CC56A8 /* OBRecipeTableViewCell.m in Sources */,
 				9F60CF2C19B264A10076A600 /* OBMaltFinderViewController.m in Sources */,
 				9FF686C61893F00B00B36486 /* OBSettings.m in Sources */,
+				9FF31E1D1C4CCBC4007EC70F /* UILabel+Autosize.m in Sources */,
 				9FE8643E198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m in Sources */,
 				9FD66387198218220056EEEC /* OBHopAdditionViewController.m in Sources */,
 				9FF686C91894099A00B36486 /* OBRecipeViewController.m in Sources */,
@@ -1647,6 +1653,7 @@
 				9F81081F1C42921D00CCC248 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9F8108291C429A3100CCC248 /* Build configuration list for PBXAggregateTarget "MakeScreenshots" */ = {
 			isa = XCConfigurationList;
@@ -1655,6 +1662,7 @@
 				9F81082B1C429A3100CCC248 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9F98D3501880F8ED00469323 /* Build configuration list for PBXProject "OpenBrew" */ = {
 			isa = XCConfigurationList;
