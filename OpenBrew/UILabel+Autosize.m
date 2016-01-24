@@ -19,7 +19,6 @@
                                     forUILabelSize:self.frame.size
                                    withMinimumSize:self.frame.size.height];
 
-  NSLog(@"%.2f", newFont.pointSize);
   self.font = newFont;
 }
 

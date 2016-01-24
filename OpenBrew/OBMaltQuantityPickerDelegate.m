@@ -11,7 +11,9 @@
 
 #define LEFT_PICKER_COMPONENT 0
 #define RIGHT_PICKER_COMPONENT 1
-#define NUM_CYCLES_FOR_OZ_PICKER 2000
+
+// Choose a relatively low number, otherwise the UI tests hang.
+#define NUM_CYCLES_FOR_OZ_PICKER 20
 
 @implementation OBMaltQuantityPickerDelegate 
 
