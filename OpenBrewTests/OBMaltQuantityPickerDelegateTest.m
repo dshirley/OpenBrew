@@ -28,22 +28,22 @@
 
 - (void)testUpdateSelectionForPicker
 {
-  [self doTestUpdateSelectionForPickerExpectedRows:@[@(0), @(16000)] forQuantity:0];
-  [self doTestUpdateSelectionForPickerExpectedRows:@[@(0), @(16001)] forQuantity:(1.0 / 16.0)];
-  [self doTestUpdateSelectionForPickerExpectedRows:@[@(0), @(16002)] forQuantity:(2.0 / 16.0)];
-  [self doTestUpdateSelectionForPickerExpectedRows:@[@(1), @(16002)] forQuantity:(1 + (2.0 / 16.0))];
-  [self doTestUpdateSelectionForPickerExpectedRows:@[@(5), @(16015)] forQuantity:(5 + (15.0 / 16.0))];
+  [self doTestUpdateSelectionForPickerExpectedRows:@[@(0), @(160)] forQuantity:0];
+  [self doTestUpdateSelectionForPickerExpectedRows:@[@(0), @(161)] forQuantity:(1.0 / 16.0)];
+  [self doTestUpdateSelectionForPickerExpectedRows:@[@(0), @(162)] forQuantity:(2.0 / 16.0)];
+  [self doTestUpdateSelectionForPickerExpectedRows:@[@(1), @(162)] forQuantity:(1 + (2.0 / 16.0))];
+  [self doTestUpdateSelectionForPickerExpectedRows:@[@(5), @(175)] forQuantity:(5 + (15.0 / 16.0))];
 
   // Test some in between values
-  [self doTestUpdateSelectionForPickerExpectedRows:@[@(0), @(16000)] forQuantity:(0.9 / 32.0)];
-  [self doTestUpdateSelectionForPickerExpectedRows:@[@(0), @(16001)] forQuantity:(1.0 / 32.0)];
-  [self doTestUpdateSelectionForPickerExpectedRows:@[@(0), @(16001)] forQuantity:(1.1 / 32.0)];
+  [self doTestUpdateSelectionForPickerExpectedRows:@[@(0), @(160)] forQuantity:(0.9 / 32.0)];
+  [self doTestUpdateSelectionForPickerExpectedRows:@[@(0), @(161)] forQuantity:(1.0 / 32.0)];
+  [self doTestUpdateSelectionForPickerExpectedRows:@[@(0), @(161)] forQuantity:(1.1 / 32.0)];
 
   // Test the max value
-  [self doTestUpdateSelectionForPickerExpectedRows:@[@(50), @(16000)] forQuantity:(50)];
+  [self doTestUpdateSelectionForPickerExpectedRows:@[@(50), @(160)] forQuantity:(50)];
 
   // Test beyond the max value
-  [self doTestUpdateSelectionForPickerExpectedRows:@[@(55), @(16000)] forQuantity:(55)];
+  [self doTestUpdateSelectionForPickerExpectedRows:@[@(55), @(160)] forQuantity:(55)];
 }
 
 - (void)doTestUpdateSelectionForPickerExpectedRows:(NSArray *)rows
@@ -73,7 +73,7 @@
 {
   OBMaltQuantityPickerDelegate *delegate = [OBMaltQuantityPickerDelegate maltQuantityPickerDelegateWith:nil];
   XCTAssertEqual(50, [delegate pickerView:nil numberOfRowsInComponent:0]);
-  XCTAssertEqual(32000, [delegate pickerView:nil numberOfRowsInComponent:1]);
+  XCTAssertEqual(320, [delegate pickerView:nil numberOfRowsInComponent:1]);
 }
 
 - (void)testTitleForRowForComponent
