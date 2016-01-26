@@ -23,7 +23,7 @@ class ScreenshotAutomation: XCTestCase {
     super.tearDown()
   }
 
-  func testGetiTunesScreenShots() {
+  func testMainScreenshots() {
     snapshot("TableOfContents")
 
     let app = XCUIApplication()
@@ -32,23 +32,6 @@ class ScreenshotAutomation: XCTestCase {
 
     tablesQuery.staticTexts["Session IPA"].tap()
     snapshot("RecipeOverview")
-
-    tablesQuery.staticTexts["Hops"].tap()
-    tablesQuery.staticTexts["Columbus"].tap()
-    snapshot("HopAdditions")
-
-    app.toolbars.buttons["Info"].tap()
-    snapshot("HopAdditionSettings")
-
-    let hopsNavigationBar = app.navigationBars["Hops"]
-    hopsNavigationBar.buttons["Done"].tap()
-    hopsNavigationBar.childrenMatchingType(.Button).matchingIdentifier("Back").elementBoundByIndex(0).tap()
-
-    app.navigationBars["OBRecipeView"].buttons["Recipes"].tap()
-    app.navigationBars["Recipes"].buttons["Brew Lab"].tap()
-
-    tablesQuery.staticTexts["ABV & attenuation"].tap()
-    snapshot("AbvCalculation")
   }
 
   // This function takes screenshots of every screen in OpenBrew. It can be used
@@ -83,7 +66,7 @@ class ScreenshotAutomation: XCTestCase {
 
     let twoRowStaticText = tablesQuery.staticTexts["Two-Row"]
     twoRowStaticText.tap()
-    snapshot("MaltAdditionsExpandedWeight")
+    snapshot("MaltAdditionsExpanded")
     twoRowStaticText.tap()
 
     let toolbarsQuery = app.toolbars

@@ -8,6 +8,8 @@
 #
 #  This script is run from the MakeScreenshots build target
 
+set -e
+
 cd ${PROJECT_DIR}/ScreenshotAutomation
 
 if ! which -s snapshot; then
@@ -24,7 +26,32 @@ if ! which -s frameit; then
   exit 1
 fi
 
+rm -rf ${PROJECT_DIR}/Images/Screenshots
+
+# This must be in sync with the output directory in the Snapfile
+SNAPSHOT_OUTPUT_DIRECTORY="${PROJECT_DIR}/Images/Screenshots/Full/en-US"
+
 snapshot
 
-cd ${PROJECT_DIR}/Images/ScreenShots/en-US/
+# Copy some of the output files into a folder that can be uploaded to iTunes
+cd ${SNAPSHOT_OUTPUT_DIRECTORY}/../../
+mkdir iTunes
+cd iTunes
+
+cp ${SNAPSHOT_OUTPUT_DIRECTORY}/*TableOfContents.png .
+cp ${SNAPSHOT_OUTPUT_DIRECTORY}/*RecipeOverview.png .
+cp ${SNAPSHOT_OUTPUT_DIRECTORY}/*AbvCalculation.png .
+cp ${SNAPSHOT_OUTPUT_DIRECTORY}/*HopAdditionsExpanded.png .
+cp ${SNAPSHOT_OUTPUT_DIRECTORY}/*HopAdditionsSettings.png .
+
+# Copy some of the photos that are shown on the website
+cd ${SNAPSHOT_OUTPUT_DIRECTORY}/../../
+mkdir Website
+cd Website
+
+cp ${SNAPSHOT_OUTPUT_DIRECTORY}/iPhone5s-TableOfContents.png .
+cp ${SNAPSHOT_OUTPUT_DIRECTORY}/iPhone5s-AbvCalculation.png .
+cp ${SNAPSHOT_OUTPUT_DIRECTORY}/iPhone5s-HopAdditionsExpanded.png .
+
+# Put the frame around the output files
 frameit space-gray
