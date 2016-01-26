@@ -8,7 +8,7 @@
 
 #ifdef OPEN_BREW
 
-#import "Crittercism.h"
+#import <Crittercism/Crittercism.h>
 
 // Macro makes it less copy/pastish by pushing in lines and file names
 #define CRITTERCISM_LOG_ERROR(err) \

@@ -10,7 +10,7 @@
 #import "OBMalt.h"
 #import "OBHops.h"
 #import "OBSettings.h"
-#import "Crittercism.h"
+#import <Crittercism/Crittercism.h>
 #import "Crittercism+NSErrorLogging.h"
 #import "GAI.h"
 #import "OBTableOfContentsViewController.h"
