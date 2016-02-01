@@ -29,29 +29,29 @@ fi
 rm -rf ${PROJECT_DIR}/Images/Screenshots
 
 # This must be in sync with the output directory in the Snapfile
-SNAPSHOT_OUTPUT_DIRECTORY="${PROJECT_DIR}/Images/Screenshots/Full/en-US"
+OUTPUT_DIR="${PROJECT_DIR}/Images/Screenshots/Full/en-US"
 
 snapshot
 
 # Copy some of the output files into a folder that can be uploaded to iTunes
-cd ${SNAPSHOT_OUTPUT_DIRECTORY}/../../
-mkdir iTunes
-cd iTunes
+cd ${OUTPUT_DIR}/../../
+mkdir -p iTunes/en-US
+cd iTunes/en-US
 
-cp ${SNAPSHOT_OUTPUT_DIRECTORY}/*TableOfContents.png .
-cp ${SNAPSHOT_OUTPUT_DIRECTORY}/*RecipeOverview.png .
-cp ${SNAPSHOT_OUTPUT_DIRECTORY}/*AbvCalculation.png .
-cp ${SNAPSHOT_OUTPUT_DIRECTORY}/*HopAdditionsExpanded.png .
-cp ${SNAPSHOT_OUTPUT_DIRECTORY}/*HopAdditionsSettings.png .
+cp ${OUTPUT_DIR}/*TableOfContents.png .
+cp ${OUTPUT_DIR}/*RecipeOverview.png .
+cp ${OUTPUT_DIR}/*AbvCalculation.png .
+cp ${OUTPUT_DIR}/*HopAdditionsExpanded.png .
+cp ${OUTPUT_DIR}/*HopAdditionsSettings.png .
 
 # Copy some of the photos that are shown on the website
-cd ${SNAPSHOT_OUTPUT_DIRECTORY}/../../
-mkdir Website
-cd Website
+cd ${OUTPUT_DIR}/../../
+mkdir -p Website/en-US
+cd Website/en-US
 
-cp ${SNAPSHOT_OUTPUT_DIRECTORY}/iPhone5s-TableOfContents.png .
-cp ${SNAPSHOT_OUTPUT_DIRECTORY}/iPhone5s-AbvCalculation.png .
-cp ${SNAPSHOT_OUTPUT_DIRECTORY}/iPhone5s-HopAdditionsExpanded.png .
+cp ${OUTPUT_DIR}/iPhone5s-TableOfContents.png .
+cp ${OUTPUT_DIR}/iPhone5s-AbvCalculation.png .
+cp ${OUTPUT_DIR}/iPhone5s-HopAdditionsExpanded.png .
 
 # Put the frame around the output files
 frameit space-gray

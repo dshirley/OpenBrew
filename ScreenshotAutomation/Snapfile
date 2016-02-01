@@ -14,7 +14,7 @@ languages([
 
 scheme "ScreenshotAutomation"
 
-output_directory "../Images/Screenshots"
+output_directory "../Images/Screenshots/Full"
 
 clear_previous_screenshots
 
