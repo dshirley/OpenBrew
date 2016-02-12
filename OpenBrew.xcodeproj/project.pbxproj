@@ -21,7 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		5F99B5AFA24E36FD9B1137A4 /* libPods-OpenBrew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55799051A80861BAACCF1C47 /* libPods-OpenBrew.a */; };
+		05215DE48D8E42EE4969742B /* libPods-OpenBrewTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 874B9CA51EF3B6B278005FF4 /* libPods-OpenBrewTests.a */; };
+		41F8D415AA5AFBC8023E591A /* libPods-OpenBrew.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D51EA0BE9A841BCB368358 /* libPods-OpenBrew.a */; };
 		9F0185D01BAC06F30026BC0C /* OBGaugePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0185CD1BAC06F30026BC0C /* OBGaugePageViewController.m */; };
 		9F0185D11BAC06F30026BC0C /* OBNumericGaugeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0185CF1BAC06F30026BC0C /* OBNumericGaugeViewController.m */; };
 		9F0323311B786DC500E4B98B /* OBHopBoilTimePickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0323301B786DC500E4B98B /* OBHopBoilTimePickerDelegateTest.m */; };
@@ -143,6 +144,7 @@
 		9FE8643E198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8643D198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m */; };
 		9FE9745818883C8500FFAA56 /* OBMaltAdditionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745718883C8500FFAA56 /* OBMaltAdditionTest.m */; };
 		9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745A188975C700FFAA56 /* OpenBrew.xcdatamodeld */; };
+		9FF2F5EF1C6AE501002C989A /* TestTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF2F5EE1C6AE501002C989A /* TestTV.m */; };
 		9FF31E1D1C4CCBC4007EC70F /* UILabel+Autosize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF31E1C1C4CCBC4007EC70F /* UILabel+Autosize.m */; };
 		9FF3B15D1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3B15C1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m */; };
 		9FF5100E1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5100D1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m */; };
@@ -153,7 +155,6 @@
 		9FF7ABF61BAC8EB300BDD3B4 /* OBGaugePageViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF7ABF51BAC8EB300BDD3B4 /* OBGaugePageViewControllerTest.m */; };
 		9FF7ABF81BAC955E00BDD3B4 /* OBGaugePageViewControllerDataSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF7ABF71BAC955E00BDD3B4 /* OBGaugePageViewControllerDataSourceTest.m */; };
 		9FF7ABFA1BAD352D00BDD3B4 /* OBGaugeViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF7ABF91BAD352D00BDD3B4 /* OBGaugeViewControllerTest.m */; };
-		C7DEEBA650ECB85B24804E1A /* libPods-OpenBrewTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B433F71B785657C53037ACAD /* libPods-OpenBrewTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,12 +175,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		10A81B88499DA6D2322BBA7E /* Pods-OpenBrew.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenBrew.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenBrew/Pods-OpenBrew.debug.xcconfig"; sourceTree = "<group>"; };
-		2E9C2A0874621689F373ECFC /* Pods-OpenBrewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenBrewTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenBrewTests/Pods-OpenBrewTests.debug.xcconfig"; sourceTree = "<group>"; };
-		412DB53DD8041549B2B7A537 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		54E9861CC60E0387C64511C5 /* Pods-OpenBrew.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenBrew.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenBrew/Pods-OpenBrew.release.xcconfig"; sourceTree = "<group>"; };
-		55799051A80861BAACCF1C47 /* libPods-OpenBrew.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenBrew.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		57AFB48A88221FA111EB993E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		2F73D84CC685986C132489F4 /* Pods-OpenBrewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenBrewTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenBrewTests/Pods-OpenBrewTests.debug.xcconfig"; sourceTree = "<group>"; };
+		30D51EA0BE9A841BCB368358 /* libPods-OpenBrew.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenBrew.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F6C1072608BD2E4DC6F3325 /* Pods-OpenBrew.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenBrew.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenBrew/Pods-OpenBrew.release.xcconfig"; sourceTree = "<group>"; };
+		874B9CA51EF3B6B278005FF4 /* libPods-OpenBrewTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenBrewTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F0185CC1BAC06F30026BC0C /* OBGaugePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBGaugePageViewController.h; sourceTree = "<group>"; };
 		9F0185CD1BAC06F30026BC0C /* OBGaugePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBGaugePageViewController.m; sourceTree = "<group>"; };
 		9F0185CE1BAC06F30026BC0C /* OBNumericGaugeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBNumericGaugeViewController.h; sourceTree = "<group>"; };
@@ -372,6 +371,9 @@
 		9FE8643D198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBHopBoilTimePickerDelegate.m; sourceTree = "<group>"; };
 		9FE9745718883C8500FFAA56 /* OBMaltAdditionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionTest.m; sourceTree = "<group>"; };
 		9FE9745B188975C700FFAA56 /* OpenBrew.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OpenBrew.xcdatamodel; sourceTree = "<group>"; };
+		9FF2F5EC1C6AE501002C989A /* TestTV.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestTV.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FF2F5EE1C6AE501002C989A /* TestTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTV.m; sourceTree = "<group>"; };
+		9FF2F5F01C6AE501002C989A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FF31E1B1C4CCBC4007EC70F /* UILabel+Autosize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Autosize.h"; sourceTree = "<group>"; };
 		9FF31E1C1C4CCBC4007EC70F /* UILabel+Autosize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Autosize.m"; sourceTree = "<group>"; };
 		9FF3B15C1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltQuantityPickerDelegateTest.m; sourceTree = "<group>"; };
@@ -387,9 +389,8 @@
 		9FF7ABF51BAC8EB300BDD3B4 /* OBGaugePageViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBGaugePageViewControllerTest.m; sourceTree = "<group>"; };
 		9FF7ABF71BAC955E00BDD3B4 /* OBGaugePageViewControllerDataSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBGaugePageViewControllerDataSourceTest.m; sourceTree = "<group>"; };
 		9FF7ABF91BAD352D00BDD3B4 /* OBGaugeViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBGaugeViewControllerTest.m; sourceTree = "<group>"; };
-		B433F71B785657C53037ACAD /* libPods-OpenBrewTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenBrewTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6FAFE14E22FD5BE92E5D660 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		C628608C11226E4BF48E5944 /* Pods-OpenBrewTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenBrewTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenBrewTests/Pods-OpenBrewTests.release.xcconfig"; sourceTree = "<group>"; };
+		F1888B169C48E8AEC609A829 /* Pods-OpenBrew.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenBrew.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenBrew/Pods-OpenBrew.debug.xcconfig"; sourceTree = "<group>"; };
+		FF55525D339C18F461CB9032 /* Pods-OpenBrewTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenBrewTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenBrewTests/Pods-OpenBrewTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,7 +410,7 @@
 				9F98D35F1880F8ED00469323 /* CoreData.framework in Frameworks */,
 				9F98D35D1880F8ED00469323 /* UIKit.framework in Frameworks */,
 				9F98D3591880F8ED00469323 /* Foundation.framework in Frameworks */,
-				5F99B5AFA24E36FD9B1137A4 /* libPods-OpenBrew.a in Frameworks */,
+				41F8D415AA5AFBC8023E591A /* libPods-OpenBrew.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,26 +422,20 @@
 				9F98D37A1880F8EE00469323 /* CoreData.framework in Frameworks */,
 				9F98D3791880F8EE00469323 /* UIKit.framework in Frameworks */,
 				9F98D3781880F8EE00469323 /* Foundation.framework in Frameworks */,
-				C7DEEBA650ECB85B24804E1A /* libPods-OpenBrewTests.a in Frameworks */,
+				05215DE48D8E42EE4969742B /* libPods-OpenBrewTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FF2F5E91C6AE501002C989A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		91870267D1FFE306912B02B6 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B6FAFE14E22FD5BE92E5D660 /* Pods.debug.xcconfig */,
-				57AFB48A88221FA111EB993E /* Pods.release.xcconfig */,
-				2E9C2A0874621689F373ECFC /* Pods-OpenBrewTests.debug.xcconfig */,
-				C628608C11226E4BF48E5944 /* Pods-OpenBrewTests.release.xcconfig */,
-				10A81B88499DA6D2322BBA7E /* Pods-OpenBrew.debug.xcconfig */,
-				54E9861CC60E0387C64511C5 /* Pods-OpenBrew.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		9F0185C91BAC03C90026BC0C /* BuildScripts */ = {
 			isa = PBXGroup;
 			children = (
@@ -671,9 +666,10 @@
 				9FE279EF1B9953450057BEFE /* DefaultAppData */,
 				9F0185C91BAC03C90026BC0C /* BuildScripts */,
 				9F8108181C42921D00CCC248 /* ScreenshotAutomation */,
+				9FF2F5ED1C6AE501002C989A /* TestTV */,
 				9F98D3571880F8ED00469323 /* Frameworks */,
-				91870267D1FFE306912B02B6 /* Pods */,
 				9F98D3561880F8ED00469323 /* Products */,
+				E059DA1CE9969FE1632E2E44 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -683,6 +679,7 @@
 				9F98D3551880F8ED00469323 /* OpenBrew.app */,
 				9F98D3751880F8EE00469323 /* OpenBrewTests.xctest */,
 				9F8108171C42921D00CCC248 /* ScreenshotAutomation.xctest */,
+				9FF2F5EC1C6AE501002C989A /* TestTV.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -697,9 +694,8 @@
 				9FC73F5019BB6DCB00AD964A /* SystemConfiguration.framework */,
 				9F98D35C1880F8ED00469323 /* UIKit.framework */,
 				9F98D3761880F8EE00469323 /* XCTest.framework */,
-				412DB53DD8041549B2B7A537 /* libPods.a */,
-				B433F71B785657C53037ACAD /* libPods-OpenBrewTests.a */,
-				55799051A80861BAACCF1C47 /* libPods-OpenBrew.a */,
+				30D51EA0BE9A841BCB368358 /* libPods-OpenBrew.a */,
+				874B9CA51EF3B6B278005FF4 /* libPods-OpenBrewTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -828,6 +824,15 @@
 			name = "Picker Delegates";
 			sourceTree = "<group>";
 		};
+		9FF2F5ED1C6AE501002C989A /* TestTV */ = {
+			isa = PBXGroup;
+			children = (
+				9FF2F5EE1C6AE501002C989A /* TestTV.m */,
+				9FF2F5F01C6AE501002C989A /* Info.plist */,
+			);
+			path = TestTV;
+			sourceTree = "<group>";
+		};
 		9FF3B15E1B7BE3B80067F228 /* Picker Delegates */ = {
 			isa = PBXGroup;
 			children = (
@@ -922,6 +927,17 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		E059DA1CE9969FE1632E2E44 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F1888B169C48E8AEC609A829 /* Pods-OpenBrew.debug.xcconfig */,
+				3F6C1072608BD2E4DC6F3325 /* Pods-OpenBrew.release.xcconfig */,
+				2F73D84CC685986C132489F4 /* Pods-OpenBrewTests.debug.xcconfig */,
+				FF55525D339C18F461CB9032 /* Pods-OpenBrewTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -947,14 +963,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F98D3871880F8EE00469323 /* Build configuration list for PBXNativeTarget "OpenBrew" */;
 			buildPhases = (
-				C0AD2084356259E424B867BF /* Check Pods Manifest.lock */,
+				3533F2D30F5EF1BE79A2CB0C /* Check Pods Manifest.lock */,
 				9F08A33B1C398968003EE9E5 /* Decrypt API Keys */,
 				9F98D3511880F8ED00469323 /* Sources */,
 				9F98D3521880F8ED00469323 /* Frameworks */,
 				9F98D3531880F8ED00469323 /* Resources */,
 				9FE6F3391BB2F49F006A13A2 /* Upload dSYM to Crittercism */,
-				256161998A953F0954ACB554 /* Copy Pods Resources */,
-				379D99CE90F60177B64D86B7 /* Embed Pods Frameworks */,
+				18D9FDF241A1AB24BF2DDAD3 /* Embed Pods Frameworks */,
+				5676666B5FBCAF0D4630194C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -969,12 +985,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F98D38A1880F8EE00469323 /* Build configuration list for PBXNativeTarget "OpenBrewTests" */;
 			buildPhases = (
-				67D0BF55B7FF828A400B1D00 /* Check Pods Manifest.lock */,
+				034A486B62F369410E651BB6 /* Check Pods Manifest.lock */,
 				9F98D3711880F8EE00469323 /* Sources */,
 				9F98D3721880F8EE00469323 /* Frameworks */,
 				9F98D3731880F8EE00469323 /* Resources */,
-				D6D04A696B109B5FC187189E /* Copy Pods Resources */,
-				2D2C9DC625D3CCD4EBD8C062 /* Embed Pods Frameworks */,
+				A986CC176BC3FC469ACB4AFC /* Embed Pods Frameworks */,
+				1B3A9F6289DB45A92F1E72CF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -984,6 +1000,23 @@
 			name = OpenBrewTests;
 			productName = OpenBrewTests;
 			productReference = 9F98D3751880F8EE00469323 /* OpenBrewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9FF2F5EB1C6AE501002C989A /* TestTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9FF2F5F31C6AE501002C989A /* Build configuration list for PBXNativeTarget "TestTV" */;
+			buildPhases = (
+				9FF2F5E81C6AE501002C989A /* Sources */,
+				9FF2F5E91C6AE501002C989A /* Frameworks */,
+				9FF2F5EA1C6AE501002C989A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestTV;
+			productName = TestTV;
+			productReference = 9FF2F5EC1C6AE501002C989A /* TestTV.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1010,6 +1043,9 @@
 					9F98D3741880F8EE00469323 = {
 						TestTargetID = 9F98D3541880F8ED00469323;
 					};
+					9FF2F5EB1C6AE501002C989A = {
+						CreatedOnToolsVersion = 7.2;
+					};
 				};
 			};
 			buildConfigurationList = 9F98D3501880F8ED00469323 /* Build configuration list for PBXProject "OpenBrew" */;
@@ -1028,6 +1064,7 @@
 				9F98D3741880F8EE00469323 /* OpenBrewTests */,
 				9F8108161C42921D00CCC248 /* ScreenshotAutomation */,
 				9F8108281C429A3100CCC248 /* MakeScreenshots */,
+				9FF2F5EB1C6AE501002C989A /* TestTV */,
 			);
 		};
 /* End PBXProject section */
@@ -1069,40 +1106,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9FF2F5EA1C6AE501002C989A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		256161998A953F0954ACB554 /* Copy Pods Resources */ = {
+		034A486B62F369410E651BB6 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenBrew/Pods-OpenBrew-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		2D2C9DC625D3CCD4EBD8C062 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenBrewTests/Pods-OpenBrewTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		379D99CE90F60177B64D86B7 /* Embed Pods Frameworks */ = {
+		18D9FDF241A1AB24BF2DDAD3 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1117,7 +1146,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenBrew/Pods-OpenBrew-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		67D0BF55B7FF828A400B1D00 /* Check Pods Manifest.lock */ = {
+		1B3A9F6289DB45A92F1E72CF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenBrewTests/Pods-OpenBrewTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3533F2D30F5EF1BE79A2CB0C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1130,6 +1174,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5676666B5FBCAF0D4630194C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenBrew/Pods-OpenBrew-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9F08A33B1C398968003EE9E5 /* Decrypt API Keys */ = {
@@ -1174,34 +1233,19 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ \"$CONFIGURATION\" == \"Release\" ]; then\n    REQUIRE_UPLOAD_SUCCESS=0\n    APP_ID=\"558d6dda9ccc10f6040881c2\"\n    API_KEY=\"QpSbTBqOf3OURnwszMJymTz0fJOgcmEB\"\n    source \"${BUILD_SCRIPTS}\"/dsym_upload.sh\nfi";
 		};
-		C0AD2084356259E424B867BF /* Check Pods Manifest.lock */ = {
+		A986CC176BC3FC469ACB4AFC /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		D6D04A696B109B5FC187189E /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenBrewTests/Pods-OpenBrewTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenBrewTests/Pods-OpenBrewTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1332,6 +1376,14 @@
 				9FE243461B45CD1B00D1EE25 /* OBRecipeTest.m in Sources */,
 				9FE608F51B69DD99008D1D88 /* OBRecipeListViewControllerTest.m in Sources */,
 				9F8BB7AB1BBB68EC0044769F /* OBHopWeightSegmentedControlDelegateTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9FF2F5E81C6AE501002C989A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FF2F5EF1C6AE501002C989A /* TestTV.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1533,7 +1585,7 @@
 		};
 		9F98D3881880F8EE00469323 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10A81B88499DA6D2322BBA7E /* Pods-OpenBrew.debug.xcconfig */;
+			baseConfigurationReference = F1888B169C48E8AEC609A829 /* Pods-OpenBrew.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1567,7 +1619,7 @@
 		};
 		9F98D3891880F8EE00469323 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 54E9861CC60E0387C64511C5 /* Pods-OpenBrew.release.xcconfig */;
+			baseConfigurationReference = 3F6C1072608BD2E4DC6F3325 /* Pods-OpenBrew.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1601,7 +1653,7 @@
 		};
 		9F98D38B1880F8EE00469323 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E9C2A0874621689F373ECFC /* Pods-OpenBrewTests.debug.xcconfig */;
+			baseConfigurationReference = 2F73D84CC685986C132489F4 /* Pods-OpenBrewTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
@@ -1625,7 +1677,7 @@
 		};
 		9F98D38C1880F8EE00469323 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C628608C11226E4BF48E5944 /* Pods-OpenBrewTests.release.xcconfig */;
+			baseConfigurationReference = FF55525D339C18F461CB9032 /* Pods-OpenBrewTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = NO;
@@ -1640,6 +1692,43 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenBrew.app/OpenBrew";
 				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		9FF2F5F11C6AE501002C989A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = TestTV/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = Crittercism.TestTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Debug;
+		};
+		9FF2F5F21C6AE501002C989A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = TestTV/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = Crittercism.TestTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Release;
 		};
@@ -1687,6 +1776,15 @@
 			buildConfigurations = (
 				9F98D38B1880F8EE00469323 /* Debug */,
 				9F98D38C1880F8EE00469323 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9FF2F5F31C6AE501002C989A /* Build configuration list for PBXNativeTarget "TestTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9FF2F5F11C6AE501002C989A /* Debug */,
+				9FF2F5F21C6AE501002C989A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

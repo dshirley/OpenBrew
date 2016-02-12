@@ -1,1 +1,1 @@
-../../../../CrittercismSDK/iOS/Crittercism.framework/Versions/5_5_0/Headers/CrittercismDelegate.h
+../../../../CrittercismSDK/iOS/Crittercism.framework/Versions/5_5_1/Headers/CrittercismDelegate.h
