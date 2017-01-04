@@ -144,7 +144,6 @@
 		9FE8643E198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE8643D198FC2AF007AD9E7 /* OBHopBoilTimePickerDelegate.m */; };
 		9FE9745818883C8500FFAA56 /* OBMaltAdditionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745718883C8500FFAA56 /* OBMaltAdditionTest.m */; };
 		9FE9745C188975C700FFAA56 /* OpenBrew.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9745A188975C700FFAA56 /* OpenBrew.xcdatamodeld */; };
-		9FF2F5EF1C6AE501002C989A /* TestTV.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF2F5EE1C6AE501002C989A /* TestTV.m */; };
 		9FF31E1D1C4CCBC4007EC70F /* UILabel+Autosize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF31E1C1C4CCBC4007EC70F /* UILabel+Autosize.m */; };
 		9FF3B15D1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF3B15C1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m */; };
 		9FF5100E1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF5100D1B6408B400970C22 /* OBDrawerTableViewDelegateTest.m */; };
@@ -372,8 +371,6 @@
 		9FE9745718883C8500FFAA56 /* OBMaltAdditionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltAdditionTest.m; sourceTree = "<group>"; };
 		9FE9745B188975C700FFAA56 /* OpenBrew.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OpenBrew.xcdatamodel; sourceTree = "<group>"; };
 		9FF2F5EC1C6AE501002C989A /* TestTV.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestTV.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9FF2F5EE1C6AE501002C989A /* TestTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestTV.m; sourceTree = "<group>"; };
-		9FF2F5F01C6AE501002C989A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FF31E1B1C4CCBC4007EC70F /* UILabel+Autosize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Autosize.h"; sourceTree = "<group>"; };
 		9FF31E1C1C4CCBC4007EC70F /* UILabel+Autosize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Autosize.m"; sourceTree = "<group>"; };
 		9FF3B15C1B7BE3940067F228 /* OBMaltQuantityPickerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMaltQuantityPickerDelegateTest.m; sourceTree = "<group>"; };
@@ -666,7 +663,6 @@
 				9FE279EF1B9953450057BEFE /* DefaultAppData */,
 				9F0185C91BAC03C90026BC0C /* BuildScripts */,
 				9F8108181C42921D00CCC248 /* ScreenshotAutomation */,
-				9FF2F5ED1C6AE501002C989A /* TestTV */,
 				9F98D3571880F8ED00469323 /* Frameworks */,
 				9F98D3561880F8ED00469323 /* Products */,
 				E059DA1CE9969FE1632E2E44 /* Pods */,
@@ -822,15 +818,6 @@
 				9FD671BC1BC2BED6003493FB /* OBPickerDelegate.m */,
 			);
 			name = "Picker Delegates";
-			sourceTree = "<group>";
-		};
-		9FF2F5ED1C6AE501002C989A /* TestTV */ = {
-			isa = PBXGroup;
-			children = (
-				9FF2F5EE1C6AE501002C989A /* TestTV.m */,
-				9FF2F5F01C6AE501002C989A /* Info.plist */,
-			);
-			path = TestTV;
 			sourceTree = "<group>";
 		};
 		9FF3B15E1B7BE3B80067F228 /* Picker Delegates */ = {
@@ -1383,7 +1370,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FF2F5EF1C6AE501002C989A /* TestTV.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
