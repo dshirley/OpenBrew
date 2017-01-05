@@ -10,19 +10,24 @@
 
 @class OBRecipe;
 
-@interface OBMaltFinderViewController : GAITrackedViewController
+@interface OBMaltFinderViewController : GAITrackedViewController<UISearchResultsUpdating>
 
 @property (nonatomic) OBRecipe *recipe;
 @property (nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+@property (nonatomic) UISearchController *searchController;
 
 - (void)viewDidLoad;
 
 - (void)viewWillAppear:(BOOL)animated;
 
-- (IBAction)applyMaltTypeFilter:(UISegmentedControl *)sender;
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 
+- (void)applyFilter:(NSString *)searchText;
+
+@end
+
+@interface OBMaltFinderViewController(UISearchResultsUpdating)
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController;
 
 @end

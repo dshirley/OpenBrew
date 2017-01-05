@@ -19,11 +19,6 @@
 // Google Analytics event category
 static NSString* const OBGAScreenName = @"Malt Finder Screen";
 
-// Indices of the UISegmentControl of the OBMaltFinderViewController in storyboard
-#define GRAIN_SEGMENT_INDEX 0
-#define EXTRACT_SEGMENT_INDEX 1
-#define SUGAR_SEGMENT_INDEX 2
-
 @interface OBMaltFinderViewController ()
 
 @property (nonatomic) OBIngredientTableViewDataSource *tableViewDataSource;
@@ -39,13 +34,17 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
 {
   [super viewDidLoad];
 
+  self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+  self.searchController.searchResultsUpdater = self;
+  self.searchController.dimsBackgroundDuringPresentation = NO;
+
   self.tableViewDataSource = [[OBIngredientTableViewDataSource alloc]
                               initIngredientEntityName:@"Malt"
                               andManagedObjectContext:self.recipe.managedObjectContext];
 
   self.tableView.dataSource = self.tableViewDataSource;
-
-  [self applyMaltTypeFilter:GRAIN_SEGMENT_INDEX];
+  self.tableView.tableHeaderView = self.searchController.searchBar;
+  self.definesPresentationContext = YES;
 
   [self.tableView reloadData];
 }
@@ -57,49 +56,23 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
   self.startTime = CFAbsoluteTimeGetCurrent();
 }
 
-// The user wants to filter by malt type (grain, extract or sugar)
-// Set the data source predicate to apply a filter
-- (IBAction)applyMaltTypeFilter:(UISegmentedControl *)sender {
-  [self applyMaltTypeFilter:sender trackInGoogleAnalytics:YES];
-}
-
-- (void)applyMaltTypeFilter:(UISegmentedControl *)sender trackInGoogleAnalytics:(BOOL)doTracking {
-  OBMaltType maltType;
-  NSString *gaFilterType = @"invalid filter";
-
-  switch (sender.selectedSegmentIndex) {
-    case GRAIN_SEGMENT_INDEX:
-      maltType = OBMaltTypeGrain;
-      gaFilterType = @"Grain";
-      break;
-    case EXTRACT_SEGMENT_INDEX:
-      maltType = OBMaltTypeExtract;
-      gaFilterType = @"Extract";
-      break;
-    case SUGAR_SEGMENT_INDEX:
-      maltType = OBMaltTypeSugar;
-      gaFilterType = @"Sugar";
-      break;
-    default:
-      [NSException raise:@"Segment index not defined"
-                  format:@"%@", @(sender.selectedSegmentIndex)];
+- (void)applyFilter:(NSString *)searchText
+{
+  if (searchText.length) {
+    self.tableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", searchText];
+  } else {
+    self.tableViewDataSource.predicate = nil;
   }
 
-  if (doTracking) {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:OBGAScreenName
-                                                          action:@"Filter"
-                                                           label:gaFilterType
-                                                           value:nil] build]];
-  }
-
-  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type == %d", maltType];
-  self.tableViewDataSource.predicate = predicate;
   [self.tableView reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+  if (self.searchController.isActive) {
+    [self.navigationController popViewControllerAnimated:YES];
+  }
+
   if ([[segue identifier] isEqualToString:@"IngredientSelected"] && sender) {
     // The user chose an ingredient to add to a recipe
     // Set the selectedIngredient so that we can add it when the segue completes
@@ -113,14 +86,13 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
     NSError *error = nil;
     [self.recipe.managedObjectContext save:&error];
     CRITTERCISM_LOG_ERROR(error);
-
-    NSTimeInterval timeDelta = CFAbsoluteTimeGetCurrent() - self.startTime;
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createTimingWithCategory:OBGAScreenName
-                                                         interval:@(timeDelta * 1000)
-                                                             name:@"Malt selected"
-                                                            label:selectedMalt.name] build]];
   }
 }
 
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
+{
+  [self applyFilter:searchController.searchBar.text];
+}
+
 @end
+

@@ -41,10 +41,7 @@
   XCTAssertGreaterThan([self.vc.tableView numberOfRowsInSection:0], 0);
 
   OBIngredientTableViewDataSource *dataSource = self.vc.tableView.dataSource;
-  XCTAssertEqualObjects(@"type == 0", dataSource.predicate.predicateFormat);
-
-
-
+  XCTAssertNil(dataSource.predicate.predicateFormat);
 
   NSArray *indexTitles = [self.vc.tableView.dataSource sectionIndexTitlesForTableView:self.vc.tableView];
   XCTAssertEqualObjects(@"A", indexTitles[0]);
@@ -67,6 +64,9 @@
   [self addMalt:@"Amber DME" quantity:8.0];
 
   XCTAssertEqual(numRows, [self.vc.tableView numberOfRowsInSection:0]);
+
+  XCTAssertNotNil(self.vc.searchController);
+  XCTAssertEqual(0, self.vc.searchController.searchBar.text.length);
 }
 
 - (void)testViewWillAppear
@@ -77,48 +77,65 @@
   XCTAssertEqualObjects(@"Malt Finder Screen", self.vc.screenName);
 }
 
-- (void)testApplyMaltTypeFilter
+- (void)testSearchText
+{
+  [self.vc loadView];
+  [self.vc viewDidLoad];
+  [self.vc.searchController.searchBar setText:@"black patent"];
+  XCTAssertEqual(1, [self.vc.tableView numberOfSections]);
+
+  [self.vc.searchController.searchBar setText:nil];
+  XCTAssertGreaterThan(self.vc.tableView.numberOfSections, 1);
+}
+
+- (void)testApplyFilter
 {
   [self.vc loadView];
   [self.vc viewDidLoad];
 
-  id mockSegmentedControl = [OCMockObject mockForClass:UISegmentedControl.class];
-  [[[mockSegmentedControl stub] andReturnValue:OCMOCK_VALUE(1)] selectedSegmentIndex];
-
   NSInteger numSectionsBefore = [self.vc.tableView numberOfSections];
-  [self.vc applyMaltTypeFilter:mockSegmentedControl];
+  [self.vc applyFilter:@"bl"];
   NSInteger numSectionsAfter = [self.vc.tableView numberOfSections];
 
   XCTAssertNotEqual(numSectionsBefore, numSectionsAfter);
 
   OBIngredientTableViewDataSource *dataSource = self.vc.tableView.dataSource;
 
-  XCTAssertEqualObjects(@"type == 2", dataSource.predicate.predicateFormat);
+  XCTAssertEqualObjects(@"name CONTAINS[cd] \"bl\"", dataSource.predicate.predicateFormat);
 }
 
-- (void)testApplyInvalidFilter
+- (void)testClearFilter
 {
   [self.vc loadView];
   [self.vc viewDidLoad];
 
-  id mockSegmentedControl = [OCMockObject mockForClass:UISegmentedControl.class];
-  [[[mockSegmentedControl stub] andReturnValue:OCMOCK_VALUE(3)] selectedSegmentIndex];
+  [self.vc applyFilter:@"bl"];
+  NSInteger numSectionsBefore = [self.vc.tableView numberOfSections];
+  [self.vc applyFilter:nil];
+  NSInteger numSectionsAfter = [self.vc.tableView numberOfSections];
 
-  XCTAssertThrows([self.vc applyMaltTypeFilter:mockSegmentedControl]);
+  XCTAssertNotEqual(numSectionsBefore, numSectionsAfter);
+  XCTAssertGreaterThan(numSectionsAfter, numSectionsBefore);
+
+  OBIngredientTableViewDataSource *dataSource = self.vc.tableView.dataSource;
+  XCTAssertNil(dataSource.predicate);
 }
 
-- (void)testSelectSegment
+- (void)testApplyFilterEmptySearchText
 {
   [self.vc loadView];
   [self.vc viewDidLoad];
-
-  self.vc.segmentedControl.selectedSegmentIndex = 2;
-  [self.vc.segmentedControl sendActionsForControlEvents:UIControlEventValueChanged];
 
   OBIngredientTableViewDataSource *dataSource = self.vc.tableView.dataSource;
 
-  // Selected malt type "sugar"
-  XCTAssertEqualObjects(@"type == 1", dataSource.predicate.predicateFormat);
+  XCTAssertNil(dataSource.predicate);
+
+  NSInteger numSectionsBefore = [self.vc.tableView numberOfSections];
+  [self.vc applyFilter:@""];
+  NSInteger numSectionsAfter = [self.vc.tableView numberOfSections];
+
+  XCTAssertEqual(numSectionsBefore, numSectionsAfter);
+  XCTAssertNil(dataSource.predicate);
 }
 
 - (void)testPrepareForSegue
