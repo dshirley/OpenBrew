@@ -43,8 +43,12 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
                               andManagedObjectContext:self.recipe.managedObjectContext];
 
   self.tableView.dataSource = self.tableViewDataSource;
+
   self.tableView.tableHeaderView = self.searchController.searchBar;
   self.definesPresentationContext = YES;
+
+  // This works around an issue where the UISearchController produces a warning message during deallocation
+  [self.searchController loadViewIfNeeded];
 
   [self.tableView reloadData];
 }
@@ -54,17 +58,6 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
   [super viewWillAppear:animated];
   self.screenName = OBGAScreenName;
   self.startTime = CFAbsoluteTimeGetCurrent();
-}
-
-- (void)applyFilter:(NSString *)searchText
-{
-  if (searchText.length) {
-    self.tableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", searchText];
-  } else {
-    self.tableViewDataSource.predicate = nil;
-  }
-
-  [self.tableView reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -87,6 +80,17 @@ static NSString* const OBGAScreenName = @"Malt Finder Screen";
     [self.recipe.managedObjectContext save:&error];
     CRITTERCISM_LOG_ERROR(error);
   }
+}
+
+- (void)applyFilter:(NSString *)searchText
+{
+  if (searchText.length) {
+    self.tableViewDataSource.predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@", searchText];
+  } else {
+    self.tableViewDataSource.predicate = nil;
+  }
+
+  [self.tableView reloadData];
 }
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController

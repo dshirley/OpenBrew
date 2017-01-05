@@ -10,15 +10,24 @@
 
 @class OBRecipe;
 
-@interface OBHopFinderViewController : GAITrackedViewController
+@interface OBHopFinderViewController : GAITrackedViewController<UISearchResultsUpdating>
 
 @property (nonatomic) OBRecipe *recipe;
 @property (nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic) UISearchController *searchController;
 
 - (void)viewDidLoad;
 
 - (void)viewWillAppear:(BOOL)animated;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+
+- (void)applyFilter:(NSString *)searchText;
+
+@end
+
+@interface OBHopFinderViewController(UISearchResultsUpdating)
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController;
 
 @end

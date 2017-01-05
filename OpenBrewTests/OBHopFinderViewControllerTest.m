@@ -61,6 +61,9 @@
   [self addHops:@"Admiral" quantity:1.0 aaPercent:10.0 boilTime:60];
 
   XCTAssertEqual(numRows, [self.vc.tableView numberOfRowsInSection:0]);
+
+  XCTAssertNotNil(self.vc.searchController);
+  XCTAssertEqual(0, self.vc.searchController.searchBar.text.length);
 }
 
 - (void)testViewWillAppear
@@ -69,6 +72,17 @@
   [self.vc viewWillAppear:NO];
 
   XCTAssertEqualObjects(@"Hop Finder Screen", self.vc.screenName);
+}
+
+- (void)testSearchText
+{
+  [self.vc loadView];
+  [self.vc viewDidLoad];
+  [self.vc.searchController.searchBar setText:@"cascade"];
+  XCTAssertEqual(1, [self.vc.tableView numberOfSections]);
+
+  [self.vc.searchController.searchBar setText:nil];
+  XCTAssertGreaterThan(self.vc.tableView.numberOfSections, 1);
 }
 
 - (void)testPrepareForSegue
